@@ -190,7 +190,9 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
         }
         postInvalidate();
     }
-
+    public Set<T> getGraphic(){
+        return mGraphics;
+    }
     /**
      * Draws the overlay with its associated graphic objects.
      */
@@ -205,6 +207,7 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
             }
 
             for (Graphic graphic : mGraphics) {
+
                 graphic.draw(canvas);
             }
         }

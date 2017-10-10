@@ -30,6 +30,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -44,7 +45,9 @@ import com.google.android.gms.vision.text.Text;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import creativeendlessgrowingceg.allergychecker.R;
 import creativeendlessgrowingceg.allergychecker.StartPage;
@@ -78,24 +81,30 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     // Helper objects for detecting taps and pinches.
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
-
+    private boolean useFlash = false;
     // A TextToSpeech engine for speaking a String value.
     private String textTapped;
-
     /**
      * Initializes the UI and creates the detector pipeline.
      */
     @Override
     public void onCreate(Bundle bundle) {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
         super.onCreate(bundle);
         setContentView(R.layout.ocr_capture);
 
+        Intent intent = getIntent();
+        useFlash = intent.getBooleanExtra("EXTRA_SESSION_ID",false);
+        Log.d(TAG, String.valueOf(useFlash));
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay<OcrGraphic>) findViewById(R.id.graphicOverlay);
 
         // Set good defaults for capturing text.
         boolean autoFocus = true;
-        boolean useFlash = false;
+
 
         // Check for the camera permission before accessing the camera.  If the
         // permission is not granted yet, request permission.
@@ -319,23 +328,35 @@ public final class OcrCaptureActivity extends AppCompatActivity {
      * @return true if the tap was on a TextBlock
      */
     private boolean onTap(float rawX, float rawY) {
-        OcrGraphic graphic = mGraphicOverlay.getGraphicAtLocation(rawX, rawY);
-        Text text = null;
-        if (graphic != null) {
-            List<? extends Text> textComponents = graphic.getComponents();
-            Log.d(TAG, "text data is being saved! " + graphic.getComponents().size());
-            for(Text currentText : textComponents) {
-                if (currentText != null && currentText.getValue() != null) {
-                    Log.d(TAG, "text data is being saved! " + currentText.getValue());
-                    // Speak the string.
-                    textTapped += currentText.getValue();
-                }
-                else {
-                    Log.d(TAG, "text data is null");
+        //OcrGraphic graphic = mGraphicOverlay.getGraphicAtLocation(rawX, rawY);
+        Set<OcrGraphic> graphic1 = new HashSet<>();
+        graphic1 = mGraphicOverlay.getGraphic();
+        if (!graphic1.isEmpty()) {
+            textTapped = "";
+            for (OcrGraphic ocrGraphic : graphic1) {
+                List<? extends Text> textComponents = ocrGraphic.getComponents();
+                Log.d(TAG, "text data is being saved! " + ocrGraphic.getComponents().size());
+                for(Text currentText : textComponents) {
+                    if (currentText != null && !currentText.getValue().equalsIgnoreCase("null")) {
+                        Log.d(TAG, "text data is being saved! " + currentText.getValue());
+                        // Speak the string.
+
+                        Log.d(TAG, textTapped);
+                        if(textTapped.equals("null")){
+                            textTapped = currentText.getValue();
+                        }
+                        else {
+                            textTapped += currentText.getValue();
+                        }
+
+                    }
+                    else {
+                        Log.d(TAG, "text data is null");
+                    }
                 }
             }
 
-                Toast.makeText(this, textTapped, Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, textTapped, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(OcrCaptureActivity.this, StartPage.class);
                 intent.putExtra("location", textTapped);
 
@@ -346,7 +367,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         else {
             Log.d(TAG,"no text detected");
         }
-        return text != null;
+        return textTapped != null;
     }
 
     private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {

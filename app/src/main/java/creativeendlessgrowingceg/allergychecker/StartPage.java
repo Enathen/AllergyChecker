@@ -36,7 +36,8 @@ public class StartPage extends AppCompatActivity
         ,SpellCheckerSession.SpellCheckerSessionListener
         ,HistoryFragment.OnFragmentInteractionListener
         ,StatisticsFragment.OnFragmentInteractionListener
-        ,SettingsFragment.OnFragmentInteractionListener {
+        ,SettingsFragment.OnFragmentInteractionListener
+        ,AllergyFragment.OnFragmentInteractionListener{
     private static final String TAG = "StartPage";
     private TextView suggestions;
     String newString= "Ingredients";
@@ -207,7 +208,10 @@ public class StartPage extends AppCompatActivity
             fragment = new StatisticsFragment(); setTitle("Statistics");
         } else if (id == R.id.nav_manage) {
             fragment = new SettingsFragment(); setTitle("Settings");
-        } else if (id == R.id.nav_share) {
+        }else if (id == R.id.allergies) {
+            fragment = new AllergyFragment(); setTitle("Allergy");
+        }
+        else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 

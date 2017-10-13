@@ -32,7 +32,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="Ingredients" />
+                android:text="Tap camera below to scan ingredients" />
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

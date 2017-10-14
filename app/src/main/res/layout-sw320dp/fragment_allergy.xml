@@ -6,13 +6,16 @@
     android:layout_height="match_parent"
     tools:context="creativeendlessgrowingceg.allergychecker.AllergyFragment">
 
-    <LinearLayout
-        android:id="@+id/lin_lay"
+
+    <ScrollView
+        android:id="@+id/scrollViewFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-    </LinearLayout>
-
-
+        <LinearLayout
+            android:id="@+id/linlayoutFrag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 </FrameLayout>

@@ -7,8 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -29,9 +35,10 @@ public class AllergyFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private FrameLayout parentFrameLayout;
+    private LinearLayout parentLinearLayout;
     private OnFragmentInteractionListener mListener;
-
+    private ArrayList<LinearLayout> nutsCategory = new ArrayList<>();
     public AllergyFragment() {
         // Required empty public constructor
     }
@@ -67,26 +74,73 @@ public class AllergyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        LinearLayout newView = (LinearLayout) inflater.inflate(
-                R.layout.rowlayout, container, false);
+        AllergyList allergylist = new AllergyList();
+        for (String s : allergylist.getArrayListNuts()) {
+            LinearLayout newLinearLayout = (LinearLayout) inflater.inflate(R.layout.leftmarginrowlayout, container, false);
+            TextView textview = (TextView) newLinearLayout.findViewById(R.id.textViewLeftMargin);
+            textview.setText(s);
+            nutsCategory.add(newLinearLayout);
 
-        // LinearLayout ll = new LinearLayout(getActivity());
-       /* for (int i = 0; i < 20; i++) {
-            //CheckBox cb = new CheckBox(rootView.getContext());
-            ImageView imageView = new ImageView(rootView.getContext());
-            rootView.setLayoutParams(new FrameLayout.LayoutParams(
-                    FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT));
-            //cb.setText("rowlayout");
-            rootView.addla(newView);
-        }*/
-        ImageView imageView = (ImageView) newView.findViewById(R.id.imageView2);
-        imageView.setImageResource(R.drawable.allergycheckerrings);
-        newView.setOrientation(LinearLayout.HORIZONTAL);
-        return newView;
+        }
+
+        parentFrameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_allergy, container, false);
+        parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
+        LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.rowlayout, container, false);
+        parentLinearLayout.addView(linearLayout);
+
+        LinearLayout linearLayout2 = (LinearLayout) inflater.inflate(R.layout.rowcategorylayout, container, false);
+        CheckBox checboxNuts = (CheckBox) linearLayout2.findViewById(R.id.checkBox);
+        checboxNuts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    for (LinearLayout linearLayout : nutsCategory) {
+                        CheckBox newCheck = (CheckBox) linearLayout.findViewById(R.id.checkBox);
+                        newCheck.setChecked(true);
+
+                    }
+                }else {
+                    for (LinearLayout linearLayout : nutsCategory) {
+                        CheckBox newCheck = (CheckBox) linearLayout.findViewById(R.id.checkBox);
+                        newCheck.setChecked(false);
+
+                    }
+                }
+            }
+        });
+        ImageView imageView = (ImageView) linearLayout2.findViewById(R.id.imageView4);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onclickDropDownList(v);
+            }
+        });
+
+        parentLinearLayout.addView(linearLayout2);
+
+
+        return parentFrameLayout;
 
 
     }
+    public void onclickDropDownList(View v) {
+        if(v.getRotation() == 180){
+            v.setRotation(0);
 
+            for (LinearLayout linearLayout : nutsCategory) {
+
+                parentLinearLayout.removeView(linearLayout);
+            }
+        }else{
+            v.setRotation(180);
+            for (LinearLayout linearLayout : nutsCategory) {
+                parentLinearLayout.addView(linearLayout);
+
+            }
+
+        }
+
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

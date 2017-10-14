@@ -21,4 +21,21 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="almond">Almond</string>
+    <string name="brazilNuts">Brazil nuts</string>
+    <string name="cacao">Cacao</string>
+    <string name="chestNuts">Chest nuts</string>
+    <string name="coconut">Coconut</string>
+    <string name="hazelnut">Hazelnut</string>
+    <string name="macadamiaNuts">Macadamia nuts</string>
+    <string name="peanuts">Peanuts</string>
+    <string name="pecans">Pecans</string>
+    <string name="piliNuts">Pili nuts</string>
+    <string name="pineNuts">Pine nuts</string>
+    <string name="pistachios">Pistachios</string>
+    <string name="soyNuts">Soy Nuts</string>
+    <string name="tigerNuts">Tiger Nuts</string>
+    <string name="walnuts">Walnuts</string>
 </resources>

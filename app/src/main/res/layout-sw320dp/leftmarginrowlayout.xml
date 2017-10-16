@@ -3,23 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:layout_marginLeft="20dp"
     android:weightSum="1">
+
+    <ImageView
+        android:id="@+id/imageViewLeftMargin"
+        android:layout_marginStart="50dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/allergychecker" />
 
     <TextView
         android:id="@+id/textViewLeftMargin"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_marginLeft="70dp"
+        android:layout_marginStart="20dp"
         android:layout_weight="1.01"
         android:gravity="center_vertical"
         android:text="Checkbox"
         android:textAllCaps="false"
-        android:textSize="18sp"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/checkBoxRow"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:button="@null"

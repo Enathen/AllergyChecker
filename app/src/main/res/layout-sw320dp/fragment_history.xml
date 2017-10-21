@@ -1,23 +1,19 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    android:id="@+id/fragAllergyFragment"
-
-    tools:context="creativeendlessgrowingceg.allergychecker.AllergyFragment">
-
-
+    android:id="@+id/historyFragment"
+    tools:context="creativeendlessgrowingceg.allergychecker.HistoryFragment">
     <ScrollView
-        android:id="@+id/scrollViewFragment"
+        android:id="@+id/scrollViewFragmentHistory"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linlayoutFrag"
+            android:id="@+id/lineaLayoutFragHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
 </FrameLayout>

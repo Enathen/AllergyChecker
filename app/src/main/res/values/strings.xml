@@ -46,6 +46,10 @@
     <string name="milk">Milk</string>
     <string name="seeds">Seeds</string>
     <string name="shellfish">Shellfish</string>
+    <string name="deleteHistory">Delete History</string>
+    <string name="scanPhotos">You need to scan photos to get result</string>
+
+    <string name="service_label">My Spell Checker</string>
 
 
 </resources>

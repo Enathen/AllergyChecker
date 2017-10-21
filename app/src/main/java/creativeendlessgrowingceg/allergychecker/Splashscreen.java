@@ -39,7 +39,7 @@ public class Splashscreen extends Activity {
                 }
                 finish();
 
-                Intent i = new Intent(Splashscreen.this,StartPage.class);
+                Intent i = new Intent(Splashscreen.this,StartPage.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(i);
             }
 

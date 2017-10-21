@@ -1,13 +1,16 @@
 package creativeendlessgrowingceg.allergychecker;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -27,7 +30,14 @@ import android.view.textservice.TextServicesManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 import creativeendlessgrowingceg.allergychecker.camera.OcrCaptureActivity;
 
@@ -39,12 +49,21 @@ public class StartPage extends AppCompatActivity
         ,SettingsFragment.OnFragmentInteractionListener
         ,AllergyFragment.OnFragmentInteractionListener{
     private static final String TAG = "StartPage";
+    private static final String SHARED_PREFS_NAME = "StartPage";
     private TextView suggestions;
     String newString= "Ingredients";
+    ArrayList<String> dateStrings = new ArrayList<>();
+    SharedPreferences prefs;
+    ArrayList<String> ingredientsAllergy = new ArrayList<>();
+    public StartPage(FragmentActivity activity) {
+        prefs = activity.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
+    }
+    public StartPage() {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        boolean firstTime = false;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -94,8 +113,8 @@ public class StartPage extends AppCompatActivity
         String str = intent.getStringExtra("location");
         suggestions = (TextView) findViewById(R.id.ingredientsTextView);
         if(str != null){
-/*
-            String[] parts = str.split("\\s+");
+            String allergyString = str;
+            String[] parts = allergyString.split("\\s+");
             Arrays.sort(parts);
             StringBuilder sb = new StringBuilder();
             for(String s:parts){
@@ -103,10 +122,42 @@ public class StartPage extends AppCompatActivity
                 sb.append(" ");
             }
 
-            str = sb.toString().trim();*/
+            allergyString = sb.toString().trim();
+            Log.d(TAG,allergyString);
+            Log.d(TAG,str);
             suggestions.setText(str);
             newString = str;
+            Calendar calendar = Calendar.getInstance();
+            DateString dateString = new DateString(calendar.getTime(),str);
+            dateStrings = getArray();
+            Log.d(TAG, String.valueOf(dateStrings.size()));
+            dateStrings.add(dateString.string);
+            Log.d(TAG, String.valueOf(dateStrings.size()));
+            //setDateStrings(dateStrings);
 
+            saveArray();
+            String[] splitStr = str.split("\\s+");
+            ArrayList<String> arrayListAllergies = new AllergyFragment(this).getArrayListFromAllCheckedAllergies();
+            SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
+
+            if(!arrayListAllergies.isEmpty()){
+                ArrayList<String> allergies = spellCheckAllergy.permuteString("build");
+                for (String string : splitStr) {
+                    if (allergies.contains(string)) {
+                        Log.d(TAG, "ALLERGI: " + string);
+                    }
+                }
+            }//TODO if no allergies
+
+
+
+        }else{
+            str = intent.getStringExtra("HistoryFragment");
+            if(str != null) {
+                suggestions.setText(str);
+                newString = str;
+
+            }
         }
 
 
@@ -121,17 +172,85 @@ public class StartPage extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+    public ArrayList<String> getDateString(){
+        for (String dateString : dateStrings) {
+            Log.d(TAG,dateString);
+        }
 
-    private void fetchSuggestionsFor(String input){
-        TextServicesManager tsm = (TextServicesManager) getSystemService(Context.TEXT_SERVICES_MANAGER_SERVICE);
-        SpellCheckerSession spellCheckerSession = tsm.newSpellCheckerSession(null, Locale.US, this, false);
+        return dateStrings;
+    }
+    public void setDateStrings(ArrayList<String> datastring){
+        Log.d(TAG, String.valueOf(dateStrings.size()));
+        for (String string : datastring) {
+            if(!dateStrings.contains(string))
+                dateStrings.add(string);
+        }
+        Log.d(TAG, String.valueOf(dateStrings.size()));
+    }
+    public boolean saveArray() {
+        Collections.sort(dateStrings);
+        for (String dateString : dateStrings) {
+            Log.d(TAG,dateString);
+        }
+        prefs = this.getSharedPreferences(SHARED_PREFS_NAME, Activity.MODE_PRIVATE);
+        SharedPreferences.Editor mEdit1 = prefs.edit();
+        Set<String> set = new HashSet<>();
+        set.addAll(dateStrings);
+        mEdit1.putStringSet("list", set);
+        return mEdit1.commit();
+    }
+    public ArrayList<String> getArray() {
+
+        SharedPreferences sp = this.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
+        //NOTE: if shared preference is null, the method return empty Hashset and not null
+        Set<String> set = sp.getStringSet("list", new HashSet<String>());
+
+        return new ArrayList<>(set);
+    }
+    public void deleteHistory() {
+        SharedPreferences.Editor mEdit1 = prefs.edit();
+
+
+        mEdit1.remove("list");
+        mEdit1.apply();
+
+    }
+    public ArrayList<String> getArrayFromHistory() {
+
+
+        //NOTE: if shared preference is null, the method return empty Hashset and not null
+        Set<String> set = prefs.getStringSet("list", new HashSet<String>());
+
+        return new ArrayList<>(set);
+    }
+    private void fetchSuggestionsFor(final String input){
+        Locale locale = new Locale("sv","SE"); //whatever language
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+        /*Locale[] test = Locale.getAvailableLocales();
+        for (Locale locale1 : test) {
+            Log.d(TAG,locale1.getLanguage());
+            Log.d(TAG,locale1.getCountry());
+        }*/
+        config.setLocale(locale);
+        Log.d(TAG,locale.getLanguage()+ " "+ locale.getCountry());
+        TextServicesManager tsm = (TextServicesManager) getSystemService(TEXT_SERVICES_MANAGER_SERVICE);
+        SpellCheckerSession spellCheckerSession = null;
+        if(locale.getLanguage().equals("sv")){
+            spellCheckerSession = tsm.newSpellCheckerSession(null, locale, this, false);
+
+        }else{
+            spellCheckerSession = tsm.newSpellCheckerSession(null, Locale.ENGLISH, this, true);
+        }
+
         if(spellCheckerSession == null){
             Log.d(TAG,"SPELL CHECKER NULL");
         }
         if (spellCheckerSession != null) {
             spellCheckerSession.getSentenceSuggestions(
                     new TextInfo[]{ new TextInfo(input) },
-                    1
+                    5
             );
         }
     }
@@ -199,7 +318,7 @@ public class StartPage extends AppCompatActivity
             Log.d(TAG, String.valueOf(getSupportFragmentManager().getBackStackEntryCount()));
             while (getSupportFragmentManager().getBackStackEntryCount() != 0)
                 getSupportFragmentManager().popBackStackImmediate();
-            Toast.makeText(StartPage.this, "Pressed Camera" , Toast.LENGTH_SHORT).show();
+            setTitle("AllergyChecker");
         } else if (id == R.id.history) {
             fragment = new HistoryFragment(); setTitle("History");
 
@@ -209,7 +328,7 @@ public class StartPage extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
             fragment = new SettingsFragment(); setTitle("Settings");
         }else if (id == R.id.allergies) {
-            fragment = new AllergyFragment(); setTitle("Allergy");
+            fragment = new AllergyFragment(this); setTitle("Allergy");
         }
         else if (id == R.id.nav_share) {
 
@@ -236,29 +355,34 @@ public class StartPage extends AppCompatActivity
     @Override
     public void onGetSentenceSuggestions(SentenceSuggestionsInfo[] results) {
         final StringBuffer sb = new StringBuffer("");
-        for(SentenceSuggestionsInfo result:results){
 
+
+        for(SentenceSuggestionsInfo result:results){
             int n = result.getSuggestionsCount();
+
+            //Log.d(TAG,"N="+ String.valueOf(n));
             for(int i=0; i < n; i++){
                 int m = result.getSuggestionsInfoAt(i).getSuggestionsCount();
-                String s = String.valueOf(m);
-                Log.d(TAG,s);
+                //Log.d(TAG, "M="+String.valueOf(m));
                 for(int k=0; k < m; k++) {
-                    sb.append(result.getSuggestionsInfoAt(i).getSuggestionAt(k))
-                            .append("\n");
-                    Log.d(TAG,result.getSuggestionsInfoAt(i).getSuggestionAt(k));
-
+                    ingredientsAllergy.add(result.getSuggestionsInfoAt(i).getSuggestionAt(k));
+                    Log.d(TAG,"TextScannedSuggestions: " + result.getSuggestionsInfoAt(i).getSuggestionAt(k));
 
                 }
-                sb.append("\n");
             }
         }
-        runOnUiThread(new Runnable() {
+
+
+        Log.d(TAG,"String From Photo: "+sb.toString());
+        /*runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 suggestions.append(sb.toString());
             }
-        });
+        });*/
+    }
+    private void onGetSentence(){
+
     }
 
     @Override
@@ -276,6 +400,15 @@ public class StartPage extends AppCompatActivity
             Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
             Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public class DateString{
+        String string;
+
+        DateString(Date date, String string){
+            String newString = date.toString();
+            newString = newString.concat(string);
+            this.string = newString;
         }
     }
 }

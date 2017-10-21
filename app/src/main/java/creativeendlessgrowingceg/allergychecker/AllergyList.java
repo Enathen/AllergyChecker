@@ -19,6 +19,7 @@ public class AllergyList {
     private ArrayList<PictureIngredient> arrayListFish = new ArrayList<>();
     private ArrayList<PictureIngredient> arrayListShellfish = new ArrayList<>();
     private ArrayList<PictureIngredient> arrayListSeeds= new ArrayList<>();
+
     public AllergyList(){
         setArrayListNuts();
         setArrayListGluten();
@@ -32,14 +33,15 @@ public class AllergyList {
     }
 
     public void setArrayListSeeds() {
-        arrayListSeeds.add(new PictureIngredient(R.drawable.fish,"Sesame"));
-        arrayListSeeds.add(new PictureIngredient(R.drawable.fish,"Benne"));
-        arrayListSeeds.add(new PictureIngredient(R.drawable.fish,"Gingelly"));
-        arrayListSeeds.add(new PictureIngredient(R.drawable.fish,"Gomasio"));
-        arrayListSeeds.add(new PictureIngredient(R.drawable.fish,"Halvah"));
-        arrayListSeeds.add(new PictureIngredient(R.drawable.fish,"Sim sim"));
-        arrayListSeeds.add(new PictureIngredient(R.drawable.fish,"Tahini"));
-        arrayListSeeds.add(new PictureIngredient(R.drawable.fish,"Til"));
+        arrayListSeeds.add(new PictureIngredient(R.drawable.wheat,"Sesame"));
+        arrayListSeeds.add(new PictureIngredient(R.drawable.wheat,"Benne"));
+        arrayListSeeds.add(new PictureIngredient(R.drawable.wheat,"Gingelly"));
+        arrayListSeeds.add(new PictureIngredient(R.drawable.wheat,"Gomasio"));
+        arrayListSeeds.add(new PictureIngredient(R.drawable.wheat,"Halvah"));
+        arrayListSeeds.add(new PictureIngredient(R.drawable.wheat,"Sim sim"));
+        arrayListSeeds.add(new PictureIngredient(R.drawable.wheat,"Tahini"));
+        arrayListSeeds.add(new PictureIngredient(R.drawable.wheat,"Til"));
+        sort(arrayListSeeds);
     }
 
     public ArrayList<PictureIngredient> getArrayListFish() {
@@ -102,6 +104,7 @@ public class AllergyList {
         arrayListShellfish.add(new PictureIngredient(R.drawable.fish,"Snails"));
         arrayListShellfish.add(new PictureIngredient(R.drawable.fish,"Squid"));
         arrayListShellfish.add(new PictureIngredient(R.drawable.fish,"Whelk"));
+        sort(arrayListShellfish);
     }
 
     public ArrayList<String> getArrayListIngredients() {

@@ -16,7 +16,7 @@
 
         <ImageView
 
-            android:id="@+id/imageViewRow"
+            android:id="@+id/imageViewRowCategory"
             android:layout_width="50dp"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -35,8 +35,8 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toRightOf="@+id/imageViewRow"
-            app:layout_constraintRight_toLeftOf="@+id/checkBoxRow"
+            app:layout_constraintLeft_toRightOf="@+id/imageViewRowCategory"
+            app:layout_constraintRight_toLeftOf="@+id/checkBoxRowCategory"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -49,7 +49,7 @@
             app:srcCompat="@drawable/dropdownlist" />
 
         <CheckBox
-            android:id="@+id/checkBoxRow"
+            android:id="@+id/checkBoxRowCategory"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginEnd="2dp"

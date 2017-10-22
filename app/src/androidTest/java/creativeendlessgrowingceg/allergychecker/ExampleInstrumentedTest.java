@@ -7,10 +7,7 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Instrumentation test, which will execute on an Android device.
@@ -29,8 +26,7 @@ public class ExampleInstrumentedTest {
     }
     @Test
     public void Spellchecker(){
-        ArrayList<String> arrayList = spellCheckAllergy.permuteAString("dog");
-        Collections.sort(arrayList);
-        System.out.println(arrayList.get(0));
+        String string = "bajskorv";
+        assertEquals(true,string.contains("bajs"));
     }
 }

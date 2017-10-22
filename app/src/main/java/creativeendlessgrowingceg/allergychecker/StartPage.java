@@ -35,6 +35,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
@@ -113,6 +114,7 @@ public class StartPage extends AppCompatActivity
         String str = intent.getStringExtra("location");
         suggestions = (TextView) findViewById(R.id.ingredientsTextView);
         if(str != null){
+            str = str.replaceAll("[^a-zA-Z\\s]", "");
             String allergyString = str;
             String[] parts = allergyString.split("\\s+");
             Arrays.sort(parts);
@@ -125,8 +127,11 @@ public class StartPage extends AppCompatActivity
             allergyString = sb.toString().trim();
             Log.d(TAG,allergyString);
             Log.d(TAG,str);
+
             suggestions.setText(str);
+
             newString = str;
+            str = str.toLowerCase();
             Calendar calendar = Calendar.getInstance();
             DateString dateString = new DateString(calendar.getTime(),str);
             dateStrings = getArray();
@@ -137,31 +142,44 @@ public class StartPage extends AppCompatActivity
 
             saveArray();
             String[] splitStr = str.split("\\s+");
-            ArrayList<String> arrayListAllergies = new AllergyFragment(this).getArrayListFromAllCheckedAllergies();
+
+            HashMap<String,ArrayList<String>> arrayListAllergies = new AllergyFragment(this).getArrayListFromAllCheckedAllergies();
             SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
-
-            if(!arrayListAllergies.isEmpty()){
-                ArrayList<String> allergies = spellCheckAllergy.permuteString("build");
+            if(!arrayListAllergies.isEmpty()) {
+                HashMap<String, ArrayList<String>> allergies = spellCheckAllergy.permuteString(arrayListAllergies);
+                String outputString = "";
                 for (String string : splitStr) {
-                    if (allergies.contains(string)) {
-                        Log.d(TAG, "ALLERGI: " + string);
+                    for (String key : allergies.keySet()) {
+                        boolean shortcut = false;
+                        for (String extraKey : allergies.keySet()){
+                            if(extraKey.equals(string)){
+                                outputString = outputString.concat("Allergies Contained: "+ extraKey + "\n");
+                                Log.d(TAG, "ALLERGI: " + outputString);
+                                shortcut = true;
+                                break;
+                            }
+                        }
+                        if(!shortcut){
+                            if (allergies.get(key).contains(string)) {
+                                outputString = outputString.concat("Allergies highly certainly contained: "+ key + " from Word: " + string + "\n");
+                                Log.d(TAG, "ALLERGI: " + outputString);
+                                break;
+                            }
+                        }else{
+                            break;
+                        }
                     }
-                }
-            }//TODO if no allergies
-
-
+                }//TODO if no allergies
+                ((TextView) findViewById(R.id.textViewFoundAllergies)).setText(outputString);
+            }
 
         }else{
             str = intent.getStringExtra("HistoryFragment");
             if(str != null) {
                 suggestions.setText(str);
                 newString = str;
-
             }
         }
-
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

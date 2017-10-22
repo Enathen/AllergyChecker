@@ -15,10 +15,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 
 /**
@@ -45,16 +49,18 @@ public class AllergyFragment extends Fragment {
     private LinearLayout parentLinearLayout;
     private OnFragmentInteractionListener mListener;
     private HashMap<String,ArrayList<LinearLayout>> Categories = new HashMap<>();
+    private HashMap<String,ArrayList<String>> categoriesAllergy = new HashMap<>();
     private HashMap<String,LinearLayout> linearLayoutParents = new HashMap<>();
     private HashMap<String,CheckBox> checkBoxes = new HashMap<>();
-    private ArrayList<String> arrayListAllergy = new ArrayList<>();
     private SharedPreferences prefs;
+    private File startPageFile;
 
     public AllergyFragment(AllergyFragment allergyFragment) {
         // Required empty public constructor
     }
     public AllergyFragment(StartPage startPage) {
         prefs = startPage.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
+        startPageFile = new File(startPage.getFilesDir(),"data.txt");
     }
 
 
@@ -126,16 +132,10 @@ public class AllergyFragment extends Fragment {
                 editor.putBoolean(getResources().getString(name), isChecked);
                 editor.apply();
                 if(isChecked){
-                    getCategories();
-                    arrayListAllergy.add(String.valueOf(((TextView)linearLayout.findViewById(R.id.textViewRow)).getText()));
-                    saveCategories();
+                    addItemToHashMap(String.valueOf(((TextView)linearLayout.findViewById(R.id.textViewRow)).getText()));
                 }
                 else{
-                    if(arrayListAllergy.contains(String.valueOf(((TextView)linearLayout.findViewById(R.id.textViewRow)).getText()))) {
-                        getCategories();
-                        arrayListAllergy.remove(String.valueOf(((TextView)linearLayout.findViewById(R.id.textViewRow)).getText()));
-                        saveCategories();
-                    }
+                    removeItemToHashMap(String.valueOf(((TextView)linearLayout.findViewById(R.id.textViewRow)).getText()));
                 }
             }
         });
@@ -166,19 +166,13 @@ public class AllergyFragment extends Fragment {
                         CheckBox newCheck = (CheckBox) linearLayout.findViewById(R.id.checkBoxRowLeftMargin);
                         newCheck.setChecked(true);
 
-                        getCategories();
-                        arrayListAllergy.add(String.valueOf(((TextView)linearLayout.findViewById(R.id.textViewLeftMargin)).getText()));
-                        saveCategories();
+                        addItemToHashMap(String.valueOf(((TextView)linearLayout.findViewById(R.id.textViewLeftMargin)).getText()));
                     }
                 }else {
                     for (LinearLayout linearLayout : Categories.get(key)) {
                         CheckBox newCheck = (CheckBox) linearLayout.findViewById(R.id.checkBoxRowLeftMargin);
                         newCheck.setChecked(false);
-                        if(arrayListAllergy.contains(String.valueOf(((TextView)linearLayout.findViewById(R.id.textViewLeftMargin)).getText()))) {
-                            getCategories();
-                            arrayListAllergy.remove(String.valueOf(((TextView) linearLayout.findViewById(R.id.textViewLeftMargin)).getText()));
-                            saveCategories();
-                        }
+                        removeItemToHashMap( String.valueOf(((TextView)linearLayout.findViewById(R.id.textViewLeftMargin)).getText()));
                     }
                 }
             }
@@ -193,7 +187,29 @@ public class AllergyFragment extends Fragment {
         seeIfAllCheckboxIsChecked(checkboxRowCategory,key);
         return linearLayout;
     }
+    public void addItemToHashMap(String string){
+        string = string.toLowerCase();
+        getCategories();
+        if(!categoriesAllergy.containsKey(string)){
+            ArrayList<String> arrayList = new ArrayList<>();
+            arrayList.add(string);
+            categoriesAllergy.put(string,arrayList);
+            saveCategories();
+            return;
+        }
+        ArrayList<String> arrayList = categoriesAllergy.get(string);
+        arrayList.add(string);
+        categoriesAllergy.put(string,arrayList);
+        saveCategories();
 
+    }
+    public void removeItemToHashMap(String string){
+        string = string.toLowerCase();
+        getCategories();
+        categoriesAllergy.remove(string);
+        saveCategories();
+
+    }
     private void seeIfAllCheckboxIsChecked(CheckBox checkboxRowCategory, String key) {
         for (LinearLayout linearLayout : Categories.get(key)) {
             CheckBox checkBox = (CheckBox) linearLayout.findViewById(R.id.checkBoxRowLeftMargin);
@@ -205,16 +221,12 @@ public class AllergyFragment extends Fragment {
         checkboxRowCategory.setChecked(true);
 
     }
-    private void checkBoxLeftMarginSaveString(boolean isChecked,String text){
-        getCategories();
+    private void checkBoxLeftMarginSaveString(boolean isChecked, String text){
         if(isChecked){
-            arrayListAllergy.add(text);
+            addItemToHashMap(text);
         }else{
-            if(arrayListAllergy.contains(text)){
-                arrayListAllergy.remove(text);
-            }
+            removeItemToHashMap(text);
         }
-        saveCategories();
 
     }
 
@@ -244,24 +256,48 @@ public class AllergyFragment extends Fragment {
         Categories.put(key,arrayList);
 
     }
-    public boolean saveCategories(){
-        Set<String> set = new HashSet<>();
-        for (String dateString : arrayListAllergy) {
-            set.add(dateString);
+    public void saveCategories(){
+
+        FileOutputStream fileOutputStream;
+
+        File file = new File(this.getContext().getFilesDir(), "data.txt");
+        try {
+            fileOutputStream = new FileOutputStream(file,false);
+            ObjectOutputStream objectOutputStream= new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(categoriesAllergy);
+            objectOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        SharedPreferences preferences = this.getActivity().getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor mEdit1 = preferences.edit();
-        mEdit1.putStringSet("list", set);
-        return mEdit1.commit();
+
     }
     public void getCategories(){
-        SharedPreferences preferences = this.getActivity().getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
-        Set<String> set = preferences.getStringSet("list", new HashSet<String>());
-        arrayListAllergy = new ArrayList<> (set);
+        FileInputStream fileInputStream;
+        File file = new File(this.getContext().getFilesDir(), "data.txt");
+        try {
+            fileInputStream = new FileInputStream(file);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            categoriesAllergy = (HashMap<String, ArrayList<String>>) objectInputStream.readObject();
+            objectInputStream.close();
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
     }
-    public ArrayList<String> getArrayListFromAllCheckedAllergies(){
-        Set<String> set = prefs.getStringSet("list", new HashSet<String>());
-        return new ArrayList<>(set);
+
+    public HashMap<String,ArrayList<String>> getArrayListFromAllCheckedAllergies(){
+        FileInputStream fileInputStream;
+        try {
+            fileInputStream = new FileInputStream(startPageFile);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            categoriesAllergy = (HashMap<String, ArrayList<String>>) objectInputStream.readObject();
+            objectInputStream.close();
+            return categoriesAllergy;
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
     public void onclickDropDownList(View v,final String key) {
         if(v.getRotation() == 180){

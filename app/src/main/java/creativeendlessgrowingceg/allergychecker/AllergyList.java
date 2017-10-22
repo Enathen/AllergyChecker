@@ -19,6 +19,8 @@ public class AllergyList {
     private ArrayList<PictureIngredient> arrayListFish = new ArrayList<>();
     private ArrayList<PictureIngredient> arrayListShellfish = new ArrayList<>();
     private ArrayList<PictureIngredient> arrayListSeeds= new ArrayList<>();
+    private ArrayList<PictureIngredient> arrayListFruit= new ArrayList<>();
+    private ArrayList<PictureIngredient> arrayListVegetables= new ArrayList<>();
 
     public AllergyList(){
         setArrayListNuts();
@@ -26,6 +28,8 @@ public class AllergyList {
         setArrayListFish();
         setArrayListShellfish();
         setArrayListSeeds();
+        setArrayListFruit();
+        //setArrayListVegetables();
     }
 
     public ArrayList<PictureIngredient> getArrayListSeeds() {
@@ -38,7 +42,7 @@ public class AllergyList {
         arrayListSeeds.add(new PictureIngredient(R.drawable.wheat,"Gingelly"));
         arrayListSeeds.add(new PictureIngredient(R.drawable.wheat,"Gomasio"));
         arrayListSeeds.add(new PictureIngredient(R.drawable.wheat,"Halvah"));
-        arrayListSeeds.add(new PictureIngredient(R.drawable.wheat,"Sim sim"));
+        arrayListSeeds.add(new PictureIngredient(R.drawable.wheat,"Sim"));
         arrayListSeeds.add(new PictureIngredient(R.drawable.wheat,"Tahini"));
         arrayListSeeds.add(new PictureIngredient(R.drawable.wheat,"Til"));
         sort(arrayListSeeds);
@@ -98,8 +102,7 @@ public class AllergyList {
         arrayListShellfish.add(new PictureIngredient(R.drawable.fish,"Octopus"));
         arrayListShellfish.add(new PictureIngredient(R.drawable.fish,"Oysters"));
         arrayListShellfish.add(new PictureIngredient(R.drawable.fish,"Periwinkle"));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,"Sea cucumber"));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,"Sea urchin"));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,"Urchin"));
         arrayListShellfish.add(new PictureIngredient(R.drawable.fish,"Scallops"));
         arrayListShellfish.add(new PictureIngredient(R.drawable.fish,"Snails"));
         arrayListShellfish.add(new PictureIngredient(R.drawable.fish,"Squid"));
@@ -125,18 +128,18 @@ public class AllergyList {
 
     public void setArrayListNuts() {
         arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Almond"));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Brazil nuts"));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Cacao"));
+        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Brazil"));
+        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Cocao"));
         arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Hazelnut"));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Macadamia nuts"));
+        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Macadamia"));
         arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Peanuts"));
         arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Pecans"));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Pili nuts"));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Pine nuts"));
+        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Pili"));
+        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Pine"));
         arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Pistachios"));
         arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Pistachios"));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Soy nuts"));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Tiger nuts"));
+        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Soy"));
+        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Tiger"));
         arrayListNuts.add(new PictureIngredient(R.drawable.peanut,"Walnuts"));
         sort(arrayListNuts);
     }
@@ -157,8 +160,49 @@ public class AllergyList {
         arrayListGluten.add(new PictureIngredient(R.drawable.wheat,"KAMUT"));
         arrayListGluten.add(new PictureIngredient(R.drawable.wheat,"Einkorn"));
         sort(arrayListGluten);
-
     }
+    public void setArrayListFruit() {
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Apple"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Pear"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Tomato"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Strawberry"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Prune"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Pomegranate"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Pinapple"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Persimmon"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Peach"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Orange"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Melon"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Mango"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Lychee"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Kiwi"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Grape"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Fig"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Date"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Coconut"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Cherry"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Banana"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Apricot"));
+        arrayListFruit.add(new PictureIngredient(R.drawable.wheat,"Acerola"));
+        sort(arrayListFruit);
+    }
+/*    public void setArrayListVegetables() {
+        arrayListGluten.add(new PictureIngredient(R.drawable.wheat,"Wheat"));
+        arrayListGluten.add(new PictureIngredient(R.drawable.wheat,"Durum"));
+        arrayListGluten.add(new PictureIngredient(R.drawable.wheat,"Emmer"));
+        arrayListGluten.add(new PictureIngredient(R.drawable.wheat,"Rye"));
+        arrayListGluten.add(new PictureIngredient(R.drawable.wheat,"Barley"));
+        arrayListGluten.add(new PictureIngredient(R.drawable.wheat,"Triticale"));
+        arrayListGluten.add(new PictureIngredient(R.drawable.wheat,"Malt"));
+        arrayListGluten.add(new PictureIngredient(R.drawable.wheat,"Semolina"));
+        arrayListGluten.add(new PictureIngredient(R.drawable.wheat,"Spelt"));
+        arrayListGluten.add(new PictureIngredient(R.drawable.wheat,"Farina"));
+        arrayListGluten.add(new PictureIngredient(R.drawable.wheat,"Farro"));
+        arrayListGluten.add(new PictureIngredient(R.drawable.wheat,"Graham"));
+        arrayListGluten.add(new PictureIngredient(R.drawable.wheat,"KAMUT"));
+        arrayListGluten.add(new PictureIngredient(R.drawable.wheat,"Einkorn"));
+        sort(arrayListGluten);
+    }*/
 
     public void setArrayListPictures(String arrayListPictures) {
         this.arrayListIngredients.add(arrayListPictures);

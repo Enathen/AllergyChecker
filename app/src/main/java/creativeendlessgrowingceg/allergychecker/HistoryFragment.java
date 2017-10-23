@@ -44,7 +44,7 @@ public class HistoryFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private FrameLayout parentFrameLayout;
     private LinearLayout parentLinearLayout;
-
+    private Bundle savedInstanceState;
     public HistoryFragment() {
         // Required empty public constructor
     }
@@ -162,6 +162,9 @@ public class HistoryFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         new StartPage(getActivity()).deleteHistory();
+                        Intent intent = new Intent(getActivity(), StartPage.class);
+                        startActivity(intent);
+
                     }
                 });
                 parentLinearLayout.addView(linearLayoutDeleteAll);

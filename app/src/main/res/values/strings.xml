@@ -25,31 +25,120 @@
 
     <string name="nuts">Nuts</string>
     <string name="almond">Almond</string>
-    <string name="brazilNuts">Brazil nuts</string>
-    <string name="cacao">Cacao</string>
-    <string name="chestNuts">Chest nuts</string>
-    <string name="coconut">Coconut</string>
+    <string name="brazil">Brazil Nuts</string>
+    <string name="cocao">Cocao</string>
     <string name="hazelnut">Hazelnut</string>
-    <string name="macadamiaNuts">Macadamia nuts</string>
+    <string name="macadamia">Macadamia Nuts</string>
     <string name="peanuts">Peanuts</string>
     <string name="pecans">Pecans</string>
-    <string name="piliNuts">Pili nuts</string>
-    <string name="pineNuts">Pine nuts</string>
+    <string name="pili">Pili Nuts</string>
+    <string name="pine">Pine Nuts</string>
     <string name="pistachios">Pistachios</string>
-    <string name="soyNuts">Soy Nuts</string>
-    <string name="tigerNuts">Tiger Nuts</string>
+    <string name="soy">Soy</string>
+    <string name="tiger">Tiger Nuts</string>
     <string name="walnuts">Walnuts</string>
 
+    <string name="sesame">Sesame</string>
 
+
+    <string name="tuna">Tuna</string>
+    <string name="salmon">Salmon</string>
+    <string name="caviar">Caviar</string>
+    <string name="anchovies">Anchovies</string>
+    <string name="bass">Bass</string>
+    <string name="catfish">Catfish</string>
+    <string name="cod">Cod</string>
+    <string name="flounder">Flounder</string>
+    <string name="haddock">Haddock</string>
+    <string name="hake">Hake</string>
+    <string name="halibut">Halibut</string>
+    <string name="herring">Herring</string>
+    <string name="mahi">Mahi</string>
+    <string name="perch">Perch</string>
+    <string name="pollock">Pollock</string>
+    <string name="pike">Pike</string>
+    <string name="swordfish">Swordfish</string>
+    <string name="sole">Sole</string>
+    <string name="snapper">Snapper</string>
+    <string name="surimi">Surimi</string>
+    <string name="tilapia">Tilapia</string>
+    <string name="trout">Trout</string>
+
+
+    <string name="barnacle">Barnacle</string>
+    <string name="crab">Crab</string>
+    <string name="crawfish">Crawfish</string>
+    <string name="krill">Krill</string>
+    <string name="lobster">Lobster</string>
+    <string name="prawns">Prawns</string>
+    <string name="shrimp">Shrimp</string>
+    <string name="scampi">scampi</string>
+    <string name="abalone">Abalone</string>
+    <string name="clams">Clams</string>
+    <string name="cockle">Cockle</string>
+    <string name="limpet">Limpet</string>
+    <string name="mussels">Mussels</string>
+    <string name="octopus">Octopus</string>
+    <string name="oysters">Oysters</string>
+    <string name="periwinkle">Periwinkle</string>
+    <string name="urchin">Urchin</string>
+    <string name="scallops">Scallops</string>
+    <string name="snails">Snails</string>
+    <string name="squid">Squid</string>
+    <string name="whelk">Whelk</string>
+
+    <string name="wheat">Wheat</string>
+    <string name="durum">Durum</string>
+    <string name="emmer">Emmer</string>
+    <string name="rye">Rye</string>
+    <string name="barley">Barley</string>
+    <string name="triticale">Triticale</string>
+    <string name="malt">Malt</string>
+    <string name="semolina">Semolina</string>
+    <string name="spelt">Spelt</string>
+    <string name="farina">Farina</string>
+    <string name="farro">Farro</string>
+    <string name="graham">Graham</string>
+    <string name="kamut">Kamut</string>
+    <string name="einkorn">Einkorn</string>
+
+
+    <string name="apple">Apple</string>
+    <string name="pear">Pear</string>
+    <string name="tomato">Tomato</string>
+    <string name="strawberry">Strawberry</string>
+    <string name="prune">Prune</string>
+    <string name="pomegranate">Pomegranate</string>
+    <string name="pinapple">Pinapple</string>
+    <string name="persimmon">Persimmon</string>
+    <string name="peach">Peach</string>
+    <string name="orange">Orange</string>
+    <string name="melon">Melon</string>
+    <string name="mango">Mango</string>
+    <string name="lychee">Lychee</string>
+    <string name="kiwi">Kiwi</string>
+    <string name="grape">Grape</string>
+    <string name="date">Date</string>
+    <string name="fig">Fig</string>
+    <string name="coconut">Coconut</string>
+    <string name="cherry">Cherry</string>
+    <string name="banana">Banana</string>
+    <string name="apricot">Apricot</string>
+    <string name="acerola">Acerola</string>
+    <string name="avocado">Avocado</string>
+
+    <string name="shellfish">Shellfish</string>
     <string name="gluten">Gluten</string>
     <string name="fish">Fish</string>
     <string name="milk">Milk</string>
     <string name="seeds">Seeds</string>
-    <string name="shellfish">Shellfish</string>
     <string name="deleteHistory">Delete History</string>
     <string name="scanPhotos">You need to scan photos to get result</string>
 
     <string name="service_label">My Spell Checker</string>
+
+    <string name="translateToEnglish">Translate to</string>
+    <string name="translateToSwedish">My Spell Checker</string>
 
 
 </resources>

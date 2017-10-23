@@ -41,14 +41,17 @@ public class SpellCheckAllergy {
     }
 
     private ArrayList<String> AlgorithmString(String s, ArrayList<String> arrayListNew) {
-        s = s.replaceAll("[^a-zA-Z\\s]", "");
+        s = s.replaceAll("[^\\p{L}\\p{Nd}\\s]+", "");
         s= s.toLowerCase();
         StringBuilder string;
         for (int i = 0; i < s.length()+1; i++) {
             if(i!=s.length()) {
                 string = new StringBuilder(s);
-                arrayListNew.add(String.valueOf(string.deleteCharAt(i)));
-                //Log.d(TAG, String.valueOf(string));
+                string = string.deleteCharAt(i);
+                if(string.length()>1){
+                    arrayListNew.add(String.valueOf(string));
+                    Log.d(TAG, String.valueOf(string));
+                }
                 if(i!=s.length()-1) {
                     string = new StringBuilder(s);
                     char replace = string.charAt(i);
@@ -66,7 +69,7 @@ public class SpellCheckAllergy {
                     string = new StringBuilder(s);
                     string.setCharAt(i, c);
                     arrayListNew.add(String.valueOf(string));
-                    Log.d(TAG,"TestSetCharAt"+String.valueOf(string));
+                    //Log.d(TAG,"TestSetCharAt"+String.valueOf(string));
                 }
             }
         }

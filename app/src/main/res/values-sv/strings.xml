@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AllergyChecker</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="ok">OK</string>
+    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
+    <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
+    <string name="low_storage_error">Ocr dependencies cannot be downloaded due to low device storage</string>
+    <string name="title_activity_main">Ocr Detector Sample</string>
+    <string name="ocr_header">Click &quot;Detect Text&quot; to detect text</string>
+    <string name="read_text">Detect Text</string>
+    <string name="auto_focus">Auto Focus</string>
+    <string name="use_flash">Use Flash</string>
+    <string name="ocr_success">Text read successfully</string>
+    <string name="ocr_failure">No text captured</string>
+    <string name="ocr_error">"Error reading text: %1$s"</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="nuts">Nötter</string>
+    <string name="almond">Mandel</string>
+    <string name="brazil">Paranötter</string>
+    <string name="cocao">Cacao</string>
+    <string name="hazelnut">Hasselnötter</string>
+    <string name="macadamia">Macadamianötter</string>
+    <string name="peanuts">Jordnötter</string>
+    <string name="pecans">Pecannötter</string>
+    <string name="pili">Pilinötter</string>
+    <string name="pine">Pinjenötter</string>
+    <string name="pistachios">Pistachnötter</string>
+    <string name="soy">Soja</string>
+    <string name="tiger">Tigernötter</string>
+    <string name="walnuts">Valnötter</string>
+
+    <string name="sesame">Sesam</string>
+
+    <string name="tuna">Tonfisk</string>
+    <string name="salmon">Lax</string>
+    <string name="caviar">Kaviar</string>
+    <string name="anchovies">Ansjovis</string>
+    <string name="bass">Havsaborre</string>
+    <string name="catfish">Havskatt</string>
+    <string name="cod">Torsk</string>
+    <string name="flounder">Flundra</string>
+    <string name="haddock">Haddock</string>
+    <string name="hake">Kummel</string>
+    <string name="halibut">Hälleflundra</string>
+    <string name="herring">Sill</string>
+    <string name="mahi">Mahi</string>
+    <string name="perch">Aborre</string>
+    <string name="pollock">Pollachius</string>
+    <string name="pike">Gädda</string>
+    <string name="swordfish">Svärdfisk</string>
+    <string name="sole">Sjötunga</string>
+    <string name="snapper">Blåfisk</string>
+    <string name="surimi">Surimi</string>
+    <string name="tilapia">Tilapia</string>
+    <string name="trout">Forell</string>
+
+
+    <string name="barnacle">Rankfotingar</string>
+    <string name="crab">Krabba</string>
+    <string name="crawfish">Kräfta</string>
+    <string name="krill">Lysräka</string>
+    <string name="lobster">Hummer</string>
+    <string name="prawns">Räka</string>
+    <string name="shrimp">Liten Räka</string>
+    <string name="scampi">sjökräfta</string>
+    <string name="abalone">Havsöra</string>
+    <string name="clams">Mussla</string>
+    <string name="cockle">Hjärtmussla</string>
+    <string name="limpet">Skålsnäcka</string>
+    <string name="mussels">Mussla</string>
+    <string name="octopus">Bläckfisk (8)</string>
+    <string name="oysters">Ostron</string>
+    <string name="periwinkle">Snäcka</string>
+    <string name="urchin">Sjöborre</string>
+    <string name="scallops">Kammussla</string>
+    <string name="snails">Snigel</string>
+    <string name="squid">Bläckfisk (10)</string>
+    <string name="whelk">Valthornssnäcka</string>
+
+    <string name="wheat">Vete</string>
+    <string name="durum">Durum</string>
+    <string name="emmer">Emmer</string>
+    <string name="rye">Råg</string>
+    <string name="barley">Korn</string>
+    <string name="triticale">Rågvete</string>
+    <string name="malt">Malt</string>
+    <string name="semolina">Semolina</string>
+    <string name="spelt">Spelt</string>
+    <string name="farina">Mjöl</string>
+    <string name="farro">Farro</string>
+    <string name="graham">Graham</string>
+    <string name="kamut">Kamut</string>
+    <string name="einkorn">Einkorn</string>
+
+
+    <string name="apple">Äpple</string>
+    <string name="pear">Pärom</string>
+    <string name="tomato">Tomat</string>
+    <string name="strawberry">Jordgubbe</string>
+    <string name="prune">Katrinplommon</string>
+    <string name="pomegranate">Granatäpple</string>
+    <string name="pinapple">Ananas</string>
+    <string name="persimmon">Persimmon</string>
+    <string name="peach">Persika</string>
+    <string name="orange">Apelsin</string>
+    <string name="melon">Melon</string>
+    <string name="mango">Mango</string>
+    <string name="lychee">Litchi</string>
+    <string name="kiwi">Kiwi</string>
+    <string name="grape">Vindruva</string>
+    <string name="date">Dadel</string>
+    <string name="fig">Fikon</string>
+    <string name="coconut">Kokosnöt</string>
+    <string name="cherry">Körsbär</string>
+    <string name="banana">Banan</string>
+    <string name="apricot">Aprikos</string>
+    <string name="acerola">Acerola</string>
+    <string name="avocado">Avokado</string>
+
+    <string name="shellfish">Skaldjur</string>
+    <string name="gluten">Gluten</string>
+    <string name="fish">Fisk</string>
+    <string name="milk">Mjölk</string>
+    <string name="seeds">Frön</string>
+    <string name="deleteHistory">Radera Historien</string>
+    <string name="scanPhotos">Du behöver ta kort för att få historik</string>
+
+    <string name="service_label">My Spell Checker</string>
+
+
+</resources>

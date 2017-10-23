@@ -56,6 +56,7 @@ public class StartPage extends AppCompatActivity
     ArrayList<String> dateStrings = new ArrayList<>();
     SharedPreferences prefs;
     ArrayList<String> ingredientsAllergy = new ArrayList<>();
+    private String Language = "";
     public StartPage(FragmentActivity activity) {
         prefs = activity.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
     }
@@ -114,7 +115,7 @@ public class StartPage extends AppCompatActivity
         String str = intent.getStringExtra("location");
         suggestions = (TextView) findViewById(R.id.ingredientsTextView);
         if(str != null){
-            str = str.replaceAll("[^a-zA-Z\\s]", "");
+            str = str.replaceAll("[^\\p{L}\\p{Nd}\\s]+", "");
             String allergyString = str;
             String[] parts = allergyString.split("\\s+");
             Arrays.sort(parts);
@@ -141,43 +142,15 @@ public class StartPage extends AppCompatActivity
             //setDateStrings(dateStrings);
 
             saveArray();
-            String[] splitStr = str.split("\\s+");
+            checkStringAgainstAllergies(str);
 
-            HashMap<String,ArrayList<String>> arrayListAllergies = new AllergyFragment(this).getArrayListFromAllCheckedAllergies();
-            SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
-            if(!arrayListAllergies.isEmpty()) {
-                HashMap<String, ArrayList<String>> allergies = spellCheckAllergy.permuteString(arrayListAllergies);
-                String outputString = "";
-                for (String string : splitStr) {
-                    for (String key : allergies.keySet()) {
-                        boolean shortcut = false;
-                        for (String extraKey : allergies.keySet()){
-                            if(extraKey.equals(string)){
-                                outputString = outputString.concat("Allergies Contained: "+ extraKey + "\n");
-                                Log.d(TAG, "ALLERGI: " + outputString);
-                                shortcut = true;
-                                break;
-                            }
-                        }
-                        if(!shortcut){
-                            if (allergies.get(key).contains(string)) {
-                                outputString = outputString.concat("Allergies highly certainly contained: "+ key + " from Word: " + string + "\n");
-                                Log.d(TAG, "ALLERGI: " + outputString);
-                                break;
-                            }
-                        }else{
-                            break;
-                        }
-                    }
-                }//TODO if no allergies
-                ((TextView) findViewById(R.id.textViewFoundAllergies)).setText(outputString);
-            }
 
         }else{
             str = intent.getStringExtra("HistoryFragment");
             if(str != null) {
                 suggestions.setText(str);
                 newString = str;
+                checkStringAgainstAllergies(str);
             }
         }
 
@@ -190,6 +163,46 @@ public class StartPage extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+    private void checkStringAgainstAllergies(String str) {
+        String[] splitStr = str.split("\\s+");
+
+        HashMap<String,ArrayList<String>> arrayListAllergies = new AllergyFragment(this).getArrayListFromAllCheckedAllergies();
+        SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
+        if(!arrayListAllergies.isEmpty()) {
+            HashMap<String, ArrayList<String>> allergies = spellCheckAllergy.permuteString(arrayListAllergies);
+            String outputString = "";
+            for (String string : splitStr) {
+                for (String key : allergies.keySet()) {
+                    boolean shortcut = false;
+                    for (String extraKey : allergies.keySet()){
+                        if(extraKey.equals(string)){
+                            outputString = outputString.concat("Allergies Contained: "+ extraKey + "\n");
+                            Log.d(TAG, "ALLERGI: " + outputString);
+                            shortcut = true;
+                            break;
+                        }
+                    }
+                    if(string.contains(key) && !shortcut){
+                        outputString = outputString.concat("Allergies highly certainly contained Inside: "+ key + " from Word: " + string + "\n");
+                        Log.d(TAG, "ALLERGI: " + outputString);
+                        break;
+                    }
+                    if(!shortcut){
+                        if (allergies.get(key).contains(string)) {
+                            outputString = outputString.concat("Allergies certainly contained: "+ key + " from Word: " + string + "\n");
+                            Log.d(TAG, "ALLERGI: " + outputString);
+                            break;
+                        }
+                    }else{
+                        break;
+                    }
+                }
+            }
+            ((TextView) findViewById(R.id.textViewFoundAllergies)).setText(outputString);
+        }
+    }
+
     public ArrayList<String> getDateString(){
         for (String dateString : dateStrings) {
             Log.d(TAG,dateString);
@@ -308,6 +321,27 @@ public class StartPage extends AppCompatActivity
             //registering popup with OnMenuItemClickListener
             popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem item) {
+                    Language = item.getTitle().toString();
+                    if(Language.equals("English")){
+                        Locale locale = new Locale("en");
+                        Locale.setDefault(locale);
+
+                        Configuration config = new Configuration();
+                        config.setLocale(locale);
+                        getApplicationContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+                        Intent intent = getIntent();
+                        finish();
+                        startActivity(intent);
+                    }else{
+                        Locale locale = new Locale("sv");
+                        Locale.setDefault(locale);
+                        Configuration config = new Configuration();
+                        config.setLocale(locale);
+                        getApplicationContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+                        Intent intent = getIntent();
+                        finish();
+                        startActivity(intent);
+                    }
                     Toast.makeText(
                             StartPage.this,
                             "Changed language to: " + item.getTitle(),
@@ -331,6 +365,7 @@ public class StartPage extends AppCompatActivity
         int id = item.getItemId();
         Fragment fragment = null;
         suggestions.setText("");
+        ((TextView) findViewById(R.id.textViewFoundAllergies)).setText("");
         if (id == R.id.nav_camera) {
             suggestions.setText(newString);
             Log.d(TAG, String.valueOf(getSupportFragmentManager().getBackStackEntryCount()));

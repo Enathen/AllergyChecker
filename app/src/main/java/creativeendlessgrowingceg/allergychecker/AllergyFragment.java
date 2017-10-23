@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,7 +99,8 @@ public class AllergyFragment extends Fragment {
         parentFrameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_allergy, container, false);
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
-        AllergyList allergylist = new AllergyList();
+        AllergyList allergylist = new AllergyList(getContext());
+
         addCategory(inflater,allergylist.getArrayListFish(),"Fish");
         addCategory(inflater,allergylist.getArrayListGluten(),"Gluten");
         addCategory(inflater,allergylist.getArrayListNuts(),"Nuts");
@@ -239,15 +241,18 @@ public class AllergyFragment extends Fragment {
             textview.setText(arrayListCat.ingredient);
             ImageView imageView = (ImageView) newLinearLayout.findViewById(R.id.imageViewLeftMargin);
             imageView.setImageResource(arrayListCat.picture);
-            SharedPreferences settings = getContext().getSharedPreferences(arrayListCat.ingredient, 0);
+            Log.d(TAG,"NUMBER:" + arrayListCat.number + "name: " + arrayListCat.ingredient);
+            SharedPreferences settings = getContext().getSharedPreferences(String.valueOf(arrayListCat.number), Context.MODE_PRIVATE);
             final SharedPreferences.Editor editor = settings.edit();
             final CheckBox checkBox = (CheckBox) newLinearLayout.findViewById(R.id.checkBoxRowLeftMargin);
-            checkBox.setChecked(settings.getBoolean(arrayListCat.ingredient, false));
+            checkBox.setChecked(settings.getBoolean(String.valueOf(arrayListCat.number), false));
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     checkBoxLeftMarginSaveString(isChecked, String.valueOf(textview.getText()));
-                    editor.putBoolean(arrayListCat.ingredient, isChecked);
+                    Log.d(TAG,"NUMBER2:" + arrayListCat.number + "name: " + arrayListCat.ingredient);
+
+                    editor.putBoolean(String.valueOf(arrayListCat.number), isChecked);
                     editor.apply();
                 }
             });

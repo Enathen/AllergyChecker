@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class SpellCheckAllergy {
     private static final String TAG = "SpellCheckAllergy";
-    HashMap<String,ArrayList<String>> hashMap = new HashMap<>();
+    HashMap<String,LanguageString> hashMap = new HashMap<>();
     char[] englishAlphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
     public SpellCheckAllergy(){
 
@@ -19,21 +19,23 @@ public class SpellCheckAllergy {
     public void convertString(){
 
         for (String key : hashMap.keySet()) {
-            Log.d(TAG,"Key:"+key);
-            ArrayList<String> arrayListNew = new ArrayList<>();
-            for (String s : hashMap.get(key)) {
-                Log.d(TAG,"stringToParse"+s);
-                arrayListNew = AlgorithmString(s,arrayListNew);
-            }
-            if(arrayListNew != null){
-                hashMap.get(key).clear();
-                hashMap.put(key,arrayListNew);
+            if(hashMap.get(key).on){
+                Log.d(TAG,"Key: "+key + " open "+ hashMap.get(key).on);
+                if(hashMap.get(key).allPossibleDerivationsOfAllergen.isEmpty()){
+                    LanguageString languageString = hashMap.get(key);
+                    ArrayList<String> arrayList = new ArrayList<>();
+                    languageString.addallPossibleDerivationsOfAllergen(AlgorithmString(key,arrayList));
+                    hashMap.put(key,languageString);
+
+                }
+
             }
         }
 
         for (String key : hashMap.keySet()) {
+
             //Log.d(TAG,"Key: " + key);
-            for (String string : hashMap.get(key)) {
+            for (String string : hashMap.get(key).allPossibleDerivationsOfAllergen) {
                 //Log.d(TAG,string);
             }
         }
@@ -50,7 +52,7 @@ public class SpellCheckAllergy {
                 string = string.deleteCharAt(i);
                 if(string.length()>1){
                     arrayListNew.add(String.valueOf(string));
-                    Log.d(TAG, String.valueOf(string));
+                    //Log.d(TAG, String.valueOf(string));
                 }
                 if(i!=s.length()-1) {
                     string = new StringBuilder(s);
@@ -77,14 +79,12 @@ public class SpellCheckAllergy {
         Log.d(TAG, String.valueOf(arrayListNew.size()));
         return arrayListNew;
     }
-    public HashMap<String,ArrayList<String>>  permuteString(String string){
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add(string);
-        this.hashMap.put(string,arrayList);
+    public HashMap<String,LanguageString>  permuteString(String language,String string,boolean on, int id){
+        this.hashMap.put(string,new LanguageString(language,string,on,id));
         convertString();
         return this.hashMap;
     }
-    public HashMap<String,ArrayList<String>> permuteString(HashMap<String,ArrayList<String>> hashMap){
+    public HashMap<String,LanguageString> permuteString(HashMap<String,LanguageString> hashMap){
         this.hashMap = hashMap;
         /*for (String s : hashMap.keySet()) {
             this.hashMap.put(s, hashMap.get(s));

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -166,40 +167,74 @@ public class StartPage extends AppCompatActivity
 
     private void checkStringAgainstAllergies(String str) {
         String[] splitStr = str.split("\\s+");
-
-        HashMap<String,ArrayList<String>> arrayListAllergies = new AllergyFragment(this).getArrayListFromAllCheckedAllergies();
+        HashMap<String,LanguageString> arrayListAllergies = null;
+        ArrayList<Locale> listOfLanguages = new ArrayList<>();
+        listOfLanguages.add(new Locale("sv"));
+        listOfLanguages.add(new Locale("en"));
+        arrayListAllergies = new AllergyFragment(this).getArrayListFromAllCheckedAllergies(listOfLanguages,StartPage.this);
         SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
-        if(!arrayListAllergies.isEmpty()) {
-            HashMap<String, ArrayList<String>> allergies = spellCheckAllergy.permuteString(arrayListAllergies);
+        if(arrayListAllergies != null) {
+            HashMap<String, LanguageString> allergies = spellCheckAllergy.permuteString(arrayListAllergies);
             String outputString = "";
+            boolean b = false;
             for (String string : splitStr) {
                 for (String key : allergies.keySet()) {
                     boolean shortcut = false;
                     for (String extraKey : allergies.keySet()){
                         if(extraKey.equals(string)){
-                            outputString = outputString.concat("Allergies Contained: "+ extraKey + "\n");
-                            Log.d(TAG, "ALLERGI: " + outputString);
-                            shortcut = true;
+
+                            allergies.get(extraKey).found++;
+                            if(allergies.get(extraKey).found == 1){
+                                outputString = outputString.concat("Definitely contained: "+ getString(allergies.get(extraKey).id) + "\n");
+                                Log.d(TAG, "ALLERGI: " + outputString);
+                            }
+                            b = true;
                             break;
                         }
                     }
-                    if(string.contains(key) && !shortcut){
-                        outputString = outputString.concat("Allergies highly certainly contained Inside: "+ key + " from Word: " + string + "\n");
-                        Log.d(TAG, "ALLERGI: " + outputString);
+                    if(b){
+                        b = false;
                         break;
                     }
-                    if(!shortcut){
-                        if (allergies.get(key).contains(string)) {
-                            outputString = outputString.concat("Allergies certainly contained: "+ key + " from Word: " + string + "\n");
+                    if(string.contains(key)){
+
+                        allergies.get(key).found++;
+                        if(allergies.get(key).found == 1){
+                            outputString = outputString.concat("Probably contained: "+ getString(allergies.get(key).id) + " from Word: " + string + "\n");
+                            Log.d(TAG, "ALLERGI: " + outputString);
+                            break;
+
+                        }
+                    }
+                    if (allergies.get(key).allPossibleDerivationsOfAllergen.contains(string)) {
+                        allergies.get(key).found++;
+                        if(allergies.get(key).found == 1) {
+                            outputString = outputString.concat("Probably contained: " + getString(allergies.get(key).id) + " from Word: " + string + "\n");
                             Log.d(TAG, "ALLERGI: " + outputString);
                             break;
                         }
-                    }else{
-                        break;
                     }
                 }
             }
-            ((TextView) findViewById(R.id.textViewFoundAllergies)).setText(outputString);
+            boolean dontEat = false;
+            outputString = outputString.concat("\n");
+            for (String key : allergies.keySet()){
+                if(allergies.get(key).found>0){
+                    outputString = outputString.concat("Allergy: "+ getString(allergies.get(key).id)+ " Contained " +
+                            allergies.get(key).found + " times.\n");
+                    allergies.get(key).found = 0;
+                    dontEat = true;
+                }
+            }
+            if(dontEat){
+                outputString = outputString.concat("\nDon't use!\n");
+                ((TextView) findViewById(R.id.textViewFoundAllergies)).setTextColor(Color.RED);
+                ((TextView) findViewById(R.id.textViewFoundAllergies)).setText(outputString);
+            }else{
+                outputString = "\nYou can use it!\n";
+                ((TextView) findViewById(R.id.textViewFoundAllergies)).setTextColor(getColor(R.color.colorAccent));
+                ((TextView) findViewById(R.id.textViewFoundAllergies)).setText(outputString);
+            }
         }
     }
 
@@ -335,6 +370,7 @@ public class StartPage extends AppCompatActivity
                     }else{
                         Locale locale = new Locale("sv");
                         Locale.setDefault(locale);
+
                         Configuration config = new Configuration();
                         config.setLocale(locale);
                         getApplicationContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());

@@ -1,9 +1,14 @@
 package creativeendlessgrowingceg.allergychecker;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +29,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 
 /**
@@ -50,11 +56,13 @@ public class AllergyFragment extends Fragment {
     private LinearLayout parentLinearLayout;
     private OnFragmentInteractionListener mListener;
     private HashMap<String,ArrayList<LinearLayout>> Categories = new HashMap<>();
-    private HashMap<String,ArrayList<String>> categoriesAllergy = new HashMap<>();
+    private HashMap<String,LanguageString> hashMapCategoriesAllergy = new HashMap<>();
     private HashMap<String,LinearLayout> linearLayoutParents = new HashMap<>();
-    private HashMap<String,CheckBox> checkBoxes = new HashMap<>();
+    private HashMap<String,ArrayList<CheckBox>> checkBoxes = new HashMap<>();
+    private HashMap<String,CheckBox> parentCheckBox = new HashMap<>();
     private SharedPreferences prefs;
     private File startPageFile;
+    private String language;
 
     public AllergyFragment(AllergyFragment allergyFragment) {
         // Required empty public constructor
@@ -96,26 +104,30 @@ public class AllergyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Locale locale = getResources().getConfiguration().getLocales().get(0);
+        language = locale.getLanguage();
+
         parentFrameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_allergy, container, false);
+
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
         AllergyList allergylist = new AllergyList(getContext());
 
-        addCategory(inflater,allergylist.getArrayListFish(),"Fish");
-        addCategory(inflater,allergylist.getArrayListGluten(),"Gluten");
-        addCategory(inflater,allergylist.getArrayListNuts(),"Nuts");
-        addCategory(inflater,allergylist.getArrayListSeeds(),"Seeds");
-        addCategory(inflater,allergylist.getArrayListShellfish(),"Shellfish");
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater,"Fish",container,R.string.fish, R.drawable.fish));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater,"Gluten",container,R.string.gluten,R.drawable.wheat));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater,"Nuts",container,R.string.nuts, R.drawable.peanut));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater,"Seeds",container,R.string.seeds, R.drawable.wheat));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater,"Shellfish",container,R.string.shellfish, R.drawable.wheat));
-        parentLinearLayout.addView(insertSingleAllergy(inflater,R.string.milk,container,R.drawable.car));
+        addCategory(inflater, allergylist.getArrayListFish(), "Fish");
+        addCategory(inflater, allergylist.getArrayListGluten(), "Gluten");
+        addCategory(inflater, allergylist.getArrayListNuts(), "Nuts");
+        addCategory(inflater, allergylist.getArrayListSeeds(), "Seeds");
+        addCategory(inflater, allergylist.getArrayListShellfish(), "Shellfish");
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Fish", container, R.string.fish, R.drawable.fish));
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Gluten", container, R.string.gluten, R.drawable.wheat));
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Nuts", container, R.string.nuts, R.drawable.peanut));
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Seeds", container, R.string.seeds, R.drawable.wheat));
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Shellfish", container, R.string.shellfish, R.drawable.wheat));
+        parentLinearLayout.addView(insertSingleAllergy(inflater, R.string.milk, container, R.drawable.car));
+
         return parentFrameLayout;
-
-
     }
+
 
     private LinearLayout insertSingleAllergy(LayoutInflater inflater, final int name, ViewGroup container, int pictureId) {
         final LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.rowlayout, container, false);
@@ -124,7 +136,7 @@ public class AllergyFragment extends Fragment {
 
         SharedPreferences settings = getContext().getSharedPreferences(getResources().getString(name), 0);
         final SharedPreferences.Editor editor = settings.edit();
-
+        getCategories();
         CheckBox checkBox = (CheckBox) linearLayout.findViewById(R.id.checkBoxRow);
         checkBox.setChecked(settings.getBoolean(getResources().getString(name), false));
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -134,17 +146,33 @@ public class AllergyFragment extends Fragment {
                 editor.putBoolean(getResources().getString(name), isChecked);
                 editor.apply();
                 if(isChecked){
-                    addItemToHashMap(String.valueOf(((TextView)linearLayout.findViewById(R.id.textViewRow)).getText()));
+                    getCategories();
+                    addItemToHashMap(String.valueOf(((TextView)linearLayout.findViewById(R.id.textViewRow)).getText()),name);
+                    saveCategories();
                 }
                 else{
+                    getCategories();
                     removeItemToHashMap(String.valueOf(((TextView)linearLayout.findViewById(R.id.textViewRow)).getText()));
+                    saveCategories();
                 }
             }
         });
+        checkIfNotExist(checkBox,getString(name),name);
+        saveCategories();
         return linearLayout;
 
     }
+    public void checkIfNotExist(CheckBox checkBox,String key,int id){
+        key = key.toLowerCase();
+        if(checkBox.isChecked()){
 
+            if(!hashMapCategoriesAllergy.containsKey(key)){
+
+                hashMapCategoriesAllergy.put(key,new LanguageString(language,key,true,id));
+                Log.d(TAG,"Put: " + key +" " + language + " " + id);
+            }
+        }
+    }
     private LinearLayout insertCheckboxAndImageView(LayoutInflater inflater, final String key, ViewGroup container, final int name, int pictureId) {
         LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.rowcategorylayout, container, false);
         LinearLayout linearLayoutRow = (LinearLayout) linearLayout.findViewById(R.id.linearLayoutRowCategoryHorizontal);
@@ -159,26 +187,7 @@ public class AllergyFragment extends Fragment {
                 onclickDropDownList(imageView,key);
             }
         });
-        checkBoxes.put(key,checkboxRowCategory);
-        checkboxRowCategory.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
-                    for (LinearLayout linearLayout : Categories.get(key)) {
-                        CheckBox newCheck = (CheckBox) linearLayout.findViewById(R.id.checkBoxRowLeftMargin);
-                        newCheck.setChecked(true);
-
-                        addItemToHashMap(String.valueOf(((TextView)linearLayout.findViewById(R.id.textViewLeftMargin)).getText()));
-                    }
-                }else {
-                    for (LinearLayout linearLayout : Categories.get(key)) {
-                        CheckBox newCheck = (CheckBox) linearLayout.findViewById(R.id.checkBoxRowLeftMargin);
-                        newCheck.setChecked(false);
-                        removeItemToHashMap( String.valueOf(((TextView)linearLayout.findViewById(R.id.textViewLeftMargin)).getText()));
-                    }
-                }
-            }
-        });
+        parentCheckBoxOnClickListener(checkboxRowCategory,key);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,30 +195,43 @@ public class AllergyFragment extends Fragment {
             }
         });
         linearLayoutParents.put(key,linearLayout);
+        parentCheckBox.put(key,checkboxRowCategory);
         seeIfAllCheckboxIsChecked(checkboxRowCategory,key);
         return linearLayout;
     }
-    public void addItemToHashMap(String string){
+    public void parentCheckBoxOnClickListener(CheckBox checkboxRowCategory, final String key){
+        checkboxRowCategory.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    getCategories();
+                    for (CheckBox checkBox : checkBoxes.get(key)) {
+                        checkBox.setChecked(true);
+                    }
+                    saveCategories();
+                }else {
+                    getCategories();
+                    for (CheckBox checkBox : checkBoxes.get(key)) {
+                        checkBox.setChecked(false);
+                    }
+                    saveCategories();
+                }
+            }
+        });
+    }
+    public void addItemToHashMap(String string,int id){
         string = string.toLowerCase();
-        getCategories();
-        if(!categoriesAllergy.containsKey(string)){
-            ArrayList<String> arrayList = new ArrayList<>();
-            arrayList.add(string);
-            categoriesAllergy.put(string,arrayList);
-            saveCategories();
-            return;
+
+        if(!hashMapCategoriesAllergy.containsKey(string)){
+            hashMapCategoriesAllergy.put(string,new LanguageString(language,string,true,id));
         }
-        ArrayList<String> arrayList = categoriesAllergy.get(string);
-        arrayList.add(string);
-        categoriesAllergy.put(string,arrayList);
-        saveCategories();
+        hashMapCategoriesAllergy.get(string).on=true;
 
     }
     public void removeItemToHashMap(String string){
         string = string.toLowerCase();
-        getCategories();
-        categoriesAllergy.remove(string);
-        saveCategories();
+
+        hashMapCategoriesAllergy.get(string).on = false;
 
     }
     private void seeIfAllCheckboxIsChecked(CheckBox checkboxRowCategory, String key) {
@@ -223,42 +245,54 @@ public class AllergyFragment extends Fragment {
         checkboxRowCategory.setChecked(true);
 
     }
-    private void checkBoxLeftMarginSaveString(boolean isChecked, String text){
+    private void checkBoxLeftMarginSaveString(boolean isChecked, String text, int id){
         if(isChecked){
-            addItemToHashMap(text);
+            addItemToHashMap(text,id);
         }else{
+
             removeItemToHashMap(text);
         }
 
     }
 
 
-    private void addCategory(LayoutInflater inflater, ArrayList<AllergyList.PictureIngredient> arrayListCategory, final String key){
+    private void addCategory(final LayoutInflater inflater, ArrayList<AllergyList.PictureIngredient> arrayListCategory, final String key){
         ArrayList<LinearLayout> arrayList = new ArrayList<>();
+        ArrayList<CheckBox> checkBoxList = new ArrayList<>();
+        getCategories();
         for (final AllergyList.PictureIngredient arrayListCat : arrayListCategory) {
             LinearLayout newLinearLayout = (LinearLayout) inflater.inflate(R.layout.leftmarginrowlayout,null);
             final TextView textview = (TextView) newLinearLayout.findViewById(R.id.textViewLeftMargin);
             textview.setText(arrayListCat.ingredient);
             ImageView imageView = (ImageView) newLinearLayout.findViewById(R.id.imageViewLeftMargin);
             imageView.setImageResource(arrayListCat.picture);
-            Log.d(TAG,"NUMBER:" + arrayListCat.number + "name: " + arrayListCat.ingredient);
-            SharedPreferences settings = getContext().getSharedPreferences(String.valueOf(arrayListCat.number), Context.MODE_PRIVATE);
+            //Log.d(TAG,"NUMBER:" + arrayListCat.id + "name: " + arrayListCat.ingredient);
+            SharedPreferences settings = getContext().getSharedPreferences(String.valueOf(arrayListCat.id), Context.MODE_PRIVATE);
             final SharedPreferences.Editor editor = settings.edit();
             final CheckBox checkBox = (CheckBox) newLinearLayout.findViewById(R.id.checkBoxRowLeftMargin);
-            checkBox.setChecked(settings.getBoolean(String.valueOf(arrayListCat.number), false));
+            checkBox.setChecked(settings.getBoolean(String.valueOf(arrayListCat.id), false));
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    checkBoxLeftMarginSaveString(isChecked, String.valueOf(textview.getText()));
-                    Log.d(TAG,"NUMBER2:" + arrayListCat.number + "name: " + arrayListCat.ingredient);
+                   // Log.d(TAG,"NUMBER2:" + arrayListCat.id + "name: " + arrayListCat.ingredient);
 
-                    editor.putBoolean(String.valueOf(arrayListCat.number), isChecked);
+                    checkBoxLeftMarginSaveString(isChecked, String.valueOf(textview.getText()),arrayListCat.id);
+                    parentCheckBox.get(key).setOnCheckedChangeListener(null);
+                    seeIfAllCheckboxIsChecked(parentCheckBox.get(key),key);
+                    parentCheckBoxOnClickListener(parentCheckBox.get(key),key);
+                    editor.putBoolean(String.valueOf(arrayListCat.id), isChecked);
                     editor.apply();
                 }
             });
+            checkBoxList.add(checkBox);
             arrayList.add(newLinearLayout);
+            Log.d(TAG, String.valueOf(arrayListCat.id)+ "  " + arrayListCat.ingredient);
+            checkIfNotExist(checkBox,getString(arrayListCat.id),arrayListCat.id);
         }
+
+        checkBoxes.put(key,checkBoxList);
         Categories.put(key,arrayList);
+        saveCategories();
 
     }
     public void saveCategories(){
@@ -269,7 +303,7 @@ public class AllergyFragment extends Fragment {
         try {
             fileOutputStream = new FileOutputStream(file,false);
             ObjectOutputStream objectOutputStream= new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(categoriesAllergy);
+            objectOutputStream.writeObject(hashMapCategoriesAllergy);
             objectOutputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -283,26 +317,52 @@ public class AllergyFragment extends Fragment {
             fileInputStream = new FileInputStream(file);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            categoriesAllergy = (HashMap<String, ArrayList<String>>) objectInputStream.readObject();
+            hashMapCategoriesAllergy = (HashMap<String, LanguageString>) objectInputStream.readObject();
             objectInputStream.close();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
     }
+    public void deleteSelectedLanguage(){
 
-    public HashMap<String,ArrayList<String>> getArrayListFromAllCheckedAllergies(){
+    }
+    /**
+     * all checked allergies including different languages gets selected
+     * @return
+     */
+    public HashMap<String,LanguageString> getArrayListFromAllCheckedAllergies(ArrayList<Locale> localeArray, Activity context){
         FileInputStream fileInputStream;
         try {
             fileInputStream = new FileInputStream(startPageFile);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            categoriesAllergy = (HashMap<String, ArrayList<String>>) objectInputStream.readObject();
+            hashMapCategoriesAllergy = (HashMap<String, LanguageString>) objectInputStream.readObject();
             objectInputStream.close();
-            return categoriesAllergy;
+            HashMap<String,LanguageString> hashMap = new HashMap<>();
+            for (String key : hashMapCategoriesAllergy.keySet()) {
+                if(hashMapCategoriesAllergy.get(key).on){
+                    for (Locale locale : localeArray) {
+                        Log.d(TAG, getStringByLocal(context,hashMapCategoriesAllergy.get(key).id,locale.getLanguage()));
+                        hashMap.put(getStringByLocal(context,hashMapCategoriesAllergy.get(key).id,locale.getLanguage()),
+                                new LanguageString(locale.getLanguage(),
+                                        getStringByLocal(context,hashMapCategoriesAllergy.get(key).id,locale.getLanguage()),true,
+                                        hashMapCategoriesAllergy.get(key).id));
+
+                    }
+                }
+            }
+            return hashMap;
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
         return null;
+    }
+    @NonNull
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static String getStringByLocal(Activity context, int id, String locale) {
+        Configuration configuration = new Configuration(context.getResources().getConfiguration());
+        configuration.setLocale(new Locale(locale));
+        return context.createConfigurationContext(configuration).getResources().getString(id);
     }
     public void onclickDropDownList(View v,final String key) {
         if(v.getRotation() == 180){
@@ -360,5 +420,17 @@ public class AllergyFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+    public class CheckboxInsert {
+        public String language;
+        public String allergyName;
+        public CheckBox checkBox;
+        public CheckboxInsert(String language, String allergyName,CheckBox checkBox){
+            this.language = language;
+            this.allergyName = allergyName;
+            this.checkBox = checkBox;
+        }
+
+
     }
 }

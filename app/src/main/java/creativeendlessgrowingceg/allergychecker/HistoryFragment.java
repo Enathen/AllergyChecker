@@ -135,7 +135,7 @@ public class HistoryFragment extends Fragment {
                 TextView textview = (TextView) newLinearLayout.findViewById(R.id.textViewHistoryRow);
                 String correctString = s.substring(0, 20);
 
-                textview.setBackgroundColor(Color.rgb(colorGreenToRed, 178, 137));
+                textview.setBackgroundColor(Color.rgb(colorGreenToRed, 178, 172));
                 colorGreenToRed += baseIncrease;
                 if (colorGreenToRed > 255) {
                     colorGreenToRed = 255;
@@ -157,7 +157,7 @@ public class HistoryFragment extends Fragment {
 
             if(!arrayList.isEmpty()){
                 LinearLayout linearLayoutDeleteAll = (LinearLayout) inflater.inflate(R.layout.historyrowdeleteallbutton,container,false);
-                linearLayoutDeleteAll.setBackgroundColor(Color.rgb(colorGreenToRed,178,137));
+                linearLayoutDeleteAll.setBackgroundColor(Color.rgb(colorGreenToRed,178,172));
                 linearLayoutDeleteAll.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

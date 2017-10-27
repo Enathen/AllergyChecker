@@ -136,5 +136,13 @@
 
     <string name="service_label">My Spell Checker</string>
 
+    <string name="english">Engelska</string>
+    <string name="swedish">Svenska</string>
+
+    <string name="staticEnglish">English</string>
+    <string name="staticSwedish">Svenska</string>
+
+
+    <string name="language">Språk</string>
 
 </resources>

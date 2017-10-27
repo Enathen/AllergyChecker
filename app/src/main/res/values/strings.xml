@@ -136,8 +136,16 @@
 
     <string name="service_label">My Spell Checker</string>
 
-    <string name="translateToEnglish">Translate to</string>
-    <string name="translateToSwedish">My Spell Checker</string>
+    <string name="english">English</string>
+    <string name="swedish">Swedish</string>
+
+    <string name="staticEnglish">English</string>
+    <string name="staticSwedish">Svenska</string>
+
+
+    <string name="language">Language</string>
+    <string name="languageFrom">Translate From</string>
+    <string name="languageGeneral">General Language</string>
 
 
 </resources>

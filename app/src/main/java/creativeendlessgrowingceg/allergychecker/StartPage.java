@@ -414,8 +414,8 @@ public class StartPage extends AppCompatActivity
 
         } else if (id == R.id.statistics) {
             fragment = new StatisticsFragment(); setTitle("Statistics");
-        } else if (id == R.id.nav_manage) {
-            fragment = new SettingsFragment(); setTitle("Settings");
+        } else if (id == R.id.languageMenu) {
+            fragment = new SettingsFragment(); setTitle(R.string.language);
         }else if (id == R.id.allergies) {
             fragment = new AllergyFragment(this); setTitle("Allergy");
         }

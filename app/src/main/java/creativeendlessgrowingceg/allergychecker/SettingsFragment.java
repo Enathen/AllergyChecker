@@ -1,6 +1,7 @@
 package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -41,7 +42,7 @@ public class SettingsFragment extends Fragment {
     private FrameLayout parentFrameLayout;
     private LinearLayout parentLinearLayout;
     private OnFragmentInteractionListener mListener;
-    private ArrayList<RadioButton> radioButtons = new ArrayList<>();
+    private ArrayList<RadioButtons> radioButtons = new ArrayList<>();
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -100,24 +101,27 @@ public class SettingsFragment extends Fragment {
         final ArrayList<LinearLayout> arrayListLinearLayout = new ArrayList<>();
         final LinearLayout topLinearLayout = (LinearLayout) inflater.inflate(R.layout.rowlanguage,null);
         final LinearLayout parentLinearLayout = (LinearLayout) topLinearLayout.findViewById(R.id.linHorRowLang);
-
+        SharedPreferences settings = getContext().getSharedPreferences("box", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = settings.edit();
         for (final Languages.LanguagesClass languagesClass : languageFrom) {
 
             LinearLayout newLinearLayout = (LinearLayout) inflater.inflate(R.layout.rowlayoutlanguageradio,null);
             ((ImageView)newLinearLayout.findViewById(R.id.imageViewRadio)).setImageResource(languagesClass.picture);
             ((TextView)newLinearLayout.findViewById(R.id.textViewRadio)).setText(languagesClass.language);
-            RadioButton radioButton = (RadioButton) newLinearLayout.findViewById(R.id.radioButtonLanguage);
-            radioButtons.add(radioButton);
+            final RadioButton radioButton = (RadioButton) newLinearLayout.findViewById(R.id.radioButtonLanguage);
+            radioButtons.add(new RadioButtons(String.valueOf(languagesClass.id),radioButton));
             radioButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d(TAG,languagesClass.language);
-                    onRadioButtonClicked(v,languagesClass.id);
+                    onRadioButtonClicked(v,editor);
+
                 }
             });
-
+            Log.d(TAG,radioButton.toString());
+            radioButton.setChecked(settings.getBoolean(String.valueOf(languagesClass.id), false));
             arrayListLinearLayout.add(newLinearLayout);
         }
+
         ((ImageView)parentLinearLayout.findViewById(R.id.imageViewDropDownLanguage)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,14 +137,17 @@ public class SettingsFragment extends Fragment {
         });
         return topLinearLayout;
     }
-    public void onRadioButtonClicked(View view, int id) {
+    public void onRadioButtonClicked(View view, SharedPreferences.Editor editor) {
         // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
         RadioButton rbutton = ((RadioButton) view);
-        for (RadioButton radioButton : radioButtons) {
-            if (!radioButton.equals(rbutton)){
-                radioButton.setChecked(false);
+        for (RadioButtons radioButton : radioButtons) {
+            if (!radioButton.radioButton.equals(rbutton)){
+                radioButton.radioButton.setChecked(false);
+
             }
+
+            editor.putBoolean(radioButton.id,radioButton.radioButton.isChecked());
+            editor.apply();
         }
     }
     public void onclickDropDownList(View v,ArrayList<LinearLayout> arrayList,LinearLayout linearLayoutPar) {
@@ -199,5 +206,14 @@ public class SettingsFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+    public class RadioButtons{
+        String id;
+        RadioButton radioButton;
+        public RadioButtons(String id, RadioButton radioButton){
+            this.id = id;
+            this.radioButton = radioButton;
+
+        }
     }
 }

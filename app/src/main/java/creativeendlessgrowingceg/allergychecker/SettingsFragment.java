@@ -1,7 +1,9 @@
 package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,12 +11,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -34,6 +44,7 @@ public class SettingsFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String TAG = "LanguageFragment";
+    private File startPageFile;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -43,7 +54,11 @@ public class SettingsFragment extends Fragment {
     private LinearLayout parentLinearLayout;
     private OnFragmentInteractionListener mListener;
     private ArrayList<RadioButtons> radioButtons = new ArrayList<>();
+    private ArrayList<CheckBoxes> checkBoxes = new ArrayList<>();
 
+    public SettingsFragment(StartPage startPage) {
+        startPageFile = new File(startPage.getFilesDir(),"language.txt");
+    }
     public SettingsFragment() {
         // Required empty public constructor
     }
@@ -89,7 +104,8 @@ public class SettingsFragment extends Fragment {
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linearLayoutLanguage);
         Languages languages = new Languages(getContext());
 
-        parentLinearLayout.addView(addLanguages(inflater,languages.getstaticArrayListLanguage(),"from"));
+        parentLinearLayout.addView(addStaticLanguages(inflater,languages.getstaticArrayListLanguage()));
+        parentLinearLayout.addView(addLanguages(inflater,languages.getArrayListLanguage()));
 
 
 
@@ -97,10 +113,99 @@ public class SettingsFragment extends Fragment {
         return parentFrameLayout;
     }
 
-    private LinearLayout addLanguages(LayoutInflater inflater, ArrayList<Languages.LanguagesClass> languageFrom, String from) {
+    private LinearLayout addLanguages(LayoutInflater inflater, ArrayList<Languages.LanguagesClass> arrayListLanguage) {
+        final ArrayList<LinearLayout> arrayListLinearLayout = new ArrayList<>();
+        final LinearLayout topLinearLayout = (LinearLayout) inflater.inflate(R.layout.rowcategorylayout,null);
+        final LinearLayout parentLinearLayout = (LinearLayout) topLinearLayout.findViewById(R.id.linearLayoutRowCategoryHorizontal);
+        ((ImageView)parentLinearLayout.findViewById(R.id.imageViewRowCategory)).setImageResource(R.drawable.globe);
+        ((TextView)parentLinearLayout.findViewById(R.id.textViewCategory)).setText(R.string.languageFrom);
+        SharedPreferences settings = getContext().getSharedPreferences("box", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = settings.edit();
+        for (final Languages.LanguagesClass languagesClass : arrayListLanguage) {
+            LinearLayout newLinearLayout = (LinearLayout) inflater.inflate(R.layout.leftmarginrowlayout,null);
+            ((ImageView)newLinearLayout.findViewById(R.id.imageViewLeftMargin)).setImageResource(languagesClass.picture);
+            ((TextView)newLinearLayout.findViewById(R.id.textViewLeftMargin)).setText(languagesClass.language);
+            final CheckBox checkBox = (CheckBox) newLinearLayout.findViewById(R.id.checkBoxRowLeftMargin);
+            checkBoxes.add(new CheckBoxes(String.valueOf(languagesClass.id),checkBox, languagesClass.locale));
+            Log.d(TAG, String.valueOf(languagesClass.locale));
+            checkBox.setChecked(settings.getBoolean(String.valueOf(languagesClass.id), false));
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    editor.putBoolean(String.valueOf(languagesClass.id),isChecked);
+                    editor.apply();
+
+                    checkIfParentCheckBoxShouldSwitch(((CheckBox)parentLinearLayout.findViewById(R.id.checkBoxRowCategory)),editor,arrayListLinearLayout);
+                    saveCategories();
+                }
+
+
+            });
+            arrayListLinearLayout.add(newLinearLayout);
+        }
+
+        checkIfParentCheckBoxShouldSwitch(((CheckBox)parentLinearLayout.findViewById(R.id.checkBoxRowCategory)),editor,arrayListLinearLayout);
+        (parentLinearLayout.findViewById(R.id.dropDownList)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onclickDropDownList(v,arrayListLinearLayout,topLinearLayout);
+            }
+        });
+        parentLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onclickDropDownList(parentLinearLayout.findViewById(R.id.dropDownList),
+                        arrayListLinearLayout,topLinearLayout);
+            }
+        });
+        ((CheckBox)parentLinearLayout.findViewById(R.id.checkBoxRowCategory)).
+                setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                for (LinearLayout linearLayout : arrayListLinearLayout) {
+                    ((CheckBox)linearLayout.findViewById(R.id.checkBoxRowLeftMargin)).setChecked(isChecked);
+                }
+                editor.putBoolean(String.valueOf(R.string.languageFrom),isChecked);
+                editor.apply();
+                saveCategories();
+            }
+        });
+        return topLinearLayout;
+    }
+
+    private void checkIfParentCheckBoxShouldSwitch(CheckBox parentCheckBox, final SharedPreferences.Editor editor, final ArrayList<LinearLayout> arrayListLinearLayout) {
+
+        for (CheckBoxes checkBox : checkBoxes) {
+
+            if(!checkBox.checkBox.isChecked()){
+                parentCheckBox.setOnCheckedChangeListener(null);
+                parentCheckBox.setChecked(false);
+                /*editor.putBoolean(String.valueOf(R.string.languageFrom),false);
+                editor.apply();*/
+                parentCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        for (LinearLayout linearLayout : arrayListLinearLayout) {
+                            ((CheckBox)linearLayout.findViewById(R.id.checkBoxRowLeftMargin)).setChecked(isChecked);
+                        }
+                        editor.putBoolean(String.valueOf(R.string.languageFrom),isChecked);
+                        editor.apply();
+                        saveCategories();
+                    }
+                });
+                return;
+            }
+        }
+        parentCheckBox.setChecked(true);
+    }
+
+
+    private LinearLayout addStaticLanguages(LayoutInflater inflater, ArrayList<Languages.LanguagesClass> languageFrom) {
         final ArrayList<LinearLayout> arrayListLinearLayout = new ArrayList<>();
         final LinearLayout topLinearLayout = (LinearLayout) inflater.inflate(R.layout.rowlanguage,null);
         final LinearLayout parentLinearLayout = (LinearLayout) topLinearLayout.findViewById(R.id.linHorRowLang);
+        ((ImageView)parentLinearLayout.findViewById(R.id.ImageViewRowLanguage)).setImageResource(R.drawable.globe);
+        ((TextView)parentLinearLayout.findViewById(R.id.textViewRowLanguage)).setText(R.string.languageGeneral);
         SharedPreferences settings = getContext().getSharedPreferences("box", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = settings.edit();
         for (final Languages.LanguagesClass languagesClass : languageFrom) {
@@ -115,9 +220,18 @@ public class SettingsFragment extends Fragment {
                 public void onClick(View v) {
                     onRadioButtonClicked(v,editor);
 
+                    Locale.setDefault(languagesClass.locale);
+
+                    Configuration config = new Configuration();
+                    config.setLocale(languagesClass.locale);
+                    getActivity().getApplicationContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+                    Intent intent = getActivity().getIntent();
+                    getActivity().finish();
+                    startActivity(intent);
+
+
                 }
             });
-            Log.d(TAG,radioButton.toString());
             radioButton.setChecked(settings.getBoolean(String.valueOf(languagesClass.id), false));
             arrayListLinearLayout.add(newLinearLayout);
         }
@@ -137,13 +251,50 @@ public class SettingsFragment extends Fragment {
         });
         return topLinearLayout;
     }
+
+    public void saveCategories(){
+
+        FileOutputStream fileOutputStream;
+
+        File file = new File(this.getContext().getFilesDir(), "language.txt");
+        ArrayList<Locale> locales = new ArrayList<>();
+
+        for (CheckBoxes checkBox : checkBoxes) {
+            if(checkBox.checkBox.isChecked()){
+                locales.add(checkBox.locale);
+            }
+        }
+        try {
+            fileOutputStream = new FileOutputStream(file,false);
+            ObjectOutputStream objectOutputStream= new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(locales);
+            objectOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public ArrayList<Locale> getCategories(){
+        FileInputStream fileInputStream;
+        ArrayList<Locale> locales = new ArrayList<>();
+        try {
+            fileInputStream = new FileInputStream(startPageFile);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            locales = ( ArrayList<Locale>) objectInputStream.readObject();
+            objectInputStream.close();
+            return locales;
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+        return locales;
+    }
     public void onRadioButtonClicked(View view, SharedPreferences.Editor editor) {
         // Is the button now checked?
         RadioButton rbutton = ((RadioButton) view);
         for (RadioButtons radioButton : radioButtons) {
             if (!radioButton.radioButton.equals(rbutton)){
                 radioButton.radioButton.setChecked(false);
-
             }
 
             editor.putBoolean(radioButton.id,radioButton.radioButton.isChecked());
@@ -213,6 +364,18 @@ public class SettingsFragment extends Fragment {
         public RadioButtons(String id, RadioButton radioButton){
             this.id = id;
             this.radioButton = radioButton;
+
+        }
+    }
+
+    private class CheckBoxes {
+        String id;
+        CheckBox checkBox;
+        Locale locale;
+        public CheckBoxes(String id, CheckBox checkBox, Locale locale){
+            this.id = id;
+            this.checkBox = checkBox;
+            this.locale = locale;
 
         }
     }

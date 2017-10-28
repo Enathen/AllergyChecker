@@ -362,7 +362,7 @@ public class AllergyFragment extends Fragment {
     public static String getStringByLocal(Activity context, int id, String locale) {
         Configuration configuration = new Configuration(context.getResources().getConfiguration());
         configuration.setLocale(new Locale(locale));
-        return context.createConfigurationContext(configuration).getResources().getString(id);
+        return context.createConfigurationContext(configuration).getResources().getString(id).toLowerCase();
     }
     public void onclickDropDownList(View v,final String key) {
         if(v.getRotation() == 180){

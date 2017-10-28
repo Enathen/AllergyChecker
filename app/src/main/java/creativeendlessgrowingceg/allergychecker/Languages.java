@@ -29,12 +29,12 @@ public class Languages {
         return staticArrayListLanguage;
     }
     public void setArrayListLanguage() {
-        arrayListLanguage.add(new LanguagesClass(R.drawable.globe,context.getString(R.string.english),R.string.english,new Locale("en")));
-        arrayListLanguage.add(new LanguagesClass(R.drawable.globe,context.getString(R.string.swedish),R.string.swedish,new Locale("sv")));
+        arrayListLanguage.add(new LanguagesClass(R.drawable.gb,context.getString(R.string.english),R.string.english,new Locale("en")));
+        arrayListLanguage.add(new LanguagesClass(R.drawable.se,context.getString(R.string.swedish),R.string.swedish,new Locale("sv")));
     }
     public void setStaticArrayListLanguage(){
-        staticArrayListLanguage.add(new LanguagesClass(R.drawable.globe,context.getString(R.string.staticEnglish),R.string.staticEnglish,new Locale("en")));
-        staticArrayListLanguage.add(new LanguagesClass(R.drawable.globe,context.getString(R.string.staticSwedish),R.string.staticSwedish,new Locale("sv")));
+        staticArrayListLanguage.add(new LanguagesClass(R.drawable.gb,context.getString(R.string.staticEnglish),R.string.staticEnglish,new Locale("en")));
+        staticArrayListLanguage.add(new LanguagesClass(R.drawable.se,context.getString(R.string.staticSwedish),R.string.staticSwedish,new Locale("sv")));
     }
     private void sort(ArrayList<Languages.LanguagesClass> arrayList){
         Collections.sort(arrayList, new Comparator<Languages.LanguagesClass>() {

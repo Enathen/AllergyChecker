@@ -23,13 +23,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.textservice.SentenceSuggestionsInfo;
-import android.view.textservice.SpellCheckerSession;
-import android.view.textservice.SuggestionsInfo;
-import android.view.textservice.TextInfo;
-import android.view.textservice.TextServicesManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +43,6 @@ import creativeendlessgrowingceg.allergychecker.camera.OcrCaptureActivity;
 
 public class StartPage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
-        ,SpellCheckerSession.SpellCheckerSessionListener
         ,HistoryFragment.OnFragmentInteractionListener
         ,StatisticsFragment.OnFragmentInteractionListener
         ,SettingsFragment.OnFragmentInteractionListener
@@ -53,10 +50,13 @@ public class StartPage extends AppCompatActivity
     private static final String TAG = "StartPage";
     private static final String SHARED_PREFS_NAME = "StartPage";
     private TextView suggestions;
+    private TextView allergic;
     String newString= "Ingredients";
+    String allergicString = "";
     ArrayList<String> dateStrings = new ArrayList<>();
     SharedPreferences prefs;
     ArrayList<String> ingredientsAllergy = new ArrayList<>();
+    private InterstitialAd interstitialAd;
     private String Language = "";
     public StartPage(FragmentActivity activity) {
         prefs = activity.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
@@ -115,7 +115,17 @@ public class StartPage extends AppCompatActivity
         Intent intent = getIntent();
         String str = intent.getStringExtra("location");
         suggestions = (TextView) findViewById(R.id.ingredientsTextView);
+        allergic = (TextView) findViewById(R.id.textViewFoundAllergies);
+        interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdUnitId("ca-app-pub-3607354849437438/9852745111");
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+
         if(str != null){
+            interstitialAd.loadAd(adRequest);
+            if(interstitialAd.isLoaded()){
+                interstitialAd.show();
+            }
             str = str.replaceAll("[^\\p{L}\\p{Nd}\\s]+", "");
             String allergyString = str;
             String[] parts = allergyString.split("\\s+");
@@ -168,73 +178,107 @@ public class StartPage extends AppCompatActivity
     private void checkStringAgainstAllergies(String str) {
         String[] splitStr = str.split("\\s+");
         HashMap<String,LanguageString> arrayListAllergies = null;
-        ArrayList<Locale> listOfLanguages = new ArrayList<>();
-        listOfLanguages.add(new Locale("sv"));
-        listOfLanguages.add(new Locale("en"));
+        ArrayList<Locale> listOfLanguages = new SettingsFragment(this).getCategories();
+        for (Locale listOfLanguage : listOfLanguages) {
+            Log.d(TAG,listOfLanguage.getLanguage());
+        }
         arrayListAllergies = new AllergyFragment(this).getArrayListFromAllCheckedAllergies(listOfLanguages,StartPage.this);
         SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
         if(arrayListAllergies != null) {
             HashMap<String, LanguageString> allergies = spellCheckAllergy.permuteString(arrayListAllergies);
+
             String outputString = "";
             boolean b = false;
             for (String string : splitStr) {
-                for (String key : allergies.keySet()) {
-                    boolean shortcut = false;
-                    for (String extraKey : allergies.keySet()){
-                        if(extraKey.equals(string)){
 
-                            allergies.get(extraKey).found++;
-                            if(allergies.get(extraKey).found == 1){
-                                outputString = outputString.concat("Definitely contained: "+ getString(allergies.get(extraKey).id) + "\n");
-                                Log.d(TAG, "ALLERGI: " + outputString);
-                            }
-                            b = true;
-                            break;
+                for (String extraKey : allergies.keySet()){
+                    if(extraKey.equals(string)){
+
+                        allergies.get(extraKey).found++;
+                        if(allergies.get(extraKey).found == 1){
+                            outputString = outputString.concat("Definitely contained: "+ getString(allergies.get(extraKey).id) + "\n");
+                            Log.d(TAG, "ALLERGI: " + outputString);
                         }
-                    }
-                    if(b){
-                        b = false;
+                        b = true;
                         break;
                     }
-                    if(string.contains(key)){
+                }
+                if(!b){
+                    for (String key : allergies.keySet() ) {
 
-                        allergies.get(key).found++;
-                        if(allergies.get(key).found == 1){
-                            outputString = outputString.concat("Probably contained: "+ getString(allergies.get(key).id) + " from Word: " + string + "\n");
-                            Log.d(TAG, "ALLERGI: " + outputString);
-                            break;
+                        if(string.contains(key)){
 
+                            allergies.get(key).found++;
+                            if(allergies.get(key).found == 1){
+                                outputString = outputString.concat("Probably contained: "+ getString(allergies.get(key).id) + " from Word: " + string + "\n");
+                                Log.d(TAG, "ALLERGI: " + outputString);
+                                break;
+
+                            }
+                        }
+                        if (allergies.get(key).allPossibleDerivationsOfAllergen.contains(string)) {
+                            allergies.get(key).found++;
+                            if(allergies.get(key).found == 1) {
+                                outputString = outputString.concat("Probably contained: " + getString(allergies.get(key).id) + " from Word: " + string + "\n");
+                                Log.d(TAG, "ALLERGI: " + outputString);
+                                break;
+                            }
                         }
                     }
-                    if (allergies.get(key).allPossibleDerivationsOfAllergen.contains(string)) {
-                        allergies.get(key).found++;
-                        if(allergies.get(key).found == 1) {
-                            outputString = outputString.concat("Probably contained: " + getString(allergies.get(key).id) + " from Word: " + string + "\n");
-                            Log.d(TAG, "ALLERGI: " + outputString);
-                            break;
+                }
+
+            }
+            boolean dontEat = false;
+            boolean incorrectLanguage = false;
+            for (String key : allergies.keySet()) {
+                if(allergies.get(key).found>0) {
+                    if(!Locale.getDefault().getLanguage().equals(allergies.get(key).language)) {
+                        if(allergies.containsKey(getString(allergies.get(key).id).toLowerCase())){
+                            allergies.get( getString(allergies.get(key).id).toLowerCase()).found += allergies.get(key).found;
+
+                        }else{
+                            incorrectLanguage = true;
                         }
                     }
                 }
             }
-            boolean dontEat = false;
             outputString = outputString.concat("\n");
             for (String key : allergies.keySet()){
+
                 if(allergies.get(key).found>0){
-                    outputString = outputString.concat("Allergy: "+ getString(allergies.get(key).id)+ " Contained " +
-                            allergies.get(key).found + " times.\n");
-                    allergies.get(key).found = 0;
-                    dontEat = true;
+                    if(!incorrectLanguage){
+                        if(Locale.getDefault().getLanguage().equals(allergies.get(key).language)){
+                            outputString = outputString.concat("Allergy: "+ getString(allergies.get(key).id)+ " Contained " +
+                                    allergies.get(key).found + " times.\n");
+                            allergies.get(key).found = 0;
+                            dontEat = true;
+
+                        }
+
+                    }else{
+                        outputString = outputString.concat("Allergy: " + allergies.get(key).language + " "+ getString(allergies.get(key).id)+ " Contained " +
+                                allergies.get(key).found + " times.\n");
+                        allergies.get(key).found = 0;
+                        dontEat = true;
+                    }
                 }
             }
             if(dontEat){
                 outputString = outputString.concat("\nDon't use!\n");
+                outputString = outputString.concat("\nScanned text below:\n");
                 ((TextView) findViewById(R.id.textViewFoundAllergies)).setTextColor(Color.RED);
                 ((TextView) findViewById(R.id.textViewFoundAllergies)).setText(outputString);
             }else{
-                outputString = "\nYou can use it!\n";
+                if(allergies.isEmpty()){
+                    outputString = "\nYou have no allergies selected! But ";
+                }
+                outputString = outputString.concat("You can use it!\n");
+                outputString = outputString.concat("\nScanned text below:\n");
                 ((TextView) findViewById(R.id.textViewFoundAllergies)).setTextColor(getColor(R.color.colorAccent));
                 ((TextView) findViewById(R.id.textViewFoundAllergies)).setText(outputString);
             }
+            allergicString = outputString;
+            allergic.setText(outputString);
         }
     }
 
@@ -288,37 +332,6 @@ public class StartPage extends AppCompatActivity
         Set<String> set = prefs.getStringSet("list", new HashSet<String>());
 
         return new ArrayList<>(set);
-    }
-    private void fetchSuggestionsFor(final String input){
-        Locale locale = new Locale("sv","SE"); //whatever language
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        /*Locale[] test = Locale.getAvailableLocales();
-        for (Locale locale1 : test) {
-            Log.d(TAG,locale1.getLanguage());
-            Log.d(TAG,locale1.getCountry());
-        }*/
-        config.setLocale(locale);
-        Log.d(TAG,locale.getLanguage()+ " "+ locale.getCountry());
-        TextServicesManager tsm = (TextServicesManager) getSystemService(TEXT_SERVICES_MANAGER_SERVICE);
-        SpellCheckerSession spellCheckerSession = null;
-        if(locale.getLanguage().equals("sv")){
-            spellCheckerSession = tsm.newSpellCheckerSession(null, locale, this, false);
-
-        }else{
-            spellCheckerSession = tsm.newSpellCheckerSession(null, Locale.ENGLISH, this, true);
-        }
-
-        if(spellCheckerSession == null){
-            Log.d(TAG,"SPELL CHECKER NULL");
-        }
-        if (spellCheckerSession != null) {
-            spellCheckerSession.getSentenceSuggestions(
-                    new TextInfo[]{ new TextInfo(input) },
-                    5
-            );
-        }
     }
     @Override
     public void onBackPressed() {
@@ -401,13 +414,18 @@ public class StartPage extends AppCompatActivity
         int id = item.getItemId();
         Fragment fragment = null;
         suggestions.setText("");
+        allergic.setText("");
         ((TextView) findViewById(R.id.textViewFoundAllergies)).setText("");
         if (id == R.id.nav_camera) {
             suggestions.setText(newString);
+            allergic.setText(allergicString);
+
             Log.d(TAG, String.valueOf(getSupportFragmentManager().getBackStackEntryCount()));
             while (getSupportFragmentManager().getBackStackEntryCount() != 0)
                 getSupportFragmentManager().popBackStackImmediate();
             setTitle("AllergyChecker");
+
+
         } else if (id == R.id.history) {
             fragment = new HistoryFragment(); setTitle("History");
 
@@ -436,43 +454,6 @@ public class StartPage extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public void onGetSuggestions(SuggestionsInfo[] results) {
-
-    }
-
-    @Override
-    public void onGetSentenceSuggestions(SentenceSuggestionsInfo[] results) {
-        final StringBuffer sb = new StringBuffer("");
-
-
-        for(SentenceSuggestionsInfo result:results){
-            int n = result.getSuggestionsCount();
-
-            //Log.d(TAG,"N="+ String.valueOf(n));
-            for(int i=0; i < n; i++){
-                int m = result.getSuggestionsInfoAt(i).getSuggestionsCount();
-                //Log.d(TAG, "M="+String.valueOf(m));
-                for(int k=0; k < m; k++) {
-                    ingredientsAllergy.add(result.getSuggestionsInfoAt(i).getSuggestionAt(k));
-                    Log.d(TAG,"TextScannedSuggestions: " + result.getSuggestionsInfoAt(i).getSuggestionAt(k));
-
-                }
-            }
-        }
-
-
-        Log.d(TAG,"String From Photo: "+sb.toString());
-        /*runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                suggestions.append(sb.toString());
-            }
-        });*/
-    }
-    private void onGetSentence(){
-
-    }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
@@ -485,12 +466,14 @@ public class StartPage extends AppCompatActivity
 
         // Checks the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-
-            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void profilOnClick(View view) {
+        Log.d(TAG, "HEEEj");
+    }
+
     public class DateString{
         String string;
 

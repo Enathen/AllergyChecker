@@ -339,6 +339,11 @@ public class AllergyFragment extends Fragment {
             hashMapCategoriesAllergy = (HashMap<String, LanguageString>) objectInputStream.readObject();
             objectInputStream.close();
             HashMap<String,LanguageString> hashMap = new HashMap<>();
+
+            if(localeArray.isEmpty()){
+
+                localeArray.add(context.getResources().getConfiguration().getLocales().get(0));
+            }
             for (String key : hashMapCategoriesAllergy.keySet()) {
                 if(hashMapCategoriesAllergy.get(key).on){
                     for (Locale locale : localeArray) {

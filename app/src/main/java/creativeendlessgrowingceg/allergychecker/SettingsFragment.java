@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,14 +51,21 @@ public class SettingsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     String language;
+    Locale myLocale;
     private FrameLayout parentFrameLayout;
     private LinearLayout parentLinearLayout;
     private OnFragmentInteractionListener mListener;
     private ArrayList<RadioButtons> radioButtons = new ArrayList<>();
     private ArrayList<CheckBoxes> checkBoxes = new ArrayList<>();
+    SharedPreferences preference;
 
+    public SettingsFragment(Splashscreen startPage) {
+        startPageFile = new File(startPage.getFilesDir(),"language.txt");
+        preference = PreferenceManager.getDefaultSharedPreferences(startPage);
+    }
     public SettingsFragment(StartPage startPage) {
         startPageFile = new File(startPage.getFilesDir(),"language.txt");
+        preference = PreferenceManager.getDefaultSharedPreferences(startPage);
     }
     public SettingsFragment() {
         // Required empty public constructor
@@ -95,8 +103,24 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Locale locale = getResources().getConfiguration().getLocales().get(0);
-        language = locale.getLanguage();
+
+
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(getContext());
+        // Check if we need to display our OnboardingFragment
+        if (!sharedPreferences.getBoolean(
+                "startHistory", false)) {
+            language = getResources().getConfiguration().getLocales().get(0).getLanguage();
+            SharedPreferences.Editor sharedPreferencesEditor =
+                    PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+            sharedPreferencesEditor.putBoolean(
+                    "startHistory", true);
+            sharedPreferencesEditor.apply();
+        }else{
+            language = sharedPreferences.getString("getLanguage",null);
+
+        }
+
 
         parentFrameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_settings, container, false);
 
@@ -106,7 +130,17 @@ public class SettingsFragment extends Fragment {
 
         parentLinearLayout.addView(addStaticLanguages(inflater,languages.getstaticArrayListLanguage()));
         parentLinearLayout.addView(addLanguages(inflater,languages.getArrayListLanguage()));
+        for (RadioButtons radioButton : radioButtons) {
+            if(radioButton.staticLocale.getLanguage().equals(language)){
+                radioButton.radioButton.setChecked(true);
+            }
+        }
 
+        for (CheckBoxes checkBox : checkBoxes) {
+            if(checkBox.locale.getLanguage().equals(language)){
+                checkBox.checkBox.setChecked(true);
+            }
+        }
 
 
 
@@ -170,6 +204,7 @@ public class SettingsFragment extends Fragment {
                 saveCategories();
             }
         });
+
         return topLinearLayout;
     }
 
@@ -214,16 +249,21 @@ public class SettingsFragment extends Fragment {
             ((ImageView)newLinearLayout.findViewById(R.id.imageViewRadio)).setImageResource(languagesClass.picture);
             ((TextView)newLinearLayout.findViewById(R.id.textViewRadio)).setText(languagesClass.language);
             final RadioButton radioButton = (RadioButton) newLinearLayout.findViewById(R.id.radioButtonLanguage);
-            radioButtons.add(new RadioButtons(String.valueOf(languagesClass.id),radioButton));
+            radioButtons.add(new RadioButtons(String.valueOf(languagesClass.id),radioButton,languagesClass.locale));
             radioButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     onRadioButtonClicked(v,editor);
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+                        SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+                        sharedPreferencesEditor.putString("getLanguage", languagesClass.locale.getLanguage());
+                        sharedPreferencesEditor.apply();
 
                     Locale.setDefault(languagesClass.locale);
 
                     Configuration config = new Configuration();
                     config.setLocale(languagesClass.locale);
+
                     getActivity().getApplicationContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
                     Intent intent = getActivity().getIntent();
                     getActivity().finish();
@@ -301,6 +341,7 @@ public class SettingsFragment extends Fragment {
             editor.apply();
         }
     }
+
     public void onclickDropDownList(View v,ArrayList<LinearLayout> arrayList,LinearLayout linearLayoutPar) {
         if(v.getRotation() == 180){
             v.setRotation(0);
@@ -344,6 +385,26 @@ public class SettingsFragment extends Fragment {
         mListener = null;
     }
 
+    public String getLanguageFromLFragment(Splashscreen startPage) {
+        //Log.d(TAG,preference.getString("getLanguage",null));
+        ArrayList<String> languageAccepted = new  ArrayList<String>();
+        languageAccepted.add("en");
+        languageAccepted.add("sv");
+
+        if (preference.contains("getLanguage")){
+            return preference.getString("getLanguage","en");
+        }
+        for (String s : languageAccepted) {
+            if(s.equals(Locale.getDefault().getLanguage())){
+                return Locale.getDefault().getLanguage();
+            }else{
+                return "en";
+            }
+
+        }
+        return null;
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -361,9 +422,11 @@ public class SettingsFragment extends Fragment {
     public class RadioButtons{
         String id;
         RadioButton radioButton;
-        public RadioButtons(String id, RadioButton radioButton){
+        Locale staticLocale;
+        public RadioButtons(String id, RadioButton radioButton,Locale staticLocale){
             this.id = id;
             this.radioButton = radioButton;
+            this.staticLocale = staticLocale;
 
         }
     }
@@ -379,4 +442,5 @@ public class SettingsFragment extends Fragment {
 
         }
     }
+
 }

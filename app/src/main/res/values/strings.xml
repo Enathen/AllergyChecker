@@ -148,6 +148,22 @@
     <string name="languageGeneral">General Language</string>
     <string name="startPageHeader">Tap below to scan text</string>
     <string name="definitelyContained">Definitely contained</string>
+    <string name="history">History</string>
+    <string name="statistics">Statistics</string>
+    <string name="allergies">Allergies</string>
+    <string name="dontUse">Don\'t Use!</string>
+    <string name="scannedTextBelow">Scanned text below:</string>
+    <string name="youCanUse">Can be used!</string>
+    <string name="allergy">Allergy:</string>
+    <string name="contained">Contained</string>
+    <string name="times">times</string>
+    <string name="probablyContained">Probably contained</string>
+    <string name="fromWord">from word:</string>
+    <string name="noflash">Flash</string>
+    <string name="flash">No Flash</string>
+    <string name="myAllergies">My allergies</string>
+    <string name="share">Share</string>
+    <string name="send">Send</string>
 
 
 </resources>

@@ -3,7 +3,7 @@
     package="creativeendlessgrowingceg.allergychecker">
 
     <uses-feature android:name="android.hardware.camera" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <service android:name=".SpellingService"
         android:permission="android.permission.BIND_TEXT_SERVICE">

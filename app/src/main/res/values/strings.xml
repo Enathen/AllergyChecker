@@ -146,6 +146,8 @@
     <string name="language">Language</string>
     <string name="languageFrom">Translate From</string>
     <string name="languageGeneral">General Language</string>
+    <string name="startPageHeader">Tap below to scan text</string>
+    <string name="definitelyContained">Definitely contained</string>
 
 
 </resources>

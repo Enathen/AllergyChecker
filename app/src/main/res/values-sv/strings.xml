@@ -144,5 +144,7 @@
 
 
     <string name="language">Språk</string>
+    <string name="startPageHeader">Tap below to scan text</string>
+    <string name="definitelyContained">Definitely contained</string>
 
 </resources>

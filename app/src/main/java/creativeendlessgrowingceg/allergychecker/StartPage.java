@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 
@@ -51,13 +52,14 @@ public class StartPage extends AppCompatActivity
     private static final String SHARED_PREFS_NAME = "StartPage";
     private TextView suggestions;
     private TextView allergic;
-    String newString= "Ingredients";
+    String newString = "";
     String allergicString = "";
     ArrayList<String> dateStrings = new ArrayList<>();
     SharedPreferences prefs;
     ArrayList<String> ingredientsAllergy = new ArrayList<>();
     private InterstitialAd interstitialAd;
     private String Language = "";
+    public int clickAmount = 0;
     public StartPage(FragmentActivity activity) {
         prefs = activity.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
     }
@@ -69,13 +71,18 @@ public class StartPage extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        newString = getString(R.string.startPageHeader);
+        loadInterstitial();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 View drawer = (View) findViewById(R.id.language);
+
+
 
                 PopupMenu popup = new PopupMenu(StartPage.this, drawer);
                 //Inflating the Popup using xml file
@@ -96,6 +103,7 @@ public class StartPage extends AppCompatActivity
                             flash = true;
                         else
                             flash = false;
+
                         Intent intent = new Intent(getBaseContext(), OcrCaptureActivity.class);
                         intent.putExtra("EXTRA_SESSION_ID", flash);
                         startActivity(intent);
@@ -116,16 +124,9 @@ public class StartPage extends AppCompatActivity
         String str = intent.getStringExtra("location");
         suggestions = (TextView) findViewById(R.id.ingredientsTextView);
         allergic = (TextView) findViewById(R.id.textViewFoundAllergies);
-        interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId("ca-app-pub-3607354849437438/9852745111");
-        AdRequest adRequest = new AdRequest.Builder().build();
-
 
         if(str != null){
-            interstitialAd.loadAd(adRequest);
-            if(interstitialAd.isLoaded()){
-                interstitialAd.show();
-            }
+
             str = str.replaceAll("[^\\p{L}\\p{Nd}\\s]+", "");
             String allergyString = str;
             String[] parts = allergyString.split("\\s+");
@@ -175,7 +176,35 @@ public class StartPage extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    private void displayInterstitial() {
+        interstitialAd.loadAd(new AdRequest.Builder().build());
+    }
+
+    public  void loadInterstitial(){
+        interstitialAd = new InterstitialAd(StartPage.this);
+        interstitialAd.setAdUnitId("ca-app-pub-3607354849437438/9852745111");
+        interstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                if(interstitialAd.isLoaded()){
+                    interstitialAd.show();
+                }else{
+                    Log.d(TAG, "The interstitial wasn't loaded yet.");
+                }
+
+            }
+
+            @Override
+            public void onAdClosed() {
+            }
+        });
+
+    }
     private void checkStringAgainstAllergies(String str) {
+
+        displayInterstitial();
+
         String[] splitStr = str.split("\\s+");
         HashMap<String,LanguageString> arrayListAllergies = null;
         ArrayList<Locale> listOfLanguages = new SettingsFragment(this).getCategories();
@@ -196,7 +225,8 @@ public class StartPage extends AppCompatActivity
 
                         allergies.get(extraKey).found++;
                         if(allergies.get(extraKey).found == 1){
-                            outputString = outputString.concat("Definitely contained: "+ getString(allergies.get(extraKey).id) + "\n");
+
+                            outputString = outputString.concat(getString(R.string.definitelyContained)+ getString(allergies.get(extraKey).id) + "\n");
                             Log.d(TAG, "ALLERGI: " + outputString);
                         }
                         b = true;
@@ -424,6 +454,7 @@ public class StartPage extends AppCompatActivity
             while (getSupportFragmentManager().getBackStackEntryCount() != 0)
                 getSupportFragmentManager().popBackStackImmediate();
             setTitle("AllergyChecker");
+
 
 
         } else if (id == R.id.history) {

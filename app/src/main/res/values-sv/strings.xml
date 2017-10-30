@@ -161,6 +161,8 @@
     <string name="flash">Ingen ficklampa</string>
     <string name="myAllergies">Mina allergier</string>
     <string name="share">Dela</string>
-    <string name="send">Skicka</string>
+    <string name="send">Skicka tips</string>
+    <string name="mustBeInEnglish">Text must be written in English or Swedish! Thanks!</string>
+    <string name="sendTipsFrom">Where you want to send tips from?</string>
 
 </resources>

@@ -163,7 +163,10 @@
     <string name="flash">No Flash</string>
     <string name="myAllergies">My allergies</string>
     <string name="share">Share</string>
-    <string name="send">Send</string>
+    <string name="send">Send tips</string>
+    <string name="send_to">AllergyCheckerCEG@gmail.com</string>
+    <string name="mustBeInEnglish">Text must be written in English or Swedish! Thanks!</string>
+    <string name="sendTipsFrom">Where you want to send tips from?</string>
 
 
 </resources>

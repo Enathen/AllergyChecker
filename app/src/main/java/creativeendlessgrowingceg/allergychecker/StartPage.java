@@ -491,7 +491,14 @@ public class StartPage extends AppCompatActivity
         else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
 
+            sendIntent.putExtra(Intent.EXTRA_EMAIL, R.string.send_to);
+            sendIntent.putExtra(android.content.Intent.EXTRA_EMAIL,new String[] { "AllergyCheckerCEG@gmail.com" });
+            sendIntent.putExtra(Intent.EXTRA_TEXT, R.string.mustBeInEnglish);
+            sendIntent.setType("text/plain");
+            startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.sendTipsFrom)));
         }
 
         if (fragment != null) {

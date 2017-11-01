@@ -5,7 +5,7 @@
 
         <item
             android:id="@+id/allergies"
-            android:icon="@drawable/wheatcircle"
+            android:icon="@drawable/wheat"
             android:title="@string/myAllergies" />
         <item
             android:id="@+id/nav_camera"
@@ -16,10 +16,6 @@
 
             android:icon="@drawable/history"
             android:title="@string/history" />
-        <item
-            android:id="@+id/statistics"
-            android:icon="@drawable/stats"
-            android:title="@string/statistics" />
         <item
             android:id="@+id/languageMenu"
             android:icon="@drawable/globe"

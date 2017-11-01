@@ -258,12 +258,10 @@ public class SettingsFragment extends Fragment {
                         SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
                         sharedPreferencesEditor.putString("getLanguage", languagesClass.locale.getLanguage());
                         sharedPreferencesEditor.apply();
-
+                    new AllergyFragment(getContext()).insertNewLanguage(SettingsFragment.this,languagesClass.locale.getLanguage());
                     Locale.setDefault(languagesClass.locale);
-
                     Configuration config = new Configuration();
                     config.setLocale(languagesClass.locale);
-
                     getActivity().getApplicationContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
                     Intent intent = getActivity().getIntent();
                     getActivity().finish();
@@ -396,13 +394,15 @@ public class SettingsFragment extends Fragment {
         }
         for (String s : languageAccepted) {
             if(s.equals(Locale.getDefault().getLanguage())){
+                SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(startPage).edit();
+                sharedPreferencesEditor.putString("getLanguage", s);
+                sharedPreferencesEditor.apply();
                 return Locale.getDefault().getLanguage();
-            }else{
-                return "en";
             }
 
         }
-        return null;
+
+        return "en";
     }
 
     /**

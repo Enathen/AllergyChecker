@@ -167,6 +167,8 @@
     <string name="send_to">AllergyCheckerCEG@gmail.com</string>
     <string name="mustBeInEnglish">Text must be written in English or Swedish! Thanks!</string>
     <string name="sendTipsFrom">Where you want to send tips from?</string>
+    <string name="welcomeMessageInvite">Do you want know if you can eat something fast, that is not allergic to you?
+    Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
 
 
 </resources>

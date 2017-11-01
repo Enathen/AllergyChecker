@@ -11,7 +11,6 @@ public class LanguageString implements Serializable{
     public String language;
     public String allergyName;
     public ArrayList<String> allPossibleDerivationsOfAllergen = new ArrayList<>();
-    public int found = 0;
     public boolean on = false;
     public int id;
     public LanguageString(String language, String allergyName,boolean on, int id){

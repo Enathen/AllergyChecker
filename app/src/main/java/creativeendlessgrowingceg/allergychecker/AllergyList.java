@@ -83,27 +83,27 @@ public class AllergyList {
     }
 
     public void setArrayListShellfish() {
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.barnacle),R.string.barnacle));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.crab),R.string.crab));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.crawfish),R.string.crawfish));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.krill),R.string.krill));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.lobster),R.string.lobster));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.prawns),R.string.prawns));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.shrimp),R.string.shrimp));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.scampi),R.string.scampi));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.abalone),R.string.abalone));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.clams),R.string.clams));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.cockle),R.string.cockle));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.limpet),R.string.limpet));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.mussels),R.string.mussels));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.octopus),R.string.octopus));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.oysters),R.string.oysters));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.periwinkle),R.string.periwinkle));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.urchin),R.string.urchin));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.scallops),R.string.scallops));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.snails),R.string.snails));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.squid),R.string.squid));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.fish,context.getString(R.string.whelk),R.string.whelk));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.barnacle),R.string.barnacle));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.crab),R.string.crab));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.crawfish),R.string.crawfish));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.krill),R.string.krill));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.lobster),R.string.lobster));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.prawns),R.string.prawns));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.shrimp),R.string.shrimp));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.scampi),R.string.scampi));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.abalone),R.string.abalone));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.clams),R.string.clams));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.cockle),R.string.cockle));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.limpet),R.string.limpet));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.mussels),R.string.mussels));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.octopus),R.string.octopus));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.oysters),R.string.oysters));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.periwinkle),R.string.periwinkle));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.urchin),R.string.urchin));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.scallops),R.string.scallops));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.snails),R.string.snails));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.squid),R.string.squid));
+        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish,context.getString(R.string.whelk),R.string.whelk));
 
         sort(arrayListShellfish);
     }
@@ -125,19 +125,19 @@ public class AllergyList {
     }
 
     public void setArrayListNuts() {
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,context.getString(R.string.almond),R.string.almond));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,context.getString(R.string.brazil),R.string.brazil));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,context.getString(R.string.cocao),R.string.cocao));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,context.getString(R.string.hazelnut),R.string.hazelnut));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,context.getString(R.string.macadamia),R.string.macadamia));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,context.getString(R.string.peanuts),R.string.peanuts));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,context.getString(R.string.pecans),R.string.pecans));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,context.getString(R.string.pili),R.string.pili));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,context.getString(R.string.pine),R.string.pine));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,context.getString(R.string.pistachios),R.string.pistachios));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,context.getString(R.string.soy),R.string.soy));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,context.getString(R.string.tiger),R.string.tiger));
-        arrayListNuts.add(new PictureIngredient(R.drawable.peanut,context.getString(R.string.walnuts),R.string.walnuts));
+        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,context.getString(R.string.almond),R.string.almond));
+        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,context.getString(R.string.brazil),R.string.brazil));
+        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,context.getString(R.string.cocao),R.string.cocao));
+        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,context.getString(R.string.hazelnut),R.string.hazelnut));
+        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,context.getString(R.string.macadamia),R.string.macadamia));
+        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,context.getString(R.string.peanuts),R.string.peanuts));
+        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,context.getString(R.string.pecans),R.string.pecans));
+        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,context.getString(R.string.pili),R.string.pili));
+        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,context.getString(R.string.pine),R.string.pine));
+        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,context.getString(R.string.pistachios),R.string.pistachios));
+        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,context.getString(R.string.soy),R.string.soy));
+        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,context.getString(R.string.tiger),R.string.tiger));
+        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,context.getString(R.string.walnuts),R.string.walnuts));
 
 
         sort(arrayListNuts);

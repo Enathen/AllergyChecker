@@ -8,7 +8,6 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -72,7 +71,7 @@ public class StartPage extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
-        SharedPreferences sharedPreferences =
+/*        SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
         // Check if we need to display our OnboardingFragment
         if (!sharedPreferences.getBoolean(
@@ -85,9 +84,7 @@ public class StartPage extends AppCompatActivity
             sharedPreferencesEditor.putBoolean(
                     "start", true);
             sharedPreferencesEditor.apply();
-        }
-        //Locale.setDefault(new Locale(sharedPreferences.getString("getLanguage",null)));
-        Log.d(TAG,Locale.getDefault().getLanguage());
+        }*/
 
         Log.d(TAG,Locale.getDefault().getLanguage());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -195,7 +192,7 @@ public class StartPage extends AppCompatActivity
     }
 
     private void displayInterstitial() {
-        interstitialAd.loadAd(new AdRequest.Builder().build());
+        interstitialAd.loadAd(new AdRequest.Builder().addTestDevice("79C8186833AA41CD2C967FE87614751A").build());
     }
 
     public  void loadInterstitial(){
@@ -232,7 +229,7 @@ public class StartPage extends AppCompatActivity
         for (Locale listOfLanguage : listOfLanguages) {
             Log.d(TAG,listOfLanguage.getLanguage());
         }
-        arrayListAllergies = new AllergyFragment(this).getArrayListFromAllCheckedAllergies(listOfLanguages,StartPage.this);
+        arrayListAllergies = new AllergyFragment(this).getArrayListFromAllCheckedAllergies(listOfLanguages,StartPage.this,Locale.getDefault());
         SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
         if(arrayListAllergies != null) {
             HashMap<String, LanguageString> allergies = spellCheckAllergy.permuteString(arrayListAllergies);
@@ -247,7 +244,7 @@ public class StartPage extends AppCompatActivity
                         allergies.get(extraKey).found++;
                         if(allergies.get(extraKey).found == 1){
 
-                            outputString = outputString.concat(getString(R.string.definitelyContained)+ getString(allergies.get(extraKey).id) + "\n");
+                            outputString = outputString.concat(getString(R.string.definitelyContained)+" "+ getString(allergies.get(extraKey).id) + "\n");
                         }
                         b = true;
                         break;
@@ -260,8 +257,8 @@ public class StartPage extends AppCompatActivity
 
                             allergies.get(key).found++;
                             if(allergies.get(key).found == 1){
-                                outputString = outputString.concat(R.string.probablyContained + " "+
-                                        getString(allergies.get(key).id) + " " + R.string.fromWord
+                                outputString = outputString.concat(getString(R.string.probablyContained) + " "+
+                                        getString(allergies.get(key).id) + " " + getString(R.string.fromWord)
                                         + " " + string + "\n");
                                 break;
 
@@ -270,8 +267,8 @@ public class StartPage extends AppCompatActivity
                         if (allergies.get(key).allPossibleDerivationsOfAllergen.contains(string)) {
                             allergies.get(key).found++;
                             if(allergies.get(key).found == 1) {
-                                outputString = outputString.concat(R.string.probablyContained + " "+
-                                        getString(allergies.get(key).id) + " " + R.string.fromWord
+                                outputString = outputString.concat(getString(R.string.probablyContained) + " "+
+                                        getString(allergies.get(key).id) + " " + getString(R.string.fromWord)
                                         + " "  + string + "\n");
                                 break;
                             }
@@ -300,30 +297,30 @@ public class StartPage extends AppCompatActivity
                 if(allergies.get(key).found>0){
                     if(!incorrectLanguage){
                         if(Locale.getDefault().getLanguage().equals(allergies.get(key).language)){
-                            outputString = outputString.concat(R.string.allergy+ " "+getString(allergies.get(key).id)+ " " + R.string.contained + " "+
-                                    allergies.get(key).found + R.string.times + ".\n");
+                            outputString = outputString.concat(getString(R.string.allergy)+ " "+getString(allergies.get(key).id)+ " " + getString(R.string.contained) + " "+
+                                    allergies.get(key).found +" "+ getString(R.string.times) + ".\n");
                             allergies.get(key).found = 0;
                             dontEat = true;
 
                         }
 
                     }else{
-                        outputString = outputString.concat(R.string.allergy + " "+ allergies.get(key).language + " "+ getString(allergies.get(key).id)+
-                                " " + R.string.contained + " " +
-                                allergies.get(key).found + " times.\n");
+                        outputString = outputString.concat(getString(R.string.allergy) + " "+ allergies.get(key).language + " "+ getString(allergies.get(key).id)+
+                                " " + getString(R.string.contained) + " " +
+                                allergies.get(key).found +" "+ getString(R.string.times)+ ".\n");
                         allergies.get(key).found = 0;
                         dontEat = true;
                     }
                 }
             }
             if(dontEat){
-                outputString = outputString.concat(R.string.dontUse + "\n");
-                outputString = outputString.concat(R.string.scannedTextBelow+ "\n");
+                outputString = outputString.concat(getString(R.string.dontUse) + "\n");
+                outputString = outputString.concat(getString(R.string.scannedTextBelow)+ "\n");
                 ((TextView) findViewById(R.id.textViewFoundAllergies)).setTextColor(Color.RED);
                 ((TextView) findViewById(R.id.textViewFoundAllergies)).setText(outputString);
             }else{
-                outputString = outputString.concat(R.string.youCanUse+"\n");
-                outputString = outputString.concat(R.string.scannedTextBelow+"\n");
+                outputString = outputString.concat(getString(R.string.youCanUse)+"\n");
+                outputString = outputString.concat(getString(R.string.scannedTextBelow)+"\n");
                 ((TextView) findViewById(R.id.textViewFoundAllergies)).setTextColor(getColor(R.color.colorAccent));
                 ((TextView) findViewById(R.id.textViewFoundAllergies)).setText(outputString);
             }
@@ -479,26 +476,25 @@ public class StartPage extends AppCompatActivity
 
         } else if (id == R.id.history) {
             fragment = new HistoryFragment(); setTitle(R.string.history);
-
-
-        } else if (id == R.id.statistics) {
-            fragment = new StatisticsFragment(); setTitle(R.string.statistics);
         } else if (id == R.id.languageMenu) {
             fragment = new SettingsFragment(); setTitle(R.string.language);
         }else if (id == R.id.allergies) {
             fragment = new AllergyFragment(this); setTitle(R.string.allergies);
         }
         else if (id == R.id.nav_share) {
-
+            Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("text/plain");
+            i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+            String sAux = "\n" + getString(R.string.welcomeMessageInvite) + "\n\n";
+            sAux = sAux + "//play.google.com/store/apps/details?id=creativeendlessgrowingceg.allergychecker\n\n";
+            i.putExtra(Intent.EXTRA_TEXT, sAux);
+            startActivity(Intent.createChooser(i, "choose one"));
         } else if (id == R.id.nav_send) {
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "AllergyCheckerCEG@gmail.com" });
+            startActivity(Intent.createChooser(intent, getResources().getText(R.string.sendTipsFrom)));
 
-            sendIntent.putExtra(Intent.EXTRA_EMAIL, R.string.send_to);
-            sendIntent.putExtra(android.content.Intent.EXTRA_EMAIL,new String[] { "AllergyCheckerCEG@gmail.com" });
-            sendIntent.putExtra(Intent.EXTRA_TEXT, R.string.mustBeInEnglish);
-            sendIntent.setType("text/plain");
-            startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.sendTipsFrom)));
         }
 
         if (fragment != null) {

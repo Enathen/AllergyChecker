@@ -144,6 +144,8 @@
 
 
     <string name="language">Språk</string>
+    <string name="languageFrom">Översätt från</string>
+    <string name="languageGeneral">Språk</string>
     <string name="startPageHeader">Tryck nedanför för att scanna text</string>
     <string name="definitelyContained">Innehåller definitivt</string>
     <string name="history">Historia</string>
@@ -157,12 +159,12 @@
     <string name="times">gånger</string>
     <string name="probablyContained">innehåller troligtvis</string>
     <string name="fromWord">från ord:</string>
-    <string name="noflash">Ficklampa</string>
-    <string name="flash">Ingen ficklampa</string>
     <string name="myAllergies">Mina allergier</string>
     <string name="share">Dela</string>
     <string name="send">Skicka tips</string>
     <string name="mustBeInEnglish">Text must be written in English or Swedish! Thanks!</string>
     <string name="sendTipsFrom">Where you want to send tips from?</string>
+    <string name="welcomeMessageInvite">Do you want know if you can eat something fast, that is not allergic to you?
+    Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
 
 </resources>

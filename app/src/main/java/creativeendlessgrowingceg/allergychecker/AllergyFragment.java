@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -56,10 +57,11 @@ public class AllergyFragment extends Fragment {
     private LinearLayout parentLinearLayout;
     private OnFragmentInteractionListener mListener;
     private HashMap<String,ArrayList<LinearLayout>> Categories = new HashMap<>();
-    private HashMap<String,LanguageString> hashMapCategoriesAllergy = new HashMap<>();
+    private HashMap<Integer,LanguageString> hashMapCategoriesAllergy = new HashMap<>();
     private HashMap<String,LinearLayout> linearLayoutParents = new HashMap<>();
     private HashMap<String,ArrayList<CheckBox>> checkBoxes = new HashMap<>();
     private HashMap<String,CheckBox> parentCheckBox = new HashMap<>();
+    private HashMap<Integer,ArrayList<CheckBox>> sameItemDifferentCategories = new HashMap<>();
     private SharedPreferences prefs;
     private File startPageFile;
     private String language;
@@ -103,6 +105,14 @@ public class AllergyFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        Locale locale = new Locale(new SettingsFragment(getContext()).getLanguageFromLFragment(getContext()));
+        final Locale newLocale = new Locale(locale.getLanguage());
+        Locale.setDefault(newLocale);
+        final Configuration config = new Configuration();
+        config.locale = newLocale;
+
+        final Resources res = getContext().getResources();
+        res.updateConfiguration(config, res.getDisplayMetrics());
     }
     //create the look
     @Override
@@ -123,13 +133,14 @@ public class AllergyFragment extends Fragment {
         addCategory(inflater, allergylist.getArrayListNuts(), "Nuts",R.string.nuts);
         addCategory(inflater, allergylist.getArrayListSeeds(), "Seeds",R.string.seeds);
         addCategory(inflater, allergylist.getArrayListShellfish(), "Shellfish", R.string.shellfish);
+        addCategory(inflater, allergylist.getArrayListFruit(), "Fruit", R.string.fruit);
 
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Fish", container, R.string.fish, R.drawable.fish));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Gluten", container, R.string.gluten, R.drawable.wheat));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Nuts", container, R.string.nuts, R.drawable.nuts));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Seeds", container, R.string.seeds, R.drawable.seeds));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Shellfish", container, R.string.shellfish, R.drawable.shellfish));
-        parentLinearLayout.addView(insertSingleAllergy(inflater, R.string.milk, container, R.drawable.car));
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Fruit", container, R.string.fruit, R.drawable.fruit));
 
         return parentFrameLayout;
     }
@@ -154,29 +165,28 @@ public class AllergyFragment extends Fragment {
                 editor.apply();
                 if(isChecked){
                     getCategories();
-                    addItemToHashMap(String.valueOf(((TextView)linearLayout.findViewById(R.id.textViewRow)).getText()),name);
+                    addItemToHashMap(name);
                     saveCategories();
                 }
                 else{
                     getCategories();
-                    removeItemToHashMap(String.valueOf(((TextView)linearLayout.findViewById(R.id.textViewRow)).getText()));
+                    removeItemToHashMap(name);
                     saveCategories();
                 }
             }
         });
-        checkIfNotExist(checkBox,getString(name),name);
+        checkIfNotExist(checkBox,name);
         saveCategories();
         return linearLayout;
 
     }
-    public void checkIfNotExist(CheckBox checkBox,String key,int id){
-        key = key.toLowerCase();
+    public void checkIfNotExist(CheckBox checkBox,int key){
         if(checkBox.isChecked()){
 
             if(!hashMapCategoriesAllergy.containsKey(key)){
 
-                hashMapCategoriesAllergy.put(key,new LanguageString(language,key,true,id));
-                Log.d(TAG,"Put: " + key +" " + language + " " + id);
+                hashMapCategoriesAllergy.put(key,new LanguageString(true,key));
+                Log.d(TAG,"Put in hashMapCategoriesAllergy: " + key);
             }
         }
     }
@@ -196,8 +206,8 @@ public class AllergyFragment extends Fragment {
             }
         });
 
-        hashMapCategoriesAllergy.put(getString(name).toLowerCase(),new LanguageString(language,getString(name).toLowerCase(),false,name));
-        parentCheckBoxOnClickListener(checkboxRowCategory,key,getString(name).toLowerCase());
+        hashMapCategoriesAllergy.put(name,new LanguageString(false,name));
+        parentCheckBoxOnClickListener(checkboxRowCategory,key,name);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -210,7 +220,7 @@ public class AllergyFragment extends Fragment {
         seeIfAllCheckboxIsChecked(checkboxRowCategory,key);
         return linearLayout;
     }
-    public void parentCheckBoxOnClickListener(CheckBox checkboxRowCategory, final String key, final String parentKey){
+    public void parentCheckBoxOnClickListener(CheckBox checkboxRowCategory, final String key, final int parentKey){
         checkboxRowCategory.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -232,17 +242,15 @@ public class AllergyFragment extends Fragment {
             }
         });
     }
-    public void addItemToHashMap(String string,int id){
-        string = string.toLowerCase();
+    public void addItemToHashMap(int id){
 
-        if(!hashMapCategoriesAllergy.containsKey(string)){
-            hashMapCategoriesAllergy.put(string,new LanguageString(language,string,true,id));
+        if(!hashMapCategoriesAllergy.containsKey(id)){
+            hashMapCategoriesAllergy.put(id,new LanguageString(true,id));
         }
-        hashMapCategoriesAllergy.get(string).on=true;
+        hashMapCategoriesAllergy.get(id).on=true;
 
     }
-    public void removeItemToHashMap(String string){
-        string = string.toLowerCase();
+    public void removeItemToHashMap(int string){
 
         hashMapCategoriesAllergy.get(string).on = false;
 
@@ -259,12 +267,12 @@ public class AllergyFragment extends Fragment {
         checkboxRowCategory.setChecked(true);
 
     }
-    private void checkBoxLeftMarginSaveString(boolean isChecked, String text, int id){
+    private void checkBoxLeftMarginSaveString(boolean isChecked, int id){
         if(isChecked){
-            addItemToHashMap(text,id);
+            addItemToHashMap(id);
         }else{
 
-            removeItemToHashMap(text);
+            removeItemToHashMap(id);
         }
 
     }
@@ -290,18 +298,35 @@ public class AllergyFragment extends Fragment {
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                    // Log.d(TAG,"NUMBER2:" + arrayListCat.id + "name: " + arrayListCat.ingredient);
 
-                    checkBoxLeftMarginSaveString(isChecked, String.valueOf(textview.getText()),arrayListCat.id);
+                        for (CheckBox box : sameItemDifferentCategories.get(arrayListCat.id)) {
+                            if(!box.equals(checkBox)){
+                                box.setChecked(isChecked);
+
+                            }
+                        }
+
+                    checkBoxLeftMarginSaveString(isChecked,arrayListCat.id);
                     parentCheckBox.get(key).setOnCheckedChangeListener(null);
                     seeIfAllCheckboxIsChecked(parentCheckBox.get(key),key);
-                    parentCheckBoxOnClickListener(parentCheckBox.get(key),key,getString(parentKey).toLowerCase());
+                    parentCheckBoxOnClickListener(parentCheckBox.get(key),key,parentKey);
                     editor.putBoolean(String.valueOf(arrayListCat.id), isChecked);
                     editor.apply();
                 }
             });
+            if(sameItemDifferentCategories.containsKey(arrayListCat.id)){
+                ArrayList<CheckBox> array = sameItemDifferentCategories.get(arrayListCat.id);
+                array.add(checkBox);
+                sameItemDifferentCategories.put(arrayListCat.id,array);
+
+            }else{
+                ArrayList<CheckBox> array = new ArrayList<>();
+                array.add(checkBox);
+                sameItemDifferentCategories.put(arrayListCat.id,array);
+            }
             checkBoxList.add(checkBox);
             arrayList.add(newLinearLayout);
             Log.d(TAG, String.valueOf(arrayListCat.id)+ "  " + arrayListCat.ingredient);
-            checkIfNotExist(checkBox,getString(arrayListCat.id),arrayListCat.id);
+            checkIfNotExist(checkBox, arrayListCat.id);
         }
 
         checkBoxes.put(key,checkBoxList);
@@ -332,7 +357,7 @@ public class AllergyFragment extends Fragment {
             fileInputStream = new FileInputStream(file);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            hashMapCategoriesAllergy = (HashMap<String, LanguageString>) objectInputStream.readObject();
+            hashMapCategoriesAllergy = (HashMap<Integer, LanguageString>) objectInputStream.readObject();
             for (LanguageString languageString : hashMapCategoriesAllergy.values()) {
                 Log.d(TAG,getString(languageString.id).toLowerCase());
             }
@@ -347,7 +372,7 @@ public class AllergyFragment extends Fragment {
             fileInputStream = new FileInputStream(startPageFile);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            hashMapCategoriesAllergy = (HashMap<String, LanguageString>) objectInputStream.readObject();
+            hashMapCategoriesAllergy = (HashMap<Integer, LanguageString>) objectInputStream.readObject();
             objectInputStream.close();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
@@ -369,33 +394,30 @@ public class AllergyFragment extends Fragment {
      * all checked allergies including different languages gets selected
      * @return
      */
-    public HashMap<String,LanguageString> getArrayListFromAllCheckedAllergies(ArrayList<Locale> localeArray, Activity context, Locale lDefault){
+    public HashMap<String,LangString> getArrayListFromAllCheckedAllergies(ArrayList<Locale> localeArray, Activity context, Locale lDefault){
         FileInputStream fileInputStream;
         try {
             fileInputStream = new FileInputStream(startPageFile);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            hashMapCategoriesAllergy = (HashMap<String, LanguageString>) objectInputStream.readObject();
+            hashMapCategoriesAllergy = (HashMap<Integer, LanguageString>) objectInputStream.readObject();
             objectInputStream.close();
-            HashMap<String,LanguageString> hashMap = new HashMap<>();
+            HashMap<String, LangString> hashMap = new HashMap<>();
 
             if(localeArray.isEmpty()){
 
                 localeArray.add(context.getResources().getConfiguration().getLocales().get(0));
             }
-            for (String key : hashMapCategoriesAllergy.keySet()) {
-                if(lDefault.getLanguage().equals( hashMapCategoriesAllergy.get(key).language)){
-                    if(hashMapCategoriesAllergy.get(key).on){
+            for (LanguageString key : hashMapCategoriesAllergy.values()) {
+                    if(key.on) {
                         for (Locale locale : localeArray) {
-                            Log.d(TAG, "getStringByLocal:" + getStringByLocal(context,hashMapCategoriesAllergy.get(key).id,locale.getLanguage()));
-                            hashMap.put(getStringByLocal(context,hashMapCategoriesAllergy.get(key).id,locale.getLanguage()),
-                                    new LanguageString(locale.getLanguage(),
-                                            getStringByLocal(context,hashMapCategoriesAllergy.get(key).id,locale.getLanguage()),true,
-                                            hashMapCategoriesAllergy.get(key).id));
+                            Log.d(TAG, "getStringByLocal:" + getStringByLocal(context, key.id, locale.getLanguage()));
+                            hashMap.put(getStringByLocal(context, key.id, locale.getLanguage()),
+                                    new LangString(locale.getLanguage(), getStringByLocal(context, key.id, locale.getLanguage()), true,
+                                            key.id));
 
                         }
                     }
-                }
 
             }
             return hashMap;
@@ -454,7 +476,7 @@ public class AllergyFragment extends Fragment {
         mListener = null;
     }
 
-    public void insertNewLanguage(SettingsFragment settingsFragment, String locale) {
+/*    public void insertNewLanguage(SettingsFragment settingsFragment, String locale) {
         getCategoriesFromOtherClass();
         HashMap<String, LanguageString> hashClass = new HashMap<>();
         for (LanguageString string : hashMapCategoriesAllergy.values()) {
@@ -481,7 +503,7 @@ public class AllergyFragment extends Fragment {
                             languageString.on,languageString.id));
         }
         saveCategoriesFromOtherClass();
-    }
+    }*/
 
 
 
@@ -511,4 +533,6 @@ public class AllergyFragment extends Fragment {
 
 
     }
+
+
 }

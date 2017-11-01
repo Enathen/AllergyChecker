@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -71,6 +72,11 @@ public class SettingsFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public SettingsFragment(Context context) {
+        startPageFile = new File(context.getFilesDir(),"language.txt");
+        preference = PreferenceManager.getDefaultSharedPreferences(context);
+    }
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -97,6 +103,16 @@ public class SettingsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        final String lang = PreferenceManager.getDefaultSharedPreferences(getContext()).getString("getLanguage", Locale.getDefault().getLanguage());
+        final Locale newLocale = new Locale(lang);
+        Locale.setDefault(newLocale);
+        final Configuration config = new Configuration();
+        config.locale = newLocale;
+
+        final Resources res = getContext().getResources();
+        res.updateConfiguration(config, res.getDisplayMetrics());
+
+
     }
 
     @Override
@@ -161,7 +177,7 @@ public class SettingsFragment extends Fragment {
             ((TextView)newLinearLayout.findViewById(R.id.textViewLeftMargin)).setText(languagesClass.language);
             final CheckBox checkBox = (CheckBox) newLinearLayout.findViewById(R.id.checkBoxRowLeftMargin);
             checkBoxes.add(new CheckBoxes(String.valueOf(languagesClass.id),checkBox, languagesClass.locale));
-            Log.d(TAG, String.valueOf(languagesClass.locale));
+            Log.d(TAG,"SWAG" + String.valueOf(languagesClass.locale));
             checkBox.setChecked(settings.getBoolean(String.valueOf(languagesClass.id), false));
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -258,11 +274,11 @@ public class SettingsFragment extends Fragment {
                         SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
                         sharedPreferencesEditor.putString("getLanguage", languagesClass.locale.getLanguage());
                         sharedPreferencesEditor.apply();
-                    new AllergyFragment(getContext()).insertNewLanguage(SettingsFragment.this,languagesClass.locale.getLanguage());
                     Locale.setDefault(languagesClass.locale);
                     Configuration config = new Configuration();
                     config.setLocale(languagesClass.locale);
                     getActivity().getApplicationContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+
                     Intent intent = getActivity().getIntent();
                     getActivity().finish();
                     startActivity(intent);
@@ -389,6 +405,27 @@ public class SettingsFragment extends Fragment {
         languageAccepted.add("en");
         languageAccepted.add("sv");
 
+        if (preference.contains("getLanguage")){
+            return preference.getString("getLanguage","en");
+        }
+        for (String s : languageAccepted) {
+            if(s.equals(Locale.getDefault().getLanguage())){
+                SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(startPage).edit();
+                sharedPreferencesEditor.putString("getLanguage", s);
+                sharedPreferencesEditor.apply();
+                return Locale.getDefault().getLanguage();
+            }
+
+        }
+
+        return "en";
+    }
+    public String getLanguageFromLFragment(Context startPage) {
+        //Log.d(TAG,preference.getString("getLanguage",null));
+        ArrayList<String> languageAccepted = new  ArrayList<String>();
+        languageAccepted.add("en");
+        languageAccepted.add("sv");
+        Log.d(TAG,"StartPageLanguageFragment"+Locale.getDefault().getLanguage());
         if (preference.contains("getLanguage")){
             return preference.getString("getLanguage","en");
         }

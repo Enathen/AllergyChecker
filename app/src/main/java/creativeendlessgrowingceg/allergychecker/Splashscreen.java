@@ -47,7 +47,8 @@ public class Splashscreen extends Activity {
                 Locale.setDefault(loadLocale());
 
                 Configuration config = new Configuration();
-                config.setLocale(loadLocale());
+                Log.d(TAG, Locale.getDefault().getLanguage());
+                config.setLocale(Locale.getDefault());
                 getApplicationContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
                 Intent i = new Intent(Splashscreen.this,StartPage.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

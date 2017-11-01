@@ -166,5 +166,11 @@
     <string name="sendTipsFrom">Where you want to send tips from?</string>
     <string name="welcomeMessageInvite">Do you want know if you can eat something fast, that is not allergic to you?
     Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
+    <string name="time">gång</string>
+    <string name="buckwheat">Buckwheat</string>
+    <string name="mustardSeed">Mustard Seed</string>
+    <string name="poppySeed">Poppy Seed</string>
+    <string name="sunflowerSeed">Sunflower Seed</string>
+    <string name="fruit">Fruit</string>
 
 </resources>

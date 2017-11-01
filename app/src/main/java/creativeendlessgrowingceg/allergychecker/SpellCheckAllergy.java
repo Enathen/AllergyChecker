@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class SpellCheckAllergy {
     private static final String TAG = "SpellCheckAllergy";
-    HashMap<String,LanguageString> hashMap = new HashMap<>();
+    HashMap<String,LangString> hashMap = new HashMap<>();
     char[] englishAlphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
     public SpellCheckAllergy(){
 
@@ -21,13 +21,10 @@ public class SpellCheckAllergy {
         for (String key : hashMap.keySet()) {
             if(hashMap.get(key).on){
                 Log.d(TAG,"Key: "+key + " open "+ hashMap.get(key).on);
-                if(hashMap.get(key).allPossibleDerivationsOfAllergen.isEmpty()){
-                    LanguageString languageString = hashMap.get(key);
+                    LangString languageString = hashMap.get(key);
                     ArrayList<String> arrayList = new ArrayList<>();
                     languageString.addallPossibleDerivationsOfAllergen(AlgorithmString(key,arrayList));
                     hashMap.put(key,languageString);
-
-                }
 
             }
         }
@@ -79,17 +76,16 @@ public class SpellCheckAllergy {
         Log.d(TAG, String.valueOf(arrayListNew.size()));
         return arrayListNew;
     }
-    public HashMap<String,LanguageString>  permuteString(String language,String string,boolean on, int id){
-        this.hashMap.put(string,new LanguageString(language,string,on,id));
+    public HashMap<String,LangString>  permuteString(String language, String string, boolean on, int id){
+        this.hashMap.put(string,new LangString(language,string,on,id));
         convertString();
         return this.hashMap;
     }
-    public HashMap<String,LanguageString> permuteString(HashMap<String,LanguageString> hashMap){
+    public HashMap<String,LangString> permuteString(HashMap<String,LangString> hashMap){
         this.hashMap = hashMap;
-        /*for (String s : hashMap.keySet()) {
-            this.hashMap.put(s, hashMap.get(s));
+        for (String s : hashMap.keySet()) {
             Log.d(TAG, s);
-        }*/
+        }
         convertString();
         return this.hashMap;
     }

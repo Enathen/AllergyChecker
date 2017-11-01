@@ -2,6 +2,8 @@ package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Locale;
 
 
 /**
@@ -70,17 +73,28 @@ public class HistoryFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        Locale locale = new Locale(new SettingsFragment(getContext()).getLanguageFromLFragment(getContext()));
+        final Locale newLocale = new Locale(locale.getLanguage());
+        Locale.setDefault(newLocale);
+        final Configuration config = new Configuration();
+        config.locale = newLocale;
+
+        final Resources res = getContext().getResources();
+        res.updateConfiguration(config, res.getDisplayMetrics());
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Log.d(TAG,"history" + Locale.getDefault().getLanguage());
         parentFrameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_history, container, false);
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.lineaLayoutFragHistory);
         ArrayList<String> arrayList = new StartPage(getActivity()).getArrayFromHistory();
@@ -93,6 +107,7 @@ public class HistoryFragment extends Fragment {
 
         }
         insertNew(inflater,container,arrayList);
+        Log.d(TAG,"history" + Locale.getDefault().getLanguage());
         return parentFrameLayout;
     }
     private static class stringComparator implements Comparator<String> {
@@ -145,6 +160,10 @@ public class HistoryFragment extends Fragment {
                 newLinearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Locale.setDefault(loadLocale());
+                        Configuration config = new Configuration();
+                        config.setLocale(loadLocale());
+                        getActivity().getApplicationContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
                         Intent intent = new Intent(getActivity(), StartPage.class);
                         intent.putExtra("HistoryFragment", s.substring(34));
                         startActivity(intent);
@@ -176,6 +195,12 @@ public class HistoryFragment extends Fragment {
             textview.setText(R.string.scanPhotos);
             parentLinearLayout.addView(linearLayout);
         }
+    }
+
+    private Locale loadLocale() {
+        Locale locale = new Locale(new SettingsFragment(getContext()).getLanguageFromLFragment(getContext()));
+        Log.d(TAG,locale.getLanguage());
+        return locale;
     }
 
 

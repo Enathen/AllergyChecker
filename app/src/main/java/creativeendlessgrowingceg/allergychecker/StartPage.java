@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -60,6 +61,7 @@ public class StartPage extends AppCompatActivity
     private InterstitialAd interstitialAd;
     private String Language = "";
     public int clickAmount = 0;
+    ArrayList<Integer> definitelyContained = new ArrayList<>();
     public StartPage(FragmentActivity activity) {
         prefs = activity.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
     }
@@ -71,22 +73,10 @@ public class StartPage extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
-/*        SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(this);
-        // Check if we need to display our OnboardingFragment
-        if (!sharedPreferences.getBoolean(
-                "start", false)) {
-            Log.d(TAG,"First");
-            Locale current = getResources().getConfiguration().getLocales().get(0);
-            Log.d(TAG,current.getLanguage()+ " " + current.getCountry());
-            SharedPreferences.Editor sharedPreferencesEditor =
-                    PreferenceManager.getDefaultSharedPreferences(this).edit();
-            sharedPreferencesEditor.putBoolean(
-                    "start", true);
-            sharedPreferencesEditor.apply();
-        }*/
 
-        Log.d(TAG,Locale.getDefault().getLanguage());
+
+
+        Log.d(TAG,"HUVUDTEST" + Locale.getDefault().getLanguage());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -189,6 +179,7 @@ public class StartPage extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Log.d(TAG,"TEST"+Locale.getDefault().getLanguage());
     }
 
     private void displayInterstitial() {
@@ -224,15 +215,17 @@ public class StartPage extends AppCompatActivity
         displayInterstitial();
 
         String[] splitStr = str.split("\\s+");
-        HashMap<String,LanguageString> arrayListAllergies = null;
+        HashMap<String,LangString> arrayListAllergies = null;
+        Log.d(TAG,"TEST"+Locale.getDefault().getLanguage());
         ArrayList<Locale> listOfLanguages = new SettingsFragment(this).getCategories();
         for (Locale listOfLanguage : listOfLanguages) {
             Log.d(TAG,listOfLanguage.getLanguage());
+            Log.d(TAG,Locale.getDefault().getLanguage());
         }
         arrayListAllergies = new AllergyFragment(this).getArrayListFromAllCheckedAllergies(listOfLanguages,StartPage.this,Locale.getDefault());
         SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
         if(arrayListAllergies != null) {
-            HashMap<String, LanguageString> allergies = spellCheckAllergy.permuteString(arrayListAllergies);
+            HashMap<String, LangString> allergies = spellCheckAllergy.permuteString(arrayListAllergies);
 
             String outputString = "";
             boolean b = false;
@@ -243,8 +236,11 @@ public class StartPage extends AppCompatActivity
 
                         allergies.get(extraKey).found++;
                         if(allergies.get(extraKey).found == 1){
+                            if(!definitelyContained.contains(allergies.get(extraKey).id)){
+                                outputString = outputString.concat(getString(R.string.definitelyContained)+" "+ getString(allergies.get(extraKey).id) + "\n");
+                                definitelyContained.add(allergies.get(extraKey).id);
 
-                            outputString = outputString.concat(getString(R.string.definitelyContained)+" "+ getString(allergies.get(extraKey).id) + "\n");
+                            }
                         }
                         b = true;
                         break;
@@ -284,9 +280,7 @@ public class StartPage extends AppCompatActivity
                     if(!Locale.getDefault().getLanguage().equals(allergies.get(key).language)) {
                         if(allergies.containsKey(getString(allergies.get(key).id).toLowerCase())){
                             allergies.get( getString(allergies.get(key).id).toLowerCase()).found += allergies.get(key).found;
-
-                        }else{
-                            incorrectLanguage = true;
+                            allergies.get(key).found = 0;
                         }
                     }
                 }
@@ -295,22 +289,22 @@ public class StartPage extends AppCompatActivity
             for (String key : allergies.keySet()){
 
                 if(allergies.get(key).found>0){
-                    if(!incorrectLanguage){
-                        if(Locale.getDefault().getLanguage().equals(allergies.get(key).language)){
-                            outputString = outputString.concat(getString(R.string.allergy)+ " "+getString(allergies.get(key).id)+ " " + getString(R.string.contained) + " "+
-                                    allergies.get(key).found +" "+ getString(R.string.times) + ".\n");
-                            allergies.get(key).found = 0;
-                            dontEat = true;
-
-                        }
-
-                    }else{
-                        outputString = outputString.concat(getString(R.string.allergy) + " "+ allergies.get(key).language + " "+ getString(allergies.get(key).id)+
-                                " " + getString(R.string.contained) + " " +
-                                allergies.get(key).found +" "+ getString(R.string.times)+ ".\n");
+                    if(allergies.get(key).found==1){
+                        outputString = outputString.concat(getString(allergies.get(key).id)+ " " + getString(R.string.contained) + " "+
+                                allergies.get(key).found +" "+ getString(R.string.time) + ".\n");
                         allergies.get(key).found = 0;
                         dontEat = true;
                     }
+                    else{
+
+                    //if(Locale.getDefault().getLanguage().equals(allergies.get(key).language)){
+                        outputString = outputString.concat(getString(allergies.get(key).id)+ " " + getString(R.string.contained) + " "+
+                                allergies.get(key).found +" "+ getString(R.string.times) + ".\n");
+                        allergies.get(key).found = 0;
+                        dontEat = true;
+                    }
+
+
                 }
             }
             if(dontEat){
@@ -327,6 +321,7 @@ public class StartPage extends AppCompatActivity
             allergicString = outputString;
             allergic.setText(outputString);
         }
+        Log.d(TAG,"TEST"+Locale.getDefault().getLanguage());
     }
 
     public ArrayList<String> getDateString(){
@@ -417,6 +412,7 @@ public class StartPage extends AppCompatActivity
             popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 public boolean onMenuItemClick(MenuItem item) {
                     Language = item.getTitle().toString();
+                    Log.d(TAG, Language);
                     if(Language.equals("English")){
                         Locale locale = new Locale("en");
                         Locale.setDefault(locale);
@@ -470,16 +466,25 @@ public class StartPage extends AppCompatActivity
             Log.d(TAG, String.valueOf(getSupportFragmentManager().getBackStackEntryCount()));
             while (getSupportFragmentManager().getBackStackEntryCount() != 0)
                 getSupportFragmentManager().popBackStackImmediate();
-            setTitle("AllergyChecker");
+            setTitle("Allergy Checker");
 
 
+            Locale locale = new Locale(new SettingsFragment(getApplicationContext()).getLanguageFromLFragment(getApplicationContext()));
+            final Locale newLocale = new Locale(locale.getLanguage());
+            Locale.setDefault(newLocale);
+            final Configuration config = new Configuration();
+            config.locale = newLocale;
 
+            final Resources res = getApplicationContext().getResources();
+            res.updateConfiguration(config, res.getDisplayMetrics());
         } else if (id == R.id.history) {
-            fragment = new HistoryFragment(); setTitle(R.string.history);
+            fragment = new HistoryFragment(); setTitle("History");
         } else if (id == R.id.languageMenu) {
-            fragment = new SettingsFragment(); setTitle(R.string.language);
+
+            fragment = new SettingsFragment(); setTitle("Language");
         }else if (id == R.id.allergies) {
-            fragment = new AllergyFragment(this); setTitle(R.string.allergies);
+
+            fragment = new AllergyFragment(this); setTitle("Allergies");
         }
         else if (id == R.id.nav_share) {
             Intent i = new Intent(Intent.ACTION_SEND);
@@ -525,6 +530,12 @@ public class StartPage extends AppCompatActivity
     }
 
     public void profilOnClick(View view) {
+        findViewById(R.id.imageViewNav1).setBackgroundResource(R.drawable.fruit);
+        findViewById(R.id.imageViewNav2).setBackgroundResource(R.drawable.shellfish);
+        findViewById(R.id.imageViewNav3).setBackgroundResource(R.drawable.vegan);
+        findViewById(R.id.imageViewNav4).setBackgroundResource(R.drawable.vegitarian);
+        findViewById(R.id.imageViewNav5).setBackgroundResource(R.drawable.wheat);
+        findViewById(R.id.imageViewNav6).setBackgroundResource(R.drawable.fish);
         Log.d(TAG, "HEEEj");
     }
 

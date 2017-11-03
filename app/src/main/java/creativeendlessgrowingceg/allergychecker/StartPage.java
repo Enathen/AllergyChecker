@@ -44,6 +44,7 @@ import java.util.Locale;
 import java.util.Set;
 
 import creativeendlessgrowingceg.allergychecker.camera.OcrCaptureActivity;
+import creativeendlessgrowingceg.allergychecker.design.activity.OnboardingPagerActivity;
 
 public class StartPage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
@@ -78,10 +79,14 @@ public class StartPage extends AppCompatActivity
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
         // Check if we need to display our OnboardingFragment
-/*        if (!sharedPreferences.getBoolean(
-                MyOnboardingFragment.COMPLETED_ONBOARDING_PREF_NAME, false)) {
-            // The user hasn't seen the OnboardingFragment yet, so show it
-            startActivity(new Intent(this, OnboardingActivity.class));
+        startActivity(new Intent(this, OnboardingPagerActivity.class));
+        /*if (!sharedPreferences.getBoolean("firstTime", false)) {
+            startActivity(new Intent(this, OnboardingPagerActivity.class));
+            SharedPreferences.Editor sharedPreferencesEditor =
+                    PreferenceManager.getDefaultSharedPreferences(this).edit();
+            sharedPreferencesEditor.putBoolean(
+                    "firstTime", true);
+            sharedPreferencesEditor.apply();
         }*/
 
 

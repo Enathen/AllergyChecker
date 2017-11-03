@@ -30,6 +30,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".design.activity.OnboardingPagerActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".design.activity.TakeoffActivity"
+            android:label="@string/title_activity_takeoff" >
+        </activity>
+        <activity
             android:name=".StartPage"
             android:label="@string/app_name"
             android:configChanges="orientation|screenSize"
@@ -40,6 +47,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity
 
         android:name=".camera.OcrCaptureActivity"
@@ -54,3 +62,4 @@
     </application>
 
 </manifest>
+

@@ -5,7 +5,7 @@
 
     android:id="@+id/mainWin"
 
-    tools:context="onboard.enterprise.design.fragments.OnboardingPageFragment">
+    tools:context=".design.activity.OnboardingPagerActivity">
 
     <!-- TODO: Update blank fragment layout -->
 

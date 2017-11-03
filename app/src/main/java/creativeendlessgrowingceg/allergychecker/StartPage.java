@@ -78,16 +78,25 @@ public class StartPage extends AppCompatActivity
         setContentView(R.layout.activity_start_page);
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
+
         // Check if we need to display our OnboardingFragment
-        startActivity(new Intent(this, OnboardingPagerActivity.class));
-        /*if (!sharedPreferences.getBoolean("firstTime", false)) {
+
+
+
+        if (!sharedPreferences.getBoolean("firstTime", false)) {
             startActivity(new Intent(this, OnboardingPagerActivity.class));
+
+            Fragment fragment = new AllergyFragment(this); setTitle("Allergies");
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.startPageFrame, fragment).addToBackStack(null).commit();
+            fragmentManager.executePendingTransactions();
             SharedPreferences.Editor sharedPreferencesEditor =
                     PreferenceManager.getDefaultSharedPreferences(this).edit();
             sharedPreferencesEditor.putBoolean(
                     "firstTime", true);
             sharedPreferencesEditor.apply();
-        }*/
+        }
 
 
         Log.d(TAG,"HUVUDTEST" + Locale.getDefault().getLanguage());
@@ -229,7 +238,7 @@ public class StartPage extends AppCompatActivity
 
     private void checkStringAgainstAllergies(String str) {
 
-        displayInterstitial();
+
 
         String[] splitStr = str.split("\\s+");
         HashMap<String,LangString> arrayListAllergies = null;
@@ -338,6 +347,7 @@ public class StartPage extends AppCompatActivity
             allergicString = outputString;
             allergic.setText(outputString);
         }
+        displayInterstitial();
         Log.d(TAG,"TEST"+Locale.getDefault().getLanguage());
     }
 

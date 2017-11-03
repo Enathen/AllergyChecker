@@ -43,13 +43,13 @@ public class OnboardingPagerActivity extends ActionBarActivity implements
         mPagerMgr.init();
         mPagerMgr.setTakeoffActivity(TakeoffActivity.class);
 
-        Page p = new Page(0, "#19b3ad", R.drawable.nuts);
+        Page p = new Page(0, "#19b3ad", R.drawable.firstintro);
         mPagerMgr.addPage(p);
-        p = new Page(1, "#354ABC", R.drawable.peach);
+        p = new Page(1, "#354ABC", R.drawable.secondintro);
         mPagerMgr.addPage(p);
-        p = new Page(2, "#23f353", R.drawable.pinapple);
+        p = new Page(2, "#23f353", R.drawable.thirdintro);
         mPagerMgr.addPage(p);
-        p = new Page(3, "#23f353", R.drawable.fruit);
+        p = new Page(3, "#23f353", R.drawable.fourthintro);
         mPagerMgr.addPage(p);
 
         Log.e("onCreate", "ViewpagerActivity onCreate called ---------------------------------->");

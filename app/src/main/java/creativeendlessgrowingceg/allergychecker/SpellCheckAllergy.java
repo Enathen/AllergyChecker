@@ -2,8 +2,8 @@ package creativeendlessgrowingceg.allergychecker;
 
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * Created by Enathen on 2017-10-19.
@@ -12,8 +12,16 @@ import java.util.HashMap;
 public class SpellCheckAllergy {
     private static final String TAG = "SpellCheckAllergy";
     HashMap<String,LangString> hashMap = new HashMap<>();
-    char[] englishAlphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+    HashMap<String,char[]> alphabets = new HashMap<>();
+
     public SpellCheckAllergy(){
+        alphabets.put("en","abcdefghijklmnopqrstuvwxyz".toCharArray()); //English
+        alphabets.put("sv","abcdefghijklmnopqrstuvwxyzåäö".toCharArray()); //Swedish
+        alphabets.put("nb","abcdefghijklmnopqrstuvwxyzåæø".toCharArray()); //Norwegian
+        alphabets.put("da","abcdefghijklmnopqrstuvwxyzåæø".toCharArray()); //Danish
+        alphabets.put("fi","abcdefghijklmnopqrstuvwxyzåäö".toCharArray()); //Finish
+        alphabets.put("de","abcdefghijklmnopqrstuvwxyzäöüß".toCharArray()); //German
+        alphabets.put("es","abcdefghijklmnñopqrstuvwxyz".toCharArray()); //Spanish
 
     }
     public void convertString(){
@@ -22,8 +30,8 @@ public class SpellCheckAllergy {
             if(hashMap.get(key).on){
                 Log.d(TAG,"Key: "+key + " open "+ hashMap.get(key).on);
                     LangString languageString = hashMap.get(key);
-                    ArrayList<String> arrayList = new ArrayList<>();
-                    languageString.addallPossibleDerivationsOfAllergen(AlgorithmString(key,arrayList));
+                    HashSet<String> arrayList = new HashSet<>();
+                    languageString.addallPossibleDerivationsOfAllergen(AlgorithmString(key,arrayList,hashMap.get(key).language));
                     hashMap.put(key,languageString);
 
             }
@@ -39,7 +47,7 @@ public class SpellCheckAllergy {
         Log.d(TAG,"Total walue"+String.valueOf(hashMap.keySet().size()));
     }
 
-    private ArrayList<String> AlgorithmString(String s, ArrayList<String> arrayListNew) {
+    private HashSet<String> AlgorithmString(String s, HashSet<String> arrayListNew,String language) {
         s = s.replaceAll("[^\\p{L}\\p{Nd}\\s]+", "");
         s= s.toLowerCase();
         StringBuilder string;
@@ -60,7 +68,7 @@ public class SpellCheckAllergy {
                     //Log.d(TAG, String.valueOf(string));
                 }
             }
-            for (char c : englishAlphabet) {
+            for (char c : alphabets.get(language)) {
                 string = new StringBuilder(s);
                 arrayListNew.add(String.valueOf(string.replace(i,i, String.valueOf(c))));
                 //Log.d(TAG,"TEST Replace Char:"+String.valueOf(string));
@@ -74,6 +82,7 @@ public class SpellCheckAllergy {
         }
         arrayListNew.add(s);
         Log.d(TAG, String.valueOf(arrayListNew.size()));
+        arrayListNew.remove("salt");
         return arrayListNew;
     }
     public HashMap<String,LangString>  permuteString(String language, String string, boolean on, int id){

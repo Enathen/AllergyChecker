@@ -98,34 +98,33 @@ public class HistoryFragment extends Fragment {
         parentFrameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_history, container, false);
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.lineaLayoutFragHistory);
         ArrayList<String> arrayList = new StartPage(getActivity()).getArrayFromHistory();
-        arrayList.isEmpty();
         Collections.sort(arrayList,new stringComparator());
         Collections.reverse(arrayList);
 
         for (String s : arrayList) {
-            Log.d(TAG,s.substring(34));
-
+            Log.d(TAG,s.substring(19));
         }
         insertNew(inflater,container,arrayList);
         Log.d(TAG,"history" + Locale.getDefault().getLanguage());
         return parentFrameLayout;
     }
-    private static class stringComparator implements Comparator<String> {
+    public static class stringComparator implements Comparator<String> {
         @Override
         public int compare(String string1, String string2) {
 
-            String month1 = string1.substring(4,7);
-            String month2 = string2.substring(4,7);
+            String year1 = string1.substring(0,4);
+            String year2 = string2.substring(0,4);
+            String month1 = string1.substring(5,7);
+            String month2 = string2.substring(5,7);
             String day1 = string1.substring(8,10);
             String day2 = string2.substring(8,10);
             String time1 = string1.substring(11,19);
             String time2 = string2.substring(11,19);
-            String year1 = string1.substring(30,34);
-            String year2 = string2.substring(30,34);
             if(year1.compareToIgnoreCase(year2) != 0){
                 return year1.compareToIgnoreCase(year2);
             }
             if(month1.compareToIgnoreCase(month2) != 0){
+
                 return month1.compareToIgnoreCase(month2);
             }
             if(day1.compareToIgnoreCase(day2) != 0){
@@ -155,7 +154,6 @@ public class HistoryFragment extends Fragment {
                 if (colorGreenToRed > 255) {
                     colorGreenToRed = 255;
                 }
-                correctString = correctString.concat(s.substring(30, 34));
                 textview.setText(correctString);
                 newLinearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -1,6 +1,6 @@
 package creativeendlessgrowingceg.allergychecker;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Created by Enathen on 2017-11-01.
@@ -12,14 +12,15 @@ public class LangString {
     boolean on;
     int id;
     int found;
-    ArrayList<String> allPossibleDerivationsOfAllergen;
+    HashSet<String> allPossibleDerivationsOfAllergen;
     public LangString(String language, String string, boolean on, int id) {
         this.language = language;
         this.string = string;
         this.on = on;
         this.id = id;
+
     }
-    public void addallPossibleDerivationsOfAllergen(ArrayList<String> allPossibleDerivationsOfAllergen){
+    public void addallPossibleDerivationsOfAllergen(HashSet<String> allPossibleDerivationsOfAllergen){
         this.allPossibleDerivationsOfAllergen = allPossibleDerivationsOfAllergen;
     }
 }

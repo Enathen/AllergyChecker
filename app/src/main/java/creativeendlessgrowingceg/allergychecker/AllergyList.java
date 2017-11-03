@@ -33,7 +33,12 @@ public class AllergyList {
         setArrayListShellfish();
         setArrayListSeeds();
         setArrayListFruit();
-        //setArrayListVegetables();
+        setArrayListVegetables();
+    }
+
+    private void setArrayListVegetables() {
+        arrayListVegetables.add(new PictureIngredient(R.drawable.tomato,context.getString(R.string.tomato),R.string.tomato));
+        sort(arrayListSeeds);
     }
 
     public ArrayList<PictureIngredient> getArrayListSeeds() {
@@ -179,10 +184,10 @@ public class AllergyList {
         arrayListFruit.add(new PictureIngredient(R.drawable.fruit,context.getString(R.string.strawberry),R.string.strawberry));
         arrayListFruit.add(new PictureIngredient(R.drawable.fruit,context.getString(R.string.prune),R.string.prune));
         arrayListFruit.add(new PictureIngredient(R.drawable.fruit,context.getString(R.string.pomegranate),R.string.pomegranate));
-        arrayListFruit.add(new PictureIngredient(R.drawable.fruit,context.getString(R.string.pinapple),R.string.pinapple));
+        arrayListFruit.add(new PictureIngredient(R.drawable.pinapple,context.getString(R.string.pinapple),R.string.pinapple));
         arrayListFruit.add(new PictureIngredient(R.drawable.fruit,context.getString(R.string.persimmon),R.string.persimmon));
-        arrayListFruit.add(new PictureIngredient(R.drawable.fruit,context.getString(R.string.peach),R.string.peach));
-        arrayListFruit.add(new PictureIngredient(R.drawable.fruit,context.getString(R.string.orange),R.string.orange));
+        arrayListFruit.add(new PictureIngredient(R.drawable.peach,context.getString(R.string.peach),R.string.peach));
+        arrayListFruit.add(new PictureIngredient(R.drawable.orange,context.getString(R.string.orange),R.string.orange));
         arrayListFruit.add(new PictureIngredient(R.drawable.fruit,context.getString(R.string.melon),R.string.melon));
         arrayListFruit.add(new PictureIngredient(R.drawable.fruit,context.getString(R.string.mango),R.string.mango));
         arrayListFruit.add(new PictureIngredient(R.drawable.fruit,context.getString(R.string.lychee),R.string.lychee));
@@ -192,7 +197,6 @@ public class AllergyList {
         arrayListFruit.add(new PictureIngredient(R.drawable.fruit,context.getString(R.string.date),R.string.date));
         arrayListFruit.add(new PictureIngredient(R.drawable.fruit,context.getString(R.string.coconut),R.string.coconut));
         arrayListFruit.add(new PictureIngredient(R.drawable.fruit,context.getString(R.string.cherry),R.string.cherry));
-        arrayListFruit.add(new PictureIngredient(R.drawable.peanut,context.getString(R.string.peanuts),R.string.peanuts));
         arrayListFruit.add(new PictureIngredient(R.drawable.fruit,context.getString(R.string.banana),R.string.banana));
         arrayListFruit.add(new PictureIngredient(R.drawable.fruit,context.getString(R.string.apricot),R.string.apricot));
         arrayListFruit.add(new PictureIngredient(R.drawable.fruit,context.getString(R.string.acerola),R.string.acerola));

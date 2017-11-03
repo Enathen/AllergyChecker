@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_weight="1.01"
-        android:fontFamily="cursive"
+        android:fontFamily="sans-serif"
         android:gravity="center_vertical"
         android:text="TIME"
         android:textAlignment="center"

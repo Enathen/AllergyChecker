@@ -36,7 +36,6 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -110,6 +109,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         // permission is not granted yet, request permission.
         int rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         if (rc == PackageManager.PERMISSION_GRANTED) {
+
             createCameraSource(autoFocus, useFlash);
         } else {
             requestCameraPermission();
@@ -118,7 +118,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         gestureDetector = new GestureDetector(this, new CaptureGestureListener());
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
 
-        Snackbar.make(mGraphicOverlay, "Tap to Speak. Pinch/Stretch to zoom",
+        Snackbar.make(mGraphicOverlay, " Pinch/Stretch to zoom",
                 Snackbar.LENGTH_LONG)
                 .show();
 
@@ -143,18 +143,29 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
         final Activity thisActivity = this;
 
-        View.OnClickListener listener = new View.OnClickListener() {
+/*        View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ActivityCompat.requestPermissions(thisActivity, permissions,
                         RC_HANDLE_CAMERA_PERM);
             }
         };
-
-        Snackbar.make(mGraphicOverlay, R.string.permission_camera_rationale,
-                Snackbar.LENGTH_INDEFINITE)
-                .setAction(R.string.ok, listener)
+        Snackbar.make(mGraphicOverlay, " Pinch/Stretch to zoom",
+                Snackbar.LENGTH_LONG).setAction(R.string.ok,listener)
+                .show();*/
+        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                ActivityCompat.requestPermissions(thisActivity, permissions, RC_HANDLE_CAMERA_PERM);
+                return;
+            }
+        };
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.varning)
+                .setMessage(R.string.thisAppOnlySave)
+                .setPositiveButton(R.string.ok, listener)
                 .show();
+
+
     }
 
     @Override
@@ -288,7 +299,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Multitracker sample")
+        builder.setTitle(R.string.cannotUseCamera)
                 .setMessage(R.string.no_camera_permission)
                 .setPositiveButton(R.string.ok, listener)
                 .show();
@@ -331,6 +342,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         //OcrGraphic graphic = mGraphicOverlay.getGraphicAtLocation(rawX, rawY);
         Set<OcrGraphic> graphic1 = new HashSet<>();
         graphic1 = mGraphicOverlay.getGraphic();
+
         if (!graphic1.isEmpty()) {
             textTapped = "";
             for (OcrGraphic ocrGraphic : graphic1) {

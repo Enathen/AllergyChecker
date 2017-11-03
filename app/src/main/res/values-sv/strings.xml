@@ -8,8 +8,8 @@
     <string name="action_settings">Settings</string>
 
     <string name="ok">OK</string>
-    <string name="permission_camera_rationale">Acces till kameran behövs annars fungerar appen inte</string>
-    <string name="no_camera_permission">Den här appen kan inte köras om den inte har tillgång till kameran. Applikation avslutas nu.</string>
+    <string name="permission_camera_rationale">Tillgång till kameran behövs annars fungerar appen inte</string>
+    <string name="no_camera_permission">Den här appen kan inte köras om den inte har tillgång till kameran. Kameran avslutas nu.</string>
     <string name="low_storage_error">Ocr dependencies cannot be downloaded due to low device storage</string>
     <string name="title_activity_main">Ocr Detector Sample</string>
     <string name="ocr_header">Click &quot;Detect Text&quot; to detect text</string>
@@ -132,7 +132,7 @@
     <string name="milk">Mjölk</string>
     <string name="seeds">Frön</string>
     <string name="deleteHistory">Radera Historien</string>
-    <string name="scanPhotos">Du behöver ta kort för att få historik</string>
+    <string name="scanPhotos">Ingen historik än</string>
 
     <string name="service_label">My Spell Checker</string>
 
@@ -172,5 +172,9 @@
     <string name="poppySeed">Poppy Seed</string>
     <string name="sunflowerSeed">Sunflower Seed</string>
     <string name="fruit">Fruit</string>
+    <string name="vegetables">Vegetables</string>
+    <string name="cannotUseCamera">Kan inte använda kameran utan din tillåtelse!</string>
+    <string name="varning">Varning!</string>
+    <string name="thisAppOnlySave">If permission is not given, this app will not work as intended. Remember the only thing getting saved is the text. If you don\'t give permission the application might need to be reinstalled to work! Have a fantastic day!</string>
 
 </resources>

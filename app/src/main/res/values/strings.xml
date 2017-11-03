@@ -132,7 +132,7 @@
     <string name="milk">Milk</string>
     <string name="seeds">Seeds</string>
     <string name="deleteHistory">Delete History</string>
-    <string name="scanPhotos">You need to scan photos to get result</string>
+    <string name="scanPhotos">No history yet!</string>
 
     <string name="service_label">My Spell Checker</string>
 
@@ -176,6 +176,10 @@
     <string name="pumpkinSeed">pumpkin Seed</string>
     <string name="sunflowerSeed">Sunflower Seed</string>
     <string name="fruit">Fruit</string>
+    <string name="vegetables">Vegetables</string>
+    <string name="cannotUseCamera">Cannot use camera without permission!</string>
+    <string name="varning">Varning!</string>
+    <string name="thisAppOnlySave">If permission is not given, this app will not work as intended. Remember the only thing getting saved is the text. If you don\'t give permission the application might need to be reinstalled to work! Have a fantastic day!</string>
 
 
 </resources>

@@ -129,18 +129,20 @@ public class AllergyFragment extends Fragment {
         AllergyList allergylist = new AllergyList(getContext());
 
         addCategory(inflater, allergylist.getArrayListFish(), "Fish",R.string.fish);
+        addCategory(inflater, allergylist.getArrayListFruit(), "Fruit", R.string.fruit);
         addCategory(inflater, allergylist.getArrayListGluten(), "Gluten",R.string.gluten);
         addCategory(inflater, allergylist.getArrayListNuts(), "Nuts",R.string.nuts);
         addCategory(inflater, allergylist.getArrayListSeeds(), "Seeds",R.string.seeds);
         addCategory(inflater, allergylist.getArrayListShellfish(), "Shellfish", R.string.shellfish);
-        addCategory(inflater, allergylist.getArrayListFruit(), "Fruit", R.string.fruit);
+        addCategory(inflater, allergylist.getArrayListVegetables(), "Vegetables", R.string.vegetables);
 
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Fish", container, R.string.fish, R.drawable.fish));
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Fruit", container, R.string.fruit, R.drawable.fruit));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Gluten", container, R.string.gluten, R.drawable.wheat));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Nuts", container, R.string.nuts, R.drawable.nuts));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Seeds", container, R.string.seeds, R.drawable.seeds));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Shellfish", container, R.string.shellfish, R.drawable.shellfish));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Fruit", container, R.string.fruit, R.drawable.fruit));
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegetables", container, R.string.vegetables, R.drawable.tomato));
 
         return parentFrameLayout;
     }

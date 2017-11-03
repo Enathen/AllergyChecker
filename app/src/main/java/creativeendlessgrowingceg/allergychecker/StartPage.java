@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -31,6 +32,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -73,7 +75,14 @@ public class StartPage extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
-
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(this);
+        // Check if we need to display our OnboardingFragment
+/*        if (!sharedPreferences.getBoolean(
+                MyOnboardingFragment.COMPLETED_ONBOARDING_PREF_NAME, false)) {
+            // The user hasn't seen the OnboardingFragment yet, so show it
+            startActivity(new Intent(this, OnboardingActivity.class));
+        }*/
 
 
         Log.d(TAG,"HUVUDTEST" + Locale.getDefault().getLanguage());
@@ -151,7 +160,10 @@ public class StartPage extends AppCompatActivity
             newString = str;
             str = str.toLowerCase();
             Calendar calendar = Calendar.getInstance();
-            DateString dateString = new DateString(calendar.getTime(),str);
+            calendar.add(Calendar.DAY_OF_MONTH, 10);
+            Date date = calendar.getTime();
+            String formattedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+            DateString dateString = new DateString(formattedDate,str);
             dateStrings = getArray();
             Log.d(TAG, String.valueOf(dateStrings.size()));
             dateStrings.add(dateString.string);
@@ -542,9 +554,9 @@ public class StartPage extends AppCompatActivity
     public class DateString{
         String string;
 
-        DateString(Date date, String string){
-            String newString = date.toString();
-            newString = newString.concat(string);
+        DateString(String date, String string){
+            String newString = date;
+            newString = newString.concat(" " + string);
             this.string = newString;
         }
     }

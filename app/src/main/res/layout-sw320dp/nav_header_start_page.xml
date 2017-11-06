@@ -6,7 +6,6 @@
     android:background="@color/colorPrimaryDark"
 
     android:orientation="vertical"
-    android:onClick="profilOnClick"
 
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"

@@ -7,13 +7,13 @@
     <LinearLayout
         android:id="@+id/linHorRowLang"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/defaultRows"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/ImageViewRowLanguage"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/defaultRows"
+            android:layout_height="@dimen/defaultRows"
             app:srcCompat="@drawable/globe" />
 
         <TextView

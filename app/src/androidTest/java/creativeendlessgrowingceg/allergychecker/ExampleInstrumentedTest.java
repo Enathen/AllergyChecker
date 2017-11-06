@@ -64,4 +64,7 @@ public class ExampleInstrumentedTest {
             Log.d(TAG,s.substring(19));
         }
     }
+    @Test
+    public void idString(){
+    }
 }

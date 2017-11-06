@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,30 +77,23 @@ public class StartPage extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
+        //findViewById(R.id.imageViewNav1).setBackgroundResource(R.drawable.emptyborder);
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
-
         // Check if we need to display our OnboardingFragment
-
-
 
         if (!sharedPreferences.getBoolean("firstTime", false)) {
             startActivity(new Intent(this, OnboardingPagerActivity.class));
-
-            Fragment fragment = new AllergyFragment(this); setTitle("Allergies");
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.startPageFrame, fragment).addToBackStack(null).commit();
-            fragmentManager.executePendingTransactions();
             SharedPreferences.Editor sharedPreferencesEditor =
                     PreferenceManager.getDefaultSharedPreferences(this).edit();
             sharedPreferencesEditor.putBoolean(
                     "firstTime", true);
             sharedPreferencesEditor.apply();
+
+
         }
 
 
-        Log.d(TAG,"HUVUDTEST" + Locale.getDefault().getLanguage());
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -109,8 +103,6 @@ public class StartPage extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 View drawer = (View) findViewById(R.id.language);
-
-
 
                 PopupMenu popup = new PopupMenu(StartPage.this, drawer);
                 //Inflating the Popup using xml file
@@ -205,7 +197,6 @@ public class StartPage extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        Log.d(TAG,"TEST"+Locale.getDefault().getLanguage());
     }
 
     private void displayInterstitial() {
@@ -237,21 +228,18 @@ public class StartPage extends AppCompatActivity
 
 
     private void checkStringAgainstAllergies(String str) {
-
-
-
+        Log.d(TAG,"TIME");
         String[] splitStr = str.split("\\s+");
         HashMap<String,LangString> arrayListAllergies = null;
-        Log.d(TAG,"TEST"+Locale.getDefault().getLanguage());
+
         ArrayList<Locale> listOfLanguages = new SettingsFragment(this).getCategories();
-        for (Locale listOfLanguage : listOfLanguages) {
-            Log.d(TAG,listOfLanguage.getLanguage());
-            Log.d(TAG,Locale.getDefault().getLanguage());
-        }
+
         arrayListAllergies = new AllergyFragment(this).getArrayListFromAllCheckedAllergies(listOfLanguages,StartPage.this,Locale.getDefault());
+
         SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
         if(arrayListAllergies != null) {
             HashMap<String, LangString> allergies = spellCheckAllergy.permuteString(arrayListAllergies);
+
 
             String outputString = "";
             boolean b = false;
@@ -334,11 +322,14 @@ public class StartPage extends AppCompatActivity
                 }
             }
             if(dontEat){
+
                 outputString = outputString.concat(getString(R.string.dontUse) + "\n");
                 outputString = outputString.concat(getString(R.string.scannedTextBelow)+ "\n");
+                outputString = outputString.concat(getString(R.string.mightContainOther)+ "\n");
                 ((TextView) findViewById(R.id.textViewFoundAllergies)).setTextColor(Color.RED);
                 ((TextView) findViewById(R.id.textViewFoundAllergies)).setText(outputString);
             }else{
+                outputString = outputString.concat(getString(R.string.mightContainAllergies)+ "\n");
                 outputString = outputString.concat(getString(R.string.youCanUse)+"\n");
                 outputString = outputString.concat(getString(R.string.scannedTextBelow)+"\n");
                 ((TextView) findViewById(R.id.textViewFoundAllergies)).setTextColor(getColor(R.color.colorAccent));
@@ -348,7 +339,6 @@ public class StartPage extends AppCompatActivity
             allergic.setText(outputString);
         }
         displayInterstitial();
-        Log.d(TAG,"TEST"+Locale.getDefault().getLanguage());
     }
 
     public ArrayList<String> getDateString(){
@@ -510,8 +500,19 @@ public class StartPage extends AppCompatActivity
 
             fragment = new SettingsFragment(); setTitle("Language");
         }else if (id == R.id.allergies) {
+            HashMap<Integer,ImageView> imageViewHashMap = new HashMap<>();
 
-            fragment = new AllergyFragment(this); setTitle("Allergies");
+
+            imageViewHashMap.put(0, (ImageView) findViewById(R.id.imageViewNav1));
+            imageViewHashMap.put(1, (ImageView) findViewById(R.id.imageViewNav2));
+            imageViewHashMap.put(2, (ImageView) findViewById(R.id.imageViewNav3));
+            imageViewHashMap.put(3, (ImageView) findViewById(R.id.imageViewNav4));
+            imageViewHashMap.put(4, (ImageView) findViewById(R.id.imageViewNav5));
+            imageViewHashMap.put(5, (ImageView) findViewById(R.id.imageViewNav6));
+            imageViewHashMap.put(6, (ImageView) findViewById(R.id.imageViewNav7));
+            imageViewHashMap.put(7, (ImageView) findViewById(R.id.imageViewNav8));
+
+            fragment = new AllergyFragment(this,imageViewHashMap); setTitle("Allergies");
         }
         else if (id == R.id.nav_share) {
             Intent i = new Intent(Intent.ACTION_SEND);
@@ -556,15 +557,6 @@ public class StartPage extends AppCompatActivity
         }
     }
 
-    public void profilOnClick(View view) {
-        findViewById(R.id.imageViewNav1).setBackgroundResource(R.drawable.fruit);
-        findViewById(R.id.imageViewNav2).setBackgroundResource(R.drawable.shellfish);
-        findViewById(R.id.imageViewNav3).setBackgroundResource(R.drawable.vegan);
-        findViewById(R.id.imageViewNav4).setBackgroundResource(R.drawable.vegitarian);
-        findViewById(R.id.imageViewNav5).setBackgroundResource(R.drawable.wheat);
-        findViewById(R.id.imageViewNav6).setBackgroundResource(R.drawable.fish);
-        Log.d(TAG, "HEEEj");
-    }
 
     public class DateString{
         String string;

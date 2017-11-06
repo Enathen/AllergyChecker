@@ -167,7 +167,7 @@ public class SettingsFragment extends Fragment {
         final ArrayList<LinearLayout> arrayListLinearLayout = new ArrayList<>();
         final LinearLayout topLinearLayout = (LinearLayout) inflater.inflate(R.layout.rowcategorylayout,null);
         final LinearLayout parentLinearLayout = (LinearLayout) topLinearLayout.findViewById(R.id.linearLayoutRowCategoryHorizontal);
-        ((ImageView)parentLinearLayout.findViewById(R.id.imageViewRowCategory)).setImageResource(R.drawable.globe);
+        ((ImageView)parentLinearLayout.findViewById(R.id.imageViewRowCategory)).setImageResource(R.drawable.translate);
         ((TextView)parentLinearLayout.findViewById(R.id.textViewCategory)).setText(R.string.languageFrom);
         SharedPreferences settings = getContext().getSharedPreferences("box", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = settings.edit();
@@ -255,7 +255,7 @@ public class SettingsFragment extends Fragment {
         final ArrayList<LinearLayout> arrayListLinearLayout = new ArrayList<>();
         final LinearLayout topLinearLayout = (LinearLayout) inflater.inflate(R.layout.rowlanguage,null);
         final LinearLayout parentLinearLayout = (LinearLayout) topLinearLayout.findViewById(R.id.linHorRowLang);
-        ((ImageView)parentLinearLayout.findViewById(R.id.ImageViewRowLanguage)).setImageResource(R.drawable.globe);
+        ((ImageView)parentLinearLayout.findViewById(R.id.ImageViewRowLanguage)).setImageResource(R.drawable.langstat);
         ((TextView)parentLinearLayout.findViewById(R.id.textViewRowLanguage)).setText(R.string.languageGeneral);
         SharedPreferences settings = getContext().getSharedPreferences("box", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = settings.edit();
@@ -360,6 +360,7 @@ public class SettingsFragment extends Fragment {
         if(v.getRotation() == 180){
             v.setRotation(0);
             for (LinearLayout linearLayout : arrayList) {
+
                 linearLayoutPar.removeView(linearLayout);
 
             }

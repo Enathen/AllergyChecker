@@ -5,7 +5,7 @@
 
         <item
             android:id="@+id/allergies"
-            android:icon="@drawable/wheatcircle"
+            android:icon="@drawable/apple"
             android:title="@string/myAllergies" />
         <item
             android:id="@+id/nav_camera"
@@ -18,7 +18,7 @@
             android:title="@string/history" />
         <item
             android:id="@+id/languageMenu"
-            android:icon="@drawable/globe"
+            android:icon="@drawable/language"
             android:title="@string/language" />
     </group>
 

@@ -242,5 +242,45 @@
     <string name="title_activity_find_email">Email</string>
 
     <string name="title_activity_takeoff">App Takes off here</string>
+    <string name="mightContainOther">This is only a guideline! And might contain other allergies</string>
+    <string name="mightContainAllergies">This is only a guideline! And might contain allergies</string>
+
+    <string name="vegetarian">Vegetarian</string>
+    <string name="vegan">Vegan</string>
+    <string name="citrus">Citrus</string>
+    <string name="haram">Haram</string>
+    <string name="legumes">Legumes</string>
+    <string name="aspargus">Aspargus</string>
+    <string name="bellPepper">Bell Pepper</string>
+    <string name="cabbage">Cabbage</string>
+    <string name="carrot">Carrot</string>
+    <string name="celery">Celery</string>
+    <string name="garlic">Garlic</string>
+    <string name="lettuce">Lettuce</string>
+    <string name="maize">Maize</string>
+    <string name="potato">Potato</string>
+    <string name="pumpkin">Pumpkin</string>
+    <string name="zucchini">Zucchini</string>
+    <string name="pork">Pork</string>
+    <string name="duck">Duck</string>
+    <string name="meat">Meat</string>
+    <string name="goat">Goat</string>
+    <string name="poultry">Poultry</string>
+    <string name="lamb">Lamb</string>
+    <string name="sausage">Sausage</string>
+    <string name="beef">Beef</string>
+    <string name="veal">Veal</string>
+    <string name="gelatin">Gelatin</string>
+    <string name="dairy">Dairy</string>
+    <string name="egg">Egg</string>
+    <string name="honey">Honey</string>
+    <string name="lactoVegetarian">Lacto Vegetarian</string>
+    <string name="ovoVegetarian">Ovo Vegetarian</string>
+    <string name="lactoOvoVegetarian">Lacto Ovo Vegetarian</string>
+    <string name="demiVegetarian">Demi Vegetarian</string>
+    <string name="polloVegetarian">Pollo Vegetarian</string>
+    <string name="pescoVegetarian">Pesco Vegetarian</string>
+    <string name="chicken">Chicken</string>
+
 
 </resources>

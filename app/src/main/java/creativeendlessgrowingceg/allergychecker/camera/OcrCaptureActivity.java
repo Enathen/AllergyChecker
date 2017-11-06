@@ -345,14 +345,26 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
         if (!graphic1.isEmpty()) {
             textTapped = "";
-            for (OcrGraphic ocrGraphic : graphic1) {
+            final Set<OcrGraphic> finalGraphic = graphic1;
+            int size = finalGraphic.size();
+            int i = 0;
+            Log.d(TAG,"TIME");
+            for (OcrGraphic ocrGraphic : finalGraphic) {
+                i++;
+                if(i%10 == 0){
+                    Toast.makeText(
+                            OcrCaptureActivity.this,
+                            "Loading: " + i/size*(100) + "%",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+
                 List<? extends Text> textComponents = ocrGraphic.getComponents();
                 Log.d(TAG, "text data is being saved! " + ocrGraphic.getComponents().size());
                 for(Text currentText : textComponents) {
                     if (currentText != null && !currentText.getValue().equalsIgnoreCase("null")) {
                         Log.d(TAG, "text data is being saved! " + currentText.getValue());
                         // Speak the string.
-
                         Log.d(TAG, textTapped);
                         if(textTapped.equals("null")){
                             textTapped = currentText.getValue();
@@ -360,19 +372,20 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                         else {
                             textTapped += currentText.getValue();
                         }
-
                     }
                     else {
                         Log.d(TAG, "text data is null");
                     }
                 }
             }
+            Log.d(TAG,"TIME");
 
-                //Toast.makeText(this, textTapped, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(OcrCaptureActivity.this, StartPage.class);
-                intent.putExtra("location", textTapped);
 
-                startActivity(intent);
+
+            //Toast.makeText(this, textTapped, Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(OcrCaptureActivity.this, StartPage.class);
+            intent.putExtra("location", textTapped);
+            startActivity(intent);
             }
 
 

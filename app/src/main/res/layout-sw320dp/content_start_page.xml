@@ -9,7 +9,9 @@
     tools:context="creativeendlessgrowingceg.allergychecker.StartPage"
     tools:showIn="@layout/app_bar_start_page"
     android:layout_marginRight="0dp">
+
     <ScrollView
+        android:id="@+id/scrooool"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="8dp"
@@ -22,7 +24,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
+            android:id="@+id/linLayStartPage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">

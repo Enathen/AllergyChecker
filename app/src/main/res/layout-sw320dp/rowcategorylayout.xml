@@ -11,15 +11,14 @@
     <LinearLayout
         android:id="@+id/linearLayoutRowCategoryHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/defaultRows"
         android:orientation="horizontal">
 
         <ImageView
 
             android:id="@+id/imageViewRowCategory"
-            android:layout_width="38dp"
-            android:layout_height="50dp"
-            android:layout_weight="0.03"
+            android:layout_width="65dp"
+            android:layout_height="@dimen/defaultRows"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -52,7 +51,7 @@
         <CheckBox
             android:id="@+id/checkBoxRowCategory"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/defaultRows"
             android:layout_marginEnd="2dp"
 
             android:button="@null"

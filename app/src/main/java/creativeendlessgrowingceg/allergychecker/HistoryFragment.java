@@ -163,7 +163,7 @@ public class HistoryFragment extends Fragment {
                         config.setLocale(loadLocale());
                         getActivity().getApplicationContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
                         Intent intent = new Intent(getActivity(), StartPage.class);
-                        intent.putExtra("HistoryFragment", s.substring(34));
+                        intent.putExtra("HistoryFragment", s.substring(20));
                         startActivity(intent);
 
                     }

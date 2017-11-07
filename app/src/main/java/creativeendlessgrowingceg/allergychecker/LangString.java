@@ -20,6 +20,13 @@ public class LangString {
         this.id = id;
 
     }
+    public LangString(String language, String string, boolean on, int id,HashSet<String> allPossibleDerivationsOfAllergen) {
+        this.language = language;
+        this.string = string;
+        this.on = on;
+        this.id = id;
+        this.allPossibleDerivationsOfAllergen = allPossibleDerivationsOfAllergen;
+    }
     public void addallPossibleDerivationsOfAllergen(HashSet<String> allPossibleDerivationsOfAllergen){
         this.allPossibleDerivationsOfAllergen = allPossibleDerivationsOfAllergen;
     }

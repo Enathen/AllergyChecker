@@ -28,12 +28,13 @@ public class SpellCheckAllergy {
 
         for (String key : hashMap.keySet()) {
             if(hashMap.get(key).on){
-                Log.d(TAG,"Key: "+key + " open "+ hashMap.get(key).on);
+                if(hashMap.get(key).allPossibleDerivationsOfAllergen == null){
+                    Log.d(TAG,"Key: "+key + " open "+ hashMap.get(key).on);
                     LangString languageString = hashMap.get(key);
                     HashSet<String> arrayList = new HashSet<>();
                     languageString.addallPossibleDerivationsOfAllergen(AlgorithmString(key,arrayList,hashMap.get(key).language));
                     hashMap.put(key,languageString);
-
+                }
             }
         }
 
@@ -85,10 +86,10 @@ public class SpellCheckAllergy {
         arrayListNew.remove("salt");
         return arrayListNew;
     }
-    public HashMap<String,LangString>  permuteString(String language, String string, boolean on, int id){
-        this.hashMap.put(string,new LangString(language,string,on,id));
+    public HashSet<String> permuteString(String language, String string){
         convertString();
-        return this.hashMap;
+        HashSet<String> arrayListNew = new HashSet<>();
+        return AlgorithmString(string,arrayListNew,language);
     }
     public HashMap<String,LangString> permuteString(HashMap<String,LangString> hashMap){
         this.hashMap = hashMap;

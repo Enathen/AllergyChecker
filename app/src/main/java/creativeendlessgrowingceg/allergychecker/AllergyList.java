@@ -74,7 +74,7 @@ public class AllergyList {
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato,R.string.maize));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato,R.string.potato));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato,R.string.pumpkin));
-        arrayListVegetables.add(new PictureIngredient(R.drawable.tomato,R.string.zuchini));
+        arrayListVegetables.add(new PictureIngredient(R.drawable.tomato,R.string.zucchini));
         sort(arrayListVegetables);
     }
     private void setArrayListVegetarian() {
@@ -105,7 +105,7 @@ public class AllergyList {
         arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.gelatin));
         arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.shellfish));
         arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.fish));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.diary));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.dairy));
         arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.egg));
         sort(arrayListLactoOvoVegetarian);
     }
@@ -123,7 +123,7 @@ public class AllergyList {
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.gelatin));
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.shellfish));
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.fish));
-        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.diary));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.dairy));
         sort(arrayListLactoOvoVegetarian);
     }
     private void setArrayListDemiVegetarian() {
@@ -203,7 +203,7 @@ public class AllergyList {
         arrayListVegan.add(new PictureIngredient(R.drawable.vegan,R.string.gelatin));
         arrayListVegan.add(new PictureIngredient(R.drawable.vegan,R.string.shellfish));
         arrayListVegan.add(new PictureIngredient(R.drawable.vegan,R.string.fish));
-        arrayListVegan.add(new PictureIngredient(R.drawable.vegan,R.string.diary));
+        arrayListVegan.add(new PictureIngredient(R.drawable.vegan,R.string.dairy));
         arrayListVegan.add(new PictureIngredient(R.drawable.vegan,R.string.egg));
         arrayListVegan.add(new PictureIngredient(R.drawable.vegan,R.string.honey));
         sort(arrayListVegan);

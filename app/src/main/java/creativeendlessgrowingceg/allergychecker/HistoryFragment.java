@@ -158,12 +158,14 @@ public class HistoryFragment extends Fragment {
                 newLinearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Log.d(TAG,"TIMEHISTORY");
                         Locale.setDefault(loadLocale());
                         Configuration config = new Configuration();
                         config.setLocale(loadLocale());
                         getActivity().getApplicationContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
                         Intent intent = new Intent(getActivity(), StartPage.class);
                         intent.putExtra("HistoryFragment", s.substring(20));
+
                         startActivity(intent);
 
                     }

@@ -511,8 +511,9 @@ public class StartPage extends AppCompatActivity
             imageViewHashMap.put(5, (ImageView) findViewById(R.id.imageViewNav6));
             imageViewHashMap.put(6, (ImageView) findViewById(R.id.imageViewNav7));
             imageViewHashMap.put(7, (ImageView) findViewById(R.id.imageViewNav8));
+            ArrayList<Locale> arrayList = new SettingsFragment(this).getCategories();
 
-            fragment = new AllergyFragment(this,imageViewHashMap); setTitle("Allergies");
+            fragment = new AllergyFragment(this,imageViewHashMap,arrayList); setTitle("Allergies");
         }
         else if (id == R.id.nav_share) {
             Intent i = new Intent(Intent.ACTION_SEND);

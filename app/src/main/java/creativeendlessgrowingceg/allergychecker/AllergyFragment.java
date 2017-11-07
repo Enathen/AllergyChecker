@@ -28,9 +28,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PipedOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 
 /**
@@ -57,7 +60,7 @@ public class AllergyFragment extends Fragment {
     private LinearLayout parentLinearLayout;
     private OnFragmentInteractionListener mListener;
     private HashMap<String,ArrayList<LinearLayout>> Categories = new HashMap<>();
-    private HashMap<Integer,LanguageString> hashMapCategoriesAllergy = new HashMap<>();
+    private ConcurrentHashMap<Integer,LanguageString> hashMapCategoriesAllergy = new ConcurrentHashMap<>();
     private HashMap<String,LinearLayout> linearLayoutParents = new HashMap<>();
     private HashMap<String,ArrayList<CheckBox>> checkBoxes = new HashMap<>();
     private HashMap<String,CheckBox> parentCheckBox = new HashMap<>();
@@ -66,7 +69,10 @@ public class AllergyFragment extends Fragment {
     private File startPageFile;
     private StartPage startPage;
     HashMap<Integer,ImageView> imageViewHashMap;
+    private ArrayList<Locale> localeArrayList;
     boolean parentSetOnClick = false;
+    ReentrantReadWriteLock lock = new ReentrantReadWriteLock(true);
+    public static volatile boolean waitingThread  = false;
 
     public AllergyFragment(AllergyFragment allergyFragment) {
         // Required empty public constructor
@@ -81,9 +87,13 @@ public class AllergyFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public AllergyFragment(StartPage startPage, HashMap<Integer,ImageView> imageViewHashMap) {
+    public AllergyFragment(StartPage startPage, HashMap<Integer,ImageView> imageViewHashMap,ArrayList<Locale> localeArrayList) {
         this.startPage = startPage;
         this.imageViewHashMap = imageViewHashMap;
+        if(localeArrayList.isEmpty()){
+            localeArrayList.add(Locale.getDefault());
+        }
+        this.localeArrayList = localeArrayList;
     }
 
 
@@ -126,7 +136,6 @@ public class AllergyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         parentFrameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_allergy, container, false);
 
         //insert everything to this linear layout
@@ -189,12 +198,12 @@ public class AllergyFragment extends Fragment {
                 editor.putBoolean(getResources().getString(name), isChecked);
                 editor.apply();
                 if(isChecked){
-                    getCategories();
+                    //getCategories();
                     addItemToHashMap(name,pictureId);
                     saveCategories();
                 }
                 else{
-                    getCategories();
+                    //getCategories();
                     removeItemToHashMap(name);
                     saveCategories();
                 }
@@ -242,16 +251,16 @@ public class AllergyFragment extends Fragment {
         linearLayoutParents.put(key,linearLayout);
         parentCheckBox.put(key,checkboxRowCategory);
 
-        seeIfAllCheckboxIsChecked(checkboxRowCategory,key);
+        seeIfAllCheckboxIsChecked(checkboxRowCategory,key,name);
         return linearLayout;
     }
     public void parentCheckBoxOnClickListener(CheckBox checkboxRowCategory, final String key, final int parentKey){
         checkboxRowCategory.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                getCategories();
-                parentSetOnClick = true;
                 Log.d(TAG,"TIME");
+                //getCategories();
+                parentSetOnClick = true;
                 if(isChecked) {
 
                     hashMapCategoriesAllergy.get(parentKey).on=true;
@@ -269,8 +278,8 @@ public class AllergyFragment extends Fragment {
                     }
 
                 }
-                Log.d(TAG,"TIME");
 
+                Log.d(TAG,"TIME");
                 saveCategories();
                 parentSetOnClick = false;
 
@@ -286,12 +295,12 @@ public class AllergyFragment extends Fragment {
 
     }
     public void removeItemToHashMap(int string){
-
+        Log.d(TAG,getString(string));
         hashMapCategoriesAllergy.get(string).on = false;
 
     }
-    private void seeIfAllCheckboxIsChecked(CheckBox checkboxRowCategory, String key) {
-        Log.d(TAG,"seeIfAllCheckboxIsChecked");
+    private void seeIfAllCheckboxIsChecked(CheckBox checkboxRowCategory, String key,int name) {
+
         for (LinearLayout linearLayout : Categories.get(key)) {
             CheckBox checkBox = (CheckBox) linearLayout.findViewById(R.id.checkBoxRowLeftMargin);
             if(!checkBox.isChecked()){
@@ -300,13 +309,15 @@ public class AllergyFragment extends Fragment {
             }
 
         }
+        checkboxRowCategory.setOnCheckedChangeListener(null);
         checkboxRowCategory.setChecked(true);
-        Log.d(TAG,"seeIfAllCheckboxIsChecked");
+        parentCheckBoxOnClickListener(checkboxRowCategory,key,name);
+
 
     }
     private void checkBoxLeftMarginSaveString(boolean isChecked, int id,int pictureId){
         if(!parentSetOnClick){
-            getCategories();
+            //getCategories();
         }
         if(isChecked){
             addItemToHashMap(id,pictureId);
@@ -351,7 +362,7 @@ public class AllergyFragment extends Fragment {
 
                     checkBoxLeftMarginSaveString(isChecked,arrayListCat.id,parentPicture);
                     parentCheckBox.get(key).setOnCheckedChangeListener(null);
-                    seeIfAllCheckboxIsChecked(parentCheckBox.get(key),key);
+                    seeIfAllCheckboxIsChecked(parentCheckBox.get(key),key,parentKey);
                     parentCheckBoxOnClickListener(parentCheckBox.get(key),key,parentKey);
                     editor.putBoolean(String.valueOf(arrayListCat.id), isChecked);
                     editor.apply();
@@ -378,25 +389,6 @@ public class AllergyFragment extends Fragment {
 
 
     }
-    public void saveCategories(){
-
-        FileOutputStream fileOutputStream;
-
-        File file = new File(this.getContext().getFilesDir(), "data.txt");
-        try {
-            fileOutputStream = new FileOutputStream(file,false);
-
-            ObjectOutputStream objectOutputStream= new ObjectOutputStream(fileOutputStream);
-            setProfileAllergies();
-
-            objectOutputStream.writeObject(hashMapCategoriesAllergy);
-            objectOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
     private void setProfileAllergies() {
         String alreadyString = "00000000";
         ArrayList<Integer> alreadySelectedImages = new ArrayList<>();
@@ -424,22 +416,109 @@ public class AllergyFragment extends Fragment {
         }
     }
 
+    public void saveCategories(){
+        final Context context = this.getContext();
+        final PipedOutputStream output = new PipedOutputStream();
+        new Thread(new Runnable() {
+            public void run() {
+
+                Log.d(TAG,"saveCatGoingToLock "+ Thread.currentThread().getId());
+                waitingThread = true;
+                lock.writeLock().lock();
+                waitingThread = false;
+                Log.d(TAG,"saveCatlocked "+ Thread.currentThread().getId());
+                synchronized (this) {
+                    try {
+
+                        FileOutputStream fileOutputStream;
+
+                        File file = new File(context.getFilesDir(), "data.txt");
+
+
+                        fileOutputStream = new FileOutputStream(file, false);
+
+                        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+                        if(waitingThread){
+                            lock.writeLock().unlock();
+                            objectOutputStream.close();
+                            Log.d(TAG,"RETURN HOME2 "+ Thread.currentThread().getId());
+                            return;
+                        }
+                        for (LanguageString languageString : hashMapCategoriesAllergy.values()) {
+                            for (Locale locale : localeArrayList) {
+                                SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
+                                if (languageString.allPossibleWords == null) {
+                                    Log.d(TAG,getString(languageString.id));
+                                    languageString.allPossibleWords = spellCheckAllergy.permuteString(locale.getLanguage(), getStringByLocal(startPage, languageString.id, locale.getLanguage()));
+                                }
+                            }
+                        }
+
+                        Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
+                        Log.d(TAG, "LOOOOCK" + waitingThread);
+
+                        if(waitingThread){
+                            lock.writeLock().unlock();
+                            objectOutputStream.close();
+                            Log.d(TAG,"RETURN HOME3 "+ Thread.currentThread().getId());
+                            return;
+                        }
+                        objectOutputStream.writeObject(hashMapCategoriesAllergy);
+                        Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
+                        objectOutputStream.close();
+                        Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                Log.d(TAG,"saveCatUNlocked " + Thread.currentThread().getId());
+                lock.writeLock().unlock();
+            }
+        }).start();
+        setProfileAllergies();
+    }
+
     public void getCategories(){
 
-        FileInputStream fileInputStream;
-        File file = new File(this.getContext().getFilesDir(), "data.txt");
-        try {
-            fileInputStream = new FileInputStream(file);
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        final Context context = this.getContext();
 
-            hashMapCategoriesAllergy = (HashMap<Integer, LanguageString>) objectInputStream.readObject();
-            for (LanguageString languageString : hashMapCategoriesAllergy.values()) {
-                Log.d(TAG,languageString.id + ":" + getString(languageString.id).toLowerCase());
+        new Thread(new Runnable() {
+            public void run() {
+                Log.d(TAG, "getcatgoingToRead " + Thread.currentThread().getId());
+                lock.readLock().lock();
+                if(lock.isWriteLocked()){
+                    lock.readLock().unlock();
+                    return;
+                }
+
+                Log.d(TAG, "getcatLockedRead " + Thread.currentThread().getId());
+                synchronized (this) {
+
+                    FileInputStream fileInputStream;
+                    File file = new File(context.getFilesDir(), "data.txt");
+                    try {
+                        fileInputStream = new FileInputStream(file);
+                        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                        Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
+                        if(lock.isWriteLocked()){
+                            lock.readLock().unlock();
+                            objectInputStream.close();
+                            return;
+                        }
+                        hashMapCategoriesAllergy = (ConcurrentHashMap<Integer, LanguageString>) objectInputStream.readObject();
+                        Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
+                        objectInputStream.close();
+                        Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
+                    } catch (ClassNotFoundException | IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Log.d(TAG, "getcatUNLockedRead " + Thread.currentThread().getId());
+                lock.readLock().unlock();
             }
-            objectInputStream.close();
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
-        }
+
+        }).start();
     }
     public void getCategoriesFromOtherClass(){
         FileInputStream fileInputStream;
@@ -447,7 +526,7 @@ public class AllergyFragment extends Fragment {
             fileInputStream = new FileInputStream(startPageFile);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            hashMapCategoriesAllergy = (HashMap<Integer, LanguageString>) objectInputStream.readObject();
+            hashMapCategoriesAllergy = (ConcurrentHashMap<Integer, LanguageString>) objectInputStream.readObject();
             objectInputStream.close();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
@@ -475,7 +554,7 @@ public class AllergyFragment extends Fragment {
             fileInputStream = new FileInputStream(startPageFile);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            hashMapCategoriesAllergy = (HashMap<Integer, LanguageString>) objectInputStream.readObject();
+            hashMapCategoriesAllergy = (ConcurrentHashMap<Integer, LanguageString>) objectInputStream.readObject();
             objectInputStream.close();
             HashMap<String, LangString> hashMap = new HashMap<>();
 
@@ -489,7 +568,7 @@ public class AllergyFragment extends Fragment {
                             Log.d(TAG, "getStringByLocal:" + getStringByLocal(context, key.id, locale.getLanguage()));
                             hashMap.put(getStringByLocal(context, key.id, locale.getLanguage()),
                                     new LangString(locale.getLanguage(), getStringByLocal(context, key.id, locale.getLanguage()), true,
-                                            key.id));
+                                            key.id,key.allPossibleWords));
 
                         }
                     }

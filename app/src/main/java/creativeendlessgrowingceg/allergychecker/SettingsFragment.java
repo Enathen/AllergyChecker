@@ -333,6 +333,7 @@ public class SettingsFragment extends Fragment {
         ArrayList<Locale> locales = new ArrayList<>();
         try {
             fileInputStream = new FileInputStream(startPageFile);
+
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
             locales = ( ArrayList<Locale>) objectInputStream.readObject();

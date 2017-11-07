@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -28,9 +29,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PipedOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -72,7 +73,7 @@ public class AllergyFragment extends Fragment {
     private ArrayList<Locale> localeArrayList;
     boolean parentSetOnClick = false;
     ReentrantReadWriteLock lock = new ReentrantReadWriteLock(true);
-    public static volatile boolean waitingThread  = false;
+
 
     public AllergyFragment(AllergyFragment allergyFragment) {
         // Required empty public constructor
@@ -174,7 +175,7 @@ public class AllergyFragment extends Fragment {
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Pollo Vegetarian", container, R.string.polloVegetarian, R.drawable.vegetarian));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Pesco Vegetarian", container, R.string.pescoVegetarian, R.drawable.vegetarian));
 
-        saveCategories();
+        //saveCategories();
         return parentFrameLayout;
     }
 
@@ -200,12 +201,12 @@ public class AllergyFragment extends Fragment {
                 if(isChecked){
                     //getCategories();
                     addItemToHashMap(name,pictureId);
-                    saveCategories();
+                    //saveCategories();
                 }
                 else{
                     //getCategories();
                     removeItemToHashMap(name);
-                    saveCategories();
+                    //saveCategories();
                 }
             }
         });
@@ -220,7 +221,7 @@ public class AllergyFragment extends Fragment {
             if(!hashMapCategoriesAllergy.containsKey(key)){
 
                 hashMapCategoriesAllergy.put(key,new LanguageString(true,key,mainCat));
-                Log.d(TAG,"Put in hashMapCategoriesAllergy: " + key);
+                Log.d(TAG,"Put in hashMapCategoriesAllergy: " + getStringByLocal(getActivity(),key,Locale.getDefault().getLanguage()));
             }
         }
     }
@@ -280,7 +281,7 @@ public class AllergyFragment extends Fragment {
                 }
 
                 Log.d(TAG,"TIME");
-                saveCategories();
+                //saveCategories();
                 parentSetOnClick = false;
 
             }
@@ -326,7 +327,8 @@ public class AllergyFragment extends Fragment {
             removeItemToHashMap(id);
         }
         if(!parentSetOnClick){
-            saveCategories();
+            //
+            //saveCategories();
         }
 
     }
@@ -418,107 +420,38 @@ public class AllergyFragment extends Fragment {
 
     public void saveCategories(){
         final Context context = this.getContext();
-        final PipedOutputStream output = new PipedOutputStream();
-        new Thread(new Runnable() {
-            public void run() {
-
-                Log.d(TAG,"saveCatGoingToLock "+ Thread.currentThread().getId());
-                waitingThread = true;
-                lock.writeLock().lock();
-                waitingThread = false;
-                Log.d(TAG,"saveCatlocked "+ Thread.currentThread().getId());
-                synchronized (this) {
-                    try {
-
-                        FileOutputStream fileOutputStream;
-
-                        File file = new File(context.getFilesDir(), "data.txt");
-
-
-                        fileOutputStream = new FileOutputStream(file, false);
-
-                        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-                        if(waitingThread){
-                            lock.writeLock().unlock();
-                            objectOutputStream.close();
-                            Log.d(TAG,"RETURN HOME2 "+ Thread.currentThread().getId());
-                            return;
-                        }
-                        for (LanguageString languageString : hashMapCategoriesAllergy.values()) {
-                            for (Locale locale : localeArrayList) {
-                                SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
-                                if (languageString.allPossibleWords == null) {
-                                    Log.d(TAG,getString(languageString.id));
-                                    languageString.allPossibleWords = spellCheckAllergy.permuteString(locale.getLanguage(), getStringByLocal(startPage, languageString.id, locale.getLanguage()));
-                                }
-                            }
-                        }
-
-                        Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
-                        Log.d(TAG, "LOOOOCK" + waitingThread);
-
-                        if(waitingThread){
-                            lock.writeLock().unlock();
-                            objectOutputStream.close();
-                            Log.d(TAG,"RETURN HOME3 "+ Thread.currentThread().getId());
-                            return;
-                        }
-                        objectOutputStream.writeObject(hashMapCategoriesAllergy);
-                        Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
-                        objectOutputStream.close();
-                        Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                Log.d(TAG,"saveCatUNlocked " + Thread.currentThread().getId());
-                lock.writeLock().unlock();
-            }
-        }).start();
+        new MyTask().execute("Save");
         setProfileAllergies();
     }
+
 
     public void getCategories(){
 
         final Context context = this.getContext();
 
-        new Thread(new Runnable() {
-            public void run() {
-                Log.d(TAG, "getcatgoingToRead " + Thread.currentThread().getId());
-                lock.readLock().lock();
-                if(lock.isWriteLocked()){
-                    lock.readLock().unlock();
-                    return;
-                }
 
-                Log.d(TAG, "getcatLockedRead " + Thread.currentThread().getId());
-                synchronized (this) {
 
-                    FileInputStream fileInputStream;
-                    File file = new File(context.getFilesDir(), "data.txt");
-                    try {
-                        fileInputStream = new FileInputStream(file);
-                        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-                        Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
-                        if(lock.isWriteLocked()){
-                            lock.readLock().unlock();
-                            objectInputStream.close();
-                            return;
-                        }
-                        hashMapCategoriesAllergy = (ConcurrentHashMap<Integer, LanguageString>) objectInputStream.readObject();
-                        Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
-                        objectInputStream.close();
-                        Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
-                    } catch (ClassNotFoundException | IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                Log.d(TAG, "getcatUNLockedRead " + Thread.currentThread().getId());
+        FileInputStream fileInputStream;
+        File file = new File(context.getFilesDir(), "data.txt");
+        Log.d(TAG,"size" + String.valueOf(Integer.parseInt(String.valueOf(file.length()/1024))));
+        try {
+            fileInputStream = new FileInputStream(file);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
+            if(lock.isWriteLocked()){
                 lock.readLock().unlock();
+                objectInputStream.close();
+                return;
             }
+            hashMapCategoriesAllergy = (ConcurrentHashMap<Integer, LanguageString>) objectInputStream.readObject();
+            Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
+            objectInputStream.close();
+            Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
 
-        }).start();
+
     }
     public void getCategoriesFromOtherClass(){
         FileInputStream fileInputStream;
@@ -565,10 +498,16 @@ public class AllergyFragment extends Fragment {
             for (LanguageString key : hashMapCategoriesAllergy.values()) {
                     if(key.on) {
                         for (Locale locale : localeArray) {
-                            Log.d(TAG, "getStringByLocal:" + getStringByLocal(context, key.id, locale.getLanguage()));
-                            hashMap.put(getStringByLocal(context, key.id, locale.getLanguage()),
-                                    new LangString(locale.getLanguage(), getStringByLocal(context, key.id, locale.getLanguage()), true,
-                                            key.id,key.allPossibleWords));
+                            if (!key.allPossibleWords.containsKey(locale.getLanguage())){
+                                hashMap.put(getStringByLocal(context, key.id, locale.getLanguage()),
+                                        new LangString(locale.getLanguage(), getStringByLocal(context, key.id, locale.getLanguage()), true,
+                                                key.id));
+                            }else{
+                                Log.d(TAG, "getStringByLocal:" + getStringByLocal(context, key.id, locale.getLanguage()));
+                                hashMap.put(getStringByLocal(context, key.id, locale.getLanguage()),
+                                        new LangString(locale.getLanguage(), getStringByLocal(context, key.id, locale.getLanguage()), true,
+                                                key.id,key.allPossibleWords.get(locale.getLanguage())));
+                            }
 
                         }
                     }
@@ -624,13 +563,20 @@ public class AllergyFragment extends Fragment {
         }
     }
 
-    @Override
+ /*   @Override
     public void onDetach() {
         super.onDetach();
+        saveCategories();
+        mListener = null;
+    }*/
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        saveCategories();
         mListener = null;
     }
-
-/*    public void insertNewLanguage(SettingsFragment settingsFragment, String locale) {
+    /*    public void insertNewLanguage(SettingsFragment settingsFragment, String locale) {
         getCategoriesFromOtherClass();
         HashMap<String, LanguageString> hashClass = new HashMap<>();
         for (LanguageString string : hashMapCategoriesAllergy.values()) {
@@ -686,6 +632,87 @@ public class AllergyFragment extends Fragment {
         }
 
 
+    }
+    private class MyTask extends AsyncTask<String, Integer, String> {
+
+        // Runs in UI before background thread is called
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            // Do something like display a progress bar
+        }
+
+        // This is run in a background thread
+        @Override
+        protected String doInBackground(String... params) {
+            // get the string from params, which is an array
+            String myString = params[0];
+            try {
+                FileOutputStream fileOutputStream;
+
+                File file = new File(startPage.getFilesDir(), "data.txt");
+
+
+                fileOutputStream = new FileOutputStream(file, false);
+
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+                Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
+
+                int i = 0;
+
+                for (LanguageString languageString : hashMapCategoriesAllergy.values()) {
+                    i++;
+                    publishProgress(hashMapCategoriesAllergy.size(), i);
+                    for (Locale locale : localeArrayList) {
+                        SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
+                        if (languageString.allPossibleWords.size() == 0) {
+                            Log.d(TAG,getStringByLocal(startPage, languageString.id, locale.getLanguage()));
+                            Log.d(TAG,locale.getLanguage());
+                            HashSet<String> string = spellCheckAllergy.permuteString(locale.getLanguage(),
+                                    getStringByLocal(startPage, languageString.id,
+                                            locale.getLanguage()));
+                            languageString.allPossibleWords.put(locale.getLanguage(),string);
+                        }else{
+                            if(!languageString.allPossibleWords.containsKey(locale.getLanguage())){
+                                Log.d(TAG,"NEW lang "+ getStringByLocal(startPage, languageString.id, locale.getLanguage()));
+                                languageString.allPossibleWords.put(locale.getLanguage(),
+                                        spellCheckAllergy.permuteString(locale.getLanguage(),
+                                                getStringByLocal(startPage, languageString.id,
+                                                        locale.getLanguage())));
+                            }
+                        }
+                    }
+                }
+
+                objectOutputStream.writeObject(hashMapCategoriesAllergy);
+                Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
+                objectOutputStream.close();
+                Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return "this string is passed to onPostExecute";
+        }
+
+        // This is called from background thread but runs in UI
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+          /*  Log.d(TAG, String.valueOf(values[1]));
+            double i = ((double)values[1]/(double)values[0]) * 100;
+            Log.d(TAG, String.valueOf(i));*/
+            // Do things like update the progress bar
+        }
+
+        // This runs in UI when background thread finishes
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            // Do things like hide the progress bar or change a TextView
+        }
     }
 
 

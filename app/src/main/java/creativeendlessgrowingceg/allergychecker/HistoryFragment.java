@@ -158,6 +158,7 @@ public class HistoryFragment extends Fragment {
                 newLinearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         Log.d(TAG,"TIMEHISTORY");
                         Locale.setDefault(loadLocale());
                         Configuration config = new Configuration();

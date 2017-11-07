@@ -25,6 +25,7 @@ public class LangString {
         this.string = string;
         this.on = on;
         this.id = id;
+
         this.allPossibleDerivationsOfAllergen = allPossibleDerivationsOfAllergen;
     }
     public void addallPossibleDerivationsOfAllergen(HashSet<String> allPossibleDerivationsOfAllergen){

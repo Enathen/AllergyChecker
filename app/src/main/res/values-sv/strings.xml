@@ -176,8 +176,8 @@
     <string name="cannotUseCamera">Kan inte använda kameran utan din tillåtelse!</string>
     <string name="varning">Varning!</string>
     <string name="thisAppOnlySave">om tillåtelse inte hes, kommer inte appen fungera som den ska. Det ända som sparas är texten. Om tillåtelse inte ges så kommer appen behöva ominstalleras! Ha en fantastisk dag!</string>
-    <string name="mightContainOther">Det här är endast en riktlinje! Och kanske inehåller andra allergier</string>
-    <string name="mightContainAllergies">Det här är endast en riktlinje! Och inehåller kanske allergier</string>
+    <string name="mightContainOther">Det här är endast en riktlinje! Och kanske innehåller andra allergier</string>
+    <string name="mightContainAllergies">Det här är endast en riktlinje! Och innehåller kanske allergier</string>
     <string name="vegetarian">Vegetarian</string>
     <string name="vegan">Vegan</string>
     <string name="citrus">Citrus</string>

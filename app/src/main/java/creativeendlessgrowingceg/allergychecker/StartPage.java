@@ -63,10 +63,10 @@ public class StartPage extends AppCompatActivity
     String allergicString = "";
     ArrayList<String> dateStrings = new ArrayList<>();
     SharedPreferences prefs;
-    ArrayList<String> ingredientsAllergy = new ArrayList<>();
+
     private InterstitialAd interstitialAd;
     private String Language = "";
-    public int clickAmount = 0;
+
     ArrayList<Integer> definitelyContained = new ArrayList<>();
     HashMap<Integer,LanguageString> arrayListAllergies;
 
@@ -106,7 +106,7 @@ public class StartPage extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                View drawer = (View) findViewById(R.id.language);
+                View drawer =  findViewById(R.id.language);
 
                 PopupMenu popup = new PopupMenu(StartPage.this, drawer);
                 //Inflating the Popup using xml file
@@ -121,12 +121,9 @@ public class StartPage extends AppCompatActivity
                                 "Now using: " + item.getTitle(),
                                 Toast.LENGTH_SHORT
                         ).show();
-                        boolean flash = false;
+                        boolean flash;
                         Log.d(TAG, item.getTitle().toString());
-                        if(item.getTitle().toString().equals("Flash"))
-                            flash = true;
-                        else
-                            flash = false;
+                        flash = item.getTitle().toString().equals("Flash");
 
                         Intent intent = new Intent(getBaseContext(), OcrCaptureActivity.class);
                         intent.putExtra("EXTRA_SESSION_ID", flash);
@@ -324,7 +321,7 @@ public class StartPage extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.language) {
             //Creating the instance of PopupMenu
-            View drawer = (View) findViewById(R.id.language);
+            View drawer =  findViewById(R.id.language);
             PopupMenu popup = new PopupMenu(StartPage.this, drawer);
             //Inflating the Popup using xml file
             popup.getMenuInflater()

@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
@@ -26,6 +27,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,6 +68,8 @@ public class StartPage extends AppCompatActivity
     private String Language = "";
     public int clickAmount = 0;
     ArrayList<Integer> definitelyContained = new ArrayList<>();
+    HashMap<Integer,LanguageString> arrayListAllergies;
+
     public StartPage(FragmentActivity activity) {
         prefs = activity.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
     }
@@ -226,119 +230,20 @@ public class StartPage extends AppCompatActivity
     }
 
 
+    public void insertHashMapFromAllergyFragment(HashMap<Integer,LanguageString> hashMap){
 
+        this.arrayListAllergies = hashMap;
+        Log.d(TAG,"SAVED");
+    }
+    public HashMap<Integer,LanguageString> receiveHashMapFromAllergyFragment(){
+        Log.d(TAG,"received");
+        return arrayListAllergies;
+    }
     private void checkStringAgainstAllergies(String str) {
-        Log.d(TAG,"TIME");
-        String[] splitStr = str.split("\\s+");
-        HashMap<String,LangString> arrayListAllergies = null;
-
-        ArrayList<Locale> listOfLanguages = new SettingsFragment(this).getCategories();
-
-        arrayListAllergies = new AllergyFragment(this).getArrayListFromAllCheckedAllergies(listOfLanguages,StartPage.this,Locale.getDefault());
-
-        SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
-        if(arrayListAllergies != null) {
-            HashMap<String, LangString> allergies = spellCheckAllergy.permuteString(arrayListAllergies);
-
-
-            String outputString = "";
-            boolean b = false;
-            for (String string : splitStr) {
-
-                for (String extraKey : allergies.keySet()){
-                    if(extraKey.equals(string)){
-
-                        allergies.get(extraKey).found++;
-                        if(allergies.get(extraKey).found == 1){
-                            if(!definitelyContained.contains(allergies.get(extraKey).id)){
-                                outputString = outputString.concat(getString(R.string.definitelyContained)+" "+ getString(allergies.get(extraKey).id) + "\n");
-                                definitelyContained.add(allergies.get(extraKey).id);
-
-                            }
-                        }
-                        b = true;
-                        break;
-                    }
-                }
-                if(!b){
-                    for (String key : allergies.keySet() ) {
-
-                        if(string.contains(key)){
-
-                            allergies.get(key).found++;
-                            if(allergies.get(key).found == 1){
-                                outputString = outputString.concat(getString(R.string.probablyContained) + " "+
-                                        getString(allergies.get(key).id) + " " + getString(R.string.fromWord)
-                                        + " " + string + "\n");
-                                break;
-
-                            }
-                        }
-                        if (allergies.get(key).allPossibleDerivationsOfAllergen.contains(string)) {
-                            allergies.get(key).found++;
-                            if(allergies.get(key).found == 1) {
-                                outputString = outputString.concat(getString(R.string.probablyContained) + " "+
-                                        getString(allergies.get(key).id) + " " + getString(R.string.fromWord)
-                                        + " "  + string + "\n");
-                                break;
-                            }
-                        }
-                    }
-                }
-
-            }
-            boolean dontEat = false;
-            boolean incorrectLanguage = false;
-            for (String key : allergies.keySet()) {
-                if(allergies.get(key).found>0) {
-                    if(!Locale.getDefault().getLanguage().equals(allergies.get(key).language)) {
-                        if(allergies.containsKey(getString(allergies.get(key).id).toLowerCase())){
-                            allergies.get( getString(allergies.get(key).id).toLowerCase()).found += allergies.get(key).found;
-                            allergies.get(key).found = 0;
-                        }
-                    }
-                }
-            }
-            outputString = outputString.concat("\n");
-            for (String key : allergies.keySet()){
-
-                if(allergies.get(key).found>0){
-                    if(allergies.get(key).found==1){
-                        outputString = outputString.concat(getString(allergies.get(key).id)+ " " + getString(R.string.contained) + " "+
-                                allergies.get(key).found +" "+ getString(R.string.time) + ".\n");
-                        allergies.get(key).found = 0;
-                        dontEat = true;
-                    }
-                    else{
-
-                    //if(Locale.getDefault().getLanguage().equals(allergies.get(key).language)){
-                        outputString = outputString.concat(getString(allergies.get(key).id)+ " " + getString(R.string.contained) + " "+
-                                allergies.get(key).found +" "+ getString(R.string.times) + ".\n");
-                        allergies.get(key).found = 0;
-                        dontEat = true;
-                    }
-
-
-                }
-            }
-            if(dontEat){
-
-                outputString = outputString.concat(getString(R.string.dontUse) + "\n");
-                outputString = outputString.concat(getString(R.string.scannedTextBelow)+ "\n");
-                outputString = outputString.concat(getString(R.string.mightContainOther)+ "\n");
-                ((TextView) findViewById(R.id.textViewFoundAllergies)).setTextColor(Color.RED);
-                ((TextView) findViewById(R.id.textViewFoundAllergies)).setText(outputString);
-            }else{
-                outputString = outputString.concat(getString(R.string.mightContainAllergies)+ "\n");
-                outputString = outputString.concat(getString(R.string.youCanUse)+"\n");
-                outputString = outputString.concat(getString(R.string.scannedTextBelow)+"\n");
-                ((TextView) findViewById(R.id.textViewFoundAllergies)).setTextColor(getColor(R.color.colorAccent));
-                ((TextView) findViewById(R.id.textViewFoundAllergies)).setText(outputString);
-            }
-            allergicString = outputString;
-            allergic.setText(outputString);
-        }
         displayInterstitial();
+        ( findViewById(R.id.progressBar3)).setVisibility(View.VISIBLE);
+        new MyTask(this,allergic, (ProgressBar) findViewById(R.id.progressBar3)).execute(str);
+
     }
 
     public ArrayList<String> getDateString(){
@@ -495,7 +400,7 @@ public class StartPage extends AppCompatActivity
             final Resources res = getApplicationContext().getResources();
             res.updateConfiguration(config, res.getDisplayMetrics());
         } else if (id == R.id.history) {
-            fragment = new HistoryFragment(); setTitle("History");
+            fragment = new HistoryFragment(this); setTitle("History");
         } else if (id == R.id.languageMenu) {
 
             fragment = new SettingsFragment(); setTitle("Language");
@@ -566,6 +471,181 @@ public class StartPage extends AppCompatActivity
             String newString = date;
             newString = newString.concat(" " + string);
             this.string = newString;
+        }
+    }
+    private class MyTask extends AsyncTask<String, Integer, String> {
+        private StartPage mContext;
+        private TextView textView;
+        private ProgressBar viewById;
+
+        public MyTask(StartPage context, TextView textView, ProgressBar viewById) {
+            mContext = context;
+
+            this.textView = textView;
+            this.viewById = viewById;
+        }
+        // Runs in UI before background thread is called
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            // Do something like display a progress bar
+        }
+
+        // This is run in a background thread
+        @Override
+        protected String doInBackground(String... params) {
+            // get the string from params, which is an array
+            String str = params[0];
+            Log.d(TAG,"TIME");
+            String[] splitStr = str.split("\\s+");
+            Log.d(TAG,"TIMEFROMHISTORY");
+            ArrayList<Locale> listOfLanguages = new SettingsFragment(mContext).getCategories();
+            Log.d(TAG,"TIMEFROMHISTORY");
+            //// TODO: 2017-11-08 if language changed after implement new one
+            //arrayListAllergies = new AllergyFragment(this).getArrayListFromAllCheckedAllergies(listOfLanguages,StartPage.this,Locale.getDefault());
+
+            SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
+            Bundle bundle = mContext.getIntent().getExtras();
+            Log.d(TAG,"TIMEReceiveString");
+            arrayListAllergies = new AllergyFragment(mContext, listOfLanguages).getCategoriesFromOtherClass();
+            Log.d(TAG,"TIMEReceiveString");
+            String outputString = "";
+            boolean dontEat = false;
+            if(arrayListAllergies != null) {
+                Log.d(TAG,"TIMEpermutingstring");
+                HashMap<String, LangString> allergies = spellCheckAllergy.permuteStringi(mContext,arrayListAllergies);
+                Log.d(TAG,"TIMEpermutingstring");
+
+
+
+                boolean b = false;
+                int i =0;
+                for (String string : splitStr) {
+                    i++;
+                    publishProgress(splitStr.length, i);
+                    for (String extraKey : allergies.keySet()){
+                        if(extraKey.equals(string)){
+
+                            allergies.get(extraKey).found++;
+                            if(allergies.get(extraKey).found == 1){
+                                if(!definitelyContained.contains(allergies.get(extraKey).id)){
+                                    outputString = outputString.concat(getString(R.string.definitelyContained)+" "+ getString(allergies.get(extraKey).id) + "\n");
+                                    definitelyContained.add(allergies.get(extraKey).id);
+
+                                }
+                            }
+                            b = true;
+                            break;
+                        }
+                    }
+                    if(!b){
+                        for (String key : allergies.keySet() ) {
+
+                            if(string.contains(key)){
+
+                                allergies.get(key).found++;
+                                if(allergies.get(key).found == 1){
+                                    outputString = outputString.concat(getString(R.string.probablyContained) + " "+
+                                            getString(allergies.get(key).id) + " " + getString(R.string.fromWord)
+                                            + " " + string + "\n");
+                                    break;
+
+                                }
+                            }
+                            if (allergies.get(key).allPossibleDerivationsOfAllergen.contains(string)) {
+                                allergies.get(key).found++;
+                                if(allergies.get(key).found == 1) {
+                                    outputString = outputString.concat(getString(R.string.probablyContained) + " "+
+                                            getString(allergies.get(key).id) + " " + getString(R.string.fromWord)
+                                            + " "  + string + "\n");
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                }
+                for (String key : allergies.keySet()) {
+                    if(allergies.get(key).found>0) {
+                        if(!Locale.getDefault().getLanguage().equals(allergies.get(key).language)) {
+                            if(allergies.containsKey(getString(allergies.get(key).id).toLowerCase())){
+                                allergies.get( getString(allergies.get(key).id).toLowerCase()).found += allergies.get(key).found;
+                                allergies.get(key).found = 0;
+                            }
+                        }
+                    }
+                }
+                outputString = outputString.concat("\n");
+                for (String key : allergies.keySet()){
+
+                    if(allergies.get(key).found>0){
+                        if(allergies.get(key).found==1){
+                            outputString = outputString.concat(getString(allergies.get(key).id)+ " " + getString(R.string.contained) + " "+
+                                    allergies.get(key).found +" "+ getString(R.string.time) + ".\n");
+                            allergies.get(key).found = 0;
+                            dontEat = true;
+                        }
+                        else{
+
+                            //if(Locale.getDefault().getLanguage().equals(allergies.get(key).language)){
+                            outputString = outputString.concat(getString(allergies.get(key).id)+ " " + getString(R.string.contained) + " "+
+                                    allergies.get(key).found +" "+ getString(R.string.times) + ".\n");
+                            allergies.get(key).found = 0;
+                            dontEat = true;
+                        }
+
+
+                    }
+                }
+
+            }
+            if(dontEat){
+                outputString = outputString.concat("1");
+            }else{
+                outputString = outputString.concat("0");
+            }
+            return outputString;
+        }
+
+        // This is called from background thread but runs in UI
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            Log.d(TAG, String.valueOf(values[1]));
+            double i = ((double)values[1]/(double)values[0]) * 100;
+
+            viewById.setProgress((int) i);
+            Log.d(TAG, String.valueOf(i));
+            if(i == 100){
+                viewById.setVisibility(View.INVISIBLE);
+            }
+            // Do things like update the progress bar
+        }
+
+        // This runs in UI when background thread finishes
+        @Override
+        protected void onPostExecute(String outputString) {
+            super.onPostExecute(outputString);
+            String dontEat = outputString.substring(outputString.length()-1);
+            outputString = outputString.substring(0, outputString.length() -1);
+            if(dontEat.equals("1")){
+
+                outputString = outputString.concat(getString(R.string.dontUse) + "\n");
+                outputString = outputString.concat(getString(R.string.scannedTextBelow)+ "\n");
+                outputString = outputString.concat(getString(R.string.mightContainOther)+ "\n");
+                textView.setTextColor(Color.RED);
+                textView.setText(outputString);
+            }else{
+                outputString = outputString.concat(getString(R.string.mightContainAllergies)+ "\n");
+                outputString = outputString.concat(getString(R.string.youCanUse)+"\n");
+                outputString = outputString.concat(getString(R.string.scannedTextBelow)+"\n");
+                textView.setTextColor(getColor(R.color.colorAccent));
+                textView.setText(outputString);
+            }
+            allergicString = outputString;
+            allergic.setText(outputString);
+            // Do things like hide the progress bar or change a TextView
         }
     }
 }

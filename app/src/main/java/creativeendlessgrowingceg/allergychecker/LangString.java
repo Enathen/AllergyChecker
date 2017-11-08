@@ -8,21 +8,21 @@ import java.util.HashSet;
 
 public class LangString {
     String language;
-    String string;
+
     boolean on;
     int id;
     int found;
     HashSet<String> allPossibleDerivationsOfAllergen;
-    public LangString(String language, String string, boolean on, int id) {
+    public LangString(String language, boolean on, int id) {
         this.language = language;
-        this.string = string;
+
         this.on = on;
         this.id = id;
 
     }
-    public LangString(String language, String string, boolean on, int id,HashSet<String> allPossibleDerivationsOfAllergen) {
+    public LangString(String language, boolean on, int id,HashSet<String> allPossibleDerivationsOfAllergen) {
         this.language = language;
-        this.string = string;
+
         this.on = on;
         this.id = id;
 

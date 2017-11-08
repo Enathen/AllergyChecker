@@ -48,8 +48,17 @@ public class HistoryFragment extends Fragment {
     private FrameLayout parentFrameLayout;
     private LinearLayout parentLinearLayout;
     private Bundle savedInstanceState;
+    private StartPage startPage;
+
+    public HistoryFragment(StartPage startPage) {
+
+        this.startPage = startPage;
+    }
     public HistoryFragment() {
         // Required empty public constructor
+    }
+
+    public HistoryFragment(HistoryFragment historyFragment) {
     }
 
 
@@ -62,8 +71,8 @@ public class HistoryFragment extends Fragment {
      * @return A new instance of fragment test.
      */
     // TODO: Rename and change types and number of parameters
-    public static HistoryFragment newInstance(String param1, String param2) {
-        HistoryFragment fragment = new HistoryFragment();
+    public  HistoryFragment newInstance(String param1, String param2) {
+        HistoryFragment fragment = new HistoryFragment(this);
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -158,7 +167,6 @@ public class HistoryFragment extends Fragment {
                 newLinearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         Log.d(TAG,"TIMEHISTORY");
                         Locale.setDefault(loadLocale());
                         Configuration config = new Configuration();
@@ -166,7 +174,6 @@ public class HistoryFragment extends Fragment {
                         getActivity().getApplicationContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
                         Intent intent = new Intent(getActivity(), StartPage.class);
                         intent.putExtra("HistoryFragment", s.substring(20));
-
                         startActivity(intent);
 
                     }

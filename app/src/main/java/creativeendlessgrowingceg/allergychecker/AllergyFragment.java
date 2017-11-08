@@ -33,7 +33,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 
@@ -61,7 +60,7 @@ public class AllergyFragment extends Fragment {
     private LinearLayout parentLinearLayout;
     private OnFragmentInteractionListener mListener;
     private HashMap<String,ArrayList<LinearLayout>> Categories = new HashMap<>();
-    private ConcurrentHashMap<Integer,LanguageString> hashMapCategoriesAllergy = new ConcurrentHashMap<>();
+    private HashMap<Integer,Boolean> hashMapCategoriesAllergy = new HashMap<>();
     private HashMap<String,LinearLayout> linearLayoutParents = new HashMap<>();
     private HashMap<String,ArrayList<CheckBox>> checkBoxes = new HashMap<>();
     private HashMap<String,CheckBox> parentCheckBox = new HashMap<>();
@@ -91,6 +90,15 @@ public class AllergyFragment extends Fragment {
     public AllergyFragment(StartPage startPage, HashMap<Integer,ImageView> imageViewHashMap,ArrayList<Locale> localeArrayList) {
         this.startPage = startPage;
         this.imageViewHashMap = imageViewHashMap;
+        if(localeArrayList.isEmpty()){
+            localeArrayList.add(Locale.getDefault());
+        }
+        this.localeArrayList = localeArrayList;
+    }
+
+    public AllergyFragment(StartPage startPage, ArrayList<Locale> localeArrayList) {
+        this.startPage = startPage;
+        startPageFile = new File(startPage.getFilesDir(),"data.txt");
         if(localeArrayList.isEmpty()){
             localeArrayList.add(Locale.getDefault());
         }
@@ -142,7 +150,7 @@ public class AllergyFragment extends Fragment {
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
         AllergyList allergylist = new AllergyList(getContext());
-        getCategories();
+        //getCategories();
         addCategory(inflater, allergylist.getArrayListFish(), "Fish",R.string.fish,R.drawable.fish);
         addCategory(inflater, allergylist.getArrayListFruit(), "Fruit", R.string.fruit,R.drawable.fruit);
         addCategory(inflater, allergylist.getArrayListGluten(), "Gluten",R.string.gluten, R.drawable.wheat);
@@ -220,7 +228,7 @@ public class AllergyFragment extends Fragment {
 
             if(!hashMapCategoriesAllergy.containsKey(key)){
 
-                hashMapCategoriesAllergy.put(key,new LanguageString(true,key,mainCat));
+                hashMapCategoriesAllergy.put(key,true);
                 Log.d(TAG,"Put in hashMapCategoriesAllergy: " + getStringByLocal(getActivity(),key,Locale.getDefault().getLanguage()));
             }
         }
@@ -241,7 +249,7 @@ public class AllergyFragment extends Fragment {
             }
         });
 
-        hashMapCategoriesAllergy.put(name,new LanguageString(false,name,pictureId));
+        hashMapCategoriesAllergy.put(name,false);
         parentCheckBoxOnClickListener(checkboxRowCategory,key,name);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -264,7 +272,7 @@ public class AllergyFragment extends Fragment {
                 parentSetOnClick = true;
                 if(isChecked) {
 
-                    hashMapCategoriesAllergy.get(parentKey).on=true;
+                    hashMapCategoriesAllergy.put(parentKey,true);
                     for (CheckBox checkBox : checkBoxes.get(key)) {
 
                         checkBox.setChecked(true);
@@ -273,7 +281,7 @@ public class AllergyFragment extends Fragment {
 
                 }else {
 
-                    hashMapCategoriesAllergy.get(parentKey).on=false;
+                    hashMapCategoriesAllergy.put(parentKey,false);
                     for (CheckBox checkBox : checkBoxes.get(key)) {
                         checkBox.setChecked(false);
                     }
@@ -288,16 +296,11 @@ public class AllergyFragment extends Fragment {
         });
     }
     public void addItemToHashMap(int id,int pictureId){
-
-        if(!hashMapCategoriesAllergy.containsKey(id)){
-            hashMapCategoriesAllergy.put(id,new LanguageString(true,id,pictureId));
-        }
-        hashMapCategoriesAllergy.get(id).on=true;
-
+        hashMapCategoriesAllergy.put(id,true);
     }
-    public void removeItemToHashMap(int string){
-        Log.d(TAG,getString(string));
-        hashMapCategoriesAllergy.get(string).on = false;
+    public void removeItemToHashMap(int id){
+
+        hashMapCategoriesAllergy.put(id,false);
 
     }
     private void seeIfAllCheckboxIsChecked(CheckBox checkboxRowCategory, String key,int name) {
@@ -354,13 +357,13 @@ public class AllergyFragment extends Fragment {
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                   // Log.d(TAG,"NUMBER2:" + arrayListCat.id + "name: " + arrayListCat.ingredient);
+                    // Log.d(TAG,"NUMBER2:" + arrayListCat.id + "name: " + arrayListCat.ingredient);
 
-                        for (CheckBox box : sameItemDifferentCategories.get(arrayListCat.id)) {
-                            if(!box.equals(checkBox)){
-                                box.setChecked(isChecked);
-                            }
+                    for (CheckBox box : sameItemDifferentCategories.get(arrayListCat.id)) {
+                        if(!box.equals(checkBox)){
+                            box.setChecked(isChecked);
                         }
+                    }
 
                     checkBoxLeftMarginSaveString(isChecked,arrayListCat.id,parentPicture);
                     parentCheckBox.get(key).setOnCheckedChangeListener(null);
@@ -391,7 +394,7 @@ public class AllergyFragment extends Fragment {
 
 
     }
-    private void setProfileAllergies() {
+    /*private void setProfileAllergies() {
         String alreadyString = "00000000";
         ArrayList<Integer> alreadySelectedImages = new ArrayList<>();
         int i = 0;
@@ -417,11 +420,11 @@ public class AllergyFragment extends Fragment {
             }
         }
     }
-
+*/
     public void saveCategories(){
         final Context context = this.getContext();
         new MyTask().execute("Save");
-        setProfileAllergies();
+        //setProfileAllergies();
     }
 
 
@@ -443,7 +446,7 @@ public class AllergyFragment extends Fragment {
                 objectInputStream.close();
                 return;
             }
-            hashMapCategoriesAllergy = (ConcurrentHashMap<Integer, LanguageString>) objectInputStream.readObject();
+            hashMapCategoriesAllergy = (HashMap<Integer, Boolean>) objectInputStream.readObject();
             Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
             objectInputStream.close();
             Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
@@ -453,17 +456,37 @@ public class AllergyFragment extends Fragment {
 
 
     }
-    public void getCategoriesFromOtherClass(){
+    public HashMap<Integer,LanguageString> getCategoriesFromOtherClass(){
         FileInputStream fileInputStream;
+        HashMap<Integer,LanguageString> hashMap = new HashMap<>();
         try {
             fileInputStream = new FileInputStream(startPageFile);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            hashMapCategoriesAllergy = (ConcurrentHashMap<Integer, LanguageString>) objectInputStream.readObject();
+            hashMapCategoriesAllergy = (HashMap<Integer, Boolean>) objectInputStream.readObject();
+            SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
+            for (int id : hashMapCategoriesAllergy.keySet()) {
+                if(hashMapCategoriesAllergy.get(id)){
+                    for (Locale locale : localeArrayList) {
+                        Log.d(TAG,getStringByLocal(startPage, id, locale.getLanguage()));
+                        Log.d(TAG,locale.getLanguage());
+                        HashSet<String> string = spellCheckAllergy.permuteString(locale.getLanguage(),
+                                getStringByLocal(startPage, id,
+                                        locale.getLanguage()));
+                        // TODO: 2017-11-08 WRONG DRAWABLE
+                        LanguageString languageString = new LanguageString(true,id,id);
+                        languageString.allPossibleWords.put(locale.getLanguage(),string);
+                        hashMap.put(id,languageString);
+
+                    }
+                }
+
+            }
             objectInputStream.close();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
+        return hashMap;
     }
     private void saveCategoriesFromOtherClass() {
         FileOutputStream fileOutputStream;
@@ -481,13 +504,13 @@ public class AllergyFragment extends Fragment {
      * all checked allergies including different languages gets selected
      * @return
      */
-    public HashMap<String,LangString> getArrayListFromAllCheckedAllergies(ArrayList<Locale> localeArray, Activity context, Locale lDefault){
+    /*public HashMap<String,LangString> getArrayListFromAllCheckedAllergies(ArrayList<Locale> localeArray, Activity context, Locale lDefault){
         FileInputStream fileInputStream;
         try {
             fileInputStream = new FileInputStream(startPageFile);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            hashMapCategoriesAllergy = (ConcurrentHashMap<Integer, LanguageString>) objectInputStream.readObject();
+            hashMapCategoriesAllergy = (HashMap<Integer, LanguageString>) objectInputStream.readObject();
             objectInputStream.close();
             HashMap<String, LangString> hashMap = new HashMap<>();
 
@@ -518,7 +541,7 @@ public class AllergyFragment extends Fragment {
             e.printStackTrace();
         }
         return null;
-    }
+    }*/
     @NonNull
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static String getStringByLocal(Activity context, int id, String locale) {
@@ -576,34 +599,7 @@ public class AllergyFragment extends Fragment {
         saveCategories();
         mListener = null;
     }
-    /*    public void insertNewLanguage(SettingsFragment settingsFragment, String locale) {
-        getCategoriesFromOtherClass();
-        HashMap<String, LanguageString> hashClass = new HashMap<>();
-        for (LanguageString string : hashMapCategoriesAllergy.values()) {
-            if(!string.language.equals(locale)){
-                boolean open = true;
-                for (LanguageString languageString : hashMapCategoriesAllergy.values()) {
-                    if(string.id == languageString.id && languageString.language.equals(locale)){
-                        open = false;
-                    }
-                }
-                if (open){
-                    hashClass.put(settingsFragment.getString(string.id),
-                            new LanguageString(locale,settingsFragment.getString(string.id), string.on,string.id));
 
-
-
-                }
-            }
-        }
-        for (LanguageString languageString : hashClass.values()) {
-            Log.d(TAG,settingsFragment.getString(languageString.id).toLowerCase());
-            hashMapCategoriesAllergy.put(settingsFragment.getString(languageString.id).toLowerCase(),
-                    new LanguageString(locale,settingsFragment.getString(languageString.id).toLowerCase(),
-                            languageString.on,languageString.id));
-        }
-        saveCategoriesFromOtherClass();
-    }*/
 
 
 
@@ -648,50 +644,19 @@ public class AllergyFragment extends Fragment {
         protected String doInBackground(String... params) {
             // get the string from params, which is an array
             String myString = params[0];
+
             try {
                 FileOutputStream fileOutputStream;
-
                 File file = new File(startPage.getFilesDir(), "data.txt");
-
-
                 fileOutputStream = new FileOutputStream(file, false);
-
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-                Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
-
-                int i = 0;
-
-                for (LanguageString languageString : hashMapCategoriesAllergy.values()) {
-                    i++;
-                    publishProgress(hashMapCategoriesAllergy.size(), i);
-                    for (Locale locale : localeArrayList) {
-                        SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
-                        if (languageString.allPossibleWords.size() == 0) {
-                            Log.d(TAG,getStringByLocal(startPage, languageString.id, locale.getLanguage()));
-                            Log.d(TAG,locale.getLanguage());
-                            HashSet<String> string = spellCheckAllergy.permuteString(locale.getLanguage(),
-                                    getStringByLocal(startPage, languageString.id,
-                                            locale.getLanguage()));
-                            languageString.allPossibleWords.put(locale.getLanguage(),string);
-                        }else{
-                            if(!languageString.allPossibleWords.containsKey(locale.getLanguage())){
-                                Log.d(TAG,"NEW lang "+ getStringByLocal(startPage, languageString.id, locale.getLanguage()));
-                                languageString.allPossibleWords.put(locale.getLanguage(),
-                                        spellCheckAllergy.permuteString(locale.getLanguage(),
-                                                getStringByLocal(startPage, languageString.id,
-                                                        locale.getLanguage())));
-                            }
-                        }
-                    }
-                }
-
                 objectOutputStream.writeObject(hashMapCategoriesAllergy);
-                Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
                 objectOutputStream.close();
-                Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
+                Log.d(TAG,"THREAD FINITO"+ Thread.currentThread().getName());
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
 
             return "this string is passed to onPostExecute";
         }
@@ -700,9 +665,9 @@ public class AllergyFragment extends Fragment {
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
-          /*  Log.d(TAG, String.valueOf(values[1]));
+            Log.d(TAG, String.valueOf(values[1]));
             double i = ((double)values[1]/(double)values[0]) * 100;
-            Log.d(TAG, String.valueOf(i));*/
+            Log.d(TAG, String.valueOf(i));
             // Do things like update the progress bar
         }
 

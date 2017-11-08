@@ -1,9 +1,15 @@
 package creativeendlessgrowingceg.allergychecker;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.res.Configuration;
+import android.os.Build;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 
 /**
  * Created by Enathen on 2017-10-19.
@@ -91,9 +97,14 @@ public class SpellCheckAllergy {
         HashSet<String> arrayListNew = new HashSet<>();
         return AlgorithmString(string,arrayListNew,language);
     }
-    public HashMap<String,LangString> permuteString(HashMap<String,LangString> hashMap){
-        this.hashMap = hashMap;
-        for (String s : hashMap.keySet()) {
+    public HashMap<String,LangString> permuteStringi(Activity context,HashMap<Integer,LanguageString> hashMap){
+        for (LanguageString languageString : hashMap.values()) {
+            HashMap<String,HashSet<String>> allPossibleWords = languageString.allPossibleWords;
+            for (String strings : allPossibleWords.keySet()) {
+                this.hashMap.put(getStringByLocal(context,languageString.id,strings),new LangString(strings,true,languageString.id,allPossibleWords.get(strings)));
+            }
+        }
+        for (String s : this.hashMap.keySet()) {
             Log.d(TAG, s);
         }
         convertString();
@@ -103,7 +114,13 @@ public class SpellCheckAllergy {
 
         return string;
     }
-
+    @NonNull
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static String getStringByLocal(Activity context, int id, String locale) {
+        Configuration configuration = new Configuration(context.getResources().getConfiguration());
+        configuration.setLocale(new Locale(locale));
+        return context.createConfigurationContext(configuration).getResources().getString(id).toLowerCase();
+    }
 
 
 }

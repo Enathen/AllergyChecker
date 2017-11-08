@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.ArraySet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,13 +23,10 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 
 /**
@@ -46,6 +44,7 @@ public class SettingsFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String TAG = "LanguageFragment";
+
     private File startPageFile;
 
     // TODO: Rename and change types of parameters
@@ -59,6 +58,7 @@ public class SettingsFragment extends Fragment {
     private ArrayList<RadioButtons> radioButtons = new ArrayList<>();
     private ArrayList<CheckBoxes> checkBoxes = new ArrayList<>();
     SharedPreferences preference;
+    private StartPage startpage;
 
     public SettingsFragment(Splashscreen startPage) {
         startPageFile = new File(startPage.getFilesDir(),"language.txt");
@@ -66,6 +66,7 @@ public class SettingsFragment extends Fragment {
     }
     public SettingsFragment(StartPage startPage) {
         startPageFile = new File(startPage.getFilesDir(),"language.txt");
+        this.startpage = startPage;
         preference = PreferenceManager.getDefaultSharedPreferences(startPage);
     }
     public SettingsFragment() {
@@ -210,16 +211,16 @@ public class SettingsFragment extends Fragment {
         });
         ((CheckBox)parentLinearLayout.findViewById(R.id.checkBoxRowCategory)).
                 setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                for (LinearLayout linearLayout : arrayListLinearLayout) {
-                    ((CheckBox)linearLayout.findViewById(R.id.checkBoxRowLeftMargin)).setChecked(isChecked);
-                }
-                editor.putBoolean(String.valueOf(R.string.languageFrom),isChecked);
-                editor.apply();
-                saveCategories();
-            }
-        });
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        for (LinearLayout linearLayout : arrayListLinearLayout) {
+                            ((CheckBox)linearLayout.findViewById(R.id.checkBoxRowLeftMargin)).setChecked(isChecked);
+                        }
+                        editor.putBoolean(String.valueOf(R.string.languageFrom),isChecked);
+                        editor.apply();
+                        saveCategories();
+                    }
+                });
 
         return topLinearLayout;
     }
@@ -271,9 +272,9 @@ public class SettingsFragment extends Fragment {
                 public void onClick(View v) {
                     onRadioButtonClicked(v,editor);
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-                        SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
-                        sharedPreferencesEditor.putString("getLanguage", languagesClass.locale.getLanguage());
-                        sharedPreferencesEditor.apply();
+                    SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+                    sharedPreferencesEditor.putString("getLanguage", languagesClass.locale.getLanguage());
+                    sharedPreferencesEditor.apply();
                     Locale.setDefault(languagesClass.locale);
                     Configuration config = new Configuration();
                     config.setLocale(languagesClass.locale);
@@ -307,42 +308,32 @@ public class SettingsFragment extends Fragment {
     }
 
     public void saveCategories(){
+        SharedPreferences.Editor sharedPreferencesEditor =
+                PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
 
-        FileOutputStream fileOutputStream;
 
-        File file = new File(this.getContext().getFilesDir(), "language.txt");
-        ArrayList<Locale> locales = new ArrayList<>();
+        Set<String> set = new ArraySet<>();
 
         for (CheckBoxes checkBox : checkBoxes) {
             if(checkBox.checkBox.isChecked()){
-                locales.add(checkBox.locale);
+                set.add(checkBox.locale.getLanguage());
             }
         }
-        try {
-            fileOutputStream = new FileOutputStream(file,false);
-            ObjectOutputStream objectOutputStream= new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(locales);
-            objectOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        sharedPreferencesEditor.putStringSet("languageSet", set);
+        sharedPreferencesEditor.apply();
+
 
     }
     public ArrayList<Locale> getCategories(){
-        FileInputStream fileInputStream;
-        ArrayList<Locale> locales = new ArrayList<>();
-        try {
-            fileInputStream = new FileInputStream(startPageFile);
 
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-
-            locales = ( ArrayList<Locale>) objectInputStream.readObject();
-            objectInputStream.close();
-            return locales;
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
+        SharedPreferences sp = startpage.getSharedPreferences("languageSet", Context.MODE_PRIVATE);
+        //NOTE: if shared preference is null, the method return empty Hashset and not null
+        Set<String> set = sp.getStringSet("languageSet", new HashSet<String>());
+        ArrayList<Locale> arrayList = new ArrayList<>();
+        for (String s : set) {
+            arrayList.add(new Locale(s));
         }
-        return locales;
+        return arrayList;
     }
     public void onRadioButtonClicked(View view, SharedPreferences.Editor editor) {
         // Is the button now checked?

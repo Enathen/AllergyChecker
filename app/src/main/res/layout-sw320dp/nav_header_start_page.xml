@@ -16,10 +16,11 @@
 
 
     <LinearLayout
+        android:id="@+id/LinLayHorNavHeadStartPage"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:orientation="horizontal"
 
+        android:orientation="horizontal"
         android:paddingBottom="10dp">
 
         <ImageView

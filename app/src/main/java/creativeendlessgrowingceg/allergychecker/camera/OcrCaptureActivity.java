@@ -46,9 +46,11 @@ import com.google.android.gms.vision.text.TextRecognizer;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import creativeendlessgrowingceg.allergychecker.R;
+import creativeendlessgrowingceg.allergychecker.SettingsFragment;
 import creativeendlessgrowingceg.allergychecker.StartPage;
 import creativeendlessgrowingceg.allergychecker.camera.ui.CameraSource;
 import creativeendlessgrowingceg.allergychecker.camera.ui.CameraSourcePreview;
@@ -346,18 +348,9 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         if (!graphic1.isEmpty()) {
             textTapped = "";
             final Set<OcrGraphic> finalGraphic = graphic1;
-            int size = finalGraphic.size();
-            int i = 0;
             Log.d(TAG,"TIME");
             for (OcrGraphic ocrGraphic : finalGraphic) {
-                i++;
-                if(i%10 == 0){
-                    Toast.makeText(
-                            OcrCaptureActivity.this,
-                            "Loading: " + i/size*(100) + "%",
-                            Toast.LENGTH_SHORT
-                    ).show();
-                }
+
 
                 List<? extends Text> textComponents = ocrGraphic.getComponents();
                 Log.d(TAG, "text data is being saved! " + ocrGraphic.getComponents().size());
@@ -378,7 +371,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                     }
                 }
             }
-            Log.d(TAG,"TIME");
+            Log.d(TAG,"SWAGTIME");
 
 
 
@@ -394,7 +387,11 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         }
         return textTapped != null;
     }
-
+    private Locale loadLocale() {
+        Locale locale = new Locale(new SettingsFragment(this).getLanguageFromLFragment(this));
+        Log.d(TAG,locale.getLanguage());
+        return locale;
+    }
     private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
 
         @Override

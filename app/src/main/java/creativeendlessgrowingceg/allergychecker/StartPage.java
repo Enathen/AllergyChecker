@@ -35,7 +35,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 
-import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -81,11 +81,13 @@ public class StartPage extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
+
         //findViewById(R.id.imageViewNav1).setBackgroundResource(R.drawable.emptyborder);
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
         // Check if we need to display our OnboardingFragment
-
+       
+        Log.d(TAG,Locale.getDefault().getLanguage());
         if (!sharedPreferences.getBoolean("firstTime", false)) {
             startActivity(new Intent(this, OnboardingPagerActivity.class));
             SharedPreferences.Editor sharedPreferencesEditor =
@@ -93,8 +95,6 @@ public class StartPage extends AppCompatActivity
             sharedPreferencesEditor.putBoolean(
                     "firstTime", true);
             sharedPreferencesEditor.apply();
-
-
         }
 
 
@@ -141,10 +141,12 @@ public class StartPage extends AppCompatActivity
 
             }
         });
+        Log.d(TAG,this.getResources().getConfiguration().getLocales().get(0).getLanguage());
         Intent intent = getIntent();
         String str = intent.getStringExtra("location");
         suggestions = (TextView) findViewById(R.id.ingredientsTextView);
         allergic = (TextView) findViewById(R.id.textViewFoundAllergies);
+        Log.d(TAG,this.getResources().getConfiguration().getLocales().get(0).getLanguage());
 
         if(str != null){
 
@@ -166,11 +168,8 @@ public class StartPage extends AppCompatActivity
 
             newString = str;
             str = str.toLowerCase();
-            Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.DAY_OF_MONTH, 10);
-            Date date = calendar.getTime();
-            String formattedDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
-            DateString dateString = new DateString(formattedDate,str);
+
+            DateString dateString = new DateString(str);
             dateStrings = getArray();
             Log.d(TAG, String.valueOf(dateStrings.size()));
             dateStrings.add(dateString.string);
@@ -198,7 +197,13 @@ public class StartPage extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        setProfilePicture();
     }
+
+    private void setProfilePicture() {
+        new AllergyFragment(this,getImageViewHashMap(this),new SettingsFragment(this).getCategories()).setProfilePic();
+    }
+
 
     private void displayInterstitial() {
         interstitialAd.loadAd(new AdRequest.Builder().addTestDevice("79C8186833AA41CD2C967FE87614751A").build());
@@ -239,6 +244,15 @@ public class StartPage extends AppCompatActivity
     private void checkStringAgainstAllergies(String str) {
         displayInterstitial();
         ( findViewById(R.id.progressBar3)).setVisibility(View.VISIBLE);
+
+        Locale locale = new Locale(new SettingsFragment(this).getLanguageFromLFragment(this));
+        final Locale newLocale = new Locale(locale.getLanguage());
+        Locale.setDefault(newLocale);
+        final Configuration config = new Configuration();
+        config.locale = newLocale;
+
+        final Resources res = this.getResources();
+        res.updateConfiguration(config, res.getDisplayMetrics());
         new MyTask(this,allergic, (ProgressBar) findViewById(R.id.progressBar3)).execute(str);
 
     }
@@ -402,20 +416,8 @@ public class StartPage extends AppCompatActivity
 
             fragment = new SettingsFragment(); setTitle("Language");
         }else if (id == R.id.allergies) {
-            HashMap<Integer,ImageView> imageViewHashMap = new HashMap<>();
 
-
-            imageViewHashMap.put(0, (ImageView) findViewById(R.id.imageViewNav1));
-            imageViewHashMap.put(1, (ImageView) findViewById(R.id.imageViewNav2));
-            imageViewHashMap.put(2, (ImageView) findViewById(R.id.imageViewNav3));
-            imageViewHashMap.put(3, (ImageView) findViewById(R.id.imageViewNav4));
-            imageViewHashMap.put(4, (ImageView) findViewById(R.id.imageViewNav5));
-            imageViewHashMap.put(5, (ImageView) findViewById(R.id.imageViewNav6));
-            imageViewHashMap.put(6, (ImageView) findViewById(R.id.imageViewNav7));
-            imageViewHashMap.put(7, (ImageView) findViewById(R.id.imageViewNav8));
-            ArrayList<Locale> arrayList = new SettingsFragment(this).getCategories();
-
-            fragment = new AllergyFragment(this,imageViewHashMap,arrayList); setTitle("Allergies");
+            fragment = new AllergyFragment(this,getImageViewHashMap(),new SettingsFragment(this).getCategories()); setTitle("Allergies");
         }
         else if (id == R.id.nav_share) {
             Intent i = new Intent(Intent.ACTION_SEND);
@@ -443,8 +445,36 @@ public class StartPage extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    private HashMap<Integer,ImageView> getImageViewHashMap(StartPage startPage) {
+        HashMap<Integer,ImageView> imageViewHashMap = new HashMap<>();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View parentView =  navigationView.getHeaderView(0);
+        imageViewHashMap.put(0, (ImageView) parentView.findViewById(R.id.imageViewNav1));
+        imageViewHashMap.put(0, (ImageView) parentView.findViewById(R.id.imageViewNav1));
+        imageViewHashMap.put(1, (ImageView) parentView.findViewById(R.id.imageViewNav2));
+        imageViewHashMap.put(2, (ImageView) parentView.findViewById(R.id.imageViewNav3));
+        imageViewHashMap.put(3, (ImageView) parentView.findViewById(R.id.imageViewNav4));
+        imageViewHashMap.put(4, (ImageView) parentView.findViewById(R.id.imageViewNav5));
+        imageViewHashMap.put(5, (ImageView) parentView.findViewById(R.id.imageViewNav6));
+        imageViewHashMap.put(6, (ImageView) parentView.findViewById(R.id.imageViewNav7));
+        imageViewHashMap.put(7, (ImageView) parentView.findViewById(R.id.imageViewNav8));
+        return imageViewHashMap;
+    }
+
+    public HashMap<Integer,ImageView> getImageViewHashMap(){
+        HashMap<Integer,ImageView> imageViewHashMap = new HashMap<>();
 
 
+        imageViewHashMap.put(0, (ImageView) findViewById(R.id.imageViewNav1));
+        imageViewHashMap.put(1, (ImageView) findViewById(R.id.imageViewNav2));
+        imageViewHashMap.put(2, (ImageView) findViewById(R.id.imageViewNav3));
+        imageViewHashMap.put(3, (ImageView) findViewById(R.id.imageViewNav4));
+        imageViewHashMap.put(4, (ImageView) findViewById(R.id.imageViewNav5));
+        imageViewHashMap.put(5, (ImageView) findViewById(R.id.imageViewNav6));
+        imageViewHashMap.put(6, (ImageView) findViewById(R.id.imageViewNav7));
+        imageViewHashMap.put(7, (ImageView) findViewById(R.id.imageViewNav8));
+        return imageViewHashMap;
+    }
     @Override
     public void onFragmentInteraction(Uri uri) {
 
@@ -464,8 +494,16 @@ public class StartPage extends AppCompatActivity
     public class DateString{
         String string;
 
-        DateString(String date, String string){
-            String newString = date;
+        DateString(String string){
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DAY_OF_MONTH, 10);
+            Date date = calendar.getTime();
+
+            String dateTime = DateFormat.getDateInstance(DateFormat.SHORT).format(date);
+            dateTime = dateTime.concat(" " +DateFormat.getTimeInstance(DateFormat.MEDIUM).format(date));
+
+            Log.d(TAG,"DATE:"+ dateTime);
+            String newString = dateTime;
             newString = newString.concat(" " + string);
             this.string = newString;
         }
@@ -494,6 +532,10 @@ public class StartPage extends AppCompatActivity
         protected String doInBackground(String... params) {
             // get the string from params, which is an array
             String str = params[0];
+            Log.d(TAG,mContext.getResources().getConfiguration().getLocales().get(0).getLanguage());
+            mContext.getResources().getConfiguration().setLocale(new Locale("en"));
+            Locale.setDefault(new Locale("en"));
+            Log.d(TAG,mContext.getResources().getConfiguration().getLocales().get(0).getLanguage());
             Log.d(TAG,"TIME");
             String[] splitStr = str.split("\\s+");
             Log.d(TAG,"TIMEFROMHISTORY");
@@ -609,11 +651,11 @@ public class StartPage extends AppCompatActivity
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
-            Log.d(TAG, String.valueOf(values[1]));
+
             double i = ((double)values[1]/(double)values[0]) * 100;
 
             viewById.setProgress((int) i);
-            Log.d(TAG, String.valueOf(i));
+
             if(i == 100){
                 viewById.setVisibility(View.INVISIBLE);
             }

@@ -8,6 +8,7 @@ import android.util.Log;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -65,6 +66,10 @@ public class ExampleInstrumentedTest {
         }
     }
     @Test
-    public void idString(){
+    public void DateCHecker(){
+        Calendar calendar = Calendar.getInstance();
+        Date date = calendar.getTime();
+        Log.d(TAG, DateFormat.getDateInstance(DateFormat.SHORT).format(date));
+        Log.d(TAG, DateFormat.getTimeInstance(DateFormat.SHORT).format(date));
     }
 }

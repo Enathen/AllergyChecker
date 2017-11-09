@@ -65,7 +65,8 @@ public class AllergyFragment extends Fragment {
     private HashMap<String,ArrayList<CheckBox>> checkBoxes = new HashMap<>();
     private HashMap<String,CheckBox> parentCheckBox = new HashMap<>();
     private HashMap<Integer,ArrayList<CheckBox>> sameItemDifferentCategories = new HashMap<>();
-    private SharedPreferences prefs;
+    private HashMap<Integer,Integer> profileSavePicture = new HashMap<>();
+
     private File startPageFile;
     private StartPage startPage;
     HashMap<Integer,ImageView> imageViewHashMap;
@@ -80,9 +81,7 @@ public class AllergyFragment extends Fragment {
 
 
 
-    public AllergyFragment(Context context) {
-        startPageFile = new File(context.getFilesDir(),"data.txt");
-    }
+
     public AllergyFragment() {
         // Required empty public constructor
     }
@@ -90,6 +89,7 @@ public class AllergyFragment extends Fragment {
     public AllergyFragment(StartPage startPage, HashMap<Integer,ImageView> imageViewHashMap,ArrayList<Locale> localeArrayList) {
         this.startPage = startPage;
         this.imageViewHashMap = imageViewHashMap;
+        startPageFile = new File(startPage.getFilesDir(),"profile.txt");
         if(localeArrayList.isEmpty()){
             localeArrayList.add(Locale.getDefault());
         }
@@ -213,7 +213,7 @@ public class AllergyFragment extends Fragment {
                 }
                 else{
                     //getCategories();
-                    removeItemToHashMap(name);
+                    removeItemToHashMap(name,pictureId);
                     //saveCategories();
                 }
             }
@@ -227,7 +227,7 @@ public class AllergyFragment extends Fragment {
         if(checkBox.isChecked()){
 
             if(!hashMapCategoriesAllergy.containsKey(key)){
-
+                profileSavePicture.put(key,mainCat);
                 hashMapCategoriesAllergy.put(key,true);
                 Log.d(TAG,"Put in hashMapCategoriesAllergy: " + getStringByLocal(getActivity(),key,Locale.getDefault().getLanguage()));
             }
@@ -297,10 +297,17 @@ public class AllergyFragment extends Fragment {
     }
     public void addItemToHashMap(int id,int pictureId){
         hashMapCategoriesAllergy.put(id,true);
+        profileSavePicture.put(id,pictureId);
     }
-    public void removeItemToHashMap(int id){
+    public void removeItemToHashMap(int id,int pictureId){
+        if(profileSavePicture.containsKey(id)){
+            profileSavePicture.remove(id);
 
-        hashMapCategoriesAllergy.put(id,false);
+        }
+        if(hashMapCategoriesAllergy.containsKey(id)){
+            hashMapCategoriesAllergy.put(id,false);
+
+        }
 
     }
     private void seeIfAllCheckboxIsChecked(CheckBox checkboxRowCategory, String key,int name) {
@@ -327,7 +334,7 @@ public class AllergyFragment extends Fragment {
             addItemToHashMap(id,pictureId);
         }else{
 
-            removeItemToHashMap(id);
+            removeItemToHashMap(id,pictureId);
         }
         if(!parentSetOnClick){
             //
@@ -424,7 +431,6 @@ public class AllergyFragment extends Fragment {
     public void saveCategories(){
         final Context context = this.getContext();
         new MyTask().execute("Save");
-        //setProfileAllergies();
     }
 
 
@@ -440,16 +446,16 @@ public class AllergyFragment extends Fragment {
         try {
             fileInputStream = new FileInputStream(file);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
+
             if(lock.isWriteLocked()){
                 lock.readLock().unlock();
                 objectInputStream.close();
                 return;
             }
             hashMapCategoriesAllergy = (HashMap<Integer, Boolean>) objectInputStream.readObject();
-            Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
+
             objectInputStream.close();
-            Log.d(TAG,"THREAD "+ Thread.currentThread().getName());
+
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
@@ -487,6 +493,10 @@ public class AllergyFragment extends Fragment {
             e.printStackTrace();
         }
         return hashMap;
+    }
+    public void setProfilePic(){
+        new SavePictureFromOtherClass().execute();
+
     }
     private void saveCategoriesFromOtherClass() {
         FileOutputStream fileOutputStream;
@@ -586,21 +596,25 @@ public class AllergyFragment extends Fragment {
         }
     }
 
- /*   @Override
+    @Override
     public void onDetach() {
         super.onDetach();
-        saveCategories();
+        profileSavePicture();
         mListener = null;
-    }*/
+    }
 
     @Override
     public void onPause() {
         super.onPause();
         saveCategories();
+        profileSavePicture();
         mListener = null;
     }
 
-
+    private void profileSavePicture() {
+        final Context context = this.getContext();
+        new SavePicture(context).execute();
+    }
 
 
     /**
@@ -679,6 +693,147 @@ public class AllergyFragment extends Fragment {
             // Do things like hide the progress bar or change a TextView
         }
     }
+    private class SavePicture extends AsyncTask<String, Integer, String> {
 
+        private Context context;
+
+        public SavePicture(Context context) {
+
+            this.context = context;
+        }
+
+        // Runs in UI before background thread is called
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            // Do something like display a progress bar
+        }
+
+        // This is run in a background thread
+        @Override
+        protected String doInBackground(String... params) {
+            // get the string from params, which is an array
+
+            try {
+                FileOutputStream fileOutputStream;
+                File file = new File(startPage.getFilesDir(), "profile.txt");
+                fileOutputStream = new FileOutputStream(file, false);
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+                objectOutputStream.writeObject(profileSavePicture);
+                objectOutputStream.close();
+                Log.d(TAG,"PROFILE THREAD FINITO"+ Thread.currentThread().getName());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+            return "this string is passed to onPostExecute";
+        }
+
+        // This is called from background thread but runs in UI
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            // Do things like update the progress bar
+        }
+
+        // This runs in UI when background thread finishes
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            String alreadyString = "00000000";
+            ArrayList<Integer> alreadySelectedImages = new ArrayList<>();
+            int i = 0;
+            for (ImageView imageView : imageViewHashMap.values()) {
+                imageView.setImageResource(R.drawable.emptyborder);
+            }
+            for (int id: profileSavePicture.values()) {
+                if(i>7){
+                    break;
+                }
+
+                if(alreadyString.charAt(i) == '0'){
+                    if (!alreadySelectedImages.contains(id)) {
+                        imageViewHashMap.get(i).setImageResource(id);
+                        alreadySelectedImages.add(id);
+                        StringBuilder myName = new StringBuilder(alreadyString);
+                        myName.setCharAt(i, '1');
+                        alreadyString = myName.toString();
+                        i++;
+                    }
+                }
+            }
+        }
+    }
+    private class SavePictureFromOtherClass extends AsyncTask<String, Integer, String> {
+
+        private Context context;
+
+
+
+        // Runs in UI before background thread is called
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            // Do something like display a progress bar
+        }
+
+        // This is run in a background thread
+        @Override
+        protected String doInBackground(String... params) {
+            // get the string from params, which is an array
+
+            FileInputStream fileInputStream;
+            try {
+                fileInputStream = new FileInputStream(startPageFile);
+
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                profileSavePicture = (HashMap<Integer, Integer>) objectInputStream.readObject();
+                objectInputStream.close();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+
+            return "this string is passed to onPostExecute";
+        }
+
+        // This is called from background thread but runs in UI
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            // Do things like update the progress bar
+        }
+
+        // This runs in UI when background thread finishes
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            String alreadyString = "00000000";
+            ArrayList<Integer> alreadySelectedImages = new ArrayList<>();
+            int i = 0;
+            for (ImageView imageView : imageViewHashMap.values()) {
+                imageView.setImageDrawable(startPage.getDrawable(R.drawable.emptyborder));
+            }
+            for (int id: profileSavePicture.values()) {
+                if(i>7){
+                    break;
+                }
+
+                if(alreadyString.charAt(i) == '0'){
+                    if (!alreadySelectedImages.contains(id)) {
+                        imageViewHashMap.get(i).setImageResource(id);
+                        alreadySelectedImages.add(id);
+                        StringBuilder myName = new StringBuilder(alreadyString);
+                        myName.setCharAt(i, '1');
+                        alreadyString = myName.toString();
+                        i++;
+                    }
+                }
+            }
+        }
+    }
 
 }

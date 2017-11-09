@@ -120,13 +120,13 @@ public class HistoryFragment extends Fragment {
     public static class stringComparator implements Comparator<String> {
         @Override
         public int compare(String string1, String string2) {
-
             String year1 = string1.substring(0,4);
             String year2 = string2.substring(0,4);
             String month1 = string1.substring(5,7);
             String month2 = string2.substring(5,7);
             String day1 = string1.substring(8,10);
             String day2 = string2.substring(8,10);
+
             String time1 = string1.substring(11,19);
             String time2 = string2.substring(11,19);
             if(year1.compareToIgnoreCase(year2) != 0){

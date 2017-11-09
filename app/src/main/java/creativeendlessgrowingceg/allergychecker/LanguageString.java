@@ -20,4 +20,5 @@ public class LanguageString implements Serializable{
         allPossibleWords = new HashMap<>();
     }
 
+
 }

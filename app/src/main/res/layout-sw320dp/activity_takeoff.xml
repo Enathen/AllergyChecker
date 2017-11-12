@@ -7,25 +7,41 @@
     tools:context=".design.activity.TakeoffActivity">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Your App takes Off from here..."
-        android:id="@+id/textView"
-        android:textColor="@android:color/background_dark"
-        android:layout_marginTop="96dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="96dp"
+        android:text="Take care of yourself!"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/background_dark" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/imageView"
+        android:layout_width="254dp"
+        android:layout_height="232.33dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:longClickable="false"
+        android:onClick="checkHeart"
+        android:src="@drawable/heart"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="101dp"
-        android:longClickable="false"
-        android:src="@drawable/rocket"
+        android:layout_marginTop="22dp" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="254dp"
+        android:layout_height="232.33dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp" />
+        android:layout_marginTop="22dp"
+        android:longClickable="false"
+        android:onClick="checkHeart"
+        android:visibility="invisible"
+        android:src="@drawable/heartchecked" />
+
 </RelativeLayout>

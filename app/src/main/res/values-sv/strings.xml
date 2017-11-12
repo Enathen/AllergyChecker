@@ -71,7 +71,7 @@
     <string name="lobster">Hummer</string>
     <string name="prawns">Räka</string>
     <string name="shrimp">Liten Räka</string>
-    <string name="scampi">sjökräfta</string>
+    <string name="scampi">Sjökräfta</string>
     <string name="abalone">Havsöra</string>
     <string name="clams">Mussla</string>
     <string name="cockle">Hjärtmussla</string>
@@ -211,5 +211,8 @@
     <string name="polloVegetarian">Pollo Vegetarian</string>
     <string name="pescoVegetarian">Pesco Vegetarian</string>
     <string name="chicken">Kyckling</string>
+    <string name="areYouSure">Are you sure you want to delete?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 </resources>

@@ -46,11 +46,9 @@ import com.google.android.gms.vision.text.TextRecognizer;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 
 import creativeendlessgrowingceg.allergychecker.R;
-import creativeendlessgrowingceg.allergychecker.SettingsFragment;
 import creativeendlessgrowingceg.allergychecker.StartPage;
 import creativeendlessgrowingceg.allergychecker.camera.ui.CameraSource;
 import creativeendlessgrowingceg.allergychecker.camera.ui.CameraSourcePreview;
@@ -363,7 +361,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                             textTapped = currentText.getValue();
                         }
                         else {
-                            textTapped += currentText.getValue();
+                            textTapped += " " + currentText.getValue();
                         }
                     }
                     else {
@@ -386,11 +384,6 @@ public final class OcrCaptureActivity extends AppCompatActivity {
             Log.d(TAG,"no text detected");
         }
         return textTapped != null;
-    }
-    private Locale loadLocale() {
-        Locale locale = new Locale(new SettingsFragment(this).getLanguageFromLFragment(this));
-        Log.d(TAG,locale.getLanguage());
-        return locale;
     }
     private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
 

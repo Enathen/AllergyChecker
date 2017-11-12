@@ -1,11 +1,10 @@
 package creativeendlessgrowingceg.allergychecker.design.activity;
 
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import creativeendlessgrowingceg.allergychecker.R;
 
@@ -16,8 +15,7 @@ public class TakeoffActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_takeoff);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(0xFFFFA500));
+
     }
 
     @Override
@@ -38,5 +36,9 @@ public class TakeoffActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void checkHeart(View view) {
+        findViewById(R.id.imageView5).setVisibility(View.VISIBLE);
     }
 }

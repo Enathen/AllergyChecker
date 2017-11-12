@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/imageViewRadio"
-        android:layout_width="38dp"
+        android:layout_width="50dp"
         android:layout_height="@dimen/defaultRows"
         android:layout_marginStart="@dimen/defaultRows"
         android:layout_weight="0.02"

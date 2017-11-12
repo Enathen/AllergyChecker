@@ -281,6 +281,9 @@
     <string name="polloVegetarian">Pollo Vegetarian</string>
     <string name="pescoVegetarian">Pesco Vegetarian</string>
     <string name="chicken">Chicken</string>
+    <string name="areYouSure">Are you sure you want to delete?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 
 </resources>

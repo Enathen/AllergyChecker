@@ -187,7 +187,7 @@ public class SettingsFragment extends Fragment {
                     editor.apply();
 
                     checkIfParentCheckBoxShouldSwitch(((CheckBox)parentLinearLayout.findViewById(R.id.checkBoxRowCategory)),editor,arrayListLinearLayout);
-                    saveCategories();
+
                 }
 
 
@@ -218,7 +218,6 @@ public class SettingsFragment extends Fragment {
                         }
                         editor.putBoolean(String.valueOf(R.string.languageFrom),isChecked);
                         editor.apply();
-                        saveCategories();
                     }
                 });
 
@@ -242,7 +241,6 @@ public class SettingsFragment extends Fragment {
                         }
                         editor.putBoolean(String.valueOf(R.string.languageFrom),isChecked);
                         editor.apply();
-                        saveCategories();
                     }
                 });
                 return;
@@ -308,8 +306,8 @@ public class SettingsFragment extends Fragment {
     }
 
     public void saveCategories(){
-        SharedPreferences.Editor sharedPreferencesEditor =
-                PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
+        SharedPreferences sp = getActivity().getSharedPreferences("LanguageFragment", Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEdit1 = sp.edit();
 
 
         Set<String> set = new ArraySet<>();
@@ -319,14 +317,13 @@ public class SettingsFragment extends Fragment {
                 set.add(checkBox.locale.getLanguage());
             }
         }
-        sharedPreferencesEditor.putStringSet("languageSet", set);
-        sharedPreferencesEditor.apply();
+        mEdit1.putStringSet("languageSet", set);
+        mEdit1.apply();
 
 
     }
     public ArrayList<Locale> getCategories(){
-
-        SharedPreferences sp = startpage.getSharedPreferences("languageSet", Context.MODE_PRIVATE);
+        SharedPreferences sp = startpage.getSharedPreferences("LanguageFragment", Context.MODE_PRIVATE);
         //NOTE: if shared preference is null, the method return empty Hashset and not null
         Set<String> set = sp.getStringSet("languageSet", new HashSet<String>());
         ArrayList<Locale> arrayList = new ArrayList<>();
@@ -391,7 +388,12 @@ public class SettingsFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        saveCategories();
+        mListener = null;
+    }
     public String getLanguageFromLFragment(Splashscreen startPage) {
         //Log.d(TAG,preference.getString("getLanguage",null));
         ArrayList<String> languageAccepted = new  ArrayList<String>();

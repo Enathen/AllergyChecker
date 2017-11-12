@@ -86,16 +86,16 @@ public class StartPage extends AppCompatActivity
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
         // Check if we need to display our OnboardingFragment
-       
+
         Log.d(TAG,Locale.getDefault().getLanguage());
-        if (!sharedPreferences.getBoolean("firstTime", false)) {
+        //if (!sharedPreferences.getBoolean("firstTime", false)) {
             startActivity(new Intent(this, OnboardingPagerActivity.class));
             SharedPreferences.Editor sharedPreferencesEditor =
                     PreferenceManager.getDefaultSharedPreferences(this).edit();
             sharedPreferencesEditor.putBoolean(
                     "firstTime", true);
             sharedPreferencesEditor.apply();
-        }
+        //}
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -293,6 +293,7 @@ public class StartPage extends AppCompatActivity
         return new ArrayList<>(set);
     }
     public void deleteHistory() {
+
         SharedPreferences.Editor mEdit1 = prefs.edit();
 
 
@@ -532,39 +533,46 @@ public class StartPage extends AppCompatActivity
         protected String doInBackground(String... params) {
             // get the string from params, which is an array
             String str = params[0];
-            Log.d(TAG,mContext.getResources().getConfiguration().getLocales().get(0).getLanguage());
-            mContext.getResources().getConfiguration().setLocale(new Locale("en"));
-            Locale.setDefault(new Locale("en"));
-            Log.d(TAG,mContext.getResources().getConfiguration().getLocales().get(0).getLanguage());
-            Log.d(TAG,"TIME");
             String[] splitStr = str.split("\\s+");
-            Log.d(TAG,"TIMEFROMHISTORY");
+            HashSet<String> hashSetString = new HashSet<>();
+            for (int i = 0; i < splitStr.length; i++) {
+                if(splitStr.length-1 != i){
+                    hashSetString.add(splitStr[i]+ splitStr[i+1]);
+
+                }
+                hashSetString.add(splitStr[i]);
+
+
+            }
+            for (String s : hashSetString) {
+                Log.d(TAG, "HASHSET" + s);
+            }
+
             ArrayList<Locale> listOfLanguages = new SettingsFragment(mContext).getCategories();
-            Log.d(TAG,"TIMEFROMHISTORY");
+
             //// TODO: 2017-11-08 if language changed after implement new one
             //arrayListAllergies = new AllergyFragment(this).getArrayListFromAllCheckedAllergies(listOfLanguages,StartPage.this,Locale.getDefault());
 
             SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
-            Bundle bundle = mContext.getIntent().getExtras();
-            Log.d(TAG,"TIMEReceiveString");
-            arrayListAllergies = new AllergyFragment(mContext, listOfLanguages).getCategoriesFromOtherClass();
+
+            HashMap<String, LangString> allergies = new AllergyFragment(mContext, listOfLanguages).getCategoriesFromOtherClass();
+           // HashMap<String, LangString> allergies = spellCheckAllergy.permuteStringi(mContext,arrayListAllergies);
             Log.d(TAG,"TIMEReceiveString");
             String outputString = "";
             boolean dontEat = false;
-            if(arrayListAllergies != null) {
+            if(allergies != null) {
                 Log.d(TAG,"TIMEpermutingstring");
-                HashMap<String, LangString> allergies = spellCheckAllergy.permuteStringi(mContext,arrayListAllergies);
                 Log.d(TAG,"TIMEpermutingstring");
 
 
 
                 boolean b = false;
                 int i =0;
-                for (String string : splitStr) {
+                for (String string : hashSetString) {
                     i++;
-                    publishProgress(splitStr.length, i);
+                    publishProgress(hashSetString.size(), i);
                     for (String extraKey : allergies.keySet()){
-                        if(extraKey.equals(string)){
+                        if(extraKey.replaceAll("\\s+","").equals(string)){
 
                             allergies.get(extraKey).found++;
                             if(allergies.get(extraKey).found == 1){
@@ -588,7 +596,7 @@ public class StartPage extends AppCompatActivity
                                     outputString = outputString.concat(getString(R.string.probablyContained) + " "+
                                             getString(allergies.get(key).id) + " " + getString(R.string.fromWord)
                                             + " " + string + "\n");
-                                    break;
+
 
                                 }
                             }
@@ -598,7 +606,7 @@ public class StartPage extends AppCompatActivity
                                     outputString = outputString.concat(getString(R.string.probablyContained) + " "+
                                             getString(allergies.get(key).id) + " " + getString(R.string.fromWord)
                                             + " "  + string + "\n");
-                                    break;
+
                                 }
                             }
                         }
@@ -655,16 +663,13 @@ public class StartPage extends AppCompatActivity
             double i = ((double)values[1]/(double)values[0]) * 100;
 
             viewById.setProgress((int) i);
-
-            if(i == 100){
-                viewById.setVisibility(View.INVISIBLE);
-            }
             // Do things like update the progress bar
         }
 
         // This runs in UI when background thread finishes
         @Override
         protected void onPostExecute(String outputString) {
+            viewById.setVisibility(View.INVISIBLE);
             super.onPostExecute(outputString);
             String dontEat = outputString.substring(outputString.length()-1);
             outputString = outputString.substring(0, outputString.length() -1);

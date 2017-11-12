@@ -46,7 +46,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-import creativeendlessgrowingceg.allergychecker.camera.OcrCaptureActivity;
+import creativeendlessgrowingceg.allergychecker.FAB.FloatingToolbar;
 import creativeendlessgrowingceg.allergychecker.design.activity.OnboardingPagerActivity;
 
 public class StartPage extends AppCompatActivity
@@ -101,14 +101,17 @@ public class StartPage extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        FloatingToolbar floatingToolbarMenuBuilder = (FloatingToolbar) findViewById(R.id.floatingToolbar);
+        floatingToolbarMenuBuilder.attachFab(fab);
         newString = getString(R.string.startPageHeader);
         loadInterstitial();
-        fab.setOnClickListener(new View.OnClickListener() {
+        floatingToolbarMenuBuilder.setClickListener(new FloatingToolbar.ItemClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onItemClick(MenuItem item) {
                 View drawer =  findViewById(R.id.language);
 
-                PopupMenu popup = new PopupMenu(StartPage.this, drawer);
+                /*PopupMenu popup = new PopupMenu(StartPage.this, drawer);
                 //Inflating the Popup using xml file
                 popup.getMenuInflater()
                         .inflate(R.menu.use_flash, popup.getMenu());
@@ -130,15 +133,20 @@ public class StartPage extends AppCompatActivity
                         startActivity(intent);
                         return true;
                     }
-                });
+                });*/
 
 
 
 
-                popup.show(); //showing popup menu
+                // popup.show(); //showing popup menu
 
 
 
+            }
+
+            @Override
+            public void onItemLongClick(MenuItem item) {
+                Log.d(TAG,"heasdasdsd");
             }
         });
         Log.d(TAG,this.getResources().getConfiguration().getLocales().get(0).getLanguage());

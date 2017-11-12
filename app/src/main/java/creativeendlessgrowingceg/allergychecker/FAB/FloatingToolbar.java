@@ -46,6 +46,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import creativeendlessgrowingceg.allergychecker.R;
+
 @SuppressWarnings("RestrictedApi")
 public class FloatingToolbar extends LinearLayoutCompat implements View.OnClickListener,
         View.OnLongClickListener, FloatingAnimator.FloatingAnimatorListener {
@@ -96,7 +98,6 @@ public class FloatingToolbar extends LinearLayoutCompat implements View.OnClickL
     public FloatingToolbar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FloatingToolbar, 0, 0);
-
         TypedValue outValue = new TypedValue();
 
         // Set colorAccent as default color
@@ -136,7 +137,7 @@ public class FloatingToolbar extends LinearLayoutCompat implements View.OnClickL
 
         // Set elevation to 6dp
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setElevation(getResources().getDimension(R.dimen.floatingtoolbar_start_elevation));
+            setElevation(20);
         }
 
         if (mMenuRes != 0 && customView == 0) {
@@ -611,7 +612,7 @@ public class FloatingToolbar extends LinearLayoutCompat implements View.OnClickL
         if (savedState.morphed) {
             mShowing = true;
             ViewCompat.setTranslationZ(this,
-                    getResources().getDimension(R.dimen.floatingtoolbar_translationz));
+                    20);
             setVisibility(View.VISIBLE);
             mFab.setVisibility(View.INVISIBLE);
         }

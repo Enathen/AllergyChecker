@@ -31,5 +31,11 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_menu_camera" />
+    <creativeendlessgrowingceg.allergychecker.FAB.FloatingToolbar
+        android:id="@+id/floatingToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="bottom"
+        app:floatingMenu="@menu/main" />
 
 </android.support.design.widget.CoordinatorLayout>

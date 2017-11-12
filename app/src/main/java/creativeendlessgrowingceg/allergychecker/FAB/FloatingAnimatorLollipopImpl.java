@@ -1,4 +1,4 @@
-/*
+package creativeendlessgrowingceg.allergychecker.FAB;/*
  * Copyright 2016 Rúben Sousa
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-package creativeendlessgrowingceg.allergychecker.FAB;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -25,6 +24,8 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
+
+import creativeendlessgrowingceg.allergychecker.R;
 
 
 class FloatingAnimatorLollipopImpl extends FloatingAnimator {

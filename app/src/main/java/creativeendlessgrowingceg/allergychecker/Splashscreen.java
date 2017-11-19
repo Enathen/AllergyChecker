@@ -2,7 +2,6 @@ package creativeendlessgrowingceg.allergychecker;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.animation.Animation;
@@ -44,12 +43,12 @@ public class Splashscreen extends Activity {
                     e.printStackTrace();
                 }
 
-                Locale.setDefault(loadLocale());
+                /*Locale.setDefault(loadLocale());
 
                 Configuration config = new Configuration();
                 Log.d(TAG, Locale.getDefault().getLanguage());
                 config.setLocale(Locale.getDefault());
-                getApplicationContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+                getApplicationContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());*/
                 Intent i = new Intent(Splashscreen.this,StartPage.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 finish();

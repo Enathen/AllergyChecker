@@ -90,14 +90,14 @@ public class HistoryFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        Locale locale = new Locale(new SettingsFragment(getContext()).getLanguageFromLFragment(getContext()));
+        /*Locale locale = new Locale(new SettingsFragment(getContext()).getLanguageFromLFragment(getContext()));
         final Locale newLocale = new Locale(locale.getLanguage());
         Locale.setDefault(newLocale);
         final Configuration config = new Configuration();
         config.locale = newLocale;
 
         final Resources res = getContext().getResources();
-        res.updateConfiguration(config, res.getDisplayMetrics());
+        res.updateConfiguration(config, res.getDisplayMetrics());*/
 
     }
 

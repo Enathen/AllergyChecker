@@ -1,34 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <item
-        android:id="@+id/action_unread"
-        android:icon="@drawable/ic_menu_camera"
-        android:title="Mark unread"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/write"
+        android:icon="@drawable/write"
+        android:title="Write"
+        app:showAsAction="always" />
 
-    <item
-        android:id="@+id/action_copy"
-        android:icon="@drawable/ic_menu_share"
-        android:title="Copy"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_google"
-        android:icon="@drawable/ic_menu_camera"
-        android:title="Google+"
-        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_facebook"
-        android:icon="@drawable/ic_keyboard_arrow_right_white_24dp"
-        android:title="Facebook"
-        app:showAsAction="ifRoom" />
+        android:icon="@drawable/flash"
+        android:title="Flash"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_twitter"
-        android:icon="@drawable/ic_menu_camera"
-        android:title="Twitter"
+        android:icon="@drawable/arrrowright"
+        android:title="Back"
         app:showAsAction="ifRoom" />
 </menu>

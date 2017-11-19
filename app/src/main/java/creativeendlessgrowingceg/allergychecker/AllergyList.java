@@ -78,120 +78,120 @@ public class AllergyList {
         sort(arrayListVegetables);
     }
     private void setArrayListVegetarian() {
-        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.pork));
-        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.duck));
-        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.meat));
-        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.goat));
-        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.poultry));
-        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.lamb));
-        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.sausage));
-        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.beef));
-        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.veal));
-        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.gelatin));
-        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.shellfish));
-        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.fish));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.chicken));
+        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian,R.string.pork));
+        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian,R.string.duck));
+        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian,R.string.meat));
+        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian,R.string.goat));
+        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian,R.string.poultry));
+        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian,R.string.lamb));
+        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian,R.string.sausage));
+        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian,R.string.beef));
+        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian,R.string.veal));
+        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian,R.string.gelatin));
+        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian,R.string.shellfish));
+        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian,R.string.fish));
+        arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian,R.string.chicken));
         sort(arrayListVegetarian);
     }
     private void setArrayListLactoOvoVegetarian() {
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.pork));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.duck));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.meat));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.goat));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.poultry));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.lamb));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.sausage));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.beef));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.veal));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.gelatin));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.shellfish));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.fish));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.dairy));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.egg));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.chicken));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.pork));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.duck));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.meat));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.goat));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.poultry));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.lamb));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.sausage));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.beef));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.veal));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.gelatin));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.shellfish));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.fish));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.dairy));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.egg));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.chicken));
         sort(arrayListLactoOvoVegetarian);
     }
     private void setArrayListOvoVegetarian() {
-        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.pork));
-        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.duck));
-        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.meat));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.pork));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.duck));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.meat));
 
-        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.goat));
-        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.poultry));
-        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.lamb));
-        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.sausage));
-        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.beef));
-        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.veal));
-        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.gelatin));
-        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.shellfish));
-        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.fish));
-        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.dairy));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.chicken));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.goat));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.poultry));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.lamb));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.sausage));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.beef));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.veal));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.gelatin));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.shellfish));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.fish));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.dairy));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.chicken));
         sort(arrayListLactoOvoVegetarian);
     }
     private void setArrayListDemiVegetarian() {
-        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.pork));
-        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.duck));
-        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.meat));
+        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg,R.string.pork));
+        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg,R.string.duck));
+        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg,R.string.meat));
 
-        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.goat));
-        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.poultry));
-        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.lamb));
-        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.sausage));
-        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.beef));
-        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.veal));
-        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.gelatin));
-        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.shellfish));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.chicken));
+        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg,R.string.goat));
+        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg,R.string.poultry));
+        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg,R.string.lamb));
+        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg,R.string.sausage));
+        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg,R.string.beef));
+        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg,R.string.veal));
+        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg,R.string.gelatin));
+        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg,R.string.shellfish));
+        arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg,R.string.chicken));
         sort(arrayListDemiVegetarian);
     }
     private void setArrayListLactoVegetarian() {
-        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.pork));
-        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.duck));
-        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.meat));
+        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.pork));
+        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.duck));
+        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.meat));
 
-        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.goat));
-        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.poultry));
-        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.lamb));
-        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.sausage));
-        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.beef));
-        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.veal));
-        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.gelatin));
-        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.shellfish));
-        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.fish));
-        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.egg));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.chicken));
+        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.goat));
+        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.poultry));
+        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.lamb));
+        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.sausage));
+        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.beef));
+        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.veal));
+        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.gelatin));
+        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.shellfish));
+        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.fish));
+        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.egg));
+        arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian,R.string.chicken));
         sort(arrayListLactoVegetarian);
     }
     private void setArrayListPolloVegetarian() {
-        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.pork));
-        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.duck));
-        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.meat));
+        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg,R.string.pork));
+        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg,R.string.duck));
+        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg,R.string.meat));
 
-        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.goat));
-        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.lamb));
-        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.sausage));
-        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.beef));
-        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.veal));
-        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.gelatin));
-        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.shellfish));
-        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.fish));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.chicken));
+        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg,R.string.goat));
+        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg,R.string.lamb));
+        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg,R.string.sausage));
+        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg,R.string.beef));
+        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg,R.string.veal));
+        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg,R.string.gelatin));
+        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg,R.string.shellfish));
+        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg,R.string.fish));
+        arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg,R.string.chicken));
         sort(arrayListPolloVegetarian);
     }
 
     private void setArrayListPescoVegetarian() {
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.pork));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.duck));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.meat));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.goat));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.poultry));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.lamb));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.sausage));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.beef));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.veal));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.gelatin));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.shellfish));
+        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.pescoveg,R.string.pork));
+        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.pescoveg,R.string.duck));
+        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.pescoveg,R.string.meat));
+        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.pescoveg,R.string.goat));
+        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.pescoveg,R.string.poultry));
+        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.pescoveg,R.string.lamb));
+        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.pescoveg,R.string.sausage));
+        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.pescoveg,R.string.beef));
+        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.pescoveg,R.string.veal));
+        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.pescoveg,R.string.gelatin));
+        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.pescoveg,R.string.shellfish));
 
         sort(arrayListPescoVegetarian);
     }
@@ -212,7 +212,7 @@ public class AllergyList {
         arrayListVegan.add(new PictureIngredient(R.drawable.vegan,R.string.dairy));
         arrayListVegan.add(new PictureIngredient(R.drawable.vegan,R.string.egg));
         arrayListVegan.add(new PictureIngredient(R.drawable.vegan,R.string.honey));
-        arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.vegan,R.string.chicken));
+        arrayListVegan.add(new PictureIngredient(R.drawable.vegan,R.string.chicken));
         sort(arrayListVegan);
     }
     private void setArrayListCitrus() {

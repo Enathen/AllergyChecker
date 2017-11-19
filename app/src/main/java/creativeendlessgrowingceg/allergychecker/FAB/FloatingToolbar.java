@@ -16,9 +16,14 @@
 
 package creativeendlessgrowingceg.allergychecker.FAB;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Build;
+import android.os.Handler;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.DrawableRes;
@@ -27,19 +32,24 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.view.SupportMenuInflater;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -47,12 +57,16 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import creativeendlessgrowingceg.allergychecker.R;
+import creativeendlessgrowingceg.allergychecker.StartPage;
+import creativeendlessgrowingceg.allergychecker.camera.OcrCaptureActivity;
 
 @SuppressWarnings("RestrictedApi")
 public class FloatingToolbar extends LinearLayoutCompat implements View.OnClickListener,
         View.OnLongClickListener, FloatingAnimator.FloatingAnimatorListener {
 
     private static final AtomicInteger sNextGeneratedId = new AtomicInteger(1);
+    private static final String TAG = "FloatingToolbar";
+    private String m_Text = "";
 
     @MenuRes
     private int mMenuRes;
@@ -78,14 +92,27 @@ public class FloatingToolbar extends LinearLayoutCompat implements View.OnClickL
     private List<MorphListener> mMorphListeners;
     private FloatingSnackBarManager mSnackBarManager;
 
-    private OnClickListener mViewClickListener = new OnClickListener() {
+    private OnLongClickListener longClickListener = new OnLongClickListener() {
         @Override
-        public void onClick(View view) {
+        public boolean onLongClick(View v) {
             if (!mShowing && mHandleFabClick) {
                 show();
+                return true;
             }
+            return false;
+
         }
     };
+    private OnClickListener mViewClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Log.d(TAG,"HGE");
+            Intent intent = new Intent(getContext(), OcrCaptureActivity.class);
+            intent.putExtra("EXTRA_SESSION_ID", getflash());
+            getContext().startActivity(intent);
+        }
+    };
+    private String SHARED_PREFS_NAME = "FloatingToolbar";
 
     public FloatingToolbar(Context context) {
         this(context, null, 0);
@@ -115,7 +142,7 @@ public class FloatingToolbar extends LinearLayoutCompat implements View.OnClickL
         mHandleFabClick = a.getBoolean(R.styleable.FloatingToolbar_floatingHandleFabClick, true);
         mItemBackground = a.getResourceId(R.styleable.FloatingToolbar_floatingItemBackground,
                 outValue.resourceId);
-        mAutoHide = a.getBoolean(R.styleable.FloatingToolbar_floatingAutoHide, true);
+        mAutoHide = a.getBoolean(R.styleable.FloatingToolbar_floatingAutoHide, false);
         mMenuRes = a.getResourceId(R.styleable.FloatingToolbar_floatingMenu, 0);
 
         int customView = a.getResourceId(R.styleable.FloatingToolbar_floatingCustomView, 0);
@@ -154,6 +181,12 @@ public class FloatingToolbar extends LinearLayoutCompat implements View.OnClickL
 
         setOrientation(HORIZONTAL);
         mSnackBarManager = new FloatingSnackBarManager(this);
+        if(loadBoolean("flash")){
+            mMenu.getItem(1).setIcon(ContextCompat.getDrawable(getContext(),R.drawable.flashon));
+            mMenu.getItem(1).setChecked(true);
+            setMenu(mMenu);
+        }
+
     }
 
     @Override
@@ -189,6 +222,7 @@ public class FloatingToolbar extends LinearLayoutCompat implements View.OnClickL
     public void handleFabClick(boolean handle) {
         mHandleFabClick = handle;
         if (mHandleFabClick && mFab != null) {
+            mFab.setOnLongClickListener(longClickListener);
             mFab.setOnClickListener(mViewClickListener);
         }
     }
@@ -255,7 +289,21 @@ public class FloatingToolbar extends LinearLayoutCompat implements View.OnClickL
     public void setMenu(@MenuRes int menuRes) {
         mMenu = new MenuBuilder(getContext());
         new SupportMenuInflater(getContext()).inflate(menuRes, mMenu);
+
+
+        //NOTE: if shared preference is null, the method return empty Hashset and not null
+
         setMenu(mMenu);
+    }
+    public void saveBoolean(String name,boolean bool){
+        SharedPreferences sp = getContext().getSharedPreferences(SHARED_PREFS_NAME, Activity.MODE_PRIVATE);
+        SharedPreferences.Editor mEdit1 = sp.edit();
+        mEdit1.putBoolean(name, bool);
+        mEdit1.apply();
+    }
+    public boolean loadBoolean(String name){
+        SharedPreferences sp = getContext().getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
+        return sp.getBoolean(name,false);
     }
 
     /**
@@ -312,6 +360,7 @@ public class FloatingToolbar extends LinearLayoutCompat implements View.OnClickL
         mAnimator.setFloatingAnimatorListener(this);
 
         if (mHandleFabClick) {
+            mFab.setOnLongClickListener(longClickListener);
             mFab.setOnClickListener(mViewClickListener);
         }
     }
@@ -434,8 +483,80 @@ public class FloatingToolbar extends LinearLayoutCompat implements View.OnClickL
 
         if (mClickListener != null) {
             MenuItem item = (MenuItem) v.getTag();
+
+            if(item.getTitle().equals("Flash")){
+
+
+                if(item.isChecked()){
+                    item.setIcon(ContextCompat.getDrawable(getContext(),R.drawable.flash));
+                    item.setChecked(false);
+                    saveBoolean("flash",false);
+                    final Toast toast = Toast.makeText(getContext(), R.string.noflash, Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            toast.cancel();
+                        }
+                    }, 500);
+                }else{
+                    item.setChecked(true);
+                    item.setIcon(ContextCompat.getDrawable(getContext(),R.drawable.flashon));
+                    saveBoolean("flash",true);
+                    final Toast toast = Toast.makeText(getContext(), R.string.flashon, Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            toast.cancel();
+                        }
+                    }, 500);
+                }
+                setMenu(mMenu);
+            }
+            if(item.getTitle().equals("Write")){
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle(R.string.inputIngredients);
+
+// Set up the input
+                final EditText input = new EditText(getContext());
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder.setView(input);
+
+// Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getContext(), StartPage.class);
+                        intent.putExtra("location",  input.getText().toString());
+                        getContext().startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+
+            }
+            if(item.getTitle().equals("Back")) {
+                hide();
+            }
+
             mClickListener.onItemClick(item);
+
+
         }
+
     }
 
     @Override
@@ -563,6 +684,15 @@ public class FloatingToolbar extends LinearLayoutCompat implements View.OnClickL
                 morphListener.onUnmorphStart();
             }
         }
+    }
+
+    public void onLongClick(ItemClickListener itemClickListener) {
+        mClickListener = itemClickListener;
+    }
+
+    public boolean getflash() {
+
+        return mMenu.getItem(1).isChecked();
     }
 
     /**

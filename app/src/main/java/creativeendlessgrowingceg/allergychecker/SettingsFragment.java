@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -104,14 +103,14 @@ public class SettingsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        final String lang = PreferenceManager.getDefaultSharedPreferences(getContext()).getString("getLanguage", Locale.getDefault().getLanguage());
+        /*final String lang = PreferenceManager.getDefaultSharedPreferences(getContext()).getString("getLanguage", Locale.getDefault().getLanguage());
         final Locale newLocale = new Locale(lang);
         Locale.setDefault(newLocale);
         final Configuration config = new Configuration();
         config.locale = newLocale;
 
         final Resources res = getContext().getResources();
-        res.updateConfiguration(config, res.getDisplayMetrics());
+        res.updateConfiguration(config, res.getDisplayMetrics());*/
 
 
     }
@@ -125,7 +124,7 @@ public class SettingsFragment extends Fragment {
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(getContext());
         // Check if we need to display our OnboardingFragment
-        if (!sharedPreferences.getBoolean(
+        /*if (!sharedPreferences.getBoolean(
                 "startHistory", false)) {
             language = getResources().getConfiguration().getLocales().get(0).getLanguage();
             SharedPreferences.Editor sharedPreferencesEditor =
@@ -137,7 +136,7 @@ public class SettingsFragment extends Fragment {
             language = sharedPreferences.getString("getLanguage",null);
 
         }
-
+*/
 
         parentFrameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_settings, container, false);
 
@@ -145,13 +144,13 @@ public class SettingsFragment extends Fragment {
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linearLayoutLanguage);
         Languages languages = new Languages(getContext());
 
-        parentLinearLayout.addView(addStaticLanguages(inflater,languages.getstaticArrayListLanguage()));
+        //parentLinearLayout.addView(addStaticLanguages(inflater,languages.getstaticArrayListLanguage()));
         parentLinearLayout.addView(addLanguages(inflater,languages.getArrayListLanguage()));
-        for (RadioButtons radioButton : radioButtons) {
+       /* for (RadioButtons radioButton : radioButtons) {
             if(radioButton.staticLocale.getLanguage().equals(language)){
                 radioButton.radioButton.setChecked(true);
             }
-        }
+        }*/
 
         for (CheckBoxes checkBox : checkBoxes) {
             if(checkBox.locale.getLanguage().equals(language)){

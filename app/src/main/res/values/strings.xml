@@ -159,8 +159,8 @@
     <string name="times">times</string>
     <string name="probablyContained">Probably contained</string>
     <string name="fromWord">from word:</string>
-    <string name="noflash">Flash</string>
-    <string name="flash">No Flash</string>
+    <string name="noflash">Flash Off</string>
+    <string name="flash">Flash</string>
     <string name="myAllergies">My allergies</string>
     <string name="share">Share</string>
     <string name="send">Send tips</string>
@@ -284,6 +284,10 @@
     <string name="areYouSure">Are you sure you want to delete?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="flashon">Flash On</string>
+    <string name="cancel">Cancel</string>
+    <string name="inputIngredients">Input ingredients</string>
+    <string name="rate">Rate</string>
 
 
 </resources>

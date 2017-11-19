@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -132,14 +131,14 @@ public class AllergyFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        Locale locale = new Locale(new SettingsFragment(getContext()).getLanguageFromLFragment(getContext()));
+        /*Locale locale = new Locale(new SettingsFragment(getContext()).getLanguageFromLFragment(getContext()));
         final Locale newLocale = new Locale(locale.getLanguage());
         Locale.setDefault(newLocale);
         final Configuration config = new Configuration();
         config.locale = newLocale;
 
         final Resources res = getContext().getResources();
-        res.updateConfiguration(config, res.getDisplayMetrics());
+        res.updateConfiguration(config, res.getDisplayMetrics());*/
     }
     //create the look
     @Override
@@ -161,12 +160,12 @@ public class AllergyFragment extends Fragment {
         addCategory(inflater, allergylist.getArrayListVegetables(), "Vegetables", R.string.vegetables, R.drawable.tomato);
         addCategory(inflater, allergylist.getArrayListVegan(), "Vegan", R.string.vegan, R.drawable.vegan);
         addCategory(inflater, allergylist.getArrayListVegetarian(), "Vegetarian", R.string.vegetarian, R.drawable.vegetarian);
-        addCategory(inflater, allergylist.getArrayListLactoVegetarian(), "Lacto Vegetarian", R.string.lactoVegetarian, R.drawable.vegetarian);
-        addCategory(inflater, allergylist.getArrayListOvoVegetarian(), "Ovo Vegetarian", R.string.ovoVegetarian, R.drawable.vegetarian);
-        addCategory(inflater, allergylist.getArrayListLactoOvoVegetarian(), "LactoOvo Vegetarian", R.string.lactoOvoVegetarian, R.drawable.vegetarian);
-        addCategory(inflater, allergylist.getArrayListDemiVegetarian(), "Demi Vegetarian", R.string.demiVegetarian, R.drawable.vegetarian);
-        addCategory(inflater, allergylist.getArrayListPolloVegetarian(), "Pollo Vegetarian", R.string.polloVegetarian, R.drawable.vegetarian);
-        addCategory(inflater, allergylist.getArrayListPescoVegetarian(), "Pesco Vegetarian", R.string.pescoVegetarian, R.drawable.vegetarian);
+        addCategory(inflater, allergylist.getArrayListLactoVegetarian(), "Lacto Vegetarian", R.string.lactoVegetarian, R.drawable.lactovegitarian);
+        addCategory(inflater, allergylist.getArrayListOvoVegetarian(), "Ovo Vegetarian", R.string.ovoVegetarian, R.drawable.ovoveg);
+        addCategory(inflater, allergylist.getArrayListLactoOvoVegetarian(), "LactoOvo Vegetarian", R.string.lactoOvoVegetarian, R.drawable.lactoovoveg);
+        addCategory(inflater, allergylist.getArrayListDemiVegetarian(), "Demi Vegetarian", R.string.demiVegetarian, R.drawable.demiveg);
+        addCategory(inflater, allergylist.getArrayListPolloVegetarian(), "Pollo Vegetarian", R.string.polloVegetarian, R.drawable.polloveg);
+        addCategory(inflater, allergylist.getArrayListPescoVegetarian(), "Pesco Vegetarian", R.string.pescoVegetarian, R.drawable.pescoveg);
 
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Fish", container, R.string.fish, R.drawable.fish));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Fruit", container, R.string.fruit, R.drawable.fruit));
@@ -177,12 +176,12 @@ public class AllergyFragment extends Fragment {
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegetables", container, R.string.vegetables, R.drawable.tomato));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegan", container, R.string.vegan, R.drawable.vegan));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegetarian", container, R.string.vegetarian, R.drawable.vegetarian));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Lacto Vegetarian", container, R.string.lactoVegetarian, R.drawable.vegetarian));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Ovo Vegetarian", container, R.string.ovoVegetarian, R.drawable.vegetarian));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "LactoOvo Vegetarian", container, R.string.lactoOvoVegetarian, R.drawable.vegetarian));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Demi Vegetarian", container, R.string.demiVegetarian, R.drawable.vegetarian));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Pollo Vegetarian", container, R.string.polloVegetarian, R.drawable.vegetarian));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Pesco Vegetarian", container, R.string.pescoVegetarian, R.drawable.vegetarian));
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Lacto Vegetarian", container, R.string.lactoVegetarian, R.drawable.lactovegitarian));
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Ovo Vegetarian", container, R.string.ovoVegetarian, R.drawable.ovoveg));
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "LactoOvo Vegetarian", container, R.string.lactoOvoVegetarian, R.drawable.lactoovoveg));
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Demi Vegetarian", container, R.string.demiVegetarian, R.drawable.demiveg));
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Pollo Vegetarian", container, R.string.polloVegetarian, R.drawable.polloveg));
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Pesco Vegetarian", container, R.string.pescoVegetarian, R.drawable.pescoveg));
 
         //saveCategories();
         return parentFrameLayout;

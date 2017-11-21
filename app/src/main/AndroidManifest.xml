@@ -31,9 +31,11 @@
         </activity>
         <activity
             android:name=".design.activity.OnboardingPagerActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" />
         <activity
             android:name=".design.activity.TakeoffActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_takeoff" >
         </activity>
         <activity

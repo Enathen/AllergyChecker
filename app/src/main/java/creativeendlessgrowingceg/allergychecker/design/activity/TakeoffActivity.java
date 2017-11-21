@@ -40,5 +40,7 @@ public class TakeoffActivity extends ActionBarActivity {
 
     public void checkHeart(View view) {
         findViewById(R.id.imageView5).setVisibility(View.VISIBLE);
+        onBackPressed();
     }
+
 }

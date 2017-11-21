@@ -98,6 +98,7 @@ public class StartPage extends AppCompatActivity
         }
 
 
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -177,7 +178,9 @@ public class StartPage extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         setProfilePicture();
+
     }
+
 
     private void setProfilePicture() {
         new AllergyFragment(this,getImageViewHashMap(this),new SettingsFragment(this).getCategories()).setProfilePic();
@@ -398,6 +401,8 @@ public class StartPage extends AppCompatActivity
         }else if (id == R.id.allergies) {
 
             fragment = new AllergyFragment(this,getImageViewHashMap(),new SettingsFragment(this).getCategories()); setTitle("Allergies");
+        }else if (id == R.id.tutorial){
+            startActivity(new Intent(this, OnboardingPagerActivity.class));
         }
         else if (id == R.id.nav_rate) {
             Uri uri = Uri.parse("market://details?id=" + this.getPackageName());

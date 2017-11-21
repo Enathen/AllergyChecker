@@ -158,8 +158,8 @@ public class AllergyFragment extends Fragment {
         addCategory(inflater, allergylist.getArrayListSeeds(), "Seeds",R.string.seeds, R.drawable.seeds);
         addCategory(inflater, allergylist.getArrayListShellfish(), "Shellfish", R.string.shellfish, R.drawable.shellfish);
         addCategory(inflater, allergylist.getArrayListVegetables(), "Vegetables", R.string.vegetables, R.drawable.tomato);
-        addCategory(inflater, allergylist.getArrayListVegan(), "Vegan", R.string.vegan, R.drawable.vegan);
         addCategory(inflater, allergylist.getArrayListVegetarian(), "Vegetarian", R.string.vegetarian, R.drawable.vegetarian);
+        addCategory(inflater, allergylist.getArrayListVegan(), "Vegan", R.string.vegan, R.drawable.vegan);
         addCategory(inflater, allergylist.getArrayListLactoVegetarian(), "Lacto Vegetarian", R.string.lactoVegetarian, R.drawable.lactovegitarian);
         addCategory(inflater, allergylist.getArrayListOvoVegetarian(), "Ovo Vegetarian", R.string.ovoVegetarian, R.drawable.ovoveg);
         addCategory(inflater, allergylist.getArrayListLactoOvoVegetarian(), "LactoOvo Vegetarian", R.string.lactoOvoVegetarian, R.drawable.lactoovoveg);
@@ -174,8 +174,8 @@ public class AllergyFragment extends Fragment {
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Seeds", container, R.string.seeds, R.drawable.seeds));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Shellfish", container, R.string.shellfish, R.drawable.shellfish));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegetables", container, R.string.vegetables, R.drawable.tomato));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegan", container, R.string.vegan, R.drawable.vegan));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegetarian", container, R.string.vegetarian, R.drawable.vegetarian));
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegan", container, R.string.vegan, R.drawable.vegan));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Lacto Vegetarian", container, R.string.lactoVegetarian, R.drawable.lactovegitarian));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Ovo Vegetarian", container, R.string.ovoVegetarian, R.drawable.ovoveg));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "LactoOvo Vegetarian", container, R.string.lactoOvoVegetarian, R.drawable.lactoovoveg));
@@ -767,7 +767,9 @@ public class AllergyFragment extends Fragment {
 
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
                 profileSavePicture = (HashMap<Integer, Integer>) objectInputStream.readObject();
+
                 objectInputStream.close();
+
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -787,6 +789,9 @@ public class AllergyFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            for (int i : profileSavePicture.keySet()) {
+                Log.d(TAG, "hello" + i);
+            }
             String alreadyString = "00000000";
             ArrayList<Integer> alreadySelectedImages = new ArrayList<>();
             int i = 0;

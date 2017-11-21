@@ -218,5 +218,20 @@
     <string name="cancel">Cancel</string>
     <string name="inputIngredients">Input ingredients</string>
     <string name="rate">Rate</string>
+    <string name="pressMe">Press me \nto continue!</string>
+    <string name="firstIntro">Pressing this icon from the menu brings up the allergy window. From
+        there you can insert your allergies.</string>
+    <string name="secondIntro">Tap to bring up the camera to scan ingredients. Holding the camera
+        button down, pops up a new window. From the new menu ingredients can be inserted manually by typing
+        them in. </string>
+    <string name="thirdIntro">This is how you use the camera:\n
+        1. Hold the camera over text.\n
+        2. White textboxes appears.\n
+        3. When covered the text.\n
+        4. TAP one textbox!\n
+        5. Text saved. Wait for result!
+        </string>
+    <string name="tutorial">Tutorial</string>
+
 
 </resources>

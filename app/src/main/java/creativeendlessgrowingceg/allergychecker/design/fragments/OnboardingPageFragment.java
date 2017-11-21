@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import creativeendlessgrowingceg.allergychecker.R;
 import creativeendlessgrowingceg.allergychecker.design.model.Page;
@@ -26,13 +27,15 @@ public class OnboardingPageFragment extends Fragment {
     private static final String PAGE_NUM = "PAGE_NUM";
     private static final String PAGE_COLOR = "PAGE_COLOR";
     private static  final String PAGE_IMG_RES_ID= "PAGE_IMG_RES_ID";
+    private static  final String PAGE_TXT_RES_ID= "PAGE_TXT_RES_ID";
 
     private int imgResource = 0;
     // TODO: Rename and change types of parameters
     private String mPageNum;
     private String mPageColor;
-    private int mImgResId;
+    private String mTxtResId;
 
+    private int mImgResId;
     private OnFragmentInteractionListener mListener;
 
 
@@ -43,6 +46,7 @@ public class OnboardingPageFragment extends Fragment {
         args.putString(PAGE_NUM, ""+pPage.getPageNum());
         args.putString(PAGE_COLOR, pPage.getBgColor());
         args.putInt(PAGE_IMG_RES_ID, pPage.getImgResId());
+        args.putString(PAGE_TXT_RES_ID, pPage.getTxtResId());
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,6 +62,7 @@ public class OnboardingPageFragment extends Fragment {
             mPageNum = getArguments().getString(PAGE_NUM);
             mPageColor= getArguments().getString(PAGE_COLOR);
             mImgResId = getArguments().getInt(PAGE_IMG_RES_ID);
+            mTxtResId = getArguments().getString(PAGE_TXT_RES_ID);
         }
     }
 
@@ -67,7 +72,10 @@ public class OnboardingPageFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_onboarding_page, container, false);
         ImageView iv = (ImageView)v.findViewById(R.id.splashImg);
+        TextView tv = (TextView) v.findViewById(R.id.intro);
+        tv.setText(this.mTxtResId);
         iv.setImageResource(this.mImgResId);
+
 
          return v;
     }

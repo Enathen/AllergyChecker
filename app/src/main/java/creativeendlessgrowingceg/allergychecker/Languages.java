@@ -31,6 +31,7 @@ public class Languages {
     public void setArrayListLanguage() {
         arrayListLanguage.add(new LanguagesClass(R.drawable.gb,context.getString(R.string.english),R.string.english,new Locale("en")));
         arrayListLanguage.add(new LanguagesClass(R.drawable.se,context.getString(R.string.swedish),R.string.swedish,new Locale("sv")));
+        arrayListLanguage.add(new LanguagesClass(R.drawable.es,context.getString(R.string.spanish),R.string.spanish,new Locale("es")));
     }
     public void setStaticArrayListLanguage(){
         staticArrayListLanguage.add(new LanguagesClass(R.drawable.gb,context.getString(R.string.staticEnglish),R.string.staticEnglish,new Locale("en")));

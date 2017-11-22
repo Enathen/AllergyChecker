@@ -7,8 +7,10 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -62,9 +64,8 @@ public class SpellCheckAllergy {
             if(i!=s.length()) {
                 string = new StringBuilder(s);
                 string = string.deleteCharAt(i);
-                if(string.length()>1){
+                if(string.length()>2){
                     arrayListNew.add(String.valueOf(string));
-                    //Log.d(TAG, String.valueOf(string));
                 }
                 if(i!=s.length()-1) {
                     string = new StringBuilder(s);
@@ -72,7 +73,6 @@ public class SpellCheckAllergy {
                     string.setCharAt(i,string.charAt(i+1));
                     string.setCharAt(i+1,replace);
                     arrayListNew.add(String.valueOf(string));
-                    //Log.d(TAG, String.valueOf(string));
                 }
             }
             for (char c : alphabets.get(language)) {
@@ -88,14 +88,27 @@ public class SpellCheckAllergy {
             }
         }
         arrayListNew.add(s);
-        Log.d(TAG, String.valueOf(arrayListNew.size()));
         arrayListNew.remove("salt");
         return arrayListNew;
     }
     public HashSet<String> permuteString(String language, String string){
-        convertString();
         HashSet<String> arrayListNew = new HashSet<>();
-        return AlgorithmString(string,arrayListNew,language);
+        List<String> list = null;
+        if(string.contains(",")){
+             list = Arrays.asList(string.split(","));
+
+        }
+        if (list != null){
+            for (String s : list) {
+                arrayListNew = AlgorithmString(s,arrayListNew,language);
+
+            }
+        }else {
+            arrayListNew = AlgorithmString(string,arrayListNew,language);
+        }
+
+        //convertString();
+        return arrayListNew;
     }
     public HashMap<String,LangString> permuteStringi(Activity context,HashMap<Integer,LanguageString> hashMap){
         for (LanguageString languageString : hashMap.values()) {

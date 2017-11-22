@@ -26,7 +26,7 @@
     <string name="nuts">Nuts</string>
     <string name="almond">Almond</string>
     <string name="brazil">Brazil Nuts</string>
-    <string name="cocao">Cocao</string>
+    <string name="cocoa">Cocoa</string>
     <string name="hazelnut">Hazelnut</string>
     <string name="macadamia">Macadamia Nuts</string>
     <string name="peanuts">Peanuts</string>
@@ -138,7 +138,7 @@
 
     <string name="english">English</string>
     <string name="swedish">Swedish</string>
-
+    <string name="spanish">Spanish</string>
     <string name="staticEnglish">English</string>
     <string name="staticSwedish">Svenska</string>
 
@@ -242,8 +242,8 @@
     <string name="title_activity_find_email">Email</string>
 
     <string name="title_activity_takeoff">App Takes off here</string>
-    <string name="mightContainOther">This is only a guideline! And might contain other allergies</string>
-    <string name="mightContainAllergies">This is only a guideline! And might contain allergies</string>
+    <string name="mightContainOther">This is only a guideline! And might contain other allergens</string>
+    <string name="mightContainAllergies">This is only a guideline! And might contain allergens</string>
 
     <string name="vegetarian">Vegetarian</string>
     <string name="vegan">Vegan</string>
@@ -296,12 +296,42 @@
         them in. </string>
     <string name="thirdIntro">This is how you use the camera:\n
         1. Hold the camera over text.\n
-        2. White textboxes appears.\n
+        2. White text boxes appear.\n
         3. When covered the text.\n
         4. TAP one textbox!\n
         4. Text saved. Wait for result!!
         </string>
     <string name="tutorial">Tutorial</string>
+    <string name="anis">Anis</string>
+    <string name="coriander">Coriander</string>
+    <string name="cumin">Cumin</string>
+    <string name="fennel">Fennel</string>
+    <string name="parsley">Parsley</string>
+    <string name="ragweed">Ragweed</string>
+    <string name="echinacea">Echinacea</string>
+    <string name="artichoke">Artichoke</string>
+    <string name="dandelions">Dandelions</string>
+    <string name="hibiscus">Hibiscus</string>
+    <string name="chickpea">Chickpea</string>
+    <string name="lentil">Lentil</string>
+    <string name="lupin">Lupin</string>
+    <string name="peanut">Peanut</string>
+    <string name="pea">Pea</string>
+    <string name="soybean">soybean</string>
+    <string name="lemon">Lemon</string>
+    <string name="lime">Lime</string>
+    <string name="grapefruit">Grapefruit</string>
+    <string name="bacon">Bacon</string>
+    <string name="choletsorol">Cholesterol</string>
+    <string name="glycerol">Glycerol</string>
+    <string name="hormones">Hormones</string>
+    <string name="lard">Lard</string>
+    <string name="magnesiumStearate">magnesium stearate</string>
+    <string name="monoGlycerides">Mono Glycerides</string>
+    <string name="pepsin">Pepsin</string>
+
+    <string name="halal">Halal</string>
+
 
 
 </resources>

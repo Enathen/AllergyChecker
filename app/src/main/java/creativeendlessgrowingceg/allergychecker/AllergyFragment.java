@@ -151,13 +151,16 @@ public class AllergyFragment extends Fragment {
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
         AllergyList allergylist = new AllergyList(getContext());
         //getCategories();
+        addCategory(inflater, allergylist.getArrayListCitrus(), "Citrus",R.string.citrus,R.drawable.orange);
         addCategory(inflater, allergylist.getArrayListFish(), "Fish",R.string.fish,R.drawable.fish);
         addCategory(inflater, allergylist.getArrayListFruit(), "Fruit", R.string.fruit,R.drawable.fruit);
         addCategory(inflater, allergylist.getArrayListGluten(), "Gluten",R.string.gluten, R.drawable.wheat);
+        addCategory(inflater, allergylist.getArrayListLegumes(), "Legumes",R.string.legumes, R.drawable.legumes);
         addCategory(inflater, allergylist.getArrayListNuts(), "Nuts",R.string.nuts, R.drawable.nuts);
         addCategory(inflater, allergylist.getArrayListSeeds(), "Seeds",R.string.seeds, R.drawable.seeds);
         addCategory(inflater, allergylist.getArrayListShellfish(), "Shellfish", R.string.shellfish, R.drawable.shellfish);
         addCategory(inflater, allergylist.getArrayListVegetables(), "Vegetables", R.string.vegetables, R.drawable.tomato);
+        addCategory(inflater, allergylist.getArrayListMuslim(), "Halal", R.string.halal, R.drawable.tomato);
         addCategory(inflater, allergylist.getArrayListVegetarian(), "Vegetarian", R.string.vegetarian, R.drawable.vegetarian);
         addCategory(inflater, allergylist.getArrayListVegan(), "Vegan", R.string.vegan, R.drawable.vegan);
         addCategory(inflater, allergylist.getArrayListLactoVegetarian(), "Lacto Vegetarian", R.string.lactoVegetarian, R.drawable.lactovegitarian);
@@ -167,13 +170,16 @@ public class AllergyFragment extends Fragment {
         addCategory(inflater, allergylist.getArrayListPolloVegetarian(), "Pollo Vegetarian", R.string.polloVegetarian, R.drawable.polloveg);
         addCategory(inflater, allergylist.getArrayListPescoVegetarian(), "Pesco Vegetarian", R.string.pescoVegetarian, R.drawable.pescoveg);
 
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Citrus", container, R.string.citrus, R.drawable.orange));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Fish", container, R.string.fish, R.drawable.fish));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Fruit", container, R.string.fruit, R.drawable.fruit));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Gluten", container, R.string.gluten, R.drawable.wheat));
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Legumes", container, R.string.legumes, R.drawable.legumes));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Nuts", container, R.string.nuts, R.drawable.nuts));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Seeds", container, R.string.seeds, R.drawable.seeds));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Shellfish", container, R.string.shellfish, R.drawable.shellfish));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegetables", container, R.string.vegetables, R.drawable.tomato));
+        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Halal", container, R.string.halal, R.drawable.tomato));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegetarian", container, R.string.vegetarian, R.drawable.vegetarian));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegan", container, R.string.vegan, R.drawable.vegan));
         parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Lacto Vegetarian", container, R.string.lactoVegetarian, R.drawable.lactovegitarian));
@@ -352,10 +358,11 @@ public class AllergyFragment extends Fragment {
 
             imageView.setImageResource(arrayListCat.picture);
 
-            SharedPreferences settings = getContext().getSharedPreferences(String.valueOf(arrayListCat.id), Context.MODE_PRIVATE);
+            SharedPreferences settings = getContext().getSharedPreferences(arrayListCat.ingredient, Context.MODE_PRIVATE);
             final SharedPreferences.Editor editor = settings.edit();
             final CheckBox checkBox = (CheckBox) newLinearLayout.findViewById(R.id.checkBoxRowLeftMargin);
-            checkBox.setChecked(settings.getBoolean(String.valueOf(arrayListCat.id), false));
+            Log.d(TAG, "addCategory: " + arrayListCat.ingredient);
+            checkBox.setChecked(settings.getBoolean(arrayListCat.ingredient, false));
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -371,7 +378,8 @@ public class AllergyFragment extends Fragment {
                     parentCheckBox.get(key).setOnCheckedChangeListener(null);
                     seeIfAllCheckboxIsChecked(parentCheckBox.get(key),key,parentKey);
                     parentCheckBoxOnClickListener(parentCheckBox.get(key),key,parentKey);
-                    editor.putBoolean(String.valueOf(arrayListCat.id), isChecked);
+                    Log.d(TAG, "addCategory: " + arrayListCat.ingredient);
+                    editor.putBoolean(arrayListCat.ingredient, isChecked);
                     editor.apply();
                 }
             });
@@ -789,9 +797,6 @@ public class AllergyFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            for (int i : profileSavePicture.keySet()) {
-                Log.d(TAG, "hello" + i);
-            }
             String alreadyString = "00000000";
             ArrayList<Integer> alreadySelectedImages = new ArrayList<>();
             int i = 0;

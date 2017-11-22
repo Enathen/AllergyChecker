@@ -217,10 +217,22 @@ public class AllergyList {
     }
     private void setArrayListCitrus() {
         arrayListCitrus.add(new PictureIngredient(R.drawable.tomato,R.string.citrus));
+        arrayListCitrus.add(new PictureIngredient(R.drawable.tomato,R.string.lemon));
+        arrayListCitrus.add(new PictureIngredient(R.drawable.tomato,R.string.lime));
+        arrayListCitrus.add(new PictureIngredient(R.drawable.tomato,R.string.orange));
+        arrayListCitrus.add(new PictureIngredient(R.drawable.tomato,R.string.grapefruit));
         sort(arrayListCitrus);
     }
     private void setArrayListMuslim() {
-
+        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.bacon));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.choletsorol));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.gelatin));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.glycerol));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.hormones));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.lard));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.magnesiumStearate));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.monoGlycerides));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.pepsin));
         sort(arrayListMuslim);
     }
     private void setArrayListKosher() {
@@ -228,11 +240,28 @@ public class AllergyList {
         sort(arrayListKosher);
     }
     private void setArrayListLegumes() {
-        arrayListLegumes.add(new PictureIngredient(R.drawable.tomato,R.string.legumes));
+        arrayListLegumes.add(new PictureIngredient(R.drawable.legumes,R.string.chickpea));
+        arrayListLegumes.add(new PictureIngredient(R.drawable.legumes,R.string.legumes));
+        arrayListLegumes.add(new PictureIngredient(R.drawable.legumes,R.string.lentil));
+        arrayListLegumes.add(new PictureIngredient(R.drawable.legumes,R.string.lupin));
+        arrayListLegumes.add(new PictureIngredient(R.drawable.legumes,R.string.peanut));
+        arrayListLegumes.add(new PictureIngredient(R.drawable.legumes,R.string.pea));
+        arrayListLegumes.add(new PictureIngredient(R.drawable.legumes,R.string.soy));
+        arrayListLegumes.add(new PictureIngredient(R.drawable.legumes,R.string.soybean));
         sort(arrayListLegumes);
     }
     private void setArrayListSpice() {
-
+        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.anis));
+        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.coriander));
+        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.celery));
+        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.cumin));
+        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.fennel));
+        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.parsley));
+        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.ragweed));
+        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.echinacea));
+        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.artichoke));
+        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.dandelions));
+        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.hibiscus));
         sort(arrayListSpice);
     }
 
@@ -391,10 +420,10 @@ public class AllergyList {
     public void setArrayListNuts() {
         arrayListNuts.add(new PictureIngredient(R.drawable.nuts,R.string.almond));
         arrayListNuts.add(new PictureIngredient(R.drawable.nuts,R.string.brazil));
-        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,R.string.cocao));
+        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,R.string.cocoa));
         arrayListNuts.add(new PictureIngredient(R.drawable.nuts,R.string.hazelnut));
         arrayListNuts.add(new PictureIngredient(R.drawable.nuts,R.string.macadamia));
-        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,R.string.peanuts));
+        arrayListNuts.add(new PictureIngredient(R.drawable.nuts,R.string.peanut));
         arrayListNuts.add(new PictureIngredient(R.drawable.nuts,R.string.pecans));
         arrayListNuts.add(new PictureIngredient(R.drawable.nuts,R.string.nuts));
         arrayListNuts.add(new PictureIngredient(R.drawable.nuts,R.string.pili));

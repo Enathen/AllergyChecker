@@ -27,10 +27,10 @@
     <string name="nuts">Nötter</string>
     <string name="almond">Mandel</string>
     <string name="brazil">Paranötter</string>
-    <string name="cocao">Cacao</string>
+    <string name="cocoa">kakao</string>
     <string name="hazelnut">Hasselnötter</string>
+
     <string name="macadamia">Macadamianötter</string>
-    <string name="peanuts">Jordnötter</string>
     <string name="pecans">Pecannötter</string>
     <string name="pili">Pilinötter</string>
     <string name="pine">Pinjenötter</string>
@@ -138,6 +138,7 @@
 
     <string name="english">Engelska</string>
     <string name="swedish">Svenska</string>
+    <string name="spanish">Spanska</string>
 
     <string name="staticEnglish">English</string>
     <string name="staticSwedish">Svenska</string>
@@ -162,20 +163,20 @@
     <string name="myAllergies">Mina allergier</string>
     <string name="share">Dela</string>
     <string name="send">Skicka tips</string>
-    <string name="mustBeInEnglish">Text must be written in English or Swedish! Thanks!</string>
-    <string name="sendTipsFrom">Where you want to send tips from?</string>
-    <string name="welcomeMessageInvite">Do you want know if you can eat something fast, that is not allergic to you?
-    Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
+    <string name="mustBeInEnglish">Texten måste bli skriven på Engelska eller Svenska! Tack!</string>
+    <string name="sendTipsFrom">Vart vill du skicka tips från?</string>
+    <string name="welcomeMessageInvite">Vill du veta om du kan äta något snabbt? Som inte är allergiskt för dig?
+    Toppen! Den här appen låter dig scanna text från olika språk som låter dig se om du är allergisk mot det!</string>
     <string name="time">gång</string>
-    <string name="buckwheat">Buckwheat</string>
-    <string name="mustardSeed">Mustard Seed</string>
-    <string name="poppySeed">Poppy Seed</string>
-    <string name="sunflowerSeed">Sunflower Seed</string>
-    <string name="fruit">Fruit</string>
-    <string name="vegetables">Vegetables</string>
+    <string name="buckwheat">Bovete</string>
+    <string name="mustardSeed">Senapsfrö</string>
+    <string name="poppySeed">Vallmofrö</string>
+    <string name="sunflowerSeed">Solrosfrö</string>
+    <string name="fruit">Frukt</string>
+    <string name="vegetables">Grönsaker</string>
     <string name="cannotUseCamera">Kan inte använda kameran utan din tillåtelse!</string>
     <string name="varning">Varning!</string>
-    <string name="thisAppOnlySave">om tillåtelse inte hes, kommer inte appen fungera som den ska. Det ända som sparas är texten. Om tillåtelse inte ges så kommer appen behöva ominstalleras! Ha en fantastisk dag!</string>
+    <string name="thisAppOnlySave">Om tillåtelse inte ges, kommer inte appen fungera som den ska. Det ända som sparas är texten. Om tillåtelse inte ges så kommer appen behöva ominstalleras! Ha en fantastisk dag!</string>
     <string name="mightContainOther">Det här är endast en riktlinje! Och kanske innehåller andra allergier</string>
     <string name="mightContainAllergies">Det här är endast en riktlinje! Och innehåller kanske allergier</string>
     <string name="vegetarian">Vegetarian</string>
@@ -204,34 +205,63 @@
     <string name="dairy">Mejeri</string>
     <string name="egg">Ägg</string>
     <string name="honey">Honung</string>
-    <string name="lactoVegetarian">Lacto Vegetarian</string>
-    <string name="ovoVegetarian">Ovo Vegetarian</string>
-    <string name="lactoOvoVegetarian">Lacto Ovo Vegetarian</string>
-    <string name="demiVegetarian">Demi Vegetarian</string>
-    <string name="polloVegetarian">Pollo Vegetarian</string>
-    <string name="pescoVegetarian">Pesco Vegetarian</string>
+    <string name="lactoVegetarian">Lacto-Vegetarian</string>
+    <string name="ovoVegetarian">Ovo-Vegetarian</string>
+    <string name="lactoOvoVegetarian">Lacto-ovo-vegetarian</string>
+    <string name="demiVegetarian">Demivegetarian</string>
+    <string name="polloVegetarian">Pollovegetarian</string>
+    <string name="pescoVegetarian">Pescovegetarian</string>
     <string name="chicken">Kyckling</string>
-    <string name="areYouSure">Are you sure you want to delete?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="flashon">Flash On</string>
-    <string name="cancel">Cancel</string>
-    <string name="inputIngredients">Input ingredients</string>
-    <string name="rate">Rate</string>
-    <string name="pressMe">Press me \nto continue!</string>
-    <string name="firstIntro">Pressing this icon from the menu brings up the allergy window. From
-        there you can insert your allergies.</string>
-    <string name="secondIntro">Tap to bring up the camera to scan ingredients. Holding the camera
-        button down, pops up a new window. From the new menu ingredients can be inserted manually by typing
-        them in. </string>
-    <string name="thirdIntro">This is how you use the camera:\n
-        1. Hold the camera over text.\n
-        2. White textboxes appears.\n
-        3. When covered the text.\n
-        4. TAP one textbox!\n
-        5. Text saved. Wait for result!
+    <string name="areYouSure">Är du säker att du vill ta bort allt?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nej</string>
+    <string name="flashon">Ficklampa på</string>
+    <string name="cancel">Avbryt</string>
+    <string name="inputIngredients">Skriv ingredienser</string>
+    <string name="rate">Betygsätt</string>
+    <string name="pressMe">Tryck mig\nFör att fortsätta!</string>
+    <string name="firstIntro">Genom att trycka på denna ikon från menyn, tar fram en allergimeny.
+        Därifrån kan du trycka i vad du är allergisk mot.</string>
+    <string name="secondIntro">Tryck för att ta fram kameran, så du kan skanna ingredienser. Hålls kamera knappen nere, kommer en ny ruta fram.
+        Från den nya rutan kan ingredienser bli instoppad manuellt genom att skriva in dem. </string>
+    <string name="thirdIntro">Såhär använder du kameran:\n
+        1. Håll kameran över en text.\n
+        2. Vita boxar täcker texten.\n
+        3. När boxarna täckt texten.\n
+        4. TRYCK på en box!\n
+        5. Text sparas. Vänta på resultat!
         </string>
-    <string name="tutorial">Tutorial</string>
+    <string name="tutorial">Hjälp</string>
+    <string name="anis">Anis</string>
+    <string name="coriander">Koriander</string>
+    <string name="cumin">Kummin</string>
+    <string name="fennel">Fänkål</string>
+    <string name="parsley">Persilja</string>
+    <string name="ragweed">Ragweed</string>
+    <string name="echinacea">Echinacea</string>
+    <string name="artichoke">Kronärtskocka</string>
+    <string name="dandelions">Maskrosor</string>
+    <string name="hibiscus">Hibiskus</string>
+    <string name="chickpea">Kikärtor</string>
+    <string name="lentil">Linser</string>
+    <string name="lupin">Lupin</string>
+    <string name="peanut">Jordnötter</string>
+    <string name="pea">Ärta</string>
+    <string name="soybean">Sojaböna</string>
+    <string name="lemon">Citron</string>
+    <string name="lime">Lime</string>
+    <string name="grapefruit">Grapefrukt</string>
+    <string name="bacon">Bacon</string>
+    <string name="choletsorol">Kolesterol</string>
+    <string name="glycerol">Glycerol</string>
+    <string name="hormones">Hormoner</string>
+    <string name="lard">Ister</string>
+    <string name="magnesiumStearate">Magnesiumstearat</string>
+    <string name="monoGlycerides">Monoglycerider</string>
+    <string name="pepsin">Pepsin</string>
+
+    <string name="halal">Halal</string>
+
 
 
 </resources>

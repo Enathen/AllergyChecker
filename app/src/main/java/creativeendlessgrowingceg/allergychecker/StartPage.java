@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -227,14 +228,14 @@ public class StartPage extends AppCompatActivity
         displayInterstitial();
         ( findViewById(R.id.progressBar3)).setVisibility(View.VISIBLE);
 
-        /*Locale locale = new Locale(new SettingsFragment(this).getLanguageFromLFragment(this));
+        Locale locale = new Locale(new SettingsFragment(this).getLanguageFromLFragment(this));
         final Locale newLocale = new Locale(locale.getLanguage());
         Locale.setDefault(newLocale);
         final Configuration config = new Configuration();
         config.locale = newLocale;
 
         final Resources res = this.getResources();
-        res.updateConfiguration(config, res.getDisplayMetrics());*/
+        res.updateConfiguration(config, res.getDisplayMetrics());
         new MyTask(this,allergic, (ProgressBar) findViewById(R.id.progressBar3)).execute(str);
 
     }
@@ -374,6 +375,7 @@ public class StartPage extends AppCompatActivity
         Fragment fragment = null;
         suggestions.setText("");
         allergic.setText("");
+
         ((TextView) findViewById(R.id.textViewFoundAllergies)).setText("");
         if (id == R.id.nav_camera) {
             suggestions.setText(newString);
@@ -491,23 +493,30 @@ public class StartPage extends AppCompatActivity
     }
 
 
-    public class DateString{
+    public class DateString {
         String string;
 
-        DateString(String string){
+        DateString(String string) {
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.DAY_OF_MONTH, 10);
             Date date = calendar.getTime();
 
             String dateTime = DateFormat.getDateInstance(DateFormat.SHORT).format(date);
-            dateTime = dateTime.concat(" " +DateFormat.getTimeInstance(DateFormat.MEDIUM).format(date));
+            dateTime = dateTime.concat(" " + DateFormat.getTimeInstance(DateFormat.MEDIUM).format(date));
 
-            Log.d(TAG,"DATE:"+ dateTime);
+            Log.d(TAG, "DATE:" + dateTime);
             String newString = dateTime;
             newString = newString.concat(" " + string);
             this.string = newString;
         }
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+    }
+
     private class MyTask extends AsyncTask<String, Integer, String> {
         private StartPage mContext;
         private TextView textView;
@@ -537,8 +546,11 @@ public class StartPage extends AppCompatActivity
             for (int i = 0; i < splitStr.length; i++) {
                 if(splitStr.length-1 != i){
                     hashSetString.add(splitStr[i]+ splitStr[i+1]);
-
+                    if(splitStr[i].equals("de") && splitStr.length>0){
+                        hashSetString.add(splitStr[i-1]+splitStr[i]+ splitStr[i+1]);
+                    }
                 }
+
                 hashSetString.add(splitStr[i]);
 
 

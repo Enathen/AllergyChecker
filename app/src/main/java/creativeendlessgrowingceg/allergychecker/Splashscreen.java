@@ -3,7 +3,6 @@ package creativeendlessgrowingceg.allergychecker;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -43,12 +42,8 @@ public class Splashscreen extends Activity {
                     e.printStackTrace();
                 }
 
-                /*Locale.setDefault(loadLocale());
 
-                Configuration config = new Configuration();
-                Log.d(TAG, Locale.getDefault().getLanguage());
-                config.setLocale(Locale.getDefault());
-                getApplicationContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());*/
+                setLocale();
                 Intent i = new Intent(Splashscreen.this,StartPage.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 finish();
@@ -64,11 +59,10 @@ public class Splashscreen extends Activity {
             }
         });
     }
-    public Locale loadLocale() {
+    public void setLocale() {
 
-        Locale locale = new Locale(new SettingsFragment(this).getLanguageFromLFragment(Splashscreen.this));
-        Log.d(TAG,locale.getLanguage());
-        return locale;
+      new SettingsFragment(this).setGetLanguage(Splashscreen.this,Locale.getDefault().getLanguage());
+
     }
 
 

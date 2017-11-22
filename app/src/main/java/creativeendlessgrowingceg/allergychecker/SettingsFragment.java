@@ -120,7 +120,8 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-
+        preference = PreferenceManager.getDefaultSharedPreferences(getContext());
+        language = getLanguageFromLFragment(getContext());
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(getContext());
         // Check if we need to display our OnboardingFragment
@@ -176,16 +177,22 @@ public class SettingsFragment extends Fragment {
             ((ImageView)newLinearLayout.findViewById(R.id.imageViewLeftMargin)).setImageResource(languagesClass.picture);
             ((TextView)newLinearLayout.findViewById(R.id.textViewLeftMargin)).setText(languagesClass.language);
             final CheckBox checkBox = (CheckBox) newLinearLayout.findViewById(R.id.checkBoxRowLeftMargin);
-            checkBoxes.add(new CheckBoxes(String.valueOf(languagesClass.id),checkBox, languagesClass.locale));
+            checkBoxes.add(new CheckBoxes(getString(languagesClass.id),checkBox, languagesClass.locale));
             Log.d(TAG,"SWAG" + String.valueOf(languagesClass.locale));
-            checkBox.setChecked(settings.getBoolean(String.valueOf(languagesClass.id), false));
+            checkBox.setChecked(settings.getBoolean(getString(languagesClass.id), false));
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    editor.putBoolean(String.valueOf(languagesClass.id),isChecked);
+                    editor.putBoolean(getString(languagesClass.id),isChecked);
                     editor.apply();
 
                     checkIfParentCheckBoxShouldSwitch(((CheckBox)parentLinearLayout.findViewById(R.id.checkBoxRowCategory)),editor,arrayListLinearLayout);
+                    if(languagesClass.locale.getLanguage().equals(language)){
+                        checkBox.setChecked(true);
+                        editor.putBoolean(getString(languagesClass.id),true);
+                        editor.apply();
+                        checkIfParentCheckBoxShouldSwitch(((CheckBox)parentLinearLayout.findViewById(R.id.checkBoxRowCategory)),editor,arrayListLinearLayout);
+                    }
 
                 }
 
@@ -217,6 +224,7 @@ public class SettingsFragment extends Fragment {
                         }
                         editor.putBoolean(String.valueOf(R.string.languageFrom),isChecked);
                         editor.apply();
+
                     }
                 });
 
@@ -276,7 +284,6 @@ public class SettingsFragment extends Fragment {
                     Configuration config = new Configuration();
                     config.setLocale(languagesClass.locale);
                     getActivity().getApplicationContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
-
                     Intent intent = getActivity().getIntent();
                     getActivity().finish();
                     startActivity(intent);
@@ -419,6 +426,7 @@ public class SettingsFragment extends Fragment {
         ArrayList<String> languageAccepted = new  ArrayList<String>();
         languageAccepted.add("en");
         languageAccepted.add("sv");
+        languageAccepted.add("es");
         Log.d(TAG,"StartPageLanguageFragment"+Locale.getDefault().getLanguage());
         if (preference.contains("getLanguage")){
             return preference.getString("getLanguage","en");
@@ -434,6 +442,12 @@ public class SettingsFragment extends Fragment {
         }
 
         return "en";
+    }
+
+    public void setGetLanguage(Splashscreen splashscreen, String language) {
+        SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(splashscreen).edit();
+        sharedPreferencesEditor.putString("getLanguage", language);
+        sharedPreferencesEditor.apply();
     }
 
     /**

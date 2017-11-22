@@ -498,7 +498,7 @@ public class StartPage extends AppCompatActivity
 
         DateString(String string) {
             Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.DAY_OF_MONTH, 10);
+            calendar.get(Calendar.DAY_OF_MONTH);
             Date date = calendar.getTime();
 
             String dateTime = DateFormat.getDateInstance(DateFormat.SHORT).format(date);

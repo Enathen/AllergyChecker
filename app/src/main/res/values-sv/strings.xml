@@ -25,9 +25,9 @@
 
 
     <string name="nuts">Nötter</string>
-    <string name="almond">Mandel</string>
+    <string name="almond">Mandel, mandlar</string>
     <string name="brazil">Paranötter</string>
-    <string name="cocoa">kakao</string>
+    <string name="cocoa">Kakao</string>
     <string name="hazelnut">Hasselnötter</string>
 
     <string name="macadamia">Macadamianötter</string>
@@ -103,7 +103,7 @@
 
 
     <string name="apple">Äpple</string>
-    <string name="pear">Pärom</string>
+    <string name="pear">Päron</string>
     <string name="tomato">Tomat</string>
     <string name="strawberry">Jordgubbe</string>
     <string name="prune">Katrinplommon</string>
@@ -261,7 +261,7 @@
     <string name="pepsin">Pepsin</string>
 
     <string name="halal">Halal</string>
-
+    <string name="start">Start Page</string>
 
 
 </resources>

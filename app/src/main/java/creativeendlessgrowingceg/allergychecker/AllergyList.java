@@ -75,6 +75,7 @@ public class AllergyList {
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato,R.string.potato));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato,R.string.pumpkin));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato,R.string.zucchini));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.milk));
         sort(arrayListVegetables);
     }
     private void setArrayListVegetarian() {
@@ -115,6 +116,7 @@ public class AllergyList {
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.pork));
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.duck));
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.meat));
+        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.milk));
 
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.goat));
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg,R.string.poultry));

@@ -257,7 +257,7 @@
     <string name="celery">Celery</string>
     <string name="garlic">Garlic</string>
     <string name="lettuce">Lettuce</string>
-    <string name="maize">Maize</string>
+    <string name="maize">Maize, Corn</string>
     <string name="potato">Potato</string>
     <string name="pumpkin">Pumpkin</string>
     <string name="zucchini">Zucchini</string>
@@ -312,15 +312,16 @@
     <string name="artichoke">Artichoke</string>
     <string name="dandelions">Dandelions</string>
     <string name="hibiscus">Hibiscus</string>
-    <string name="chickpea">Chickpea</string>
-    <string name="lentil">Lentil</string>
+    <string name="chickpea">Chickpeas</string>
+    <string name="lentil">Lentils</string>
     <string name="lupin">Lupin</string>
-    <string name="peanut">Peanut</string>
-    <string name="pea">Pea</string>
+    <string name="peanut">Peanuts</string>
+    <string name="pea">Peas</string>
     <string name="soybean">soybean</string>
     <string name="lemon">Lemon</string>
     <string name="lime">Lime</string>
     <string name="grapefruit">Grapefruit</string>
+
     <string name="bacon">Bacon</string>
     <string name="choletsorol">Cholesterol</string>
     <string name="glycerol">Glycerol</string>
@@ -331,7 +332,7 @@
     <string name="pepsin">Pepsin</string>
 
     <string name="halal">Halal</string>
-
+    <string name="start">Start Page</string>
 
 
 </resources>

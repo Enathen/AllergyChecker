@@ -29,8 +29,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -96,13 +98,9 @@ public class AllergyFragment extends Fragment {
         this.localeArrayList = localeArrayList;
     }
 
-    public AllergyFragment(StartPage startPage, ArrayList<Locale> localeArrayList) {
+    public AllergyFragment(StartPage startPage) {
         this.startPage = startPage;
         startPageFile = new File(startPage.getFilesDir(),"data.txt");
-        if(localeArrayList.isEmpty()){
-            localeArrayList.add(Locale.getDefault());
-        }
-        this.localeArrayList = localeArrayList;
     }
 
 
@@ -343,7 +341,17 @@ public class AllergyFragment extends Fragment {
         }
 
     }
+    public String setTextViewCorrect(String ingredient){
+        List<String> list = null;
+        if(ingredient.contains(",")){
+            list = Arrays.asList(ingredient.split(","));
 
+        }
+        if(list == null){
+            return ingredient;
+        }
+        return list.get(0);
+    }
 
     private void addCategory(final LayoutInflater inflater, ArrayList<AllergyList.PictureIngredient> arrayListCategory, final String key,final int parentKey,final int parentPicture){
         ArrayList<LinearLayout> arrayList = new ArrayList<>();
@@ -353,7 +361,8 @@ public class AllergyFragment extends Fragment {
             LinearLayout newLinearLayout = (LinearLayout) inflater.inflate(R.layout.leftmarginrowlayout,null);
 
             final TextView textview = (TextView) newLinearLayout.findViewById(R.id.textViewLeftMargin);
-            textview.setText(arrayListCat.ingredient);
+
+            textview.setText(setTextViewCorrect(arrayListCat.ingredient));
             ImageView imageView = (ImageView) newLinearLayout.findViewById(R.id.imageViewLeftMargin);
 
             imageView.setImageResource(arrayListCat.picture);
@@ -465,9 +474,9 @@ public class AllergyFragment extends Fragment {
 
 
     }
-    public HashMap<String,LangString> getCategoriesFromOtherClass(){
+    public HashSet<Integer> getCategoriesFromOtherClass(){
         SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
-        HashMap<String,LangString> hashMap = new HashMap<>();
+
         SharedPreferences sp = startPage.getSharedPreferences("AllergyFrag", Context.MODE_PRIVATE);
         //NOTE: if shared preference is null, the method return empty Hashset and not null
         Set<String> set = sp.getStringSet("data", new HashSet<String>());
@@ -475,68 +484,15 @@ public class AllergyFragment extends Fragment {
         for (String s : set) {
             hashSet.add(Integer.parseInt(s));
         }
-        for (int id : hashSet) {
-            for (Locale locale : localeArrayList) {
-                HashSet<String> string = spellCheckAllergy.permuteString(locale.getLanguage(),
-                        getStringByLocal(startPage, id,
-                                locale.getLanguage()));
-                // TODO: 2017-11-08 WRONG DRAWABLE
-                LangString langString = new LangString(locale.getLanguage(),true,id);
-                langString.allPossibleDerivationsOfAllergen = string;
-                hashMap.put(getStringByLocal(startPage,id,locale.getLanguage()),langString);
-            }
 
-        }
-        return hashMap;
+
+        return hashSet;
     }
     public void setProfilePic(){
         new SavePictureFromOtherClass().execute();
 
     }
 
-
-    /**
-     * all checked allergies including different languages gets selected
-     * @return
-     */
-    /*public HashMap<String,LangString> getArrayListFromAllCheckedAllergies(ArrayList<Locale> localeArray, Activity context, Locale lDefault){
-        FileInputStream fileInputStream;
-        try {
-            fileInputStream = new FileInputStream(startPageFile);
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-
-            hashMapCategoriesAllergy = (HashMap<Integer, LanguageString>) objectInputStream.readObject();
-            objectInputStream.close();
-            HashMap<String, LangString> hashMap = new HashMap<>();
-
-            if(localeArray.isEmpty()){
-
-                localeArray.add(context.getResources().getConfiguration().getLocales().get(0));
-            }
-            for (LanguageString key : hashMapCategoriesAllergy.values()) {
-                    if(key.on) {
-                        for (Locale locale : localeArray) {
-                            if (!key.allPossibleWords.containsKey(locale.getLanguage())){
-                                hashMap.put(getStringByLocal(context, key.id, locale.getLanguage()),
-                                        new LangString(locale.getLanguage(), getStringByLocal(context, key.id, locale.getLanguage()), true,
-                                                key.id));
-                            }else{
-                                Log.d(TAG, "getStringByLocal:" + getStringByLocal(context, key.id, locale.getLanguage()));
-                                hashMap.put(getStringByLocal(context, key.id, locale.getLanguage()),
-                                        new LangString(locale.getLanguage(), getStringByLocal(context, key.id, locale.getLanguage()), true,
-                                                key.id,key.allPossibleWords.get(locale.getLanguage())));
-                            }
-
-                        }
-                    }
-
-            }
-            return hashMap;
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }*/
     @NonNull
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static String getStringByLocal(Activity context, int id, String locale) {

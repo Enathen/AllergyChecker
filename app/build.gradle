@@ -35,4 +35,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-ads:11.0.4'
     testCompile 'junit:junit:4.12'
     compile files('libs/jazzy0-2-1.jar')
+    compile 'org.jetbrains:annotations-java5:15.0'
+    compile 'com.google.code.findbugs:jsr305:2.0.1'
 }

@@ -124,20 +124,7 @@ public class SettingsFragment extends Fragment {
         language = getLanguageFromLFragment(getContext());
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(getContext());
-        // Check if we need to display our OnboardingFragment
-        /*if (!sharedPreferences.getBoolean(
-                "startHistory", false)) {
-            language = getResources().getConfiguration().getLocales().get(0).getLanguage();
-            SharedPreferences.Editor sharedPreferencesEditor =
-                    PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
-            sharedPreferencesEditor.putBoolean(
-                    "startHistory", true);
-            sharedPreferencesEditor.apply();
-        }else{
-            language = sharedPreferences.getString("getLanguage",null);
 
-        }
-*/
 
         parentFrameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_settings, container, false);
 
@@ -147,11 +134,7 @@ public class SettingsFragment extends Fragment {
 
         //parentLinearLayout.addView(addStaticLanguages(inflater,languages.getstaticArrayListLanguage()));
         parentLinearLayout.addView(addLanguages(inflater,languages.getArrayListLanguage()));
-       /* for (RadioButtons radioButton : radioButtons) {
-            if(radioButton.staticLocale.getLanguage().equals(language)){
-                radioButton.radioButton.setChecked(true);
-            }
-        }*/
+
 
         for (CheckBoxes checkBox : checkBoxes) {
             if(checkBox.locale.getLanguage().equals(language)){

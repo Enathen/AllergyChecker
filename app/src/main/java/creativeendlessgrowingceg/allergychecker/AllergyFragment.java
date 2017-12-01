@@ -413,33 +413,6 @@ public class AllergyFragment extends Fragment {
 
 
     }
-    /*private void setProfileAllergies() {
-        String alreadyString = "00000000";
-        ArrayList<Integer> alreadySelectedImages = new ArrayList<>();
-        int i = 0;
-        for (ImageView imageView : imageViewHashMap.values()) {
-         imageView.setImageResource(R.drawable.emptyborder);
-        }
-        for (LanguageString languageString : hashMapCategoriesAllergy.values()) {
-            if(i>7){
-                break;
-            }
-            if(languageString.on){
-                if(alreadyString.charAt(i) == '0'){
-                    if (!alreadySelectedImages.contains(languageString.mainAllergyCat)) {
-                        imageViewHashMap.get(i).setImageResource(languageString.mainAllergyCat);
-                        alreadySelectedImages.add(languageString.mainAllergyCat);
-                        StringBuilder myName = new StringBuilder(alreadyString);
-                        myName.setCharAt(i, '1');
-                        alreadyString = myName.toString();
-                        i++;
-
-                    }
-                }
-            }
-        }
-    }
-*/
     public void saveCategories(){
         final Context context = this.getContext();
         new MyTask().execute("Save");
@@ -475,8 +448,6 @@ public class AllergyFragment extends Fragment {
 
     }
     public HashSet<Integer> getCategoriesFromOtherClass(){
-        SpellCheckAllergy spellCheckAllergy = new SpellCheckAllergy();
-
         SharedPreferences sp = startPage.getSharedPreferences("AllergyFrag", Context.MODE_PRIVATE);
         //NOTE: if shared preference is null, the method return empty Hashset and not null
         Set<String> set = sp.getStringSet("data", new HashSet<String>());
@@ -777,5 +748,4 @@ public class AllergyFragment extends Fragment {
             }
         }
     }
-
 }

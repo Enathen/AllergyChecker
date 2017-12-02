@@ -1,6 +1,5 @@
 package creativeendlessgrowingceg.allergychecker;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -11,10 +10,8 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -27,10 +24,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,9 +51,6 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import creativeendlessgrowingceg.allergychecker.FAB.FloatingToolbar;
-import creativeendlessgrowingceg.allergychecker.bktree.BkTreeSearcher;
-import creativeendlessgrowingceg.allergychecker.bktree.Metric;
-import creativeendlessgrowingceg.allergychecker.bktree.MutableBkTree;
 import creativeendlessgrowingceg.allergychecker.design.activity.OnboardingPagerActivity;
 
 public class StartPage extends AppCompatActivity
@@ -250,7 +246,7 @@ public class StartPage extends AppCompatActivity
 
         final Resources res = this.getResources();
         res.updateConfiguration(config, res.getDisplayMetrics());
-        new MyTask(this,allergic, (ProgressBar) findViewById(R.id.progressBar3)).execute(str);
+        new CalcAllergy(this,allergic, (ProgressBar) findViewById(R.id.progressBar3)).execute(str);
 
     }
 
@@ -523,17 +519,19 @@ public class StartPage extends AppCompatActivity
 
     }
 
-    private class MyTask extends AsyncTask<String, Integer, String> {
+    private class CalcAllergy extends AsyncTask<String, Integer, TreeMap<String,AllAllergiesForEachInteger>> {
+        private final HelpCalcAllergy helpCalcAllergy;
         private StartPage mContext;
         private TextView textView;
         private ProgressBar viewById;
 
 
-        public MyTask(StartPage context, TextView textView, ProgressBar viewById) {
+        public CalcAllergy(StartPage context, TextView textView, ProgressBar viewById) {
             mContext = context;
 
             this.textView = textView;
             this.viewById = viewById;
+            helpCalcAllergy = new HelpCalcAllergy();
         }
         // Runs in UI before background thread is called
         @Override
@@ -544,310 +542,50 @@ public class StartPage extends AppCompatActivity
         }
 
         // This is run in a background thread
-        Metric<String> hammingDistance = new Metric<String>() {
-            @Override
-            public int distance(String x, String y) {
-                if (!(x.length() != y.length() || x.length()-1 != y.length() || x.length()+1 != y.length())) {
-                    throw new IllegalArgumentException();
-                }
 
-                int distance = 0;
-
-
-                if(y.length() > x.length()){
-                    for (int i = 0; i < y.length()-1; i++)
-                        if (x.charAt(i) != y.charAt(i)) {
-                            distance++;
-                        }
-                    distance++;
-                }else if (y.length() < x.length()){
-                    for (int i = 0; i < x.length()-1; i++)
-                        if (x.charAt(i) != y.charAt(i)) {
-                            distance++;
-                        }
-                    distance++;
-                }else{
-                    for (int i = 0; i < x.length(); i++)
-                        if (x.charAt(i) != y.charAt(i)) {
-                            distance++;
-                        }
-                }
-                return distance;
-            }
-        };
         @Override
-        protected String doInBackground(String... params) {
+        protected TreeMap<String,AllAllergiesForEachInteger> doInBackground(String... params) {
             // get the string from params, which is an array
-            String str = params[0];
-            String[] splitStr = str.split("\\s+");
-            TreeMap<Integer,HashSet<String>> hashSetString = new TreeMap<>();
-            HashSet<String> hashie = new HashSet<>();
-            for (int i = 0; i < splitStr.length; i++) {
-                if(splitStr.length-1 != i){
-                    hashie.add(splitStr[i]+ splitStr[i+1]);
-                    if(hashSetString.containsKey((splitStr[i]+ splitStr[i+1]).length())){
-                        hashSetString.put((splitStr[i]+ splitStr[i+1]).length(),hashSetString.get((splitStr[i]+ splitStr[i+1]).length())).add(splitStr[i]+ splitStr[i+1]);
-                    }else{
-                        HashSet<String> hashset = new HashSet<>();
-                        hashset.add(splitStr[i]+ splitStr[i+1]);
-                        hashSetString.put((splitStr[i]+ splitStr[i+1]).length(),hashset);
-                    }
-                    if(splitStr[i].equals("de") && splitStr.length>0){
-                        hashie.add(splitStr[i-1]+splitStr[i]+ splitStr[i+1]);
-                        if(hashSetString.containsKey((splitStr[i-1]+splitStr[i]+ splitStr[i+1]).length())){
-                            hashSetString.put((splitStr[i-1]+splitStr[i]+ splitStr[i+1]).length(),hashSetString.get((splitStr[i-1]+splitStr[i]+ splitStr[i+1]).length())).add((splitStr[i-1]+splitStr[i]+ splitStr[i+1]));
-                        }else{
-                            HashSet<String> hashset = new HashSet<>();
-                            hashset.add(splitStr[i-1]+splitStr[i]+ splitStr[i+1]);
-                            hashSetString.put((splitStr[i-1]+splitStr[i]+ splitStr[i+1]).length(),hashset);
-                        }
-                    }
-
-                }
-                hashie.add(splitStr[i]);
-                if(hashSetString.containsKey((splitStr[i]).length())){
-                    hashSetString.put((splitStr[i]).length(),hashSetString.get((splitStr[i]).length())).add(splitStr[i]);
-                }else{
-                    HashSet<String> hashset = new HashSet<>();
-                    hashset.add(splitStr[i]);
-                    hashSetString.put((splitStr[i]).length(),hashset);
-                }
-
-
-            }
+            TreeMap<Integer,HashSet<String>> hashSetAllStrings = new TreeMap<>();
+            HashSet<String> hashSetToCheckLast = new HashSet<>();
+            helpCalcAllergy.FixString(params[0].split("\\s+"),hashSetAllStrings,hashSetToCheckLast);
 
             ArrayList<Locale> listOfLanguages = new SettingsFragment(mContext).getCategories();
-            Log.d(TAG,"TIMEReceiveString");
-            HashSet<Integer> hashSet = new AllergyFragment(mContext).getCategoriesFromOtherClass();
 
-            HashMap<Integer,HashSet<String>> allergies = new HashMap<>();
-
+            HashSet<Integer> hashSetFromOtherClass = new AllergyFragment(mContext).getCategoriesFromOtherClass();
+            HashMap<Integer,HashMap<String,AllAllergiesForEachInteger>> allergies = new HashMap<>();
+            int length = 0;
             int counter = 0;
             int i = 0;
-            int length = 0;
-            for (int id : hashSet) {
-                publishProgress(hashSet.size(), counter);
-                for (Locale locale : listOfLanguages) {
-                    /*HashSet<String> string = spellCheckAllergy.permuteString(locale.getLanguage(),
-                            getStringByLocal(StartPage.this, id,
-                                    locale.getLanguage()));*/
-                    //LangString langString = new LangString(locale.getLanguage(),true,id);
-                    //langString.allPossibleDerivationsOfAllergen = string;
-                    String localeString =getStringByLocal(StartPage.this,id,locale.getLanguage());
-                    if(length< localeString.length()){
-                        length = localeString.length()+2;
-                    }
-                    if(allergies.containsKey(localeString.length())){
-                        allergies.put((localeString).length(),allergies.get((localeString).length())).add(localeString);
-                    }else{
-                        HashSet<String> hashSetn = new HashSet<>();
-                        hashSetn.add(localeString);
-                        allergies.put((localeString).length(),hashSetn);
-                    }
-                }
+            TreeMap<String,AllAllergiesForEachInteger> allFoundAllergies = new TreeMap<>();
+            for (int id : hashSetFromOtherClass) {
+                publishProgress(hashSetFromOtherClass.size(), counter);
+                length = helpCalcAllergy.setLocaleString(length,id,allergies,listOfLanguages,StartPage.this);
+
                 if(i % 2 == 0){
                     counter++;
                 }
                 i++;
 
             }
-            boolean dontEat = false;
-            String outputString = "";
             HashSet<String> alreadyContainedAllergies = new HashSet<>();
+            helpCalcAllergy.bkTree(length,alreadyContainedAllergies,hashSetAllStrings,allergies, StartPage.this,allFoundAllergies);
 
             long start = System.currentTimeMillis();
-            for (Integer s : hashSetString.keySet()) {
-                //Log.d(TAG, "swag: "+ s);
-                if(length<s){
-                    continue;
+            counter = hashSetToCheckLast.size()/2;
+            i = 0;
+            for (String s : hashSetToCheckLast) {
+                if(i % 2 == 0){
+                    publishProgress(hashSetToCheckLast.size()/2, counter);
+                    counter++;
                 }
-                MutableBkTree<String> bkTree = new MutableBkTree<>(hammingDistance);
-                bkTree.addAll(hashSetString.get(s));
-                BkTreeSearcher<String> searcher = new BkTreeSearcher<>(bkTree);
-                if(allergies.containsKey(s) && s>4){
-                    for (String strings : allergies.get(s)) {
-                        Set<BkTreeSearcher.Match<? extends String>> matches;
-
-                        if(s>4 && s<10){
-                            matches = searcher.search(strings, 1);
-
-                        }else{
-                            matches = searcher.search(strings,2);
-                        }
-                        for (BkTreeSearcher.Match<? extends String> match : matches){
-                            if(!dontEat){
-                                outputString = outputString.concat(getString(R.string.probablyContained) + ":\n");
-                            }
-                            dontEat = true;
-                            outputString = outputString.concat(strings + " " + getString(R.string.fromWord)
-                                    + " "  + match.getMatch() + "\n");
-                            Log.d(TAG, "doInBackground: "+match.getMatch() + " distance:"+ + match.getDistance() + " from " + strings);
-                            alreadyContainedAllergies.add(strings);
-
-                        }
-
-                    }
-                }
-                if(allergies.containsKey(s+1) && s+1>4) {
-                    for (String strings : allergies.get(s + 1)) {
-                        Set<BkTreeSearcher.Match<? extends String>> matches;
-                        if(s<10){
-                            matches = searcher.search(strings, 2);
-                        }else {
-                            matches = searcher.search(strings, 3);
-                        }
-                        for (BkTreeSearcher.Match<? extends String> match : matches) {
-                            if(!dontEat){
-                                outputString = outputString.concat(getString(R.string.probablyContained) + ":\n");
-                            }
-                            dontEat = true;
-                            outputString = outputString.concat(strings + " " + getString(R.string.fromWord)
-                                    + " " + match.getMatch() + "\n");
-                            Log.d(TAG, "spank: " + match.getMatch() + " distance:" + +match.getDistance() + " from " + strings);
-                            alreadyContainedAllergies.add(strings);
-
-                        }
-
-                    }
-                }
-                if(allergies.containsKey(s-1) && s-1>5 ) {
-                    for (String strings : allergies.get(s - 1)) {
-                        Set<BkTreeSearcher.Match<? extends String>> matches;
-                        if(s<14){
-                            matches= searcher.search(strings, 2);
-
-                        }else{
-                            matches= searcher.search(strings, 3);
-
-
-                        }
-                        for (BkTreeSearcher.Match<? extends String> match : matches) {
-                            if(!dontEat){
-                                outputString = outputString.concat(getString(R.string.probablyContained) + ":\n");
-                            }
-                            dontEat = true;
-                            outputString = outputString.concat(strings + " " + getString(R.string.fromWord)
-                                    + " " + match.getMatch() + "\n");
-                            Log.d(TAG, "SWAGx: " + match.getMatch() + " distance:" + +match.getDistance() + " from " + strings);
-                            alreadyContainedAllergies.add(strings);
-
-                        }
-
-                    }
-                }
-
-
-
+                i++;
+                helpCalcAllergy.checkFullString(s,allergies,StartPage.this,alreadyContainedAllergies,allFoundAllergies);
             }
             long stop = System.currentTimeMillis();
             Log.d(TAG, "TIME: "+(stop-start));
-            start = System.currentTimeMillis();
-            for (String s : hashie) {
 
-                for (int key : allergies.keySet() ) {
-
-                    for (String s1 : allergies.get(key)) {
-                        if(alreadyContainedAllergies.contains(s1)){
-                            continue;
-                        }
-                        if (s.contains(s1)){
-                            if(!dontEat){
-                                outputString = outputString.concat(getString(R.string.probablyContained) + ":\n");
-                            }
-                            dontEat = true;
-                            outputString = outputString.concat(s1 + " " + getString(R.string.fromWord)
-                                    + " " + s + "\n");
-                            alreadyContainedAllergies.add(s1);
-                        }
-                    }
-                }
-            }
-            stop = System.currentTimeMillis();
-            Log.d(TAG, "TIME: "+(stop-start));
-
-            // HashMap<String, LangString> allergies = spellCheckAllergy.permuteStringi(mContext,arrayListAllergies);
-            /*if(allergies != null) {
-
-                boolean b;
-                counter = hashSetString.size()/2;
-                i = 0;
-                for (String string : hashSetString) {
-
-                    if(i % 2 == 0){
-                        counter++;
-                    }
-                    i++;
-                    b = false;
-                    publishProgress(hashSetString.size(), counter);
-
-                    for (String extraKey : allergies.keySet()){
-
-                        if(extraKey.replaceAll("\\s+","").equals(string)){
-
-                            allergies.get(extraKey).found++;
-                            if(allergies.get(extraKey).found == 1){
-                                if(!definitelyContained.contains(allergies.get(extraKey).id)){
-                                    outputString = outputString.concat(getString(R.string.definitelyContained)+" "+ getString(allergies.get(extraKey).id) + "\n");
-                                    definitelyContained.add(allergies.get(extraKey).id);
-
-                                }
-                            }
-                            b = true;
-                            break;
-                        }
-                    }
-                    if(!b){
-                        for (String key : allergies.keySet() ) {
-
-                            if(string.contains(key)){
-
-                                allergies.get(key).found++;
-                                if(allergies.get(key).found == 1){
-                                    outputString = outputString.concat(getString(R.string.probablyContained) + " "+
-                                            getString(allergies.get(key).id) + " " + getString(R.string.fromWord)
-                                            + " " + string + "\n");
-
-
-                                }
-                            }
-                            if (allergies.get(key).allPossibleDerivationsOfAllergen.contains(string)) {
-                                allergies.get(key).found++;
-                                if(allergies.get(key).found == 1) {
-                                    outputString = outputString.concat(getString(R.string.probablyContained) + " "+
-                                            getString(allergies.get(key).id) + " " + getString(R.string.fromWord)
-                                            + " "  + string + "\n");
-
-                                }
-                            }
-                        }
-                    }
-
-                }
-                for (String key : allergies.keySet()) {
-                    if(allergies.get(key).found>0) {
-                        if(!Locale.getDefault().getLanguage().equals(allergies.get(key).language)) {
-                            if(allergies.containsKey(getString(allergies.get(key).id).toLowerCase())){
-                                allergies.get( getString(allergies.get(key).id).toLowerCase()).found += allergies.get(key).found;
-                                allergies.get(key).found = 0;
-                            }
-                        }
-                    }
-                }
-                outputString = outputString.concat("\n");
-                for (String key : allergies.keySet()){
-
-                    if(allergies.get(key).found>0){
-                        dontEat = true;
-                    }
-                }
-
-            }*/
-            if(dontEat){
-                outputString = outputString.concat("1");
-            }else{
-                outputString = outputString.concat("0");
-            }
-            return outputString;
+            return allFoundAllergies;
         }
 
         // This is called from background thread but runs in UI
@@ -863,37 +601,40 @@ public class StartPage extends AppCompatActivity
 
         // This runs in UI when background thread finishes
         @Override
-        protected void onPostExecute(String outputString) {
+        protected void onPostExecute(TreeMap<String,AllAllergiesForEachInteger> allAllergiesForEachInteger) {
             viewById.setVisibility(View.INVISIBLE);
-            super.onPostExecute(outputString);
-            String dontEat = outputString.substring(outputString.length()-1);
-            outputString = outputString.substring(0, outputString.length() -1);
-            if(dontEat.equals("1")){
+            super.onPostExecute(allAllergiesForEachInteger);
+            String outputString = "";
+            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linLayHorizontalStartPage);
+            for (AllAllergiesForEachInteger s : allAllergiesForEachInteger.values()) {
+                LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LinearLayout newlinearLayout = (LinearLayout)  inflater.inflate(R.layout.linlayoutstartpagevertical, null);
+                //LinearLayout newlinearLayout = (LinearLayout) view.findViewById(R.id.linlayoutSwag);
+                ((ImageView)newlinearLayout.findViewById(R.id.imageViewHorStartPage)).setImageResource(helpCalcAllergy.getFlag(s.getLanguage()));
+                ((TextView)newlinearLayout.findViewById(R.id.textViewAllergy)).setText(getString(s.getId()));
+                ((TextView)newlinearLayout.findViewById(R.id.textViewFoundFromWord)).setText(s.getNameOfWordFound());
+                linearLayout.addView(newlinearLayout);
+            }
 
-                outputString = outputString.concat(getString(R.string.dontUse) + "\n");
+            if(!allAllergiesForEachInteger.isEmpty()){
+
+                outputString = outputString.concat("\n"+getString(R.string.dontUse) + "\n");
                 outputString = outputString.concat("\n" +getString(R.string.mightContainOther)+ "\n");
                 outputString = outputString.concat(getString(R.string.scannedTextBelow)+ "\n");
                 textView.setTextColor(Color.RED);
                 textView.setText(outputString);
             }else{
-                outputString = outputString.concat(getString(R.string.youCanUse)+"\n");
+                outputString = outputString.concat("\n"+getString(R.string.youCanUse)+"\n");
                 outputString = outputString.concat("\n" + getString(R.string.mightContainAllergies)+ "\n");
                 outputString = outputString.concat(getString(R.string.scannedTextBelow)+"\n");
                 textView.setTextColor(getColor(R.color.colorAccent));
                 textView.setText(outputString);
             }
+            findViewById(R.id.linlayallergyFromWord).setVisibility(View.VISIBLE);
             allergicString = outputString;
             allergic.setText(outputString);
             // Do things like hide the progress bar or change a TextView
         }
     }
-    @NonNull
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static String getStringByLocal(Activity context, int id, String locale) {
-        Configuration configuration = new Configuration(context.getResources().getConfiguration());
-        configuration.setLocale(new Locale(locale));
 
-
-        return context.createConfigurationContext(configuration).getResources().getString(id).toLowerCase().replaceAll("\\s+","");
-    }
 }

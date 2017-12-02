@@ -8,7 +8,6 @@ import java.util.HashSet;
 
 public class LangString {
     String language;
-
     boolean on;
     int id;
     int found;

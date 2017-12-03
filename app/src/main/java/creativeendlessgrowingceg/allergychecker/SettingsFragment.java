@@ -152,6 +152,7 @@ public class SettingsFragment extends Fragment {
         final LinearLayout topLinearLayout = (LinearLayout) inflater.inflate(R.layout.rowcategorylayout,null);
         final LinearLayout parentLinearLayout = (LinearLayout) topLinearLayout.findViewById(R.id.linearLayoutRowCategoryHorizontal);
         ((ImageView)parentLinearLayout.findViewById(R.id.imageViewRowCategory)).setImageResource(R.drawable.translate);
+        ((ImageView)parentLinearLayout.findViewById(R.id.dropDownList)).setVisibility(View.INVISIBLE);
         ((TextView)parentLinearLayout.findViewById(R.id.textViewCategory)).setText(R.string.languageFrom);
         SharedPreferences settings = getContext().getSharedPreferences("box", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = settings.edit();
@@ -191,14 +192,14 @@ public class SettingsFragment extends Fragment {
                 onclickDropDownList(v,arrayListLinearLayout,topLinearLayout);
             }
         });
-        parentLinearLayout.setOnClickListener(new View.OnClickListener() {
+/*        parentLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onclickDropDownList(parentLinearLayout.findViewById(R.id.dropDownList),
                         arrayListLinearLayout,topLinearLayout);
             }
-        });
-        ((CheckBox)parentLinearLayout.findViewById(R.id.checkBoxRowCategory)).
+        });*/
+       ((CheckBox)parentLinearLayout.findViewById(R.id.checkBoxRowCategory)).
                 setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -210,7 +211,9 @@ public class SettingsFragment extends Fragment {
 
                     }
                 });
-
+        for (LinearLayout linearLayout : arrayListLinearLayout) {
+            topLinearLayout.addView(linearLayout);
+        }
         return topLinearLayout;
     }
 

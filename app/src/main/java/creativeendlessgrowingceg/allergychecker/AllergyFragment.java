@@ -68,6 +68,7 @@ public class AllergyFragment extends Fragment {
     private HashMap<String,CheckBox> parentCheckBox = new HashMap<>();
     private HashMap<Integer,ArrayList<CheckBox>> sameItemDifferentCategories = new HashMap<>();
     private HashMap<Integer,Integer> profileSavePicture = new HashMap<>();
+    protected ArrayList<CheckBoxClass> setCheckedLater = new ArrayList<>();
 
     private File startPageFile;
     private StartPage startPage;
@@ -147,46 +148,12 @@ public class AllergyFragment extends Fragment {
 
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
-        AllergyList allergylist = new AllergyList(getContext());
+
         //getCategories();
+        new AddCategories(inflater,container,getContext()).execute();
 
-        addCategory(inflater, allergylist.getArrayListCitrus(), "Citrus",R.string.citrus,R.drawable.orange);
-        addCategory(inflater, allergylist.getArrayListFish(), "Fish",R.string.fish,R.drawable.fish);
-        addCategory(inflater, allergylist.getArrayListFruit(), "Fruit", R.string.fruit,R.drawable.fruit);
-        addCategory(inflater, allergylist.getArrayListGluten(), "Gluten",R.string.gluten, R.drawable.wheat);
-        addCategory(inflater, allergylist.getArrayListLegumes(), "Legumes",R.string.legumes, R.drawable.legumes);
-        addCategory(inflater, allergylist.getArrayListNuts(), "Nuts",R.string.nuts, R.drawable.nuts);
-        addCategory(inflater, allergylist.getArrayListSeeds(), "Seeds",R.string.seeds, R.drawable.seeds);
-        addCategory(inflater, allergylist.getArrayListShellfish(), "Shellfish", R.string.shellfish, R.drawable.shellfish);
-        addCategory(inflater, allergylist.getArrayListVegetables(), "Vegetables", R.string.vegetables, R.drawable.tomato);
-        addCategory(inflater, allergylist.getArrayListMuslim(), "Halal", R.string.halal, R.drawable.tomato);
-        addCategory(inflater, allergylist.getArrayListVegetarian(), "Vegetarian", R.string.vegetarian, R.drawable.vegetarian);
-        addCategory(inflater, allergylist.getArrayListVegan(), "Vegan", R.string.vegan, R.drawable.vegan);
-        addCategory(inflater, allergylist.getArrayListLactoVegetarian(), "Lacto Vegetarian", R.string.lactoVegetarian, R.drawable.lactovegitarian);
-        addCategory(inflater, allergylist.getArrayListOvoVegetarian(), "Ovo Vegetarian", R.string.ovoVegetarian, R.drawable.ovoveg);
-        addCategory(inflater, allergylist.getArrayListLactoOvoVegetarian(), "LactoOvo Vegetarian", R.string.lactoOvoVegetarian, R.drawable.lactoovoveg);
-        addCategory(inflater, allergylist.getArrayListDemiVegetarian(), "Demi Vegetarian", R.string.demiVegetarian, R.drawable.demiveg);
-        addCategory(inflater, allergylist.getArrayListPolloVegetarian(), "Pollo Vegetarian", R.string.polloVegetarian, R.drawable.polloveg);
-        addCategory(inflater, allergylist.getArrayListPescoVegetarian(), "Pesco Vegetarian", R.string.pescoVegetarian, R.drawable.pescoveg);
 
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Citrus", container, R.string.citrus, R.drawable.orange));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Fish", container, R.string.fish, R.drawable.fish));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Fruit", container, R.string.fruit, R.drawable.fruit));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Gluten", container, R.string.gluten, R.drawable.wheat));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Legumes", container, R.string.legumes, R.drawable.legumes));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Nuts", container, R.string.nuts, R.drawable.nuts));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Seeds", container, R.string.seeds, R.drawable.seeds));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Shellfish", container, R.string.shellfish, R.drawable.shellfish));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegetables", container, R.string.vegetables, R.drawable.tomato));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Halal", container, R.string.halal, R.drawable.tomato));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegetarian", container, R.string.vegetarian, R.drawable.vegetarian));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegan", container, R.string.vegan, R.drawable.vegan));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Lacto Vegetarian", container, R.string.lactoVegetarian, R.drawable.lactovegitarian));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Ovo Vegetarian", container, R.string.ovoVegetarian, R.drawable.ovoveg));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "LactoOvo Vegetarian", container, R.string.lactoOvoVegetarian, R.drawable.lactoovoveg));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Demi Vegetarian", container, R.string.demiVegetarian, R.drawable.demiveg));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Pollo Vegetarian", container, R.string.polloVegetarian, R.drawable.polloveg));
-        parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Pesco Vegetarian", container, R.string.pescoVegetarian, R.drawable.pescoveg));
+
 
         //saveCategories();
         return parentFrameLayout;
@@ -234,7 +201,7 @@ public class AllergyFragment extends Fragment {
             if(!hashMapCategoriesAllergy.contains(key)){
                 profileSavePicture.put(key,mainCat);
                 hashMapCategoriesAllergy.add(key);
-                Log.d(TAG,"Put in hashMapCategoriesAllergy: " + getStringByLocal(getActivity(),key,Locale.getDefault().getLanguage()));
+                //Log.d(TAG,"Put in hashMapCategoriesAllergy: " + getStringByLocal(getActivity(),key,Locale.getDefault().getLanguage()));
             }
         }
     }
@@ -357,7 +324,9 @@ public class AllergyFragment extends Fragment {
     private void addCategory(final LayoutInflater inflater, ArrayList<AllergyList.PictureIngredient> arrayListCategory, final String key,final int parentKey,final int parentPicture){
         ArrayList<LinearLayout> arrayList = new ArrayList<>();
         ArrayList<CheckBox> checkBoxList = new ArrayList<>();
+        long start = System.currentTimeMillis();
         for (final AllergyList.PictureIngredient arrayListCat : arrayListCategory) {
+
 
             LinearLayout newLinearLayout = (LinearLayout) inflater.inflate(R.layout.leftmarginrowlayout,null);
 
@@ -368,31 +337,14 @@ public class AllergyFragment extends Fragment {
 
             imageView.setImageResource(arrayListCat.picture);
 
-            SharedPreferences settings = getContext().getSharedPreferences(arrayListCat.ingredient, Context.MODE_PRIVATE);
-            final SharedPreferences.Editor editor = settings.edit();
+            /*SharedPreferences settings = getContext().getSharedPreferences(arrayListCat.ingredient, Context.MODE_PRIVATE);
+            final SharedPreferences.Editor editor = settings.edit();*/
             final CheckBox checkBox = (CheckBox) newLinearLayout.findViewById(R.id.checkBoxRowLeftMargin);
-            Log.d(TAG, "addCategory: " + arrayListCat.ingredient);
-            checkBox.setChecked(settings.getBoolean(arrayListCat.ingredient, false));
-            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    // Log.d(TAG,"NUMBER2:" + arrayListCat.id + "name: " + arrayListCat.ingredient);
+            setCheckedLater.add(new CheckBoxClass(checkBox,arrayListCat.id,parentPicture,key,parentKey,arrayListCat.ingredient));
 
-                    for (CheckBox box : sameItemDifferentCategories.get(arrayListCat.id)) {
-                        if(!box.equals(checkBox)){
-                            box.setChecked(isChecked);
-                        }
-                    }
+            // Log.d(TAG,"NUMBER2:" + arrayListCat.id + "name: " + arrayListCat.ingredient);
 
-                    checkBoxLeftMarginSaveString(isChecked,arrayListCat.id,parentPicture);
-                    parentCheckBox.get(key).setOnCheckedChangeListener(null);
-                    seeIfAllCheckboxIsChecked(parentCheckBox.get(key),key,parentKey);
-                    parentCheckBoxOnClickListener(parentCheckBox.get(key),key,parentKey);
-                    Log.d(TAG, "addCategory: " + arrayListCat.ingredient);
-                    editor.putBoolean(arrayListCat.ingredient, isChecked);
-                    editor.apply();
-                }
-            });
+
 
             if(sameItemDifferentCategories.containsKey(arrayListCat.id)){
                 ArrayList<CheckBox> array = sameItemDifferentCategories.get(arrayListCat.id);
@@ -406,9 +358,11 @@ public class AllergyFragment extends Fragment {
             }
             checkBoxList.add(checkBox);
             arrayList.add(newLinearLayout);
-            Log.d(TAG, String.valueOf(arrayListCat.id)+ "  " + arrayListCat.ingredient);
-            checkIfNotExist(checkBox, arrayListCat.id,parentPicture);
+            //Log.d(TAG, String.valueOf(arrayListCat.id)+ "  " + arrayListCat.ingredient);
+
         }
+        long stop = System.currentTimeMillis();
+        Log.d(TAG, "TIMEONE:"+ (stop-start));
         checkBoxes.put(key,checkBoxList);
         Categories.put(key,arrayList);
 
@@ -752,7 +706,15 @@ public class AllergyFragment extends Fragment {
     private class AddCategories extends AsyncTask<String, Integer, String> {
 
         private Context context;
+        private LayoutInflater inflater;
+        private ViewGroup container;
+        private Context contextHistory;
 
+        public AddCategories(LayoutInflater inflater, ViewGroup container,Context contextHistory) {
+            this.inflater = inflater;
+            this.container = container;
+            this.contextHistory = contextHistory;
+        }
 
 
         // Runs in UI before background thread is called
@@ -760,14 +722,34 @@ public class AllergyFragment extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
 
+
             // Do something like display a progress bar
         }
 
         // This is run in a background thread
         @Override
         protected String doInBackground(String... params) {
-            // get the string from params, which is an array
 
+            // get the string from params, which is an array
+            AllergyList allergylist = new AllergyList(contextHistory);
+            addCategory(inflater, allergylist.getArrayListCitrus(), "Citrus",R.string.citrus,R.drawable.orange);
+            addCategory(inflater, allergylist.getArrayListFish(), "Fish",R.string.fish,R.drawable.fish);
+            addCategory(inflater, allergylist.getArrayListFruit(), "Fruit", R.string.fruit,R.drawable.fruit);
+            addCategory(inflater, allergylist.getArrayListGluten(), "Gluten",R.string.gluten, R.drawable.wheat);
+            addCategory(inflater, allergylist.getArrayListLegumes(), "Legumes",R.string.legumes, R.drawable.legumes);
+            addCategory(inflater, allergylist.getArrayListNuts(), "Nuts",R.string.nuts, R.drawable.nuts);
+            addCategory(inflater, allergylist.getArrayListSeeds(), "Seeds",R.string.seeds, R.drawable.seeds);
+            addCategory(inflater, allergylist.getArrayListShellfish(), "Shellfish", R.string.shellfish, R.drawable.shellfish);
+            addCategory(inflater, allergylist.getArrayListVegetables(), "Vegetables", R.string.vegetables, R.drawable.tomato);
+            addCategory(inflater, allergylist.getArrayListMuslim(), "Halal", R.string.halal, R.drawable.tomato);
+            addCategory(inflater, allergylist.getArrayListVegetarian(), "Vegetarian", R.string.vegetarian, R.drawable.vegetarian);
+            addCategory(inflater, allergylist.getArrayListVegan(), "Vegan", R.string.vegan, R.drawable.vegan);
+            addCategory(inflater, allergylist.getArrayListLactoVegetarian(), "Lacto Vegetarian", R.string.lactoVegetarian, R.drawable.lactovegitarian);
+            addCategory(inflater, allergylist.getArrayListOvoVegetarian(), "Ovo Vegetarian", R.string.ovoVegetarian, R.drawable.ovoveg);
+            addCategory(inflater, allergylist.getArrayListLactoOvoVegetarian(), "LactoOvo Vegetarian", R.string.lactoOvoVegetarian, R.drawable.lactoovoveg);
+            addCategory(inflater, allergylist.getArrayListDemiVegetarian(), "Demi Vegetarian", R.string.demiVegetarian, R.drawable.demiveg);
+            addCategory(inflater, allergylist.getArrayListPolloVegetarian(), "Pollo Vegetarian", R.string.polloVegetarian, R.drawable.polloveg);
+            addCategory(inflater, allergylist.getArrayListPescoVegetarian(), "Pesco Vegetarian", R.string.pescoVegetarian, R.drawable.pescoveg);
 
             return "this string is passed to onPostExecute";
         }
@@ -783,7 +765,71 @@ public class AllergyFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            long start = System.currentTimeMillis();
+            for (final CheckBoxClass checkBox : setCheckedLater) {
+                SharedPreferences settings = contextHistory.getSharedPreferences(checkBox.ingredient, contextHistory.MODE_PRIVATE);
+                final SharedPreferences.Editor editor = settings.edit();
+                checkBox.checkBox.setChecked(settings.getBoolean(checkBox.ingredient, false));
+                checkBox.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        // Log.d(TAG,"NUMBER2:" + arrayListCat.id + "name: " + arrayListCat.ingredient);
 
+                        for (CheckBox box : sameItemDifferentCategories.get(checkBox.id)) {
+                            if(!box.equals(checkBox.checkBox)){
+                                box.setChecked(isChecked);
+                            }
+                        }
+                        checkBoxLeftMarginSaveString(isChecked,checkBox.id,checkBox.parentPicture);
+                        parentCheckBox.get(checkBox.key).setOnCheckedChangeListener(null);
+                        seeIfAllCheckboxIsChecked(parentCheckBox.get(checkBox.key),checkBox.key,checkBox.parentKey);
+                        parentCheckBoxOnClickListener(parentCheckBox.get(checkBox.key),checkBox.key,checkBox.parentKey);
+                        editor.putBoolean(checkBox.ingredient, isChecked);
+                        editor.apply();
+                    }
+                });
+                checkIfNotExist(checkBox.checkBox, checkBox.id,checkBox.parentPicture);
+            }
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Citrus", container, R.string.citrus, R.drawable.orange));
+
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Fish", container, R.string.fish, R.drawable.fish));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Fruit", container, R.string.fruit, R.drawable.fruit));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Gluten", container, R.string.gluten, R.drawable.wheat));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Legumes", container, R.string.legumes, R.drawable.legumes));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Nuts", container, R.string.nuts, R.drawable.nuts));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Seeds", container, R.string.seeds, R.drawable.seeds));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Shellfish", container, R.string.shellfish, R.drawable.shellfish));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegetables", container, R.string.vegetables, R.drawable.tomato));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Halal", container, R.string.halal, R.drawable.tomato));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegetarian", container, R.string.vegetarian, R.drawable.vegetarian));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegan", container, R.string.vegan, R.drawable.vegan));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Lacto Vegetarian", container, R.string.lactoVegetarian, R.drawable.lactovegitarian));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Ovo Vegetarian", container, R.string.ovoVegetarian, R.drawable.ovoveg));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "LactoOvo Vegetarian", container, R.string.lactoOvoVegetarian, R.drawable.lactoovoveg));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Demi Vegetarian", container, R.string.demiVegetarian, R.drawable.demiveg));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Pollo Vegetarian", container, R.string.polloVegetarian, R.drawable.polloveg));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Pesco Vegetarian", container, R.string.pescoVegetarian, R.drawable.pescoveg));
+            Log.d(TAG, "onPostExecute: " +(System.currentTimeMillis()-start));
+            parentLinearLayout.removeView(parentLinearLayout.findViewById(R.id.progressBarAllergy));
+        }
+    }
+
+    private class CheckBoxClass {
+        private CheckBox checkBox;
+        private final int id;
+        private final int parentPicture;
+        private final String key;
+        private final int parentKey;
+        private String ingredient;
+
+        public CheckBoxClass(CheckBox checkBox,int id, int parentPicture, String key, int ParentKey, String ingredient){
+            this.checkBox = checkBox;
+
+            this.id = id;
+            this.parentPicture = parentPicture;
+            this.key = key;
+            parentKey = ParentKey;
+            this.ingredient = ingredient;
         }
     }
 }

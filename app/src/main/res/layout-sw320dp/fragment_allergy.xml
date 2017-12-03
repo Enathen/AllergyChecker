@@ -18,6 +18,14 @@
             android:id="@+id/linlayoutFrag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical" >
+
+            <ProgressBar
+                android:id="@+id/progressBarAllergy"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
     </ScrollView>
 </FrameLayout>

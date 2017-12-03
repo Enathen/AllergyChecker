@@ -52,13 +52,15 @@ import java.util.TreeMap;
 
 import creativeendlessgrowingceg.allergychecker.FAB.FloatingToolbar;
 import creativeendlessgrowingceg.allergychecker.design.activity.OnboardingPagerActivity;
+import creativeendlessgrowingceg.allergychecker.dummy.DummyContent;
 
 public class StartPage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
         ,HistoryFragment.OnFragmentInteractionListener
         ,StatisticsFragment.OnFragmentInteractionListener
         ,SettingsFragment.OnFragmentInteractionListener
-        ,AllergyFragment.OnFragmentInteractionListener{
+        ,AllergyFragment.OnFragmentInteractionListener
+        ,TranslateHelpFragment.OnListFragmentInteractionListener{
     private static final String TAG = "StartPage";
     private static final String SHARED_PREFS_NAME = "StartPage";
     private TextView suggestions;
@@ -418,6 +420,10 @@ public class StartPage extends AppCompatActivity
             fragment = new AllergyFragment(this,getImageViewHashMap(),new SettingsFragment(this).getCategories()); setTitle("Allergies");
         }else if (id == R.id.tutorial){
             startActivity(new Intent(this, OnboardingPagerActivity.class));
+        }else if(id == R.id.about){
+
+        }else if (id == R.id.translate){
+            fragment = new TranslateHelpFragment(); setTitle("Translate");
         }
         else if (id == R.id.nav_rate) {
             Uri uri = Uri.parse("market://details?id=" + this.getPackageName());
@@ -503,6 +509,11 @@ public class StartPage extends AppCompatActivity
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
         }
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
     }
 
 

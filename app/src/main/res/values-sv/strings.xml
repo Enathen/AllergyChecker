@@ -26,19 +26,19 @@
 
     <string name="nuts">Nötter</string>
     <string name="almond">Mandel, mandlar</string>
-    <string name="brazil">Paranötter</string>
-    <string name="cocoa">Kakao</string>
-    <string name="hazelnut">Hasselnötter</string>
+    <string name="brazil">Paranötter, Paranöt</string>
+    <string name="cocoa">Kakao, Kakaoböna</string>
+    <string name="hazelnut">Hasselnötter, Hasselnöt</string>
 
-    <string name="macadamia">Macadamianötter</string>
-    <string name="pecans">Pecannötter</string>
-    <string name="pili">Pilinötter</string>
-    <string name="pine">Pinjenötter</string>
-    <string name="pistachios">Pistachnötter</string>
+    <string name="macadamia">Macadamianötter, Macadamianöt, Macadamia</string>
+    <string name="pecans">Pecan, Pecanöt</string>
+    <string name="pili">Pilinötter, Pilinöt</string>
+    <string name="pine">Pinjenötter, Pinjenöt</string>
+    <string name="pistachios">Pistachnötter, Pistachnöt</string>
     <string name="soy">Soja</string>
-    <string name="tiger">Tigernötter</string>
-    <string name="walnuts">Valnötter</string>
-    <string name="sesame">Sesam</string>
+    <string name="tiger">Tigernötter, Tigernöt</string>
+    <string name="walnuts">Valnötter, Valnöt</string>
+    <string name="sesame">Sesam, Sesamfrön</string>
 
     <string name="tuna">Tonfisk</string>
     <string name="salmon">Lax</string>
@@ -65,25 +65,25 @@
 
 
     <string name="barnacle">Rankfotingar</string>
-    <string name="crab">Krabba</string>
-    <string name="crawfish">Kräfta</string>
+    <string name="crab">Krabba, Krabbor</string>
+    <string name="crawfish">Kräfta, Kräftor</string>
     <string name="krill">Lysräka</string>
     <string name="lobster">Hummer</string>
-    <string name="prawns">Räka</string>
+    <string name="prawns">Räka, Räkor</string>
     <string name="shrimp">Liten Räka</string>
     <string name="scampi">Sjökräfta</string>
     <string name="abalone">Havsöra</string>
     <string name="clams">Mussla</string>
     <string name="cockle">Hjärtmussla</string>
     <string name="limpet">Skålsnäcka</string>
-    <string name="mussels">Mussla</string>
+    <string name="mussels">Mussla, Musslor</string>
     <string name="octopus">Bläckfisk (8)</string>
     <string name="oysters">Ostron</string>
     <string name="periwinkle">Snäcka</string>
     <string name="urchin">Sjöborre</string>
     <string name="scallops">Kammussla</string>
-    <string name="snails">Snigel</string>
-    <string name="squid">Bläckfisk (10)</string>
+    <string name="snails">Snigel, Sniglar</string>
+    <string name="squid">Bläckfisk (10), Bläckfiskar</string>
     <string name="whelk">Valthornssnäcka</string>
 
     <string name="wheat">Vete</string>
@@ -104,14 +104,14 @@
 
     <string name="apple">Äpple</string>
     <string name="pear">Päron</string>
-    <string name="tomato">Tomat</string>
-    <string name="strawberry">Jordgubbe</string>
+    <string name="tomato">Tomat, Tomater</string>
+    <string name="strawberry">Jordgubbar, Jordgubbe</string>
     <string name="prune">Katrinplommon</string>
     <string name="pomegranate">Granatäpple</string>
     <string name="pinapple">Ananas</string>
     <string name="persimmon">Persimmon</string>
     <string name="peach">Persika</string>
-    <string name="orange">Apelsin</string>
+    <string name="orange">Apelsin, Apelsiner</string>
     <string name="melon">Melon</string>
     <string name="mango">Mango</string>
     <string name="lychee">Litchi</string>
@@ -168,6 +168,8 @@
     <string name="welcomeMessageInvite">Vill du veta om du kan äta något snabbt? Som inte är allergiskt för dig?
     Toppen! Den här appen låter dig scanna text från olika språk som låter dig se om du är allergisk mot det!</string>
     <string name="time">gång</string>
+
+
     <string name="buckwheat">Bovete</string>
     <string name="mustardSeed">Senapsfrö</string>
     <string name="poppySeed">Vallmofrö</string>
@@ -183,7 +185,8 @@
     <string name="vegan">Vegan</string>
     <string name="citrus">Citrus</string>
     <string name="haram">Haram</string>
-    <string name="legumes">Baljväxter</string>
+
+    <string name="legumes">Baljväxter, Baljväxt</string>
     <string name="aspargus">Sparris</string>
     <string name="bellPepper">Paprika</string>
     <string name="cabbage">Kål</string>
@@ -242,12 +245,12 @@
     <string name="artichoke">Kronärtskocka</string>
     <string name="dandelions">Maskrosor</string>
     <string name="hibiscus">Hibiskus</string>
-    <string name="chickpea">Kikärtor</string>
-    <string name="lentil">Linser</string>
+    <string name="chickpea">Kikärtor, Kikärta</string>
+    <string name="lentil">Linser, Lins</string>
     <string name="lupin">Lupin</string>
-    <string name="peanut">Jordnötter</string>
-    <string name="pea">Ärta</string>
-    <string name="soybean">Sojaböna</string>
+    <string name="peanut">Jordnötter, Jordnöt</string>
+    <string name="pea">Ärta, Ärtor</string>
+    <string name="soybean">Sojaböna, Sojabönor</string>
     <string name="lemon">Citron</string>
     <string name="lime">Lime</string>
     <string name="grapefruit">Grapefrukt</string>
@@ -262,6 +265,7 @@
 
     <string name="halal">Halal</string>
     <string name="start">Start Page</string>
+    <string name="holdFor">Hold for More Info</string>
 
 
 </resources>

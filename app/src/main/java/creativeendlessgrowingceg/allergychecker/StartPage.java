@@ -63,8 +63,7 @@ public class StartPage extends AppCompatActivity
     private static final String SHARED_PREFS_NAME = "StartPage";
     private TextView suggestions;
     private TextView allergic;
-    String newString = "";
-    String allergicString = "";
+
     ArrayList<String> dateStrings = new ArrayList<>();
     SharedPreferences prefs;
 
@@ -98,11 +97,11 @@ public class StartPage extends AppCompatActivity
         }
 
         Intent intent = getIntent();
-        newString = intent.getStringExtra("newString");
-        allergicString = intent.getStringExtra("allergicString");
         suggestions = (TextView) findViewById(R.id.ingredientsTextView);
         allergic = (TextView) findViewById(R.id.textViewFoundAllergies);
-        if(allergicString != null){
+        /*String newString = intent.getStringExtra("newString");
+        String allergicString = intent.getStringExtra("allergicString");*/
+        /*if(allergicString != null){
             suggestions.setText(newString);
             allergic.setText(allergicString);
             if(allergicString.contains(getString(R.string.youCanUse))){
@@ -110,7 +109,7 @@ public class StartPage extends AppCompatActivity
             }else{
                 allergic.setTextColor(Color.RED);
             }
-        }
+        }*/
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -118,7 +117,7 @@ public class StartPage extends AppCompatActivity
 
         final FloatingToolbar floatingToolbarMenuBuilder = (FloatingToolbar) findViewById(R.id.floatingToolbar);
         floatingToolbarMenuBuilder.attachFab(fab);
-        newString = getString(R.string.startPageHeader);
+        String newString = getString(R.string.startPageHeader);
         loadInterstitial();
 
         floatingToolbarMenuBuilder.setClickListener(new FloatingToolbar.ItemClickListener() {
@@ -156,15 +155,18 @@ public class StartPage extends AppCompatActivity
             Log.d(TAG,str);
 
             suggestions.setText(str);
-
-            newString = str;
             str = str.toLowerCase();
+            if(!str.equals("")){
+                DateString dateString = new DateString(str);
+                dateStrings = getArray();
+                Log.d(TAG, String.valueOf(dateStrings.size()));
 
-            DateString dateString = new DateString(str);
-            dateStrings = getArray();
-            Log.d(TAG, String.valueOf(dateStrings.size()));
-            dateStrings.add(dateString.string);
-            Log.d(TAG, String.valueOf(dateStrings.size()));
+                dateStrings.add(dateString.string);
+
+                Log.d(TAG, String.valueOf(dateStrings.size()));
+            }else{
+                dateStrings = getArray();
+            }
             //setDateStrings(dateStrings);
 
             saveArray();
@@ -272,6 +274,15 @@ public class StartPage extends AppCompatActivity
         }
         prefs = this.getSharedPreferences(SHARED_PREFS_NAME, Activity.MODE_PRIVATE);
         SharedPreferences.Editor mEdit1 = prefs.edit();
+        Collections.sort(dateStrings,new HistoryFragment.stringComparator());
+        if(dateStrings.size()>128){
+            int sizeToMuch = dateStrings.size()%128;
+            for (int i = 0; i < sizeToMuch; i++) {
+                Log.d(TAG, "Remove History: " + dateStrings.get(i));
+                 dateStrings.remove(i);
+            }
+        }
+
         Set<String> set = new HashSet<>();
         set.addAll(dateStrings);
         mEdit1.putStringSet("list", set);
@@ -385,17 +396,17 @@ public class StartPage extends AppCompatActivity
         Fragment fragment = null;
         suggestions.setText("");
         allergic.setText("");
+        findViewById(R.id.linlayallergyFromWord).setVisibility(View.INVISIBLE);
+        findViewById(R.id.linLayHorizontalStartPage).setVisibility(View.INVISIBLE);
+
 
         ((TextView) findViewById(R.id.textViewFoundAllergies)).setText("");
         if (id == R.id.nav_camera) {
 
 
             Log.d(TAG, String.valueOf(getSupportFragmentManager().getBackStackEntryCount()));
-            /*while (getSupportFragmentManager().getBackStackEntryCount() != 0)
-            getSupportFragmentManager().popBackStackImmediate();*/
             Intent intent = new Intent(this, StartPage.class);
-            intent.putExtra("newString", newString);
-            intent.putExtra("allergicString", allergicString);
+
             this.startActivity(intent);
         } else if (id == R.id.history) {
             fragment = new HistoryFragment(this); setTitle("History");
@@ -519,7 +530,7 @@ public class StartPage extends AppCompatActivity
 
     }
 
-    private class CalcAllergy extends AsyncTask<String, Integer, TreeMap<String,AllAllergiesForEachInteger>> {
+    private class CalcAllergy extends AsyncTask<String, Integer, ArrayList<AllAllergiesForEachInteger>> {
         private final HelpCalcAllergy helpCalcAllergy;
         private StartPage mContext;
         private TextView textView;
@@ -544,7 +555,7 @@ public class StartPage extends AppCompatActivity
         // This is run in a background thread
 
         @Override
-        protected TreeMap<String,AllAllergiesForEachInteger> doInBackground(String... params) {
+        protected ArrayList<AllAllergiesForEachInteger> doInBackground(String... params) {
             // get the string from params, which is an array
             TreeMap<Integer,HashSet<String>> hashSetAllStrings = new TreeMap<>();
             HashSet<String> hashSetToCheckLast = new HashSet<>();
@@ -557,7 +568,7 @@ public class StartPage extends AppCompatActivity
             int length = 0;
             int counter = 0;
             int i = 0;
-            TreeMap<String,AllAllergiesForEachInteger> allFoundAllergies = new TreeMap<>();
+            ArrayList<AllAllergiesForEachInteger> allFoundAllergies = new ArrayList<>();
             for (int id : hashSetFromOtherClass) {
                 publishProgress(hashSetFromOtherClass.size(), counter);
                 length = helpCalcAllergy.setLocaleString(length,id,allergies,listOfLanguages,StartPage.this);
@@ -584,7 +595,7 @@ public class StartPage extends AppCompatActivity
             }
             long stop = System.currentTimeMillis();
             Log.d(TAG, "TIME: "+(stop-start));
-
+            Collections.sort(allFoundAllergies);
             return allFoundAllergies;
         }
 
@@ -601,21 +612,64 @@ public class StartPage extends AppCompatActivity
 
         // This runs in UI when background thread finishes
         @Override
-        protected void onPostExecute(TreeMap<String,AllAllergiesForEachInteger> allAllergiesForEachInteger) {
+        protected void onPostExecute(ArrayList<AllAllergiesForEachInteger> allAllergiesForEachInteger) {
             viewById.setVisibility(View.INVISIBLE);
             super.onPostExecute(allAllergiesForEachInteger);
             String outputString = "";
-            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linLayHorizontalStartPage);
-            for (AllAllergiesForEachInteger s : allAllergiesForEachInteger.values()) {
+            final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linLayHorizontalStartPage);
+            final HashMap<String,Lin> linearLayoutHashMap = new HashMap<>();
+            for (final AllAllergiesForEachInteger s : allAllergiesForEachInteger) {
                 LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 LinearLayout newlinearLayout = (LinearLayout)  inflater.inflate(R.layout.linlayoutstartpagevertical, null);
-                //LinearLayout newlinearLayout = (LinearLayout) view.findViewById(R.id.linlayoutSwag);
                 ((ImageView)newlinearLayout.findViewById(R.id.imageViewHorStartPage)).setImageResource(helpCalcAllergy.getFlag(s.getLanguage()));
-                ((TextView)newlinearLayout.findViewById(R.id.textViewAllergy)).setText(getString(s.getId()));
+                ((TextView)newlinearLayout.findViewById(R.id.textViewAllergy)).setText(helpCalcAllergy.cutFirstWord(getString(s.getId())));
                 ((TextView)newlinearLayout.findViewById(R.id.textViewFoundFromWord)).setText(s.getNameOfWordFound());
-                linearLayout.addView(newlinearLayout);
-            }
+                if(!linearLayoutHashMap.containsKey(s.getMotherLanguage())){
+                    LinearLayout parentLin = (LinearLayout) inflater.inflate(R.layout.linlayoutstartpageverticaltrue,null);
+                    parentLin.addView(newlinearLayout);
+                    linearLayout.addView(parentLin);
+                    ArrayList<LinearLayout> l = new ArrayList<>();
+                    linearLayoutHashMap.put(s.getMotherLanguage(),new Lin(newlinearLayout,l,parentLin));
+                    Log.d(TAG, "onPostExecute: size" + linearLayoutHashMap.get(s.getMotherLanguage()).linearLayoutArrayList.size());
 
+
+                }else{
+                    newlinearLayout.findViewById(R.id.arrowLeft).setVisibility(View.INVISIBLE);
+                    linearLayoutHashMap.get(s.getMotherLanguage()).linearLayoutArrayList.add(newlinearLayout);
+                    Log.d(TAG, "onPostExecute: size" + linearLayoutHashMap.get(s.getMotherLanguage()).linearLayoutArrayList.size());
+                }
+            }
+            for (final String string : linearLayoutHashMap.keySet()) {
+                if(linearLayoutHashMap.get(string).linearLayoutArrayList.isEmpty()){
+                    Log.d(TAG, "onClick: "+string + "INV");
+                    linearLayoutHashMap.get(string).parentLin.findViewById(R.id.arrowLeft).setVisibility(View.INVISIBLE);
+                }
+                ((TextView)linearLayoutHashMap.get(string).parentLin.findViewById(R.id.textViewAllergy)).
+                        append(" "+(linearLayoutHashMap.get(string).linearLayoutArrayList.size()+1));
+
+                linearLayoutHashMap.get(string).linearLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(helpCalcAllergy.checkIfAlreadyShown(linearLayoutHashMap.get(string).parentLin.findViewById(R.id.arrowLeft))){
+                            if(!linearLayoutHashMap.get(string).linearLayoutArrayList.isEmpty()){
+                                for (LinearLayout newLin: linearLayoutHashMap.get(string).linearLayoutArrayList) {
+                                    linearLayoutHashMap.get(string).parentLin.addView(newLin);
+                                }
+                            }
+                        }else{
+                            if(!linearLayoutHashMap.get(string).linearLayoutArrayList.isEmpty()) {
+                                for (LinearLayout newLin : linearLayoutHashMap.get(string).linearLayoutArrayList) {
+                                    if (linearLayoutHashMap.get(string).parentLin != newLin) {
+                                        linearLayoutHashMap.get(string).parentLin.removeView(newLin);
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
+                });
+            }
             if(!allAllergiesForEachInteger.isEmpty()){
 
                 outputString = outputString.concat("\n"+getString(R.string.dontUse) + "\n");
@@ -631,9 +685,23 @@ public class StartPage extends AppCompatActivity
                 textView.setText(outputString);
             }
             findViewById(R.id.linlayallergyFromWord).setVisibility(View.VISIBLE);
-            allergicString = outputString;
             allergic.setText(outputString);
             // Do things like hide the progress bar or change a TextView
+        }
+
+        private class Lin {
+            private LinearLayout linearLayout;
+            private ArrayList<LinearLayout> linearLayoutArrayList;
+            private LinearLayout parentLin;
+
+            public Lin(LinearLayout linearLayout, ArrayList<LinearLayout> linearLayoutArrayList, LinearLayout parentLin){
+
+                this.linearLayout = linearLayout;
+                this.linearLayoutArrayList = linearLayoutArrayList;
+                this.parentLin = parentLin;
+            }
+
+
         }
     }
 

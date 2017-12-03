@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linlayoutSwag"
     android:layout_width="match_parent"
-    android:layout_height="25dp"
-    android:orientation="horizontal"
+    android:layout_height="50dp"
     android:gravity="center"
+    android:orientation="horizontal"
     android:visibility="visible">
 
     <RelativeLayout
@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/imageViewHorStartPage"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_centerVertical="true"
             app:srcCompat="@drawable/es" />
 
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="35dp"
 
             android:layout_marginStart="12dp"
             android:layout_toEndOf="@+id/imageViewHorStartPage"
@@ -36,6 +36,7 @@
             android:textSize="22sp" />
 
     </RelativeLayout>
+
     <View
         android:layout_width="1dp"
         android:layout_height="match_parent"
@@ -51,12 +52,21 @@
             android:id="@+id/textViewFoundFromWord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="35dp"
             android:layout_weight="1"
             android:text="TextView"
-            android:textSize="22sp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/arrowLeft"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/dropdownlist" />
+
     </RelativeLayout>
 
 

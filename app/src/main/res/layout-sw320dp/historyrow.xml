@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:orientation="horizontal">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
-    <TextView
-        android:id="@+id/textViewHistoryRow"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1.01"
-        android:fontFamily="sans-serif"
-        android:gravity="center_vertical"
-        android:text="TIME"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="34sp"
-        android:textStyle="bold" />
+    <LinearLayout
+        android:id="@+id/linlay"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/textViewHistoryRow"
+            android:layout_width="wrap_content"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            android:layout_weight="1.01"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical"
+            android:text="TIME"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 </LinearLayout>

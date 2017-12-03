@@ -149,6 +149,7 @@ public class AllergyFragment extends Fragment {
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
         AllergyList allergylist = new AllergyList(getContext());
         //getCategories();
+
         addCategory(inflater, allergylist.getArrayListCitrus(), "Citrus",R.string.citrus,R.drawable.orange);
         addCategory(inflater, allergylist.getArrayListFish(), "Fish",R.string.fish,R.drawable.fish);
         addCategory(inflater, allergylist.getArrayListFruit(), "Fruit", R.string.fruit,R.drawable.fruit);
@@ -746,6 +747,43 @@ public class AllergyFragment extends Fragment {
                     }
                 }
             }
+        }
+    }
+    private class AddCategories extends AsyncTask<String, Integer, String> {
+
+        private Context context;
+
+
+
+        // Runs in UI before background thread is called
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            // Do something like display a progress bar
+        }
+
+        // This is run in a background thread
+        @Override
+        protected String doInBackground(String... params) {
+            // get the string from params, which is an array
+
+
+            return "this string is passed to onPostExecute";
+        }
+
+        // This is called from background thread but runs in UI
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            // Do things like update the progress bar
+        }
+
+        // This runs in UI when background thread finishes
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
         }
     }
 }

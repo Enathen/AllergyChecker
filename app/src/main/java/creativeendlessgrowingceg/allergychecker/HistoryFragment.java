@@ -4,19 +4,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -150,20 +151,37 @@ public class HistoryFragment extends Fragment {
     }
     private void insertNew(final LayoutInflater inflater, final ViewGroup container, final ArrayList<String> arrayList){
         int colorGreenToRed = 26;
+
         if(!arrayList.isEmpty()) {
 
             int baseIncrease = (255 - 26) / arrayList.size() - 1;
+            if(baseIncrease == 0){
+                baseIncrease = 1;
+            }
             Log.d(TAG, String.valueOf(baseIncrease));
             for (final String s : arrayList) {
 
-                LinearLayout newLinearLayout = (LinearLayout) inflater.inflate(R.layout.historyrow, container, false);
+                final LinearLayout topLinLayOut = (LinearLayout) inflater.inflate(R.layout.historyrow, container, false);
+                LinearLayout newLinearLayout = (LinearLayout) topLinLayOut.findViewById(R.id.linlay);
                 TextView textview = (TextView) newLinearLayout.findViewById(R.id.textViewHistoryRow);
+                final TextView tv = new TextView(getContext());
+                tv.setText(s.substring(20));
+                tv.setGravity(Gravity.CENTER);
+                tv.setTextSize(22);
+                tv.setBackgroundColor(Color.rgb(colorGreenToRed,178,172));
+                tv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        v.setVisibility(View.INVISIBLE);
+                        topLinLayOut.removeView(tv);
+                    }
+                });
                 String correctString = s.substring(0, 20);
 
                 textview.setBackgroundColor(Color.rgb(colorGreenToRed, 178, 172));
                 colorGreenToRed += baseIncrease;
-                if (colorGreenToRed > 255) {
-                    colorGreenToRed = 255;
+                if (colorGreenToRed >= 255) {
+                    baseIncrease=-1;
                 }
                 textview.setText(correctString);
                 newLinearLayout.setOnClickListener(new View.OnClickListener() {
@@ -181,7 +199,21 @@ public class HistoryFragment extends Fragment {
                     }
                 });
 
-                parentLinearLayout.addView(newLinearLayout);
+                newLinearLayout.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        if(tv.getVisibility() == View.VISIBLE){
+                            tv.setVisibility(View.INVISIBLE);
+                            topLinLayOut.removeView(tv);
+
+                        }else{
+                            topLinLayOut.addView(tv);
+                            tv.setVisibility(View.VISIBLE);
+                        }
+                        return true;
+                    }
+                });
+                parentLinearLayout.addView(topLinLayOut);
             }
 
             if(!arrayList.isEmpty()){
@@ -222,6 +254,7 @@ public class HistoryFragment extends Fragment {
             textview.setText(R.string.scanPhotos);
             parentLinearLayout.addView(linearLayout);
         }
+        Toast.makeText(getContext(),getString(R.string.holdFor),Toast.LENGTH_LONG).show();
     }
 
     private Locale loadLocale() {

@@ -60,6 +60,7 @@ public class StartPage extends AppCompatActivity
         ,StatisticsFragment.OnFragmentInteractionListener
         ,SettingsFragment.OnFragmentInteractionListener
         ,AllergyFragment.OnFragmentInteractionListener
+        ,AboutFragment.OnFragmentInteractionListener
         ,TranslateHelp.OnFragmentInteractionListener{
     private static final String TAG = "StartPage";
     private static final String SHARED_PREFS_NAME = "StartPage";
@@ -421,7 +422,7 @@ public class StartPage extends AppCompatActivity
         }else if (id == R.id.tutorial){
             startActivity(new Intent(this, OnboardingPagerActivity.class));
         }else if(id == R.id.about){
-
+            fragment = new AboutFragment(); setTitle("Translate");
         }else if (id == R.id.translate){
             fragment = new TranslateHelp(); setTitle("Translate");
         }
@@ -449,10 +450,10 @@ public class StartPage extends AppCompatActivity
             i.putExtra(Intent.EXTRA_TEXT, sAux);
             startActivity(Intent.createChooser(i, "choose one"));
         } else if (id == R.id.nav_send) {
-            Intent intent = new Intent(Intent.ACTION_SENDTO);
-            intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-            intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "AllergyCheckerCEG@gmail.com" });
-            startActivity(Intent.createChooser(intent, getResources().getText(R.string.sendTipsFrom)));
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                    "mailto","AllergyCheckerCEG@gmail.com", null));
+            emailIntent.putExtra(Intent.EXTRA_TEXT, getResources().getText(R.string.mustBeInEnglish));
+            startActivity(Intent.createChooser(emailIntent, getResources().getText(R.string.sendTipsFrom)));
 
         }
 

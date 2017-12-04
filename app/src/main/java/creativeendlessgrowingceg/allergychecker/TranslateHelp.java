@@ -1,6 +1,7 @@
 package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 /**
@@ -129,6 +132,7 @@ public class TranslateHelp extends Fragment {
         private final ViewGroup container;
         private final Context context;
         private ArrayList<LinearLayout> linearLayouts;
+        private HashMap<String,EditText> editTextHashMap = new HashMap<>();
 
         public addAllStringsNecessary(LayoutInflater inflater, ViewGroup container, Context context) {
 
@@ -142,6 +146,7 @@ public class TranslateHelp extends Fragment {
             linearLayouts = new ArrayList<>();
             for (String string : strings) {
                 linearLayouts.add((LinearLayout) inflater.inflate(R.layout.fragmenttranslatehelprelative, container, false));
+
             }
 
             return strings;
@@ -155,16 +160,37 @@ public class TranslateHelp extends Fragment {
         @Override
         protected void onPostExecute(ArrayList<String> result) {
             int i =0;
+
             for (String s : result) {
                 ((TextView)linearLayouts.get(i).findViewById(R.id.textViewTranslate)).setText(s);
                 parentLinearLayout.addView(linearLayouts.get(i));
+                editTextHashMap.put(s,(EditText) linearLayouts.get(i).findViewById(R.id.editTextFragmentTranslate));
                 i++;
             }
             Button button = new Button(context);
             button.setText(R.string.save);
             button.setBackgroundColor(context.getColor(R.color.colorPrimary));
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String string = "";
+                    for (String s : editTextHashMap.keySet()) {
+                        if(!((EditText)editTextHashMap.get(s)).getText().toString().equals("")){
+                            string = string.concat(s +" : " + editTextHashMap.get(s).getText()+"\n");
+                        }
+                    }
+                    Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                            "mailto","AllergyCheckerCEGTranslate@gmail.com", null));
+                    emailIntent.putExtra(Intent.EXTRA_TEXT, string);
+                    startActivity(Intent.createChooser(emailIntent, getResources().getText(R.string.sendTipsFrom)));
+                }
+            });
             parentLinearLayout.addView(button);
             parentLinearLayout.removeView(parentLinearLayout.findViewById( R.id.progressBarTranslate));
+
+
+
+
             super.onPostExecute(result);
         }
 

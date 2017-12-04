@@ -67,7 +67,7 @@ public class AllergyFragment extends Fragment {
     private HashMap<String,ArrayList<CheckBox>> checkBoxes = new HashMap<>();
     private HashMap<String,CheckBox> parentCheckBox = new HashMap<>();
     private HashMap<Integer,ArrayList<CheckBox>> sameItemDifferentCategories = new HashMap<>();
-    private HashMap<Integer,Integer> profileSavePicture = new HashMap<>();
+    private HashMap<String,Integer> profileSavePicture = new HashMap<>();
     protected ArrayList<CheckBoxClass> setCheckedLater = new ArrayList<>();
 
     private File startPageFile;
@@ -199,7 +199,7 @@ public class AllergyFragment extends Fragment {
         if(checkBox.isChecked()){
 
             if(!hashMapCategoriesAllergy.contains(key)){
-                profileSavePicture.put(key,mainCat);
+                profileSavePicture.put(getString(key),mainCat);
                 hashMapCategoriesAllergy.add(key);
                 //Log.d(TAG,"Put in hashMapCategoriesAllergy: " + getStringByLocal(getActivity(),key,Locale.getDefault().getLanguage()));
             }
@@ -264,7 +264,7 @@ public class AllergyFragment extends Fragment {
     }
     public void addItemToHashMap(int id,int pictureId){
         hashMapCategoriesAllergy.add(id);
-        profileSavePicture.put(id,pictureId);
+        profileSavePicture.put(getString(id),pictureId);
     }
     public void removeItemToHashMap(int id,int pictureId){
         if(profileSavePicture.containsKey(id)){
@@ -656,7 +656,7 @@ public class AllergyFragment extends Fragment {
                 fileInputStream = new FileInputStream(startPageFile);
 
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-                profileSavePicture = (HashMap<Integer, Integer>) objectInputStream.readObject();
+                profileSavePicture = (HashMap<String, Integer>) objectInputStream.readObject();
 
                 objectInputStream.close();
 
@@ -741,7 +741,7 @@ public class AllergyFragment extends Fragment {
             addCategory(inflater, allergylist.getArrayListSeeds(), "Seeds",R.string.seeds, R.drawable.seeds);
             addCategory(inflater, allergylist.getArrayListShellfish(), "Shellfish", R.string.shellfish, R.drawable.shellfish);
             addCategory(inflater, allergylist.getArrayListVegetables(), "Vegetables", R.string.vegetables, R.drawable.tomato);
-            addCategory(inflater, allergylist.getArrayListMuslim(), "Halal", R.string.halal, R.drawable.tomato);
+            addCategory(inflater, allergylist.getArrayListMuslim(), "Halal", R.string.halal, R.drawable.halal);
             addCategory(inflater, allergylist.getArrayListVegetarian(), "Vegetarian", R.string.vegetarian, R.drawable.vegetarian);
             addCategory(inflater, allergylist.getArrayListVegan(), "Vegan", R.string.vegan, R.drawable.vegan);
             addCategory(inflater, allergylist.getArrayListLactoVegetarian(), "Lacto Vegetarian", R.string.lactoVegetarian, R.drawable.lactovegitarian);
@@ -800,7 +800,7 @@ public class AllergyFragment extends Fragment {
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Seeds", container, R.string.seeds, R.drawable.seeds));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Shellfish", container, R.string.shellfish, R.drawable.shellfish));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegetables", container, R.string.vegetables, R.drawable.tomato));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Halal", container, R.string.halal, R.drawable.tomato));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Halal", container, R.string.halal, R.drawable.halal));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegetarian", container, R.string.vegetarian, R.drawable.vegetarian));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegan", container, R.string.vegan, R.drawable.vegan));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Lacto Vegetarian", container, R.string.lactoVegetarian, R.drawable.lactovegitarian));

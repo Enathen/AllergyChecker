@@ -1,3 +1,4 @@
+
 package creativeendlessgrowingceg.allergychecker;
 
 import android.app.Activity;
@@ -52,7 +53,6 @@ import java.util.TreeMap;
 
 import creativeendlessgrowingceg.allergychecker.FAB.FloatingToolbar;
 import creativeendlessgrowingceg.allergychecker.design.activity.OnboardingPagerActivity;
-import creativeendlessgrowingceg.allergychecker.dummy.DummyContent;
 
 public class StartPage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
@@ -60,7 +60,7 @@ public class StartPage extends AppCompatActivity
         ,StatisticsFragment.OnFragmentInteractionListener
         ,SettingsFragment.OnFragmentInteractionListener
         ,AllergyFragment.OnFragmentInteractionListener
-        ,TranslateHelpFragment.OnListFragmentInteractionListener{
+        ,TranslateHelp.OnFragmentInteractionListener{
     private static final String TAG = "StartPage";
     private static final String SHARED_PREFS_NAME = "StartPage";
     private TextView suggestions;
@@ -423,7 +423,7 @@ public class StartPage extends AppCompatActivity
         }else if(id == R.id.about){
 
         }else if (id == R.id.translate){
-            fragment = new TranslateHelpFragment(); setTitle("Translate");
+            fragment = new TranslateHelp(); setTitle("Translate");
         }
         else if (id == R.id.nav_rate) {
             Uri uri = Uri.parse("market://details?id=" + this.getPackageName());
@@ -511,10 +511,6 @@ public class StartPage extends AppCompatActivity
         }
     }
 
-    @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
-
-    }
 
 
     public class DateString {

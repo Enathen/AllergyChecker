@@ -226,15 +226,15 @@ public class AllergyList {
         sort(arrayListCitrus);
     }
     private void setArrayListMuslim() {
-        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.bacon));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.choletsorol));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.gelatin));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.glycerol));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.hormones));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.lard));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.magnesiumStearate));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.monoGlycerides));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.tomato,R.string.pepsin));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.bacon));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.choletsorol));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.gelatin));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.glycerol));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.hormones));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.lard));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.magnesiumStearate));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.monoGlycerides));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.pepsin));
         sort(arrayListMuslim);
     }
     private void setArrayListKosher() {

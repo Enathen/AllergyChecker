@@ -1,16 +1,9 @@
 <resources>
     <string name="app_name">Allergy Checker</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
-
     <string name="ok">OK</string>
-    <string name="permission_camera_rationale">El acceso a la cámara es necesario para la detección</string>
-    <string name="no_camera_permission">Esta aplicación no se puede ejecutar porque no tiene el permiso de la cámara. La aplicación ahora saldrá.</string>
-    <string name="low_storage_error">Ocr dependencies cannot be downloaded due to low device storage</string>
-    <string name="title_activity_main">Ocr Detector Sample</string>
     <string name="ocr_header">Click &quot;Detect Text&quot; to detect text</string>
     <string name="read_text">Detect Text</string>
     <string name="auto_focus">Auto Focus</string>
@@ -18,9 +11,40 @@
     <string name="ocr_success">Text read successfully</string>
     <string name="ocr_failure">No text captured</string>
     <string name="ocr_error">"Error reading text: %1$s"</string>
-
+    <string name="action_search">Buscar</string>
+    <string name="drawer_open">Abrir</string>
+    <string name="drawer_close">Cerrar</string>
+    <string name="nav_item_home">Casa</string>
+    <string name="nav_item_friends">Amigos</string>
+    <string name="nav_item_notifications">mensajes</string>
+    -<string-array name="nav_drawer_labels">
+    <item>@string/nav_item_home</item>
+    <item>@string/nav_item_friends</item>
+    <item>@string/nav_item_notifications</item>
+</string-array>
+    <string name="title_messages">Messages</string>
+    <string name="title_friends">Friends</string>
+    <string name="title_home">Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_pager_indicator">SKIP</string>
+    <string name="title_activity_onboarder">OnboarderActivity</string>
+    <string name="hello_world">We found an Email account on your phone,use it?</string>
+    <string name="title_activity_home">Create a card</string>
+    -<string-array name="card_type_array">
+    <item>Personal</item>
+    <item>Business</item>
+</string-array>
+    <string name="title_activity_qr">Personal Card</string>
+    <string name="title_activity_view_pager">ViewPagerActivity</string>
+    <string name="title_activity_found_email">FoundEmailActivity</string>
+    <string name="title_activity_find_email">Email</string>
+    <string name="title_activity_takeoff">App Takes off here</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="permission_camera_rationale">El acceso a la cámara es necesario para la detección</string>
+    <string name="no_camera_permission">Esta aplicación no se puede ejecutar porque no tiene el permiso de la cámara. La aplicación ahora saldrá.</string>
+    <string name="low_storage_error">Ocr dependencies cannot be downloaded due to low device storage</string>
+    <string name="title_activity_main">Ocr Detector Sample</string>
 
 
     <string name="nuts">Nueces</string>
@@ -184,66 +208,6 @@
         aplicación podría necesitar ser reinstalada para funcionar! Tenga un día fantástico!</string>
 
 
-    <string name="action_search">Buscar</string>
-
-    <string name="drawer_open">Abrir</string>
-
-    <string name="drawer_close">Cerrar</string>
-
-    <string name="nav_item_home">Casa</string>
-
-    <string name="nav_item_friends">Amigos</string>
-
-    <string name="nav_item_notifications">mensajes</string>
-
-    <!-- navigation drawer item labels -->
-
-
-
-    -<string-array name="nav_drawer_labels">
-
-    <item>@string/nav_item_home</item>
-
-    <item>@string/nav_item_friends</item>
-
-    <item>@string/nav_item_notifications</item>
-
-</string-array>
-
-    <string name="title_messages">Messages</string>
-
-    <string name="title_friends">Friends</string>
-
-    <string name="title_home">Home</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-
-    <string name="hello_pager_indicator">SKIP</string>
-
-    <string name="title_activity_onboarder">OnboarderActivity</string>
-
-    <string name="hello_world">We found an Email account on your phone,use it?</string>
-
-    <string name="title_activity_home">Create a card</string>
-
-
-    -<string-array name="card_type_array">
-
-    <item>Personal</item>
-
-    <item>Business</item>
-
-</string-array>
-
-    <string name="title_activity_qr">Personal Card</string>
-
-    <string name="title_activity_view_pager">ViewPagerActivity</string>
-
-    <string name="title_activity_found_email">FoundEmailActivity</string>
-
-    <string name="title_activity_find_email">Email</string>
-
-    <string name="title_activity_takeoff">App Takes off here</string>
 
     <string name="mightContainOther">¡Esto es solo una guía! Y podría contener otras alergias</string>
     <string name="mightContainAllergies">¡Esto es solo una guía! Y podría contener alérgenos</string>
@@ -337,6 +301,15 @@
     <string name="holdFor">Hold for More Info</string>
     <string name="about">About</string>
     <string name="helpTranslate">Help Translating</string>
+    <string name="save">Save</string>
+    <string name="onlyFillChanges">Only fill those you change, leave other empty! Thanks Helper!</string>
+    <string name="specialThanksTo">Special thanks to Alpha Testers:</string>
+    <string name="thisappUses">This app uses:</string>
+    <string name="FAB">FloatingToolbar by rubensousa</string>
+    <string name="BkTree">BK-tree by Kelsey Francis</string>
+    <string name="OnBoardMe">OnboardMe by simith</string>
+    <string name="licence">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
+    <string name="googleCamera">Google Vision API - The Android Open Source Project</string>
 
 
 </resources>

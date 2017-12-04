@@ -3,9 +3,35 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
-
+    <string name="action_search">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="nav_item_home">Home</string>
+    <string name="nav_item_friends">Friends</string>
+    <string name="nav_item_notifications">Messages</string>
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_friends</item>
+        <item>@string/nav_item_notifications</item>
+    </string-array>
+    <string name="title_messages">Messages</string>
+    <string name="title_friends">Friends</string>
+    <string name="title_home">Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_pager_indicator">SKIP</string>
+    <string name="title_activity_onboarder">OnboarderActivity</string>
+    <string name="hello_world">We found an Email account on your phone,use it?</string>
+    <string name="title_activity_home">Create a card</string>
+    <string-array name="card_type_array">
+        <item>Personal</item>
+        <item>Business</item>
+    </string-array>
+    <string name="title_activity_qr">Personal Card</string>
+    <string name="title_activity_view_pager">ViewPagerActivity</string>
+    <string name="title_activity_found_email">FoundEmailActivity</string>
+    <string name="title_activity_find_email">Email</string>
+    <string name="title_activity_takeoff">App Takes off here</string>
     <string name="ok">OK</string>
     <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
     <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
@@ -182,66 +208,6 @@
     <string name="thisAppOnlySave">If permission is not given, this app will not work as intended. Remember the only thing getting saved is the text. If you don\'t give permission the application might need to be reinstalled to work! Have a fantastic day!</string>
 
 
-    <string name="action_search">Search</string>
-
-    <string name="drawer_open">Open</string>
-
-    <string name="drawer_close">Close</string>
-
-    <string name="nav_item_home">Home</string>
-
-    <string name="nav_item_friends">Friends</string>
-
-    <string name="nav_item_notifications">Messages</string>
-
-    <!-- navigation drawer item labels -->
-
-
-
-    -<string-array name="nav_drawer_labels">
-
-    <item>@string/nav_item_home</item>
-
-    <item>@string/nav_item_friends</item>
-
-    <item>@string/nav_item_notifications</item>
-
-</string-array>
-
-    <string name="title_messages">Messages</string>
-
-    <string name="title_friends">Friends</string>
-
-    <string name="title_home">Home</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-
-    <string name="hello_pager_indicator">SKIP</string>
-
-    <string name="title_activity_onboarder">OnboarderActivity</string>
-
-    <string name="hello_world">We found an Email account on your phone,use it?</string>
-
-    <string name="title_activity_home">Create a card</string>
-
-
-    -<string-array name="card_type_array">
-
-    <item>Personal</item>
-
-    <item>Business</item>
-
-</string-array>
-
-    <string name="title_activity_qr">Personal Card</string>
-
-    <string name="title_activity_view_pager">ViewPagerActivity</string>
-
-    <string name="title_activity_found_email">FoundEmailActivity</string>
-
-    <string name="title_activity_find_email">Email</string>
-
-    <string name="title_activity_takeoff">App Takes off here</string>
     <string name="mightContainOther">This is only a guideline! And might contain other allergens</string>
     <string name="mightContainAllergies">This is only a guideline! And might contain allergens</string>
 
@@ -336,6 +302,16 @@
     <string name="holdFor">Hold for More Info</string>
     <string name="about">About</string>
     <string name="helpTranslate">Help Translating</string>
+    <string name="save">Save</string>
+    <string name="onlyFillChanges">Only fill those you change, leave others empty! Thanks Helper!</string>
+    <string name="specialThanksTo">Special thanks to Alpha Testers:</string>
+    <string name="thisappUses">This app uses:</string>
+    <string name="FAB">FloatingToolbar by rubensousa</string>
+    <string name="BkTree">BK-tree by Kelsey Francis</string>
+    <string name="OnBoardMe">OnboardMe by simith</string>
+    <string name="licence">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
+    <string name="googleCamera">Google Vision API - The Android Open Source Project</string>
+    <string name="googleAdMob">Google, Inc. Google AdMob</string>
 
 
 </resources>

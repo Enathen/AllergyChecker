@@ -26,6 +26,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <Button
+                android:id="@+id/btnUncheckAll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/uncheckAll"
+                android:visibility="invisible" />
+
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

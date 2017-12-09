@@ -310,6 +310,10 @@
     <string name="OnBoardMe">OnboardMe by simith</string>
     <string name="licence">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
     <string name="googleCamera">Google Vision API - The Android Open Source Project</string>
+    <string name="translatedFrom">Translated From</string>
+    <string name="nameIfyouWantToBeInHelperList">Name if you want to be in helper list</string>
+    <string name="uncheckAll">Uncheck All</string>
+    <string name="checkAll">Check all</string>
 
 
 </resources>

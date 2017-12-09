@@ -404,14 +404,14 @@ public class StartPage extends AppCompatActivity
 
 
         ((TextView) findViewById(R.id.textViewFoundAllergies)).setText("");
-        if (id == R.id.nav_camera) {
+        /*if (id == R.id.nav_camera) {
 
 
             Log.d(TAG, String.valueOf(getSupportFragmentManager().getBackStackEntryCount()));
             Intent intent = new Intent(this, StartPage.class);
 
             this.startActivity(intent);
-        } else if (id == R.id.history) {
+        }*/ if (id == R.id.history) {
             fragment = new HistoryFragment(this); setTitle("History");
         } else if (id == R.id.languageMenu) {
 
@@ -422,7 +422,7 @@ public class StartPage extends AppCompatActivity
         }else if (id == R.id.tutorial){
             startActivity(new Intent(this, OnboardingPagerActivity.class));
         }else if(id == R.id.about){
-            fragment = new AboutFragment(); setTitle("Translate");
+            fragment = new AboutFragment(); setTitle("A");
         }else if (id == R.id.translate){
             fragment = new TranslateHelp(); setTitle("Translate");
         }

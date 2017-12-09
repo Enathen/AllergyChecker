@@ -302,7 +302,6 @@
     <string name="holdFor">Hold for More Info</string>
     <string name="about">About</string>
     <string name="helpTranslate">Help Translating</string>
-    <string name="save">Save</string>
     <string name="onlyFillChanges">Only fill those you change, leave others empty! Thanks Helper!</string>
     <string name="specialThanksTo">Special thanks to Alpha Testers:</string>
     <string name="thisappUses">This app uses:</string>
@@ -312,6 +311,10 @@
     <string name="licence">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
     <string name="googleCamera">Google Vision API - The Android Open Source Project</string>
     <string name="googleAdMob">Google, Inc. Google AdMob</string>
+    <string name="translatedFrom">Translated from</string>
+    <string name="nameIfyouWantToBeInHelperList">Name if you want to be in helper list</string>
+    <string name="uncheckAll">Uncheck All</string>
+    <string name="checkAll">Check all</string>
 
 
 </resources>

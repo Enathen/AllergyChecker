@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
@@ -174,20 +175,25 @@ public class AllergyFragment extends Fragment {
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
+                buttonView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        editor.putBoolean(getResources().getString(name), isChecked);
+                        editor.apply();
+                        if(isChecked){
+                            //getCategories();
+                            addItemToHashMap(name,pictureId);
+                            //saveCategories();
+                        }
+                        else{
+                            //getCategories();
+                            removeItemToHashMap(name,pictureId);
+                            //saveCategories();
+                        }
+                    }
+                });
 
-                editor.putBoolean(getResources().getString(name), isChecked);
-                editor.apply();
-                if(isChecked){
-                    //getCategories();
-                    addItemToHashMap(name,pictureId);
-                    //saveCategories();
-                }
-                else{
-                    //getCategories();
-                    removeItemToHashMap(name,pictureId);
-                    //saveCategories();
-                }
             }
         });
         checkIfNotExist(checkBox,name,pictureId);
@@ -205,7 +211,7 @@ public class AllergyFragment extends Fragment {
             }
         }
     }
-    private LinearLayout insertCheckboxAndImageView(LayoutInflater inflater, final String key, ViewGroup container, final int name, int pictureId) {
+    private LinearLayout insertCheckboxAndImageView(LayoutInflater inflater, ViewGroup container, final int name, int pictureId) {
         LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.rowcategorylayout, container, false);
         LinearLayout linearLayoutRow = (LinearLayout) linearLayout.findViewById(R.id.linearLayoutRowCategoryHorizontal);
         final TextView textView = (TextView) linearLayout.findViewById(R.id.textViewCategory);
@@ -217,28 +223,28 @@ public class AllergyFragment extends Fragment {
         linearLayoutRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onclickDropDownList(imageView,key);
+                onclickDropDownList(imageView,getString(name));
             }
         });
 
-        parentCheckBoxOnClickListener(checkboxRowCategory,key,name);
+        parentCheckBoxOnClickListener(checkboxRowCategory,getString(name),name);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onclickDropDownList(v,key);
+                onclickDropDownList(v,getString(name));
             }
         });
-        linearLayoutParents.put(key,linearLayout);
-        parentCheckBox.put(key,checkboxRowCategory);
+        linearLayoutParents.put(getString(name),linearLayout);
+        parentCheckBox.put(getString(name),checkboxRowCategory);
 
-        seeIfAllCheckboxIsChecked(checkboxRowCategory,key,name);
+        seeIfAllCheckboxIsChecked(checkboxRowCategory,getString(name),name);
         return linearLayout;
     }
     public void parentCheckBoxOnClickListener(CheckBox checkboxRowCategory, final String key, final int parentKey){
         checkboxRowCategory.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Log.d(TAG,"TIME");
+
                 //getCategories();
                 parentSetOnClick = true;
                 if(isChecked) {
@@ -255,7 +261,7 @@ public class AllergyFragment extends Fragment {
 
                 }
 
-                Log.d(TAG,"TIME");
+
                 //saveCategories();
                 parentSetOnClick = false;
 
@@ -267,8 +273,8 @@ public class AllergyFragment extends Fragment {
         profileSavePicture.put(getString(id),pictureId);
     }
     public void removeItemToHashMap(int id,int pictureId){
-        if(profileSavePicture.containsKey(id)){
-            profileSavePicture.remove(id);
+        if(profileSavePicture.containsKey(getString(id))){
+            profileSavePicture.remove(getString(id));
 
         }
         if(hashMapCategoriesAllergy.contains(id)){
@@ -281,12 +287,15 @@ public class AllergyFragment extends Fragment {
 
         for (LinearLayout linearLayout : Categories.get(key)) {
             CheckBox checkBox = (CheckBox) linearLayout.findViewById(R.id.checkBoxRowLeftMargin);
+
             if(!checkBox.isChecked()){
+
                 checkboxRowCategory.setChecked(false);
                 return;
             }
 
         }
+        Log.d(TAG, "seeIfAllCheckboxIsChecked: " + key);
         checkboxRowCategory.setOnCheckedChangeListener(null);
         checkboxRowCategory.setChecked(true);
         parentCheckBoxOnClickListener(checkboxRowCategory,key,name);
@@ -321,7 +330,7 @@ public class AllergyFragment extends Fragment {
         return list.get(0);
     }
 
-    private void addCategory(final LayoutInflater inflater, ArrayList<AllergyList.PictureIngredient> arrayListCategory, final String key,final int parentKey,final int parentPicture){
+    private void addCategory(final LayoutInflater inflater, ArrayList<AllergyList.PictureIngredient> arrayListCategory, final int parentKey, final int parentPicture){
         ArrayList<LinearLayout> arrayList = new ArrayList<>();
         ArrayList<CheckBox> checkBoxList = new ArrayList<>();
         long start = System.currentTimeMillis();
@@ -340,7 +349,7 @@ public class AllergyFragment extends Fragment {
             /*SharedPreferences settings = getContext().getSharedPreferences(arrayListCat.ingredient, Context.MODE_PRIVATE);
             final SharedPreferences.Editor editor = settings.edit();*/
             final CheckBox checkBox = (CheckBox) newLinearLayout.findViewById(R.id.checkBoxRowLeftMargin);
-            setCheckedLater.add(new CheckBoxClass(checkBox,arrayListCat.id,parentPicture,key,parentKey,arrayListCat.ingredient));
+            setCheckedLater.add(new CheckBoxClass(checkBox,arrayListCat.id,parentPicture,getString(parentKey),parentKey,arrayListCat.ingredient));
 
             // Log.d(TAG,"NUMBER2:" + arrayListCat.id + "name: " + arrayListCat.ingredient);
 
@@ -363,8 +372,8 @@ public class AllergyFragment extends Fragment {
         }
         long stop = System.currentTimeMillis();
         Log.d(TAG, "TIMEONE:"+ (stop-start));
-        checkBoxes.put(key,checkBoxList);
-        Categories.put(key,arrayList);
+        checkBoxes.put(getString(parentKey),checkBoxList);
+        Categories.put(getString(parentKey),arrayList);
 
 
     }
@@ -732,24 +741,25 @@ public class AllergyFragment extends Fragment {
 
             // get the string from params, which is an array
             AllergyList allergylist = new AllergyList(contextHistory);
-            addCategory(inflater, allergylist.getArrayListCitrus(), "Citrus",R.string.citrus,R.drawable.orange);
-            addCategory(inflater, allergylist.getArrayListFish(), "Fish",R.string.fish,R.drawable.fish);
-            addCategory(inflater, allergylist.getArrayListFruit(), "Fruit", R.string.fruit,R.drawable.fruit);
-            addCategory(inflater, allergylist.getArrayListGluten(), "Gluten",R.string.gluten, R.drawable.wheat);
-            addCategory(inflater, allergylist.getArrayListLegumes(), "Legumes",R.string.legumes, R.drawable.legumes);
-            addCategory(inflater, allergylist.getArrayListNuts(), "Nuts",R.string.nuts, R.drawable.nuts);
-            addCategory(inflater, allergylist.getArrayListSeeds(), "Seeds",R.string.seeds, R.drawable.seeds);
-            addCategory(inflater, allergylist.getArrayListShellfish(), "Shellfish", R.string.shellfish, R.drawable.shellfish);
-            addCategory(inflater, allergylist.getArrayListVegetables(), "Vegetables", R.string.vegetables, R.drawable.tomato);
-            addCategory(inflater, allergylist.getArrayListMuslim(), "Halal", R.string.halal, R.drawable.halal);
-            addCategory(inflater, allergylist.getArrayListVegetarian(), "Vegetarian", R.string.vegetarian, R.drawable.vegetarian);
-            addCategory(inflater, allergylist.getArrayListVegan(), "Vegan", R.string.vegan, R.drawable.vegan);
-            addCategory(inflater, allergylist.getArrayListLactoVegetarian(), "Lacto Vegetarian", R.string.lactoVegetarian, R.drawable.lactovegitarian);
-            addCategory(inflater, allergylist.getArrayListOvoVegetarian(), "Ovo Vegetarian", R.string.ovoVegetarian, R.drawable.ovoveg);
-            addCategory(inflater, allergylist.getArrayListLactoOvoVegetarian(), "LactoOvo Vegetarian", R.string.lactoOvoVegetarian, R.drawable.lactoovoveg);
-            addCategory(inflater, allergylist.getArrayListDemiVegetarian(), "Demi Vegetarian", R.string.demiVegetarian, R.drawable.demiveg);
-            addCategory(inflater, allergylist.getArrayListPolloVegetarian(), "Pollo Vegetarian", R.string.polloVegetarian, R.drawable.polloveg);
-            addCategory(inflater, allergylist.getArrayListPescoVegetarian(), "Pesco Vegetarian", R.string.pescoVegetarian, R.drawable.pescoveg);
+            addCategory(inflater, allergylist.getArrayListCitrus(), R.string.citrus,R.drawable.orange);
+            addCategory(inflater, allergylist.getArrayListFish(), R.string.fish,R.drawable.fish);
+            addCategory(inflater, allergylist.getArrayListFruit(), R.string.fruit,R.drawable.fruit);
+            addCategory(inflater, allergylist.getArrayListGluten(), R.string.gluten, R.drawable.wheat);
+            addCategory(inflater, allergylist.getArrayListLegumes(), R.string.legumes, R.drawable.legumes);
+            addCategory(inflater, allergylist.getArrayListNuts(), R.string.nuts, R.drawable.nuts);
+            addCategory(inflater, allergylist.getArrayListSeeds(), R.string.seeds, R.drawable.seeds);
+            addCategory(inflater, allergylist.getArrayListShellfish(), R.string.shellfish, R.drawable.shellfish);
+            addCategory(inflater, allergylist.getArrayListVegetables(), R.string.vegetables, R.drawable.tomato);
+            addCategory(inflater, allergylist.getArrayListMuslim(), R.string.halal, R.drawable.halal);
+            addCategory(inflater, allergylist.getArrayListVegetarian(), R.string.vegetarian, R.drawable.vegetarian);
+            addCategory(inflater, allergylist.getArrayListVegan(), R.string.vegan, R.drawable.vegan);
+            addCategory(inflater, allergylist.getArrayListLactoVegetarian(), R.string.lactoVegetarian, R.drawable.lactovegitarian);
+            addCategory(inflater, allergylist.getArrayListOvoVegetarian(), R.string.ovoVegetarian, R.drawable.ovoveg);
+            addCategory(inflater, allergylist.getArrayListLactoOvoVegetarian(), R.string.lactoOvoVegetarian, R.drawable.lactoovoveg);
+            addCategory(inflater, allergylist.getArrayListDemiVegetarian(), R.string.demiVegetarian, R.drawable.demiveg);
+            addCategory(inflater, allergylist.getArrayListPolloVegetarian(), R.string.polloVegetarian, R.drawable.polloveg);
+            addCategory(inflater, allergylist.getArrayListPescoVegetarian(), R.string.pescoVegetarian, R.drawable.pescoveg);
+
 
             return "this string is passed to onPostExecute";
         }
@@ -766,54 +776,117 @@ public class AllergyFragment extends Fragment {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             long start = System.currentTimeMillis();
+            boolean contains = false;
             for (final CheckBoxClass checkBox : setCheckedLater) {
                 SharedPreferences settings = contextHistory.getSharedPreferences(checkBox.ingredient, contextHistory.MODE_PRIVATE);
                 final SharedPreferences.Editor editor = settings.edit();
                 checkBox.checkBox.setChecked(settings.getBoolean(checkBox.ingredient, false));
-                checkBox.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        // Log.d(TAG,"NUMBER2:" + arrayListCat.id + "name: " + arrayListCat.ingredient);
+                if(checkBox.checkBox.isChecked()){
+                    contains = true;
+                }
+                setOnChecked(checkBox.checkBox, editor, checkBox);
 
-                        for (CheckBox box : sameItemDifferentCategories.get(checkBox.id)) {
-                            if(!box.equals(checkBox.checkBox)){
-                                box.setChecked(isChecked);
-                            }
-                        }
-                        checkBoxLeftMarginSaveString(isChecked,checkBox.id,checkBox.parentPicture);
-                        parentCheckBox.get(checkBox.key).setOnCheckedChangeListener(null);
-                        seeIfAllCheckboxIsChecked(parentCheckBox.get(checkBox.key),checkBox.key,checkBox.parentKey);
-                        parentCheckBoxOnClickListener(parentCheckBox.get(checkBox.key),checkBox.key,checkBox.parentKey);
-                        editor.putBoolean(checkBox.ingredient, isChecked);
-                        editor.apply();
-                    }
-                });
                 checkIfNotExist(checkBox.checkBox, checkBox.id,checkBox.parentPicture);
             }
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Citrus", container, R.string.citrus, R.drawable.orange));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.citrus, R.drawable.orange));
 
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Fish", container, R.string.fish, R.drawable.fish));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Fruit", container, R.string.fruit, R.drawable.fruit));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Gluten", container, R.string.gluten, R.drawable.wheat));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Legumes", container, R.string.legumes, R.drawable.legumes));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Nuts", container, R.string.nuts, R.drawable.nuts));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Seeds", container, R.string.seeds, R.drawable.seeds));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Shellfish", container, R.string.shellfish, R.drawable.shellfish));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegetables", container, R.string.vegetables, R.drawable.tomato));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Halal", container, R.string.halal, R.drawable.halal));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegetarian", container, R.string.vegetarian, R.drawable.vegetarian));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Vegan", container, R.string.vegan, R.drawable.vegan));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Lacto Vegetarian", container, R.string.lactoVegetarian, R.drawable.lactovegitarian));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Ovo Vegetarian", container, R.string.ovoVegetarian, R.drawable.ovoveg));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "LactoOvo Vegetarian", container, R.string.lactoOvoVegetarian, R.drawable.lactoovoveg));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Demi Vegetarian", container, R.string.demiVegetarian, R.drawable.demiveg));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Pollo Vegetarian", container, R.string.polloVegetarian, R.drawable.polloveg));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, "Pesco Vegetarian", container, R.string.pescoVegetarian, R.drawable.pescoveg));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.fish, R.drawable.fish));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.fruit, R.drawable.fruit));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.gluten, R.drawable.wheat));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.legumes, R.drawable.legumes));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.nuts, R.drawable.nuts));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.seeds, R.drawable.seeds));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.shellfish, R.drawable.shellfish));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.vegetables, R.drawable.tomato));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.halal, R.drawable.halal));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.vegetarian, R.drawable.vegetarian));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.vegan, R.drawable.vegan));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.lactoVegetarian, R.drawable.lactovegitarian));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.ovoVegetarian, R.drawable.ovoveg));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.lactoOvoVegetarian, R.drawable.lactoovoveg));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.demiVegetarian, R.drawable.demiveg));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.polloVegetarian, R.drawable.polloveg));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.pescoVegetarian, R.drawable.pescoveg));
             Log.d(TAG, "onPostExecute: " +(System.currentTimeMillis()-start));
+            parentLinearLayout.findViewById(R.id.btnUncheckAll).setVisibility(View.VISIBLE);
+            if(!contains){
+                ((Button)parentLinearLayout.findViewById(R.id.btnUncheckAll)).setText(R.string.checkAll);
+            }
+            parentLinearLayout.findViewById(R.id.btnUncheckAll).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Button btn = (Button) v;
+                    v.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (btn.getText().equals(getString(R.string.uncheckAll))) {
+                                btn.setText(getString(R.string.checkAll));
+
+                                /*for (String boxes : checkBoxes.keySet()) {
+                                    for (CheckBox box : checkBoxes.get(boxes)) {
+                                        Log.d(TAG, "run: "+boxes);
+                                        box.setChecked(false);
+                                    }
+                                }*/
+                                for (String checkBox : parentCheckBox.keySet()) {
+                                    Log.d(TAG, "run: " +checkBox);
+                                    parentCheckBox.get(checkBox).setChecked(false);
+                                }
+                            } else {
+                                btn.setText(getString(R.string.uncheckAll));
+                                /*for (String boxes : checkBoxes.keySet()) {
+                                    for (CheckBox box : checkBoxes.get(boxes)) {
+                                        Log.d(TAG, "run: "+boxes);
+                                        box.setChecked(true);
+                                    }
+                                }*/
+                                for (CheckBox checkBox : parentCheckBox.values()) {
+                                    checkBox.setChecked(true);
+                                }
+                            }
+                        }
+                    });
+                }
+            });
             parentLinearLayout.removeView(parentLinearLayout.findViewById(R.id.progressBarAllergy));
         }
     }
+    public void setOnChecked(final CheckBox check, final SharedPreferences.Editor editor, final CheckBoxClass checkBox){
+        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                /*for (CheckBox box : sameItemDifferentCategories.get(checkBox.id)) {
+                    if(!box.equals(check)){
 
+                        box.setOnCheckedChangeListener(null);
+                        box.setChecked(isChecked);
+                        setOnChecked(box,editor, checkBox);
+                    }
+                }*/
+                for (CheckBox box : sameItemDifferentCategories.get(checkBox.id)) {
+                    if(!box.equals(checkBox.checkBox)){
+
+                        box.setChecked(isChecked);
+
+                    }
+                }
+                if(parentCheckBox.containsKey(checkBox.ingredient)){
+                    if(parentCheckBox.get(checkBox.ingredient).isChecked()){
+                        parentCheckBox.get(checkBox.ingredient).setChecked(false);
+                    }else{
+                        parentCheckBox.get(checkBox.ingredient).setChecked(true);
+                    }
+                }
+                checkBoxLeftMarginSaveString(isChecked,checkBox.id,checkBox.parentPicture);
+                parentCheckBox.get(checkBox.key).setOnCheckedChangeListener(null);
+                seeIfAllCheckboxIsChecked(parentCheckBox.get(checkBox.key),checkBox.key,checkBox.parentKey);
+                parentCheckBoxOnClickListener(parentCheckBox.get(checkBox.key),checkBox.key,checkBox.parentKey);
+                editor.putBoolean(checkBox.ingredient, isChecked);
+                editor.apply();
+            }
+        });
+
+    }
     private class CheckBoxClass {
         private CheckBox checkBox;
         private final int id;

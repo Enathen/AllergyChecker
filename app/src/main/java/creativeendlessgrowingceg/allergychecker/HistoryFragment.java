@@ -169,6 +169,7 @@ public class HistoryFragment extends Fragment {
                 tv.setGravity(Gravity.CENTER);
                 tv.setTextSize(22);
                 tv.setBackgroundColor(Color.rgb(colorGreenToRed,178,172));
+                tv.setVisibility(View.INVISIBLE);
                 tv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -198,10 +199,10 @@ public class HistoryFragment extends Fragment {
 
                     }
                 });
-
                 newLinearLayout.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
+
                         if(tv.getVisibility() == View.VISIBLE){
                             tv.setVisibility(View.INVISIBLE);
                             topLinLayOut.removeView(tv);

@@ -16,7 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Locale;
 
 
 /**
@@ -160,7 +162,7 @@ public class TranslateHelp extends Fragment {
         @Override
         protected void onPostExecute(ArrayList<String> result) {
             int i =0;
-
+            Collections.sort(result);
             for (String s : result) {
                 ((TextView)linearLayouts.get(i).findViewById(R.id.textViewTranslate)).setText(s);
                 parentLinearLayout.addView(linearLayouts.get(i));
@@ -168,21 +170,19 @@ public class TranslateHelp extends Fragment {
                 i++;
             }
             Button button = new Button(context);
-            button.setText(R.string.save);
+            button.setText(R.string.send);
             button.setBackgroundColor(context.getColor(R.color.colorPrimary));
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String string = "";
-                    for (String s : editTextHashMap.keySet()) {
-                        if(!((EditText)editTextHashMap.get(s)).getText().toString().equals("")){
-                            string = string.concat(s +" : " + editTextHashMap.get(s).getText()+"\n");
-                        }
-                    }
-                    Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                            "mailto","AllergyCheckerCEGTranslate@gmail.com", null));
-                    emailIntent.putExtra(Intent.EXTRA_TEXT, string);
-                    startActivity(Intent.createChooser(emailIntent, getResources().getText(R.string.sendTipsFrom)));
+                    onclick();
+                }
+            });
+            parentLinearLayout.findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onclick();
+
                 }
             });
             parentLinearLayout.addView(button);
@@ -192,6 +192,21 @@ public class TranslateHelp extends Fragment {
 
 
             super.onPostExecute(result);
+        }
+
+        private void onclick() {
+            String string = "";
+            for (String s : editTextHashMap.keySet()) {
+                if(!(editTextHashMap.get(s)).getText().toString().equals("")){
+                    string = string.concat(s +" : " + editTextHashMap.get(s).getText()+"\n");
+                }
+            }
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                    "mailto","AllergyCheckerCEGTranslate@gmail.com", null));
+            emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.nameIfyouWantToBeInHelperList)
+                    + " : " + "\n" + getString(R.string.translatedFrom) + ": "+ Locale.getDefault().
+                    getDisplayLanguage() + "\n" + string);
+            startActivity(Intent.createChooser(emailIntent, getResources().getText(R.string.sendTipsFrom)));
         }
 
         public ArrayList<String> getAllStrings() {
@@ -298,7 +313,6 @@ public class TranslateHelp extends Fragment {
             arrayList.add(getString(R.string.seeds));
             arrayList.add(getString(R.string.deleteHistory));
             arrayList.add(getString(R.string.scanPhotos));
-            arrayList.add(getString(R.string.service_label));
             arrayList.add(getString(R.string.english));
             arrayList.add(getString(R.string.swedish));
             arrayList.add(getString(R.string.spanish));
@@ -412,7 +426,16 @@ public class TranslateHelp extends Fragment {
             arrayList.add(getString(R.string.holdFor));
             arrayList.add(getString(R.string.about));
             arrayList.add(getString(R.string.helpTranslate));
-
+            arrayList.add(getString(R.string.onlyFillChanges));
+            arrayList.add(getString(R.string.specialThanksTo));
+            arrayList.add(getString(R.string.thisappUses));
+            arrayList.add(getString(R.string.FAB));
+            arrayList.add(getString(R.string.BkTree));
+            arrayList.add(getString(R.string.OnBoardMe));
+            arrayList.add(getString(R.string.licence));
+            arrayList.add(getString(R.string.googleCamera));
+            arrayList.add(getString(R.string.translatedFrom));
+            arrayList.add(getString(R.string.nameIfyouWantToBeInHelperList));
 
             return arrayList;
         }

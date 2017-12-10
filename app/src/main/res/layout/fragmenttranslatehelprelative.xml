@@ -2,9 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
+    android:background="@color/colorPrimaryDark"
     android:layout_weight="3"
     android:orientation="horizontal">
-
+    <TextView
+        android:id="@+id/sideBorder"
+        android:layout_width="10dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,6 +19,7 @@
         <TextView
             android:id="@+id/textViewTranslate"
             android:layout_width="wrap_content"
+            android:textColor="@color/fontColorTextWhite"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
@@ -33,9 +39,16 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
+            android:textColor="@color/fontColorTextWhite"
+            android:backgroundTint="@color/fontColorTextWhite"
             android:maxLength="300"
             android:ems="10"
             android:inputType="textPersonName" />
     </RelativeLayout>
+    <TextView
+        android:id="@+id/sideBorder1"
+        android:layout_width="10dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark" />
 
 </LinearLayout>

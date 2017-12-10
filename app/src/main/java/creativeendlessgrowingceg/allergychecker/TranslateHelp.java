@@ -167,11 +167,15 @@ public class TranslateHelp extends Fragment {
                 ((TextView)linearLayouts.get(i).findViewById(R.id.textViewTranslate)).setText(s);
                 parentLinearLayout.addView(linearLayouts.get(i));
                 editTextHashMap.put(s,(EditText) linearLayouts.get(i).findViewById(R.id.editTextFragmentTranslate));
+                linearLayouts.get(i).findViewById(R.id.sideBorder).setBackgroundColor(ColorRandom.getRandomColor(i));
+                linearLayouts.get(i).findViewById(R.id.sideBorder1).setBackgroundColor(ColorRandom.getRandomColor(i));
                 i++;
             }
             Button button = new Button(context);
             button.setText(R.string.send);
-            button.setBackgroundColor(context.getColor(R.color.colorPrimary));
+            button.setBackgroundColor(context.getColor(R.color.colorPrimaryDark));
+            button.setTextColor(context.getColor(R.color.fontColorTextWhite));
+            button.setTextSize(32);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

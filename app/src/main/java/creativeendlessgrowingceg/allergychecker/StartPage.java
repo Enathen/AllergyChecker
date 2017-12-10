@@ -75,6 +75,7 @@ public class StartPage extends AppCompatActivity
 
     ArrayList<Integer> definitelyContained = new ArrayList<>();
     HashMap<Integer,LanguageString> arrayListAllergies;
+    Toast arralistToast;
 
     public StartPage(FragmentActivity activity) {
         prefs = activity.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
@@ -318,12 +319,17 @@ public class StartPage extends AppCompatActivity
     }
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if(arralistToast!=null){
+            arralistToast.cancel();
+        }
+        arralistToast = Toast.makeText(getBaseContext(),R.string.backDisabled,Toast.LENGTH_SHORT);
+        arralistToast.show();
+       /* DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-        }
+        }*/
     }
 
     @Override
@@ -399,7 +405,10 @@ public class StartPage extends AppCompatActivity
         Fragment fragment = null;
         suggestions.setText("");
         allergic.setText("");
-        findViewById(R.id.linlayallergyFromWord).setVisibility(View.INVISIBLE);
+        if(findViewById(R.id.linlayallergyFromWord)!= null){
+            findViewById(R.id.linlayallergyFromWord).setVisibility(View.INVISIBLE);
+
+        }
         findViewById(R.id.linLayHorizontalStartPage).setVisibility(View.INVISIBLE);
 
 
@@ -422,7 +431,7 @@ public class StartPage extends AppCompatActivity
         }else if (id == R.id.tutorial){
             startActivity(new Intent(this, OnboardingPagerActivity.class));
         }else if(id == R.id.about){
-            fragment = new AboutFragment(); setTitle("A");
+            fragment = new AboutFragment(); setTitle("About");
         }else if (id == R.id.translate){
             fragment = new TranslateHelp(); setTitle("Translate");
         }
@@ -497,6 +506,7 @@ public class StartPage extends AppCompatActivity
         imageViewHashMap.put(7, (ImageView) findViewById(R.id.imageViewNav8));
         return imageViewHashMap;
     }
+
     @Override
     public void onFragmentInteraction(Uri uri) {
 
@@ -685,14 +695,16 @@ public class StartPage extends AppCompatActivity
                 outputString = outputString.concat(getString(R.string.scannedTextBelow)+ "\n");
                 textView.setTextColor(Color.RED);
                 textView.setText(outputString);
+                findViewById(R.id.linlayallergyFromWord).setVisibility(View.VISIBLE);
             }else{
                 outputString = outputString.concat("\n"+getString(R.string.youCanUse)+"\n");
                 outputString = outputString.concat("\n" + getString(R.string.mightContainAllergies)+ "\n");
                 outputString = outputString.concat(getString(R.string.scannedTextBelow)+"\n");
                 textView.setTextColor(getColor(R.color.colorAccent));
                 textView.setText(outputString);
+                ((LinearLayout)findViewById(R.id.linLayStartPage)).removeView(findViewById(R.id.linlayallergyFromWord));
+
             }
-            findViewById(R.id.linlayallergyFromWord).setVisibility(View.VISIBLE);
             allergic.setText(outputString);
             // Do things like hide the progress bar or change a TextView
         }

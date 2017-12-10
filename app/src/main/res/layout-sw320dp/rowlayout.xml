@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/defaultRows"
+
     android:weightSum="1">
 
     <ImageView
@@ -20,11 +21,13 @@
         android:gravity="center_vertical"
         android:text="Checkbox"
         android:textAllCaps="false"
+        android:textColor="@color/fontColorTextWhite"
         android:textSize="22sp"
         android:textStyle="bold" />
 
     <CheckBox
         android:id="@+id/checkBoxRow"
+
         android:layout_width="wrap_content"
         android:layout_height="@dimen/defaultRows"
         android:layout_marginEnd="5dp"

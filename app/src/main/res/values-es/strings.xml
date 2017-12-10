@@ -314,6 +314,7 @@
     <string name="nameIfyouWantToBeInHelperList">Name if you want to be in helper list</string>
     <string name="uncheckAll">Uncheck All</string>
     <string name="checkAll">Check all</string>
+    <string name="backDisabled">Back disabled</string>
 
 
 </resources>

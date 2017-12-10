@@ -334,6 +334,7 @@ public class AllergyFragment extends Fragment {
         ArrayList<LinearLayout> arrayList = new ArrayList<>();
         ArrayList<CheckBox> checkBoxList = new ArrayList<>();
         long start = System.currentTimeMillis();
+
         for (final AllergyList.PictureIngredient arrayListCat : arrayListCategory) {
 
 

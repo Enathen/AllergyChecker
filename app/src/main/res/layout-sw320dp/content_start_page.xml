@@ -8,6 +8,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="creativeendlessgrowingceg.allergychecker.StartPage"
     tools:showIn="@layout/app_bar_start_page"
+    android:background="@color/colorPrimaryDark"
     android:layout_marginRight="0dp">
 
     <ScrollView
@@ -57,6 +58,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:text="@string/allergy"
+                        android:textColor="@color/fontColorTextWhite"
                         android:textSize="22sp" />
                 </RelativeLayout>
 
@@ -72,6 +74,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:text="@string/fromWord"
+                        android:textColor="@color/fontColorTextWhite"
                         android:textSize="22sp" />
                 </RelativeLayout>
             </LinearLayout>
@@ -99,7 +102,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="562dp"
                 android:layout_gravity="center|top"
-                android:gravity="center|top" />
+                android:gravity="center|top"
+                android:textColor="@color/fontColorTextWhite" />
 
         </LinearLayout>
     </ScrollView>

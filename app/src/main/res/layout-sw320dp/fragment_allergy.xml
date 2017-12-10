@@ -30,7 +30,11 @@
                 android:id="@+id/btnUncheckAll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
                 android:text="@string/uncheckAll"
+                android:textAllCaps="false"
+                android:textColor="@color/fontColorTextWhite"
+                android:textSize="32sp"
                 android:visibility="invisible" />
 
         </LinearLayout>

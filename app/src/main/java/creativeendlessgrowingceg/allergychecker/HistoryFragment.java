@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -159,17 +158,22 @@ public class HistoryFragment extends Fragment {
                 baseIncrease = 1;
             }
             Log.d(TAG, String.valueOf(baseIncrease));
+            int i = 0;
             for (final String s : arrayList) {
 
                 final LinearLayout topLinLayOut = (LinearLayout) inflater.inflate(R.layout.historyrow, container, false);
                 LinearLayout newLinearLayout = (LinearLayout) topLinLayOut.findViewById(R.id.linlay);
+                TextView side = (TextView) topLinLayOut.findViewById(R.id.sideBorder);
+                TextView side2 = (TextView) topLinLayOut.findViewById(R.id.sideBorder1);
                 TextView textview = (TextView) newLinearLayout.findViewById(R.id.textViewHistoryRow);
                 final TextView tv = new TextView(getContext());
                 tv.setText(s.substring(20));
                 tv.setGravity(Gravity.CENTER);
                 tv.setTextSize(22);
-                tv.setBackgroundColor(Color.rgb(colorGreenToRed,178,172));
+                tv.setBackgroundColor(getContext().getColor(R.color.colorPrimaryDark));
+                tv.setTextColor(getContext().getColor(R.color.fontColorTextWhite));
                 tv.setVisibility(View.INVISIBLE);
+
                 tv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -179,7 +183,11 @@ public class HistoryFragment extends Fragment {
                 });
                 String correctString = s.substring(0, 20);
 
-                textview.setBackgroundColor(Color.rgb(colorGreenToRed, 178, 172));
+                int color = ColorRandom.getRandomColor(i);
+                i++;
+
+                side.setBackgroundColor(color);
+                side2.setBackgroundColor(color);
                 colorGreenToRed += baseIncrease;
                 if (colorGreenToRed >= 255) {
                     baseIncrease=-1;
@@ -218,8 +226,8 @@ public class HistoryFragment extends Fragment {
             }
 
             if(!arrayList.isEmpty()){
-                LinearLayout linearLayoutDeleteAll = (LinearLayout) inflater.inflate(R.layout.historyrowdeleteallbutton,container,false);
-                linearLayoutDeleteAll.setBackgroundColor(Color.rgb(colorGreenToRed,178,172));
+                LinearLayout linearLayoutDeleteAll = (LinearLayout) inflater.inflate(R.layout.historyrow,container,false);
+                ((TextView) linearLayoutDeleteAll.findViewById(R.id.textViewHistoryRow)).setText(getString(R.string.deleteHistory));
                 linearLayoutDeleteAll.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

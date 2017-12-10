@@ -24,6 +24,7 @@
             android:layout_weight="1.90"
             android:gravity="center_vertical"
             android:text="TextView"
+            android:textColor="@color/fontColorTextWhite"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

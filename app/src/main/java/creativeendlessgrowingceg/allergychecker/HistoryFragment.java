@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Random;
 
 
 /**
@@ -51,6 +53,8 @@ public class HistoryFragment extends Fragment {
     private LinearLayout parentLinearLayout;
     private Bundle savedInstanceState;
     private StartPage startPage;
+    boolean saveButton = false;
+    private int rand;
 
     public HistoryFragment(StartPage startPage) {
 
@@ -107,7 +111,9 @@ public class HistoryFragment extends Fragment {
         // Inflate the layout for this fragment
         Log.d(TAG,"history" + Locale.getDefault().getLanguage());
         parentFrameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_history, container, false);
+
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.lineaLayoutFragHistory);
+
         ArrayList<String> arrayList = new StartPage(getActivity()).getArrayFromHistory();
         Collections.sort(arrayList,new stringComparator());
         Collections.reverse(arrayList);
@@ -150,7 +156,8 @@ public class HistoryFragment extends Fragment {
     }
     private void insertNew(final LayoutInflater inflater, final ViewGroup container, final ArrayList<String> arrayList){
         int colorGreenToRed = 26;
-
+        ArrayList<Integer> color = ColorRandom.getRandomColor();
+        rand = new Random().nextInt(color.size());
         if(!arrayList.isEmpty()) {
 
             int baseIncrease = (255 - 26) / arrayList.size() - 1;
@@ -158,11 +165,10 @@ public class HistoryFragment extends Fragment {
                 baseIncrease = 1;
             }
             Log.d(TAG, String.valueOf(baseIncrease));
-            int i = 0;
             for (final String s : arrayList) {
 
                 final LinearLayout topLinLayOut = (LinearLayout) inflater.inflate(R.layout.historyrow, container, false);
-                LinearLayout newLinearLayout = (LinearLayout) topLinLayOut.findViewById(R.id.linlay);
+                final LinearLayout newLinearLayout = (LinearLayout) topLinLayOut.findViewById(R.id.linlay);
                 TextView side = (TextView) topLinLayOut.findViewById(R.id.sideBorder);
                 TextView side2 = (TextView) topLinLayOut.findViewById(R.id.sideBorder1);
                 TextView textview = (TextView) newLinearLayout.findViewById(R.id.textViewHistoryRow);
@@ -181,13 +187,37 @@ public class HistoryFragment extends Fragment {
                         topLinLayOut.removeView(tv);
                     }
                 });
+                final Button button = new Button(getContext());
+                button.setBackgroundColor(getContext().getColor(R.color.colorPrimaryDark));
+                button.setTextColor(getContext().getColor(R.color.fontColorTextWhite));
+                button.setText(R.string.delete);
+                button.setGravity(View.TEXT_ALIGNMENT_CENTER);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new StartPage(getActivity()).deleteOneItemHistory(s,startPage);
+                        topLinLayOut.removeView(button);
+                        topLinLayOut.removeView(tv);
+                        topLinLayOut.removeView(newLinearLayout);
+                        parentLinearLayout.findViewById(R.id.buttonHistoryFragment).setVisibility(View.VISIBLE);
+                        parentLinearLayout.findViewById(R.id.buttonHistoryFragment).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getActivity(), StartPage.class);
+                                startActivity(intent);
+                            }
+                        });
+
+
+                    }
+                });
                 String correctString = s.substring(0, 20);
 
-                int color = ColorRandom.getRandomColor(i);
-                i++;
 
-                side.setBackgroundColor(color);
-                side2.setBackgroundColor(color);
+                rand++;
+
+                side.setBackgroundColor(ColorRandom.getRandomColorFromArray(color,rand));
+                side2.setBackgroundColor(ColorRandom.getRandomColorFromArray(color,rand));
                 colorGreenToRed += baseIncrease;
                 if (colorGreenToRed >= 255) {
                     baseIncrease=-1;
@@ -214,9 +244,11 @@ public class HistoryFragment extends Fragment {
                         if(tv.getVisibility() == View.VISIBLE){
                             tv.setVisibility(View.INVISIBLE);
                             topLinLayOut.removeView(tv);
+                            topLinLayOut.removeView(button);
 
                         }else{
                             topLinLayOut.addView(tv);
+                            topLinLayOut.addView(button);
                             tv.setVisibility(View.VISIBLE);
                         }
                         return true;
@@ -294,6 +326,7 @@ public class HistoryFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+
         mListener = null;
     }
 

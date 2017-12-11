@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -88,7 +89,7 @@ public class StartPage extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
-
+        new SettingsFragment(this).setGetLanguage(StartPage.this,Locale.getDefault().getLanguage());
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
         if (!sharedPreferences.getBoolean("firstTime", false)) {
@@ -99,6 +100,8 @@ public class StartPage extends AppCompatActivity
                     "firstTime", true);
             sharedPreferencesEditor.apply();
         }
+        //final ImageView iv = (ImageView) findViewById(R.id.splash);
+        //new Splashscreen(iv,getBaseContext(),(LinearLayout) findViewById(R.id.linLayStartPage),(ConstraintLayout) findViewById(R.id.lin_lay));
 
         Intent intent = getIntent();
         suggestions = (TextView) findViewById(R.id.ingredientsTextView);
@@ -242,6 +245,8 @@ public class StartPage extends AppCompatActivity
     }
     private void checkStringAgainstAllergies(String str) {
         displayInterstitial();
+        deleteConstrained();
+
         ( findViewById(R.id.progressBar3)).setVisibility(View.VISIBLE);
 
         Locale locale = new Locale(new SettingsFragment(this).getLanguageFromLFragment(this));
@@ -254,6 +259,15 @@ public class StartPage extends AppCompatActivity
         res.updateConfiguration(config, res.getDisplayMetrics());
         new CalcAllergy(this,allergic, (ProgressBar) findViewById(R.id.progressBar3)).execute(str);
 
+    }
+
+    private void deleteConstrained() {
+        if(findViewById(R.id.lin_lay )!= null){
+            ((ConstraintLayout)findViewById(R.id.lin_lay)).removeView(findViewById(R.id.splash));
+            ((ConstraintLayout)findViewById(R.id.lin_lay)).removeView(findViewById(R.id.allergycheck));
+            ((LinearLayout)findViewById(R.id.linLayStartPage)).removeView(findViewById(R.id.lin_lay));
+
+        }
     }
 
     public ArrayList<String> getDateString(){
@@ -300,6 +314,16 @@ public class StartPage extends AppCompatActivity
 
         return new ArrayList<>(set);
     }
+    public void deleteOneItemHistory(String key, StartPage startPage){
+        prefs = startPage.getSharedPreferences(SHARED_PREFS_NAME, Activity.MODE_PRIVATE);
+        SharedPreferences.Editor mEdit1 = prefs.edit();
+        Set<String> set = prefs.getStringSet("list", new HashSet<String>());
+        set.remove(key);
+        mEdit1.putStringSet("list", set);
+        mEdit1.apply();
+
+
+    }
     public void deleteHistory() {
 
         SharedPreferences.Editor mEdit1 = prefs.edit();
@@ -314,7 +338,9 @@ public class StartPage extends AppCompatActivity
 
         //NOTE: if shared preference is null, the method return empty Hashset and not null
         Set<String> set = prefs.getStringSet("list", new HashSet<String>());
-
+        for (String s : set) {
+            Log.d(TAG, "getArray: "+ s);
+        }
         return new ArrayList<>(set);
     }
     @Override
@@ -405,6 +431,7 @@ public class StartPage extends AppCompatActivity
         Fragment fragment = null;
         suggestions.setText("");
         allergic.setText("");
+        deleteConstrained();
         if(findViewById(R.id.linlayallergyFromWord)!= null){
             findViewById(R.id.linlayallergyFromWord).setVisibility(View.INVISIBLE);
 

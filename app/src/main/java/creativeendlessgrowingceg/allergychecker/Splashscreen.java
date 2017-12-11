@@ -1,30 +1,23 @@
 package creativeendlessgrowingceg.allergychecker;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
+import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
-import java.util.Locale;
 
-
-public class Splashscreen extends Activity {
+public class Splashscreen {
 
     private static final String TAG = "Splashscreen";
     Thread splashTread;
     ImageView imageView;
     String language;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splashscreen);
-       final ImageView iv = (ImageView) findViewById(R.id.splash);
-        Animation animation = AnimationUtils.loadAnimation(getBaseContext(),R.anim.rotate);
+    public Splashscreen(ImageView iv, Context context, final LinearLayout linearLayout, final ConstraintLayout constraintLayout){
+        //final ImageView iv = (ImageView) findViewById(R.id.splash);
+        Animation animation = AnimationUtils.loadAnimation(context,R.anim.rotate);
         iv.startAnimation(animation);
-
-
 
 
         animation.setAnimationListener(new Animation.AnimationListener() {
@@ -41,16 +34,7 @@ public class Splashscreen extends Activity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-
-                setLocale();
-                Intent i = new Intent(Splashscreen.this,StartPage.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                finish();
-                startActivity(i);
-                overridePendingTransition(0,0);
-
-
+                linearLayout.removeView(constraintLayout);
             }
 
             @Override
@@ -58,11 +42,6 @@ public class Splashscreen extends Activity {
 
             }
         });
-    }
-    public void setLocale() {
-
-      new SettingsFragment(this).setGetLanguage(Splashscreen.this,Locale.getDefault().getLanguage());
-
     }
 
 

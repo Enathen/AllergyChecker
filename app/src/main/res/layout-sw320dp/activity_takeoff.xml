@@ -19,7 +19,7 @@
         android:textColor="@android:color/white" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/allergycheck"
         android:layout_width="254dp"
         android:layout_height="232.33dp"
         android:layout_marginLeft="50dp"
@@ -54,7 +54,7 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@android:color/white"
-        android:layout_alignTop="@+id/imageView"
+        android:layout_alignTop="@+id/allergycheck"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

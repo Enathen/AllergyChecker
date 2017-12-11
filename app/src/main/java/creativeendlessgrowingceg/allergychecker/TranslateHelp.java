@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Random;
 
 
 /**
@@ -42,6 +43,8 @@ public class TranslateHelp extends Fragment {
     private OnFragmentInteractionListener mListener;
     private FrameLayout parentFrameLayout;
     private LinearLayout parentLinearLayout;
+    private int rand;
+    private ArrayList<Integer> colors;
 
     public TranslateHelp() {
         // Required empty public constructor
@@ -82,6 +85,11 @@ public class TranslateHelp extends Fragment {
 
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFragTranslate);
+        LinearLayout child = (LinearLayout) parentLinearLayout.findViewById(R.id.linearhorizontalFragTransHelp);
+        colors = ColorRandom.getRandomColor();
+        rand = new Random().nextInt(colors.size());
+        child.findViewById(R.id.sideFragTranslate).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors,rand));
+        child.findViewById(R.id.sideFragTranslate2).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors,rand));
 
         //getCategories();
         new addAllStringsNecessary(inflater,container,getContext()).execute();
@@ -161,15 +169,16 @@ public class TranslateHelp extends Fragment {
         }
         @Override
         protected void onPostExecute(ArrayList<String> result) {
-            int i =0;
+            int i = 0;
             Collections.sort(result);
             for (String s : result) {
                 ((TextView)linearLayouts.get(i).findViewById(R.id.textViewTranslate)).setText(s);
                 parentLinearLayout.addView(linearLayouts.get(i));
                 editTextHashMap.put(s,(EditText) linearLayouts.get(i).findViewById(R.id.editTextFragmentTranslate));
-                linearLayouts.get(i).findViewById(R.id.sideBorder).setBackgroundColor(ColorRandom.getRandomColor(i));
-                linearLayouts.get(i).findViewById(R.id.sideBorder1).setBackgroundColor(ColorRandom.getRandomColor(i));
+                linearLayouts.get(i).findViewById(R.id.sideBorder).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors,rand));
+                linearLayouts.get(i).findViewById(R.id.sideBorder1).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors,rand));
                 i++;
+                rand++;
             }
             Button button = new Button(context);
             button.setText(R.string.send);

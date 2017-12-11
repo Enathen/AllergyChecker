@@ -317,6 +317,7 @@
     <string name="uncheckAll">Uncheck all</string>
     <string name="checkAll">Check all</string>
     <string name="backDisabled">Back disabled</string>
+    <string name="delete">Delete</string>
 
 
 </resources>

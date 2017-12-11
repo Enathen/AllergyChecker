@@ -59,10 +59,6 @@ public class SettingsFragment extends Fragment {
     SharedPreferences preference;
     private StartPage startpage;
 
-    public SettingsFragment(Splashscreen startPage) {
-        startPageFile = new File(startPage.getFilesDir(),"language.txt");
-        preference = PreferenceManager.getDefaultSharedPreferences(startPage);
-    }
     public SettingsFragment(StartPage startPage) {
         startPageFile = new File(startPage.getFilesDir(),"language.txt");
         this.startpage = startPage;
@@ -386,7 +382,7 @@ public class SettingsFragment extends Fragment {
         saveCategories();
         mListener = null;
     }
-    public String getLanguageFromLFragment(Splashscreen startPage) {
+    public String getLanguageFromLFragment(StartPage startPage) {
         //Log.d(TAG,preference.getString("getLanguage",null));
         ArrayList<String> languageAccepted = new  ArrayList<String>();
         languageAccepted.add("en");
@@ -430,7 +426,7 @@ public class SettingsFragment extends Fragment {
         return "en";
     }
 
-    public void setGetLanguage(Splashscreen splashscreen, String language) {
+    public void setGetLanguage(StartPage splashscreen, String language) {
         SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(splashscreen).edit();
         sharedPreferencesEditor.putString("getLanguage", language);
         sharedPreferencesEditor.apply();

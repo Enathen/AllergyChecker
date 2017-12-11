@@ -13,7 +13,18 @@
             android:id="@+id/lineaLayoutFragHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/buttonHistoryFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryDark"
+                android:text="@string/save"
+                android:textColor="@color/fontColorTextWhite"
+                android:textSize="32sp"
+                android:visibility="invisible" />
+        </LinearLayout>
     </ScrollView>
 
 </FrameLayout>

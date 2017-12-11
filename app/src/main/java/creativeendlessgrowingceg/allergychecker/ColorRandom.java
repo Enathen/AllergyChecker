@@ -10,8 +10,12 @@ import java.util.ArrayList;
 
 public class ColorRandom {
     private static final ColorRandom ourInstance = new ColorRandom();
+    private static final String TAG = "ColorRandom";
 
-    public static Integer getRandomColor(int i) {
+    public static int getRandomColorFromArray(ArrayList<Integer> color,int i){
+        return color.get(i%color.size());
+    }
+    public static ArrayList<Integer> getRandomColor() {
         ArrayList<Integer> colors = new ArrayList<>();
 
 
@@ -44,9 +48,8 @@ public class ColorRandom {
         colors.add(Color.parseColor("#FF4081"));
         colors.add(Color.parseColor("#F50057"));
         colors.add(Color.parseColor("#C51162"));
-
         colors.add(Color.parseColor("#9C27B0"));
-        
+
         colors.add(Color.parseColor("#F3E5F5"));
         
         colors.add(Color.parseColor("#E1BEE7"));
@@ -538,8 +541,7 @@ public class ColorRandom {
         colors.add(Color.parseColor("#78909C"));
         
         colors.add(Color.parseColor("#607D8B"));
-
-        return colors.get(i+1);
+        return colors;
     }
 
     private ColorRandom() {

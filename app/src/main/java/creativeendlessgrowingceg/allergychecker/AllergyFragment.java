@@ -21,6 +21,7 @@ import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.File;
@@ -227,7 +228,7 @@ public class AllergyFragment extends Fragment {
             }
         });
 
-        parentCheckBoxOnClickListener(checkboxRowCategory,getString(name),name);
+        parentCheckBoxOnClickListener(checkboxRowCategory,getString(name));
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -240,7 +241,7 @@ public class AllergyFragment extends Fragment {
         seeIfAllCheckboxIsChecked(checkboxRowCategory,getString(name),name);
         return linearLayout;
     }
-    public void parentCheckBoxOnClickListener(CheckBox checkboxRowCategory, final String key, final int parentKey){
+    public void parentCheckBoxOnClickListener(CheckBox checkboxRowCategory, final String key){
         checkboxRowCategory.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -298,7 +299,7 @@ public class AllergyFragment extends Fragment {
         Log.d(TAG, "seeIfAllCheckboxIsChecked: " + key);
         checkboxRowCategory.setOnCheckedChangeListener(null);
         checkboxRowCategory.setChecked(true);
-        parentCheckBoxOnClickListener(checkboxRowCategory,key,name);
+        parentCheckBoxOnClickListener(checkboxRowCategory,key);
 
 
     }
@@ -809,7 +810,7 @@ public class AllergyFragment extends Fragment {
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.polloVegetarian, R.drawable.polloveg));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.pescoVegetarian, R.drawable.pescoveg));
             Log.d(TAG, "onPostExecute: " +(System.currentTimeMillis()-start));
-            parentLinearLayout.findViewById(R.id.btnUncheckAll).setVisibility(View.VISIBLE);
+            //parentLinearLayout.findViewById(R.id.btnUncheckAll).setVisibility(View.VISIBLE);
             if(!contains){
                 ((Button)parentLinearLayout.findViewById(R.id.btnUncheckAll)).setText(R.string.checkAll);
             }
@@ -817,21 +818,19 @@ public class AllergyFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     final Button btn = (Button) v;
+                    final ProgressBar progressBar = new ProgressBar(getContext());
+
+                    final int[] i = new int[1];
                     v.post(new Runnable() {
                         @Override
                         public void run() {
                             if (btn.getText().equals(getString(R.string.uncheckAll))) {
                                 btn.setText(getString(R.string.checkAll));
-
-                                /*for (String boxes : checkBoxes.keySet()) {
-                                    for (CheckBox box : checkBoxes.get(boxes)) {
-                                        Log.d(TAG, "run: "+boxes);
-                                        box.setChecked(false);
-                                    }
-                                }*/
-                                for (String checkBox : parentCheckBox.keySet()) {
-                                    Log.d(TAG, "run: " +checkBox);
-                                    parentCheckBox.get(checkBox).setChecked(false);
+                                for (CheckBox s : parentCheckBox.values()) {
+                                    s.setChecked(true);
+                                    s.setChecked(false);
+                                    i[0]++;
+                                    progressBar.setProgress(i[0]);
                                 }
                             } else {
                                 btn.setText(getString(R.string.uncheckAll));
@@ -842,6 +841,7 @@ public class AllergyFragment extends Fragment {
                                     }
                                 }*/
                                 for (CheckBox checkBox : parentCheckBox.values()) {
+
                                     checkBox.setChecked(true);
                                 }
                             }
@@ -881,7 +881,7 @@ public class AllergyFragment extends Fragment {
                 checkBoxLeftMarginSaveString(isChecked,checkBox.id,checkBox.parentPicture);
                 parentCheckBox.get(checkBox.key).setOnCheckedChangeListener(null);
                 seeIfAllCheckboxIsChecked(parentCheckBox.get(checkBox.key),checkBox.key,checkBox.parentKey);
-                parentCheckBoxOnClickListener(parentCheckBox.get(checkBox.key),checkBox.key,checkBox.parentKey);
+                parentCheckBoxOnClickListener(parentCheckBox.get(checkBox.key),checkBox.key);
                 editor.putBoolean(checkBox.ingredient, isChecked);
                 editor.apply();
             }

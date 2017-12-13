@@ -35,7 +35,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/fontColorTextWhite"
                 android:textSize="32sp"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
         </LinearLayout>
     </ScrollView>

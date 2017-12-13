@@ -318,6 +318,12 @@
     <string name="checkAll">Check all</string>
     <string name="backDisabled">Back disabled</string>
     <string name="delete">Delete</string>
-
+    <string name="spice">Spices</string>
+    <string name="butter">Butter</string>
+    <string name="cheese">Cheese</string>
+    <string name="casein">Casein</string>
+    <string name="yoghurt">Yogurt, Yoghurt, Yoghourt</string>
+    <string name="custard">Custard</string>
+    <string name="cream">Cream</string>
 
 </resources>

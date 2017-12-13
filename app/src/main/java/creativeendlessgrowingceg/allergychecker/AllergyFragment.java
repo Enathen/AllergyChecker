@@ -744,12 +744,14 @@ public class AllergyFragment extends Fragment {
             // get the string from params, which is an array
             AllergyList allergylist = new AllergyList(contextHistory);
             addCategory(inflater, allergylist.getArrayListCitrus(), R.string.citrus,R.drawable.orange);
+            addCategory(inflater, allergylist.getArrayListDairy(), R.string.dairy, R.drawable.milk);
             addCategory(inflater, allergylist.getArrayListFish(), R.string.fish,R.drawable.fish);
             addCategory(inflater, allergylist.getArrayListFruit(), R.string.fruit,R.drawable.peach);
             addCategory(inflater, allergylist.getArrayListGluten(), R.string.gluten, R.drawable.wheat);
             addCategory(inflater, allergylist.getArrayListLegumes(), R.string.legumes, R.drawable.legumes);
             addCategory(inflater, allergylist.getArrayListNuts(), R.string.nuts, R.drawable.nuts);
             addCategory(inflater, allergylist.getArrayListSeeds(), R.string.seeds, R.drawable.seeds);
+            addCategory(inflater, allergylist.getArrayListSpice(), R.string.spice, R.drawable.spice);
             addCategory(inflater, allergylist.getArrayListShellfish(), R.string.shellfish, R.drawable.shellfish);
             addCategory(inflater, allergylist.getArrayListVegetables(), R.string.vegetables, R.drawable.tomato);
             addCategory(inflater, allergylist.getArrayListMuslim(), R.string.halal, R.drawable.halal);
@@ -761,6 +763,7 @@ public class AllergyFragment extends Fragment {
             addCategory(inflater, allergylist.getArrayListDemiVegetarian(), R.string.demiVegetarian, R.drawable.demiveg);
             addCategory(inflater, allergylist.getArrayListPolloVegetarian(), R.string.polloVegetarian, R.drawable.polloveg);
             addCategory(inflater, allergylist.getArrayListPescoVegetarian(), R.string.pescoVegetarian, R.drawable.pescoveg);
+
 
 
             return "this string is passed to onPostExecute";
@@ -792,6 +795,7 @@ public class AllergyFragment extends Fragment {
             }
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.citrus, R.drawable.orange));
 
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.dairy, R.drawable.milk));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.fish, R.drawable.fish));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.fruit, R.drawable.peach));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.gluten, R.drawable.wheat));
@@ -800,6 +804,7 @@ public class AllergyFragment extends Fragment {
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.seeds, R.drawable.seeds));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.shellfish, R.drawable.shellfish));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.vegetables, R.drawable.tomato));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.spice, R.drawable.spice));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.halal, R.drawable.halal));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.vegetarian, R.drawable.vegetarian));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.vegan, R.drawable.vegan));
@@ -856,14 +861,14 @@ public class AllergyFragment extends Fragment {
         check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                /*for (CheckBox box : sameItemDifferentCategories.get(checkBox.id)) {
+                for (CheckBox box : sameItemDifferentCategories.get(checkBox.id)) {
                     if(!box.equals(check)){
 
                         box.setOnCheckedChangeListener(null);
                         box.setChecked(isChecked);
                         setOnChecked(box,editor, checkBox);
                     }
-                }*/
+                }
                 for (CheckBox box : sameItemDifferentCategories.get(checkBox.id)) {
                     if(!box.equals(checkBox.checkBox)){
 

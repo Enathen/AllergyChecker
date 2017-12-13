@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -190,8 +189,10 @@ public class HistoryFragment extends Fragment {
                 final Button button = new Button(getContext());
                 button.setBackgroundColor(getContext().getColor(R.color.colorPrimaryDark));
                 button.setTextColor(getContext().getColor(R.color.fontColorTextWhite));
+                button.setTextSize(26);
                 button.setText(R.string.delete);
                 button.setGravity(View.TEXT_ALIGNMENT_CENTER);
+                button.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -295,7 +296,6 @@ public class HistoryFragment extends Fragment {
             textview.setText(R.string.scanPhotos);
             parentLinearLayout.addView(linearLayout);
         }
-        Toast.makeText(getContext(),getString(R.string.holdFor),Toast.LENGTH_LONG).show();
     }
 
     private Locale loadLocale() {

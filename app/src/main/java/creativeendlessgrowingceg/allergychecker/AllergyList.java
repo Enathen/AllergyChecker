@@ -36,6 +36,7 @@ public class AllergyList {
     private ArrayList<PictureIngredient> arrayListLegumes= new ArrayList<>();
     private ArrayList<PictureIngredient> arrayListSpice= new ArrayList<>();
     Context context;
+    private ArrayList<PictureIngredient> arrayListDairy = new ArrayList<>();
 
     public AllergyList(Context context){
         this.context = context;
@@ -59,6 +60,7 @@ public class AllergyList {
         setArrayListLactoVegetarian();
         setArrayListPolloVegetarian();
         setArrayListPescoVegetarian();
+        setArrayListDairy();
     }
 
     private void setArrayListVegetables() {
@@ -227,14 +229,8 @@ public class AllergyList {
     }
     private void setArrayListMuslim() {
         arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.bacon));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.choletsorol));
         arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.gelatin));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.glycerol));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.hormones));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.lard));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.magnesiumStearate));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.monoGlycerides));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.pepsin));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.halal,R.string.pork));
         sort(arrayListMuslim);
     }
     private void setArrayListKosher() {
@@ -253,18 +249,27 @@ public class AllergyList {
         sort(arrayListLegumes);
     }
     private void setArrayListSpice() {
-        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.anis));
-        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.coriander));
-        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.celery));
-        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.cumin));
-        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.fennel));
-        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.parsley));
-        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.ragweed));
-        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.echinacea));
-        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.artichoke));
-        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.dandelions));
-        arrayListSpice.add(new PictureIngredient(R.drawable.legumes,R.string.hibiscus));
+        arrayListSpice.add(new PictureIngredient(R.drawable.spice,R.string.anis));
+        arrayListSpice.add(new PictureIngredient(R.drawable.spice,R.string.coriander));
+        arrayListSpice.add(new PictureIngredient(R.drawable.spice,R.string.cumin));
+        arrayListSpice.add(new PictureIngredient(R.drawable.spice,R.string.fennel));
+        arrayListSpice.add(new PictureIngredient(R.drawable.spice,R.string.parsley));
+        arrayListSpice.add(new PictureIngredient(R.drawable.spice,R.string.ragweed));
+        arrayListSpice.add(new PictureIngredient(R.drawable.spice,R.string.echinacea));
+        arrayListSpice.add(new PictureIngredient(R.drawable.spice,R.string.artichoke));
+        arrayListSpice.add(new PictureIngredient(R.drawable.spice,R.string.dandelions));
+        arrayListSpice.add(new PictureIngredient(R.drawable.spice,R.string.hibiscus));
         sort(arrayListSpice);
+    }
+    private void setArrayListDairy(){
+        arrayListDairy.add(new PictureIngredient(R.drawable.milk,R.string.milk));
+        arrayListDairy.add(new PictureIngredient(R.drawable.milk,R.string.dairy));
+        arrayListDairy.add(new PictureIngredient(R.drawable.milk,R.string.butter));
+        arrayListDairy.add(new PictureIngredient(R.drawable.milk,R.string.casein));
+        arrayListDairy.add(new PictureIngredient(R.drawable.milk,R.string.yoghurt));
+        arrayListDairy.add(new PictureIngredient(R.drawable.milk,R.string.cream));
+        arrayListDairy.add(new PictureIngredient(R.drawable.milk,R.string.custard));
+
     }
 
     public ArrayList<PictureIngredient> getArrayListOvoVegetarian() {
@@ -515,5 +520,9 @@ public class AllergyList {
             this.ingredient = context.getString(ingredient);
             this.notAllergy = notAllergy;
         }
+    }
+
+    public ArrayList<PictureIngredient> getArrayListDairy() {
+        return arrayListDairy;
     }
 }

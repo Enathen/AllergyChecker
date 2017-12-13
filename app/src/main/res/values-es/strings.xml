@@ -292,7 +292,7 @@
     <string name="choletsorol">Choletsorol</string>
     <string name="glycerol">Glicerol </string>
     <string name="hormones">Hormonas</string>
-    <string name="lard">Manteca </string>
+    <string name="lard">Manteca de cerdo</string>
     <string name="magnesiumStearate">Estearato de magnesio</string>
     <string name="monoGlycerides">mono Glicéridos </string>
     <string name="pepsin">Pepsin</string>
@@ -316,6 +316,13 @@
     <string name="checkAll">Check all</string>
     <string name="backDisabled">Back disabled</string>
     <string name="delete">Delete</string>
+    <string name="spice">Spices</string>
+    <string name="butter">Butter</string>
+    <string name="cheese">Cheese</string>
+    <string name="casein">Casein</string>
+    <string name="yoghurt">Yogurt, Yoghurt, Yoghourt</string>
+    <string name="custard">Custard</string>
+    <string name="cream">Cream</string>
 
 
 </resources>

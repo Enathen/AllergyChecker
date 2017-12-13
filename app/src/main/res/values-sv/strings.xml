@@ -177,7 +177,7 @@
     <string name="languageGeneral">generalt Språk</string>
     <string name="startPageHeader">Tryck nedanför för att scanna text</string>
     <string name="definitelyContained">Innehåller definitivt</string>
-    <string name="history">Historia</string>
+    <string name="history">Historik</string>
     <string name="statistics">Statistik</string>
     <string name="allergies">Allergier</string>
     <string name="dontUse">Använd inte!</string>
@@ -214,7 +214,7 @@
     <string name="citrus">Citrus</string>
     <string name="haram">Haram</string>
 
-    <string name="legumes">Baljväxter, Baljväxt</string>
+    <string name="legumes">Baljväxt</string>
     <string name="aspargus">Sparris</string>
     <string name="bellPepper">Paprika</string>
     <string name="cabbage">Kål</string>
@@ -251,16 +251,17 @@
     <string name="inputIngredients">Skriv ingredienser</string>
     <string name="rate">Betygsätt</string>
     <string name="pressMe">Tryck mig\nFör att fortsätta!</string>
-    <string name="firstIntro">Genom att trycka på denna ikon från menyn, tar fram en allergimeny.
-        Därifrån kan du trycka i vad du är allergisk mot.</string>
-    <string name="secondIntro">Tryck för att ta fram kameran, så du kan skanna ingredienser. Hålls kamera knappen nere, kommer en ny ruta fram.
-        Från den nya rutan kan ingredienser bli instoppad manuellt genom att skriva in dem. </string>
+    <string name="firstIntro">"Mina Allergier" används för att fylla i dina allergier.\n
+        - Du hittar den i menyn.</string>
+    <string name="secondIntro">Tryck för att få fram Kameran.
+        Håll knappen nere för fler alternativ.
+    </string>
     <string name="thirdIntro">Såhär använder du kameran:\n
         1. Håll kameran över en text.\n
-        2. Vita boxar täcker texten.\n
-        3. När boxarna täckt texten.\n
-        4. TRYCK på en box!\n
-        5. Text sparas. Vänta på resultat!
+        2. Vita boxar kommer täcka texten.\n
+        3. När de vita boxarna täckt texten.\n
+        4. Tryck på en vit box när det ser ut som all text är täckt!\n
+        5. Texten kommer då sparas, och analyseras.
         </string>
     <string name="tutorial">Hjälp</string>
     <string name="anis">Anis</string>
@@ -311,6 +312,13 @@
     <string name="checkAll">Check all</string>
     <string name="backDisabled">Back disabled</string>
     <string name="delete">Delete</string>
+    <string name="spice">Spices</string>
+    <string name="butter">Butter</string>
+    <string name="cheese">Cheese</string>
+    <string name="casein">Casein</string>
+    <string name="yoghurt">Yogurt, Yoghurt, Yoghourt</string>
+    <string name="custard">Custard</string>
+    <string name="cream">Cream</string>
 
 
 </resources>

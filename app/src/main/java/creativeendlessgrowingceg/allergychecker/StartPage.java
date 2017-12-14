@@ -14,7 +14,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -52,7 +51,6 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.TreeMap;
 
-import creativeendlessgrowingceg.allergychecker.FAB.FloatingToolbar;
 import creativeendlessgrowingceg.allergychecker.design.activity.OnboardingPagerActivity;
 
 public class StartPage extends AppCompatActivity
@@ -120,12 +118,13 @@ public class StartPage extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        loadInterstitial();
+
+        String newString = getString(R.string.startPageHeader);/*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         final FloatingToolbar floatingToolbarMenuBuilder = (FloatingToolbar) findViewById(R.id.floatingToolbar);
         floatingToolbarMenuBuilder.attachFab(fab);
-        String newString = getString(R.string.startPageHeader);
-        loadInterstitial();
 
         floatingToolbarMenuBuilder.setClickListener(new FloatingToolbar.ItemClickListener() {
             @Override
@@ -140,7 +139,7 @@ public class StartPage extends AppCompatActivity
                 Log.d(TAG,"heasdasdsd");
             }
         });
-
+*/
         intent = getIntent();
         String str = intent.getStringExtra("location");
 

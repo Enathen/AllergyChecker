@@ -319,6 +319,9 @@
     <string name="yoghurt">Yogurt, Yoghurt, Yoghourt</string>
     <string name="custard">Custard</string>
     <string name="cream">Cream</string>
+    <string name="write">Write</string>
+    <string name="useflash">Use flash</string>
+    <string name="useNoFlash">Use no flash</string>
 
 
 </resources>

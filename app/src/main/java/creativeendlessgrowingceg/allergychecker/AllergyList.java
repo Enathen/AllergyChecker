@@ -62,7 +62,30 @@ public class AllergyList {
         setArrayListPescoVegetarian();
         setArrayListDairy();
     }
-
+    public ArrayList<ArrayList<AllergyList.PictureIngredient>> getAllAllergies(){
+        ArrayList<ArrayList<AllergyList.PictureIngredient>> arrayLists = new ArrayList<>();
+        arrayLists.add(getArrayListCitrus());
+        arrayLists.add(getArrayListDairy());
+        arrayLists.add(getArrayListDemiVegetarian());
+        arrayLists.add(getArrayListFish());
+        arrayLists.add(getArrayListFruit());
+        arrayLists.add(getArrayListGluten());
+        arrayLists.add(getArrayListLactoOvoVegetarian());
+        arrayLists.add(getArrayListLactoVegetarian());
+        arrayLists.add(getArrayListLegumes());
+        arrayLists.add(getArrayListMuslim());
+        arrayLists.add(getArrayListNuts());
+        arrayLists.add(getArrayListOvoVegetarian());
+        arrayLists.add(getArrayListPescoVegetarian());
+        arrayLists.add(getArrayListPolloVegetarian());
+        arrayLists.add(getArrayListSeeds());
+        arrayLists.add(getArrayListShellfish());
+        arrayLists.add(getArrayListSpice());
+        arrayLists.add(getArrayListVegan());
+        arrayLists.add(getArrayListVegetables());
+        arrayLists.add(getArrayListVegetarian());
+        return arrayLists;
+    }
     private void setArrayListVegetables() {
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.tomato));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.aspargus));

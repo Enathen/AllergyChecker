@@ -75,9 +75,7 @@ public class StartPage extends AppCompatActivity
     FloatingActionMenu camera;
     ArrayList<String> dateStrings = new ArrayList<>();
     SharedPreferences prefs;
-    ArrayList<Integer> definitelyContained = new ArrayList<>();
-    HashMap<Integer, LanguageString> arrayListAllergies;
-    Toast arralistToast;
+
     private TextView suggestions;
     private TextView allergic;
     private InterstitialAd interstitialAd;
@@ -106,23 +104,9 @@ public class StartPage extends AppCompatActivity
                     "firstTime", true);
             sharedPreferencesEditor.apply();
         }
-        //final ImageView iv = (ImageView) findViewById(R.id.splash);
-        //new Splashscreen(iv,getBaseContext(),(LinearLayout) findViewById(R.id.linLayStartPage),(ConstraintLayout) findViewById(R.id.lin_lay));
-
         Intent intent = getIntent();
         suggestions = (TextView) findViewById(R.id.ingredientsTextView);
         allergic = (TextView) findViewById(R.id.textViewFoundAllergies);
-        /*String newString = intent.getStringExtra("newString");
-        String allergicString = intent.getStringExtra("allergicString");*/
-        /*if(allergicString != null){
-            suggestions.setText(newString);
-            allergic.setText(allergicString);
-            if(allergicString.contains(getString(R.string.youCanUse))){
-                allergic.setTextColor(getColor(R.color.colorAccent));
-            }else{
-                allergic.setTextColor(Color.RED);
-            }
-        }*/
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -157,14 +141,10 @@ public class StartPage extends AppCompatActivity
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(startPage);
                 builder.setTitle(R.string.inputIngredients);
-
-// Set up the input
                 final EditText input = new EditText(startPage);
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
                 input.setInputType(InputType.TYPE_CLASS_TEXT);
                 builder.setView(input);
 
-// Set up the buttons
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -249,12 +229,9 @@ public class StartPage extends AppCompatActivity
     private void setProfilePicture() {
         new AllergyFragment(this, getImageViewHashMap(this), new SettingsFragment(this).getCategories()).setProfilePic();
     }
-
-
     private void displayInterstitial() {
         interstitialAd.loadAd(new AdRequest.Builder().addTestDevice("79C8186833AA41CD2C967FE87614751A").build());
     }
-
     public void loadInterstitial() {
         interstitialAd = new InterstitialAd(StartPage.this);
         interstitialAd.setAdUnitId("ca-app-pub-3607354849437438/9852745111");
@@ -276,19 +253,6 @@ public class StartPage extends AppCompatActivity
         });
 
     }
-
-
-    public void insertHashMapFromAllergyFragment(HashMap<Integer, LanguageString> hashMap) {
-
-        this.arrayListAllergies = hashMap;
-        Log.d(TAG, "SAVED");
-    }
-
-    public HashMap<Integer, LanguageString> receiveHashMapFromAllergyFragment() {
-        Log.d(TAG, "received");
-        return arrayListAllergies;
-    }
-
     private void checkStringAgainstAllergies(String str) {
         displayInterstitial();
         deleteConstrained();
@@ -358,7 +322,6 @@ public class StartPage extends AppCompatActivity
     public ArrayList<String> getArray() {
 
         SharedPreferences sp = this.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
-        //NOTE: if shared preference is null, the method return empty Hashset and not null
         Set<String> set = sp.getStringSet("list", new HashSet<String>());
 
         return new ArrayList<>(set);
@@ -378,16 +341,12 @@ public class StartPage extends AppCompatActivity
     public void deleteHistory() {
 
         SharedPreferences.Editor mEdit1 = prefs.edit();
-
-
         mEdit1.remove("list");
         mEdit1.apply();
 
     }
 
     public ArrayList<String> getArrayFromHistory() {
-
-
         //NOTE: if shared preference is null, the method return empty Hashset and not null
         Set<String> set = prefs.getStringSet("list", new HashSet<String>());
         for (String s : set) {
@@ -398,16 +357,10 @@ public class StartPage extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-       /* if(arralistToast!=null){
-            arralistToast.cancel();
-        }
-        arralistToast = Toast.makeText(getBaseContext(),R.string.backDisabled,Toast.LENGTH_SHORT);
-        arralistToast.show();*/
         int popStack = getFragmentManager().getBackStackEntryCount();
 
         if (popStack == 0) {
             super.onBackPressed();
-            //additional code
         } else {
             getFragmentManager().popBackStack();
         }
@@ -495,14 +448,6 @@ public class StartPage extends AppCompatActivity
 
 
         ((TextView) findViewById(R.id.textViewFoundAllergies)).setText("");
-        /*if (id == R.id.nav_camera) {
-
-
-            Log.d(TAG, String.valueOf(getSupportFragmentManager().getBackStackEntryCount()));
-            Intent intent = new Intent(this, StartPage.class);
-
-            this.startActivity(intent);
-        }*/
         if (id == R.id.history) {
             fragment = new HistoryFragment(this);
             setTitle("History");
@@ -685,7 +630,7 @@ public class StartPage extends AppCompatActivity
 
             }
             HashSet<String> alreadyContainedAllergies = new HashSet<>();
-            helpCalcAllergy.bkTree(length, alreadyContainedAllergies, hashSetAllStrings, allergies, StartPage.this, allFoundAllergies);
+            helpCalcAllergy.bkTree(length, hashSetAllStrings, allergies, allFoundAllergies);
 
             long start = System.currentTimeMillis();
             counter = hashSetToCheckLast.size() / 2;
@@ -696,7 +641,7 @@ public class StartPage extends AppCompatActivity
                     counter++;
                 }
                 i++;
-                helpCalcAllergy.checkFullString(s, allergies, StartPage.this, alreadyContainedAllergies, allFoundAllergies);
+                helpCalcAllergy.checkFullString(s, allergies, allFoundAllergies);
             }
             long stop = System.currentTimeMillis();
             Log.d(TAG, "TIME: " + (stop - start));
@@ -810,6 +755,9 @@ public class StartPage extends AppCompatActivity
 
 
         }
+    }
+    public Context startPage(){
+        return this;
     }
 
 }

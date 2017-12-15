@@ -2,10 +2,10 @@ package creativeendlessgrowingceg.allergychecker;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -27,16 +27,13 @@ import creativeendlessgrowingceg.allergychecker.bktree.MutableBkTree;
 
 public class HelpCalcAllergy {
     private static final String TAG = "HelpCalcAllergy";
-    Metric<String> hammingDistance = new Metric<String>() {
+    private Metric<String> hammingDistance = new Metric<String>() {
         @Override
         public int distance(String x, String y) {
             if (!(x.length() != y.length() || x.length() - 1 != y.length() || x.length() + 1 != y.length())) {
                 throw new IllegalArgumentException();
             }
-
             int distance = 0;
-
-
             if (y.length() > x.length()) {
                 for (int i = 0; i < y.length() - 1; i++)
                     if (x.charAt(i) != y.charAt(i)) {
@@ -63,6 +60,15 @@ public class HelpCalcAllergy {
     @NonNull
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static String getStringByLocal(Activity context, int id, String locale) {
+        Configuration configuration = new Configuration(context.getResources().getConfiguration());
+        configuration.setLocale(new Locale(locale));
+
+
+        return context.createConfigurationContext(configuration).getResources().getString(id).toLowerCase().replaceAll("\\s+", "");
+    }
+    @NonNull
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static String getStringByLocal(Context context, int id, String locale) {
         Configuration configuration = new Configuration(context.getResources().getConfiguration());
         configuration.setLocale(new Locale(locale));
 
@@ -126,8 +132,9 @@ public class HelpCalcAllergy {
         return length;
     }
 
-    public void bkTree(int length, HashSet<String> alreadyContainedAllergies, TreeMap<Integer, HashSet<String>> hashSetAllStrings, HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies, StartPage calcAllergy, ArrayList<AllAllergiesForEachInteger> allFoundAllergies) {
-        long start = System.currentTimeMillis();
+    public void bkTree(int length, TreeMap<Integer, HashSet<String>> hashSetAllStrings,
+                       HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies,
+                       ArrayList<AllAllergiesForEachInteger> allFoundAllergies) {
         for (Integer s : hashSetAllStrings.keySet()) {
             if (length < s) {
                 continue;
@@ -154,7 +161,6 @@ public class HelpCalcAllergy {
                                 allAllergiesForEachInteger.getMotherLanguage());
                         all.setNameOfWordFound(match.getMatch());
                         allFoundAllergies.add(all);
-                        //alreadyContainedAllergies.add(allAllergiesForEachInteger.getNameOfIngredient());
 
                     }
 
@@ -207,7 +213,6 @@ public class HelpCalcAllergy {
                                 allAllergiesForEachInteger.getMotherLanguage());
                         all.setNameOfWordFound(match.getMatch());
                         allFoundAllergies.add(all);
-                        //alreadyContainedAllergies.add(allAllergiesForEachInteger.getNameOfIngredient());
 
                     }
 
@@ -215,12 +220,10 @@ public class HelpCalcAllergy {
             }
 
         }
-        long stop = System.currentTimeMillis();
-        Log.d(TAG, "TIME: " + (stop - start));
     }
 
 
-    public void checkFullString(String s, HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies, StartPage startPage, HashSet<String> alreadyContainedAllergies, ArrayList<AllAllergiesForEachInteger> allFoundAllergies) {
+    public void checkFullString(String s, HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies, ArrayList<AllAllergiesForEachInteger> allFoundAllergies) {
         for (int key : allergies.keySet()) {
 
             HashMap<String, AllAllergiesForEachInteger> allAllergies = allergies.get(key);
@@ -283,90 +286,3 @@ public class HelpCalcAllergy {
         return list.get(0);
     }
 }
-
-// HashMap<String, LangString> allergies = spellCheckAllergy.permuteStringi(mContext,arrayListAllergies);
-            /*if(allergies != null) {
-
-                boolean b;
-                counter = hashSetAllStrings.size()/2;
-                i = 0;
-                for (String string : hashSetAllStrings) {
-
-                    if(i % 2 == 0){
-                        counter++;
-                    }
-                    i++;
-                    b = false;
-                    publishProgress(hashSetAllStrings.size(), counter);
-
-                    for (String extraKey : allergies.keySet()){
-
-                        if(extraKey.replaceAll("\\s+","").equals(string)){
-
-                            allergies.get(extraKey).found++;
-                            if(allergies.get(extraKey).found == 1){
-                                if(!definitelyContained.contains(allergies.get(extraKey).id)){
-                                    outputString = outputString.concat(getString(R.string.definitelyContained)+" "+ getString(allergies.get(extraKey).id) + "\n");
-                                    definitelyContained.add(allergies.get(extraKey).id);
-
-                                }
-                            }
-                            b = true;
-                            break;
-                        }
-                    }
-                    if(!b){
-                        for (String key : allergies.keySet() ) {
-
-                            if(string.contains(key)){
-
-                                allergies.get(key).found++;
-                                if(allergies.get(key).found == 1){
-                                    outputString = outputString.concat(getString(R.string.probablyContained) + " "+
-                                            getString(allergies.get(key).id) + " " + getString(R.string.fromWord)
-                                            + " " + string + "\n");
-
-
-                                }
-                            }
-                            if (allergies.get(key).allPossibleDerivationsOfAllergen.contains(string)) {
-                                allergies.get(key).found++;
-                                if(allergies.get(key).found == 1) {
-                                    outputString = outputString.concat(getString(R.string.probablyContained) + " "+
-                                            getString(allergies.get(key).id) + " " + getString(R.string.fromWord)
-                                            + " "  + string + "\n");
-
-                                }
-                            }
-                        }
-                    }
-
-                }
-                for (String key : allergies.keySet()) {
-                    if(allergies.get(key).found>0) {
-                        if(!Locale.getDefault().getLanguage().equals(allergies.get(key).language)) {
-                            if(allergies.containsKey(getString(allergies.get(key).id).toLowerCase())){
-                                allergies.get( getString(allergies.get(key).id).toLowerCase()).found += allergies.get(key).found;
-                                allergies.get(key).found = 0;
-                            }
-                        }
-                    }
-                }
-                outputString = outputString.concat("\n");
-                for (String key : allergies.keySet()){
-
-                    if(allergies.get(key).found>0){
-                        dontEat = true;
-                    }
-                }
-
-            }*/
-
-
-
-
-                                /*HashSet<String> string = spellCheckAllergy.permuteString(locale.getLanguage(),
-                            getStringByLocal(StartPage.this, id,
-                                    locale.getLanguage()));*/
-//LangString langString = new LangString(locale.getLanguage(),true,id);
-//langString.allPossibleDerivationsOfAllergen = string;

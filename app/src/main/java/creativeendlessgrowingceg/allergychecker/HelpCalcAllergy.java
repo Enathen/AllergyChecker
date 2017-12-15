@@ -27,30 +27,29 @@ import creativeendlessgrowingceg.allergychecker.bktree.MutableBkTree;
 
 public class HelpCalcAllergy {
     private static final String TAG = "HelpCalcAllergy";
-    private boolean dontEat;
     Metric<String> hammingDistance = new Metric<String>() {
         @Override
         public int distance(String x, String y) {
-            if (!(x.length() != y.length() || x.length()-1 != y.length() || x.length()+1 != y.length())) {
+            if (!(x.length() != y.length() || x.length() - 1 != y.length() || x.length() + 1 != y.length())) {
                 throw new IllegalArgumentException();
             }
 
             int distance = 0;
 
 
-            if(y.length() > x.length()){
-                for (int i = 0; i < y.length()-1; i++)
+            if (y.length() > x.length()) {
+                for (int i = 0; i < y.length() - 1; i++)
                     if (x.charAt(i) != y.charAt(i)) {
                         distance++;
                     }
                 distance++;
-            }else if (y.length() < x.length()){
-                for (int i = 0; i < x.length()-1; i++)
+            } else if (y.length() < x.length()) {
+                for (int i = 0; i < x.length() - 1; i++)
                     if (x.charAt(i) != y.charAt(i)) {
                         distance++;
                     }
                 distance++;
-            }else{
+            } else {
                 for (int i = 0; i < x.length(); i++)
                     if (x.charAt(i) != y.charAt(i)) {
                         distance++;
@@ -59,64 +58,8 @@ public class HelpCalcAllergy {
             return distance;
         }
     };
+    private boolean dontEat;
 
-
-    public void FixString(String[] splitStr, TreeMap<Integer, HashSet<String>> hashSetAllStrings, HashSet<String> hashSetToCheckLast){
-        for (int i = 0; i < splitStr.length; i++) {
-            if(splitStr.length-1 != i){
-                hashSetToCheckLast.add(splitStr[i]+ splitStr[i+1]);
-                if(hashSetAllStrings.containsKey((splitStr[i]+ splitStr[i+1]).length())){
-                    hashSetAllStrings.put((splitStr[i]+ splitStr[i+1]).length(),hashSetAllStrings.get((splitStr[i]+ splitStr[i+1]).length())).add(splitStr[i]+ splitStr[i+1]);
-                }else{
-                    HashSet<String> hashset = new HashSet<>();
-                    hashset.add(splitStr[i]+ splitStr[i+1]);
-                    hashSetAllStrings.put((splitStr[i]+ splitStr[i+1]).length(),hashset);
-                }
-                if(splitStr[i].equals("de") && splitStr.length>0){
-                    hashSetToCheckLast.add(splitStr[i-1]+splitStr[i]+ splitStr[i+1]);
-                    if(hashSetAllStrings.containsKey((splitStr[i-1]+splitStr[i]+ splitStr[i+1]).length())){
-                        hashSetAllStrings.put((splitStr[i-1]+splitStr[i]+ splitStr[i+1]).length(),hashSetAllStrings.get((splitStr[i-1]+splitStr[i]+ splitStr[i+1]).length())).add((splitStr[i-1]+splitStr[i]+ splitStr[i+1]));
-                    }else{
-                        HashSet<String> hashset = new HashSet<>();
-                        hashset.add(splitStr[i-1]+splitStr[i]+ splitStr[i+1]);
-                        hashSetAllStrings.put((splitStr[i-1]+splitStr[i]+ splitStr[i+1]).length(),hashset);
-                    }
-                }
-
-            }
-            hashSetToCheckLast.add(splitStr[i]);
-            if(hashSetAllStrings.containsKey((splitStr[i]).length())){
-                hashSetAllStrings.put((splitStr[i]).length(),hashSetAllStrings.get((splitStr[i]).length())).add(splitStr[i]);
-            }else{
-                HashSet<String> hashset = new HashSet<>();
-                hashset.add(splitStr[i]);
-                hashSetAllStrings.put((splitStr[i]).length(),hashset);
-            }
-
-
-        }
-    }
-
-
-    public int setLocaleString(int length, int id, HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies, ArrayList<Locale> listOfLanguages, StartPage startPage) {
-        for (Locale locale : listOfLanguages) {
-
-            String localeString =getStringByLocal(startPage,id,locale.getLanguage());
-            if(length< localeString.length()){
-                length = localeString.length()+2;
-            }
-            if(allergies.containsKey(localeString.length())){
-                allergies.put((localeString).length(),allergies.get((localeString).length())).put(
-                        localeString,new AllAllergiesForEachInteger(locale.getLanguage(),
-                                localeString,id,startPage.getString(id)));
-            }else{
-                HashMap<String,AllAllergiesForEachInteger> hashSetn = new HashMap<>();
-                hashSetn.put(localeString,new AllAllergiesForEachInteger(locale.getLanguage(),localeString,id,startPage.getString(id)));
-                allergies.put((localeString).length(),hashSetn);
-            }
-        }
-        return length;
-    }
     @NonNull
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static String getStringByLocal(Activity context, int id, String locale) {
@@ -124,30 +67,86 @@ public class HelpCalcAllergy {
         configuration.setLocale(new Locale(locale));
 
 
-        return context.createConfigurationContext(configuration).getResources().getString(id).toLowerCase().replaceAll("\\s+","");
+        return context.createConfigurationContext(configuration).getResources().getString(id).toLowerCase().replaceAll("\\s+", "");
+    }
+
+    public void FixString(String[] splitStr, TreeMap<Integer, HashSet<String>> hashSetAllStrings, HashSet<String> hashSetToCheckLast) {
+        for (int i = 0; i < splitStr.length; i++) {
+            if (splitStr.length - 1 != i) {
+                hashSetToCheckLast.add(splitStr[i] + splitStr[i + 1]);
+                if (hashSetAllStrings.containsKey((splitStr[i] + splitStr[i + 1]).length())) {
+                    hashSetAllStrings.put((splitStr[i] + splitStr[i + 1]).length(), hashSetAllStrings.get((splitStr[i] + splitStr[i + 1]).length())).add(splitStr[i] + splitStr[i + 1]);
+                } else {
+                    HashSet<String> hashset = new HashSet<>();
+                    hashset.add(splitStr[i] + splitStr[i + 1]);
+                    hashSetAllStrings.put((splitStr[i] + splitStr[i + 1]).length(), hashset);
+                }
+                if (splitStr[i].equals("de") && splitStr.length > 0) {
+                    hashSetToCheckLast.add(splitStr[i - 1] + splitStr[i] + splitStr[i + 1]);
+                    if (hashSetAllStrings.containsKey((splitStr[i - 1] + splitStr[i] + splitStr[i + 1]).length())) {
+                        hashSetAllStrings.put((splitStr[i - 1] + splitStr[i] + splitStr[i + 1]).length(), hashSetAllStrings.get((splitStr[i - 1] + splitStr[i] + splitStr[i + 1]).length())).add((splitStr[i - 1] + splitStr[i] + splitStr[i + 1]));
+                    } else {
+                        HashSet<String> hashset = new HashSet<>();
+                        hashset.add(splitStr[i - 1] + splitStr[i] + splitStr[i + 1]);
+                        hashSetAllStrings.put((splitStr[i - 1] + splitStr[i] + splitStr[i + 1]).length(), hashset);
+                    }
+                }
+
+            }
+            hashSetToCheckLast.add(splitStr[i]);
+            if (hashSetAllStrings.containsKey((splitStr[i]).length())) {
+                hashSetAllStrings.put((splitStr[i]).length(), hashSetAllStrings.get((splitStr[i]).length())).add(splitStr[i]);
+            } else {
+                HashSet<String> hashset = new HashSet<>();
+                hashset.add(splitStr[i]);
+                hashSetAllStrings.put((splitStr[i]).length(), hashset);
+            }
+
+
+        }
+    }
+
+    public int setLocaleString(int length, int id, HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies, ArrayList<Locale> listOfLanguages, StartPage startPage) {
+        for (Locale locale : listOfLanguages) {
+
+            String localeString = getStringByLocal(startPage, id, locale.getLanguage());
+            if (length < localeString.length()) {
+                length = localeString.length() + 2;
+            }
+            if (allergies.containsKey(localeString.length())) {
+                allergies.put((localeString).length(), allergies.get((localeString).length())).put(
+                        localeString, new AllAllergiesForEachInteger(locale.getLanguage(),
+                                localeString, id, startPage.getString(id)));
+            } else {
+                HashMap<String, AllAllergiesForEachInteger> hashSetn = new HashMap<>();
+                hashSetn.put(localeString, new AllAllergiesForEachInteger(locale.getLanguage(), localeString, id, startPage.getString(id)));
+                allergies.put((localeString).length(), hashSetn);
+            }
+        }
+        return length;
     }
 
     public void bkTree(int length, HashSet<String> alreadyContainedAllergies, TreeMap<Integer, HashSet<String>> hashSetAllStrings, HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies, StartPage calcAllergy, ArrayList<AllAllergiesForEachInteger> allFoundAllergies) {
         long start = System.currentTimeMillis();
         for (Integer s : hashSetAllStrings.keySet()) {
-            if(length<s){
+            if (length < s) {
                 continue;
             }
             MutableBkTree<String> bkTree = new MutableBkTree<>(hammingDistance);
             bkTree.addAll(hashSetAllStrings.get(s));
             BkTreeSearcher<String> searcher = new BkTreeSearcher<>(bkTree);
-            if(allergies.containsKey(s) && s>4){
-                HashMap<String,AllAllergiesForEachInteger> allAllergies = allergies.get(s);
+            if (allergies.containsKey(s) && s > 4) {
+                HashMap<String, AllAllergiesForEachInteger> allAllergies = allergies.get(s);
                 for (AllAllergiesForEachInteger allAllergiesForEachInteger : allAllergies.values()) {
                     Set<BkTreeSearcher.Match<? extends String>> matches;
 
-                    if(s>4 && s<10){
+                    if (s > 4 && s < 10) {
                         matches = searcher.search(allAllergiesForEachInteger.getNameOfIngredient(), 1);
 
-                    }else{
-                        matches = searcher.search(allAllergiesForEachInteger.getNameOfIngredient(),2);
+                    } else {
+                        matches = searcher.search(allAllergiesForEachInteger.getNameOfIngredient(), 2);
                     }
-                    for (BkTreeSearcher.Match<? extends String> match : matches){
+                    for (BkTreeSearcher.Match<? extends String> match : matches) {
                         AllAllergiesForEachInteger all = new AllAllergiesForEachInteger(
                                 allAllergiesForEachInteger.getLanguage(),
                                 allAllergiesForEachInteger.getNameOfIngredient(),
@@ -162,16 +161,15 @@ public class HelpCalcAllergy {
                 }
             }
             //allergier en mer
-            if(allergies.containsKey(s+1) && s+1>4) {
-                HashMap<String,AllAllergiesForEachInteger> allAllergies = allergies.get(s+1);
+            if (allergies.containsKey(s + 1) && s + 1 > 4) {
+                HashMap<String, AllAllergiesForEachInteger> allAllergies = allergies.get(s + 1);
                 for (AllAllergiesForEachInteger allAllergiesForEachInteger : allAllergies.values()) {
                     Set<BkTreeSearcher.Match<? extends String>> matches;
-                    if(s+1<7){
+                    if (s + 1 < 7) {
                         matches = searcher.search(allAllergiesForEachInteger.getNameOfIngredient(), 1);
-                    }
-                    else if(s+1<10){
+                    } else if (s + 1 < 10) {
                         matches = searcher.search(allAllergiesForEachInteger.getNameOfIngredient(), 2);
-                    }else {
+                    } else {
                         matches = searcher.search(allAllergiesForEachInteger.getNameOfIngredient(), 3);
                     }
                     for (BkTreeSearcher.Match<? extends String> match : matches) {
@@ -189,15 +187,15 @@ public class HelpCalcAllergy {
                 }
             }
             //allergier mindre
-            if(allergies.containsKey(s-1) && s-1>5 ) {
-                HashMap<String,AllAllergiesForEachInteger> allAllergies = allergies.get(s-1);
+            if (allergies.containsKey(s - 1) && s - 1 > 5) {
+                HashMap<String, AllAllergiesForEachInteger> allAllergies = allergies.get(s - 1);
                 for (AllAllergiesForEachInteger allAllergiesForEachInteger : allAllergies.values()) {
                     Set<BkTreeSearcher.Match<? extends String>> matches;
-                    if(s-1<14){
-                        matches= searcher.search(allAllergiesForEachInteger.getNameOfIngredient(), 2);
+                    if (s - 1 < 14) {
+                        matches = searcher.search(allAllergiesForEachInteger.getNameOfIngredient(), 2);
 
-                    }else{
-                        matches= searcher.search(allAllergiesForEachInteger.getNameOfIngredient(), 3);
+                    } else {
+                        matches = searcher.search(allAllergiesForEachInteger.getNameOfIngredient(), 3);
 
 
                     }
@@ -218,20 +216,19 @@ public class HelpCalcAllergy {
 
         }
         long stop = System.currentTimeMillis();
-        Log.d(TAG, "TIME: "+(stop-start));
+        Log.d(TAG, "TIME: " + (stop - start));
     }
 
 
-
     public void checkFullString(String s, HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies, StartPage startPage, HashSet<String> alreadyContainedAllergies, ArrayList<AllAllergiesForEachInteger> allFoundAllergies) {
-        for (int key : allergies.keySet() ) {
+        for (int key : allergies.keySet()) {
 
-            HashMap<String,AllAllergiesForEachInteger> allAllergies = allergies.get(key);
+            HashMap<String, AllAllergiesForEachInteger> allAllergies = allergies.get(key);
             for (AllAllergiesForEachInteger allAllergiesForEachInteger : allAllergies.values()) {
                 /*if(alreadyContainedAllergies.contains(allAllergiesForEachInteger.getNameOfIngredient())){
                     continue;
                 }*/
-                if (s.contains(allAllergiesForEachInteger.getNameOfIngredient())){
+                if (s.contains(allAllergiesForEachInteger.getNameOfIngredient())) {
                     AllAllergiesForEachInteger all = new AllAllergiesForEachInteger(
                             allAllergiesForEachInteger.getLanguage(),
                             allAllergiesForEachInteger.getNameOfIngredient(),
@@ -245,12 +242,15 @@ public class HelpCalcAllergy {
         }
 
     }
-    public int getFlag(String langCode){
-        if(langCode.equals("sv")){
+
+    public int getFlag(String langCode) {
+        if (langCode.equals("sv")) {
             return R.drawable.se;
-        }if(langCode.equals("en")){
+        }
+        if (langCode.equals("en")) {
             return R.drawable.gb;
-        }if(langCode.equals("es")){
+        }
+        if (langCode.equals("es")) {
             return R.drawable.es;
         }
         return 0;
@@ -259,10 +259,10 @@ public class HelpCalcAllergy {
 
 
     public boolean checkIfAlreadyShown(View v) {
-        if(v.getRotation() == 0){
+        if (v.getRotation() == 0) {
             v.setRotation(180);
             return true;
-        }else{
+        } else {
             v.setRotation(0);
             return false;
 
@@ -270,13 +270,14 @@ public class HelpCalcAllergy {
         }
 
     }
-    public String cutFirstWord(String string){
+
+    public String cutFirstWord(String string) {
         List<String> list = null;
-        if(string.contains(",")){
+        if (string.contains(",")) {
             list = Arrays.asList(string.split(","));
 
         }
-        if(list == null){
+        if (list == null) {
             return string;
         }
         return list.get(0);

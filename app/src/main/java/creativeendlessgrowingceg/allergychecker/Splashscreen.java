@@ -14,9 +14,10 @@ public class Splashscreen {
     Thread splashTread;
     ImageView imageView;
     String language;
-    public Splashscreen(ImageView iv, Context context, final LinearLayout linearLayout, final ConstraintLayout constraintLayout){
+
+    public Splashscreen(ImageView iv, Context context, final LinearLayout linearLayout, final ConstraintLayout constraintLayout) {
         //final ImageView iv = (ImageView) findViewById(R.id.splash);
-        Animation animation = AnimationUtils.loadAnimation(context,R.anim.rotate);
+        Animation animation = AnimationUtils.loadAnimation(context, R.anim.rotate);
         iv.startAnimation(animation);
 
 

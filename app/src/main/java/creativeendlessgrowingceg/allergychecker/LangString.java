@@ -12,6 +12,7 @@ public class LangString {
     int id;
     int found;
     HashSet<String> allPossibleDerivationsOfAllergen;
+
     public LangString(String language, boolean on, int id) {
         this.language = language;
 
@@ -19,7 +20,8 @@ public class LangString {
         this.id = id;
 
     }
-    public LangString(String language, boolean on, int id,HashSet<String> allPossibleDerivationsOfAllergen) {
+
+    public LangString(String language, boolean on, int id, HashSet<String> allPossibleDerivationsOfAllergen) {
         this.language = language;
 
         this.on = on;
@@ -27,7 +29,8 @@ public class LangString {
 
         this.allPossibleDerivationsOfAllergen = allPossibleDerivationsOfAllergen;
     }
-    public void addallPossibleDerivationsOfAllergen(HashSet<String> allPossibleDerivationsOfAllergen){
+
+    public void addallPossibleDerivationsOfAllergen(HashSet<String> allPossibleDerivationsOfAllergen) {
         this.allPossibleDerivationsOfAllergen = allPossibleDerivationsOfAllergen;
     }
 }

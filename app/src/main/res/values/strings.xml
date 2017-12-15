@@ -306,7 +306,7 @@
     <string name="onlyFillChanges">Only fill those you change, leave others empty! Thanks Helper!</string>
     <string name="specialThanksTo">Special thanks to Alpha Testers:</string>
     <string name="thisappUses">This app uses:</string>
-    <string name="FAB">FloatingToolbar by rubensousa</string>
+    <string name="FAB">FloatingActionButton by Clans</string>
     <string name="BkTree">BK-tree by Kelsey Francis</string>
     <string name="OnBoardMe">OnboardMe by simith</string>
     <string name="licence">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
@@ -328,5 +328,6 @@
     <string name="write">Write</string>
     <string name="useflash">flash On</string>
     <string name="useNoFlash">flash Off</string>
+    <string name="SharingIsCaring">Sharing is caring</string>
 
 </resources>

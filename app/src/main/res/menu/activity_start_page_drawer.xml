@@ -25,16 +25,16 @@
             android:icon="@drawable/tutorial"
             android:title="@string/tutorial" />
         <item
-            android:id="@+id/about"
-            android:icon="@drawable/about"
-            android:title="@string/about" />
-        <item
             android:id="@+id/translate"
             android:icon="@drawable/translatetiny"
             android:title="@string/helpTranslate" />
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/about"
+            android:title="@string/about" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/SharingIsCaring">
         <menu>
             <item
                 android:id="@+id/nav_rate"

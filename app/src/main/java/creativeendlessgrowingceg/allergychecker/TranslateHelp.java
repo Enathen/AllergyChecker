@@ -88,11 +88,11 @@ public class TranslateHelp extends Fragment {
         LinearLayout child = (LinearLayout) parentLinearLayout.findViewById(R.id.linearhorizontalFragTransHelp);
         colors = ColorRandom.getRandomColor();
         rand = new Random().nextInt(colors.size());
-        child.findViewById(R.id.sideFragTranslate).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors,rand));
-        child.findViewById(R.id.sideFragTranslate2).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors,rand));
+        child.findViewById(R.id.sideFragTranslate).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors, rand));
+        child.findViewById(R.id.sideFragTranslate2).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors, rand));
 
         //getCategories();
-        new addAllStringsNecessary(inflater,container,getContext()).execute();
+        new addAllStringsNecessary(inflater, container, getContext()).execute();
         return parentFrameLayout;
 
     }
@@ -142,7 +142,7 @@ public class TranslateHelp extends Fragment {
         private final ViewGroup container;
         private final Context context;
         private ArrayList<LinearLayout> linearLayouts;
-        private HashMap<String,EditText> editTextHashMap = new HashMap<>();
+        private HashMap<String, EditText> editTextHashMap = new HashMap<>();
 
         public addAllStringsNecessary(LayoutInflater inflater, ViewGroup container, Context context) {
 
@@ -150,6 +150,7 @@ public class TranslateHelp extends Fragment {
             this.container = container;
             this.context = context;
         }
+
         @Override
         protected ArrayList<String> doInBackground(String... params) {
             ArrayList<String> strings = getAllStrings();
@@ -161,22 +162,24 @@ public class TranslateHelp extends Fragment {
 
             return strings;
         }
+
         @Override
         protected void onProgressUpdate(Integer... values) {
 
             super.onProgressUpdate(values);
             // Do things like update the progress bar
         }
+
         @Override
         protected void onPostExecute(ArrayList<String> result) {
             int i = 0;
             Collections.sort(result);
             for (String s : result) {
-                ((TextView)linearLayouts.get(i).findViewById(R.id.textViewTranslate)).setText(s);
+                ((TextView) linearLayouts.get(i).findViewById(R.id.textViewTranslate)).setText(s);
                 parentLinearLayout.addView(linearLayouts.get(i));
-                editTextHashMap.put(s,(EditText) linearLayouts.get(i).findViewById(R.id.editTextFragmentTranslate));
-                linearLayouts.get(i).findViewById(R.id.sideBorder).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors,rand));
-                linearLayouts.get(i).findViewById(R.id.sideBorder1).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors,rand));
+                editTextHashMap.put(s, (EditText) linearLayouts.get(i).findViewById(R.id.editTextFragmentTranslate));
+                linearLayouts.get(i).findViewById(R.id.sideBorder).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors, rand));
+                linearLayouts.get(i).findViewById(R.id.sideBorder1).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors, rand));
                 i++;
                 rand++;
             }
@@ -199,9 +202,7 @@ public class TranslateHelp extends Fragment {
                 }
             });
             parentLinearLayout.addView(button);
-            parentLinearLayout.removeView(parentLinearLayout.findViewById( R.id.progressBarTranslate));
-
-
+            parentLinearLayout.removeView(parentLinearLayout.findViewById(R.id.progressBarTranslate));
 
 
             super.onPostExecute(result);
@@ -210,14 +211,14 @@ public class TranslateHelp extends Fragment {
         private void onclick() {
             String string = "";
             for (String s : editTextHashMap.keySet()) {
-                if(!(editTextHashMap.get(s)).getText().toString().equals("")){
-                    string = string.concat(s +" : " + editTextHashMap.get(s).getText()+"\n");
+                if (!(editTextHashMap.get(s)).getText().toString().equals("")) {
+                    string = string.concat(s + " : " + editTextHashMap.get(s).getText() + "\n");
                 }
             }
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                    "mailto","AllergyCheckerCEGTranslate@gmail.com", null));
+                    "mailto", "AllergyCheckerCEGTranslate@gmail.com", null));
             emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.nameIfyouWantToBeInHelperList)
-                    + " : " + "\n" + getString(R.string.translatedFrom) + ": "+ Locale.getDefault().
+                    + " : " + "\n" + getString(R.string.translatedFrom) + ": " + Locale.getDefault().
                     getDisplayLanguage() + "\n" + string);
             startActivity(Intent.createChooser(emailIntent, getResources().getText(R.string.sendTipsFrom)));
         }

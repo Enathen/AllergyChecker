@@ -40,25 +40,23 @@ public class HistoryFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String TAG = "HistoryFragment";
-
-
+    HashMap<LinearLayout, String> StoredString = new HashMap<>();
+    boolean saveButton = false;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    HashMap<LinearLayout,String> StoredString = new HashMap<>();
-
     private OnFragmentInteractionListener mListener;
     private FrameLayout parentFrameLayout;
     private LinearLayout parentLinearLayout;
     private Bundle savedInstanceState;
     private StartPage startPage;
-    boolean saveButton = false;
     private int rand;
 
     public HistoryFragment(StartPage startPage) {
 
         this.startPage = startPage;
     }
+
     public HistoryFragment() {
         // Required empty public constructor
     }
@@ -76,7 +74,7 @@ public class HistoryFragment extends Fragment {
      * @return A new instance of fragment test.
      */
     // TODO: Rename and change types and number of parameters
-    public  HistoryFragment newInstance(String param1, String param2) {
+    public HistoryFragment newInstance(String param1, String param2) {
         HistoryFragment fragment = new HistoryFragment(this);
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -108,59 +106,31 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Log.d(TAG,"history" + Locale.getDefault().getLanguage());
+        Log.d(TAG, "history" + Locale.getDefault().getLanguage());
         parentFrameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_history, container, false);
 
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.lineaLayoutFragHistory);
 
         ArrayList<String> arrayList = new StartPage(getActivity()).getArrayFromHistory();
-        Collections.sort(arrayList,new stringComparator());
+        Collections.sort(arrayList, new stringComparator());
         Collections.reverse(arrayList);
 
         for (String s : arrayList) {
-            Log.d(TAG,s.substring(19));
+            Log.d(TAG, s.substring(19));
         }
-        insertNew(inflater,container,arrayList);
-        Log.d(TAG,"history" + Locale.getDefault().getLanguage());
+        insertNew(inflater, container, arrayList);
+        Log.d(TAG, "history" + Locale.getDefault().getLanguage());
         return parentFrameLayout;
     }
-    public static class stringComparator implements Comparator<String> {
-        @Override
-        public int compare(String string1, String string2) {
-            String year1 = string1.substring(0,4);
-            String year2 = string2.substring(0,4);
-            String month1 = string1.substring(5,7);
-            String month2 = string2.substring(5,7);
-            String day1 = string1.substring(8,10);
-            String day2 = string2.substring(8,10);
 
-            String time1 = string1.substring(11,19);
-            String time2 = string2.substring(11,19);
-            if(year1.compareToIgnoreCase(year2) != 0){
-                return year1.compareToIgnoreCase(year2);
-            }
-            if(month1.compareToIgnoreCase(month2) != 0){
-
-                return month1.compareToIgnoreCase(month2);
-            }
-            if(day1.compareToIgnoreCase(day2) != 0){
-                return day1.compareToIgnoreCase(day2);
-            }if(time1.compareToIgnoreCase(time2) != 0){
-                return time1.compareToIgnoreCase(time2);
-            }
-
-
-            return 0;
-        }
-    }
-    private void insertNew(final LayoutInflater inflater, final ViewGroup container, final ArrayList<String> arrayList){
+    private void insertNew(final LayoutInflater inflater, final ViewGroup container, final ArrayList<String> arrayList) {
         int colorGreenToRed = 26;
         ArrayList<Integer> color = ColorRandom.getRandomColor();
         rand = new Random().nextInt(color.size());
-        if(!arrayList.isEmpty()) {
+        if (!arrayList.isEmpty()) {
 
             int baseIncrease = (255 - 26) / arrayList.size() - 1;
-            if(baseIncrease == 0){
+            if (baseIncrease == 0) {
                 baseIncrease = 1;
             }
             Log.d(TAG, String.valueOf(baseIncrease));
@@ -196,7 +166,7 @@ public class HistoryFragment extends Fragment {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        new StartPage(getActivity()).deleteOneItemHistory(s,startPage);
+                        new StartPage(getActivity()).deleteOneItemHistory(s, startPage);
                         topLinLayOut.removeView(button);
                         topLinLayOut.removeView(tv);
                         topLinLayOut.removeView(newLinearLayout);
@@ -217,17 +187,17 @@ public class HistoryFragment extends Fragment {
 
                 rand++;
 
-                side.setBackgroundColor(ColorRandom.getRandomColorFromArray(color,rand));
-                side2.setBackgroundColor(ColorRandom.getRandomColorFromArray(color,rand));
+                side.setBackgroundColor(ColorRandom.getRandomColorFromArray(color, rand));
+                side2.setBackgroundColor(ColorRandom.getRandomColorFromArray(color, rand));
                 colorGreenToRed += baseIncrease;
                 if (colorGreenToRed >= 255) {
-                    baseIncrease=-1;
+                    baseIncrease = -1;
                 }
                 textview.setText(correctString);
                 newLinearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.d(TAG,"TIMEHISTORY");
+                        Log.d(TAG, "TIMEHISTORY");
                         Locale.setDefault(loadLocale());
                         Configuration config = new Configuration();
                         config.setLocale(loadLocale());
@@ -242,12 +212,12 @@ public class HistoryFragment extends Fragment {
                     @Override
                     public boolean onLongClick(View v) {
 
-                        if(tv.getVisibility() == View.VISIBLE){
+                        if (tv.getVisibility() == View.VISIBLE) {
                             tv.setVisibility(View.INVISIBLE);
                             topLinLayOut.removeView(tv);
                             topLinLayOut.removeView(button);
 
-                        }else{
+                        } else {
                             topLinLayOut.addView(tv);
                             topLinLayOut.addView(button);
                             tv.setVisibility(View.VISIBLE);
@@ -258,8 +228,8 @@ public class HistoryFragment extends Fragment {
                 parentLinearLayout.addView(topLinLayOut);
             }
 
-            if(!arrayList.isEmpty()){
-                LinearLayout linearLayoutDeleteAll = (LinearLayout) inflater.inflate(R.layout.historyrow,container,false);
+            if (!arrayList.isEmpty()) {
+                LinearLayout linearLayoutDeleteAll = (LinearLayout) inflater.inflate(R.layout.historyrow, container, false);
                 ((TextView) linearLayoutDeleteAll.findViewById(R.id.textViewHistoryRow)).setText(getString(R.string.deleteHistory));
                 linearLayoutDeleteAll.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -267,7 +237,7 @@ public class HistoryFragment extends Fragment {
                         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                switch (which){
+                                switch (which) {
                                     case DialogInterface.BUTTON_POSITIVE:
                                         new StartPage(getActivity()).deleteHistory();
                                         Intent intent = new Intent(getActivity(), StartPage.class);
@@ -289,9 +259,8 @@ public class HistoryFragment extends Fragment {
                 });
                 parentLinearLayout.addView(linearLayoutDeleteAll);
             }
-        }
-        else{
-            LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.historyrow,container,false);
+        } else {
+            LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.historyrow, container, false);
             TextView textview = (TextView) linearLayout.findViewById(R.id.textViewHistoryRow);
             textview.setText(R.string.scanPhotos);
             parentLinearLayout.addView(linearLayout);
@@ -300,10 +269,9 @@ public class HistoryFragment extends Fragment {
 
     private Locale loadLocale() {
         Locale locale = new Locale(new SettingsFragment(getContext()).getLanguageFromLFragment(getContext()));
-        Log.d(TAG,locale.getLanguage());
+        Log.d(TAG, locale.getLanguage());
         return locale;
     }
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -343,5 +311,36 @@ public class HistoryFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public static class stringComparator implements Comparator<String> {
+        @Override
+        public int compare(String string1, String string2) {
+            String year1 = string1.substring(0, 4);
+            String year2 = string2.substring(0, 4);
+            String month1 = string1.substring(5, 7);
+            String month2 = string2.substring(5, 7);
+            String day1 = string1.substring(8, 10);
+            String day2 = string2.substring(8, 10);
+
+            String time1 = string1.substring(11, 19);
+            String time2 = string2.substring(11, 19);
+            if (year1.compareToIgnoreCase(year2) != 0) {
+                return year1.compareToIgnoreCase(year2);
+            }
+            if (month1.compareToIgnoreCase(month2) != 0) {
+
+                return month1.compareToIgnoreCase(month2);
+            }
+            if (day1.compareToIgnoreCase(day2) != 0) {
+                return day1.compareToIgnoreCase(day2);
+            }
+            if (time1.compareToIgnoreCase(time2) != 0) {
+                return time1.compareToIgnoreCase(time2);
+            }
+
+
+            return 0;
+        }
     }
 }

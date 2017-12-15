@@ -56,28 +56,26 @@ public class AllergyFragment extends Fragment {
     private static final String TAG = "ALLERGYFRAG";
     private static final String SHARED_PREFS_NAME = "HistoryFragment";
     private static final String SHARED_PREFS_NAME2 = "HistoryFragmentAllergies";
-
+    protected ArrayList<CheckBoxClass> setCheckedLater = new ArrayList<>();
+    HashMap<Integer, ImageView> imageViewHashMap;
+    boolean parentSetOnClick = false;
+    ReentrantReadWriteLock lock = new ReentrantReadWriteLock(true);
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private FrameLayout parentFrameLayout;
     private LinearLayout parentLinearLayout;
     private OnFragmentInteractionListener mListener;
-    private HashMap<String,ArrayList<LinearLayout>> Categories = new HashMap<>();
+    private HashMap<String, ArrayList<LinearLayout>> Categories = new HashMap<>();
     private HashSet<Integer> hashMapCategoriesAllergy = new HashSet<>();
-    private HashMap<String,LinearLayout> linearLayoutParents = new HashMap<>();
-    private HashMap<String,ArrayList<CheckBox>> checkBoxes = new HashMap<>();
-    private HashMap<String,CheckBox> parentCheckBox = new HashMap<>();
-    private HashMap<Integer,ArrayList<CheckBox>> sameItemDifferentCategories = new HashMap<>();
-    private HashMap<String,Integer> profileSavePicture = new HashMap<>();
-    protected ArrayList<CheckBoxClass> setCheckedLater = new ArrayList<>();
-
+    private HashMap<String, LinearLayout> linearLayoutParents = new HashMap<>();
+    private HashMap<String, ArrayList<CheckBox>> checkBoxes = new HashMap<>();
+    private HashMap<String, CheckBox> parentCheckBox = new HashMap<>();
+    private HashMap<Integer, ArrayList<CheckBox>> sameItemDifferentCategories = new HashMap<>();
+    private HashMap<String, Integer> profileSavePicture = new HashMap<>();
     private File startPageFile;
     private StartPage startPage;
-    HashMap<Integer,ImageView> imageViewHashMap;
     private ArrayList<Locale> localeArrayList;
-    boolean parentSetOnClick = false;
-    ReentrantReadWriteLock lock = new ReentrantReadWriteLock(true);
 
 
     public AllergyFragment(AllergyFragment allergyFragment) {
@@ -85,17 +83,15 @@ public class AllergyFragment extends Fragment {
     }
 
 
-
-
     public AllergyFragment() {
         // Required empty public constructor
     }
 
-    public AllergyFragment(StartPage startPage, HashMap<Integer,ImageView> imageViewHashMap,ArrayList<Locale> localeArrayList) {
+    public AllergyFragment(StartPage startPage, HashMap<Integer, ImageView> imageViewHashMap, ArrayList<Locale> localeArrayList) {
         this.startPage = startPage;
         this.imageViewHashMap = imageViewHashMap;
-        startPageFile = new File(startPage.getFilesDir(),"profile.txt");
-        if(localeArrayList.isEmpty()){
+        startPageFile = new File(startPage.getFilesDir(), "profile.txt");
+        if (localeArrayList.isEmpty()) {
             localeArrayList.add(Locale.getDefault());
         }
         this.localeArrayList = localeArrayList;
@@ -103,9 +99,18 @@ public class AllergyFragment extends Fragment {
 
     public AllergyFragment(StartPage startPage) {
         this.startPage = startPage;
-        startPageFile = new File(startPage.getFilesDir(),"data.txt");
+        startPageFile = new File(startPage.getFilesDir(), "data.txt");
     }
 
+    @NonNull
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static String getStringByLocal(Activity context, int id, String locale) {
+        Configuration configuration = new Configuration(context.getResources().getConfiguration());
+        configuration.setLocale(new Locale(locale));
+
+
+        return context.createConfigurationContext(configuration).getResources().getString(id).toLowerCase().replaceAll("\\s+", "");
+    }
 
     /**
      * Use this factory method to create a new instance of
@@ -141,6 +146,7 @@ public class AllergyFragment extends Fragment {
         final Resources res = getContext().getResources();
         res.updateConfiguration(config, res.getDisplayMetrics());*/
     }
+
     //create the look
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -152,16 +158,12 @@ public class AllergyFragment extends Fragment {
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
 
         //getCategories();
-        new AddCategories(inflater,container,getContext()).execute();
-
-
+        new AddCategories(inflater, container, getContext()).execute();
 
 
         //saveCategories();
         return parentFrameLayout;
     }
-
-
 
     private LinearLayout insertSingleAllergy(LayoutInflater inflater, final int name, ViewGroup container, final int pictureId) {
         final LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.rowlayout, container, false);
@@ -182,14 +184,13 @@ public class AllergyFragment extends Fragment {
                     public void run() {
                         editor.putBoolean(getResources().getString(name), isChecked);
                         editor.apply();
-                        if(isChecked){
+                        if (isChecked) {
                             //getCategories();
-                            addItemToHashMap(name,pictureId);
+                            addItemToHashMap(name, pictureId);
                             //saveCategories();
-                        }
-                        else{
+                        } else {
                             //getCategories();
-                            removeItemToHashMap(name,pictureId);
+                            removeItemToHashMap(name, pictureId);
                             //saveCategories();
                         }
                     }
@@ -197,21 +198,23 @@ public class AllergyFragment extends Fragment {
 
             }
         });
-        checkIfNotExist(checkBox,name,pictureId);
+        checkIfNotExist(checkBox, name, pictureId);
 
         return linearLayout;
 
     }
-    public void checkIfNotExist(CheckBox checkBox,int key,int mainCat){
-        if(checkBox.isChecked()){
 
-            if(!hashMapCategoriesAllergy.contains(key)){
-                profileSavePicture.put(getString(key),mainCat);
+    public void checkIfNotExist(CheckBox checkBox, int key, int mainCat) {
+        if (checkBox.isChecked()) {
+
+            if (!hashMapCategoriesAllergy.contains(key)) {
+                profileSavePicture.put(getString(key), mainCat);
                 hashMapCategoriesAllergy.add(key);
                 //Log.d(TAG,"Put in hashMapCategoriesAllergy: " + getStringByLocal(getActivity(),key,Locale.getDefault().getLanguage()));
             }
         }
     }
+
     private LinearLayout insertCheckboxAndImageView(LayoutInflater inflater, ViewGroup container, final int name, int pictureId) {
         LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.rowcategorylayout, container, false);
         LinearLayout linearLayoutRow = (LinearLayout) linearLayout.findViewById(R.id.linearLayoutRowCategoryHorizontal);
@@ -224,38 +227,39 @@ public class AllergyFragment extends Fragment {
         linearLayoutRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onclickDropDownList(imageView,getString(name));
+                onclickDropDownList(imageView, getString(name));
             }
         });
 
-        parentCheckBoxOnClickListener(checkboxRowCategory,getString(name));
+        parentCheckBoxOnClickListener(checkboxRowCategory, getString(name));
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onclickDropDownList(v,getString(name));
+                onclickDropDownList(v, getString(name));
             }
         });
-        linearLayoutParents.put(getString(name),linearLayout);
-        parentCheckBox.put(getString(name),checkboxRowCategory);
+        linearLayoutParents.put(getString(name), linearLayout);
+        parentCheckBox.put(getString(name), checkboxRowCategory);
 
-        seeIfAllCheckboxIsChecked(checkboxRowCategory,getString(name),name);
+        seeIfAllCheckboxIsChecked(checkboxRowCategory, getString(name), name);
         return linearLayout;
     }
-    public void parentCheckBoxOnClickListener(CheckBox checkboxRowCategory, final String key){
+
+    public void parentCheckBoxOnClickListener(CheckBox checkboxRowCategory, final String key) {
         checkboxRowCategory.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 //getCategories();
                 parentSetOnClick = true;
-                if(isChecked) {
+                if (isChecked) {
                     for (CheckBox checkBox : checkBoxes.get(key)) {
 
                         checkBox.setChecked(true);
                     }
 
 
-                }else {
+                } else {
                     for (CheckBox checkBox : checkBoxes.get(key)) {
                         checkBox.setChecked(false);
                     }
@@ -269,27 +273,30 @@ public class AllergyFragment extends Fragment {
             }
         });
     }
-    public void addItemToHashMap(int id,int pictureId){
+
+    public void addItemToHashMap(int id, int pictureId) {
         hashMapCategoriesAllergy.add(id);
-        profileSavePicture.put(getString(id),pictureId);
+        profileSavePicture.put(getString(id), pictureId);
     }
-    public void removeItemToHashMap(int id,int pictureId){
-        if(profileSavePicture.containsKey(getString(id))){
+
+    public void removeItemToHashMap(int id, int pictureId) {
+        if (profileSavePicture.containsKey(getString(id))) {
             profileSavePicture.remove(getString(id));
 
         }
-        if(hashMapCategoriesAllergy.contains(id)){
+        if (hashMapCategoriesAllergy.contains(id)) {
             hashMapCategoriesAllergy.remove(id);
 
         }
 
     }
-    private void seeIfAllCheckboxIsChecked(CheckBox checkboxRowCategory, String key,int name) {
+
+    private void seeIfAllCheckboxIsChecked(CheckBox checkboxRowCategory, String key, int name) {
 
         for (LinearLayout linearLayout : Categories.get(key)) {
             CheckBox checkBox = (CheckBox) linearLayout.findViewById(R.id.checkBoxRowLeftMargin);
 
-            if(!checkBox.isChecked()){
+            if (!checkBox.isChecked()) {
 
                 checkboxRowCategory.setChecked(false);
                 return;
@@ -299,39 +306,41 @@ public class AllergyFragment extends Fragment {
         Log.d(TAG, "seeIfAllCheckboxIsChecked: " + key);
         checkboxRowCategory.setOnCheckedChangeListener(null);
         checkboxRowCategory.setChecked(true);
-        parentCheckBoxOnClickListener(checkboxRowCategory,key);
+        parentCheckBoxOnClickListener(checkboxRowCategory, key);
 
 
     }
-    private void checkBoxLeftMarginSaveString(boolean isChecked, int id,int pictureId){
-        if(!parentSetOnClick){
+
+    private void checkBoxLeftMarginSaveString(boolean isChecked, int id, int pictureId) {
+        if (!parentSetOnClick) {
             //getCategories();
         }
-        if(isChecked){
-            addItemToHashMap(id,pictureId);
-        }else{
+        if (isChecked) {
+            addItemToHashMap(id, pictureId);
+        } else {
 
-            removeItemToHashMap(id,pictureId);
+            removeItemToHashMap(id, pictureId);
         }
-        if(!parentSetOnClick){
+        if (!parentSetOnClick) {
             //
             //saveCategories();
         }
 
     }
-    public String setTextViewCorrect(String ingredient){
+
+    public String setTextViewCorrect(String ingredient) {
         List<String> list = null;
-        if(ingredient.contains(",")){
+        if (ingredient.contains(",")) {
             list = Arrays.asList(ingredient.split(","));
 
         }
-        if(list == null){
+        if (list == null) {
             return ingredient;
         }
         return list.get(0);
     }
 
-    private void addCategory(final LayoutInflater inflater, ArrayList<AllergyList.PictureIngredient> arrayListCategory, final int parentKey, final int parentPicture){
+    private void addCategory(final LayoutInflater inflater, ArrayList<AllergyList.PictureIngredient> arrayListCategory, final int parentKey, final int parentPicture) {
         ArrayList<LinearLayout> arrayList = new ArrayList<>();
         ArrayList<CheckBox> checkBoxList = new ArrayList<>();
         long start = System.currentTimeMillis();
@@ -339,7 +348,7 @@ public class AllergyFragment extends Fragment {
         for (final AllergyList.PictureIngredient arrayListCat : arrayListCategory) {
 
 
-            LinearLayout newLinearLayout = (LinearLayout) inflater.inflate(R.layout.leftmarginrowlayout,null);
+            LinearLayout newLinearLayout = (LinearLayout) inflater.inflate(R.layout.leftmarginrowlayout, null);
 
             final TextView textview = (TextView) newLinearLayout.findViewById(R.id.textViewLeftMargin);
 
@@ -351,21 +360,20 @@ public class AllergyFragment extends Fragment {
             /*SharedPreferences settings = getContext().getSharedPreferences(arrayListCat.ingredient, Context.MODE_PRIVATE);
             final SharedPreferences.Editor editor = settings.edit();*/
             final CheckBox checkBox = (CheckBox) newLinearLayout.findViewById(R.id.checkBoxRowLeftMargin);
-            setCheckedLater.add(new CheckBoxClass(checkBox,arrayListCat.id,parentPicture,getString(parentKey),parentKey,arrayListCat.ingredient));
+            setCheckedLater.add(new CheckBoxClass(checkBox, arrayListCat.id, parentPicture, getString(parentKey), parentKey, arrayListCat.ingredient));
 
             // Log.d(TAG,"NUMBER2:" + arrayListCat.id + "name: " + arrayListCat.ingredient);
 
 
-
-            if(sameItemDifferentCategories.containsKey(arrayListCat.id)){
+            if (sameItemDifferentCategories.containsKey(arrayListCat.id)) {
                 ArrayList<CheckBox> array = sameItemDifferentCategories.get(arrayListCat.id);
                 array.add(checkBox);
-                sameItemDifferentCategories.put(arrayListCat.id,array);
+                sameItemDifferentCategories.put(arrayListCat.id, array);
 
-            }else{
+            } else {
                 ArrayList<CheckBox> array = new ArrayList<>();
                 array.add(checkBox);
-                sameItemDifferentCategories.put(arrayListCat.id,array);
+                sameItemDifferentCategories.put(arrayListCat.id, array);
             }
             checkBoxList.add(checkBox);
             arrayList.add(newLinearLayout);
@@ -373,32 +381,31 @@ public class AllergyFragment extends Fragment {
 
         }
         long stop = System.currentTimeMillis();
-        Log.d(TAG, "TIMEONE:"+ (stop-start));
-        checkBoxes.put(getString(parentKey),checkBoxList);
-        Categories.put(getString(parentKey),arrayList);
+        Log.d(TAG, "TIMEONE:" + (stop - start));
+        checkBoxes.put(getString(parentKey), checkBoxList);
+        Categories.put(getString(parentKey), arrayList);
 
 
     }
-    public void saveCategories(){
+
+    public void saveCategories() {
         final Context context = this.getContext();
         new MyTask().execute("Save");
     }
 
-
-    public void getCategories(){
+    public void getCategories() {
 
         final Context context = this.getContext();
 
 
-
         FileInputStream fileInputStream;
         File file = new File(context.getFilesDir(), "data.txt");
-        Log.d(TAG,"size" + String.valueOf(Integer.parseInt(String.valueOf(file.length()/1024))));
+        Log.d(TAG, "size" + String.valueOf(Integer.parseInt(String.valueOf(file.length() / 1024))));
         try {
             fileInputStream = new FileInputStream(file);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 
-            if(lock.isWriteLocked()){
+            if (lock.isWriteLocked()) {
                 lock.readLock().unlock();
                 objectInputStream.close();
                 return;
@@ -413,7 +420,8 @@ public class AllergyFragment extends Fragment {
 
 
     }
-    public HashSet<Integer> getCategoriesFromOtherClass(){
+
+    public HashSet<Integer> getCategoriesFromOtherClass() {
         SharedPreferences sp = startPage.getSharedPreferences("AllergyFrag", Context.MODE_PRIVATE);
         //NOTE: if shared preference is null, the method return empty Hashset and not null
         Set<String> set = sp.getStringSet("data", new HashSet<String>());
@@ -425,28 +433,20 @@ public class AllergyFragment extends Fragment {
 
         return hashSet;
     }
-    public void setProfilePic(){
+
+    public void setProfilePic() {
         new SavePictureFromOtherClass().execute();
 
     }
 
-    @NonNull
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static String getStringByLocal(Activity context, int id, String locale) {
-        Configuration configuration = new Configuration(context.getResources().getConfiguration());
-        configuration.setLocale(new Locale(locale));
-
-
-        return context.createConfigurationContext(configuration).getResources().getString(id).toLowerCase().replaceAll("\\s+","");
-    }
-    public void onclickDropDownList(View v,final String key) {
-        if(v.getRotation() == 180){
+    public void onclickDropDownList(View v, final String key) {
+        if (v.getRotation() == 180) {
             v.setRotation(0);
             for (LinearLayout linearLayout : Categories.get(key)) {
                 linearLayoutParents.get(key).removeView(linearLayout);
 
             }
-        }else{
+        } else {
             v.setRotation(180);
 
             for (LinearLayout linearLayout : Categories.get(key)) {
@@ -458,6 +458,7 @@ public class AllergyFragment extends Fragment {
         }
 
     }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -496,6 +497,42 @@ public class AllergyFragment extends Fragment {
         new SavePicture(context).execute();
     }
 
+    public void setOnChecked(final CheckBox check, final SharedPreferences.Editor editor, final CheckBoxClass checkBox) {
+        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                for (CheckBox box : sameItemDifferentCategories.get(checkBox.id)) {
+                    if (!box.equals(check)) {
+
+                        box.setOnCheckedChangeListener(null);
+                        box.setChecked(isChecked);
+                        setOnChecked(box, editor, checkBox);
+                    }
+                }
+                for (CheckBox box : sameItemDifferentCategories.get(checkBox.id)) {
+                    if (!box.equals(checkBox.checkBox)) {
+
+                        box.setChecked(isChecked);
+
+                    }
+                }
+                if (parentCheckBox.containsKey(checkBox.ingredient)) {
+                    if (parentCheckBox.get(checkBox.ingredient).isChecked()) {
+                        parentCheckBox.get(checkBox.ingredient).setChecked(false);
+                    } else {
+                        parentCheckBox.get(checkBox.ingredient).setChecked(true);
+                    }
+                }
+                checkBoxLeftMarginSaveString(isChecked, checkBox.id, checkBox.parentPicture);
+                parentCheckBox.get(checkBox.key).setOnCheckedChangeListener(null);
+                seeIfAllCheckboxIsChecked(parentCheckBox.get(checkBox.key), checkBox.key, checkBox.parentKey);
+                parentCheckBoxOnClickListener(parentCheckBox.get(checkBox.key), checkBox.key);
+                editor.putBoolean(checkBox.ingredient, isChecked);
+                editor.apply();
+            }
+        });
+
+    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -511,11 +548,13 @@ public class AllergyFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
     public class CheckboxInsert {
         public String language;
         public String allergyName;
         public CheckBox checkBox;
-        public CheckboxInsert(String language, String allergyName,CheckBox checkBox){
+
+        public CheckboxInsert(String language, String allergyName, CheckBox checkBox) {
             this.language = language;
             this.allergyName = allergyName;
             this.checkBox = checkBox;
@@ -523,6 +562,7 @@ public class AllergyFragment extends Fragment {
 
 
     }
+
     private class MyTask extends AsyncTask<String, Integer, String> {
 
         // Runs in UI before background thread is called
@@ -557,7 +597,7 @@ public class AllergyFragment extends Fragment {
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
             Log.d(TAG, String.valueOf(values[1]));
-            double i = ((double)values[1]/(double)values[0]) * 100;
+            double i = ((double) values[1] / (double) values[0]) * 100;
             Log.d(TAG, String.valueOf(i));
             // Do things like update the progress bar
         }
@@ -570,6 +610,7 @@ public class AllergyFragment extends Fragment {
             // Do things like hide the progress bar or change a TextView
         }
     }
+
     private class SavePicture extends AsyncTask<String, Integer, String> {
 
         private Context context;
@@ -599,7 +640,7 @@ public class AllergyFragment extends Fragment {
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
                 objectOutputStream.writeObject(profileSavePicture);
                 objectOutputStream.close();
-                Log.d(TAG,"PROFILE THREAD FINITO"+ Thread.currentThread().getName());
+                Log.d(TAG, "PROFILE THREAD FINITO" + Thread.currentThread().getName());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -625,12 +666,12 @@ public class AllergyFragment extends Fragment {
             for (ImageView imageView : imageViewHashMap.values()) {
                 imageView.setImageResource(R.drawable.emptyborder);
             }
-            for (int id: profileSavePicture.values()) {
-                if(i>7){
+            for (int id : profileSavePicture.values()) {
+                if (i > 7) {
                     break;
                 }
 
-                if(alreadyString.charAt(i) == '0'){
+                if (alreadyString.charAt(i) == '0') {
                     if (!alreadySelectedImages.contains(id)) {
                         imageViewHashMap.get(i).setImageResource(id);
                         alreadySelectedImages.add(id);
@@ -643,10 +684,10 @@ public class AllergyFragment extends Fragment {
             }
         }
     }
+
     private class SavePictureFromOtherClass extends AsyncTask<String, Integer, String> {
 
         private Context context;
-
 
 
         // Runs in UI before background thread is called
@@ -696,12 +737,12 @@ public class AllergyFragment extends Fragment {
             for (ImageView imageView : imageViewHashMap.values()) {
                 imageView.setImageDrawable(startPage.getDrawable(R.drawable.emptyborder));
             }
-            for (int id: profileSavePicture.values()) {
-                if(i>7){
+            for (int id : profileSavePicture.values()) {
+                if (i > 7) {
                     break;
                 }
 
-                if(alreadyString.charAt(i) == '0'){
+                if (alreadyString.charAt(i) == '0') {
                     if (!alreadySelectedImages.contains(id)) {
                         imageViewHashMap.get(i).setImageResource(id);
                         alreadySelectedImages.add(id);
@@ -714,6 +755,7 @@ public class AllergyFragment extends Fragment {
             }
         }
     }
+
     private class AddCategories extends AsyncTask<String, Integer, String> {
 
         private Context context;
@@ -721,7 +763,7 @@ public class AllergyFragment extends Fragment {
         private ViewGroup container;
         private Context contextHistory;
 
-        public AddCategories(LayoutInflater inflater, ViewGroup container,Context contextHistory) {
+        public AddCategories(LayoutInflater inflater, ViewGroup container, Context contextHistory) {
             this.inflater = inflater;
             this.container = container;
             this.contextHistory = contextHistory;
@@ -743,10 +785,10 @@ public class AllergyFragment extends Fragment {
 
             // get the string from params, which is an array
             AllergyList allergylist = new AllergyList(contextHistory);
-            addCategory(inflater, allergylist.getArrayListCitrus(), R.string.citrus,R.drawable.orange);
+            addCategory(inflater, allergylist.getArrayListCitrus(), R.string.citrus, R.drawable.orange);
             addCategory(inflater, allergylist.getArrayListDairy(), R.string.dairy, R.drawable.milk);
-            addCategory(inflater, allergylist.getArrayListFish(), R.string.fish,R.drawable.fish);
-            addCategory(inflater, allergylist.getArrayListFruit(), R.string.fruit,R.drawable.peach);
+            addCategory(inflater, allergylist.getArrayListFish(), R.string.fish, R.drawable.fish);
+            addCategory(inflater, allergylist.getArrayListFruit(), R.string.fruit, R.drawable.peach);
             addCategory(inflater, allergylist.getArrayListGluten(), R.string.gluten, R.drawable.wheat);
             addCategory(inflater, allergylist.getArrayListLegumes(), R.string.legumes, R.drawable.legumes);
             addCategory(inflater, allergylist.getArrayListNuts(), R.string.nuts, R.drawable.nuts);
@@ -763,7 +805,6 @@ public class AllergyFragment extends Fragment {
             addCategory(inflater, allergylist.getArrayListDemiVegetarian(), R.string.demiVegetarian, R.drawable.demiveg);
             addCategory(inflater, allergylist.getArrayListPolloVegetarian(), R.string.polloVegetarian, R.drawable.polloveg);
             addCategory(inflater, allergylist.getArrayListPescoVegetarian(), R.string.pescoVegetarian, R.drawable.pescoveg);
-
 
 
             return "this string is passed to onPostExecute";
@@ -786,38 +827,38 @@ public class AllergyFragment extends Fragment {
                 SharedPreferences settings = contextHistory.getSharedPreferences(checkBox.ingredient, contextHistory.MODE_PRIVATE);
                 final SharedPreferences.Editor editor = settings.edit();
                 checkBox.checkBox.setChecked(settings.getBoolean(checkBox.ingredient, false));
-                if(checkBox.checkBox.isChecked()){
+                if (checkBox.checkBox.isChecked()) {
                     contains = true;
                 }
                 setOnChecked(checkBox.checkBox, editor, checkBox);
 
-                checkIfNotExist(checkBox.checkBox, checkBox.id,checkBox.parentPicture);
+                checkIfNotExist(checkBox.checkBox, checkBox.id, checkBox.parentPicture);
             }
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.citrus, R.drawable.orange));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.citrus, R.drawable.orange));
 
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.dairy, R.drawable.milk));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.fish, R.drawable.fish));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.fruit, R.drawable.peach));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.fish, R.drawable.fish));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.fruit, R.drawable.peach));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.gluten, R.drawable.wheat));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.legumes, R.drawable.legumes));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.nuts, R.drawable.nuts));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.seeds, R.drawable.seeds));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.shellfish, R.drawable.shellfish));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.vegetables, R.drawable.tomato));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.seeds, R.drawable.seeds));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.shellfish, R.drawable.shellfish));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.vegetables, R.drawable.tomato));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.spice, R.drawable.spice));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.halal, R.drawable.halal));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.vegetarian, R.drawable.vegetarian));
-            parentLinearLayout.addView(insertCheckboxAndImageView(inflater,  container, R.string.vegan, R.drawable.vegan));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.halal, R.drawable.halal));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.vegetarian, R.drawable.vegetarian));
+            parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.vegan, R.drawable.vegan));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.lactoVegetarian, R.drawable.lactovegitarian));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.ovoVegetarian, R.drawable.ovoveg));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.lactoOvoVegetarian, R.drawable.lactoovoveg));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.demiVegetarian, R.drawable.demiveg));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.polloVegetarian, R.drawable.polloveg));
             parentLinearLayout.addView(insertCheckboxAndImageView(inflater, container, R.string.pescoVegetarian, R.drawable.pescoveg));
-            Log.d(TAG, "onPostExecute: " +(System.currentTimeMillis()-start));
+            Log.d(TAG, "onPostExecute: " + (System.currentTimeMillis() - start));
             //parentLinearLayout.findViewById(R.id.btnUncheckAll).setVisibility(View.VISIBLE);
-            if(!contains){
-                ((Button)parentLinearLayout.findViewById(R.id.btnUncheckAll)).setText(R.string.checkAll);
+            if (!contains) {
+                ((Button) parentLinearLayout.findViewById(R.id.btnUncheckAll)).setText(R.string.checkAll);
             }
             parentLinearLayout.findViewById(R.id.btnUncheckAll).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -857,51 +898,16 @@ public class AllergyFragment extends Fragment {
             parentLinearLayout.removeView(parentLinearLayout.findViewById(R.id.progressBarAllergy));
         }
     }
-    public void setOnChecked(final CheckBox check, final SharedPreferences.Editor editor, final CheckBoxClass checkBox){
-        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                for (CheckBox box : sameItemDifferentCategories.get(checkBox.id)) {
-                    if(!box.equals(check)){
 
-                        box.setOnCheckedChangeListener(null);
-                        box.setChecked(isChecked);
-                        setOnChecked(box,editor, checkBox);
-                    }
-                }
-                for (CheckBox box : sameItemDifferentCategories.get(checkBox.id)) {
-                    if(!box.equals(checkBox.checkBox)){
-
-                        box.setChecked(isChecked);
-
-                    }
-                }
-                if(parentCheckBox.containsKey(checkBox.ingredient)){
-                    if(parentCheckBox.get(checkBox.ingredient).isChecked()){
-                        parentCheckBox.get(checkBox.ingredient).setChecked(false);
-                    }else{
-                        parentCheckBox.get(checkBox.ingredient).setChecked(true);
-                    }
-                }
-                checkBoxLeftMarginSaveString(isChecked,checkBox.id,checkBox.parentPicture);
-                parentCheckBox.get(checkBox.key).setOnCheckedChangeListener(null);
-                seeIfAllCheckboxIsChecked(parentCheckBox.get(checkBox.key),checkBox.key,checkBox.parentKey);
-                parentCheckBoxOnClickListener(parentCheckBox.get(checkBox.key),checkBox.key);
-                editor.putBoolean(checkBox.ingredient, isChecked);
-                editor.apply();
-            }
-        });
-
-    }
     private class CheckBoxClass {
-        private CheckBox checkBox;
         private final int id;
         private final int parentPicture;
         private final String key;
         private final int parentKey;
+        private CheckBox checkBox;
         private String ingredient;
 
-        public CheckBoxClass(CheckBox checkBox,int id, int parentPicture, String key, int ParentKey, String ingredient){
+        public CheckBoxClass(CheckBox checkBox, int id, int parentPicture, String key, int ParentKey, String ingredient) {
             this.checkBox = checkBox;
 
             this.id = id;

@@ -6,14 +6,14 @@ import android.support.annotation.NonNull;
  * Created by Enathen on 2017-12-01.
  */
 
-public class AllAllergiesForEachInteger implements Comparable<AllAllergiesForEachInteger>{
+public class AllAllergiesForEachInteger implements Comparable<AllAllergiesForEachInteger> {
     private final String language;
     private final String nameOfIngredient;
     private final int id;
     private String motherLanguage;
     private String nameOfWordFound;
 
-    public AllAllergiesForEachInteger(String language, String nameOfIngredient, int ID,String motherLanguage){
+    public AllAllergiesForEachInteger(String language, String nameOfIngredient, int ID, String motherLanguage) {
 
         this.language = language;
         this.nameOfIngredient = nameOfIngredient;
@@ -45,7 +45,6 @@ public class AllAllergiesForEachInteger implements Comparable<AllAllergiesForEac
     public String getMotherLanguage() {
         return motherLanguage;
     }
-
 
 
     @Override

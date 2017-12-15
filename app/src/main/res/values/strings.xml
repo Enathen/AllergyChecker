@@ -326,7 +326,7 @@
     <string name="custard">Custard</string>
     <string name="cream">Cream</string>
     <string name="write">Write</string>
-    <string name="useflash">Use flash</string>
-    <string name="useNoFlash">Use no flash</string>
+    <string name="useflash">flash On</string>
+    <string name="useNoFlash">flash Off</string>
 
 </resources>

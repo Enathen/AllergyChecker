@@ -4,6 +4,7 @@ package creativeendlessgrowingceg.allergychecker;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -21,20 +22,25 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -51,6 +57,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.TreeMap;
 
+import creativeendlessgrowingceg.allergychecker.camera.OcrCaptureActivity;
 import creativeendlessgrowingceg.allergychecker.design.activity.OnboardingPagerActivity;
 
 public class StartPage extends AppCompatActivity
@@ -63,6 +70,10 @@ public class StartPage extends AppCompatActivity
         ,TranslateHelp.OnFragmentInteractionListener{
     private static final String TAG = "StartPage";
     private static final String SHARED_PREFS_NAME = "StartPage";
+    FloatingActionButton flash;
+    FloatingActionButton flashOff;
+    FloatingActionButton write;
+    FloatingActionMenu camera;
     private TextView suggestions;
     private TextView allergic;
 
@@ -120,7 +131,63 @@ public class StartPage extends AppCompatActivity
         setSupportActionBar(toolbar);
         loadInterstitial();
 
-        String newString = getString(R.string.startPageHeader);/*
+        String newString = getString(R.string.startPageHeader);
+        write = (FloatingActionButton) findViewById(R.id.write);
+        final StartPage startPage = this;
+        flash = (FloatingActionButton) findViewById(R.id.flashon);
+        flash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(startPage, OcrCaptureActivity.class);
+                intent.putExtra("EXTRA_SESSION_ID", true);
+                startPage.startActivity(intent);
+            }
+        });
+        flashOff = (FloatingActionButton) findViewById(R.id.flashOff);
+        flashOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(startPage, OcrCaptureActivity.class);
+                intent.putExtra("EXTRA_SESSION_ID", false);
+                startPage.startActivity(intent);
+            }
+        });
+        write.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(startPage);
+                builder.setTitle(R.string.inputIngredients);
+
+// Set up the input
+                final EditText input = new EditText(startPage);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder.setView(input);
+
+// Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(startPage, StartPage.class);
+                        intent.putExtra("location",  input.getText().toString());
+                        startPage.startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+
+            }
+        });
+        //write.setImageDrawable(getDrawable(R.drawable.write));
+        /*
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         final FloatingToolbar floatingToolbarMenuBuilder = (FloatingToolbar) findViewById(R.id.floatingToolbar);

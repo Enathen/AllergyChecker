@@ -50,6 +50,7 @@ public class HistoryFragment extends Fragment {
     private LinearLayout parentLinearLayout;
     private Bundle savedInstanceState;
     private StartPage startPage;
+    private ArrayList<String> delete = new ArrayList<>();
     private int rand;
 
     public HistoryFragment(StartPage startPage) {
@@ -166,7 +167,8 @@ public class HistoryFragment extends Fragment {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        new StartPage(getActivity()).deleteOneItemHistory(s, startPage);
+                        delete.add(s);
+
                         topLinLayOut.removeView(button);
                         topLinLayOut.removeView(tv);
                         topLinLayOut.removeView(newLinearLayout);
@@ -175,6 +177,7 @@ public class HistoryFragment extends Fragment {
                             @Override
                             public void onClick(View v) {
                                 Intent intent = new Intent(getActivity(), StartPage.class);
+                                intent.putExtra("mylist", delete);
                                 startActivity(intent);
                             }
                         });

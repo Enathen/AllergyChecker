@@ -105,6 +105,15 @@ public class StartPage extends AppCompatActivity
             sharedPreferencesEditor.apply();
         }
         Intent intent = getIntent();
+        ArrayList<String> myList = (ArrayList<String>) getIntent().getSerializableExtra("mylist");
+        if (myList !=null){
+            if(!myList.isEmpty()){
+                deleteItemsHistory(myList);
+            }
+            intent = new Intent(this, StartPage.class);
+            startActivity(intent);
+        }
+
         suggestions = (TextView) findViewById(R.id.ingredientsTextView);
         allergic = (TextView) findViewById(R.id.textViewFoundAllergies);
 
@@ -164,6 +173,27 @@ public class StartPage extends AppCompatActivity
 
             }
         });
+
+        camera.setOnMenuButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              if(write.getVisibility() != View.VISIBLE){
+                    write.setVisibility(View.VISIBLE);
+                    flash.setVisibility(View.VISIBLE);
+                    flashOff.setVisibility(View.VISIBLE);
+
+                }else{
+                    write.setVisibility(View.GONE);
+                    flash.setVisibility(View.GONE);
+                    flashOff.setVisibility(View.GONE);
+                }
+                camera.close(true);
+                camera.open(true);
+
+            }
+
+        });
+
 
         intent = getIntent();
         String str = intent.getStringExtra("location");
@@ -327,13 +357,16 @@ public class StartPage extends AppCompatActivity
         return new ArrayList<>(set);
     }
 
-    public void deleteOneItemHistory(String key, StartPage startPage) {
-        prefs = startPage.getSharedPreferences(SHARED_PREFS_NAME, Activity.MODE_PRIVATE);
-        SharedPreferences.Editor mEdit1 = prefs.edit();
-        Set<String> set = prefs.getStringSet("list", new HashSet<String>());
-        set.remove(key);
+    public void deleteItemsHistory(ArrayList<String> keys) {
+        SharedPreferences sp = this.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor mEdit1 = sp.edit();
+        Set<String> set = sp.getStringSet("list", new HashSet<String>());
+        set.removeAll(keys);
+        mEdit1.remove("list");
+        mEdit1.commit();
         mEdit1.putStringSet("list", set);
-        mEdit1.apply();
+        mEdit1.commit();
 
 
     }

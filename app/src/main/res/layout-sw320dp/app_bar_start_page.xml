@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="8dp"
+            android:layout_marginRight="0dp"
             fab:menu_animationDelayPerItem="50"
             fab:menu_backgroundColor="@android:color/transparent"
             android:longClickable="true"
@@ -75,8 +75,7 @@
 
             fab:layout_constraintRight_toRightOf="parent"
             fab:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="8dp">
-
+            android:layout_marginBottom="-20dp">
 
 
             <com.github.clans.fab.FloatingActionButton
@@ -84,32 +83,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/write"
-                fab:fab_size="normal"
+                android:visibility="gone"
                 fab:fab_colorNormal="@color/colorPrimary"
                 fab:fab_colorPressed="#66FFFFFF"
                 fab:fab_colorRipple="#FFFFFF"
-                fab:fab_label="@string/write"/>
+                fab:fab_label="@string/write"
+                fab:fab_size="normal" />
+
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/flashon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                fab:rippleColor="@color/colorPrimaryDark"
                 android:src="@drawable/flashon"
-                fab:fab_size="normal"
+                android:visibility="gone"
                 fab:fab_colorNormal="@color/colorPrimary"
                 fab:fab_colorPressed="#66FFFFFF"
                 fab:fab_colorRipple="#FFFFFF"
-                fab:fab_label="@string/useflash" />
+                fab:fab_label="@string/useflash"
+                fab:fab_size="normal"
+                fab:rippleColor="@color/colorPrimaryDark" />
+
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/flashOff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/flash"
-                fab:fab_size="normal"
+                android:visibility="gone"
                 fab:fab_colorNormal="@color/colorPrimary"
                 fab:fab_colorPressed="#66FFFFFF"
                 fab:fab_colorRipple="#FFFFFF"
-                fab:fab_label="@string/useNoFlash"/>
+                fab:fab_label="@string/useNoFlash"
+                fab:fab_size="normal" />
 
         </com.github.clans.fab.FloatingActionMenu>
     </android.support.constraint.ConstraintLayout>

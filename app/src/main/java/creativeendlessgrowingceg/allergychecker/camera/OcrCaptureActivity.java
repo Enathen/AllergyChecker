@@ -160,11 +160,11 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                 return;
             }
         };
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.varning)
                 .setMessage(R.string.thisAppOnlySave)
                 .setPositiveButton(R.string.ok, listener)
-                .show();
+                .show();*/
 
 
     }

@@ -172,6 +172,7 @@ public class HistoryFragment extends Fragment {
                         topLinLayOut.removeView(newLinearLayout);
 
 
+
                     }
                 });
                 String correctString = s.substring(0, 20);

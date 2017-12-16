@@ -243,6 +243,13 @@ public class StartPage extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         setProfilePicture();
+        View parentView = navigationView.getHeaderView(0);
+        parentView.findViewById(R.id.LinLayHorNavHeadStartPage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: ");
+            }
+        });
 
     }
 
@@ -534,6 +541,7 @@ public class StartPage extends AppCompatActivity
     private HashMap<Integer, ImageView> getImageViewHashMap(StartPage startPage) {
         HashMap<Integer, ImageView> imageViewHashMap = new HashMap<>();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
         View parentView = navigationView.getHeaderView(0);
         imageViewHashMap.put(0, (ImageView) parentView.findViewById(R.id.imageViewNav1));
         imageViewHashMap.put(0, (ImageView) parentView.findViewById(R.id.imageViewNav1));
@@ -544,6 +552,7 @@ public class StartPage extends AppCompatActivity
         imageViewHashMap.put(5, (ImageView) parentView.findViewById(R.id.imageViewNav6));
         imageViewHashMap.put(6, (ImageView) parentView.findViewById(R.id.imageViewNav7));
         imageViewHashMap.put(7, (ImageView) parentView.findViewById(R.id.imageViewNav8));
+
         return imageViewHashMap;
     }
 

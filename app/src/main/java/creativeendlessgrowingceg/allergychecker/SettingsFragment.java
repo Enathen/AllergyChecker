@@ -386,18 +386,16 @@ public class SettingsFragment extends Fragment {
     }
 
     public String getLanguageFromLFragment(StartPage startPage) {
-        //Log.d(TAG,preference.getString("getLanguage",null));
-        ArrayList<String> languageAccepted = new ArrayList<String>();
-        languageAccepted.add("en");
-        languageAccepted.add("sv");
+
+        ArrayList<Locale> languageAccepted = LanguagesAccepted.getInstance().getLanguages();
 
         if (preference.contains("getLanguage")) {
             return preference.getString("getLanguage", "en");
         }
-        for (String s : languageAccepted) {
-            if (s.equals(Locale.getDefault().getLanguage())) {
+        for (Locale locale : languageAccepted) {
+            if (locale.getLanguage().equals(Locale.getDefault().getLanguage())) {
                 SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(startPage).edit();
-                sharedPreferencesEditor.putString("getLanguage", s);
+                sharedPreferencesEditor.putString("getLanguage", locale.getLanguage());
                 sharedPreferencesEditor.apply();
                 return Locale.getDefault().getLanguage();
             }
@@ -409,18 +407,15 @@ public class SettingsFragment extends Fragment {
 
     public String getLanguageFromLFragment(Context startPage) {
         //Log.d(TAG,preference.getString("getLanguage",null));
-        ArrayList<String> languageAccepted = new ArrayList<String>();
-        languageAccepted.add("en");
-        languageAccepted.add("sv");
-        languageAccepted.add("es");
+        ArrayList<Locale> languageAccepted = LanguagesAccepted.getInstance().getLanguages();
         Log.d(TAG, "StartPageLanguageFragment" + Locale.getDefault().getLanguage());
         if (preference.contains("getLanguage")) {
             return preference.getString("getLanguage", "en");
         }
-        for (String s : languageAccepted) {
-            if (s.equals(Locale.getDefault().getLanguage())) {
+        for (Locale locale : languageAccepted) {
+            if (locale.getLanguage().equals(Locale.getDefault().getLanguage())) {
                 SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(startPage).edit();
-                sharedPreferencesEditor.putString("getLanguage", s);
+                sharedPreferencesEditor.putString("getLanguage", locale.getLanguage());
                 sharedPreferencesEditor.apply();
                 return Locale.getDefault().getLanguage();
             }

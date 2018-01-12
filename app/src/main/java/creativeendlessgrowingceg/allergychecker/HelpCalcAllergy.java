@@ -262,19 +262,7 @@ public class HelpCalcAllergy {
 
     }
 
-    public int getFlag(String langCode) {
-        if (langCode.equals("sv")) {
-            return R.drawable.se;
-        }
-        if (langCode.equals("en")) {
-            return R.drawable.gb;
-        }
-        if (langCode.equals("es")) {
-            return R.drawable.es;
-        }
-        return 0;
 
-    }
 
 
     public boolean checkIfAlreadyShown(View v) {

@@ -698,7 +698,7 @@ public class StartPage extends AppCompatActivity
             for (final AllAllergiesForEachInteger allergiesForEachInteger : allAllergiesForEachInteger) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 LinearLayout newlinearLayout = (LinearLayout) inflater.inflate(R.layout.linlayoutstartpagevertical, null);
-                ((ImageView) newlinearLayout.findViewById(R.id.imageViewHorStartPage)).setImageResource(helpCalcAllergy.getFlag(allergiesForEachInteger.getLanguage()));
+                ((ImageView) newlinearLayout.findViewById(R.id.imageViewHorStartPage)).setImageResource(LanguagesAccepted.getInstance().getFlag(allergiesForEachInteger.getLanguage()));
                 ((TextView) newlinearLayout.findViewById(R.id.textViewAllergy)).setText(helpCalcAllergy.cutFirstWord(getString(allergiesForEachInteger.getId())).concat(": " + allergiesForEachInteger.getNameOfIngredient()));
                 ((TextView) newlinearLayout.findViewById(R.id.textViewFoundFromWord)).setText(allergiesForEachInteger.getNameOfWordFound());
                 if (!linearLayoutHashMap.containsKey(allergiesForEachInteger.getMotherLanguage())) {

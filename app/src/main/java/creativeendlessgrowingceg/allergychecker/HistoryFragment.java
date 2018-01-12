@@ -5,7 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -102,6 +104,7 @@ public class HistoryFragment extends Fragment {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -123,6 +126,7 @@ public class HistoryFragment extends Fragment {
         return parentFrameLayout;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void insertNew(final LayoutInflater inflater, final ViewGroup container, final ArrayList<String> arrayList) {
         int colorGreenToRed = 26;
         ArrayList<Integer> color = ColorRandom.getRandomColor();

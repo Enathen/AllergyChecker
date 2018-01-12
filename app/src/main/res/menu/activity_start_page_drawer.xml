@@ -20,20 +20,25 @@
             android:id="@+id/languageMenu"
             android:icon="@drawable/language"
             android:title="@string/language" />
-        <item
-            android:id="@+id/tutorial"
-            android:icon="@drawable/tutorial"
-            android:title="@string/tutorial" />
+
         <item
             android:id="@+id/translate"
             android:icon="@drawable/translatetiny"
             android:title="@string/helpTranslate" />
-        <item
-            android:id="@+id/about"
-            android:icon="@drawable/about"
-            android:title="@string/about" />
-    </group>
 
+    </group>
+    <item android:title="@string/help">
+        <menu>
+            <item
+                android:id="@+id/about"
+                android:icon="@drawable/about"
+                android:title="@string/about" />
+            <item
+                android:id="@+id/tutorial"
+                android:icon="@drawable/tutorial"
+                android:title="@string/tutorial" />
+        </menu>
+    </item>
     <item android:title="@string/SharingIsCaring">
         <menu>
             <item

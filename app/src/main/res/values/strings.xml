@@ -50,16 +50,16 @@
 
 
     <string name="nuts">Nuts</string>
-    <string name="almond">Almond</string>
+    <string name="almond">Almond, Almonds</string>
     <string name="brazil">Brazil Nuts</string>
     <string name="cocoa">Cocoa</string>
-    <string name="hazelnut">Hazelnut</string>
+    <string name="hazelnut">Hazelnut, Hazelnuts</string>
     <string name="macadamia">Macadamia Nuts</string>
-    <string name="peanuts">Peanuts</string>
-    <string name="pecans">Pecans</string>
+
+    <string name="pecans">Pecans, Pecan</string>
     <string name="pili">Pili Nuts</string>
     <string name="pine">Pine Nuts</string>
-    <string name="pistachios">Pistachios</string>
+    <string name="pistachios">Pistachios, Pistachios</string>
     <string name="soy">Soy</string>
     <string name="tiger">Tiger Nuts</string>
     <string name="walnuts">Walnuts</string>
@@ -329,5 +329,6 @@
     <string name="useflash">flash On</string>
     <string name="useNoFlash">flash Off</string>
     <string name="SharingIsCaring">Sharing is caring</string>
+    <string name="help">help</string>
 
 </resources>

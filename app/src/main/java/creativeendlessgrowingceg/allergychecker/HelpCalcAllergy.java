@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -113,28 +114,43 @@ public class HelpCalcAllergy {
     }
 
     public int setLocaleString(int length, int id, HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies, ArrayList<Locale> listOfLanguages, StartPage startPage) {
+
         for (Locale locale : listOfLanguages) {
 
             String localeString = getStringByLocal(startPage, id, locale.getLanguage());
             if (length < localeString.length()) {
                 length = localeString.length() + 2;
             }
-            if (allergies.containsKey(localeString.length())) {
-                allergies.put((localeString).length(), allergies.get((localeString).length())).put(
-                        localeString, new AllAllergiesForEachInteger(locale.getLanguage(),
-                                localeString, id, startPage.getString(id)));
-            } else {
-                HashMap<String, AllAllergiesForEachInteger> hashSetn = new HashMap<>();
-                hashSetn.put(localeString, new AllAllergiesForEachInteger(locale.getLanguage(), localeString, id, startPage.getString(id)));
-                allergies.put((localeString).length(), hashSetn);
+            List<String > list = split(localeString);
+            for (int i = 0; i < list.size(); i++) {
+
+                if (allergies.containsKey(localeString.length())) {
+
+                    allergies.put((list.get(i)).length(), allergies.get((list.get(i)).length())).put(
+                            list.get(i), new AllAllergiesForEachInteger(locale.getLanguage(),
+                                    list.get(i), id, startPage.getString(id)));
+
+
+                } else {
+                    HashMap<String, AllAllergiesForEachInteger> hashSetn = new HashMap<>();
+                    hashSetn.put(list.get(i), new AllAllergiesForEachInteger(locale.getLanguage(), list.get(i), id, startPage.getString(id)));
+                    allergies.put((list.get(i)).length(), hashSetn);
+
+                }
             }
         }
+
         return length;
     }
 
     public void bkTree(int length, TreeMap<Integer, HashSet<String>> hashSetAllStrings,
                        HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies,
                        ArrayList<AllAllergiesForEachInteger> allFoundAllergies) {
+        for (HashMap<String, AllAllergiesForEachInteger> hashSet : allergies.values()) {
+            for (AllAllergiesForEachInteger s : hashSet.values()) {
+                Log.d(TAG, "getCategoriesFromOtherClass: " + s.getNameOfIngredient());
+            }
+        }
         for (Integer s : hashSetAllStrings.keySet()) {
             if (length < s) {
                 continue;
@@ -284,5 +300,18 @@ public class HelpCalcAllergy {
             return string;
         }
         return list.get(0);
+    }
+    public List<String> split(String string) {
+        List<String> list = null;
+        if (string.contains(",")) {
+            list = Arrays.asList(string.split(","));
+
+        }
+        if (list == null) {
+            list = new ArrayList<>();
+            list.add(string);
+            return list;
+        }
+        return list;
     }
 }

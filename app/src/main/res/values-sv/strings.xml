@@ -263,7 +263,7 @@
         4. Tryck på en vit box när det ser ut som all text är täckt!\n
         5. Texten kommer då sparas, och analyseras.
         </string>
-    <string name="tutorial">Hjälp</string>
+    <string name="tutorial">Handledning</string>
     <string name="anis">Anis</string>
     <string name="coriander">Koriander</string>
     <string name="cumin">Kummin</string>
@@ -293,12 +293,12 @@
     <string name="pepsin">Pepsin</string>
 
     <string name="halal">Halal</string>
-    <string name="start">Main page</string>
+    <string name="start">Start Sida</string>
     <string name="holdFor">Håll för mer information</string>
     <string name="about">Om</string>
     <string name="helpTranslate">Hjälp Översätt</string>
-    <string name="save">Save</string>
-    <string name="onlyFillChanges">Only fill those you change, leave other empty! Thanks Helper!</string>
+    <string name="save">Spara</string>
+    <string name="onlyFillChanges">Fyll bara i dem du ändrar, Lämna dem andra tomma! Tack Hjälpare!</string>
     <string name="specialThanksTo">Special thanks to Alpha Testers:</string>
     <string name="thisappUses">This app uses:</string>
     <string name="FAB">FloatingActionButton by Clans</string>
@@ -308,21 +308,22 @@
     <string name="googleCamera">Google Vision API - The Android Open Source Project</string>
     <string name="translatedFrom">Translated from</string>
     <string name="nameIfyouWantToBeInHelperList">Name if you want to be in helper list</string>
-    <string name="uncheckAll">Uncheck All</string>
-    <string name="checkAll">Check all</string>
-    <string name="backDisabled">Back disabled</string>
-    <string name="delete">Delete</string>
-    <string name="spice">Spices</string>
-    <string name="butter">Butter</string>
-    <string name="cheese">Cheese</string>
-    <string name="casein">Casein</string>
+    <string name="uncheckAll">avmarkera alla</string>
+    <string name="checkAll">markera alla</string>
+    <string name="backDisabled">Tillbaka borttagen</string>
+    <string name="delete">Ta bort</string>
+    <string name="spice">Kryddor</string>
+    <string name="butter">Smör</string>
+    <string name="cheese">Ost</string>
+    <string name="casein">Kasein</string>
     <string name="yoghurt">Yogurt, Yoghurt, Yoghourt</string>
-    <string name="custard">Custard</string>
-    <string name="cream">Cream</string>
-    <string name="write">Write</string>
-    <string name="useflash">Use flash</string>
-    <string name="useNoFlash">Use no flash</string>
+    <string name="custard">Senap</string>
+    <string name="cream">Grädde</string>
+    <string name="write">skriv in ingredienser</string>
+    <string name="useflash">ficklampa på</string>
+    <string name="useNoFlash"> ficklampa av</string>
     <string name="SharingIsCaring">Sharing is caring</string>
+    <string name="help">Hjälp</string>
 
 
 </resources>

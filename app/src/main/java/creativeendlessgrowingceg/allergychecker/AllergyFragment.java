@@ -428,6 +428,7 @@ public class AllergyFragment extends Fragment {
         HashSet<Integer> hashSet = new HashSet<>();
         for (String s : set) {
             hashSet.add(Integer.parseInt(s));
+
         }
 
 

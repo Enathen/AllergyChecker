@@ -49,11 +49,11 @@ public class AllergyList {
         setArrayListVegetables();
         setArrayListCitrus();
         setArrayListLegumes();
+        setArrayListSpice();
         setArrayListMuslim();
         setArrayListKosher();
         setArrayListVegan();
         setArrayListVegetarian();
-        setArrayListSpice();
         setArrayListDemiVegetarian();
         setArrayListLactoOvoVegetarian();
         setArrayListOvoVegetarian();

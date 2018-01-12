@@ -44,10 +44,9 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -597,17 +596,9 @@ public class StartPage extends AppCompatActivity
         String string;
 
         DateString(String string) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.get(Calendar.DAY_OF_MONTH);
-            Date date = calendar.getTime();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss", new Locale("sv"));
 
-            String dateTime = DateFormat.getDateInstance(DateFormat.SHORT).format(date);
-            dateTime = dateTime.concat(" " + DateFormat.getTimeInstance(DateFormat.MEDIUM).format(date));
-
-            Log.d(TAG, "DATE:" + dateTime);
-            String newString = dateTime;
-            newString = newString.concat(" " + string);
-            this.string = newString;
+            this.string = simpleDateFormat.format(new Date()).concat(" " + string);
         }
     }
 
@@ -640,13 +631,17 @@ public class StartPage extends AppCompatActivity
         protected ArrayList<AllAllergiesForEachInteger> doInBackground(String... params) {
             // get the string from params, which is an array
             TreeMap<Integer, HashSet<String>> hashSetAllStrings = new TreeMap<>();
+
             HashSet<String> hashSetToCheckLast = new HashSet<>();
             helpCalcAllergy.FixString(params[0].split("\\s+"), hashSetAllStrings, hashSetToCheckLast);
 
             ArrayList<Locale> listOfLanguages = new SettingsFragment(mContext).getCategories();
-
+            if(listOfLanguages.isEmpty()){
+                listOfLanguages.add(Locale.getDefault());
+            }
             HashSet<Integer> hashSetFromOtherClass = new AllergyFragment(mContext).getCategoriesFromOtherClass();
             HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies = new HashMap<>();
+
             int length = 0;
             int counter = 0;
             int i = 0;
@@ -661,7 +656,7 @@ public class StartPage extends AppCompatActivity
                 i++;
 
             }
-            HashSet<String> alreadyContainedAllergies = new HashSet<>();
+
             helpCalcAllergy.bkTree(length, hashSetAllStrings, allergies, allFoundAllergies);
 
             long start = System.currentTimeMillis();
@@ -700,25 +695,25 @@ public class StartPage extends AppCompatActivity
             String outputString = "";
             final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linLayHorizontalStartPage);
             final HashMap<String, Lin> linearLayoutHashMap = new HashMap<>();
-            for (final AllAllergiesForEachInteger s : allAllergiesForEachInteger) {
+            for (final AllAllergiesForEachInteger allergiesForEachInteger : allAllergiesForEachInteger) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 LinearLayout newlinearLayout = (LinearLayout) inflater.inflate(R.layout.linlayoutstartpagevertical, null);
-                ((ImageView) newlinearLayout.findViewById(R.id.imageViewHorStartPage)).setImageResource(helpCalcAllergy.getFlag(s.getLanguage()));
-                ((TextView) newlinearLayout.findViewById(R.id.textViewAllergy)).setText(helpCalcAllergy.cutFirstWord(getString(s.getId())));
-                ((TextView) newlinearLayout.findViewById(R.id.textViewFoundFromWord)).setText(s.getNameOfWordFound());
-                if (!linearLayoutHashMap.containsKey(s.getMotherLanguage())) {
+                ((ImageView) newlinearLayout.findViewById(R.id.imageViewHorStartPage)).setImageResource(helpCalcAllergy.getFlag(allergiesForEachInteger.getLanguage()));
+                ((TextView) newlinearLayout.findViewById(R.id.textViewAllergy)).setText(helpCalcAllergy.cutFirstWord(getString(allergiesForEachInteger.getId())).concat(": " + allergiesForEachInteger.getNameOfIngredient()));
+                ((TextView) newlinearLayout.findViewById(R.id.textViewFoundFromWord)).setText(allergiesForEachInteger.getNameOfWordFound());
+                if (!linearLayoutHashMap.containsKey(allergiesForEachInteger.getMotherLanguage())) {
                     LinearLayout parentLin = (LinearLayout) inflater.inflate(R.layout.linlayoutstartpageverticaltrue, null);
                     parentLin.addView(newlinearLayout);
                     linearLayout.addView(parentLin);
                     ArrayList<LinearLayout> l = new ArrayList<>();
-                    linearLayoutHashMap.put(s.getMotherLanguage(), new Lin(newlinearLayout, l, parentLin));
-                    Log.d(TAG, "onPostExecute: size" + linearLayoutHashMap.get(s.getMotherLanguage()).linearLayoutArrayList.size());
+                    linearLayoutHashMap.put(allergiesForEachInteger.getMotherLanguage(), new Lin(newlinearLayout, l, parentLin));
+                    Log.d(TAG, "onPostExecute: size" + linearLayoutHashMap.get(allergiesForEachInteger.getMotherLanguage()).linearLayoutArrayList.size());
 
 
                 } else {
                     newlinearLayout.findViewById(R.id.arrowLeft).setVisibility(View.INVISIBLE);
-                    linearLayoutHashMap.get(s.getMotherLanguage()).linearLayoutArrayList.add(newlinearLayout);
-                    Log.d(TAG, "onPostExecute: size" + linearLayoutHashMap.get(s.getMotherLanguage()).linearLayoutArrayList.size());
+                    linearLayoutHashMap.get(allergiesForEachInteger.getMotherLanguage()).linearLayoutArrayList.add(newlinearLayout);
+                    Log.d(TAG, "onPostExecute: size" + linearLayoutHashMap.get(allergiesForEachInteger.getMotherLanguage()).linearLayoutArrayList.size());
                 }
             }
             for (final String string : linearLayoutHashMap.keySet()) {

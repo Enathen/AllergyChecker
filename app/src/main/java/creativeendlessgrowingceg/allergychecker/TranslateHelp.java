@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -183,25 +182,13 @@ public class TranslateHelp extends Fragment {
                 i++;
                 rand++;
             }
-            Button button = new Button(context);
-            button.setText(R.string.send);
-            button.setBackgroundColor(context.getColor(R.color.colorPrimaryDark));
-            button.setTextColor(context.getColor(R.color.fontColorTextWhite));
-            button.setTextSize(32);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onclick();
-                }
-            });
-            parentLinearLayout.findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
+            parentFrameLayout.findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     onclick();
 
                 }
             });
-            parentLinearLayout.addView(button);
             parentLinearLayout.removeView(parentLinearLayout.findViewById(R.id.progressBarTranslate));
 
 

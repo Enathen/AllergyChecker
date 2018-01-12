@@ -69,7 +69,6 @@ public class StartPage extends AppCompatActivity
     private static final String TAG = "StartPage";
     private static final String SHARED_PREFS_NAME = "StartPage";
     FloatingActionButton flash;
-    FloatingActionButton flashOff;
     FloatingActionButton write;
     FloatingActionMenu camera;
     ArrayList<String> dateStrings = new ArrayList<>();
@@ -124,16 +123,6 @@ public class StartPage extends AppCompatActivity
                 startPage.startActivity(intent);
             }
         });
-        flashOff = (FloatingActionButton) findViewById(R.id.flashOff);
-        flashOff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(startPage, OcrCaptureActivity.class);
-                intent.putExtra("EXTRA_SESSION_ID", false);
-                startPage.startActivity(intent);
-
-            }
-        });
         write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,25 +153,37 @@ public class StartPage extends AppCompatActivity
             }
         });
 
-        camera.setOnMenuButtonClickListener(new View.OnClickListener() {
+        camera.setOnMenuButtonLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
-              if(write.getVisibility() != View.VISIBLE){
+            public boolean onLongClick(View v) {
+                if(write.getVisibility() != View.VISIBLE){
                     write.setVisibility(View.VISIBLE);
                     flash.setVisibility(View.VISIBLE);
-                    flashOff.setVisibility(View.VISIBLE);
+                    camera.open(true);
 
                 }else{
                     write.setVisibility(View.GONE);
                     flash.setVisibility(View.GONE);
-                    flashOff.setVisibility(View.GONE);
+
+                    camera.close(true);
                 }
-                camera.close(true);
-                camera.open(true);
+                return true;
+
+
 
             }
 
         });
+        camera.setOnMenuButtonClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(startPage, OcrCaptureActivity.class);
+                intent.putExtra("EXTRA_SESSION_ID", false);
+                startPage.startActivity(intent);
+            }
+        });
+
+
 
 
         intent = getIntent();

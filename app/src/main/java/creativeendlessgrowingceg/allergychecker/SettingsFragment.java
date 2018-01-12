@@ -147,16 +147,16 @@ public class SettingsFragment extends Fragment {
         final LinearLayout parentLinearLayout = (LinearLayout) topLinearLayout.findViewById(R.id.linearLayoutRowCategoryHorizontal);
         ((ImageView) parentLinearLayout.findViewById(R.id.imageViewRowCategory)).setImageResource(R.drawable.translate);
         ((ImageView) parentLinearLayout.findViewById(R.id.dropDownList)).setVisibility(View.INVISIBLE);
-        ((TextView) parentLinearLayout.findViewById(R.id.textViewCategory)).setText(R.string.languageFrom);
+        ((TextView) parentLinearLayout.findViewById(R.id.textViewCategory)).setText(R.string.checkAll);
         SharedPreferences settings = getContext().getSharedPreferences("box", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = settings.edit();
         for (final Languages.LanguagesClass languagesClass : arrayListLanguage) {
-            LinearLayout newLinearLayout = (LinearLayout) inflater.inflate(R.layout.leftmarginrowlayout, null);
-            ((ImageView) newLinearLayout.findViewById(R.id.imageViewLeftMargin)).setImageResource(languagesClass.picture);
-            ((TextView) newLinearLayout.findViewById(R.id.textViewLeftMargin)).setText(languagesClass.language);
-            final CheckBox checkBox = (CheckBox) newLinearLayout.findViewById(R.id.checkBoxRowLeftMargin);
+            LinearLayout newLinearLayout = (LinearLayout) inflater.inflate(R.layout.rowcategorylayout, null);
+            ((ImageView) newLinearLayout.findViewById(R.id.imageViewRowCategory)).setImageResource(languagesClass.picture);
+            ((ImageView) newLinearLayout.findViewById(R.id.dropDownList)).setVisibility(View.INVISIBLE);
+            ((TextView) newLinearLayout.findViewById(R.id.textViewCategory)).setText(languagesClass.language);
+            final CheckBox checkBox = (CheckBox) newLinearLayout.findViewById(R.id.checkBoxRowCategory);
             checkBoxes.add(new CheckBoxes(getString(languagesClass.id), checkBox, languagesClass.locale));
-            Log.d(TAG, "SWAG" + String.valueOf(languagesClass.locale));
             checkBox.setChecked(settings.getBoolean(getString(languagesClass.id), false));
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -186,19 +186,13 @@ public class SettingsFragment extends Fragment {
                 onclickDropDownList(v, arrayListLinearLayout, topLinearLayout);
             }
         });
-/*        parentLinearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onclickDropDownList(parentLinearLayout.findViewById(R.id.dropDownList),
-                        arrayListLinearLayout,topLinearLayout);
-            }
-        });*/
+
         ((CheckBox) parentLinearLayout.findViewById(R.id.checkBoxRowCategory)).
                 setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         for (LinearLayout linearLayout : arrayListLinearLayout) {
-                            ((CheckBox) linearLayout.findViewById(R.id.checkBoxRowLeftMargin)).setChecked(isChecked);
+                            ((CheckBox) linearLayout.findViewById(R.id.checkBoxRowCategory)).setChecked(isChecked);
                         }
                         editor.putBoolean(String.valueOf(R.string.languageFrom), isChecked);
                         editor.apply();
@@ -224,7 +218,7 @@ public class SettingsFragment extends Fragment {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         for (LinearLayout linearLayout : arrayListLinearLayout) {
-                            ((CheckBox) linearLayout.findViewById(R.id.checkBoxRowLeftMargin)).setChecked(isChecked);
+                            ((CheckBox) linearLayout.findViewById(R.id.checkBoxRowCategory)).setChecked(isChecked);
                         }
                         editor.putBoolean(String.valueOf(R.string.languageFrom), isChecked);
                         editor.apply();

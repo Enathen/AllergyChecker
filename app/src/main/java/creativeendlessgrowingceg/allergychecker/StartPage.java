@@ -156,19 +156,18 @@ public class StartPage extends AppCompatActivity
         camera.setOnMenuButtonLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if(write.getVisibility() != View.VISIBLE){
+                if (write.getVisibility() != View.VISIBLE) {
                     write.setVisibility(View.VISIBLE);
                     flash.setVisibility(View.VISIBLE);
                     camera.open(true);
 
-                }else{
+                } else {
                     write.setVisibility(View.GONE);
                     flash.setVisibility(View.GONE);
 
                     camera.close(true);
                 }
                 return true;
-
 
 
             }
@@ -182,8 +181,6 @@ public class StartPage extends AppCompatActivity
                 startPage.startActivity(intent);
             }
         });
-
-
 
 
         intent = getIntent();
@@ -257,9 +254,11 @@ public class StartPage extends AppCompatActivity
     private void setProfilePicture() {
         new AllergyFragment(this, getImageViewHashMap(this), new SettingsFragment(this).getCategories()).setProfilePic();
     }
+
     private void displayInterstitial() {
         interstitialAd.loadAd(new AdRequest.Builder().addTestDevice("79C8186833AA41CD2C967FE87614751A").build());
     }
+
     public void loadInterstitial() {
         interstitialAd = new InterstitialAd(StartPage.this);
         interstitialAd.setAdUnitId("ca-app-pub-3607354849437438/9852745111");
@@ -281,6 +280,7 @@ public class StartPage extends AppCompatActivity
         });
 
     }
+
     private void checkStringAgainstAllergies(String str) {
         displayInterstitial();
         deleteConstrained();
@@ -593,6 +593,10 @@ public class StartPage extends AppCompatActivity
 
     }
 
+    public Context startPage() {
+        return this;
+    }
+
     public class DateString {
         String string;
 
@@ -637,7 +641,7 @@ public class StartPage extends AppCompatActivity
             helpCalcAllergy.FixString(params[0].split("\\s+"), hashSetAllStrings, hashSetToCheckLast);
 
             ArrayList<Locale> listOfLanguages = new SettingsFragment(mContext).getCategories();
-            if(listOfLanguages.isEmpty()){
+            if (listOfLanguages.isEmpty()) {
                 listOfLanguages.add(Locale.getDefault());
             }
             HashSet<Integer> hashSetFromOtherClass = new AllergyFragment(mContext).getCategoriesFromOtherClass();
@@ -783,9 +787,6 @@ public class StartPage extends AppCompatActivity
 
 
         }
-    }
-    public Context startPage(){
-        return this;
     }
 
 }

@@ -67,6 +67,7 @@ public class HelpCalcAllergy {
 
         return context.createConfigurationContext(configuration).getResources().getString(id).toLowerCase().replaceAll("\\s+", "");
     }
+
     @NonNull
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static String getStringByLocal(Context context, int id, String locale) {
@@ -121,7 +122,7 @@ public class HelpCalcAllergy {
             if (length < localeString.length()) {
                 length = localeString.length() + 2;
             }
-            List<String > list = split(localeString);
+            List<String> list = split(localeString);
             for (int i = 0; i < list.size(); i++) {
 
                 if (allergies.containsKey(localeString.length())) {
@@ -263,8 +264,6 @@ public class HelpCalcAllergy {
     }
 
 
-
-
     public boolean checkIfAlreadyShown(View v) {
         if (v.getRotation() == 0) {
             v.setRotation(180);
@@ -289,6 +288,7 @@ public class HelpCalcAllergy {
         }
         return list.get(0);
     }
+
     public List<String> split(String string) {
         List<String> list = null;
         if (string.contains(",")) {

@@ -498,7 +498,49 @@ public class AllergyFragment extends Fragment {
         new SavePicture(context).execute();
     }
 
+    public void setOnChecked(final CheckBox check, final SharedPreferences.Editor editor, final CheckBoxClass checkBox) {
+        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (CheckBox box : sameItemDifferentCategories.get(checkBox.id)) {
+                            if (!box.equals(check)) {
 
+                                box.setOnCheckedChangeListener(null);
+                                box.setChecked(isChecked);
+                                setOnChecked(box, editor, checkBox);
+                            }
+                        }
+                        for (CheckBox box : sameItemDifferentCategories.get(checkBox.id)) {
+                            if (!box.equals(checkBox.checkBox)) {
+
+                                box.setChecked(isChecked);
+
+                            }
+                        }
+                        if (parentCheckBox.containsKey(checkBox.ingredient)) {
+                            if (parentCheckBox.get(checkBox.ingredient).isChecked()) {
+                                parentCheckBox.get(checkBox.ingredient).setChecked(false);
+                            } else {
+                                parentCheckBox.get(checkBox.ingredient).setChecked(true);
+                            }
+                        }
+                        checkBoxLeftMarginSaveString(isChecked, checkBox.id, checkBox.parentPicture);
+                        parentCheckBox.get(checkBox.key).setOnCheckedChangeListener(null);
+                        seeIfAllCheckboxIsChecked(parentCheckBox.get(checkBox.key), checkBox.key, checkBox.parentKey);
+                        parentCheckBoxOnClickListener(parentCheckBox.get(checkBox.key), checkBox.key);
+                        editor.putBoolean(checkBox.ingredient, isChecked);
+                        editor.apply();
+                        Log.d(TAG, "TIME" + checkBox.ingredient);
+                    }
+                });
+
+            }
+        });
+
+    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -886,48 +928,5 @@ public class AllergyFragment extends Fragment {
             parentKey = ParentKey;
             this.ingredient = ingredient;
         }
-    }
-    public void setOnChecked(final CheckBox check, final SharedPreferences.Editor editor, final CheckBoxClass checkBox) {
-        check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        for (CheckBox box : sameItemDifferentCategories.get(checkBox.id)) {
-                            if (!box.equals(check)) {
-
-                                box.setOnCheckedChangeListener(null);
-                                box.setChecked(isChecked);
-                                setOnChecked(box, editor, checkBox);
-                            }
-                        }
-                        for (CheckBox box : sameItemDifferentCategories.get(checkBox.id)) {
-                            if (!box.equals(checkBox.checkBox)) {
-
-                                box.setChecked(isChecked);
-
-                            }
-                        }
-                        if (parentCheckBox.containsKey(checkBox.ingredient)) {
-                            if (parentCheckBox.get(checkBox.ingredient).isChecked()) {
-                                parentCheckBox.get(checkBox.ingredient).setChecked(false);
-                            } else {
-                                parentCheckBox.get(checkBox.ingredient).setChecked(true);
-                            }
-                        }
-                        checkBoxLeftMarginSaveString(isChecked, checkBox.id, checkBox.parentPicture);
-                        parentCheckBox.get(checkBox.key).setOnCheckedChangeListener(null);
-                        seeIfAllCheckboxIsChecked(parentCheckBox.get(checkBox.key), checkBox.key, checkBox.parentKey);
-                        parentCheckBoxOnClickListener(parentCheckBox.get(checkBox.key), checkBox.key);
-                        editor.putBoolean(checkBox.ingredient, isChecked);
-                        editor.apply();
-                        Log.d(TAG, "TIME" + checkBox.ingredient);
-                    }
-                });
-
-            }
-        });
-
     }
 }

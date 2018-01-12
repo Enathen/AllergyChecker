@@ -1,9 +1,7 @@
 package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -125,10 +123,8 @@ public class SettingsFragment extends Fragment {
 
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linearLayoutLanguage);
-        Languages languages = new Languages(getContext());
-
         //parentLinearLayout.addView(addStaticLanguages(inflater,languages.getstaticArrayListLanguage()));
-        parentLinearLayout.addView(addLanguages(inflater, languages.getArrayListLanguage()));
+        parentLinearLayout.addView(addLanguages(inflater));
 
 
         for (CheckBoxes checkBox : checkBoxes) {
@@ -141,7 +137,7 @@ public class SettingsFragment extends Fragment {
         return parentFrameLayout;
     }
 
-    private LinearLayout addLanguages(LayoutInflater inflater, ArrayList<Languages.LanguagesClass> arrayListLanguage) {
+    private LinearLayout addLanguages(LayoutInflater inflater) {
         final ArrayList<LinearLayout> arrayListLinearLayout = new ArrayList<>();
         final LinearLayout topLinearLayout = (LinearLayout) inflater.inflate(R.layout.rowcategorylayout, null);
         final LinearLayout parentLinearLayout = (LinearLayout) topLinearLayout.findViewById(R.id.linearLayoutRowCategoryHorizontal);
@@ -150,24 +146,24 @@ public class SettingsFragment extends Fragment {
         ((TextView) parentLinearLayout.findViewById(R.id.textViewCategory)).setText(R.string.checkAll);
         SharedPreferences settings = getContext().getSharedPreferences("box", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = settings.edit();
-        for (final Languages.LanguagesClass languagesClass : arrayListLanguage) {
+        for (final Locale locale : LanguagesAccepted.getLanguages()) {
             LinearLayout newLinearLayout = (LinearLayout) inflater.inflate(R.layout.rowcategorylayout, null);
-            ((ImageView) newLinearLayout.findViewById(R.id.imageViewRowCategory)).setImageResource(languagesClass.picture);
+            ((ImageView) newLinearLayout.findViewById(R.id.imageViewRowCategory)).setImageResource(LanguagesAccepted.getFlag(locale.getLanguage()));
             ((ImageView) newLinearLayout.findViewById(R.id.dropDownList)).setVisibility(View.INVISIBLE);
-            ((TextView) newLinearLayout.findViewById(R.id.textViewCategory)).setText(languagesClass.language);
+            ((TextView) newLinearLayout.findViewById(R.id.textViewCategory)).setText(LanguagesAccepted.getCountryName(locale.getLanguage()));
             final CheckBox checkBox = (CheckBox) newLinearLayout.findViewById(R.id.checkBoxRowCategory);
-            checkBoxes.add(new CheckBoxes(getString(languagesClass.id), checkBox, languagesClass.locale));
-            checkBox.setChecked(settings.getBoolean(getString(languagesClass.id), false));
+            checkBoxes.add(new CheckBoxes(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), checkBox, locale));
+            checkBox.setChecked(settings.getBoolean(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), false));
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    editor.putBoolean(getString(languagesClass.id), isChecked);
+                    editor.putBoolean(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), isChecked);
                     editor.apply();
 
                     checkIfParentCheckBoxShouldSwitch(((CheckBox) parentLinearLayout.findViewById(R.id.checkBoxRowCategory)), editor, arrayListLinearLayout);
-                    if (languagesClass.locale.getLanguage().equals(language)) {
+                    if (locale.getLanguage().equals(language)) {
                         checkBox.setChecked(true);
-                        editor.putBoolean(getString(languagesClass.id), true);
+                        editor.putBoolean(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), true);
                         editor.apply();
                         checkIfParentCheckBoxShouldSwitch(((CheckBox) parentLinearLayout.findViewById(R.id.checkBoxRowCategory)), editor, arrayListLinearLayout);
                     }
@@ -231,59 +227,7 @@ public class SettingsFragment extends Fragment {
     }
 
 
-    private LinearLayout addStaticLanguages(LayoutInflater inflater, ArrayList<Languages.LanguagesClass> languageFrom) {
-        final ArrayList<LinearLayout> arrayListLinearLayout = new ArrayList<>();
-        final LinearLayout topLinearLayout = (LinearLayout) inflater.inflate(R.layout.rowlanguage, null);
-        final LinearLayout parentLinearLayout = (LinearLayout) topLinearLayout.findViewById(R.id.linHorRowLang);
-        ((ImageView) parentLinearLayout.findViewById(R.id.ImageViewRowLanguage)).setImageResource(R.drawable.langstat);
-        ((TextView) parentLinearLayout.findViewById(R.id.textViewRowLanguage)).setText(R.string.languageGeneral);
-        SharedPreferences settings = getContext().getSharedPreferences("box", Context.MODE_PRIVATE);
-        final SharedPreferences.Editor editor = settings.edit();
-        for (final Languages.LanguagesClass languagesClass : languageFrom) {
 
-            LinearLayout newLinearLayout = (LinearLayout) inflater.inflate(R.layout.rowlayoutlanguageradio, null);
-            ((ImageView) newLinearLayout.findViewById(R.id.imageViewRadio)).setImageResource(languagesClass.picture);
-            ((TextView) newLinearLayout.findViewById(R.id.textViewRadio)).setText(languagesClass.language);
-            final RadioButton radioButton = (RadioButton) newLinearLayout.findViewById(R.id.radioButtonLanguage);
-            radioButtons.add(new RadioButtons(String.valueOf(languagesClass.id), radioButton, languagesClass.locale));
-            radioButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onRadioButtonClicked(v, editor);
-                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-                    SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
-                    sharedPreferencesEditor.putString("getLanguage", languagesClass.locale.getLanguage());
-                    sharedPreferencesEditor.apply();
-                    Locale.setDefault(languagesClass.locale);
-                    Configuration config = new Configuration();
-                    config.setLocale(languagesClass.locale);
-                    getActivity().getApplicationContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
-                    Intent intent = getActivity().getIntent();
-                    getActivity().finish();
-                    startActivity(intent);
-
-
-                }
-            });
-            radioButton.setChecked(settings.getBoolean(String.valueOf(languagesClass.id), false));
-            arrayListLinearLayout.add(newLinearLayout);
-        }
-
-        ((ImageView) parentLinearLayout.findViewById(R.id.imageViewDropDownLanguage)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onclickDropDownList(v, arrayListLinearLayout, topLinearLayout);
-            }
-        });
-        parentLinearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onclickDropDownList(parentLinearLayout.findViewById(R.id.imageViewDropDownLanguage),
-                        arrayListLinearLayout, topLinearLayout);
-            }
-        });
-        return topLinearLayout;
-    }
 
     public void saveCategories() {
         SharedPreferences sp = getActivity().getSharedPreferences("LanguageFragment", Context.MODE_PRIVATE);

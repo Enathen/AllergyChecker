@@ -62,7 +62,8 @@ public class AllergyList {
         setArrayListPescoVegetarian();
         setArrayListDairy();
     }
-    public ArrayList<ArrayList<AllergyList.PictureIngredient>> getAllAllergies(){
+
+    public ArrayList<ArrayList<AllergyList.PictureIngredient>> getAllAllergies() {
         ArrayList<ArrayList<AllergyList.PictureIngredient>> arrayLists = new ArrayList<>();
         arrayLists.add(getArrayListCitrus());
         arrayLists.add(getArrayListDairy());
@@ -86,6 +87,7 @@ public class AllergyList {
         arrayLists.add(getArrayListVegetarian());
         return arrayLists;
     }
+
     private void setArrayListVegetables() {
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.tomato));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.aspargus));

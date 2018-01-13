@@ -63,9 +63,10 @@ public class StartPage extends AppCompatActivity
         , HistoryFragment.OnFragmentInteractionListener
         , StatisticsFragment.OnFragmentInteractionListener
         , SettingsFragment.OnFragmentInteractionListener
-        , AllergyFragment.OnFragmentInteractionListener
+        //, AllergyFragment.OnFragmentInteractionListener
         , AboutFragment.OnFragmentInteractionListener
-        , TranslateHelp.OnFragmentInteractionListener {
+        , TranslateHelp.OnFragmentInteractionListener
+        , MyPreference.OnFragmentInteractionListener{
     private static final String TAG = "StartPage";
     private static final String SHARED_PREFS_NAME = "StartPage";
     FloatingActionButton flash;
@@ -252,7 +253,7 @@ public class StartPage extends AppCompatActivity
 
 
     private void setProfilePicture() {
-        new AllergyFragment(this, getImageViewHashMap(this), new SettingsFragment(this).getCategories()).setProfilePic();
+       // new AllergyFragment(this, getImageViewHashMap(this), new SettingsFragment(this).getCategories()).setProfilePic();
     }
 
     private void displayInterstitial() {
@@ -487,9 +488,13 @@ public class StartPage extends AppCompatActivity
             setTitle("Language");
         } else if (id == R.id.allergies) {
 
-            fragment = new AllergyFragment(this, getImageViewHashMap(), new SettingsFragment(this).getCategories());
+            //fragment = new AllergyFragment(this, getImageViewHashMap(), new SettingsFragment(this).getCategories());
             setTitle("Allergies");
-        } else if (id == R.id.tutorial) {
+        } else if(id == R.id.preference){
+            fragment = new MyPreference();
+            setTitle("Preferences");
+        }
+        else if (id == R.id.tutorial) {
             startActivity(new Intent(this, OnboardingPagerActivity.class));
         } else if (id == R.id.about) {
             fragment = new AboutFragment();
@@ -644,7 +649,8 @@ public class StartPage extends AppCompatActivity
             if (listOfLanguages.isEmpty()) {
                 listOfLanguages.add(Locale.getDefault());
             }
-            HashSet<Integer> hashSetFromOtherClass = new AllergyFragment(mContext).getCategoriesFromOtherClass();
+            //HashSet<Integer> hashSetFromOtherClass = new AllergyFragment(mContext).getCategoriesFromOtherClass();
+            HashSet<Integer> hashSetFromOtherClass = new HashSet<>();
             HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies = new HashMap<>();
 
             int length = 0;

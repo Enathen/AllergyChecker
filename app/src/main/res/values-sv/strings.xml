@@ -324,6 +324,7 @@
     <string name="useNoFlash"> ficklampa av</string>
     <string name="SharingIsCaring">Sharing is caring</string>
     <string name="help">Hjälp</string>
+    <string name="myPreference">My preferences</string>
 
 
 </resources>

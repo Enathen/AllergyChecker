@@ -328,6 +328,7 @@
     <string name="useNoFlash">Use no flash</string>
     <string name="SharingIsCaring">Sharing is caring</string>
     <string name="help">help</string>
+    <string name="myPreference">My preferences</string>
 
 
 </resources>

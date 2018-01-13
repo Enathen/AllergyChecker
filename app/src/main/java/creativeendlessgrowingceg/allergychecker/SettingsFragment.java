@@ -96,18 +96,7 @@ public class SettingsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        /*final String lang = PreferenceManager.getDefaultSharedPreferences(getContext()).getString("getLanguage", Locale.getDefault().getLanguage());
-        final Locale newLocale = new Locale(lang);
-        Locale.setDefault(newLocale);
-        final Configuration config = new Configuration();
-        config.locale = newLocale;
-
-        final Resources res = getContext().getResources();
-        res.updateConfiguration(config, res.getDisplayMetrics());*/
-
-
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -225,10 +214,6 @@ public class SettingsFragment extends Fragment {
         }
         parentCheckBox.setChecked(true);
     }
-
-
-
-
     public void saveCategories() {
         SharedPreferences sp = getActivity().getSharedPreferences("LanguageFragment", Context.MODE_PRIVATE);
         SharedPreferences.Editor mEdit1 = sp.edit();
@@ -243,8 +228,6 @@ public class SettingsFragment extends Fragment {
         }
         mEdit1.putStringSet("languageSet", set);
         mEdit1.apply();
-
-
     }
 
     public ArrayList<Locale> getCategories() {

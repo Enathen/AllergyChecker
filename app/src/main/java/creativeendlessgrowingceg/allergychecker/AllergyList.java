@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 
 /**
  * Created by Enathen on 2017-10-13.
@@ -40,55 +41,44 @@ public class AllergyList {
 
     public AllergyList(Context context) {
         this.context = context;
-        setArrayListNuts();
-        setArrayListGluten();
-        setArrayListFish();
-        setArrayListShellfish();
-        setArrayListSeeds();
-        setArrayListFruit();
-        setArrayListVegetables();
-        setArrayListCitrus();
-        setArrayListLegumes();
-        setArrayListSpice();
-        setArrayListMuslim();
-        setArrayListKosher();
-        setArrayListVegan();
-        setArrayListVegetarian();
-        setArrayListDemiVegetarian();
-        setArrayListLactoOvoVegetarian();
-        setArrayListOvoVegetarian();
-        setArrayListLactoVegetarian();
-        setArrayListPolloVegetarian();
-        setArrayListPescoVegetarian();
-        setArrayListDairy();
+
+
+
     }
 
-    public ArrayList<ArrayList<AllergyList.PictureIngredient>> getAllAllergies() {
-        ArrayList<ArrayList<AllergyList.PictureIngredient>> arrayLists = new ArrayList<>();
-        arrayLists.add(getArrayListCitrus());
-        arrayLists.add(getArrayListDairy());
-        arrayLists.add(getArrayListDemiVegetarian());
-        arrayLists.add(getArrayListFish());
-        arrayLists.add(getArrayListFruit());
-        arrayLists.add(getArrayListGluten());
-        arrayLists.add(getArrayListLactoOvoVegetarian());
-        arrayLists.add(getArrayListLactoVegetarian());
-        arrayLists.add(getArrayListLegumes());
-        arrayLists.add(getArrayListMuslim());
-        arrayLists.add(getArrayListNuts());
-        arrayLists.add(getArrayListOvoVegetarian());
-        arrayLists.add(getArrayListPescoVegetarian());
-        arrayLists.add(getArrayListPolloVegetarian());
-        arrayLists.add(getArrayListSeeds());
-        arrayLists.add(getArrayListShellfish());
-        arrayLists.add(getArrayListSpice());
-        arrayLists.add(getArrayListVegan());
-        arrayLists.add(getArrayListVegetables());
-        arrayLists.add(getArrayListVegetarian());
+    public HashMap<Integer,ArrayList<AllergyList.PictureIngredient>> getMyAllergies() {
+        HashMap<Integer,ArrayList<PictureIngredient>> arrayLists = new HashMap<>();
+        arrayLists.put(setArrayListCitrus(),getArrayListCitrus());
+        arrayLists.put(setArrayListDairy(),getArrayListDairy());
+        arrayLists.put(setArrayListFish(),getArrayListFish());
+        arrayLists.put(setArrayListFruit(),getArrayListFruit());
+        arrayLists.put(setArrayListGluten(),getArrayListGluten());
+        arrayLists.put(setArrayListLegumes(),getArrayListLegumes());
+        arrayLists.put(setArrayListNuts(),getArrayListNuts());
+        arrayLists.put(setArrayListSeeds(),getArrayListSeeds());
+        arrayLists.put(setArrayListShellfish(),getArrayListShellfish());
+        arrayLists.put(setArrayListSpice(),getArrayListSpice());
+        arrayLists.put(setArrayListVegetables(),getArrayListVegetables());
+        return arrayLists;
+    }
+    public HashMap<Integer,ArrayList<AllergyList.PictureIngredient>> getMyPreference(){
+
+        HashMap<Integer,ArrayList<AllergyList.PictureIngredient>> arrayLists = new HashMap<>();
+        arrayLists.put(setArrayListDemiVegetarian(),getArrayListDemiVegetarian());
+        arrayLists.put(setArrayListOvoVegetarian(),getArrayListLactoOvoVegetarian());
+        arrayLists.put(setArrayListLactoVegetarian(),getArrayListLactoVegetarian());
+        arrayLists.put(setArrayListMuslim(),getArrayListMuslim());
+        arrayLists.put(setArrayListOvoVegetarian(),getArrayListOvoVegetarian());
+        arrayLists.put(setArrayListPescoVegetarian(),getArrayListPescoVegetarian());
+        arrayLists.put(setArrayListPolloVegetarian(),getArrayListPolloVegetarian());
+        arrayLists.put(setArrayListVegan(),getArrayListVegan());
+
+        arrayLists.put(setArrayListVegetarian(),getArrayListVegetarian());
+
         return arrayLists;
     }
 
-    private void setArrayListVegetables() {
+    private Integer setArrayListVegetables() {
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.tomato));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.aspargus));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.avocado));
@@ -102,11 +92,12 @@ public class AllergyList {
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.potato));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.pumpkin));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.zucchini));
-        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg, R.string.milk));
+
         sort(arrayListVegetables);
+        return R.string.vegetables;
     }
 
-    private void setArrayListVegetarian() {
+    private Integer setArrayListVegetarian() {
         arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian, R.string.pork));
         arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian, R.string.duck));
         arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian, R.string.meat));
@@ -121,9 +112,10 @@ public class AllergyList {
         arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian, R.string.fish));
         arrayListVegetarian.add(new PictureIngredient(R.drawable.vegetarian, R.string.chicken));
         sort(arrayListVegetarian);
+        return R.string.vegetarian;
     }
 
-    private void setArrayListLactoOvoVegetarian() {
+    private Integer setArrayListLactoOvoVegetarian() {
         arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.pork));
         arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.duck));
         arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.meat));
@@ -140,9 +132,10 @@ public class AllergyList {
         arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.egg));
         arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.chicken));
         sort(arrayListLactoOvoVegetarian);
+        return R.string.lactoOvoVegetarian;
     }
 
-    private void setArrayListOvoVegetarian() {
+    private Integer setArrayListOvoVegetarian() {
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg, R.string.pork));
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg, R.string.duck));
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg, R.string.meat));
@@ -160,9 +153,10 @@ public class AllergyList {
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg, R.string.dairy));
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg, R.string.chicken));
         sort(arrayListLactoOvoVegetarian);
+        return R.string.ovoVegetarian;
     }
 
-    private void setArrayListDemiVegetarian() {
+    private Integer setArrayListDemiVegetarian() {
         arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg, R.string.pork));
         arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg, R.string.duck));
         arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg, R.string.meat));
@@ -177,9 +171,10 @@ public class AllergyList {
         arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg, R.string.shellfish));
         arrayListDemiVegetarian.add(new PictureIngredient(R.drawable.demiveg, R.string.chicken));
         sort(arrayListDemiVegetarian);
+        return R.string.demiVegetarian;
     }
 
-    private void setArrayListLactoVegetarian() {
+    private Integer setArrayListLactoVegetarian() {
         arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.pork));
         arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.duck));
         arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.meat));
@@ -196,9 +191,10 @@ public class AllergyList {
         arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.egg));
         arrayListLactoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.chicken));
         sort(arrayListLactoVegetarian);
+        return R.string.lactoVegetarian;
     }
 
-    private void setArrayListPolloVegetarian() {
+    private Integer setArrayListPolloVegetarian() {
         arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg, R.string.pork));
         arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg, R.string.duck));
         arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg, R.string.meat));
@@ -213,9 +209,10 @@ public class AllergyList {
         arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg, R.string.fish));
         arrayListPolloVegetarian.add(new PictureIngredient(R.drawable.polloveg, R.string.chicken));
         sort(arrayListPolloVegetarian);
+        return R.string.polloVegetarian;
     }
 
-    private void setArrayListPescoVegetarian() {
+    private Integer setArrayListPescoVegetarian() {
         arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.pescoveg, R.string.pork));
         arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.pescoveg, R.string.duck));
         arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.pescoveg, R.string.meat));
@@ -229,9 +226,10 @@ public class AllergyList {
         arrayListPescoVegetarian.add(new PictureIngredient(R.drawable.pescoveg, R.string.shellfish));
 
         sort(arrayListPescoVegetarian);
+        return R.string.pescoVegetarian;
     }
 
-    private void setArrayListVegan() {
+    private Integer setArrayListVegan() {
         arrayListVegan.add(new PictureIngredient(R.drawable.vegan, R.string.pork));
         arrayListVegan.add(new PictureIngredient(R.drawable.vegan, R.string.duck));
         arrayListVegan.add(new PictureIngredient(R.drawable.vegan, R.string.meat));
@@ -249,30 +247,29 @@ public class AllergyList {
         arrayListVegan.add(new PictureIngredient(R.drawable.vegan, R.string.honey));
         arrayListVegan.add(new PictureIngredient(R.drawable.vegan, R.string.chicken));
         sort(arrayListVegan);
+        return R.string.vegan;
     }
 
-    private void setArrayListCitrus() {
+    private Integer setArrayListCitrus() {
         arrayListCitrus.add(new PictureIngredient(R.drawable.orange, R.string.citrus));
         arrayListCitrus.add(new PictureIngredient(R.drawable.orange, R.string.lemon));
         arrayListCitrus.add(new PictureIngredient(R.drawable.orange, R.string.lime));
         arrayListCitrus.add(new PictureIngredient(R.drawable.orange, R.string.orange));
         arrayListCitrus.add(new PictureIngredient(R.drawable.orange, R.string.grapefruit));
         sort(arrayListCitrus);
+        return R.string.citrus;
     }
 
-    private void setArrayListMuslim() {
+    private Integer setArrayListMuslim() {
         arrayListMuslim.add(new PictureIngredient(R.drawable.halal, R.string.bacon));
         arrayListMuslim.add(new PictureIngredient(R.drawable.halal, R.string.gelatin));
         arrayListMuslim.add(new PictureIngredient(R.drawable.halal, R.string.pork));
         sort(arrayListMuslim);
+        return R.string.halal;
     }
 
-    private void setArrayListKosher() {
 
-        sort(arrayListKosher);
-    }
-
-    private void setArrayListLegumes() {
+    private Integer setArrayListLegumes() {
         arrayListLegumes.add(new PictureIngredient(R.drawable.legumes, R.string.chickpea));
         arrayListLegumes.add(new PictureIngredient(R.drawable.legumes, R.string.legumes));
         arrayListLegumes.add(new PictureIngredient(R.drawable.legumes, R.string.lentil));
@@ -282,9 +279,10 @@ public class AllergyList {
         arrayListLegumes.add(new PictureIngredient(R.drawable.legumes, R.string.soy));
         arrayListLegumes.add(new PictureIngredient(R.drawable.legumes, R.string.soybean));
         sort(arrayListLegumes);
+        return R.string.legumes;
     }
 
-    private void setArrayListSpice() {
+    private Integer setArrayListSpice() {
         arrayListSpice.add(new PictureIngredient(R.drawable.spice, R.string.anis));
         arrayListSpice.add(new PictureIngredient(R.drawable.spice, R.string.coriander));
         arrayListSpice.add(new PictureIngredient(R.drawable.spice, R.string.cumin));
@@ -296,9 +294,10 @@ public class AllergyList {
         arrayListSpice.add(new PictureIngredient(R.drawable.spice, R.string.dandelions));
         arrayListSpice.add(new PictureIngredient(R.drawable.spice, R.string.hibiscus));
         sort(arrayListSpice);
+        return R.string.spice;
     }
 
-    private void setArrayListDairy() {
+    private Integer setArrayListDairy() {
         arrayListDairy.add(new PictureIngredient(R.drawable.milk, R.string.milk));
         arrayListDairy.add(new PictureIngredient(R.drawable.milk, R.string.dairy));
         arrayListDairy.add(new PictureIngredient(R.drawable.milk, R.string.butter));
@@ -306,6 +305,7 @@ public class AllergyList {
         arrayListDairy.add(new PictureIngredient(R.drawable.milk, R.string.yoghurt));
         arrayListDairy.add(new PictureIngredient(R.drawable.milk, R.string.cream));
         arrayListDairy.add(new PictureIngredient(R.drawable.milk, R.string.custard));
+        return R.string.dairy;
 
     }
 
@@ -366,7 +366,7 @@ public class AllergyList {
         return arrayListSeeds;
     }
 
-    public void setArrayListSeeds() {
+    public Integer setArrayListSeeds() {
         arrayListSeeds.add(new PictureIngredient(R.drawable.seeds, R.string.sesame));
         arrayListSeeds.add(new PictureIngredient(R.drawable.seeds, R.string.seeds));
         arrayListSeeds.add(new PictureIngredient(R.drawable.seeds, R.string.buckwheat));
@@ -375,13 +375,14 @@ public class AllergyList {
         arrayListSeeds.add(new PictureIngredient(R.drawable.seeds, R.string.pumpkinSeed));
         arrayListSeeds.add(new PictureIngredient(R.drawable.seeds, R.string.sunflowerSeed));
         sort(arrayListSeeds);
+        return R.string.seeds;
     }
 
     public ArrayList<PictureIngredient> getArrayListFish() {
         return arrayListFish;
     }
 
-    public void setArrayListFish() {
+    public Integer setArrayListFish() {
         arrayListFish.add(new PictureIngredient(R.drawable.fish, R.string.pike));
         arrayListFish.add(new PictureIngredient(R.drawable.fish, R.string.fish));
         arrayListFish.add(new PictureIngredient(R.drawable.fish, R.string.tuna));
@@ -407,13 +408,14 @@ public class AllergyList {
         arrayListFish.add(new PictureIngredient(R.drawable.fish, R.string.trout));
 
         sort(arrayListFish);
+        return R.string.fish;
     }
 
     public ArrayList<PictureIngredient> getArrayListShellfish() {
         return arrayListShellfish;
     }
 
-    public void setArrayListShellfish() {
+    public Integer setArrayListShellfish() {
         arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish, R.string.barnacle));
         arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish, R.string.shellfish));
         arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish, R.string.crab));
@@ -438,6 +440,7 @@ public class AllergyList {
         arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish, R.string.whelk));
 
         sort(arrayListShellfish);
+        return R.string.shellfish;
     }
 
     public ArrayList<String> getArrayListIngredients() {
@@ -468,7 +471,7 @@ public class AllergyList {
         return arrayListVegetables;
     }
 
-    public void setArrayListNuts() {
+    public Integer setArrayListNuts() {
         arrayListNuts.add(new PictureIngredient(R.drawable.nuts, R.string.almond));
         arrayListNuts.add(new PictureIngredient(R.drawable.nuts, R.string.brazil));
         arrayListNuts.add(new PictureIngredient(R.drawable.nuts, R.string.cocoa));
@@ -486,9 +489,10 @@ public class AllergyList {
 
 
         sort(arrayListNuts);
+        return R.string.nuts;
     }
 
-    public void setArrayListGluten() {
+    public Integer setArrayListGluten() {
 
         arrayListGluten.add(new PictureIngredient(R.drawable.wheat, R.string.durum));
         arrayListGluten.add(new PictureIngredient(R.drawable.wheat, R.string.emmer));
@@ -506,9 +510,10 @@ public class AllergyList {
         arrayListGluten.add(new PictureIngredient(R.drawable.wheat, R.string.wheat));
 
         sort(arrayListGluten);
+        return R.string.gluten;
     }
 
-    public void setArrayListFruit() {
+    public Integer setArrayListFruit() {
 
         arrayListFruit.add(new PictureIngredient(R.drawable.fruit, R.string.apple));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.pear));
@@ -535,6 +540,7 @@ public class AllergyList {
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.acerola));
 
         sort(arrayListFruit);
+        return R.string.fruit;
     }
 
     private void sort(ArrayList<PictureIngredient> arrayList) {
@@ -546,15 +552,15 @@ public class AllergyList {
         });
     }
 
+
     public ArrayList<PictureIngredient> getArrayListDairy() {
         return arrayListDairy;
     }
 
     public class PictureIngredient {
-        int picture;
-        String ingredient;
-        int id;
-        boolean notAllergy;
+        private int picture;
+        private String ingredient;
+        private int id;
 
         PictureIngredient(int picture, int ingredient) {
             this.picture = picture;
@@ -562,11 +568,18 @@ public class AllergyList {
             this.ingredient = context.getString(ingredient);
         }
 
-        PictureIngredient(int picture, int ingredient, boolean notAllergy) {
-            this.picture = picture;
-            this.id = ingredient;
-            this.ingredient = context.getString(ingredient);
-            this.notAllergy = notAllergy;
+
+        public int getPicture() {
+            return picture;
         }
+
+        public String getIngredient() {
+            return ingredient;
+        }
+
+        public int getId() {
+            return id;
+        }
+
     }
 }

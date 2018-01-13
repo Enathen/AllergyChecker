@@ -330,5 +330,6 @@
     <string name="useNoFlash">flash Off</string>
     <string name="SharingIsCaring">Sharing is caring</string>
     <string name="help">help</string>
+    <string name="myPreference">My preferences</string>
 
 </resources>

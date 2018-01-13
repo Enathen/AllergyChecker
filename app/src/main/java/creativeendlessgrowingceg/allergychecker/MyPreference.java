@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import java.util.HashSet;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +33,7 @@ public class MyPreference extends Fragment {
     private OnFragmentInteractionListener mListener;
     private FrameLayout parentFrameLayout;
     private LinearLayout parentLinearLayout;
+    private LoadUIAllergies loadUIAllergies;
 
 
     public MyPreference() {
@@ -78,6 +81,8 @@ public class MyPreference extends Fragment {
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
 
+        loadUIAllergies = new LoadUIAllergies(inflater, getContext(), getActivity(), parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyPreference());
+
         return parentFrameLayout;
     }
 
@@ -103,14 +108,26 @@ public class MyPreference extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-
+        for (int key : loadUIAllergies.getCheckBoxToRemove().keySet()) {
+            SharedPreferenceClass.setBoolean(getString(key),getContext(),false);
+        }
+        HashSet<Integer> currentlyActiveAllergies = loadUIAllergies.getCurrentlyActiveAllergies();
+        for (int key : currentlyActiveAllergies) {
+            SharedPreferenceClass.setBoolean(getString(key), getContext(),true);
+        }
         mListener = null;
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
+        for (int key : loadUIAllergies.getCheckBoxToRemove().keySet()) {
+            SharedPreferenceClass.setBoolean(getString(key),getContext(),false);
+        }
+        HashSet<Integer> currentlyActiveAllergies = loadUIAllergies.getCurrentlyActiveAllergies();
+        for (int key : currentlyActiveAllergies) {
+            SharedPreferenceClass.setBoolean(getString(key), getContext(),true);
+        }
         mListener = null;
     }
 

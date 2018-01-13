@@ -44,7 +44,7 @@ public class ExampleInstrumentedTest {
     }
     @Test
     public void allergyList(){
-        ArrayList<ArrayList<AllergyList.PictureIngredient>> arrayListNuts = allergyList.getAllAllergies();
+        ArrayList<ArrayList<AllergyList.PictureIngredient>> arrayListNuts = allergyList.getMyAllergies();
         HelpCalcAllergy helpCalcAllergy = new HelpCalcAllergy();
         HashSet<String> all = new HashSet<>();
         for (ArrayList<AllergyList.PictureIngredient> arrayListNut : arrayListNuts) {

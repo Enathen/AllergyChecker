@@ -169,6 +169,13 @@ public class LoadUIAllergies {
 
             for (final CheckBox parentCheckBox : checkBoxHashMap.keySet()) {
                 for (final CheckBox checkBox : checkBoxHashMap.get(parentCheckBox)) {
+                    if(checkBoxHashMap.containsKey(checkBox)){
+                        for (CheckBox checkBoxes : checkBoxHashMap.get(checkBox)) {
+                            if(checkBox.isChecked()){
+                                checkBoxes.setChecked(true);
+                            }
+                        }
+                    }
                     checkBox.setChecked(SharedPreferenceClass.checkBoolean(myallergiesCheckBox.get(checkBox).getIngredient(),context));
                     checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
@@ -183,9 +190,12 @@ public class LoadUIAllergies {
                             for (CheckBox box: sameItemDifferentCategories.get(myallergiesCheckBox.get(checkBox).getId())) {
                                 box.setChecked(isChecked);
                             }
+
                         }
                     });
+
                 }
+
                 CreateLinearLayout.checkParentShouldChecked(checkBoxHashMap.get(parentCheckBox),parentCheckBox);
             }
 

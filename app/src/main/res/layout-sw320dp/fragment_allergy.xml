@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/fragAllergyFragment"
 
-    tools:context="creativeendlessgrowingceg.allergychecker.AllergyFragment">
+    tools:context="creativeendlessgrowingceg.allergychecker.MyAllergies">
 
 
     <ScrollView

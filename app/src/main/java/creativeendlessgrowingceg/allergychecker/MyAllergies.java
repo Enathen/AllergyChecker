@@ -21,7 +21,7 @@ import java.util.HashSet;
  * Use the {@link MyPreference#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyPreference extends Fragment {
+public class MyAllergies extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -36,7 +36,7 @@ public class MyPreference extends Fragment {
     private LoadUIAllergies loadUIAllergies;
 
 
-    public MyPreference() {
+    public MyAllergies() {
         // Required empty public constructor
     }
 
@@ -81,20 +81,12 @@ public class MyPreference extends Fragment {
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
 
-        loadUIAllergies = new LoadUIAllergies(inflater, getContext(), getActivity(), parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyPreference());
+        loadUIAllergies = new LoadUIAllergies(inflater, getContext(), getActivity(), parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyAllergies());
 
         return parentFrameLayout;
     }
 
-    public void saveCurrentlyActive(){
-        for (int key : loadUIAllergies.getCheckBoxToRemove().keySet()) {
-            SharedPreferenceClass.setBoolean(getString(key),getContext(),false);
-        }
-        HashSet<Integer> currentlyActiveAllergies = loadUIAllergies.getCurrentlyActiveAllergies();
-        for (int key : currentlyActiveAllergies) {
-            SharedPreferenceClass.setBoolean(getString(key), getContext(),true);
-        }
-    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -116,14 +108,26 @@ public class MyPreference extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        saveCurrentlyActive();
+        for (int key : loadUIAllergies.getCheckBoxToRemove().keySet()) {
+            SharedPreferenceClass.setBoolean(getString(key),getContext(),false);
+        }
+        HashSet<Integer> currentlyActiveAllergies = loadUIAllergies.getCurrentlyActiveAllergies();
+        for (int key : currentlyActiveAllergies) {
+            SharedPreferenceClass.setBoolean(getString(key), getContext(),true);
+        }
         mListener = null;
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        saveCurrentlyActive();
+        for (int key : loadUIAllergies.getCheckBoxToRemove().keySet()) {
+            SharedPreferenceClass.setBoolean(getString(key),getContext(),false);
+        }
+        HashSet<Integer> currentlyActiveAllergies = loadUIAllergies.getCurrentlyActiveAllergies();
+        for (int key : currentlyActiveAllergies) {
+            SharedPreferenceClass.setBoolean(getString(key), getContext(),true);
+        }
         mListener = null;
     }
 

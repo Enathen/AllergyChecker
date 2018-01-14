@@ -63,7 +63,7 @@ public class StartPage extends AppCompatActivity
         , HistoryFragment.OnFragmentInteractionListener
         , StatisticsFragment.OnFragmentInteractionListener
         , SettingsFragment.OnFragmentInteractionListener
-        //, AllergyFragment.OnFragmentInteractionListener
+        , MyAllergies.OnFragmentInteractionListener
         , AboutFragment.OnFragmentInteractionListener
         , TranslateHelp.OnFragmentInteractionListener
         , MyPreference.OnFragmentInteractionListener{
@@ -253,7 +253,7 @@ public class StartPage extends AppCompatActivity
 
 
     private void setProfilePicture() {
-       // new AllergyFragment(this, getImageViewHashMap(this), new SettingsFragment(this).getCategories()).setProfilePic();
+       // new MyAllergies(this, getImageViewHashMap(this), new SettingsFragment(this).getCategories()).setProfilePic();
     }
 
     private void displayInterstitial() {
@@ -487,8 +487,8 @@ public class StartPage extends AppCompatActivity
             fragment = new SettingsFragment();
             setTitle("Language");
         } else if (id == R.id.allergies) {
-
-            //fragment = new AllergyFragment(this, getImageViewHashMap(), new SettingsFragment(this).getCategories());
+//this, getImageViewHashMap(), new SettingsFragment(this).getCategories()
+            fragment = new MyAllergies();
             setTitle("Allergies");
         } else if(id == R.id.preference){
             fragment = new MyPreference();
@@ -649,7 +649,7 @@ public class StartPage extends AppCompatActivity
             if (listOfLanguages.isEmpty()) {
                 listOfLanguages.add(Locale.getDefault());
             }
-            //HashSet<Integer> hashSetFromOtherClass = new AllergyFragment(mContext).getCategoriesFromOtherClass();
+           // HashSet<Integer> hashSetFromOtherClass = new MyAllergies(mContext).getCategoriesFromOtherClass();
             HashSet<Integer> hashSetFromOtherClass = new HashSet<>();
             HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies = new HashMap<>();
 

@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import java.util.HashSet;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -108,26 +106,14 @@ public class MyAllergies extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        for (int key : loadUIAllergies.getCheckBoxToRemove().keySet()) {
-            SharedPreferenceClass.setBoolean(getString(key),getContext(),false);
-        }
-        HashSet<Integer> currentlyActiveAllergies = loadUIAllergies.getCurrentlyActiveAllergies();
-        for (int key : currentlyActiveAllergies) {
-            SharedPreferenceClass.setBoolean(getString(key), getContext(),true);
-        }
+        loadUIAllergies.saveCurrentlyActive();
         mListener = null;
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        for (int key : loadUIAllergies.getCheckBoxToRemove().keySet()) {
-            SharedPreferenceClass.setBoolean(getString(key),getContext(),false);
-        }
-        HashSet<Integer> currentlyActiveAllergies = loadUIAllergies.getCurrentlyActiveAllergies();
-        for (int key : currentlyActiveAllergies) {
-            SharedPreferenceClass.setBoolean(getString(key), getContext(),true);
-        }
+        loadUIAllergies.saveCurrentlyActive();
         mListener = null;
     }
 
@@ -146,7 +132,9 @@ public class MyAllergies extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }
+
 
 
 

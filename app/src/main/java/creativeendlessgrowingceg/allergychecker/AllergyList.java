@@ -1,12 +1,14 @@
 package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * Created by Enathen on 2017-10-13.
@@ -46,8 +48,8 @@ public class AllergyList {
 
     }
 
-    public HashMap<Integer,ArrayList<AllergyList.PictureIngredient>> getMyAllergies() {
-        HashMap<Integer,ArrayList<PictureIngredient>> arrayLists = new HashMap<>();
+    public TreeMap<Integer,ArrayList<AllergyList.PictureIngredient>> getMyAllergies() {
+        TreeMap<Integer,ArrayList<PictureIngredient>> arrayLists = new TreeMap<>();
         arrayLists.put(setArrayListCitrus(),getArrayListCitrus());
         arrayLists.put(setArrayListDairy(),getArrayListDairy());
         arrayLists.put(setArrayListFish(),getArrayListFish());
@@ -59,11 +61,19 @@ public class AllergyList {
         arrayLists.put(setArrayListShellfish(),getArrayListShellfish());
         arrayLists.put(setArrayListSpice(),getArrayListSpice());
         arrayLists.put(setArrayListVegetables(),getArrayListVegetables());
+        for (ArrayList<PictureIngredient> pictureIngredients : arrayLists.values()) {
+            sort(pictureIngredients);
+        }
         return arrayLists;
     }
-    public HashMap<Integer,ArrayList<AllergyList.PictureIngredient>> getMyPreference(){
 
-        HashMap<Integer,ArrayList<AllergyList.PictureIngredient>> arrayLists = new HashMap<>();
+    private void sortHashMap(HashMap<Integer, ArrayList<PictureIngredient>> arrayLists) {
+
+    }
+
+    public TreeMap<Integer,ArrayList<AllergyList.PictureIngredient>> getMyPreference(){
+
+        TreeMap<Integer,ArrayList<AllergyList.PictureIngredient>> arrayLists = new TreeMap<>();
         arrayLists.put(setArrayListDemiVegetarian(),getArrayListDemiVegetarian());
         arrayLists.put(setArrayListOvoVegetarian(),getArrayListLactoOvoVegetarian());
         arrayLists.put(setArrayListLactoVegetarian(),getArrayListLactoVegetarian());
@@ -92,8 +102,14 @@ public class AllergyList {
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.potato));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.pumpkin));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.zucchini));
+        for (PictureIngredient arrayListVegetable : arrayListVegetables) {
+            Log.d(TAG, "veget: " + arrayListVegetable.getIngredient());
+        }
 
         sort(arrayListVegetables);
+        for (PictureIngredient arrayListVegetable : arrayListVegetables) {
+            Log.d(TAG, "setArrayListVegetables: " + arrayListVegetable.getIngredient());
+        }
         return R.string.vegetables;
     }
 
@@ -547,7 +563,7 @@ public class AllergyList {
         Collections.sort(arrayList, new Comparator<PictureIngredient>() {
             @Override
             public int compare(PictureIngredient pic1, PictureIngredient pic2) {
-                return pic1.ingredient.compareToIgnoreCase(pic2.ingredient);
+                return pic1.getIngredient().compareToIgnoreCase(pic2.getIngredient());
             }
         });
     }

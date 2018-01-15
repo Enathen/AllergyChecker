@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import java.util.HashSet;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -86,15 +84,7 @@ public class MyPreference extends Fragment {
         return parentFrameLayout;
     }
 
-    public void saveCurrentlyActive(){
-        for (int key : loadUIAllergies.getCheckBoxToRemove().keySet()) {
-            SharedPreferenceClass.setBoolean(getString(key),getContext(),false);
-        }
-        HashSet<Integer> currentlyActiveAllergies = loadUIAllergies.getCurrentlyActiveAllergies();
-        for (int key : currentlyActiveAllergies) {
-            SharedPreferenceClass.setBoolean(getString(key), getContext(),true);
-        }
-    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -116,14 +106,14 @@ public class MyPreference extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        saveCurrentlyActive();
+        loadUIAllergies.saveCurrentlyActive();
         mListener = null;
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        saveCurrentlyActive();
+        loadUIAllergies.saveCurrentlyActive();
         mListener = null;
     }
 

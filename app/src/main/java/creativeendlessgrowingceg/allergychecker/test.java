@@ -423,6 +423,7 @@ public class AllergyFragment extends Fragment {
 
             objectInputStream.close();
 
+
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }

@@ -26,7 +26,7 @@ public class MyAllergies extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private static final String TAG = "MyPreference";
+    private static final String TAG = "MyAllergies";
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -85,7 +85,7 @@ public class MyAllergies extends Fragment {
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
 
-        loadUIAllergies = new LoadUIAllergies(false,inflater, getContext(), getActivity(), parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyAllergies());
+        loadUIAllergies = new LoadUIAllergies(false,inflater, startPage, parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyAllergies());
 
         return parentFrameLayout;
     }
@@ -108,8 +108,10 @@ public class MyAllergies extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
-    public HashSet<Integer> getAllergies(){
-        return SharedPreferenceClass.getSet(startPage);
+    synchronized public HashSet<Integer> getAllergies(){
+        HashSet<Integer> set= SharedPreferenceClass.getSetPreference(startPage);
+        set.addAll(SharedPreferenceClass.getSet(startPage));
+        return set;
     }
     @Override
     public void onDetach() {

@@ -119,17 +119,22 @@ public class HelpCalcAllergy {
         for (Locale locale : listOfLanguages) {
 
             String localeString = getStringByLocal(startPage, id, locale.getLanguage());
+
             if (length < localeString.length()) {
                 length = localeString.length() + 2;
             }
             List<String> list = split(localeString);
+            if(localeString.equals("citrus")){
+                Log.d(TAG, "setLocaleString: ");
+            }
             for (int i = 0; i < list.size(); i++) {
 
-                if (allergies.containsKey(localeString.length())) {
-
-                    allergies.put((list.get(i)).length(), allergies.get((list.get(i)).length())).put(
-                            list.get(i), new AllAllergiesForEachInteger(locale.getLanguage(),
+                if (allergies.containsKey(list.get(i).length())) {
+                    HashMap<String, AllAllergiesForEachInteger> stringAllAllergiesForEachIntegerHashMap = allergies.get((list.get(i)).length());
+                    stringAllAllergiesForEachIntegerHashMap.put(list.get(i), new AllAllergiesForEachInteger(locale.getLanguage(),
                                     list.get(i), id, startPage.getString(id)));
+                    allergies.put((list.get(i)).length(),stringAllAllergiesForEachIntegerHashMap);
+                    Log.d(TAG, "setLocaleString: " + list.get(i).length() + " : "+ allergies.get(list.get(i).length()).size()+ " : " + list.get(i) +" : " +  i);
 
 
                 } else {

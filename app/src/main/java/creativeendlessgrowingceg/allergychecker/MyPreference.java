@@ -32,13 +32,17 @@ public class MyPreference extends Fragment {
     private FrameLayout parentFrameLayout;
     private LinearLayout parentLinearLayout;
     private LoadUIAllergies loadUIAllergies;
+    private StartPage startPage;
 
 
-    public MyPreference() {
+    public MyPreference(StartPage startPage) {
         // Required empty public constructor
+        this.startPage = startPage;
     }
 
+    public MyPreference() {
 
+    }
 
 
     /**
@@ -79,7 +83,7 @@ public class MyPreference extends Fragment {
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
 
-        loadUIAllergies = new LoadUIAllergies(true,inflater, getContext(), getActivity(), parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyPreference());
+        loadUIAllergies = new LoadUIAllergies(true,inflater, startPage, parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyPreference());
 
         return parentFrameLayout;
     }

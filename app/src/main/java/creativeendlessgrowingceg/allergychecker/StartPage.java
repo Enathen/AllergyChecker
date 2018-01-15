@@ -488,10 +488,10 @@ public class StartPage extends AppCompatActivity
             setTitle("Language");
         } else if (id == R.id.allergies) {
 //this, getImageViewHashMap(), new SettingsFragment(this).getCategories()
-            fragment = new MyAllergies();
+            fragment = new MyAllergies(this);
             setTitle("Allergies");
         } else if(id == R.id.preference){
-            fragment = new MyPreference();
+            fragment = new MyPreference(this);
             setTitle("Preferences");
         }
         else if (id == R.id.tutorial) {
@@ -669,7 +669,11 @@ public class StartPage extends AppCompatActivity
                 i++;
 
             }
-
+            for (HashMap<String, AllAllergiesForEachInteger> stringAllAllergiesForEachIntegerHashMap : allergies.values()) {
+                for (AllAllergiesForEachInteger allAllergiesForEachInteger : stringAllAllergiesForEachIntegerHashMap.values()) {
+                    Log.d(TAG, "STARTPAGE: "+ allAllergiesForEachInteger.getNameOfIngredient());
+                }
+            }
             helpCalcAllergy.bkTree(length, hashSetAllStrings, allergies, allFoundAllergies);
 
             long start = System.currentTimeMillis();

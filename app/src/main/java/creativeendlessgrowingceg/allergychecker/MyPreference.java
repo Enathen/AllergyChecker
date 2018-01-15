@@ -79,7 +79,7 @@ public class MyPreference extends Fragment {
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
 
-        loadUIAllergies = new LoadUIAllergies(inflater, getContext(), getActivity(), parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyPreference());
+        loadUIAllergies = new LoadUIAllergies(true,inflater, getContext(), getActivity(), parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyPreference());
 
         return parentFrameLayout;
     }
@@ -106,14 +106,14 @@ public class MyPreference extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        loadUIAllergies.saveCurrentlyActive();
+        loadUIAllergies.saveCurrentlyActive(true);
         mListener = null;
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        loadUIAllergies.saveCurrentlyActive();
+        loadUIAllergies.saveCurrentlyActive(true);
         mListener = null;
     }
 

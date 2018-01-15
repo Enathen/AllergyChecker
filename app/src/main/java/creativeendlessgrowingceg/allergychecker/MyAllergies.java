@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import java.util.HashSet;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,13 +34,17 @@ public class MyAllergies extends Fragment {
     private FrameLayout parentFrameLayout;
     private LinearLayout parentLinearLayout;
     private LoadUIAllergies loadUIAllergies;
+    private StartPage startPage;
 
 
-    public MyAllergies() {
+    public MyAllergies(StartPage startPage) {
+        this.startPage = startPage;
         // Required empty public constructor
     }
 
+    public MyAllergies() {
 
+    }
 
 
     /**
@@ -79,7 +85,7 @@ public class MyAllergies extends Fragment {
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
 
-        loadUIAllergies = new LoadUIAllergies(inflater, getContext(), getActivity(), parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyAllergies());
+        loadUIAllergies = new LoadUIAllergies(false,inflater, getContext(), getActivity(), parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyAllergies());
 
         return parentFrameLayout;
     }
@@ -102,18 +108,21 @@ public class MyAllergies extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
-
+    public HashSet<Integer> getAllergies(){
+        return SharedPreferenceClass.getSet(startPage);
+    }
     @Override
     public void onDetach() {
         super.onDetach();
-        loadUIAllergies.saveCurrentlyActive();
+        loadUIAllergies.saveCurrentlyActive(false);
+
         mListener = null;
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        loadUIAllergies.saveCurrentlyActive();
+        loadUIAllergies.saveCurrentlyActive(false);
         mListener = null;
     }
 

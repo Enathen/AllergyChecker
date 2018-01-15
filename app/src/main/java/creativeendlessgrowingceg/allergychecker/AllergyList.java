@@ -67,9 +67,6 @@ public class AllergyList {
         return arrayLists;
     }
 
-    private void sortHashMap(HashMap<Integer, ArrayList<PictureIngredient>> arrayLists) {
-
-    }
 
     public TreeMap<Integer,ArrayList<AllergyList.PictureIngredient>> getMyPreference(){
 
@@ -81,6 +78,7 @@ public class AllergyList {
         arrayLists.put(setArrayListOvoVegetarian(),getArrayListOvoVegetarian());
         arrayLists.put(setArrayListPescoVegetarian(),getArrayListPescoVegetarian());
         arrayLists.put(setArrayListPolloVegetarian(),getArrayListPolloVegetarian());
+        arrayLists.put(setArrayListLactoOvoVegetarian(),getArrayListLactoOvoVegetarian());
         arrayLists.put(setArrayListVegan(),getArrayListVegan());
 
         arrayLists.put(setArrayListVegetarian(),getArrayListVegetarian());
@@ -267,7 +265,6 @@ public class AllergyList {
     }
 
     private Integer setArrayListCitrus() {
-        arrayListCitrus.add(new PictureIngredient(R.drawable.orange, R.string.citrus));
         arrayListCitrus.add(new PictureIngredient(R.drawable.orange, R.string.lemon));
         arrayListCitrus.add(new PictureIngredient(R.drawable.orange, R.string.lime));
         arrayListCitrus.add(new PictureIngredient(R.drawable.orange, R.string.orange));
@@ -287,7 +284,6 @@ public class AllergyList {
 
     private Integer setArrayListLegumes() {
         arrayListLegumes.add(new PictureIngredient(R.drawable.legumes, R.string.chickpea));
-        arrayListLegumes.add(new PictureIngredient(R.drawable.legumes, R.string.legumes));
         arrayListLegumes.add(new PictureIngredient(R.drawable.legumes, R.string.lentil));
         arrayListLegumes.add(new PictureIngredient(R.drawable.legumes, R.string.lupin));
         arrayListLegumes.add(new PictureIngredient(R.drawable.legumes, R.string.peanut));
@@ -315,7 +311,6 @@ public class AllergyList {
 
     private Integer setArrayListDairy() {
         arrayListDairy.add(new PictureIngredient(R.drawable.milk, R.string.milk));
-        arrayListDairy.add(new PictureIngredient(R.drawable.milk, R.string.dairy));
         arrayListDairy.add(new PictureIngredient(R.drawable.milk, R.string.butter));
         arrayListDairy.add(new PictureIngredient(R.drawable.milk, R.string.casein));
         arrayListDairy.add(new PictureIngredient(R.drawable.milk, R.string.yoghurt));
@@ -384,7 +379,6 @@ public class AllergyList {
 
     public Integer setArrayListSeeds() {
         arrayListSeeds.add(new PictureIngredient(R.drawable.seeds, R.string.sesame));
-        arrayListSeeds.add(new PictureIngredient(R.drawable.seeds, R.string.seeds));
         arrayListSeeds.add(new PictureIngredient(R.drawable.seeds, R.string.buckwheat));
         arrayListSeeds.add(new PictureIngredient(R.drawable.seeds, R.string.mustardSeed));
         arrayListSeeds.add(new PictureIngredient(R.drawable.seeds, R.string.poppySeed));
@@ -400,7 +394,6 @@ public class AllergyList {
 
     public Integer setArrayListFish() {
         arrayListFish.add(new PictureIngredient(R.drawable.fish, R.string.pike));
-        arrayListFish.add(new PictureIngredient(R.drawable.fish, R.string.fish));
         arrayListFish.add(new PictureIngredient(R.drawable.fish, R.string.tuna));
         arrayListFish.add(new PictureIngredient(R.drawable.fish, R.string.salmon));
         arrayListFish.add(new PictureIngredient(R.drawable.fish, R.string.caviar));
@@ -433,7 +426,6 @@ public class AllergyList {
 
     public Integer setArrayListShellfish() {
         arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish, R.string.barnacle));
-        arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish, R.string.shellfish));
         arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish, R.string.crab));
         arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish, R.string.crawfish));
         arrayListShellfish.add(new PictureIngredient(R.drawable.shellfish, R.string.krill));
@@ -495,7 +487,6 @@ public class AllergyList {
         arrayListNuts.add(new PictureIngredient(R.drawable.nuts, R.string.macadamia));
         arrayListNuts.add(new PictureIngredient(R.drawable.nuts, R.string.peanut));
         arrayListNuts.add(new PictureIngredient(R.drawable.nuts, R.string.pecans));
-        arrayListNuts.add(new PictureIngredient(R.drawable.nuts, R.string.nuts));
         arrayListNuts.add(new PictureIngredient(R.drawable.nuts, R.string.pili));
         arrayListNuts.add(new PictureIngredient(R.drawable.nuts, R.string.pine));
         arrayListNuts.add(new PictureIngredient(R.drawable.nuts, R.string.pistachios));
@@ -533,7 +524,6 @@ public class AllergyList {
 
         arrayListFruit.add(new PictureIngredient(R.drawable.fruit, R.string.apple));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.pear));
-        arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.fruit));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.tomato));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.strawberry));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.prune));

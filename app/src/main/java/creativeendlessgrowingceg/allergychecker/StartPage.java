@@ -649,8 +649,10 @@ public class StartPage extends AppCompatActivity
             if (listOfLanguages.isEmpty()) {
                 listOfLanguages.add(Locale.getDefault());
             }
-           // HashSet<Integer> hashSetFromOtherClass = new MyAllergies(mContext).getCategoriesFromOtherClass();
-            HashSet<Integer> hashSetFromOtherClass = new HashSet<>();
+            HashSet<Integer> hashSetFromOtherClass = new MyAllergies(mContext).getAllergies();
+            for (Integer hashSetFromOtherClas : hashSetFromOtherClass) {
+                Log.d(TAG, "doInBackground: " + getString(hashSetFromOtherClas));
+            }
             HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies = new HashMap<>();
 
             int length = 0;

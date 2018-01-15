@@ -17,14 +17,14 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeMap;
 
-import static android.content.ContentValues.TAG;
-
 /**
  * load an UI.
  * Created by Enathen on 2018-01-12.
  */
 
 public class LoadUIAllergies {
+    private static final String TAG = "LoadUIAllergies";
+    private boolean preference;
     private LayoutInflater inflater;
     protected final Context context;
     protected Activity activity;
@@ -38,7 +38,8 @@ public class LoadUIAllergies {
     protected TreeMap<Integer,LinearLayout> parentLinearLayoutHashMap = new TreeMap<>();
     private TreeMap<String,AllergyCheckBoxClass> allergyInfo = new TreeMap<>();
 
-    public LoadUIAllergies(LayoutInflater inflater, Context context, Activity activity, FrameLayout parentFrameLayout, LinearLayout parentLinearLayout, TreeMap<Integer, ArrayList<AllergyList.PictureIngredient>> myAllergies) {
+    public LoadUIAllergies(boolean preference,LayoutInflater inflater, Context context, Activity activity, FrameLayout parentFrameLayout, LinearLayout parentLinearLayout, TreeMap<Integer, ArrayList<AllergyList.PictureIngredient>> myAllergies) {
+        this.preference = preference;
         this.inflater = inflater;
         this.context = context;
         this.activity = activity;
@@ -128,6 +129,7 @@ public class LoadUIAllergies {
 
     }
 
+
     private class AddCategories extends AsyncTask<String, Integer, String> {
 
         /**
@@ -189,18 +191,7 @@ public class LoadUIAllergies {
                 for (AllergyCheckBoxClass checkBoxClass : allergyCheckBoxClass.getSameItemDifferentCategories()) {
                     final CheckBox checkBox = checkBoxClass.getChildCheckBox();
                     checkBox.setChecked(SharedPreferenceClass.checkBoolean(checkBoxClass.getChildIngredient(),context));
-                    if(context.getString(checkBoxClass.getParentKey()).equals("Legumes")){
-                        Log.d(TAG, "onPostExecute: ");
-                    }
-                    if(checkBoxClass.childEqualParent()){
-                        //TODO only if other preference checked it
-                        /*if(checkBox.isChecked()){
-                            for (AllergyCheckBoxClass boxClass : checkBoxClass.getNeigbhourClasses()) {
-                                boxClass.getChildCheckBox().setChecked(true);
-                                CreateLinearLayout.setOnRemove(boxClass,true);
-                            }
-                        }*/
-                    }
+
                     if(checkBox.isChecked()){
                         checkBoxClass.getParentCheckBox().setChecked(true);
                     }
@@ -213,6 +204,25 @@ public class LoadUIAllergies {
                 if(!hashSet.contains(allergyCheckBoxClass.getParentKey())){
                     hashSet.add(allergyCheckBoxClass.getParentKey());
                     CreateLinearLayout.parentCheckedChanged(allergyCheckBoxClass);
+
+                }
+            }
+            if(!preference){
+                Log.d(TAG, "onPostExecute: " + SharedPreferenceClass.getSetFromPreference(context).size());
+                HashSet<String> hashSetCheckedAllergies = (HashSet<String>) SharedPreferenceClass.getSetFromPreference(context);
+                for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
+                    if(hashSetCheckedAllergies.contains(context.getString(allergyCheckBoxClass.getParentKey()))){
+                        allergyCheckBoxClass.getParentCheckBox().setChecked(true);
+                    }
+                }
+                hashSetCheckedAllergies.clear();
+                SharedPreferenceClass.setSetFromPreference(context,hashSetCheckedAllergies);
+            }else{
+                HashSet<String> hashSetCheckedAllergies = (HashSet<String>) SharedPreferenceClass.getSetFromAllergy(context);
+                for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
+                    if(hashSetCheckedAllergies.contains(allergyCheckBoxClass.getChildIngredient())){
+                        allergyCheckBoxClass.getChildCheckBox().setChecked(false);
+                    }
                 }
             }
             parentLinearLayout.addView(new TextView(context));
@@ -230,11 +240,7 @@ public class LoadUIAllergies {
     public HashSet<String> getCurrentlyActiveAllergies() {
         HashSet<String> hashSet = new HashSet<>();
         for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
-            if(allergyCheckBoxClass.isOn()){
-                hashSet.add(allergyCheckBoxClass.getChildIngredient());
-            }
             for (AllergyCheckBoxClass checkBoxClass : allergyCheckBoxClass.getSameItemDifferentCategories()) {
-
                 if(checkBoxClass.isOn()){
                     hashSet.add(checkBoxClass.getChildIngredient());
                 }
@@ -243,6 +249,19 @@ public class LoadUIAllergies {
         return hashSet;
     }
 
+    public HashSet<String> getCurrentlyActiveParentAllergies() {
+        HashSet<String> hashSet = new HashSet<>();
+        for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
+            if(!allergyCheckBoxClass.getParentCheckBox().isChecked()){
+                if(!hashSet.contains(context.getString(allergyCheckBoxClass.getParentKey()))){
+
+                    hashSet.add(context.getString(allergyCheckBoxClass.getParentKey()));
+
+                }
+            }
+        }
+        return hashSet;
+    }
     public HashMap<String, CheckBox> getCheckBoxToRemove() {
         HashMap<String, CheckBox> hashMap = new HashMap<>();
         for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
@@ -259,13 +278,35 @@ public class LoadUIAllergies {
         }
         return hashMap;
     }
-    public void saveCurrentlyActive(){
+    public void saveCurrentlyActive(boolean b){
         for (String key : getCheckBoxToRemove().keySet()) {
             SharedPreferenceClass.setBoolean(key,context,false);
         }
+        Log.d(TAG, "saveCurrentlyActive: " + getCheckBoxToRemove().size());
+        Log.d(TAG, "saveCurrentlyActive: " + getCurrentlyActiveAllergies().size());
         for (String key : getCurrentlyActiveAllergies()) {
             SharedPreferenceClass.setBoolean(key, context,true);
         }
+        if(b){
+            SharedPreferenceClass.setSetFromPreference(context,getCurrentlyActiveAllergies());
+        }
+        if(!b){
+            SharedPreferenceClass.setSetFromAllergy(context,getCurrentlyActiveParentAllergies());
+        }
+        saveAllergies();
+
+    }
+    private void saveAllergies(){
+        HashSet<Integer> hashSet = new HashSet<>();
+        for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
+            for (AllergyCheckBoxClass checkBoxClass : allergyCheckBoxClass.getSameItemDifferentCategories()) {
+                if(checkBoxClass.isOn()){
+                    hashSet.add(checkBoxClass.getChildKey());
+                }
+            }
+        }
+        SharedPreferenceClass.setSet(context,hashSet);
+
     }
 
 

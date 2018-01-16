@@ -46,7 +46,6 @@ public class CreateLinearLayout {
                         allergyCheckBoxClass2.getChildCheckBox().setChecked(isChecked);
 
                         setOnRemove(allergyCheckBoxClass2, isChecked);
-
                     }
 
                 }

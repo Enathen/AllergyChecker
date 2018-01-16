@@ -3,7 +3,6 @@ package creativeendlessgrowingceg.allergychecker;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,42 +19,33 @@ public class SharedPreferenceClass {
     public static SharedPreferenceClass getInstance() {
         return ourInstance;
     }
-    public static boolean checkBoolean(String string,Context context){
-        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(string,false);
+
+    public static boolean checkBoolean(String string, Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(string, false);
     }
-    public static void setBoolean(String string, Context context, Boolean bool){
-            SharedPreferences.Editor sharedPreferencesEditor =
-                    PreferenceManager.getDefaultSharedPreferences(context).edit();
-            sharedPreferencesEditor.putBoolean(string, bool);
-            sharedPreferencesEditor.apply();
+
+    public static void setBoolean(String string, Context context, Boolean bool) {
+        SharedPreferences.Editor sharedPreferencesEditor =
+                PreferenceManager.getDefaultSharedPreferences(context).edit();
+        sharedPreferencesEditor.putBoolean(string, bool);
+        sharedPreferencesEditor.apply();
     }
-    public static void setSet(Context context, HashSet<Integer> hashMapCategoriesAllergy){
-        SharedPreferences sp = context.getSharedPreferences("LoadUI", Context.MODE_PRIVATE);
+
+    public static void setSharedPreference(StartPage context, HashSet<Integer> hashMapCategoriesAllergy, String getSharedPreference, String Mother) {
+        SharedPreferences sp = context.getSharedPreferences(Mother, Context.MODE_PRIVATE);
         SharedPreferences.Editor mEdit1 = sp.edit();
         Set<String> set = new TreeSet<>();
         for (Integer integer : hashMapCategoriesAllergy) {
             set.add(integer.toString());
-            Log.d(TAG, "setSet: " + context.getString(integer));
         }
 
-        mEdit1.putStringSet("data", set);
+        mEdit1.putStringSet(getSharedPreference, set);
         mEdit1.apply();
     }
-    public static void setSetPreference(Context context, HashSet<Integer> hashMapCategoriesAllergy) {
-        SharedPreferences sp = context.getSharedPreferences("LoadUI", Context.MODE_PRIVATE);
-        SharedPreferences.Editor mEdit1 = sp.edit();
-        Set<String> set = new TreeSet<>();
-        for (Integer integer : hashMapCategoriesAllergy) {
-            set.add(integer.toString());
-            Log.d(TAG, "setSetPreference: " + context.getString(integer));
-        }
 
-        mEdit1.putStringSet("dataPref", set);
-        mEdit1.apply();
-    }
-    public static HashSet<Integer> getSet(StartPage context){
-        SharedPreferences sp = context.getSharedPreferences("LoadUI", Context.MODE_PRIVATE);
-        Set<String> set = sp.getStringSet("data", new HashSet<String>());
+    public static HashSet<Integer> getSharedPreference(StartPage context, String getSharedPreference, String Mother) {
+        SharedPreferences sp = context.getSharedPreferences(Mother, Context.MODE_PRIVATE);
+        Set<String> set = sp.getStringSet(getSharedPreference, new HashSet<String>());
         HashSet<Integer> hashSet = new HashSet<>();
         for (String s : set) {
             hashSet.add(Integer.parseInt(s));
@@ -63,57 +53,16 @@ public class SharedPreferenceClass {
         }
         return hashSet;
     }
-    public static HashSet<Integer> getSetPreference(StartPage context){
-        SharedPreferences sp = context.getSharedPreferences("LoadUI", Context.MODE_PRIVATE);
-        Set<String> set = sp.getStringSet("dataPref", new HashSet<String>());
-        HashSet<Integer> hashSet = new HashSet<>();
-        for (String s : set) {
-            hashSet.add(Integer.parseInt(s));
 
-        }
-
-        return hashSet;
-    }
-    public static void setSetFromAllergy(Context context, HashSet<Integer> hashMapCategoriesAllergy){
-        SharedPreferences sp = context.getSharedPreferences("LoadUI", Context.MODE_PRIVATE);
-        SharedPreferences.Editor mEdit1 = sp.edit();
-        Set<String> set = new TreeSet<>();
-        for (Integer integer : hashMapCategoriesAllergy) {
-            set.add(integer.toString());
-        }
-
-        mEdit1.putStringSet("allergy", set);
-        mEdit1.apply();
-    }
-    public static HashSet<Integer> getSetFromAllergy(Context context){
-        SharedPreferences sp = context.getSharedPreferences("LoadUI", Context.MODE_PRIVATE);
-        Set<String> set = sp.getStringSet("allergy", new HashSet<String>());
-        HashSet<Integer> hashSet = new HashSet<>();
-        for (String s : set) {
-            hashSet.add(Integer.parseInt(s));
-        }
-        return hashSet;
-    }
-    public static void setSetFromPreference(Context context, HashSet<String> hashMapCategoriesAllergy){
-        SharedPreferences.Editor mEdit1 = context.getSharedPreferences("LoadUI", Context.MODE_PRIVATE).edit();
+    public static void setSharedPreference(Context context, HashSet<String> hashMapCategoriesAllergy, String getSharedPreference, String Mother) {
+        SharedPreferences.Editor mEdit1 = context.getSharedPreferences(Mother, Context.MODE_PRIVATE).edit();
         Set<String> set = new TreeSet<>();
         set.addAll(hashMapCategoriesAllergy);
-        mEdit1.putStringSet("preference", set);
+        mEdit1.putStringSet(getSharedPreference, set);
         mEdit1.apply();
     }
-    public static Set<String> getSetFromPreference(Context context){
-        return  context.getSharedPreferences("LoadUI", Context.MODE_PRIVATE).getStringSet("preference", new HashSet<String>());
-    }
-    public static void setSetFromNotPreference(Context context, HashSet<String> hashMapCategoriesAllergy){
-        SharedPreferences.Editor mEdit1 = context.getSharedPreferences("LoadUI", Context.MODE_PRIVATE).edit();
-        Set<String> set = new TreeSet<>();
-        set.addAll(hashMapCategoriesAllergy);
-        mEdit1.putStringSet("notPreference", set);
-        mEdit1.apply();
-    }
-    public static Set<String> getSetFromNotPreference(Context context){
-        return  context.getSharedPreferences("LoadUI", Context.MODE_PRIVATE).getStringSet("notPreference", new HashSet<String>());
-    }
 
-
+    public static Set<String> getSharedPreferenceString(Context context, String getSharedPreference, String Mother) {
+        return context.getSharedPreferences(Mother, Context.MODE_PRIVATE).getStringSet(getSharedPreference, new HashSet<String>());
+    }
 }

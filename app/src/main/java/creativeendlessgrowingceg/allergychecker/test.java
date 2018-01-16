@@ -41,15 +41,14 @@ import java.util.Set;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 
-*/
-/**
+*
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * {@link AllergyFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link AllergyFragment#newInstance} factory method to
  * create an instance of this fragment.
- *//*
+
 
 public class AllergyFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -115,15 +114,14 @@ public class AllergyFragment extends Fragment {
         return context.createConfigurationContext(configuration).getResources().getString(id).toLowerCase().replaceAll("\\s+", "");
     }
 
-    */
-/**
+*
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
      * @return A new instance of fragment AllergyFragment.
-     *//*
+
 
     // TODO: Rename and change types and number of parameters
     public AllergyFragment newInstance(String param1, String param2) {
@@ -142,15 +140,14 @@ public class AllergyFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        */
-/*Locale locale = new Locale(new SettingsFragment(getContext()).getLanguageFromLFragment(getContext()));
+Locale locale = new Locale(new SettingsFragment(getContext()).getLanguageFromLFragment(getContext()));
         final Locale newLocale = new Locale(locale.getLanguage());
         Locale.setDefault(newLocale);
         final Configuration config = new Configuration();
         config.locale = newLocale;
 
         final Resources res = getContext().getResources();
-        res.updateConfiguration(config, res.getDisplayMetrics());*//*
+        res.updateConfiguration(config, res.getDisplayMetrics());
 
     }
 
@@ -364,9 +361,8 @@ public class AllergyFragment extends Fragment {
 
             imageView.setImageResource(arrayListCat.picture);
 
-            */
-/*SharedPreferences settings = getContext().getSharedPreferences(arrayListCat.ingredient, Context.MODE_PRIVATE);
-            final SharedPreferences.Editor editor = settings.edit();*//*
+SharedPreferences settings = getContext().getSharedPreferences(arrayListCat.ingredient, Context.MODE_PRIVATE);
+            final SharedPreferences.Editor editor = settings.edit();
 
             final CheckBox checkBox = (CheckBox) newLinearLayout.findViewById(R.id.checkBoxRowLeftMargin);
             setCheckedLater.add(new CheckBoxClass(checkBox, arrayListCat.id, parentPicture, getString(parentKey), parentKey, arrayListCat.ingredient));
@@ -509,8 +505,7 @@ public class AllergyFragment extends Fragment {
 
 
 
-    */
-/**
+*
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
@@ -519,7 +514,7 @@ public class AllergyFragment extends Fragment {
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
-     *//*
+
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
@@ -857,13 +852,12 @@ public class AllergyFragment extends Fragment {
                                 }
                             } else {
                                 btn.setText(getString(R.string.uncheckAll));
-                                */
-/*for (String boxes : checkBoxes.keySet()) {
+for (String boxes : checkBoxes.keySet()) {
                                     for (CheckBox box : checkBoxes.get(boxes)) {
                                         Log.d(TAG, "run: "+boxes);
                                         box.setChecked(true);
                                     }
-                                }*//*
+                                }
 
                                 for (CheckBox checkBox : parentCheckBox.values()) {
 

@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.TreeMap;
 
 /**
@@ -153,7 +152,6 @@ public class AllergyList {
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg, R.string.pork));
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg, R.string.duck));
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg, R.string.meat));
-        arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg, R.string.milk));
 
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg, R.string.goat));
         arrayListOvoVegetarian.add(new PictureIngredient(R.drawable.ovoveg, R.string.poultry));
@@ -274,8 +272,6 @@ public class AllergyList {
     }
 
     private Integer setArrayListMuslim() {
-        arrayListMuslim.add(new PictureIngredient(R.drawable.halal, R.string.bacon));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.halal, R.string.gelatin));
         arrayListMuslim.add(new PictureIngredient(R.drawable.halal, R.string.pork));
         sort(arrayListMuslim);
         return R.string.halal;

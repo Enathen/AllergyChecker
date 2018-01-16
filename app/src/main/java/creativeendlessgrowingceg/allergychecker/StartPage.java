@@ -253,7 +253,7 @@ public class StartPage extends AppCompatActivity
 
 
     private void setProfilePicture() {
-       // new MyAllergies(this, getImageViewHashMap(this), new SettingsFragment(this).getCategories()).setProfilePic();
+        new LoadUIAllergies().savePicture(this,getImageViewHashMap(this));
     }
 
     private void displayInterstitial() {
@@ -488,10 +488,10 @@ public class StartPage extends AppCompatActivity
             setTitle("Language");
         } else if (id == R.id.allergies) {
 //this, getImageViewHashMap(), new SettingsFragment(this).getCategories()
-            fragment = new MyAllergies(this);
+            fragment = new MyAllergies(this,getImageViewHashMap());
             setTitle("Allergies");
         } else if(id == R.id.preference){
-            fragment = new MyPreference(this);
+            fragment = new MyPreference(this,getImageViewHashMap());
             setTitle("Preferences");
         }
         else if (id == R.id.tutorial) {

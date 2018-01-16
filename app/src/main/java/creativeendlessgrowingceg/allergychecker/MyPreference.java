@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import java.util.HashMap;
 
 
 /**
@@ -33,6 +36,7 @@ public class MyPreference extends Fragment {
     private LinearLayout parentLinearLayout;
     private LoadUIAllergies loadUIAllergies;
     private StartPage startPage;
+    private HashMap<Integer, ImageView> imageViewHashMap = new HashMap<>();
 
 
     public MyPreference(StartPage startPage) {
@@ -42,6 +46,12 @@ public class MyPreference extends Fragment {
 
     public MyPreference() {
 
+    }
+
+    public MyPreference(StartPage startPage, HashMap<Integer, ImageView> imageViewHashMap) {
+
+        this.startPage = startPage;
+        this.imageViewHashMap = imageViewHashMap;
     }
 
 
@@ -111,6 +121,7 @@ public class MyPreference extends Fragment {
     public void onDetach() {
         super.onDetach();
         loadUIAllergies.saveCurrentlyActive(true);
+        loadUIAllergies.savePicture(startPage,imageViewHashMap);
         mListener = null;
     }
 
@@ -118,6 +129,7 @@ public class MyPreference extends Fragment {
     public void onPause() {
         super.onPause();
         loadUIAllergies.saveCurrentlyActive(true);
+        loadUIAllergies.savePicture(startPage, imageViewHashMap);
         mListener = null;
     }
 

@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 
@@ -35,6 +37,7 @@ public class MyAllergies extends Fragment {
     private LinearLayout parentLinearLayout;
     private LoadUIAllergies loadUIAllergies;
     private StartPage startPage;
+    private HashMap<Integer, ImageView> imageViewHashMap = new HashMap<>();
 
 
     public MyAllergies(StartPage startPage) {
@@ -44,6 +47,12 @@ public class MyAllergies extends Fragment {
 
     public MyAllergies() {
 
+    }
+
+    public MyAllergies(StartPage startPage, HashMap<Integer, ImageView> imageViewHashMap) {
+
+        this.startPage = startPage;
+        this.imageViewHashMap = imageViewHashMap;
     }
 
 
@@ -109,15 +118,19 @@ public class MyAllergies extends Fragment {
         }
     }
     synchronized public HashSet<Integer> getAllergies(){
-        HashSet<Integer> set= SharedPreferenceClass.getSetPreference(startPage);
-        set.addAll(SharedPreferenceClass.getSet(startPage));
+        HashSet<Integer> set= SharedPreferenceClass.getSharedPreference(startPage,"allergySave","LoadUIAllergies");
+        set.addAll(SharedPreferenceClass.getSharedPreference(startPage,"preferenceSave","LoadUIAllergies"));
         return set;
+    }
+    synchronized public void savePicture(){
+        loadUIAllergies = new LoadUIAllergies();
+        loadUIAllergies.savePicture(startPage, imageViewHashMap);
     }
     @Override
     public void onDetach() {
         super.onDetach();
         loadUIAllergies.saveCurrentlyActive(false);
-
+        loadUIAllergies.savePicture(startPage, imageViewHashMap);
         mListener = null;
     }
 
@@ -125,6 +138,7 @@ public class MyAllergies extends Fragment {
     public void onPause() {
         super.onPause();
         loadUIAllergies.saveCurrentlyActive(false);
+        loadUIAllergies.savePicture(startPage, imageViewHashMap);
         mListener = null;
     }
 

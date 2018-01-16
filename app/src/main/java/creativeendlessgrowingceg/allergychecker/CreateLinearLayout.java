@@ -40,6 +40,7 @@ public class CreateLinearLayout {
         allergyInfo.getParentCheckBox().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.getNeigbhourClasses()) {
 
                     for (AllergyCheckBoxClass allergyCheckBoxClass2: allergyCheckBoxClass.getSameItemDifferentCategories()) {
@@ -53,19 +54,36 @@ public class CreateLinearLayout {
             }
         });
     }
-    public static void checkParentShouldChecked(final AllergyCheckBoxClass allergyInfo) {
+    public static void checkParentShouldChecked(final AllergyCheckBoxClass allergyInfo, boolean preference) {
         allergyInfo.getParentCheckBox().setOnCheckedChangeListener(null);
-        for (AllergyCheckBoxClass allergyCheckBoxClass: allergyInfo.getNeigbhourClasses()) {
-            if (allergyCheckBoxClass.getChildCheckBox().isChecked()){
-                allergyInfo.getParentCheckBox().setChecked(true);
-                setOnRemove(allergyCheckBoxClass,true);
-                parentCheckedChanged(allergyInfo);
-                return;
-
+        if(!preference){
+            for (AllergyCheckBoxClass allergyCheckBoxClass: allergyInfo.getNeigbhourClasses()) {
+                if (allergyCheckBoxClass.getChildCheckBox().isChecked()){
+                    allergyInfo.getParentCheckBox().setChecked(true);
+                    setOnRemove(allergyCheckBoxClass,true);
+                    parentCheckedChanged(allergyInfo);
+                    return;
+                }
             }
+            allergyInfo.getParentCheckBox().setChecked(false);
+            parentCheckedChanged(allergyInfo);
+        }else {
+            for (AllergyCheckBoxClass allergyCheckBoxClass: allergyInfo.getNeigbhourClasses()) {
+                if (!allergyCheckBoxClass.getChildCheckBox().isChecked()){
+
+
+                    allergyInfo.getParentCheckBox().setChecked(false);
+                    setOnRemove(allergyCheckBoxClass,false);
+                    parentCheckedChanged(allergyInfo);
+                    return;
+
+                }
+            }
+            allergyInfo.getParentCheckBox().setChecked(true);
+            parentCheckedChanged(allergyInfo);
+
+
         }
-        allergyInfo.getParentCheckBox().setChecked(false);
-        parentCheckedChanged(allergyInfo);
     }
 
     public static void checkIfParentAndChildEqual(int parentKey, int childKey, AllergyCheckBoxClass checkBoxes) {
@@ -93,17 +111,38 @@ public class CreateLinearLayout {
                 allergyInfo.getChildCheckBox().setChecked(isChecked);
                 if(isChecked){
                     allergyInfo.setOn(true);
-                    checkIfParentAndChildEqual(allergyInfo.getParentKey(),allergyInfo.getChildKey(),allergyInfo);
+                    //checkIfParentAndChildEqual(allergyInfo.getParentKey(),allergyInfo.getChildKey(),allergyInfo);
                 }else{
                     allergyInfo.setOn(false);
                     allergyInfo.setRemove(true);
                 }
-                checkParentShouldChecked(allergyInfo);
+                checkParentShouldChecked(allergyInfo, false);
                 sameItemDifferentCategories(allergyInfo.getSameItemDifferentCategories(),isChecked);
             }
         });
 
     }
+
+    public static void checkBoxChildOnCheckedListenerPreference(final AllergyCheckBoxClass allergyInfo) {
+        allergyInfo.getChildCheckBox().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                allergyInfo.getChildCheckBox().setChecked(isChecked);
+                if(isChecked){
+                    allergyInfo.setOn(true);
+                }else{
+                    allergyInfo.setOn(false);
+                    allergyInfo.setRemove(true);
+                }
+                checkParentShouldChecked(allergyInfo,true);
+                sameItemDifferentCategories(allergyInfo.getSameItemDifferentCategories(),isChecked);
+            }
+        });
+    }
+
+
+
     public static void setOnRemove( AllergyCheckBoxClass allergyInfo,boolean isChecked){
         if(isChecked){
             allergyInfo.setOn(true);
@@ -113,7 +152,6 @@ public class CreateLinearLayout {
 
         }
     }
-
 
 
 }

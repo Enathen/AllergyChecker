@@ -1,6 +1,7 @@
 package creativeendlessgrowingceg.allergychecker;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -218,12 +219,18 @@ public class LoadUIAllergies {
                 for (AllergyCheckBoxClass checkBoxClass : allergyCheckBoxClass.getSameItemDifferentCategories()) {
                     final CheckBox checkBox = checkBoxClass.getChildCheckBox();
                     checkBox.setChecked(SharedPreferenceClass.checkBoolean(checkBoxClass.getChildIngredient(),context));
+                    checkBoxClass.setOn(SharedPreferenceClass.checkBoolean(checkBoxClass.getChildIngredient(),context));
+                    if(!preference){
+                        if(checkBox.isChecked()){
+                            checkBoxClass.getParentCheckBox().setChecked(true);
+                            checkBoxClass.setOn(true);
+                        }
+                        CreateLinearLayout.checkBoxChildOnCheckedListener(checkBoxClass);
+                    }else{
+                        CreateLinearLayout.checkBoxChildOnCheckedListenerPreference(checkBoxClass);
 
-                    if(checkBox.isChecked()){
-                        checkBoxClass.getParentCheckBox().setChecked(true);
-                        checkBoxClass.setOn(true);
                     }
-                    CreateLinearLayout.checkBoxChildOnCheckedListener(checkBoxClass);
+
                 }
             }
             HashSet<Integer> hashSet = new HashSet<>();
@@ -232,6 +239,12 @@ public class LoadUIAllergies {
                 if(!hashSet.contains(allergyCheckBoxClass.getParentKey())){
                     hashSet.add(allergyCheckBoxClass.getParentKey());
                     CreateLinearLayout.parentCheckedChanged(allergyCheckBoxClass);
+                    if(preference){
+                        for (AllergyCheckBoxClass allergyCheckBoxClass1 :allergyCheckBoxClass.getSameItemDifferentCategories()){
+                            CreateLinearLayout.checkParentShouldChecked(allergyCheckBoxClass1,true);
+                        }
+
+                    }
 
                 }
             }
@@ -246,6 +259,7 @@ public class LoadUIAllergies {
                         allergyCheckBoxClass.getParentCheckBox().setChecked(false);
                     }
                 }
+
                 hashSetCheckedAllergies.clear();
                 hashSetCheckedNotAllergies.clear();
                 SharedPreferenceClass.setSharedPreference(context,hashSetCheckedAllergies,"preferenceToSendToAllergy",TAG);
@@ -297,6 +311,7 @@ public class LoadUIAllergies {
             for (AllergyCheckBoxClass checkBoxClass : allergyCheckBoxClass.getSameItemDifferentCategories()) {
                 if(!checkBoxClass.isOn()){
                     hashSet.add(checkBoxClass.getChildIngredient());
+                    Log.d(TAG, "getCurrentlyNotActiveAllergies: "+ checkBoxClass.getChildIngredient());
                 }
             }
         }
@@ -367,10 +382,19 @@ public class LoadUIAllergies {
         HashSet<Integer> hashSetPicture = new HashSet<>();
         for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
             for (AllergyCheckBoxClass checkBoxClass : allergyCheckBoxClass.getSameItemDifferentCategories()) {
-                if(checkBoxClass.isOn()){
-                    hashSet.add(checkBoxClass.getChildKey());
-                    hashSetPicture.add(checkBoxClass.getParentPicture());
+                if(!preference){
+                    if(checkBoxClass.isOn()){
+                        hashSet.add(checkBoxClass.getChildKey());
+                        hashSetPicture.add(checkBoxClass.getParentPicture());
+                    }
+                }else{
+                    if(checkBoxClass.getParentCheckBox().isChecked()){
+                        hashSetPicture.add(checkBoxClass.getParentPicture());
+                    }if(checkBoxClass.isOn()){
+                        hashSet.add(checkBoxClass.getChildKey());
+                    }
                 }
+
             }
         }
         if(!preference){

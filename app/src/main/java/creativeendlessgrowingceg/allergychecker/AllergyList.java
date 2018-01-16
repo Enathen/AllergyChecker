@@ -273,6 +273,8 @@ public class AllergyList {
 
     private Integer setArrayListMuslim() {
         arrayListMuslim.add(new PictureIngredient(R.drawable.halal, R.string.pork));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.halal, R.string.bacon));
+        arrayListMuslim.add(new PictureIngredient(R.drawable.halal, R.string.gelatin));
         sort(arrayListMuslim);
         return R.string.halal;
     }

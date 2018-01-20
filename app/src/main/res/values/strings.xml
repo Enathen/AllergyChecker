@@ -167,6 +167,7 @@
     <string name="spanish">Spanish</string>
     <string name="staticEnglish">English</string>
     <string name="staticSwedish">Svenska</string>
+    <string name="staticSpanish">Español</string>
 
 
     <string name="language">Language</string>
@@ -331,5 +332,7 @@
     <string name="SharingIsCaring">Sharing is caring</string>
     <string name="help">help</string>
     <string name="myPreference">My preferences</string>
+    <string name="showAllergies">Show Allegies</string>
+    <string name="allergyAgianst">Allergic Against</string>
 
 </resources>

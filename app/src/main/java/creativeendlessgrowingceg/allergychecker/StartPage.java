@@ -66,7 +66,8 @@ public class StartPage extends AppCompatActivity
         , MyAllergies.OnFragmentInteractionListener
         , AboutFragment.OnFragmentInteractionListener
         , TranslateHelp.OnFragmentInteractionListener
-        , MyPreference.OnFragmentInteractionListener{
+        , MyPreference.OnFragmentInteractionListener
+        , ShowAllergies.OnFragmentInteractionListener {
     private static final String TAG = "StartPage";
     private static final String SHARED_PREFS_NAME = "StartPage";
     FloatingActionButton flash;
@@ -253,7 +254,7 @@ public class StartPage extends AppCompatActivity
 
 
     private void setProfilePicture() {
-        new LoadUIAllergies().savePicture(this,getImageViewHashMap(this));
+        new LoadUIAllergies().savePicture(this, getImageViewHashMap(this));
     }
 
     private void displayInterstitial() {
@@ -488,13 +489,12 @@ public class StartPage extends AppCompatActivity
             setTitle("Language");
         } else if (id == R.id.allergies) {
 //this, getImageViewHashMap(), new SettingsFragment(this).getCategories()
-            fragment = new MyAllergies(this,getImageViewHashMap());
+            fragment = new MyAllergies(this, getImageViewHashMap());
             setTitle("Allergies");
-        } else if(id == R.id.preference){
-            fragment = new MyPreference(this,getImageViewHashMap());
+        } else if (id == R.id.preference) {
+            fragment = new MyPreference(this, getImageViewHashMap());
             setTitle("Preferences");
-        }
-        else if (id == R.id.tutorial) {
+        } else if (id == R.id.tutorial) {
             startActivity(new Intent(this, OnboardingPagerActivity.class));
         } else if (id == R.id.about) {
             fragment = new AboutFragment();
@@ -502,6 +502,9 @@ public class StartPage extends AppCompatActivity
         } else if (id == R.id.translate) {
             fragment = new TranslateHelp();
             setTitle("Translate");
+        } else if (id == R.id.showAllergies) {
+            fragment = new ShowAllergies(new MyAllergies(this).getAllergies(),LanguagesAccepted.getLanguages());
+            setTitle("Show Allergies");
         } else if (id == R.id.nav_rate) {
             Uri uri = Uri.parse("market://details?id=" + this.getPackageName());
             Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
@@ -671,7 +674,7 @@ public class StartPage extends AppCompatActivity
             }
             for (HashMap<String, AllAllergiesForEachInteger> stringAllAllergiesForEachIntegerHashMap : allergies.values()) {
                 for (AllAllergiesForEachInteger allAllergiesForEachInteger : stringAllAllergiesForEachIntegerHashMap.values()) {
-                    Log.d(TAG, "STARTPAGE: "+ allAllergiesForEachInteger.getNameOfIngredient());
+                    Log.d(TAG, "STARTPAGE: " + allAllergiesForEachInteger.getNameOfIngredient());
                 }
             }
             helpCalcAllergy.bkTree(length, hashSetAllStrings, allergies, allFoundAllergies);

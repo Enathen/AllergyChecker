@@ -55,6 +55,18 @@ class LanguagesAccepted {
         }
         return 0;
     }
+    public static int getCountryNameStatic(String langCode) {
+        if (langCode.equals("sv")) {
+            return R.string.staticSwedish;
+        }
+        if (langCode.equals("en")) {
+            return R.string.staticEnglish;
+        }
+        if (langCode.equals("es")) {
+            return R.string.staticSpanish;
+        }
+        return 0;
+    }
     private static void sort(ArrayList<Locale> arrayList) {
         Collections.sort(arrayList, new Comparator<Locale>() {
             @Override
@@ -71,6 +83,15 @@ class LanguagesAccepted {
 
 
         return context.createConfigurationContext(configuration).getResources().getString(id).toLowerCase().replaceAll("\\s+", "");
+    }
+    @NonNull
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static String getStringByLocalNoTakeAwaySpace(Activity context, int id, String locale) {
+        Configuration configuration = new Configuration(context.getResources().getConfiguration());
+        configuration.setLocale(new Locale(locale));
+
+
+        return context.createConfigurationContext(configuration).getResources().getString(id);
     }
 
 }

@@ -168,9 +168,6 @@
     <string name="swedish">Svenska</string>
     <string name="spanish">Spanska</string>
 
-    <string name="staticEnglish">English</string>
-    <string name="staticSwedish">Svenska</string>
-
 
     <string name="language">Språk</string>
     <string name="languageFrom">Översätt från</string>
@@ -325,6 +322,8 @@
     <string name="SharingIsCaring">Sharing is caring</string>
     <string name="help">Hjälp</string>
     <string name="myPreference">My preferences</string>
+    <string name="showAllergies">Show Allegies</string>
+    <string name="allergyAgianst">Allergic Against</string>
 
 
 </resources>

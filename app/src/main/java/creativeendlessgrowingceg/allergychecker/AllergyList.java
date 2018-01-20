@@ -42,9 +42,63 @@ public class AllergyList {
 
     public AllergyList(Context context) {
         this.context = context;
-
-
-
+    }
+    public static ArrayList<Integer> getParentKeys(){
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        arrayList.add(R.string.citrus);
+        arrayList.add(R.string.dairy);
+        arrayList.add(R.string.spice);
+        arrayList.add(R.string.legumes);
+        arrayList.add(R.string.nuts);
+        arrayList.add(R.string.fruit);
+        arrayList.add(R.string.seeds);
+        arrayList.add(R.string.shellfish);
+        arrayList.add(R.string.fish);
+        arrayList.add(R.string.gluten);
+        return arrayList;
+    }
+    public ArrayList<PictureIngredient> getSpecifiedKey(int key){
+        if(key == R.string.citrus){
+            setArrayListCitrus();
+            return getArrayListCitrus();
+        }
+        if(key == R.string.fish){
+            setArrayListFish();
+            return getArrayListFish();
+        }
+        if(key == R.string.shellfish){
+            setArrayListShellfish();
+            return getArrayListShellfish();
+        }
+        if(key == R.string.fruit){
+            setArrayListFruit();
+            return getArrayListFruit();
+        }
+        if(key == R.string.seeds){
+            setArrayListSeeds();
+            return getArrayListSeeds();
+        }
+        if(key == R.string.gluten){
+            setArrayListGluten();
+            return getArrayListGluten();
+        }
+        if(key == R.string.nuts){
+            setArrayListNuts();
+            return getArrayListNuts();
+        }
+        if(key == R.string.spice){
+            setArrayListSpice();
+            return getArrayListSpice();
+        }
+        if(key == R.string.dairy){
+            setArrayListDairy();
+            return getArrayListDairy();
+        }
+        if(key == R.string.legumes){
+            setArrayListLegumes();
+            return getArrayListLegumes();
+        }
+        return null;
     }
 
     public TreeMap<Integer,ArrayList<AllergyList.PictureIngredient>> getMyAllergies() {

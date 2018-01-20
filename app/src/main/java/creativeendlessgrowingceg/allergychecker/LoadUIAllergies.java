@@ -408,7 +408,29 @@ public class LoadUIAllergies {
             SharedPreferenceClass.setSharedPreference(context,hashSet,"allergySave",TAG);
             SharedPreferenceClass.setSharedPreference(context,hashSetPicture,"allergySavePicture",TAG);
         }else{
+            HashSet<Integer> preferenceSave = SharedPreferenceClass.getSharedPreference(context, "preferenceSave", TAG);
+            HashSet<Integer> allergySave = SharedPreferenceClass.getSharedPreference(context, "allergySave", TAG);
+            ArrayList<Integer> parentKeys = AllergyList.getParentKeys();
+            for (Integer parentKey : parentKeys) {
+                if (preferenceSave.contains(parentKey)){
+                    if(!allergySave.contains(parentKey)){
+                        Log.d(TAG, "Allergy does not Contains: " + context.getString(parentKey));
+                        ArrayList<AllergyList.PictureIngredient> specifiedKey = new AllergyList(context).getSpecifiedKey(parentKey);
+                        for (AllergyList.PictureIngredient pictureIngredient : specifiedKey) {
+                            hashSet.add(pictureIngredient.getId());
+                            Log.d(TAG, "saveAllergies: " + pictureIngredient.getIngredient());
+                        }
+                        hashSetPicture.add(specifiedKey.get(0).getPicture());
+
+                    }
+                    Log.d(TAG, "Contains: " + context.getString(parentKey));
+                }else{
+                    Log.d(TAG, "Does Not Contain: " + context.getString(parentKey));
+
+                }
+            }
             SharedPreferenceClass.setSharedPreference(context,hashSet,"preferenceSave",TAG);
+            //Log.d(TAG, "saveAllergies: "+ SharedPreferenceClass.getSharedPreference(context,"preferenceSave",TAG));
             SharedPreferenceClass.setSharedPreference(context,hashSetPicture,"preferenceSavePicture",TAG);
         }
 

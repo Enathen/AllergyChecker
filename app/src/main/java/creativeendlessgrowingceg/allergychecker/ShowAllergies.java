@@ -98,7 +98,7 @@ public class ShowAllergies extends Fragment {
             ((TextView)linearLayout.findViewById(R.id.textViewStaticLanguage)).setText(LanguagesAccepted.getCountryNameStatic(category.getLanguage()));
             ((TextView)linearLayout.findViewById(R.id.textViewLocaleLanguage)).setText(LanguagesAccepted.getCountryName(category.getLanguage()));
             ((TextView)pLinearLayout.findViewById(R.id.textViewAllergicAgainst)).setText(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),R.string.allergyAgianst,category.getLanguage()));
-            ((TextView)pLinearLayout.findViewById(R.id.textViewAllergicAgainst)).setVisibility(View.INVISIBLE);
+            pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.INVISIBLE);
 
             linearLayouts.put(pLinearLayout,new ArrayList<LinearLayout>());
             for (Integer allergy : allergies) {
@@ -113,16 +113,16 @@ public class ShowAllergies extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    for (LinearLayout textViews: linearLayouts.get((LinearLayout) v)){
+                    for (LinearLayout textViews: linearLayouts.get(v)){
                         if(textViews.getVisibility() == View.INVISIBLE){
                             ((LinearLayout) v).addView(textViews);
                             textViews.setVisibility(View.VISIBLE);
-                            ((TextView)pLinearLayout.findViewById(R.id.textViewAllergicAgainst)).setVisibility(View.VISIBLE);
+                            pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.VISIBLE);
 
                         }else {
                             ((LinearLayout) v).removeView(textViews);
                             textViews.setVisibility(View.INVISIBLE);
-                            ((TextView)pLinearLayout.findViewById(R.id.textViewAllergicAgainst)).setVisibility(View.INVISIBLE);
+                            pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.INVISIBLE);
                         }
                     }
                 }

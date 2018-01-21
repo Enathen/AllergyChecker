@@ -677,6 +677,7 @@ public class StartPage extends AppCompatActivity
                     Log.d(TAG, "STARTPAGE: " + allAllergiesForEachInteger.getNameOfIngredient());
                 }
             }
+
             helpCalcAllergy.bkTree(length, hashSetAllStrings, allergies, allFoundAllergies);
 
             long start = System.currentTimeMillis();

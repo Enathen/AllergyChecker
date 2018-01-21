@@ -1,28 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Allergy Checker</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
-    <string name="ok">OK</string>
-    <string name="ocr_header">Click &quot;Detect Text&quot; to detect text</string>
-    <string name="read_text">Detect Text</string>
-    <string name="auto_focus">Auto Focus</string>
-    <string name="use_flash">Use Flash</string>
-    <string name="ocr_success">Text read successfully</string>
-    <string name="ocr_failure">No text captured</string>
-    <string name="ocr_error">"Error reading text: %1$s"</string>
-    <string name="action_search">Buscar</string>
-    <string name="drawer_open">Abrir</string>
-    <string name="drawer_close">Cerrar</string>
-    <string name="nav_item_home">Casa</string>
-    <string name="nav_item_friends">Amigos</string>
-    <string name="nav_item_notifications">mensajes</string>
-    -<string-array name="nav_drawer_labels">
-    <item>@string/nav_item_home</item>
-    <item>@string/nav_item_friends</item>
-    <item>@string/nav_item_notifications</item>
-</string-array>
+    <string name="action_search">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="nav_item_home">Home</string>
+    <string name="nav_item_friends">Friends</string>
+    <string name="nav_item_notifications">Messages</string>
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_friends</item>
+        <item>@string/nav_item_notifications</item>
+    </string-array>
     <string name="title_messages">Messages</string>
     <string name="title_friends">Friends</string>
     <string name="title_home">Home</string>
@@ -31,24 +24,16 @@
     <string name="title_activity_onboarder">OnboarderActivity</string>
     <string name="hello_world">We found an Email account on your phone,use it?</string>
     <string name="title_activity_home">Create a card</string>
-    -<string-array name="card_type_array">
-    <item>Personal</item>
-    <item>Business</item>
-</string-array>
+    <string-array name="card_type_array">
+        <item>Personal</item>
+        <item>Business</item>
+    </string-array>
     <string name="title_activity_qr">Personal Card</string>
     <string name="title_activity_view_pager">ViewPagerActivity</string>
     <string name="title_activity_found_email">FoundEmailActivity</string>
     <string name="title_activity_find_email">Email</string>
     <string name="title_activity_takeoff">App Takes off here</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="low_storage_error">Ocr dependencies cannot be downloaded due to low device storage</string>
-    <string name="title_activity_main">Ocr Detector Sample</string>
-
-
-
-
-
+    <string name="ok">OK</string>
 
     <string name="permission_camera_rationale">Tillgång till kameran behövs annars fungerar appen inte</string>
     <string name="no_camera_permission">Den här appen kan inte köras om den inte har tillgång till kameran. Kameran avslutas nu.</string>
@@ -82,7 +67,7 @@
     <string name="herring">Sill</string>
     <string name="mahi">Mahi</string>
     <string name="perch">Aborre</string>
-    <string name="pollock">Pollachius</string>
+    <string name="pollock">Sej</string>
     <string name="pike">Gädda</string>
     <string name="swordfish">Svärdfisk</string>
     <string name="sole">Sjötunga</string>
@@ -171,7 +156,7 @@
 
     <string name="language">Språk</string>
     <string name="languageFrom">Översätt från</string>
-    <string name="languageGeneral">generalt Språk</string>
+    <string name="languageGeneral">generelt Språk</string>
     <string name="startPageHeader">Tryck nedanför för att scanna text</string>
     <string name="definitelyContained">Innehåller definitivt</string>
     <string name="history">Historik</string>
@@ -223,7 +208,7 @@
     <string name="potato">Potatis</string>
     <string name="pumpkin">Pumpa</string>
     <string name="zucchini">Zucchini</string>
-    <string name="pork">Gris</string>
+    <string name="pig">Gris</string>
     <string name="duck">Anka</string>
     <string name="goat">Get</string>
     <string name="poultry">Höns</string>
@@ -321,9 +306,9 @@
     <string name="useNoFlash"> ficklampa av</string>
     <string name="SharingIsCaring">Sharing is caring</string>
     <string name="help">Hjälp</string>
-    <string name="myPreference">My preferences</string>
-    <string name="showAllergies">Show Allegies</string>
-    <string name="allergyAgianst">Allergic Against</string>
+    <string name="myPreference">Mina Preferencer</string>
+    <string name="showAllergies">Visa Allergier</string>
+    <string name="allergyAgianst">Allergisk mot</string>
 
 
 </resources>

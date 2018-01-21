@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Allergy Checker</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="nav_item_home">Home</string>
+    <string name="nav_item_friends">Friends</string>
+    <string name="nav_item_notifications">Messages</string>
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_friends</item>
+        <item>@string/nav_item_notifications</item>
+    </string-array>
+    <string name="title_messages">Messages</string>
+    <string name="title_friends">Friends</string>
+    <string name="title_home">Home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_pager_indicator">SKIP</string>
+    <string name="title_activity_onboarder">OnboarderActivity</string>
+    <string name="hello_world">We found an Email account on your phone,use it?</string>
+    <string name="title_activity_home">Create a card</string>
+    <string-array name="card_type_array">
+        <item>Personal</item>
+        <item>Business</item>
+    </string-array>
+    <string name="title_activity_qr">Personal Card</string>
+    <string name="title_activity_view_pager">ViewPagerActivity</string>
+    <string name="title_activity_found_email">FoundEmailActivity</string>
+    <string name="title_activity_find_email">Email</string>
+    <string name="title_activity_takeoff">App Takes off here</string>
+    <string name="ok">OK</string>
+
+    <string name="permission_camera_rationale">Tilgang til kameraet er nødvendig for deteksjon</string>
+    <string name="no_camera_permission">Denne appen kan ikke kjøres hvis den ikke har tilgang til kameraet. Kameraet slutter nå.</string>
+    <string name="nuts">Nøtter</string>
+    <string name="almond">Mandler</string>
+    <string name="brazil">Paranøtter, Paranøtt</string>
+    <string name="cocoa">Kakao</string>
+    <string name="hazelnut">Hasselnøtter, Hasselnøtt</string>
+
+    <string name="macadamia">Macadamia</string>
+    <string name="pecans">Pecan, Pecanøt</string>
+    <string name="pili">Pilinötter, Pilinöt</string>
+    <string name="pine">Pinjekjerner</string>
+    <string name="pistachios">Pistasjenøtter, pistasj</string>
+    <string name="soy">Soja</string>
+    <string name="tiger">Tiger nøtter</string>
+    <string name="walnuts">Valnøtter, valnøtt</string>
+    <string name="sesame">Sesam, sesamfrø</string>
+
+    <string name="tuna">Tunfisk</string>
+    <string name="salmon">Laks</string>
+    <string name="caviar">Kaviar</string>
+    <string name="anchovies">Ansjos</string>
+    <string name="bass">Grouper</string>
+    <string name="catfish">Malle</string>
+    <string name="cod">Torsk</string>
+    <string name="flounder">Flyndre</string>
+    <string name="haddock">Hyse</string>
+    <string name="hake">Kummel</string>
+    <string name="halibut">Kveite</string>
+    <string name="herring">Sild</string>
+    <string name="mahi">Mahi</string>
+    <string name="perch">Abbor</string>
+    <string name="pollock">Sei</string>
+    <string name="pike">Gjedde</string>
+    <string name="swordfish">Sverdfisk</string>
+    <string name="sole">Såle</string>
+    <string name="snapper">Blåfisk</string>
+    <string name="surimi">Surimi</string>
+    <string name="tilapia">Tilapia</string>
+    <string name="trout">Ørret</string>
+
+
+    <string name="barnacle">Hvitkinngås</string>
+    <string name="crab">Krabbe, Krabber</string>
+    <string name="crawfish">Kreps</string>
+    <string name="krill">Krill</string>
+    <string name="lobster">Hummer</string>
+    <string name="prawns">reke, reker</string>
+    <string name="shrimp">Liten reke</string>
+    <string name="scampi">Sjökräfta</string>
+    <string name="abalone">Sjøøre</string>
+    <string name="clams">Mussla</string>
+    <string name="cockle">Hjerteskjell</string>
+    <string name="limpet">Limpet</string>
+    <string name="mussels">Blåskjell</string>
+    <string name="octopus">Blekksprut</string>
+    <string name="oysters">Østers</string>
+    <string name="periwinkle">Shell</string>
+    <string name="urchin">Kråkebolle</string>
+    <string name="scallops">Kamskjell</string>
+    <string name="snails">Snegl, Snegler</string>
+    <string name="squid">Akkar</string>
+    <string name="whelk">Kongesnegl</string>
+
+    <string name="wheat">Hvete</string>
+    <string name="durum">Durum</string>
+    <string name="emmer">Emmer</string>
+    <string name="rye">Rug</string>
+    <string name="barley">Bygg</string>
+    <string name="triticale">Rughvete</string>
+    <string name="malt">Malt</string>
+    <string name="semolina">Semulegryn</string>
+    <string name="spelt">Spelt</string>
+    <string name="farina">Mel</string>
+    <string name="farro">Farro</string>
+    <string name="graham">Graham</string>
+    <string name="kamut">Kamut</string>
+    <string name="einkorn">Einkorn</string>
+
+
+    <string name="Eple">Äpple</string>
+    <string name="Pære">Päron</string>
+    <string name="tomato">Tomat, Tomater</string>
+    <string name="strawberry">Jordbær</string>
+    <string name="prune">Sviske</string>
+    <string name="pomegranate">Granateple</string>
+    <string name="pinapple">Ananas</string>
+    <string name="persimmon">Persimmon</string>
+    <string name="peach">Fersken</string>
+    <string name="orange">Appelsin, Appelsiner</string>
+    <string name="melon">Melon</string>
+    <string name="mango">Mango</string>
+    <string name="lychee">Litchi</string>
+    <string name="kiwi">Kiwi</string>
+    <string name="grape">Drue</string>
+    <string name="date">Dadel</string>
+    <string name="fig">Fig</string>
+    <string name="coconut">Kokosnøtt</string>
+    <string name="cherry">Kirsebær</string>
+    <string name="banana">Banan</string>
+    <string name="apricot">Aprikos</string>
+    <string name="acerola">Acerola</string>
+    <string name="avocado">Avokado</string>
+
+    <string name="shellfish">skalldyr</string>
+    <string name="gluten">Gluten</string>
+    <string name="fish">Fisk</string>
+    <string name="milk">Melk</string>
+    <string name="seeds">Frø</string>
+    <string name="deleteHistory">Slett historie</string>
+    <string name="scanPhotos">Ingen historie ennå</string>
+
+    <string name="service_label">My Spell Checker</string>
+
+    <string name="english">Engelsk</string>
+    <string name="swedish">Svensk</string>
+    <string name="spanish">Spansk</string>
+
+
+    <string name="language">Språk</string>
+    <string name="languageFrom">Oversett fra</string>
+    <string name="languageGeneral">generalt Språk</string>
+    <string name="startPageHeader">Trykk under for å skanne tekst</string>
+    <string name="definitelyContained">Absolut indeholdt</string>
+    <string name="history">Historie</string>
+    <string name="statistics">Statistikk</string>
+    <string name="allergies">Allergi</string>
+    <string name="dontUse">Ikke bruk!</string>
+    <string name="scannedTextBelow">Skannet tekst nedenfor:</string>
+    <string name="youCanUse">Kan bruke!</string>
+    <string name="allergy">Allergi:</string>
+    <string name="contained">inneholdt</string>
+    <string name="times">ganger</string>
+    <string name="probablyContained">sannsynligvis inneholdt</string>
+    <string name="fromWord">fra ord:</string>
+    <string name="myAllergies">Mine allergier</string>
+    <string name="share">Dele</string>
+    <string name="send">Send tips</string>
+    <string name="mustBeInEnglish">Teksten må være skrevet på engelsk eller svensk! Takk!</string>
+    <string name="sendTipsFrom">Hvor vil du sende tips fra?</string>
+    <string name="welcomeMessageInvite">Vil du vite om du kan spise noe fort? Hvilken er ikke allergisk mot deg?
+    Awesome! Denne appen lar deg skanne tekst fra forskjellige språk som lar deg se om du er allergisk overfor det!</string>
+    <string name="time">gång</string>
+
+
+    <string name="buckwheat">Bokhvede</string>
+    <string name="mustardSeed">Sennepsfrø</string>
+    <string name="poppySeed">Valmuefrø</string>
+    <string name="sunflowerSeed">Solsikkefrø</string>
+    <string name="fruit">Frukt</string>
+    <string name="vegetables">Grønnsaker</string>
+    <string name="cannotUseCamera">Kan ikke bruke kamera uten din tillatelse!</string>
+    <string name="varning">Advarsel!</string>
+    <string name="thisAppOnlySave">Hvis tillatelse ikke er gitt, virker appen ikke riktig.
+        Det eneste som er lagret er teksten. Hvis tillatelse ikke er gitt, må appen installeres på nytt!
+        Ha en god dag!</string>
+    <string name="mightContainOther">Det här är endast en riktlinje! Och kanske innehåller andra allergier</string>
+    <string name="mightContainAllergies">Dette er bare en retningslinje! Og kan inneholde andre allergier!</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="vegan">Vegan</string>
+    <string name="citrus">Sitrus</string>
+    <string name="haram">Haram</string>
+
+    <string name="legumes">Belgfrukter</string>
+    <string name="aspargus">Asparges</string>
+    <string name="bellPepper">Paprika</string>
+    <string name="cabbage">Kål</string>
+    <string name="carrot">Gulrot</string>
+    <string name="celery">Selleri</string>
+    <string name="garlic">Hvitløk</string>
+    <string name="lettuce">Salat</string>
+    <string name="maize">Mais</string>
+    <string name="potato">Potet</string>
+    <string name="pumpkin">Gresskar</string>
+    <string name="zucchini">Zucchini</string>
+    <string name="pig">Gris</string>
+    <string name="duck">And</string>
+    <string name="goat">Geit</string>
+    <string name="poultry">Fjærfe</string>
+    <string name="lamb">Lam</string>
+    <string name="sausage">Pølse</string>
+    <string name="gelatin">Gelatin</string>
+    <string name="dairy">Meieri</string>
+    <string name="egg">Egg</string>
+    <string name="honey">Honning</string>
+    <string name="lactoVegetarian">Lacto-Vegetarian</string>
+    <string name="ovoVegetarian">Ovo-Vegetarian</string>
+    <string name="lactoOvoVegetarian">Lacto-ovo-vegetarian</string>
+    <string name="demiVegetarian">Demivegetarian</string>
+    <string name="polloVegetarian">Pollovegetarian</string>
+    <string name="pescoVegetarian">Pescovegetarian</string>
+    <string name="chicken">Kylling</string>
+    <string name="areYouSure">Er du sikker på at du vil fjerne alt?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nei</string>
+    <string name="flashon">Lommelykt på</string>
+    <string name="cancel">Avbryt</string>
+    <string name="inputIngredients">Skrive ingredienser</string>
+    <string name="rate">Ranger</string>
+    <string name="pressMe">Trykk meg\nFor å fortsette!</string>
+    <string name="firstIntro">"Mina Allergier" används för att fylla i dina allergier.\n
+         - Du finner den i menyen.</string>
+    <string name="secondIntro">Trykk for å vise kameraet.
+        Hold nede knappen for flere alternativer.
+    </string>
+    <string name="thirdIntro">Slik bruker du kameraet:\n
+        1. Hold kameraet over en tekst.\n
+        2. Hvite bokser vil dekke teksten.\n
+        3. Når de hvite boksene dekker teksten.\n
+        4. Berør en hvit boks når det ser ut til at all tekst er dekket!\n
+        5. Teksten blir da lagret og analysert.
+        </string>
+    <string name="tutorial">Opplæringen</string>
+    <string name="anis">Anis</string>
+    <string name="coriander">Koriander</string>
+    <string name="cumin">Spisskummen</string>
+    <string name="fennel">Fenikkel</string>
+    <string name="parsley">Persille</string>
+    <string name="ragweed">Ragweed</string>
+    <string name="echinacea">Echinacea</string>
+    <string name="artichoke">Artisjokk</string>
+    <string name="dandelions">Løvetann</string>
+    <string name="hibiscus">Hibiskus</string>
+    <string name="chickpea">Kikerter, kikert</string>
+    <string name="lentil">Linser, Linse</string>
+    <string name="lupin">Lupin</string>
+    <string name="peanut">Peanøtter, Peanøtt</string>
+    <string name="pea">Ert, Erter</string>
+    <string name="soybean">Soyabønner</string>
+    <string name="lemon">Sitron</string>
+    <string name="lime">Lime</string>
+    <string name="grapefruit">Grapefrukt</string>
+    <string name="bacon">Bacon</string>
+    <string name="choletsorol">Kolesterol</string>
+    <string name="glycerol">Glycerol</string>
+    <string name="hormones">Hormoner</string>
+    <string name="lard">Smult, Svinefett</string>
+    <string name="magnesiumStearate">Magnesiumstearat</string>
+    <string name="monoGlycerides">Monoglycerider</string>
+    <string name="pepsin">Pepsin</string>
+
+    <string name="halal">Halal</string>
+    <string name="start">Start Sida</string>
+    <string name="holdFor">Håll för mer informasjon</string>
+    <string name="about">Om</string>
+    <string name="helpTranslate">Hjelp oversette</string>
+    <string name="save">Lagre</string>
+    <string name="onlyFillChanges">Fyll bare i dem du endrer, Lämna dem andre tomme! Tack Hjälpare!</string>
+    <string name="specialThanksTo">Special thanks to Alpha Testers:</string>
+    <string name="thisappUses">This app uses:</string>
+    <string name="FAB">FloatingActionButton by Clans</string>
+    <string name="BkTree">BK-tree by Kelsey Francis</string>
+    <string name="OnBoardMe">OnboardMe by simith</string>
+    <string name="licence">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
+    <string name="googleCamera">Google Vision API - The Android Open Source Project</string>
+    <string name="translatedFrom">Oversatt fra</string>
+    <string name="nameIfyouWantToBeInHelperList">Name if you want to be in helper list</string>
+    <string name="uncheckAll">fjern merket for alle</string>
+    <string name="checkAll">tjek alt</string>
+    <string name="backDisabled">Tillbaka borttagen</string>
+    <string name="delete">Slette</string>
+    <string name="spice">Krydder</string>
+    <string name="butter">Smør</string>
+    <string name="cheese">Ost</string>
+    <string name="casein">Kasein</string>
+    <string name="yoghurt">Yogurt, Yoghurt, Yoghourt</string>
+    <string name="custard">Sennep</string>
+    <string name="cream">Krem</string>
+    <string name="write">Skriv inn ingredienser</string>
+    <string name="useflash">lommelykt på</string>
+    <string name="useNoFlash">lommelykt av</string>
+    <string name="SharingIsCaring">Sharing is caring</string>
+    <string name="help">Hjelp</string>
+    <string name="myPreference">Mine preferanser</string>
+    <string name="showAllergies">Visa allergier</string>
+    <string name="allergyAgianst">Allergisk mot</string>
+
+
+</resources>

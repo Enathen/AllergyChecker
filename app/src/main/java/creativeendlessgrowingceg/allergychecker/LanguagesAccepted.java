@@ -1,10 +1,7 @@
 package creativeendlessgrowingceg.allergychecker;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.res.Configuration;
-import android.os.Build;
-import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,6 +24,10 @@ class LanguagesAccepted {
         arrayList.add(new Locale("sv"));
         arrayList.add(new Locale("en"));
         arrayList.add(new Locale("es"));
+        arrayList.add(new Locale("da"));
+        arrayList.add(new Locale("nb"));
+        arrayList.add(new Locale("fi"));
+        arrayList.add(new Locale("de"));
         sort(arrayList);
         return arrayList;
     }
@@ -41,6 +42,17 @@ class LanguagesAccepted {
         if (langCode.equals("es")) {
             return R.drawable.es;
         }
+        if (langCode.equals("nb")) {
+            return R.drawable.no;
+        }
+        if (langCode.equals("da")) {
+            return R.drawable.da;
+        }
+        if (langCode.equals("fi")) {
+            return R.drawable.fi;
+        }if (langCode.equals("de")) {
+            return R.drawable.de;
+        }
         return 0;
     }
     public static int getCountryName(String langCode) {
@@ -52,6 +64,18 @@ class LanguagesAccepted {
         }
         if (langCode.equals("es")) {
             return R.string.spanish;
+        }
+        if (langCode.equals("nb")) {
+            return R.string.norway;
+        }
+        if (langCode.equals("da")) {
+            return R.string.denmark;
+        }
+        if (langCode.equals("fi")) {
+            return R.string.finnish;
+        }
+        if (langCode.equals("de")) {
+            return R.string.german;
         }
         return 0;
     }
@@ -65,6 +89,18 @@ class LanguagesAccepted {
         if (langCode.equals("es")) {
             return R.string.staticSpanish;
         }
+        if (langCode.equals("nb")) {
+            return R.string.staticNorway;
+        }
+        if (langCode.equals("da")) {
+            return R.string.staticDenmark;
+        }
+        if (langCode.equals("fi")) {
+            return R.string.staticFinnish;
+        }
+        if (langCode.equals("de")) {
+            return R.string.staticGerman;
+        }
         return 0;
     }
     private static void sort(ArrayList<Locale> arrayList) {
@@ -75,8 +111,6 @@ class LanguagesAccepted {
             }
         });
     }
-    @NonNull
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static String getStringByLocal(Activity context, int id, String locale) {
         Configuration configuration = new Configuration(context.getResources().getConfiguration());
         configuration.setLocale(new Locale(locale));
@@ -84,8 +118,6 @@ class LanguagesAccepted {
 
         return context.createConfigurationContext(configuration).getResources().getString(id).toLowerCase().replaceAll("\\s+", "");
     }
-    @NonNull
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static String getStringByLocalNoTakeAwaySpace(Activity context, int id, String locale) {
         Configuration configuration = new Configuration(context.getResources().getConfiguration());
         configuration.setLocale(new Locale(locale));

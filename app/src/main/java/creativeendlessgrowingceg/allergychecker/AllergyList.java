@@ -368,6 +368,7 @@ public class AllergyList {
         arrayListDairy.add(new PictureIngredient(R.drawable.milk, R.string.yoghurt));
         arrayListDairy.add(new PictureIngredient(R.drawable.milk, R.string.cream));
         arrayListDairy.add(new PictureIngredient(R.drawable.milk, R.string.custard));
+        arrayListDairy.add(new PictureIngredient(R.drawable.milk, R.string.lactose));
         return R.string.dairy;
 
     }

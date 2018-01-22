@@ -366,7 +366,6 @@ public class TranslateHelp extends Fragment {
             arrayList.add(getString(R.string.potato));
             arrayList.add(getString(R.string.pumpkin));
             arrayList.add(getString(R.string.zucchini));
-            arrayList.add(getString(R.string.pork));
             arrayList.add(getString(R.string.duck));
             arrayList.add(getString(R.string.goat));
             arrayList.add(getString(R.string.poultry));

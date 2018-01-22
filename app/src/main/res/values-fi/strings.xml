@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Allergy Checker</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_pager_indicator">SKIP</string>
+    <string name="title_activity_takeoff">App Takes off here</string>
+    <string name="ok">OK</string>
+
+    <string name="permission_camera_rationale">Pääsy kameraan tarvitaan tunnistamiseen!</string>
+    <string name="no_camera_permission">Tätä sovellusta ei voi käyttää, koska sillä ei ole
+        kameran lupa. Sovellus poistuu nyt.</string>
+    <string name="nuts">Pähkinät</string>
+    <string name="almond">Manteli</string>
+    <string name="brazil">Brasilialaiset pähkinät</string>
+    <string name="cocoa">Kakao, Kakao-papu</string>
+    <string name="hazelnut">Hasselpähkinöitä, hasselpähkinä</string>
+
+    <string name="macadamia">Makadamia pähkinöitä, Makadamia-pähkinä, Makadamia</string>
+    <string name="pecans">Pekaanipähkinä, pekaanipähkinät</string>
+    <string name="pili">Pili pähkinöitä</string>
+    <string name="pine">Mänty,pinjansiemeniä</string>
+    <string name="pistachios">Pistaasipähkinät, Pistaasi</string>
+    <string name="soy">Soija</string>
+    <string name="tiger">Tiikeripähkinöitä</string>
+    <string name="walnuts">Saksanpähkinät, Saksanpähkinä</string>
+    <string name="sesame">Seesami, Seesaminsiemeniä</string>
+
+    <string name="tuna">Tonnikala</string>
+    <string name="salmon">Lohi</string>
+    <string name="caviar">Kaviaari</string>
+    <string name="anchovies">Anjovista</string>
+    <string name="bass">Ahven</string>
+    <string name="catfish">Monni</string>
+    <string name="cod">Koodi</string>
+    <string name="flounder">Kampela</string>
+    <string name="haddock">Kolja</string>
+    <string name="hake">Kummeliturska</string>
+    <string name="halibut">Ruijanpallas</string>
+    <string name="herring">Silli</string>
+    <string name="mahi">Dolfiini</string>
+    <string name="perch">Ahven</string>
+    <string name="pollock">Pollock</string>
+    <string name="pike">Hauki</string>
+    <string name="swordfish">Miekkakala</string>
+    <string name="sole">Pohja</string>
+    <string name="snapper">Sinikala</string>
+    <string name="surimi">Surimi</string>
+    <string name="tilapia">Tilapia</string>
+    <string name="trout">Taimen</string>
+
+
+    <string name="barnacle">Takiainen</string>
+    <string name="crab">Rapu</string>
+    <string name="crawfish">Syöpä</string>
+    <string name="krill">Krilli</string>
+    <string name="lobster">Hummeri</string>
+    <string name="prawns">Katkarapu</string>
+    <string name="shrimp">Katkarapu</string>
+    <string name="scampi">Scampi</string>
+    <string name="abalone">Merikorva</string>
+    <string name="clams">Simpukat</string>
+    <string name="cockle">Sydänsimpukka</string>
+    <string name="limpet">Iilimato</string>
+    <string name="mussels">Simpukat</string>
+    <string name="octopus">Mustekala</string>
+    <string name="oysters">Ostron</string>
+    <string name="periwinkle">Osterit</string>
+    <string name="urchin">Viikari</string>
+    <string name="scallops">Kampasimpukat</string>
+    <string name="snails">Etanat, Etana</string>
+    <string name="squid">Kalmari</string>
+    <string name="whelk">Torvisimpukka</string>
+
+    <string name="wheat">Vehnä</string>
+    <string name="durum">Durum</string>
+    <string name="emmer">Emmer</string>
+    <string name="rye">Ruis</string>
+    <string name="barley">Ohra</string>
+    <string name="triticale">Triticale</string>
+    <string name="malt">Mallas</string>
+    <string name="semolina">Mannasuurimot</string>
+    <string name="spelt">Speltti</string>
+    <string name="farina">Jauho</string>
+    <string name="farro">Farro</string>
+    <string name="graham">Graham</string>
+    <string name="kamut">Kamut</string>
+    <string name="einkorn">Einkorn</string>
+
+
+    <string name="apple">Omena</string>
+    <string name="pear">Päärynä</string>
+    <string name="tomato">Tomaatti</string>
+    <string name="strawberry">Mansikka</string>
+    <string name="prune">Karsia</string>
+    <string name="pomegranate">Granaattiomena</string>
+    <string name="pinapple">Ananas</string>
+    <string name="persimmon">Persimmon</string>
+    <string name="peach">Persikka</string>
+    <string name="orange">Appelsiini</string>
+    <string name="melon">Melon</string>
+    <string name="mango">Mango</string>
+    <string name="lychee">Litsi</string>
+    <string name="kiwi">Kiivi</string>
+    <string name="grape">Viinirypäle</string>
+    <string name="date">Treffi</string>
+    <string name="fig">Kuva</string>
+    <string name="coconut">Kookospähkinä</string>
+    <string name="cherry">Kirsikka</string>
+    <string name="banana">Banaani</string>
+    <string name="apricot">Aprikoosi</string>
+    <string name="acerola">Acerola</string>
+    <string name="avocado">Avokado</string>
+
+    <string name="shellfish">Äyriäinen</string>
+    <string name="gluten">Gluteenia</string>
+    <string name="fish">Kalastaa</string>
+    <string name="milk">Maito</string>
+    <string name="seeds">Siemenet</string>
+    <string name="deleteHistory">Poista Historien</string>
+    <string name="scanPhotos">Ei vielä historiaa</string>
+
+    <string name="service_label">My Spell Checker</string>
+
+
+
+
+    <string name="language">Kieli</string>
+    <string name="languageFrom">Kääntää</string>
+    <string name="languageGeneral">Yleinen kieli</string>
+    <string name="startPageHeader">Selaa tekstiä painamalla alla</string>
+    <string name="definitelyContained">Ehdottomasti sisältyy</string>
+    <string name="history">Historia</string>
+    <string name="statistics">Tilasto</string>
+    <string name="allergies">Allergiat</string>
+    <string name="dontUse">Älä käytä!</string>
+    <string name="scannedTextBelow">Alla oleva skannattu teksti:</string>
+    <string name="youCanUse">Voidaan käyttää!</string>
+    <string name="allergy">Allergia:</string>
+    <string name="contained">Sisälsi</string>
+    <string name="times">Ajat</string>
+    <string name="probablyContained">luultavasti Sisältyy</string>
+    <string name="fromWord">Sanasta:</string>
+    <string name="myAllergies">Minun allergiat</string>
+    <string name="share">Jaa</string>
+    <string name="send">Lähetä vinkkejä</string>
+    <string name="mustBeInEnglish">Teksti on kirjoitettava englanniksi tai ruotsiksi! Kiitos!</string>
+    <string name="sendTipsFrom">Mistä haluat lähettää vinkkejä?</string>
+    <string name="welcomeMessageInvite">Haluatko tietää, voitko syödä jotain nopeasti? Mikä ei ole allerginen sinulle?
+    Mahtavaa! Tämän sovelluksen avulla voit skannata tekstiä eri kielistä, jotta voit nähdä, oletko allerginen sille!</string>
+    <string name="time">kertaa</string>
+
+
+    <string name="buckwheat">Tattari</string>
+    <string name="mustardSeed">Sinapinsiemen</string>
+    <string name="poppySeed">Unikonsiemen</string>
+    <string name="sunflowerSeed">Auringonkukka</string>
+    <string name="fruit">Hedelmä</string>
+    <string name="vegetables">Vihannekset</string>
+    <string name="cannotUseCamera">Kan inte använda kameran utan din tillåtelse!</string>
+    <string name="varning">Varovaisuus!</string>
+    <string name="thisAppOnlySave">Jos käyttöoikeutta ei myönnetä, sovellus ei toimi oikein.
+        Ainoa tallennettava teksti on teksti. Jos käyttöoikeutta ei myönnetä, sovellus on asennettava uudelleen.
+        Ole hyvä päivä!</string>
+    <string name="mightContainOther">Tämä on vain ohje! Ja saattaa sisältää muita allergioita</string>
+    <string name="mightContainAllergies">Tämä on vain ohje! Ja saattaa sisältää allergioita</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="vegan">Vegan</string>
+    <string name="citrus">Sitrushedelmien</string>
+    <string name="haram">Haram</string>
+
+    <string name="legumes">Hernekasvin</string>
+    <string name="aspargus">Parsa</string>
+    <string name="bellPepper">Paprika</string>
+    <string name="cabbage">Kaali</string>
+    <string name="carrot">Porkkana</string>
+    <string name="celery">Selleri</string>
+    <string name="garlic">Valkosipuli</string>
+    <string name="lettuce">Salaatti</string>
+    <string name="maize">Maissi</string>
+    <string name="potato">Peruna</string>
+    <string name="pumpkin">Kurpitsa</string>
+    <string name="zucchini">Kesäkurpitsa</string>
+    <string name="pig">Sianliha</string>
+    <string name="duck">Ankka</string>
+    <string name="goat">Päästä</string>
+    <string name="poultry">Siipikarja</string>
+    <string name="lamb">lammas</string>
+    <string name="sausage">Makkara</string>
+    <string name="gelatin">Liivate</string>
+    <string name="dairy">Meijeri</string>
+    <string name="egg">Muna</string>
+    <string name="honey">Hunaja</string>
+    <string name="lactoVegetarian">Lacto-Vegetarian</string>
+    <string name="ovoVegetarian">Ovo-Vegetarian</string>
+    <string name="lactoOvoVegetarian">Lacto-ovo-vegetarian</string>
+    <string name="demiVegetarian">Demivegetarian</string>
+    <string name="polloVegetarian">Pollovegetarian</string>
+    <string name="pescoVegetarian">Pescovegetarian</string>
+    <string name="chicken">Kana</string>
+    <string name="areYouSure">Haluatko varmasti poistaa kaiken?</string>
+    <string name="yes">Kyllä</string>
+    <string name="no">Ei</string>
+    <string name="flashon">Taskulamppu on päällä</string>
+    <string name="cancel">Peruuttaa</string>
+    <string name="inputIngredients">Kirjoita ainesosia</string>
+    <string name="rate">nopeus</string>
+    <string name="pressMe">Kosketa minua \nJatka!</string>
+    <string name="firstIntro">"Allergiat" käytetään allergioiden täyttämiseen.\n
+        - Löydät sen valikosta.</string>
+    <string name="secondIntro">Tuo kamera näkyviin painamalla.
+        Pidä painiketta painettuna, jos haluat lisätietoja.
+    </string>
+    <string name="thirdIntro">Kameraa käytetään seuraavasti:\n
+        1. Pidä kameraa tekstin yläpuolella.\n
+        2. Valkoiset laatikot kattavat tekstin.\n
+        3. Kun valkoiset laatikot kattavat tekstin.\n
+        4. Kosketa valkoista ruutua, kun kaikki teksti on katettu!\n
+        5. Sitten teksti tallennetaan ja analysoidaan.
+        </string>
+    <string name="tutorial">Oppitunti</string>
+    <string name="anis">Anis</string>
+    <string name="coriander">Korianteri</string>
+    <string name="cumin">Kuminaa</string>
+    <string name="fennel">Fenkoli</string>
+    <string name="parsley">Persilja</string>
+    <string name="ragweed">Tuoksukit</string>
+    <string name="echinacea">Auringonhattu</string>
+    <string name="artichoke">Artisokka</string>
+    <string name="dandelions">Voikukkien</string>
+    <string name="hibiscus">Hibiscus</string>
+    <string name="chickpea">Kikherne</string>
+    <string name="lentil">linssit</string>
+    <string name="lupin">Lupiini</string>
+    <string name="peanut">maapähkinät, Maapähkinä</string>
+    <string name="pea">Herne</string>
+    <string name="soybean">Soija, Soijapapu</string>
+    <string name="lemon">Sitruuna</string>
+    <string name="lime">Kalkki</string>
+    <string name="grapefruit">Greippi</string>
+    <string name="bacon">Pekoni</string>
+    <string name="choletsorol">Kolesteroli</string>
+    <string name="glycerol">Glycerol</string>
+    <string name="hormones">Hormoner</string>
+    <string name="lard">Laardi</string>
+    <string name="magnesiumStearate">Magnesiumstearat</string>
+    <string name="monoGlycerides">Monoglycerider</string>
+    <string name="pepsin">Pepsin</string>
+
+    <string name="halal">Halal</string>
+    <string name="start">Aloita sivu</string>
+    <string name="holdFor">Pidä lisätietoja</string>
+    <string name="about">Noin</string>
+    <string name="helpTranslate">Auttaa Käännä</string>
+    <string name="onlyFillChanges">Vain täytä muutokset, jätä ne tyhjiin! Kiitos Apua!</string>
+    <string name="specialThanksTo">Special thanks to Alpha Testers:</string>
+    <string name="thisappUses">This app uses:</string>
+    <string name="FAB">FloatingActionButton by Clans</string>
+    <string name="BkTree">BK-tree by Kelsey Francis</string>
+    <string name="OnBoardMe">OnboardMe by simith</string>
+    <string name="licence">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
+    <string name="googleCamera">Google Vision API - The Android Open Source Project</string>
+    <string name="translatedFrom">Kääntää</string>
+    <string name="nameIfyouWantToBeInHelperList">Name if you want to be in helper list</string>
+    <string name="uncheckAll">Poista kaikki valinta</string>
+    <string name="checkAll">Valitse kaikki</string>
+    <string name="delete">Poistaa</string>
+    <string name="spice">Mausteet</string>
+    <string name="butter">Voi</string>
+    <string name="casein">Kaseiini</string>
+    <string name="yoghurt">Jogurtti</string>
+    <string name="custard">Vaniljakastike</string>
+    <string name="cream">Kerma</string>
+    <string name="write">Kirjoita ainesosia</string>
+    <string name="useflash">Taskulamppu on päällä</string>
+    <string name="useNoFlash">Taskulampun pois päältä</string>
+    <string name="SharingIsCaring">Sharing is caring</string>
+    <string name="help">Auttaa</string>
+    <string name="myPreference">Omat asetukset</string>
+    <string name="showAllergies">Näytä allergiat</string>
+    <string name="allergyAgianst">Allerginen</string>
+    <string name="lactose">Laktoosi</string>
+    <string name="english">Englanti</string>
+    <string name="swedish">Ruotsin kieli</string>
+    <string name="spanish">Espanja</string>
+    <string name="norway">Norja</string>
+    <string name="denmark">Tanska</string>
+    <string name="finnish">Finnish</string>
+    <string name="german">Saksa</string>
+
+
+</resources>

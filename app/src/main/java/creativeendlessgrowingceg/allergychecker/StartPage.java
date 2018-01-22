@@ -13,7 +13,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -93,6 +92,7 @@ public class StartPage extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
+        Log.d(TAG, "LOCALE: " + Locale.getDefault().getLanguage());
         new SettingsFragment(this).setGetLanguage(StartPage.this, Locale.getDefault().getLanguage());
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
@@ -285,7 +285,7 @@ public class StartPage extends AppCompatActivity
 
     private void checkStringAgainstAllergies(String str) {
         displayInterstitial();
-        deleteConstrained();
+        //deleteConstrained();
 
         (findViewById(R.id.progressBar3)).setVisibility(View.VISIBLE);
 
@@ -301,14 +301,14 @@ public class StartPage extends AppCompatActivity
 
     }
 
-    private void deleteConstrained() {
+ /*   private void deleteConstrained() {
         if (findViewById(R.id.lin_lay) != null) {
             ((ConstraintLayout) findViewById(R.id.lin_lay)).removeView(findViewById(R.id.splash));
             ((ConstraintLayout) findViewById(R.id.lin_lay)).removeView(findViewById(R.id.allergycheck));
             ((LinearLayout) findViewById(R.id.linLayStartPage)).removeView(findViewById(R.id.lin_lay));
 
         }
-    }
+    }*/
 
     public ArrayList<String> getDateString() {
         for (String dateString : dateStrings) {
@@ -471,7 +471,7 @@ public class StartPage extends AppCompatActivity
         Fragment fragment = null;
         suggestions.setText("");
         allergic.setText("");
-        deleteConstrained();
+        //deleteConstrained();
         if (findViewById(R.id.linlayallergyFromWord) != null) {
             findViewById(R.id.linlayallergyFromWord).setVisibility(View.INVISIBLE);
 

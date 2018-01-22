@@ -146,6 +146,7 @@ public class LoadUIAllergies {
 
             if (alreadyString.charAt(i) == '0') {
                 if (!alreadySelectedImages.contains(id)) {
+
                     imageViewHashMap.get(i).setImageResource(id);
                     alreadySelectedImages.add(id);
                     StringBuilder myName = new StringBuilder(alreadyString);

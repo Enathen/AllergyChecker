@@ -4,47 +4,15 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
     <string name="ok">OK</string>
-    <string name="ocr_header">Click &quot;Detect Text&quot; to detect text</string>
-    <string name="read_text">Detect Text</string>
-    <string name="auto_focus">Auto Focus</string>
-    <string name="use_flash">Use Flash</string>
-    <string name="ocr_success">Text read successfully</string>
-    <string name="ocr_failure">No text captured</string>
-    <string name="ocr_error">"Error reading text: %1$s"</string>
-    <string name="action_search">Buscar</string>
-    <string name="drawer_open">Abrir</string>
-    <string name="drawer_close">Cerrar</string>
-    <string name="nav_item_home">Casa</string>
-    <string name="nav_item_friends">Amigos</string>
-    <string name="nav_item_notifications">mensajes</string>
-    -<string-array name="nav_drawer_labels">
-    <item>@string/nav_item_home</item>
-    <item>@string/nav_item_friends</item>
-    <item>@string/nav_item_notifications</item>
-</string-array>
-    <string name="title_messages">Messages</string>
-    <string name="title_friends">Friends</string>
-    <string name="title_home">Home</string>
+    -
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_pager_indicator">SKIP</string>
-    <string name="title_activity_onboarder">OnboarderActivity</string>
-    <string name="hello_world">We found an Email account on your phone,use it?</string>
-    <string name="title_activity_home">Create a card</string>
-    -<string-array name="card_type_array">
-    <item>Personal</item>
-    <item>Business</item>
-</string-array>
-    <string name="title_activity_qr">Personal Card</string>
-    <string name="title_activity_view_pager">ViewPagerActivity</string>
-    <string name="title_activity_found_email">FoundEmailActivity</string>
-    <string name="title_activity_find_email">Email</string>
+    -
     <string name="title_activity_takeoff">App Takes off here</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="permission_camera_rationale">El acceso a la cámara es necesario para la detección</string>
     <string name="no_camera_permission">Esta aplicación no se puede ejecutar porque no tiene el permiso de la cámara. La aplicación ahora saldrá.</string>
     <string name="low_storage_error">Ocr dependencies cannot be downloaded due to low device storage</string>
-    <string name="title_activity_main">Ocr Detector Sample</string>
 
 
     <string name="nuts">Nueces</string>
@@ -159,9 +127,7 @@
 
     <string name="service_label">My Spell Checker</string>
 
-    <string name="english">Inglés</string>
-    <string name="swedish">Sueco</string>
-    <string name="spanish">Español</string>
+
 
 
 
@@ -181,12 +147,9 @@
     <string name="times">veces</string>
     <string name="probablyContained">Probablemente contenida</string>
     <string name="fromWord">de palabra:</string>
-    <string name="noflash">Destello apagado</string>
-    <string name="flash">Destello</string>
     <string name="myAllergies">Mis alergias</string>
     <string name="share">Compartir</string>
     <string name="send">Enviar sugerencias</string>
-    <string name="send_to">AllergyCheckerCEG@gmail.com</string>
     <string name="mustBeInEnglish">el texto debe escribirse en Inglés o Sueco! Gracias!</string>
     <string name="sendTipsFrom">¿Donde quieres enviar consejos de?</string>
     <string name="welcomeMessageInvite">¿Quieres saber si puedes comer algo rápido, que no es alérgico a ti?
@@ -296,11 +259,10 @@
     <string name="pepsin">Pepsin</string>
     <string name="halal">Halal</string>
     <string name="start">Start Page</string>
-    <string name="holdFor">Hold for More Info</string>
-    <string name="about">About</string>
-    <string name="helpTranslate">Help Translating</string>
-    <string name="save">Save</string>
-    <string name="onlyFillChanges">Only fill those you change, leave other empty! Thanks Helper!</string>
+    <string name="holdFor">Espera para más información</string>
+    <string name="about">Acerca de</string>
+    <string name="helpTranslate">Ayuda traduciendo</string>
+    <string name="onlyFillChanges">¡Solo llene los que cambie, deje otros vacíos! Gracias Helper!</string>
     <string name="specialThanksTo">Special thanks to Alpha Testers:</string>
     <string name="thisappUses">This app uses:</string>
     <string name="FAB">FloatingActionButton by Clans</string>
@@ -310,25 +272,33 @@
     <string name="googleCamera">Google Vision API - The Android Open Source Project</string>
     <string name="translatedFrom">Translated From</string>
     <string name="nameIfyouWantToBeInHelperList">Name if you want to be in helper list</string>
-    <string name="uncheckAll">Uncheck All</string>
-    <string name="checkAll">Check all</string>
-    <string name="backDisabled">Back disabled</string>
-    <string name="delete">Delete</string>
-    <string name="spice">Spices</string>
-    <string name="butter">Butter</string>
-    <string name="cheese">Cheese</string>
+    <string name="uncheckAll">Desmarcar todo</string>
+    <string name="checkAll">Verificar todo</string>
+    <string name="delete">Borrar</string>
+    <string name="spice">Especia</string>
+    <string name="butter">Mantequilla</string>
     <string name="casein">Casein</string>
     <string name="yoghurt">Yogurt, Yoghurt, Yoghourt</string>
-    <string name="custard">Custard</string>
-    <string name="cream">Cream</string>
-    <string name="write">Write</string>
-    <string name="useflash">Use flash</string>
-    <string name="useNoFlash">Use no flash</string>
+    <string name="custard">Lactoso</string>
+    <string name="cream">Crema</string>
+    <string name="write">Escribir</string>
+    <string name="useflash">Usar linterna</string>
+    <string name="useNoFlash">Usar no linterna</string>
     <string name="SharingIsCaring">Sharing is caring</string>
-    <string name="help">help</string>
-    <string name="myPreference">My preferences</string>
-    <string name="showAllergies">Show Allegies</string>
-    <string name="allergyAgianst">Allergic Against</string>
+    <string name="help">Ayuda</string>
+    <string name="myPreference">Mis preferencias</string>
+    <string name="showAllergies">Mostrar alergias</string>
+    <string name="allergyAgianst">Alérgico contra</string>
+    <string name="lactose">Lactosa</string>
+
+
+    <string name="english">Inglés</string>
+    <string name="swedish">Sueco</string>
+    <string name="spanish">Español</string>
+    <string name="norway">Noruego</string>
+    <string name="denmark">Danés</string>
+    <string name="finnish">Finnish</string>
+    <string name="german">Alemán</string>
 
 
 </resources>

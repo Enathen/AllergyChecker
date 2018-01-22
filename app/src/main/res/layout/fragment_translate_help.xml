@@ -7,7 +7,6 @@
     <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
-        android:id="@+id/frameLinBelow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -24,7 +23,6 @@
 
         <ScrollView
 
-            android:id="@+id/scrollViewFragmentTranslate"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorPrimaryDark">
@@ -50,7 +48,6 @@
                         android:backgroundTint="@color/fontColorTextWhite" />
 
                     <TextView
-                        android:id="@+id/textView2"
                         android:layout_width="match_parent"
 
                         android:layout_height="wrap_content"

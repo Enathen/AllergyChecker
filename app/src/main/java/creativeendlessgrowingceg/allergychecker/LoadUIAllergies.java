@@ -68,7 +68,7 @@ public class LoadUIAllergies {
             ImageView imageOfAllergy = (ImageView) newLinearLayout.findViewById(R.id.imageViewLeftMargin);
             CheckBox checkBoxOfAllergy = (CheckBox) newLinearLayout.findViewById(R.id.checkBoxRowLeftMargin);
 
-            textOfAllergy.setText(pictureIngredient.getIngredient());
+            textOfAllergy.setText(TextHandler.capitalLetter(pictureIngredient.getIngredient()));
             imageOfAllergy.setImageResource(pictureIngredient.getPicture());
             categoriesLinearLayout.put(pictureIngredient.getId(),newLinearLayout);
             if(allergyInfo.containsKey(pictureIngredient.getIngredient())){
@@ -102,7 +102,7 @@ public class LoadUIAllergies {
     private CheckBox createParentLinearLayout(final int key, int pictureID){
         final LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.rowcategorylayout, null);
         LinearLayout linearLayoutRow = (LinearLayout) linearLayout.findViewById(R.id.linearLayoutRowCategoryHorizontal);
-        ((TextView) linearLayout.findViewById(R.id.textViewCategory)).setText(context.getString(key));
+        ((TextView) linearLayout.findViewById(R.id.textViewCategory)).setText(TextHandler.capitalLetter(context.getString(key)));
 
         final CheckBox checkboxRowCategory = (CheckBox) linearLayoutRow.findViewById(R.id.checkBoxRowCategory);
 

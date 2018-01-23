@@ -28,6 +28,8 @@ class LanguagesAccepted {
         arrayList.add(new Locale("nb"));
         arrayList.add(new Locale("fi"));
         arrayList.add(new Locale("de"));
+        arrayList.add(new Locale("fr"));
+        arrayList.add(new Locale("nl"));
         sort(arrayList);
         return arrayList;
     }
@@ -50,8 +52,15 @@ class LanguagesAccepted {
         }
         if (langCode.equals("fi")) {
             return R.drawable.fi;
-        }if (langCode.equals("de")) {
+        }
+        if (langCode.equals("de")) {
             return R.drawable.de;
+        }
+        if (langCode.equals("fr")) {
+            return R.drawable.fr;
+        }
+        if (langCode.equals("nl")) {
+            return R.drawable.nl;
         }
         return 0;
     }
@@ -77,6 +86,12 @@ class LanguagesAccepted {
         if (langCode.equals("de")) {
             return R.string.german;
         }
+        if (langCode.equals("fr")) {
+            return R.string.french;
+        }
+        if (langCode.equals("nl")) {
+            return R.string.netherlands;
+        }
         return 0;
     }
     public static int getCountryNameStatic(String langCode) {
@@ -100,6 +115,12 @@ class LanguagesAccepted {
         }
         if (langCode.equals("de")) {
             return R.string.staticGerman;
+        }
+        if (langCode.equals("fr")) {
+            return R.string.staticFrench;
+        }
+        if (langCode.equals("fr")) {
+            return R.string.staticNetherland;
         }
         return 0;
     }

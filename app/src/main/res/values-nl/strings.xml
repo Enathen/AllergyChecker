@@ -1,0 +1,302 @@
+<resources>
+    <string name="app_name">Allergy Checker</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_pager_indicator">SKIP</string>
+    <string name="title_activity_takeoff">App Takes off here</string>
+    <string name="ok">OK</string>
+
+
+    <string name="permission_camera_rationale">Toegang tot de camera is nodig voor detectie</string>
+    <string name="no_camera_permission">Deze applicatie kan niet worden uitgevoerd omdat deze niet de
+        camera toestemming. De applicatie zal nu afsluiten.</string>
+    <string name="low_storage_error">Ocr-afhankelijkheden kunnen niet worden gedownload vanwege een lage apparaatopslag</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+
+    <string name="nuts">Noten</string>
+    <string name="almond">Amandel</string>
+    <string name="brazil">Paranoten</string>
+    <string name="cocoa">Cacao</string>
+    <string name="hazelnut">Hazelnoot, hazelnoten</string>
+    <string name="macadamia">Macadamia noten</string>
+
+    <string name="pecans">Pecannoten, Pecannoot</string>
+    <string name="pili">Pili Nuts</string>
+    <string name="pine">pijnboompitten</string>
+    <string name="pistachios">pistaches</string>
+    <string name="soy">Sojasaus</string>
+    <string name="tiger">Tijgernoten</string>
+    <string name="walnuts">Walnoten</string>
+    <string name="sesame">Sesam</string>
+
+
+    <string name="tuna">Tonijn</string>
+    <string name="salmon">Zalm </string>
+    <string name="caviar">Caviar </string>
+    <string name="anchovies">Ansjovis </string>
+    <string name="bass">Bass </string>
+    <string name="catfish">Catfish</string>
+    <string name="cod">Kabeljauw</string>
+    <string name="flounder">Bot </string>
+    <string name="haddock">Schelvis</string>
+    <string name="hake">Heek</string>
+    <string name="halibut">Heilbot</string>
+    <string name="herring">Haring</string>
+    <string name="mahi">Goudmakreel</string>
+    <string name="perch">Baars</string>
+    <string name="pollock">Pollock</string>
+    <string name="pike">Snoek</string>
+    <string name="swordfish">Zwaardvis</string>
+    <string name="sole">Tong</string>
+    <string name="snapper">Snapper</string>
+    <string name="surimi">Surimi</string>
+    <string name="tilapia">Tilapia</string>
+    <string name="trout">Forel</string>
+
+
+    <string name="barnacle">Barnacle</string>
+    <string name="crab">Krab</string>
+    <string name="crawfish">Rivierkreeften</string>
+    <string name="krill">Krill</string>
+    <string name="lobster">Kreeft</string>
+    <string name="prawns">Garnalen</string>
+    <string name="shrimp">Garnalen</string>
+    <string name="scampi">Scampi</string>
+    <string name="abalone">Abalone</string>
+    <string name="clams">Mosselen</string>
+    <string name="cockle">Kokkel</string>
+    <string name="limpet">Limpet</string>
+    <string name="mussels">mosselen </string>
+    <string name="octopus">Octopus</string>
+    <string name="oysters">Oesters</string>
+    <string name="periwinkle">Maagdenpalm</string>
+    <string name="urchin">Egel</string>
+    <string name="scallops">Jakobsschelpen</string>
+    <string name="snails">Slakken</string>
+    <string name="squid">Squid</string>
+    <string name="whelk">Puist</string>
+
+    <string name="wheat">Tarwe</string>
+    <string name="durum">Harde</string>
+    <string name="emmer">Emmer</string>
+    <string name="rye">Rogge</string>
+    <string name="barley">Gerst</string>
+    <string name="triticale">Triticale</string>
+    <string name="malt">Malt</string>
+    <string name="semolina">Griesmeel</string>
+    <string name="spelt">Gespeld</string>
+    <string name="farina">Farina</string>
+    <string name="farro">Farro</string>
+    <string name="graham">Graham</string>
+    <string name="kamut">Kamut</string>
+    <string name="einkorn">Eenkoren</string>
+
+
+    <string name="apple">Appel</string>
+    <string name="pear">Peer</string>
+    <string name="tomato">Tomaat</string>
+    <string name="strawberry">Aardbei</string>
+    <string name="prune">Snoeien</string>
+    <string name="pomegranate">Granaatappel</string>
+    <string name="pinapple">Ananas</string>
+    <string name="persimmon">Persimmon</string>
+    <string name="peach">Peach</string>
+    <string name="orange">Sinaasappel</string>
+    <string name="melon">Meloen</string>
+    <string name="mango">Mango</string>
+    <string name="lychee">Lychee</string>
+    <string name="kiwi">Kiwi</string>
+    <string name="grape">Druif</string>
+    <string name="date">Date</string>
+    <string name="fig">Fig</string>
+    <string name="coconut">Coconut</string>
+    <string name="cherry">Cherry</string>
+    <string name="banana">Banaan</string>
+    <string name="apricot">Abrikoos</string>
+    <string name="acerola">Acerola</string>
+    <string name="avocado">Avocado</string>
+
+    <string name="shellfish">Schaaldieren</string>
+    <string name="gluten">Gluten</string>
+    <string name="fish">Vis</string>
+    <string name="milk">Melk</string>
+    <string name="seeds">Zaden</string>
+    <string name="deleteHistory">Geschiedenis verwijderen</string>
+    <string name="scanPhotos">Nog geen geschiedenis!</string>
+
+    <string name="service_label">My Spell Checker</string>
+
+
+
+
+    <string name="language">Taal</string>
+    <string name="languageFrom">vertalen vanuit</string>
+    <string name="languageGeneral">Algemene taal</string>
+    <string name="startPageHeader">Tik hieronder om tekst te scannen</string>
+    <string name="definitelyContained">Absoluut bevat</string>
+    <string name="history">Geschiedenis</string>
+    <string name="statistics">Statistieken</string>
+    <string name="allergies">Allergieën</string>
+    <string name="dontUse">Niet gebruiken!</string>
+    <string name="scannedTextBelow">Gescande tekst hieronder:</string>
+    <string name="youCanUse">Kan worden gebruikt!</string>
+    <string name="allergy">Allergie:</string>
+    <string name="contained">Vervat</string>
+    <string name="times">keer</string>
+    <string name="probablyContained">Waarschijnlijk bevat</string>
+    <string name="fromWord">van woord:</string>
+    <string name="myAllergies">Mijn allergieën</string>
+    <string name="share">Delen</string>
+    <string name="send">Tips verzenden</string>
+    <string name="mustBeInEnglish">Tekst moet in het Engels of Zweeds zijn geschreven! Bedankt!</string>
+    <string name="sendTipsFrom">Waar wil je tips sturen?</string>
+    <string name="welcomeMessageInvite">Wilt u weten of u iets snel kunt eten, dat is niet allergisch voor u?
+    Super goed! Met deze app kun je tekst in meerdere talen scannen om te zien of je het kunt eten!</string>
+    <string name="time">Tijd</string>
+    <string name="buckwheat">Boekweit</string>
+    <string name="mustardSeed">Mosterdzaad</string>
+    <string name="poppySeed">Maanzaad</string>
+    <string name="pumpkinSeed">Pompoenzaad</string>
+    <string name="sunflowerSeed">Zonnebloemzaad</string>
+    <string name="fruit">Fruit</string>
+    <string name="vegetables">Groenten</string>
+    <string name="cannotUseCamera">Kan de camera niet gebruiken zonder toestemming!</string>
+    <string name="varning">Waarschuwing!</string>
+    <string name="thisAppOnlySave">Als er geen toestemming
+        wordt gegeven, werkt deze app niet zoals bedoeld. Onthoud dat
+        het enige dat wordt opgeslagen de tekst is. Als u geen
+        toestemming geeft, moet de toepassing mogelijk opnieuw
+        worden geïnstalleerd om te werken! Fijne dag!</string>
+
+
+    <string name="mightContainOther">Dit is slechts een richtlijn! En kan andere allergenen bevatten</string>
+    <string name="mightContainAllergies">Dit is slechts een richtlijn! En kan allergenen bevatten</string>
+
+    <string name="vegetarian">Vegetarian</string>
+    <string name="vegan">Vegan</string>
+    <string name="citrus">Citrus</string>
+    <string name="haram">Haram</string>
+    <string name="legumes">Peulvruchten</string>
+    <string name="aspargus">Asperge</string>
+    <string name="bellPepper">paprikar</string>
+    <string name="cabbage">Kool</string>
+    <string name="carrot">Wortel</string>
+    <string name="celery">Selderij</string>
+    <string name="garlic">Knoflook</string>
+    <string name="lettuce">Sla</string>
+    <string name="maize">maïs, Corn</string>
+    <string name="potato">Potato</string>
+    <string name="pumpkin">Pompoen</string>
+    <string name="zucchini">Zucchini</string>
+    <string name="pig">varken</string>
+    <string name="duck">eend</string>
+    <string name="meat">Vlees</string>
+    <string name="goat">geit</string>
+    <string name="poultry">Pluimvee</string>
+    <string name="lamb">Lam</string>
+    <string name="sausage">Worst</string>
+    <string name="beef">rundvlees</string>
+    <string name="veal">Kalf</string>
+    <string name="gelatin">Gelatine</string>
+    <string name="dairy">Zuivel</string>
+    <string name="egg">Ei</string>
+    <string name="honey">Honing</string>
+    <string name="lactoVegetarian">Lacto Vegetarian</string>
+    <string name="ovoVegetarian">Ovo Vegetarian</string>
+    <string name="lactoOvoVegetarian">Lacto Ovo Vegetarian</string>
+    <string name="demiVegetarian">Demi Vegetarian</string>
+    <string name="polloVegetarian">Pollo Vegetarian</string>
+    <string name="pescoVegetarian">Pesco Vegetarian</string>
+    <string name="chicken">Kip, Kuiken</string>
+    <string name="areYouSure">Weet u zeker dat u wilt verwijderen?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nee</string>
+    <string name="flashon">Flash On</string>
+    <string name="cancel">Annuleren</string>
+    <string name="inputIngredients">invoer ingrediënten</string>
+    <string name="rate">Beoordeel</string>
+    <string name="pressMe">druk op me\n om door te gaan!</string>
+    <string name="firstIntro">Als u op dit pictogram in het menu drukt, wordt het venster voor allergieën weergegeven. Van
+        daar kunt u uw allergieën invoegen.</string>
+    <string name="secondIntro">Tik om de camera te openen om ingrediënten te scannen. De camera vasthouden
+        knop naar beneden, verschijnt er een nieuw venster. In het nieuwe menu kunnen ingrediënten handmatig worden ingevoegd door te typen
+        ze in.</string>
+    <string name="thirdIntro">Zo gebruikt u de camera:\n
+        1. Houd de camera boven de tekst.\n
+        2. Er verschijnen witte tekstvakken.\n
+        3. Wanneer de tekst is bedekt. ​\n
+        4. TAP één tekstvak!\n
+        5. Tekst opgeslagen. Wacht op resultaat !!
+        </string>
+    <string name="tutorial">Zelfstudie</string>
+    <string name="anis">Anis</string>
+    <string name="coriander">Koriander</string>
+    <string name="cumin">Komijn</string>
+    <string name="fennel">Venkel</string>
+    <string name="parsley">Peterselie</string>
+    <string name="ragweed">Ambrosia</string>
+    <string name="echinacea">Echinacea</string>
+    <string name="artichoke">Artisjok</string>
+    <string name="dandelions">Paardebloemen</string>
+    <string name="hibiscus">Hibiscus</string>
+    <string name="chickpea">Kikkererwt</string>
+    <string name="lentil">Lentil</string>
+    <string name="lupin">Lupine</string>
+    <string name="peanut">Pinda</string>
+    <string name="pea">Peas</string>
+    <string name="soybean">Soja</string>
+    <string name="lemon">Citroen</string>
+    <string name="lime">Lime</string>
+    <string name="grapefruit">Grapefruit</string>
+
+    <string name="bacon">Bacon</string>
+    <string name="choletsorol">Cholesterol</string>
+    <string name="glycerol">Glycerol</string>
+    <string name="hormones">Hormones</string>
+    <string name="lard">Reuzel</string>
+    <string name="magnesiumStearate">magnesium stearate</string>
+    <string name="monoGlycerides">Mono Glycerides</string>
+    <string name="pepsin">Pepsin</string>
+
+    <string name="halal">Halal</string>
+    <string name="start">Startpagina</string>
+    <string name="holdFor">Hold voor meer informatie</string>
+    <string name="about">Over</string>
+    <string name="helpTranslate">Helpen vertalen</string>
+    <string name="onlyFillChanges">Vul alleen die in die je verandert, laat anderen leeg! Bedankt Helper!</string>
+    <string name="uncheckAll">verwijder alles</string>
+    <string name="checkAll">controleer alles</string>
+    <string name="delete">Verwijderen</string>
+    <string name="spice">Specerijen</string>
+    <string name="butter">Boter</string>
+    <string name="casein">Caseïne</string>
+    <string name="yoghurt">Vla</string>
+    <string name="custard">Custard</string>
+    <string name="cream">Room</string>
+    <string name="write">Schrijven</string>
+    <string name="useflash">Flits Aan</string>
+    <string name="useNoFlash">Flits uit</string>
+    <string name="SharingIsCaring">Sharing is caring</string>
+    <string name="help">help</string>
+    <string name="myPreference">Mijn voorkeuren</string>
+    <string name="showAllergies">Toon allergieën</string>
+    <string name="allergyAgianst">Allergisch tegen</string>
+    <string name="lactose">Lactose</string>
+
+    <string name="english">Engels</string>
+    <string name="swedish">Zweeds</string>
+    <string name="spanish">Spaans</string>
+    <string name="norway">Noors</string>
+    <string name="denmark">Deens</string>
+    <string name="finnish">Fins</string>
+    <string name="german">Duitse</string>
+    <string name="netherlands">Nederlands</string>
+
+
+
+</resources>

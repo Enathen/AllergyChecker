@@ -174,7 +174,7 @@ public class TranslateHelp extends Fragment {
             int i = 0;
             Collections.sort(result);
             for (String s : result) {
-                ((TextView) linearLayouts.get(i).findViewById(R.id.textViewTranslate)).setText(s);
+                ((TextView) linearLayouts.get(i).findViewById(R.id.textViewTranslate)).setText(TextHandler.capitalLetter(s));
                 parentLinearLayout.addView(linearLayouts.get(i));
                 editTextHashMap.put(s, (EditText) linearLayouts.get(i).findViewById(R.id.editTextFragmentTranslate));
                 linearLayouts.get(i).findViewById(R.id.sideBorder).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors, rand));

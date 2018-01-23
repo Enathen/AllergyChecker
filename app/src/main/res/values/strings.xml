@@ -11,7 +11,7 @@
     <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
     <string name="no_camera_permission">This application cannot run because it does not have the
         camera permission.  The application will now exit.</string>
-    <string name="low_storage_error">Ocr dependencies cannot be downloaded due to low device storage</string>
+    <string name="low_storage_error" translatable="false">Ocr dependencies cannot be downloaded due to low device storage</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 
@@ -225,7 +225,7 @@
         2. White text boxes appear.\n
         3. When covered the text.\n
         4. TAP one textbox!\n
-        4. Text saved. Wait for result!!
+        5. Text saved. Wait for result!!
         </string>
     <string name="tutorial">Tutorial</string>
     <string name="anis">Anis</string>
@@ -264,15 +264,15 @@
     <string name="helpTranslate">Help Translating</string>
     <string name="onlyFillChanges">Only fill those you change, leave others empty! Thanks Helper!</string>
     <string name="specialThanksTo">Special thanks to Alpha Testers:</string>
-    <string name="thisappUses">This app uses:</string>
-    <string name="FAB">FloatingActionButton by Clans</string>
-    <string name="BkTree">BK-tree by Kelsey Francis</string>
-    <string name="OnBoardMe">OnboardMe by simith</string>
-    <string name="licence">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
-    <string name="googleCamera">Google Vision API - The Android Open Source Project</string>
-    <string name="googleAdMob">Google, Inc. Google AdMob</string>
-    <string name="translatedFrom">Translate from</string>
-    <string name="nameIfyouWantToBeInHelperList">Name if you want to be in helper list</string>
+    <string name="thisappUses" translatable="false">This app uses:</string>
+    <string name="FAB" translatable="false">FloatingActionButton by Clans</string>
+    <string name="BkTree" translatable="false">BK-tree by Kelsey Francis</string>
+    <string name="OnBoardMe" translatable="false">OnboardMe by simith</string>
+    <string name="licence" translatable="false">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
+    <string name="googleCamera" translatable="false">Google Vision API - The Android Open Source Project</string>
+    <string name="googleAdMob" translatable="false">Google, Inc. Google AdMob</string>
+    <string name="translatedFrom" translatable="false">Translate from</string>
+    <string name="nameIfyouWantToBeInHelperList" translatable="false">Name if you want to be in helper list</string>
     <string name="uncheckAll">Uncheck all</string>
     <string name="checkAll">Check all</string>
     <string name="delete">Delete</string>
@@ -300,14 +300,16 @@
     <string name="finnish">Finnish</string>
     <string name="german">German</string>
 
-    <string name="staticEnglish">English</string>
-    <string name="staticSwedish">Svenska</string>
-    <string name="staticSpanish">Español</string>
-    <string name="staticNorway">norsk</string>
-    <string name="staticDenmark">Dansk</string>
-    <string name="staticFinnish">Suomalainen</string>
-    <string name="staticGerman">Deutsch</string>
-    <string name="staticFrench">français</string>
+    <string name="staticEnglish" translatable="false">English</string>
+    <string name="staticSwedish" translatable="false">Svenska</string>
+    <string name="staticSpanish" translatable="false">Español</string>
+    <string name="staticNorway" translatable="false">norsk</string>
+    <string name="staticDenmark" translatable="false">Dansk</string>
+    <string name="staticFinnish" translatable="false">Suomalainen</string>
+    <string name="staticGerman" translatable="false">Deutsch</string>
+    <string name="staticFrench" translatable="false">français</string>
     <string name="french">French</string>
+    <string name="netherlands" />
+    <string name="staticNetherland">Dutch</string>
 
 </resources>

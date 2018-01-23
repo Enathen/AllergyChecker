@@ -95,16 +95,16 @@ public class ShowAllergies extends Fragment {
             LinearLayout linearLayout = (LinearLayout) pLinearLayout.findViewById(R.id.showAllergiesLanguage);
             Log.d(TAG, "onCreateView: " + category.getLanguage());
             ((ImageView)linearLayout.findViewById(R.id.imageViewFlag)).setImageResource(LanguagesAccepted.getFlag(category.getLanguage()));
-            ((TextView)linearLayout.findViewById(R.id.textViewStaticLanguage)).setText(LanguagesAccepted.getCountryNameStatic(category.getLanguage()));
-            ((TextView)linearLayout.findViewById(R.id.textViewLocaleLanguage)).setText(LanguagesAccepted.getCountryName(category.getLanguage()));
-            ((TextView)pLinearLayout.findViewById(R.id.textViewAllergicAgainst)).setText(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),R.string.allergyAgianst,category.getLanguage()));
+            ((TextView)linearLayout.findViewById(R.id.textViewStaticLanguage)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryNameStatic(category.getLanguage()),getContext()));
+            ((TextView)linearLayout.findViewById(R.id.textViewLocaleLanguage)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryName(category.getLanguage()),getContext()));
+            ((TextView)pLinearLayout.findViewById(R.id.textViewAllergicAgainst)).setText(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),R.string.allergyAgianst,category.getLanguage())));
             pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.INVISIBLE);
 
             linearLayouts.put(pLinearLayout,new ArrayList<LinearLayout>());
             for (Integer allergy : allergies) {
                 LinearLayout linearLayout1 =(LinearLayout) inflater.inflate(R.layout.textviewssplitmiddle, container, false);
-                ((TextView)linearLayout1.findViewById(R.id.tvLeft)).setText(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),allergy,category.getLanguage()));
-                ((TextView)linearLayout1.findViewById(R.id.tvRight)).setText(getString(allergy));
+                ((TextView)linearLayout1.findViewById(R.id.tvLeft)).setText(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),allergy,category.getLanguage())));
+                ((TextView)linearLayout1.findViewById(R.id.tvRight)).setText(TextHandler.capitalLetter(getString(allergy)));
                 linearLayout1.setVisibility(View.INVISIBLE);
 
                 linearLayouts.get(pLinearLayout).add(linearLayout1);

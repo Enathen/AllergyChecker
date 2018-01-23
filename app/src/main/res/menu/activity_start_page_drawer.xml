@@ -11,10 +11,6 @@
             android:id="@+id/preference"
             android:icon="@drawable/wheatcircle"
             android:title="@string/myPreference" />
-        <!--<item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/start" />-->
         <item
             android:id="@+id/history"
 

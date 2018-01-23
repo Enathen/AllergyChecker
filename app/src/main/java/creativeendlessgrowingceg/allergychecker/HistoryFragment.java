@@ -189,7 +189,7 @@ public class HistoryFragment extends Fragment {
                 if (colorGreenToRed >= 255) {
                     baseIncrease = -1;
                 }
-                textview.setText(correctString);
+                textview.setText(TextHandler.capitalLetter(correctString));
                 newLinearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

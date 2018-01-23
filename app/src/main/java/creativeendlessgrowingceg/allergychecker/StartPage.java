@@ -719,9 +719,9 @@ public class StartPage extends AppCompatActivity
             for (final AllAllergiesForEachInteger allergiesForEachInteger : allAllergiesForEachInteger) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 LinearLayout newlinearLayout = (LinearLayout) inflater.inflate(R.layout.linlayoutstartpagevertical, null);
-                ((ImageView) newlinearLayout.findViewById(R.id.imageViewHorStartPage)).setImageResource(LanguagesAccepted.getInstance().getFlag(allergiesForEachInteger.getLanguage()));
+                ((ImageView) newlinearLayout.findViewById(R.id.imageViewHorStartPage)).setImageResource(LanguagesAccepted.getFlag(allergiesForEachInteger.getLanguage()));
                 ((TextView) newlinearLayout.findViewById(R.id.textViewAllergy)).setText(helpCalcAllergy.cutFirstWord(getString(allergiesForEachInteger.getId())).concat(": " + allergiesForEachInteger.getNameOfIngredient()));
-                ((TextView) newlinearLayout.findViewById(R.id.textViewFoundFromWord)).setText(allergiesForEachInteger.getNameOfWordFound());
+                ((TextView) newlinearLayout.findViewById(R.id.textViewFoundFromWord)).setText(TextHandler.capitalLetter(allergiesForEachInteger.getNameOfWordFound()));
                 if (!linearLayoutHashMap.containsKey(allergiesForEachInteger.getMotherLanguage())) {
                     LinearLayout parentLin = (LinearLayout) inflater.inflate(R.layout.linlayoutstartpageverticaltrue, null);
                     parentLin.addView(newlinearLayout);

@@ -8,86 +8,89 @@
     <string name="hello_pager_indicator">SKIP</string>
     <string name="title_activity_takeoff">App Takes off here</string>
     <string name="ok">OK</string>
-    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
-    <string name="no_camera_permission">This application cannot run because it does not have the
-        camera permission.  The application will now exit.</string>
-    <string name="low_storage_error">Ocr dependencies cannot be downloaded due to low device storage</string>
+
+
+    <string name="permission_camera_rationale">L\'accès à la caméra est nécessaire pour la détection</string>
+    <string name="no_camera_permission">Cette application ne peut pas s\'exécuter car elle n\'a pas le
+         autorisation de caméra. L\'application va maintenant quitter.</string>
+    <string name="low_storage_error">Les dépendances Ocr ne peuvent pas être téléchargées en raison
+        du faible stockage de l\'appareil</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 
 
-    <string name="nuts">Nuts</string>
-    <string name="almond">Almond, Almonds</string>
-    <string name="brazil">Brazil Nuts</string>
+    <string name="nuts">Des noisettes</string>
+    <string name="almond">Amande, Almonds</string>
+    <string name="brazil">Noix du Brésil</string>
     <string name="cocoa">Cocoa</string>
-    <string name="hazelnut">Hazelnut, Hazelnuts</string>
-    <string name="macadamia">Macadamia Nuts</string>
+    <string name="hazelnut">Noisette</string>
+    <string name="macadamia">Noix de macadamia</string>
 
-    <string name="pecans">Pecans, Pecan</string>
-    <string name="pili">Pili Nuts</string>
-    <string name="pine">Pine Nuts</string>
-    <string name="pistachios">Pistachios, Pistachios</string>
-    <string name="soy">Soy</string>
-    <string name="tiger">Tiger Nuts</string>
-    <string name="walnuts">Walnuts</string>
-    <string name="sesame">Sesame</string>
+    <string name="pecans">Noix de pécan</string>
+    <string name="pili">Canarium ovatum</string>
+    <string name="pine">Pignons de pin</string>
+    <string name="pistachios">Pistaches</string>
+    <string name="soy">Soja</string>
+    <string name="tiger">Noix de tigre</string>
+    <string name="walnuts">Noix</string>
+    <string name="sesame">Sésame</string>
 
 
-    <string name="tuna">Tuna</string>
-    <string name="salmon">Salmon</string>
+    <string name="tuna">Thon</string>
+    <string name="salmon">Saumon</string>
     <string name="caviar">Caviar</string>
-    <string name="anchovies">Anchovies</string>
-    <string name="bass">Bass</string>
-    <string name="catfish">Catfish</string>
-    <string name="cod">Cod</string>
-    <string name="flounder">Flounder</string>
-    <string name="haddock">Haddock</string>
-    <string name="hake">Hake</string>
-    <string name="halibut">Halibut</string>
-    <string name="herring">Herring</string>
+    <string name="anchovies">Anchois</string>
+    <string name="bass">Basse</string>
+    <string name="catfish">Poisson-chat</string>
+    <string name="cod">Morue</string>
+    <string name="flounder">Floun</string>
+    <string name="haddock">Églefin</string>
+    <string name="hake">Merlu</string>
+    <string name="halibut">Flétan</string>
+    <string name="herring">Hareng</string>
     <string name="mahi">Mahi</string>
-    <string name="perch">Perch</string>
+    <string name="perch">Perche</string>
     <string name="pollock">Pollock</string>
-    <string name="pike">Pike</string>
-    <string name="swordfish">Swordfish</string>
-    <string name="sole">Sole</string>
-    <string name="snapper">Snapper</string>
+    <string name="pike">Brochet</string>
+    <string name="swordfish">Espadon</string>
+    <string name="sole">Semelle</string>
+    <string name="snapper">Vivaneau</string>
     <string name="surimi">Surimi</string>
     <string name="tilapia">Tilapia</string>
-    <string name="trout">Trout</string>
+    <string name="trout">Truite</string>
 
 
-    <string name="barnacle">Barnacle</string>
-    <string name="crab">Crab</string>
-    <string name="crawfish">Crawfish</string>
+    <string name="barnacle">Bernacle</string>
+    <string name="crab">Crabe</string>
+    <string name="crawfish">Écrevisses</string>
     <string name="krill">Krill</string>
-    <string name="lobster">Lobster</string>
-    <string name="prawns">Prawns</string>
-    <string name="shrimp">Shrimp</string>
-    <string name="scampi">scampi</string>
-    <string name="abalone">Abalone</string>
-    <string name="clams">Clams</string>
+    <string name="lobster">Homard</string>
+    <string name="prawns">Crevettes</string>
+    <string name="shrimp">Crevettes</string>
+    <string name="scampi">Scampi</string>
+    <string name="abalone">Abalonee</string>
+    <string name="clams">Palourdes</string>
     <string name="cockle">Cockle</string>
     <string name="limpet">Limpet</string>
-    <string name="mussels">Mussels</string>
-    <string name="octopus">Octopus</string>
-    <string name="oysters">Oysters</string>
-    <string name="periwinkle">Periwinkle</string>
-    <string name="urchin">Urchin</string>
-    <string name="scallops">Scallops</string>
-    <string name="snails">Snails</string>
-    <string name="squid">Squid</string>
-    <string name="whelk">Whelk</string>
+    <string name="mussels">Moules</string>
+    <string name="octopus">Poulpe</string>
+    <string name="oysters">Huîtres</string>
+    <string name="periwinkle">Pervenche</string>
+    <string name="urchin">Oursin</string>
+    <string name="scallops">Pétoncles</string>
+    <string name="snails">Escargots</string>
+    <string name="squid">Calmar</string>
+    <string name="whelk">Buccin</string>
 
-    <string name="wheat">Wheat</string>
+    <string name="wheat">Blé</string>
     <string name="durum">Durum</string>
     <string name="emmer">Emmer</string>
-    <string name="rye">Rye</string>
-    <string name="barley">Barley</string>
+    <string name="rye">Seigle</string>
+    <string name="barley">Orge</string>
     <string name="triticale">Triticale</string>
     <string name="malt">Malt</string>
-    <string name="semolina">Semolina</string>
-    <string name="spelt">Spelt</string>
+    <string name="semolina">Semoule</string>
+    <string name="spelt">Épelé</string>
     <string name="farina">Farina</string>
     <string name="farro">Farro</string>
     <string name="graham">Graham</string>
@@ -95,174 +98,177 @@
     <string name="einkorn">Einkorn</string>
 
 
-    <string name="apple">Apple</string>
-    <string name="pear">Pear</string>
-    <string name="tomato">Tomato</string>
-    <string name="strawberry">Strawberry</string>
-    <string name="prune">Prune</string>
-    <string name="pomegranate">Pomegranate</string>
+    <string name="apple">Pomme</string>
+    <string name="pear">Poire</string>
+    <string name="tomato">Tomate</string>
+    <string name="strawberry">Fraise</string>
+    <string name="prune">Élaguer</string>
+    <string name="pomegranate">Grenade</string>
     <string name="pinapple">Pinapple</string>
     <string name="persimmon">Persimmon</string>
-    <string name="peach">Peach</string>
+    <string name="peach">Pêche</string>
     <string name="orange">Orange</string>
     <string name="melon">Melon</string>
-    <string name="mango">Mango</string>
-    <string name="lychee">Lychee</string>
+    <string name="mango">Mangue</string>
+    <string name="lychee">Litchi</string>
     <string name="kiwi">Kiwi</string>
-    <string name="grape">Grape</string>
-    <string name="date">Date</string>
-    <string name="fig">Fig</string>
-    <string name="coconut">Coconut</string>
-    <string name="cherry">Cherry</string>
-    <string name="banana">Banana</string>
-    <string name="apricot">Apricot</string>
+    <string name="grape">Raisin</string>
+    <string name="date">Dattier</string>
+    <string name="fig">Ficus</string>
+    <string name="coconut">Noix de Coco</string>
+    <string name="cherry">Cerise</string>
+    <string name="banana">Banane</string>
+    <string name="apricot">Abricot</string>
     <string name="acerola">Acerola</string>
-    <string name="avocado">Avocado</string>
+    <string name="avocado">Avocat</string>
 
-    <string name="shellfish">Shellfish</string>
+    <string name="shellfish">Coquillages</string>
     <string name="gluten">Gluten</string>
-    <string name="fish">Fish</string>
-    <string name="milk">Milk</string>
-    <string name="seeds">Seeds</string>
-    <string name="deleteHistory">Delete History</string>
-    <string name="scanPhotos">No history yet!</string>
+    <string name="fish">Poisson</string>
+    <string name="milk">Lait</string>
+    <string name="seeds">Graines</string>
+    <string name="deleteHistory">Effacer l\'historique</string>
+    <string name="scanPhotos">Pas encore d\'histoire!</string>
 
     <string name="service_label">My Spell Checker</string>
 
 
 
 
-    <string name="language">Language</string>
-    <string name="languageFrom">Translate From</string>
-    <string name="languageGeneral">General Language</string>
-    <string name="startPageHeader">Tap below to scan text</string>
-    <string name="definitelyContained">Definitely contained</string>
-    <string name="history">History</string>
-    <string name="statistics">Statistics</string>
+    <string name="language">La langue</string>
+    <string name="languageFrom">Traduit depuis</string>
+    <string name="languageGeneral">Langue générale</string>
+    <string name="startPageHeader">Appuyez ci-dessous pour scanner le texte</string>
+    <string name="definitelyContained">Définitivement contenu</string>
+    <string name="history">Histoire</string>
+    <string name="statistics">Statistiques</string>
     <string name="allergies">Allergies</string>
-    <string name="dontUse">Don\'t Use!</string>
-    <string name="scannedTextBelow">Scanned text below:</string>
-    <string name="youCanUse">Can be used!</string>
-    <string name="allergy">Allergy:</string>
-    <string name="contained">Contained</string>
-    <string name="times">times</string>
-    <string name="probablyContained">Probably contained</string>
-    <string name="fromWord">from word:</string>
+    <string name="dontUse">Ne pas utiliser</string>
+    <string name="scannedTextBelow">Texte numérisé ci-dessous:</string>
+    <string name="youCanUse">Peut être utilisé!</string>
+    <string name="allergy">Allergie:</string>
+    <string name="contained">Contenu</string>
+    <string name="times">Fois</string>
+    <string name="probablyContained">Probablement contenu</string>
+    <string name="fromWord">du mot:</string>
     <string name="myAllergies">My allergies</string>
-    <string name="share">Share</string>
-    <string name="send">Send tips</string>
-    <string name="mustBeInEnglish">Text must be written in English or Swedish! Thanks!</string>
-    <string name="sendTipsFrom">Where you want to send tips from?</string>
-    <string name="welcomeMessageInvite">Do you want know if you can eat something fast, that is not allergic to you?
-    Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
-    <string name="time">time</string>
-    <string name="buckwheat">Buckwheat</string>
-    <string name="mustardSeed">Mustard Seed</string>
-    <string name="poppySeed">Poppy Seed</string>
-    <string name="pumpkinSeed">pumpkin Seed</string>
-    <string name="sunflowerSeed">Sunflower Seed</string>
+    <string name="share">Partager</string>
+    <string name="send">Envoyer des astuces</string>
+    <string name="mustBeInEnglish">Le texte doit être écrit en anglais ou en suédois! Merci!</string>
+    <string name="sendTipsFrom">D\'où voulez-vous envoyer des conseils?</string>
+    <string name="welcomeMessageInvite">Voulez-vous savoir si vous pouvez manger quelque chose rapidement, ce n\'est pas allergique à vous?
+    Génial! Cette application vous permet de scanner le texte en plusieurs langues pour voir si vous pouvez le manger!</string>
+    <string name="time">Temps</string>
+    <string name="buckwheat">Sarrasin</string>
+    <string name="mustardSeed">Graine de moutarde</string>
+    <string name="poppySeed">Graine de pavot</string>
+    <string name="pumpkinSeed">graine de citrouille</string>
+    <string name="sunflowerSeed">graines de tournesol</string>
     <string name="fruit">Fruit</string>
-    <string name="vegetables">Vegetables</string>
-    <string name="cannotUseCamera">Cannot use camera without permission!</string>
-    <string name="varning">Varning!</string>
-    <string name="thisAppOnlySave">If permission is not given, this app will not work as intended. Remember the only thing getting saved is the text. If you don\'t give permission the application might need to be reinstalled to work! Have a fantastic day!</string>
+    <string name="vegetables">Légume</string>
+    <string name="cannotUseCamera">Impossible d\'utiliser l\'appareil photo sans autorisation!</string>
+    <string name="varning">Attention!</string>
+    <string name="thisAppOnlySave">Si la permission n\'est pas donnée, cette application ne fonctionnera
+        pas comme prévu. Rappelez-vous que la seule chose qui vous sauvera est le texte. Si vous ne donnez
+        pas la permission, il se peut que l\'application doive être réinstallée pour fonctionner!
+        Passez une bonne journée!</string>
 
 
-    <string name="mightContainOther">This is only a guideline! And might contain other allergens</string>
-    <string name="mightContainAllergies">This is only a guideline! And might contain allergens</string>
+    <string name="mightContainOther">Ceci est seulement une ligne directrice! Et pourrait contenir d\'autres allergènes</string>
+    <string name="mightContainAllergies">Ceci est seulement une ligne directrice! Et pourrait contenir des allergènes</string>
 
     <string name="vegetarian">Vegetarian</string>
     <string name="vegan">Vegan</string>
-    <string name="citrus">Citrus</string>
+    <string name="citrus">Agrumes</string>
     <string name="haram">Haram</string>
-    <string name="legumes">Legumes</string>
-    <string name="aspargus">Asparagus</string>
-    <string name="bellPepper">Bell Pepper</string>
-    <string name="cabbage">Cabbage</string>
-    <string name="carrot">Carrot</string>
-    <string name="celery">Celery</string>
-    <string name="garlic">Garlic</string>
-    <string name="lettuce">Lettuce</string>
-    <string name="maize">Maize, Corn</string>
-    <string name="potato">Potato</string>
-    <string name="pumpkin">Pumpkin</string>
-    <string name="zucchini">Zucchini</string>
-    <string name="pig">Pig</string>
-    <string name="duck">Duck</string>
-    <string name="meat">Meat</string>
-    <string name="goat">Goat</string>
-    <string name="poultry">Poultry</string>
-    <string name="lamb">Lamb</string>
-    <string name="sausage">Sausage</string>
-    <string name="beef">Beef</string>
-    <string name="veal">Veal</string>
-    <string name="gelatin">Gelatin</string>
-    <string name="dairy">Dairy</string>
-    <string name="egg">Egg</string>
-    <string name="honey">Honey</string>
+    <string name="legumes">Légumineuses</string>
+    <string name="aspargus">Asperges</string>
+    <string name="bellPepper">Poivron</string>
+    <string name="cabbage">Chou</string>
+    <string name="carrot">Carrote</string>
+    <string name="celery">Céleri</string>
+    <string name="garlic">Ail</string>
+    <string name="lettuce">Laitue</string>
+    <string name="maize">Maïs</string>
+    <string name="potato">Pomme de terre</string>
+    <string name="pumpkin">Citrouille</string>
+    <string name="zucchini">Courgettes</string>
+    <string name="pig">Cochon</string>
+    <string name="duck">Canard</string>
+    <string name="meat">Viande</string>
+    <string name="goat">Chèvre</string>
+    <string name="poultry">Volaille</string>
+    <string name="lamb">Agneau</string>
+    <string name="sausage">Saucisse</string>
+    <string name="beef">Boeuf</string>
+    <string name="veal">Veau</string>
+    <string name="gelatin">Gélatine</string>
+    <string name="dairy">Laiterie</string>
+    <string name="egg">Oeuf</string>
+    <string name="honey">Miel</string>
     <string name="lactoVegetarian">Lacto Vegetarian</string>
     <string name="ovoVegetarian">Ovo Vegetarian</string>
     <string name="lactoOvoVegetarian">Lacto Ovo Vegetarian</string>
     <string name="demiVegetarian">Demi Vegetarian</string>
     <string name="polloVegetarian">Pollo Vegetarian</string>
     <string name="pescoVegetarian">Pesco Vegetarian</string>
-    <string name="chicken">Chicken</string>
-    <string name="areYouSure">Are you sure you want to delete?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="flashon">Flash On</string>
-    <string name="cancel">Cancel</string>
-    <string name="inputIngredients">Input ingredients</string>
-    <string name="rate">Rate</string>
-    <string name="pressMe">Press me \nto continue!</string>
-    <string name="firstIntro">Pressing this icon from the menu brings up the allergy window. From
-        there you can insert your allergies.</string>
-    <string name="secondIntro">Tap to bring up the camera to scan ingredients. Holding the camera
-        button down, pops up a new window. From the new menu ingredients can be inserted manually by typing
-        them in. </string>
-    <string name="thirdIntro">This is how you use the camera:\n
-        1. Hold the camera over text.\n
-        2. White text boxes appear.\n
-        3. When covered the text.\n
-        4. TAP one textbox!\n
-        4. Text saved. Wait for result!!
+    <string name="chicken">Poulet</string>
+    <string name="areYouSure">Êtes-vous sûr de vouloir supprimer?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="flashon">Flash activé</string>
+    <string name="cancel">Annuler</string>
+    <string name="inputIngredients">Ingrédients d\'entrée</string>
+    <string name="rate">Évaluer</string>
+    <string name="pressMe">Presse moi \npour continuer!</string>
+    <string name="firstIntro">Appuyer sur cette icône dans le menu fait apparaître la fenêtre d\'allergie. De
+        Là, vous pouvez insérer vos allergies.</string>
+    <string name="secondIntro">Appuyez sur pour faire apparaître l\'appareil photo pour numériser les ingrédients. Tenant la caméra
+        bouton bas, ouvre une nouvelle fenêtre. À partir du nouveau menu, les ingrédients peuvent être insérés manuellement en tapant
+        les dans.</string>
+    <string name="thirdIntro">Voici comment vous utilisez l\'appareil photo: \n
+        1. Tenez la caméra par-dessus le texte. \n
+        2. Des zones de texte blanches apparaissent. \n
+        3. Lorsque couvert le texte. \n
+        4. TAP une boîte de texte! \n
+        4. Texte enregistré. Attendez le résultat !!
         </string>
-    <string name="tutorial">Tutorial</string>
+    <string name="tutorial">Tutoriel</string>
     <string name="anis">Anis</string>
-    <string name="coriander">Coriander</string>
+    <string name="coriander">Coriandre</string>
     <string name="cumin">Cumin</string>
-    <string name="fennel">Fennel</string>
-    <string name="parsley">Parsley</string>
-    <string name="ragweed">Ragweed</string>
+    <string name="fennel">Fenouil</string>
+    <string name="parsley">Persil</string>
+    <string name="ragweed">Herbe à poux</string>
     <string name="echinacea">Echinacea</string>
-    <string name="artichoke">Artichoke</string>
-    <string name="dandelions">Dandelions</string>
+    <string name="artichoke">Artichaut</string>
+    <string name="dandelions">Pissenlits</string>
     <string name="hibiscus">Hibiscus</string>
-    <string name="chickpea">Chickpeas</string>
-    <string name="lentil">Lentils</string>
+    <string name="chickpea">Pois chiches</string>
+    <string name="lentil">Lentilles</string>
     <string name="lupin">Lupin</string>
-    <string name="peanut">Peanuts</string>
-    <string name="pea">Peas</string>
-    <string name="soybean">soybean</string>
-    <string name="lemon">Lemon</string>
-    <string name="lime">Lime</string>
-    <string name="grapefruit">Grapefruit</string>
+    <string name="peanut">Arachide</string>
+    <string name="pea">Pois</string>
+    <string name="soybean">Soja</string>
+    <string name="lemon">Citron</string>
+    <string name="lime">chaux</string>
+    <string name="grapefruit">Pamplemousse</string>
 
     <string name="bacon">Bacon</string>
     <string name="choletsorol">Cholesterol</string>
     <string name="glycerol">Glycerol</string>
     <string name="hormones">Hormones</string>
-    <string name="lard">Lard</string>
+    <string name="lard">Saindoux</string>
     <string name="magnesiumStearate">magnesium stearate</string>
     <string name="monoGlycerides">Mono Glycerides</string>
     <string name="pepsin">Pepsin</string>
 
     <string name="halal">Halal</string>
-    <string name="start">Start Page</string>
-    <string name="holdFor">Hold for More Info</string>
-    <string name="about">About</string>
-    <string name="helpTranslate">Help Translating</string>
-    <string name="onlyFillChanges">Only fill those you change, leave others empty! Thanks Helper!</string>
+    <string name="start">Page de démarrage</string>
+    <string name="holdFor">Hold pour plus d\'informations</string>
+    <string name="about">A propos de</string>
+    <string name="helpTranslate">Aide à la traduction</string>
+    <string name="onlyFillChanges">Remplissez seulement ceux que vous changez, laissez les autres vides! Merci Helper!</string>
     <string name="specialThanksTo">Special thanks to Alpha Testers:</string>
     <string name="thisappUses">This app uses:</string>
     <string name="FAB">FloatingActionButton by Clans</string>
@@ -270,42 +276,35 @@
     <string name="OnBoardMe">OnboardMe by simith</string>
     <string name="licence">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
     <string name="googleCamera">Google Vision API - The Android Open Source Project</string>
-    <string name="googleAdMob">Google, Inc. Google AdMob</string>
-    <string name="translatedFrom">Translate from</string>
-    <string name="nameIfyouWantToBeInHelperList">Name if you want to be in helper list</string>
-    <string name="uncheckAll">Uncheck all</string>
-    <string name="checkAll">Check all</string>
-    <string name="delete">Delete</string>
-    <string name="spice">Spices</string>
-    <string name="butter">Butter</string>
-    <string name="casein">Casein</string>
-    <string name="yoghurt">Yogurt, Yoghurt, Yoghourt</string>
-    <string name="custard">Custard</string>
-    <string name="cream">Cream</string>
-    <string name="write">Write</string>
-    <string name="useflash">flash On</string>
-    <string name="useNoFlash">flash Off</string>
+    <string name="translatedFrom">Traduit depuis</string>
+    <string name="nameIfyouWantToBeInHelperList">Nom si vous voulez être dans la liste d\'aide</string>
+    <string name="uncheckAll">Décocher tout</string>
+    <string name="checkAll">Vérifie tout</string>
+    <string name="delete">Effacer</string>
+    <string name="spice">Épices</string>
+    <string name="butter">Beurre</string>
+    <string name="casein">Caséine</string>
+    <string name="yoghurt">Yaourt</string>
+    <string name="custard">Crème</string>
+    <string name="cream">Crème</string>
+    <string name="write">Écrire des ingrédients</string>
+    <string name="useflash">flash sur</string>
+    <string name="useNoFlash">flash désactivé</string>
     <string name="SharingIsCaring">Sharing is caring</string>
-    <string name="help">help</string>
-    <string name="myPreference">My preferences</string>
-    <string name="showAllergies">Show Allegies</string>
-    <string name="allergyAgianst">Allergic Against</string>
+    <string name="help">Aidez-moi</string>
+    <string name="myPreference">Mes préférences</string>
+    <string name="showAllergies">Afficher les allergies</string>
+    <string name="allergyAgianst">Allergique contre</string>
     <string name="lactose">Lactose</string>
 
-    <string name="english">English</string>
-    <string name="swedish">Swedish</string>
-    <string name="spanish">Spanish</string>
-    <string name="norway">Norwegian</string>
-    <string name="denmark">Danish</string>
-    <string name="finnish">Finnish</string>
+    <string name="english">Anglais</string>
+    <string name="swedish">Suédois</string>
+    <string name="spanish">Espanol</string>
+    <string name="norway">Norvégien</string>
+    <string name="denmark">Danois</string>
+    <string name="finnish">Finlandais</string>
+    <string name="french">français</string>
+    <string name="german">Allemand</string>
 
-    <string name="staticEnglish">English</string>
-    <string name="staticSwedish">Svenska</string>
-    <string name="staticSpanish">Español</string>
-    <string name="staticNorway">norsk</string>
-    <string name="staticDenmark">Dansk</string>
-    <string name="staticFinnish">Suomalainen</string>
-    <string name="staticGerman">Deutsch</string>
-    <string name="german">German</string>
 
 </resources>

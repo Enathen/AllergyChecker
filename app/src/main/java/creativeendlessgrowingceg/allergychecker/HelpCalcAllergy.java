@@ -89,7 +89,7 @@ public class HelpCalcAllergy {
                     hashset.add(splitStr[i] + splitStr[i + 1]);
                     hashSetAllStrings.put((splitStr[i] + splitStr[i + 1]).length(), hashset);
                 }
-                if (splitStr[i].equals("de") && splitStr.length > 0) {
+                if ((splitStr[i].equals("de") ||splitStr[i].equals("du")) && splitStr.length > 0) {
                     hashSetToCheckLast.add(splitStr[i - 1] + splitStr[i] + splitStr[i + 1]);
                     if (hashSetAllStrings.containsKey((splitStr[i - 1] + splitStr[i] + splitStr[i + 1]).length())) {
                         hashSetAllStrings.put((splitStr[i - 1] + splitStr[i] + splitStr[i + 1]).length(), hashSetAllStrings.get((splitStr[i - 1] + splitStr[i] + splitStr[i + 1]).length())).add((splitStr[i - 1] + splitStr[i] + splitStr[i + 1]));

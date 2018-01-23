@@ -288,6 +288,13 @@
     <string name="denmark">Dansk</string>
     <string name="finnish">Finsk</string>
     <string name="german">Tysk</string>
+    <string name="apple">Eple</string>
+    <string name="beef">storfekjøtt</string>
+    <string name="meat">Kjøtt</string>
+    <string name="pumpkinSeed">Gresskarfrø</string>
+    <string name="veal">Kalv</string>
+    <string name="pear">Pærer</string>
+    <string name="french">fransk</string>
 
 
 </resources>

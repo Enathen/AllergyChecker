@@ -45,7 +45,7 @@
     <string name="hake">Hake</string>
     <string name="halibut">Halibut</string>
     <string name="herring">Herring</string>
-    <string name="mahi">Mahi</string>
+    <string name="mahi">Mahi-mahi</string>
     <string name="perch">Perch</string>
     <string name="pollock">Pollock</string>
     <string name="pike">Pike</string>
@@ -101,7 +101,7 @@
     <string name="strawberry">Strawberry</string>
     <string name="prune">Prune</string>
     <string name="pomegranate">Pomegranate</string>
-    <string name="pinapple">Pinapple</string>
+    <string name="pinapple">Pineapple</string>
     <string name="persimmon">Persimmon</string>
     <string name="peach">Peach</string>
     <string name="orange">Orange</string>
@@ -153,7 +153,7 @@
     <string name="send">Send tips</string>
     <string name="mustBeInEnglish">Text must be written in English or Swedish! Thanks!</string>
     <string name="sendTipsFrom">Where you want to send tips from?</string>
-    <string name="welcomeMessageInvite">Do you want know if you can eat something fast, that is not allergic to you?
+    <string name="welcomeMessageInvite">Do you want to know if you can eat something fast, that is not allergic to you?
     Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
     <string name="time">time</string>
     <string name="buckwheat">Buckwheat</string>
@@ -164,7 +164,7 @@
     <string name="fruit">Fruit</string>
     <string name="vegetables">Vegetables</string>
     <string name="cannotUseCamera">Cannot use camera without permission!</string>
-    <string name="varning">Varning!</string>
+    <string name="varning">Warning!</string>
     <string name="thisAppOnlySave">If permission is not given, this app will not work as intended. Remember the only thing getting saved is the text. If you don\'t give permission the application might need to be reinstalled to work! Have a fantastic day!</string>
 
 
@@ -288,7 +288,7 @@
     <string name="SharingIsCaring">Sharing is caring</string>
     <string name="help">help</string>
     <string name="myPreference">My preferences</string>
-    <string name="showAllergies">Show Allegies</string>
+    <string name="showAllergies">Show Allergies</string>
     <string name="allergyAgianst">Allergic Against</string>
     <string name="lactose">Lactose</string>
 
@@ -298,6 +298,7 @@
     <string name="norway">Norwegian</string>
     <string name="denmark">Danish</string>
     <string name="finnish">Finnish</string>
+    <string name="german">German</string>
 
     <string name="staticEnglish">English</string>
     <string name="staticSwedish">Svenska</string>
@@ -306,6 +307,7 @@
     <string name="staticDenmark">Dansk</string>
     <string name="staticFinnish">Suomalainen</string>
     <string name="staticGerman">Deutsch</string>
-    <string name="german">German</string>
+    <string name="staticFrench">français</string>
+    <string name="french">French</string>
 
 </resources>

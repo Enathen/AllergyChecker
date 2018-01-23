@@ -290,6 +290,11 @@
     <string name="denmark">Tanska</string>
     <string name="finnish">Finnish</string>
     <string name="german">Saksa</string>
+    <string name="meat">Liha</string>
+    <string name="pumpkinSeed">Kurpitsansiemeniä</string>
+    <string name="veal">Vasikanliha</string>
+    <string name="beef">naudanliha</string>
+    <string name="french">Ranskan kieli</string>
 
 
 </resources>

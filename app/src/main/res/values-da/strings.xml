@@ -291,6 +291,11 @@
     <string name="denmark">Dansk</string>
     <string name="finnish">Finsk</string>
     <string name="german">Tysk</string>
+    <string name="beef">bøf</string>
+    <string name="meat">Kød</string>
+    <string name="pumpkinSeed">Græskar frø</string>
+    <string name="veal">Kalv</string>
+    <string name="french">Fransk</string>
 
 
 </resources>

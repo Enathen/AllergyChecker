@@ -288,6 +288,11 @@
     <string name="denmark">Danska</string>
     <string name="finnish">Finska</string>
     <string name="german">Tyska</string>
+    <string name="beef">Biff</string>
+    <string name="meat">Kött</string>
+    <string name="pumpkinSeed">Pumpa Frön</string>
+    <string name="veal">Kalv</string>
+    <string name="french">franska</string>
 
 
 </resources>

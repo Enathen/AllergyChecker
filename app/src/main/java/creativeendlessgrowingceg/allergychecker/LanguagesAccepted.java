@@ -119,7 +119,7 @@ class LanguagesAccepted {
         if (langCode.equals("fr")) {
             return R.string.staticFrench;
         }
-        if (langCode.equals("fr")) {
+        if (langCode.equals("nl")) {
             return R.string.staticNetherland;
         }
         return 0;

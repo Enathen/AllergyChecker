@@ -96,6 +96,16 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/textViewtip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@color/fontColorTextWhite"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/ingredientsTextView"
                 android:layout_width="match_parent"
                 android:layout_height="562dp"

@@ -132,14 +132,14 @@ public class SettingsFragment extends Fragment {
         final LinearLayout parentLinearLayout = (LinearLayout) topLinearLayout.findViewById(R.id.linearLayoutRowCategoryHorizontal);
         ((ImageView) parentLinearLayout.findViewById(R.id.imageViewRowCategory)).setImageResource(R.drawable.translate);
         ((ImageView) parentLinearLayout.findViewById(R.id.dropDownList)).setVisibility(View.INVISIBLE);
-        ((TextView) parentLinearLayout.findViewById(R.id.textViewCategory)).setText(R.string.checkAll);
+        ((TextView) parentLinearLayout.findViewById(R.id.textViewCategory)).setText(TextHandler.capitalLetter(R.string.checkAll,getContext()));
         SharedPreferences settings = getContext().getSharedPreferences("box", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = settings.edit();
         for (final Locale locale : LanguagesAccepted.getLanguages()) {
             LinearLayout newLinearLayout = (LinearLayout) inflater.inflate(R.layout.rowcategorylayout, null);
             ((ImageView) newLinearLayout.findViewById(R.id.imageViewRowCategory)).setImageResource(LanguagesAccepted.getFlag(locale.getLanguage()));
             ((ImageView) newLinearLayout.findViewById(R.id.dropDownList)).setVisibility(View.INVISIBLE);
-            ((TextView) newLinearLayout.findViewById(R.id.textViewCategory)).setText(LanguagesAccepted.getCountryName(locale.getLanguage()));
+            ((TextView) newLinearLayout.findViewById(R.id.textViewCategory)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryName(locale.getLanguage()),getContext()));
             final CheckBox checkBox = (CheckBox) newLinearLayout.findViewById(R.id.checkBoxRowCategory);
             checkBoxes.add(new CheckBoxes(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), checkBox, locale));
             checkBox.setChecked(settings.getBoolean(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), false));
@@ -258,9 +258,7 @@ public class SettingsFragment extends Fragment {
         if (v.getRotation() == 180) {
             v.setRotation(0);
             for (LinearLayout linearLayout : arrayList) {
-
                 linearLayoutPar.removeView(linearLayout);
-
             }
         } else {
             v.setRotation(180);

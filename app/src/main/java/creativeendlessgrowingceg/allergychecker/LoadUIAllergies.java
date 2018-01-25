@@ -139,6 +139,15 @@ public class LoadUIAllergies {
         }
         HashSet<Integer> allergySavePicture = SharedPreferenceClass.getSharedPreference(context, "allergySavePicture", TAG);
         allergySavePicture.addAll(SharedPreferenceClass.getSharedPreference(context, "preferenceSavePicture", TAG));
+        HashSet<String> allergySavePictureNAME = (HashSet<String>) SharedPreferenceClass.getSharedPreferenceString(context, "allergySavePictureName", TAG);
+        allergySavePictureNAME.addAll(SharedPreferenceClass.getSharedPreferenceString(context, "preferenceSavePictureName", TAG));
+        HashSet<Integer> allergyToRemove = new HashSet<>();
+        for (Integer integer : allergySavePicture) {
+            if(!allergySavePictureNAME.contains(context.getResources().getResourceEntryName(integer))){
+                allergyToRemove.add(integer);
+            }
+        }
+        allergySavePicture.removeAll(allergyToRemove);
         for (int id : allergySavePicture) {
             if (i > 7) {
                 break;
@@ -408,6 +417,11 @@ public class LoadUIAllergies {
             }
             SharedPreferenceClass.setSharedPreference(context,hashSet,"allergySave",TAG);
             SharedPreferenceClass.setSharedPreference(context,hashSetPicture,"allergySavePicture",TAG);
+            HashSet<String> hashSetPictureName = new HashSet<>();
+            for (Integer integer : hashSetPicture) {
+                hashSetPictureName.add(context.getResources().getResourceEntryName(integer));
+            }
+            SharedPreferenceClass.setSharedPreference(context,hashSetPictureName,"allergySavePictureName",TAG);
         }else{
             HashSet<Integer> preferenceSave = SharedPreferenceClass.getSharedPreference(context, "preferenceSave", TAG);
             HashSet<Integer> allergySave = SharedPreferenceClass.getSharedPreference(context, "allergySave", TAG);
@@ -433,6 +447,11 @@ public class LoadUIAllergies {
             SharedPreferenceClass.setSharedPreference(context,hashSet,"preferenceSave",TAG);
             //Log.d(TAG, "saveAllergies: "+ SharedPreferenceClass.getSharedPreference(context,"preferenceSave",TAG));
             SharedPreferenceClass.setSharedPreference(context,hashSetPicture,"preferenceSavePicture",TAG);
+            HashSet<String> hashSetPictureName = new HashSet<>();
+            for (Integer integer : hashSetPicture) {
+                hashSetPictureName.add(context.getResources().getResourceEntryName(integer));
+            }
+            SharedPreferenceClass.setSharedPreference(context,hashSetPictureName,"preferenceSavePictureName",TAG);
         }
 
     }

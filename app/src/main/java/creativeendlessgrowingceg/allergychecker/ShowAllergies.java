@@ -2,9 +2,9 @@ package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -90,48 +88,102 @@ public class ShowAllergies extends Fragment {
         // Inflate the layout for this fragment
         parentFrame = (FrameLayout) inflater.inflate(R.layout.fragment_show_allergies, container, false);
         parentLinearLayout =(LinearLayout) parentFrame.findViewById(R.id.showAllergiesLinearLayout);
-        for (Locale category : categories) {
-            final LinearLayout pLinearLayout = (LinearLayout) inflater.inflate(R.layout.show_allergies_layout, container, false);
-            LinearLayout linearLayout = (LinearLayout) pLinearLayout.findViewById(R.id.showAllergiesLanguage);
-            Log.d(TAG, "onCreateView: " + category.getLanguage());
-            ((ImageView)linearLayout.findViewById(R.id.imageViewFlag)).setImageResource(LanguagesAccepted.getFlag(category.getLanguage()));
-            ((TextView)linearLayout.findViewById(R.id.textViewStaticLanguage)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryNameStatic(category.getLanguage()),getContext()));
-            ((TextView)linearLayout.findViewById(R.id.textViewLocaleLanguage)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryName(category.getLanguage()),getContext()));
-            ((TextView)pLinearLayout.findViewById(R.id.textViewAllergicAgainst)).setText(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),R.string.allergyAgianst,category.getLanguage())));
-            pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.INVISIBLE);
+        new ShowAllergies.CalcAllergy(this,inflater,container).execute();
 
-            linearLayouts.put(pLinearLayout,new ArrayList<LinearLayout>());
-            for (Integer allergy : allergies) {
-                LinearLayout linearLayout1 =(LinearLayout) inflater.inflate(R.layout.textviewssplitmiddle, container, false);
-                ((TextView)linearLayout1.findViewById(R.id.tvLeft)).setText(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),allergy,category.getLanguage())));
-                ((TextView)linearLayout1.findViewById(R.id.tvRight)).setText(TextHandler.capitalLetter(getString(allergy)));
-                linearLayout1.setVisibility(View.INVISIBLE);
-
-                linearLayouts.get(pLinearLayout).add(linearLayout1);
-            }
-            pLinearLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    for (LinearLayout textViews: linearLayouts.get(v)){
-                        if(textViews.getVisibility() == View.INVISIBLE){
-                            ((LinearLayout) v).addView(textViews);
-                            textViews.setVisibility(View.VISIBLE);
-                            pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.VISIBLE);
-
-                        }else {
-                            ((LinearLayout) v).removeView(textViews);
-                            textViews.setVisibility(View.INVISIBLE);
-                            pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.INVISIBLE);
-                        }
-                    }
-                }
-            });
-            parentLinearLayout.addView(pLinearLayout);
-        }
         return parentFrame;
     }
+    private class CalcAllergy extends AsyncTask<String, Integer, ArrayList<AllAllergiesForEachInteger>> {
 
+        private final ShowAllergies showAllergies;
+        private final LayoutInflater inflater;
+        private ViewGroup container;
+        public CalcAllergy(ShowAllergies showAllergies, LayoutInflater inflater, ViewGroup container) {
+
+            this.showAllergies = showAllergies;
+            this.inflater = inflater;
+            this.container = container;
+        }
+
+        /**
+         * Override this method to perform a computation on a background thread. The
+         * specified parameters are the parameters passed to {@link #execute}
+         * by the caller of this task.
+         * <p>
+         * This method can call {@link #publishProgress} to publish updates
+         * on the UI thread.
+         *
+         * @param params The parameters of the task.
+         * @return A result, defined by the subclass of this task.
+         * @see #onPreExecute()
+         * @see #onPostExecute
+         * @see #publishProgress
+         */
+        @Override
+        protected ArrayList<AllAllergiesForEachInteger> doInBackground(String... params) {
+
+            return null;
+        }
+
+        /**
+         * <p>Runs on the UI thread after {@link #doInBackground}. The
+         * specified result is the value returned by {@link #doInBackground}.</p>
+         * <p>
+         * <p>This method won't be invoked if the task was cancelled.</p>
+         *
+         * @param allAllergiesForEachIntegers The result of the operation computed by {@link #doInBackground}.
+         * @see #onPreExecute
+         * @see #doInBackground
+         * @see #onCancelled(Object)
+         */
+        @Override
+        protected void onPostExecute(ArrayList<AllAllergiesForEachInteger> allAllergiesForEachIntegers) {
+            super.onPostExecute(allAllergiesForEachIntegers);
+
+            for (final Locale category : categories) {
+                final LinearLayout pLinearLayout = (LinearLayout) inflater.inflate(R.layout.show_allergies_layout, container, false);
+                final LinearLayout linearLayout = (LinearLayout) pLinearLayout.findViewById(R.id.showAllergiesLanguage);
+                ((ImageView)linearLayout.findViewById(R.id.imageViewFlag)).setImageResource(LanguagesAccepted.getFlag(category.getLanguage()));
+                ((TextView)linearLayout.findViewById(R.id.textViewStaticLanguage)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryNameStatic(category.getLanguage()),getContext()));
+                ((TextView)linearLayout.findViewById(R.id.textViewLocaleLanguage)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryName(category.getLanguage()),getContext()));
+                ((TextView)pLinearLayout.findViewById(R.id.textViewAllergicAgainst)).setText(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),R.string.allergyAgianst,category.getLanguage())));
+                pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.INVISIBLE);
+
+
+                pLinearLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(!linearLayouts.containsKey(pLinearLayout)){
+                            linearLayouts.put(pLinearLayout,new ArrayList<LinearLayout>());
+                            for (Integer allergy : allergies) {
+                                LinearLayout linearLayout1 =(LinearLayout) inflater.inflate(R.layout.textviewssplitmiddle, container, false);
+                                ((TextView)linearLayout1.findViewById(R.id.tvLeft)).setText(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),allergy,category.getLanguage())));
+                                ((TextView)linearLayout1.findViewById(R.id.tvRight)).setText(TextHandler.capitalLetter(getString(allergy)));
+                                linearLayout1.setVisibility(View.INVISIBLE);
+
+                                linearLayouts.get(pLinearLayout).add(linearLayout1);
+                            }
+                        }
+
+                        for (LinearLayout textViews: linearLayouts.get(v)){
+                            if(textViews.getVisibility() == View.INVISIBLE){
+                                ((LinearLayout) v).addView(textViews);
+                                textViews.setVisibility(View.VISIBLE);
+                                pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.VISIBLE);
+
+                            }else {
+                                ((LinearLayout) v).removeView(textViews);
+                                textViews.setVisibility(View.INVISIBLE);
+                                pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.INVISIBLE);
+                            }
+                        }
+                    }
+                });
+                parentLinearLayout.addView(pLinearLayout);
+            }
+            parentLinearLayout.findViewById(R.id.pbShowAllergies).setVisibility(View.GONE);
+        }
+
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

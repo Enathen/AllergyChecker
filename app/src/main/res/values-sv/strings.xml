@@ -153,6 +153,13 @@
     <string name="time">gång</string>
 
 
+    <string name="test">holländska</string>
+    <string name="test1">holländska</string>
+    <string name="test2">holländska</string>
+    <string name="test3">holländska</string>
+
+
+
     <string name="buckwheat">Bovete</string>
     <string name="mustardSeed">Senapsfrö</string>
     <string name="poppySeed">Vallmofrö</string>
@@ -260,7 +267,7 @@
     <string name="OnBoardMe">OnboardMe by simith</string>
     <string name="licence">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
     <string name="googleCamera">Google Vision API - The Android Open Source Project</string>
-    <string name="translatedFrom">översätt från</string>
+    <string name="translatedFrom">Översatt från</string>
     <string name="nameIfyouWantToBeInHelperList">Name if you want to be in helper list</string>
     <string name="uncheckAll">avmarkera alla</string>
     <string name="checkAll">markera alla</string>

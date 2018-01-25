@@ -299,6 +299,8 @@
     <string name="denmark">Danish</string>
     <string name="finnish">Finnish</string>
     <string name="german">German</string>
+    <string name="french">French</string>
+    <string name="netherlands">Dutch</string>
 
     <string name="staticEnglish" translatable="false">English</string>
     <string name="staticSwedish" translatable="false">Svenska</string>
@@ -307,9 +309,7 @@
     <string name="staticDenmark" translatable="false">Dansk</string>
     <string name="staticFinnish" translatable="false">Suomalainen</string>
     <string name="staticGerman" translatable="false">Deutsch</string>
-    <string name="staticFrench" translatable="false">français</string>
-    <string name="french">French</string>
-    <string name="netherlands" />
-    <string name="staticNetherland">Dutch</string>
+    <string name="staticFrench" translatable="false">Français</string>
+    <string name="staticNetherland" translatable="false">Nederlands</string>
 
 </resources>

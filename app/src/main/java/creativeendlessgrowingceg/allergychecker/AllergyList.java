@@ -1,7 +1,6 @@
 package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -153,14 +152,14 @@ public class AllergyList {
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.potato));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.pumpkin));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.zucchini));
-        for (PictureIngredient arrayListVegetable : arrayListVegetables) {
+      /*  for (PictureIngredient arrayListVegetable : arrayListVegetables) {
             Log.d(TAG, "veget: " + arrayListVegetable.getIngredient());
-        }
+        }*/
 
         sort(arrayListVegetables);
-        for (PictureIngredient arrayListVegetable : arrayListVegetables) {
+        /*for (PictureIngredient arrayListVegetable : arrayListVegetables) {
             Log.d(TAG, "setArrayListVegetables: " + arrayListVegetable.getIngredient());
-        }
+        }*/
         return R.string.vegetables;
     }
 

@@ -27,7 +27,7 @@
             android:title="@string/helpTranslate" />
         <item
             android:id="@+id/showAllergies"
-            android:icon="@drawable/translatetiny"
+            android:icon="@drawable/wheatcircle"
             android:title="@string/showAllergies" />
 
     </group>

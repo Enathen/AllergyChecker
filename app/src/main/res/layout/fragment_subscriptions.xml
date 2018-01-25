@@ -15,12 +15,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ProgressBar
-                android:id="@+id/pbShowAllergies"
-                style="?android:attr/progressBarStyle"
+            <Button
+                android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:visibility="visible" />
+                android:text="Button" />
         </LinearLayout>
 
     </ScrollView>

@@ -204,7 +204,7 @@
     <string name="veal">Kalf</string>
     <string name="gelatin">Gelatine</string>
     <string name="dairy">Zuivel</string>
-    <string name="egg">Ei</string>
+    <string name="egg">Eieren</string>
     <string name="honey">Honing</string>
     <string name="lactoVegetarian">Lacto Vegetarian</string>
     <string name="ovoVegetarian">Ovo Vegetarian</string>
@@ -296,7 +296,6 @@
     <string name="finnish">Fins</string>
     <string name="german">Duitse</string>
     <string name="netherlands">Nederlands</string>
-
 
 
 </resources>

@@ -37,6 +37,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.Purchase;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.ads.AdListener;
@@ -74,11 +76,13 @@ public class StartPage extends AppCompatActivity
     FloatingActionMenu camera;
     ArrayList<String> dateStrings = new ArrayList<>();
     SharedPreferences prefs;
-
+    String last = "Xs4DrXNka4QdKMMBfWxw8wQaw1vcbq6ODL6BgFJphi5VfChVBh6odG0+dzgafwGpXdAlvmrEJNdiMa0gljr9OnQ" +
+            "IDAQAB";
     private TextView suggestions;
     private TextView allergic;
     private InterstitialAd interstitialAd;
     private String Language = "";
+    private BillingClient mBillingClient;
 
     public StartPage(FragmentActivity activity) {
         prefs = activity.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
@@ -92,6 +96,9 @@ public class StartPage extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
+        Billing billing = new Billing(this);
+        billing.connection(getBaseContext());
+
         Log.d(TAG, "LOCALE: " + Locale.getDefault().getLanguage());
         new SettingsFragment(this).setGetLanguage(StartPage.this, Locale.getDefault().getLanguage());
         SharedPreferences sharedPreferences =
@@ -111,7 +118,7 @@ public class StartPage extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         loadInterstitial();
-
+        ((TextView)findViewById(R.id.textViewtip)).setText(StartPageTip.getTip(getBaseContext()));
         String newString = getString(R.string.startPageHeader);
         write = (FloatingActionButton) findViewById(R.id.write);
         camera = (FloatingActionMenu) findViewById(R.id.menu);
@@ -249,7 +256,10 @@ public class StartPage extends AppCompatActivity
                 Log.d(TAG, "onClick: ");
             }
         });
+        //billing.buyProduct("premium_upgrade");
+    }
 
+    private void handlePurchase(Purchase purchase) {
     }
 
 
@@ -284,6 +294,7 @@ public class StartPage extends AppCompatActivity
     }
 
     private void checkStringAgainstAllergies(String str) {
+        findViewById(R.id.textViewtip).setVisibility(View.GONE);
         displayInterstitial();
         //deleteConstrained();
 
@@ -471,6 +482,7 @@ public class StartPage extends AppCompatActivity
         Fragment fragment = null;
         suggestions.setText("");
         allergic.setText("");
+        findViewById(R.id.textViewtip).setVisibility(View.GONE);
         //deleteConstrained();
         if (findViewById(R.id.linlayallergyFromWord) != null) {
             findViewById(R.id.linlayallergyFromWord).setVisibility(View.INVISIBLE);
@@ -689,7 +701,7 @@ public class StartPage extends AppCompatActivity
                     counter++;
                 }
                 i++;
-                helpCalcAllergy.checkFullString(s, allergies, allFoundAllergies);
+                //helpCalcAllergy.checkFullString(s, allergies, allFoundAllergies);
             }
             long stop = System.currentTimeMillis();
             Log.d(TAG, "TIME: " + (stop - start));

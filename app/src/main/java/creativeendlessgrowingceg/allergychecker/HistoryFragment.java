@@ -51,20 +51,12 @@ public class HistoryFragment extends Fragment {
     private FrameLayout parentFrameLayout;
     private LinearLayout parentLinearLayout;
     private Bundle savedInstanceState;
-    private StartPage startPage;
     private int rand;
-
-    public HistoryFragment(StartPage startPage) {
-
-        this.startPage = startPage;
-    }
 
     public HistoryFragment() {
         // Required empty public constructor
     }
 
-    public HistoryFragment(HistoryFragment historyFragment) {
-    }
 
 
     /**
@@ -77,7 +69,7 @@ public class HistoryFragment extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public HistoryFragment newInstance(String param1, String param2) {
-        HistoryFragment fragment = new HistoryFragment(this);
+        HistoryFragment fragment = new HistoryFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -264,7 +256,7 @@ public class HistoryFragment extends Fragment {
     }
 
     private Locale loadLocale() {
-        Locale locale = new Locale(new SettingsFragment(getContext()).getLanguageFromLFragment(getContext()));
+        Locale locale = new Locale(new SettingsFragment().getLanguageFromLFragment(getContext()));
         Log.d(TAG, locale.getLanguage());
         return locale;
     }

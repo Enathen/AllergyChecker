@@ -256,15 +256,6 @@
     <string name="about">Noin</string>
     <string name="helpTranslate">Auttaa Käännä</string>
     <string name="onlyFillChanges">Vain täytä muutokset, jätä ne tyhjiin! Kiitos Apua!</string>
-    <string name="specialThanksTo">Special thanks to Alpha Testers:</string>
-    <string name="thisappUses">This app uses:</string>
-    <string name="FAB">FloatingActionButton by Clans</string>
-    <string name="BkTree">BK-tree by Kelsey Francis</string>
-    <string name="OnBoardMe">OnboardMe by simith</string>
-    <string name="licence">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
-    <string name="googleCamera">Google Vision API - The Android Open Source Project</string>
-    <string name="translatedFrom">Kääntää</string>
-    <string name="nameIfyouWantToBeInHelperList">Name if you want to be in helper list</string>
     <string name="uncheckAll">Poista kaikki valinta</string>
     <string name="checkAll">Valitse kaikki</string>
     <string name="delete">Poistaa</string>

@@ -256,15 +256,6 @@
     <string name="about">Om</string>
     <string name="helpTranslate">Hjælp oversæt</string>
     <string name="onlyFillChanges">Udfyld blot de, du ændrer, lad dem være tomme! Tak Hjælp!</string>
-    <string name="specialThanksTo">Special thanks to Alpha Testers:</string>
-    <string name="thisappUses">This app uses:</string>
-    <string name="FAB">FloatingActionButton by Clans</string>
-    <string name="BkTree">BK-tree by Kelsey Francis</string>
-    <string name="OnBoardMe">OnboardMe by simith</string>
-    <string name="licence">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
-    <string name="googleCamera">Google Vision API - The Android Open Source Project</string>
-    <string name="translatedFrom">Oversatt fra</string>
-    <string name="nameIfyouWantToBeInHelperList">Name if you want to be in helper list</string>
     <string name="uncheckAll">Fjern markeringen af ​​alle</string>
     <string name="checkAll">Tjek alt</string>
     <string name="delete">slettet</string>

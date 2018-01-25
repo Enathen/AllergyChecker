@@ -455,6 +455,12 @@ public class LoadUIAllergies {
         }
 
     }
+    synchronized public HashSet<Integer> getAllergies(StartPage startPage){
+        HashSet<Integer> set= SharedPreferenceClass.getSharedPreference(startPage,"allergySave","LoadUIAllergies");
+        set.addAll(SharedPreferenceClass.getSharedPreference(startPage,"preferenceSave","LoadUIAllergies"));
+        return set;
+    }
+
 
 
 }

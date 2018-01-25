@@ -40,10 +40,6 @@ public class MyAllergies extends Fragment {
     private HashMap<Integer, ImageView> imageViewHashMap = new HashMap<>();
 
 
-    public MyAllergies(StartPage startPage) {
-        this.startPage = startPage;
-        // Required empty public constructor
-    }
 
     public MyAllergies() {
 

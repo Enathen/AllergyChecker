@@ -51,7 +51,7 @@ public class OnBoardingPagerIndicator extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public static OnBoardingPagerIndicator newInstance(int pNumOfPages) {
-        OnBoardingPagerIndicator fragment = new OnBoardingPagerIndicator(pNumOfPages);
+        OnBoardingPagerIndicator fragment = new OnBoardingPagerIndicator();
         Bundle args = new Bundle();
         args.putInt("pages",pNumOfPages);
         fragment.setArguments(args);
@@ -64,9 +64,6 @@ public class OnBoardingPagerIndicator extends Fragment {
     }
 
 
-    public OnBoardingPagerIndicator(int pNumOfPages) {
-        this.mNumOfPages = pNumOfPages;
-    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {

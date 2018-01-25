@@ -83,6 +83,10 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     private boolean useFlash = false;
     // A TextToSpeech engine for speaking a String value.
     private String textTapped;
+
+    public OcrCaptureActivity() {
+    }
+
     /**
      * Initializes the UI and creates the detector pipeline.
      */

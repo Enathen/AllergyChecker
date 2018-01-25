@@ -55,20 +55,12 @@ public class SettingsFragment extends Fragment {
     private ArrayList<CheckBoxes> checkBoxes = new ArrayList<>();
     private StartPage startpage;
 
-    public SettingsFragment(StartPage startPage) {
-        startPageFile = new File(startPage.getFilesDir(), "language.txt");
-        this.startpage = startPage;
-        preference = PreferenceManager.getDefaultSharedPreferences(startPage);
-    }
 
     public SettingsFragment() {
         // Required empty public constructor
     }
 
-    public SettingsFragment(Context context) {
-        startPageFile = new File(context.getFilesDir(), "language.txt");
-        preference = PreferenceManager.getDefaultSharedPreferences(context);
-    }
+
 
     /**
      * Use this factory method to create a new instance of
@@ -96,13 +88,15 @@ public class SettingsFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        startPageFile = new File(getActivity().getFilesDir(), "language.txt");
+        preference = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        preference = PreferenceManager.getDefaultSharedPreferences(getContext());
+        preference = PreferenceManager.getDefaultSharedPreferences(getActivity());
         language = getLanguageFromLFragment(getContext());
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -133,7 +127,7 @@ public class SettingsFragment extends Fragment {
         ((ImageView) parentLinearLayout.findViewById(R.id.imageViewRowCategory)).setImageResource(R.drawable.translate);
         ((ImageView) parentLinearLayout.findViewById(R.id.dropDownList)).setVisibility(View.INVISIBLE);
         ((TextView) parentLinearLayout.findViewById(R.id.textViewCategory)).setText(TextHandler.capitalLetter(R.string.checkAll,getContext()));
-        SharedPreferences settings = getContext().getSharedPreferences("box", Context.MODE_PRIVATE);
+        SharedPreferences settings = getActivity().getSharedPreferences("box", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = settings.edit();
         for (final Locale locale : LanguagesAccepted.getLanguages()) {
             LinearLayout newLinearLayout = (LinearLayout) inflater.inflate(R.layout.rowcategorylayout, null);
@@ -215,7 +209,7 @@ public class SettingsFragment extends Fragment {
         parentCheckBox.setChecked(true);
     }
     public void saveCategories() {
-        SharedPreferences sp = getActivity().getSharedPreferences("LanguageFragment", Context.MODE_PRIVATE);
+        SharedPreferences sp = getActivity().getSharedPreferences(TAG, Context.MODE_PRIVATE);
         SharedPreferences.Editor mEdit1 = sp.edit();
 
 
@@ -230,8 +224,9 @@ public class SettingsFragment extends Fragment {
         mEdit1.apply();
     }
 
-    public ArrayList<Locale> getCategories() {
-        SharedPreferences sp = startpage.getSharedPreferences("LanguageFragment", Context.MODE_PRIVATE);
+    public ArrayList<Locale> getCategories(StartPage startPage) {
+
+        SharedPreferences sp = startPage.getSharedPreferences(TAG, Context.MODE_PRIVATE);
         //NOTE: if shared preference is null, the method return empty Hashset and not null
         Set<String> set = sp.getStringSet("languageSet", new HashSet<String>());
         ArrayList<Locale> arrayList = new ArrayList<>();
@@ -241,18 +236,6 @@ public class SettingsFragment extends Fragment {
         return arrayList;
     }
 
-    public void onRadioButtonClicked(View view, SharedPreferences.Editor editor) {
-        // Is the button now checked?
-        RadioButton rbutton = ((RadioButton) view);
-        for (RadioButtons radioButton : radioButtons) {
-            if (!radioButton.radioButton.equals(rbutton)) {
-                radioButton.radioButton.setChecked(false);
-            }
-
-            editor.putBoolean(radioButton.id, radioButton.radioButton.isChecked());
-            editor.apply();
-        }
-    }
 
     public void onclickDropDownList(View v, ArrayList<LinearLayout> arrayList, LinearLayout linearLayoutPar) {
         if (v.getRotation() == 180) {
@@ -306,8 +289,8 @@ public class SettingsFragment extends Fragment {
 
     public String getLanguageFromLFragment(StartPage startPage) {
 
-        ArrayList<Locale> languageAccepted = LanguagesAccepted.getInstance().getLanguages();
-
+        ArrayList<Locale> languageAccepted = LanguagesAccepted.getLanguages();
+        preference = PreferenceManager.getDefaultSharedPreferences(startPage);
         if (preference.contains("getLanguage")) {
             return preference.getString("getLanguage", "en");
         }
@@ -326,8 +309,9 @@ public class SettingsFragment extends Fragment {
 
     public String getLanguageFromLFragment(Context startPage) {
         //Log.d(TAG,preference.getString("getLanguage",null));
-        ArrayList<Locale> languageAccepted = LanguagesAccepted.getInstance().getLanguages();
+        ArrayList<Locale> languageAccepted = LanguagesAccepted.getLanguages();
         Log.d(TAG, "StartPageLanguageFragment" + Locale.getDefault().getLanguage());
+        preference = PreferenceManager.getDefaultSharedPreferences(startPage);
         if (preference.contains("getLanguage")) {
             return preference.getString("getLanguage", "en");
         }

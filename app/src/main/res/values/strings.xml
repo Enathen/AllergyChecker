@@ -263,7 +263,7 @@
     <string name="about">About</string>
     <string name="helpTranslate">Help Translating</string>
     <string name="onlyFillChanges">Only fill those you change, leave others empty! Thanks Helper!</string>
-    <string name="specialThanksTo">Special thanks to Alpha Testers:</string>
+    <string name="specialThanksTo" translatable="false">Special thanks to Alpha Testers:</string>
     <string name="thisappUses" translatable="false">This app uses:</string>
     <string name="FAB" translatable="false">FloatingActionButton by Clans</string>
     <string name="BkTree" translatable="false">BK-tree by Kelsey Francis</string>
@@ -271,7 +271,7 @@
     <string name="licence" translatable="false">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
     <string name="googleCamera" translatable="false">Google Vision API - The Android Open Source Project</string>
     <string name="googleAdMob" translatable="false">Google, Inc. Google AdMob</string>
-    <string name="translatedFrom" translatable="false">Translate from</string>
+    <string name="translatedFrom" translatable="false">Translated From</string>
     <string name="nameIfyouWantToBeInHelperList" translatable="false">Name if you want to be in helper list</string>
     <string name="uncheckAll">Uncheck all</string>
     <string name="checkAll">Check all</string>

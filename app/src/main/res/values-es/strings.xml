@@ -12,7 +12,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="permission_camera_rationale">El acceso a la cámara es necesario para la detección</string>
     <string name="no_camera_permission">Esta aplicación no se puede ejecutar porque no tiene el permiso de la cámara. La aplicación ahora saldrá.</string>
-    <string name="low_storage_error">Ocr dependencies cannot be downloaded due to low device storage</string>
 
 
     <string name="nuts">Nueces</string>
@@ -263,15 +262,6 @@
     <string name="about">Acerca de</string>
     <string name="helpTranslate">Ayuda traduciendo</string>
     <string name="onlyFillChanges">¡Solo llene los que cambie, deje otros vacíos! Gracias Helper!</string>
-    <string name="specialThanksTo">Special thanks to Alpha Testers:</string>
-    <string name="thisappUses">This app uses:</string>
-    <string name="FAB">FloatingActionButton by Clans</string>
-    <string name="BkTree">BK-tree by Kelsey Francis</string>
-    <string name="OnBoardMe">OnboardMe by simith</string>
-    <string name="licence">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
-    <string name="googleCamera">Google Vision API - The Android Open Source Project</string>
-    <string name="translatedFrom">Translated From</string>
-    <string name="nameIfyouWantToBeInHelperList">Name if you want to be in helper list</string>
     <string name="uncheckAll">Desmarcar todo</string>
     <string name="checkAll">Verificar todo</string>
     <string name="delete">Borrar</string>
@@ -301,6 +291,7 @@
     <string name="german">Alemán</string>
     <string name="french">francés</string>
     <string name="netherlands">holandés</string>
+
 
 
 </resources>

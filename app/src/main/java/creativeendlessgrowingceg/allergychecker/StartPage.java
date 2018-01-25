@@ -100,7 +100,7 @@ public class StartPage extends AppCompatActivity
         billing.connection(getBaseContext());
 
         Log.d(TAG, "LOCALE: " + Locale.getDefault().getLanguage());
-        new SettingsFragment(this).setGetLanguage(StartPage.this, Locale.getDefault().getLanguage());
+        new SettingsFragment().setGetLanguage(StartPage.this, Locale.getDefault().getLanguage());
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
         if (!sharedPreferences.getBoolean("firstTime", false)) {
@@ -300,7 +300,7 @@ public class StartPage extends AppCompatActivity
 
         (findViewById(R.id.progressBar3)).setVisibility(View.VISIBLE);
 
-        Locale locale = new Locale(new SettingsFragment(this).getLanguageFromLFragment(this));
+        Locale locale = new Locale(new SettingsFragment().getLanguageFromLFragment(this));
         final Locale newLocale = new Locale(locale.getLanguage());
         Locale.setDefault(newLocale);
         final Configuration config = new Configuration();
@@ -493,7 +493,7 @@ public class StartPage extends AppCompatActivity
 
         ((TextView) findViewById(R.id.textViewFoundAllergies)).setText("");
         if (id == R.id.history) {
-            fragment = new HistoryFragment(this);
+            fragment = new HistoryFragment();
             setTitle("History");
         } else if (id == R.id.languageMenu) {
 
@@ -515,7 +515,12 @@ public class StartPage extends AppCompatActivity
             fragment = new TranslateHelp();
             setTitle("Translate");
         } else if (id == R.id.showAllergies) {
-            fragment = new ShowAllergies(new MyAllergies(this).getAllergies(),LanguagesAccepted.getLanguages());
+            Bundle b = new Bundle();
+            b.putSerializable("ArrayList",LanguagesAccepted.getLanguages());
+            b.putSerializable("HashSet",new LoadUIAllergies().getAllergies(this));
+
+            fragment = new ShowAllergies();
+            fragment.setArguments(b);
             setTitle("Show Allergies");
         } else if (id == R.id.nav_rate) {
             Uri uri = Uri.parse("market://details?id=" + this.getPackageName());
@@ -660,11 +665,11 @@ public class StartPage extends AppCompatActivity
             HashSet<String> hashSetToCheckLast = new HashSet<>();
             helpCalcAllergy.FixString(params[0].split("\\s+"), hashSetAllStrings, hashSetToCheckLast);
 
-            ArrayList<Locale> listOfLanguages = new SettingsFragment(mContext).getCategories();
+            ArrayList<Locale> listOfLanguages = new SettingsFragment().getCategories(mContext);
             if (listOfLanguages.isEmpty()) {
                 listOfLanguages.add(Locale.getDefault());
             }
-            HashSet<Integer> hashSetFromOtherClass = new MyAllergies(mContext).getAllergies();
+            HashSet<Integer> hashSetFromOtherClass = new LoadUIAllergies().getAllergies(mContext);
             for (Integer hashSetFromOtherClas : hashSetFromOtherClass) {
                 Log.d(TAG, "doInBackground: " + getString(hashSetFromOtherClas));
             }

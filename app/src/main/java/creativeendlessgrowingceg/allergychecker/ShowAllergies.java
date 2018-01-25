@@ -46,12 +46,6 @@ public class ShowAllergies extends Fragment {
     public ShowAllergies() {
         // Required empty public constructor
     }
-    public ShowAllergies(HashSet<Integer> allergies, ArrayList<Locale> categories){
-
-        this.allergies = allergies;
-        this.categories = categories;
-    }
-
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -75,9 +69,16 @@ public class ShowAllergies extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        Bundle bundle = getArguments();
+        if (bundle != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            allergies = (HashSet<Integer>) bundle.getSerializable("HashSet");
+            categories = (ArrayList<Locale>) bundle.getSerializable("ArrayList");
+        }
+        if(savedInstanceState!= null){
+            allergies = (HashSet<Integer>) savedInstanceState.getSerializable("HashSet");
+            categories = (ArrayList<Locale>) savedInstanceState.getSerializable("ArrayList");
         }
 
     }
@@ -86,6 +87,10 @@ public class ShowAllergies extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        if(savedInstanceState!= null){
+            allergies = (HashSet<Integer>) savedInstanceState.getSerializable("HashSet");
+            categories = (ArrayList<Locale>) savedInstanceState.getSerializable("ArrayList");
+        }
         parentFrame = (FrameLayout) inflater.inflate(R.layout.fragment_show_allergies, container, false);
         parentLinearLayout =(LinearLayout) parentFrame.findViewById(R.id.showAllergiesLinearLayout);
         new ShowAllergies.CalcAllergy(this,inflater,container).execute();

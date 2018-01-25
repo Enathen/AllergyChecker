@@ -13,7 +13,6 @@
     <string name="permission_camera_rationale">Toegang tot de camera is nodig voor detectie</string>
     <string name="no_camera_permission">Deze applicatie kan niet worden uitgevoerd omdat deze niet de
         camera toestemming. De applicatie zal nu afsluiten.</string>
-    <string name="low_storage_error">Ocr-afhankelijkheden kunnen niet worden gedownload vanwege een lage apparaatopslag</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 
@@ -296,6 +295,6 @@
     <string name="finnish">Fins</string>
     <string name="german">Duitse</string>
     <string name="netherlands">Nederlands</string>
-
+    <string name="french">Frans</string>
 
 </resources>

@@ -13,8 +13,6 @@
     <string name="permission_camera_rationale">L\'accès à la caméra est nécessaire pour la détection</string>
     <string name="no_camera_permission">Cette application ne peut pas s\'exécuter car elle n\'a pas le
          autorisation de caméra. L\'application va maintenant quitter.</string>
-    <string name="low_storage_error">Les dépendances Ocr ne peuvent pas être téléchargées en raison
-        du faible stockage de l\'appareil</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 
@@ -269,15 +267,6 @@
     <string name="about">A propos de</string>
     <string name="helpTranslate">Aide à la traduction</string>
     <string name="onlyFillChanges">Remplissez seulement ceux que vous changez, laissez les autres vides! Merci Helper!</string>
-    <string name="specialThanksTo">Special thanks to Alpha Testers:</string>
-    <string name="thisappUses">This app uses:</string>
-    <string name="FAB">FloatingActionButton by Clans</string>
-    <string name="BkTree">BK-tree by Kelsey Francis</string>
-    <string name="OnBoardMe">OnboardMe by simith</string>
-    <string name="licence">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
-    <string name="googleCamera">Google Vision API - The Android Open Source Project</string>
-    <string name="translatedFrom">Traduit depuis</string>
-    <string name="nameIfyouWantToBeInHelperList">Nom si vous voulez être dans la liste d\'aide</string>
     <string name="uncheckAll">Décocher tout</string>
     <string name="checkAll">Vérifie tout</string>
     <string name="delete">Effacer</string>

@@ -8,10 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-import java.util.HashMap;
 
 
 /**
@@ -35,24 +32,16 @@ public class MyPreference extends Fragment {
     private FrameLayout parentFrameLayout;
     private LinearLayout parentLinearLayout;
     private LoadUIAllergies loadUIAllergies;
-    private StartPage startPage;
-    private HashMap<Integer, ImageView> imageViewHashMap = new HashMap<>();
 
 
-    public MyPreference(StartPage startPage) {
-        // Required empty public constructor
-        this.startPage = startPage;
-    }
+
+
 
     public MyPreference() {
 
     }
 
-    public MyPreference(StartPage startPage, HashMap<Integer, ImageView> imageViewHashMap) {
 
-        this.startPage = startPage;
-        this.imageViewHashMap = imageViewHashMap;
-    }
 
 
     /**
@@ -93,7 +82,7 @@ public class MyPreference extends Fragment {
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
 
-        loadUIAllergies = new LoadUIAllergies(true,inflater, startPage, parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyPreference());
+        loadUIAllergies = new LoadUIAllergies(true,inflater, (StartPage) getActivity(), parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyPreference());
 
         return parentFrameLayout;
     }
@@ -120,8 +109,7 @@ public class MyPreference extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        loadUIAllergies.saveCurrentlyActive(true);
-        loadUIAllergies.savePicture(startPage,imageViewHashMap);
+
         mListener = null;
     }
 
@@ -129,7 +117,7 @@ public class MyPreference extends Fragment {
     public void onPause() {
         super.onPause();
         loadUIAllergies.saveCurrentlyActive(true);
-        loadUIAllergies.savePicture(startPage, imageViewHashMap);
+        loadUIAllergies.savePicture((StartPage) getActivity(), new StartPage().getImageViewHashMap((StartPage)getActivity()));
         mListener = null;
     }
 

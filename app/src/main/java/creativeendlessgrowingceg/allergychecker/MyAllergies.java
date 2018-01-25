@@ -8,11 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-import java.util.HashMap;
-import java.util.HashSet;
 
 
 /**
@@ -36,8 +32,6 @@ public class MyAllergies extends Fragment {
     private FrameLayout parentFrameLayout;
     private LinearLayout parentLinearLayout;
     private LoadUIAllergies loadUIAllergies;
-    private StartPage startPage;
-    private HashMap<Integer, ImageView> imageViewHashMap = new HashMap<>();
 
 
 
@@ -45,11 +39,7 @@ public class MyAllergies extends Fragment {
 
     }
 
-    public MyAllergies(StartPage startPage, HashMap<Integer, ImageView> imageViewHashMap) {
 
-        this.startPage = startPage;
-        this.imageViewHashMap = imageViewHashMap;
-    }
 
 
     /**
@@ -90,7 +80,7 @@ public class MyAllergies extends Fragment {
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
 
-        loadUIAllergies = new LoadUIAllergies(false,inflater, startPage, parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyAllergies());
+        loadUIAllergies = new LoadUIAllergies(false,inflater, (StartPage) getActivity(), parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyAllergies());
 
         return parentFrameLayout;
     }
@@ -113,20 +103,9 @@ public class MyAllergies extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
-    synchronized public HashSet<Integer> getAllergies(){
-        HashSet<Integer> set= SharedPreferenceClass.getSharedPreference(startPage,"allergySave","LoadUIAllergies");
-        set.addAll(SharedPreferenceClass.getSharedPreference(startPage,"preferenceSave","LoadUIAllergies"));
-        return set;
-    }
-    synchronized public void savePicture(){
-        loadUIAllergies = new LoadUIAllergies();
-        loadUIAllergies.savePicture(startPage, imageViewHashMap);
-    }
     @Override
     public void onDetach() {
         super.onDetach();
-        loadUIAllergies.saveCurrentlyActive(false);
-        loadUIAllergies.savePicture(startPage, imageViewHashMap);
         mListener = null;
     }
 
@@ -134,7 +113,8 @@ public class MyAllergies extends Fragment {
     public void onPause() {
         super.onPause();
         loadUIAllergies.saveCurrentlyActive(false);
-        loadUIAllergies.savePicture(startPage, imageViewHashMap);
+
+        loadUIAllergies.savePicture((StartPage) getActivity(), new StartPage().getImageViewHashMap((StartPage)getActivity()));
         mListener = null;
     }
 

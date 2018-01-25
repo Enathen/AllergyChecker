@@ -76,8 +76,6 @@ public class StartPage extends AppCompatActivity
     FloatingActionMenu camera;
     ArrayList<String> dateStrings = new ArrayList<>();
     SharedPreferences prefs;
-    String last = "Xs4DrXNka4QdKMMBfWxw8wQaw1vcbq6ODL6BgFJphi5VfChVBh6odG0+dzgafwGpXdAlvmrEJNdiMa0gljr9OnQ" +
-            "IDAQAB";
     private TextView suggestions;
     private TextView allergic;
     private InterstitialAd interstitialAd;
@@ -238,6 +236,7 @@ public class StartPage extends AppCompatActivity
                 newString = str;
                 checkStringAgainstAllergies(str);
             }
+            setProfilePicture();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -248,7 +247,6 @@ public class StartPage extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        setProfilePicture();
         View parentView = navigationView.getHeaderView(0);
         parentView.findViewById(R.id.LinLayHorNavHeadStartPage).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -501,10 +499,10 @@ public class StartPage extends AppCompatActivity
             setTitle("Language");
         } else if (id == R.id.allergies) {
 //this, getImageViewHashMap(), new SettingsFragment(this).getCategories()
-            fragment = new MyAllergies(this, getImageViewHashMap());
+            fragment = new MyAllergies();
             setTitle("Allergies");
         } else if (id == R.id.preference) {
-            fragment = new MyPreference(this, getImageViewHashMap());
+            fragment = new MyPreference();
             setTitle("Preferences");
         } else if (id == R.id.tutorial) {
             startActivity(new Intent(this, OnboardingPagerActivity.class));
@@ -563,12 +561,11 @@ public class StartPage extends AppCompatActivity
         return true;
     }
 
-    private HashMap<Integer, ImageView> getImageViewHashMap(StartPage startPage) {
+    public HashMap<Integer, ImageView> getImageViewHashMap(StartPage startPage) {
         HashMap<Integer, ImageView> imageViewHashMap = new HashMap<>();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) startPage.findViewById(R.id.nav_view);
 
         View parentView = navigationView.getHeaderView(0);
-        imageViewHashMap.put(0, (ImageView) parentView.findViewById(R.id.imageViewNav1));
         imageViewHashMap.put(0, (ImageView) parentView.findViewById(R.id.imageViewNav1));
         imageViewHashMap.put(1, (ImageView) parentView.findViewById(R.id.imageViewNav2));
         imageViewHashMap.put(2, (ImageView) parentView.findViewById(R.id.imageViewNav3));

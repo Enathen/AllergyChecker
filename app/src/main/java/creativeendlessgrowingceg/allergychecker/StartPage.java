@@ -2,9 +2,11 @@ package creativeendlessgrowingceg.allergychecker;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -12,6 +14,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -39,6 +42,7 @@ import android.widget.Toast;
 
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.Purchase;
+import com.android.vending.billing.IInAppBillingService;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.ads.AdListener;
@@ -81,7 +85,7 @@ public class StartPage extends AppCompatActivity
     private InterstitialAd interstitialAd;
     private String Language = "";
     private BillingClient mBillingClient;
-
+    IInAppBillingService mService;
     public StartPage(FragmentActivity activity) {
         prefs = activity.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
     }
@@ -94,8 +98,11 @@ public class StartPage extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
-        Billing billing = new Billing(this);
-        billing.connection(getBaseContext());
+        billing();
+
+
+
+
 
         Log.d(TAG, "LOCALE: " + Locale.getDefault().getLanguage());
         new SettingsFragment().setGetLanguage(StartPage.this, Locale.getDefault().getLanguage());
@@ -818,5 +825,27 @@ public class StartPage extends AppCompatActivity
 
         }
     }
+    private void billing(){
+        ServiceConnection mServiceConn = new ServiceConnection() {
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                mService = null;
+            }
+
+            @Override
+            public void onServiceConnected(ComponentName name,
+                                           IBinder service) {
+                mService = IInAppBillingService.Stub.asInterface(service);
+            }
+        };
+        Intent serviceIntent =
+                new Intent("com.android.vending.billing.InAppBillingService.BIND");
+        serviceIntent.setPackage("com.android.vending");
+        bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
+
+        Billing billing = new Billing(this);
+        billing.connection(getBaseContext());
+    }
+
 
 }

@@ -243,9 +243,8 @@ public class StartPage extends AppCompatActivity
                 newString = str;
                 checkStringAgainstAllergies(str);
             }
-            setProfilePicture();
         }
-
+        setProfilePicture();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -710,7 +709,7 @@ public class StartPage extends AppCompatActivity
                     counter++;
                 }
                 i++;
-                //helpCalcAllergy.checkFullString(s, allergies, allFoundAllergies);
+                helpCalcAllergy.checkFullString(s, allergies, allFoundAllergies);
             }
             long stop = System.currentTimeMillis();
             Log.d(TAG, "TIME: " + (stop - start));

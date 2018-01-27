@@ -124,9 +124,6 @@ public class HelpCalcAllergy {
                 length = localeString.length() + 2;
             }
             List<String> list = split(localeString);
-            if(localeString.equals("citrus")){
-                Log.d(TAG, "setLocaleString: ");
-            }
             for (int i = 0; i < list.size(); i++) {
 
                 if (allergies.containsKey(list.get(i).length())) {
@@ -152,11 +149,6 @@ public class HelpCalcAllergy {
     public void bkTree(int length, TreeMap<Integer, HashSet<String>> hashSetAllStrings,
                        HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies,
                        ArrayList<AllAllergiesForEachInteger> allFoundAllergies) {
-        for (HashMap<String, AllAllergiesForEachInteger> hashSet : allergies.values()) {
-            for (AllAllergiesForEachInteger s : hashSet.values()) {
-                Log.d(TAG, "getCategoriesFromOtherClass: " + s.getNameOfIngredient());
-            }
-        }
         for (Integer s : hashSetAllStrings.keySet()) {
             if (length < s) {
                 continue;
@@ -164,7 +156,7 @@ public class HelpCalcAllergy {
             MutableBkTree<String> bkTree = new MutableBkTree<>(hammingDistance);
             bkTree.addAll(hashSetAllStrings.get(s));
             BkTreeSearcher<String> searcher = new BkTreeSearcher<>(bkTree);
-            if (allergies.containsKey(s) && s > 4) {
+            if (allergies.containsKey(s)) {
                 HashMap<String, AllAllergiesForEachInteger> allAllergies = allergies.get(s);
                 for (AllAllergiesForEachInteger allAllergiesForEachInteger : allAllergies.values()) {
                     Set<BkTreeSearcher.Match<? extends String>> matches;
@@ -172,6 +164,8 @@ public class HelpCalcAllergy {
                     if (s > 4 && s < 10) {
                         matches = searcher.search(allAllergiesForEachInteger.getNameOfIngredient(), 1);
 
+                    } else if (s<=4) {
+                        matches = searcher.search(allAllergiesForEachInteger.getNameOfIngredient(), 1);
                     } else {
                         matches = searcher.search(allAllergiesForEachInteger.getNameOfIngredient(), 2);
                     }
@@ -235,7 +229,6 @@ public class HelpCalcAllergy {
                                 allAllergiesForEachInteger.getMotherLanguage());
                         all.setNameOfWordFound(match.getMatch());
                         allFoundAllergies.add(all);
-
                     }
 
                 }
@@ -250,17 +243,23 @@ public class HelpCalcAllergy {
 
             HashMap<String, AllAllergiesForEachInteger> allAllergies = allergies.get(key);
             for (AllAllergiesForEachInteger allAllergiesForEachInteger : allAllergies.values()) {
-                /*if(alreadyContainedAllergies.contains(allAllergiesForEachInteger.getNameOfIngredient())){
-                    continue;
-                }*/
                 if (s.contains(allAllergiesForEachInteger.getNameOfIngredient())) {
+
                     AllAllergiesForEachInteger all = new AllAllergiesForEachInteger(
                             allAllergiesForEachInteger.getLanguage(),
                             allAllergiesForEachInteger.getNameOfIngredient(),
                             allAllergiesForEachInteger.getId(),
                             allAllergiesForEachInteger.getMotherLanguage());
                     all.setNameOfWordFound(s);
-                    allFoundAllergies.add(all);
+                    Boolean open = true;
+                    for (AllAllergiesForEachInteger allFoundAllergy : allFoundAllergies) {
+                        if(allFoundAllergy.getNameOfIngredient().equals(all.getNameOfIngredient())){
+                            open = false;
+                            Log.d(TAG, "checkFullString: " + allFoundAllergy.getNameOfIngredient());
+                        }
+                    }
+                    if(open)
+                        allFoundAllergies.add(all);
                     //alreadyContainedAllergies.add(allAllergiesForEachInteger.getNameOfIngredient());
                 }
             }

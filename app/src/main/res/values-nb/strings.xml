@@ -287,6 +287,8 @@
     <string name="pear">Pærer</string>
     <string name="french">fransk</string>
     <string name="netherlands">nederlandsk</string>
+    <string name="header_subscriptions">Subscriptions</string>
+    <string name="premium">Premium</string>
 
 
 </resources>

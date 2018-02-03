@@ -291,7 +291,8 @@
     <string name="german">Alemán</string>
     <string name="french">francés</string>
     <string name="netherlands">holandés</string>
-
+    <string name="header_subscriptions">Subscriptions</string>
+    <string name="premium">Premium</string>
 
 
 </resources>

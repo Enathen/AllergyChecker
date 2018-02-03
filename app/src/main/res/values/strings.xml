@@ -130,8 +130,6 @@
     <string name="service_label">My Spell Checker</string>
 
 
-
-
     <string name="language">Language</string>
     <string name="languageFrom">Translate From</string>
     <string name="languageGeneral">General Language</string>
@@ -312,4 +310,35 @@
     <string name="staticFrench" translatable="false">Français</string>
     <string name="staticNetherland" translatable="false">Nederlands</string>
 
+
+    <string name="menu_settings" translatable="false">Settings</string>
+
+    <string name="alert_no_gas" translatable="false">Oh, no! Your premium has ended!</string>
+    <string name="alert_already_purchased" translatable="false">Premium is already purchased</string>
+
+    <string name="error_no_skus" translatable="false">We didn\'t find any SKUs to display&#8230; Check your internet
+        connection and make sure your Google Developer Console was setup correctly.</string>
+    <string name="error_billing_unavailable" translatable="false">Billing unavailable. Make sure your Google Play app
+        is setup correctly</string>
+    <string name="error_billing_default" translatable="false">Billing unavailable. Please check your device.</string>
+
+    <string name="button_purchase" translatable="false">Purchase</string>
+    <string name="button_buy" translatable="false">Buy</string>
+    <string name="button_own" translatable="false">Own</string>
+    <string name="button_update" translatable="false">Update</string>
+    <string name="button_change" translatable="false">Change</string>
+    <string name="button_full_tank" translatable="false">Full tank</string>
+    <string name="toast_full_tank" translatable="false">Your tank is full, please use some gas before buying
+        more.</string>
+
+    <string name="header_subscriptions">Subscriptions</string>
+
+    <string name="content_description_app_loading_image" translatable="false">App loading image</string>
+    <string name="content_description_title_image" translatable="false">80\'s Video Game Style Car Logo</string>
+    <string name="content_desc_gas_gauge_indicator" translatable="false">Gas gauge indicator</string>
+    <string name="content_desc_free_vs_premium_indicator" translatable="false">Free or Premium Image Indicator</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="premium">Premium</string>
 </resources>

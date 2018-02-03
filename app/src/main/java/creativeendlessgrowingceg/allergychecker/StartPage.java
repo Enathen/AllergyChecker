@@ -2,11 +2,9 @@ package creativeendlessgrowingceg.allergychecker;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -14,7 +12,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -62,6 +59,7 @@ import java.util.TreeMap;
 
 import creativeendlessgrowingceg.allergychecker.camera.OcrCaptureActivity;
 import creativeendlessgrowingceg.allergychecker.design.activity.OnboardingPagerActivity;
+import creativeendlessgrowingceg.allergychecker.subscription.Premium;
 
 public class StartPage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
@@ -98,8 +96,6 @@ public class StartPage extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
-        billing();
-
 
 
 
@@ -526,7 +522,11 @@ public class StartPage extends AppCompatActivity
             fragment = new ShowAllergies();
             fragment.setArguments(b);
             setTitle("Show Allergies");
-        } else if (id == R.id.nav_rate) {
+        }  else if (id == R.id.premium) {
+            startActivity(new Intent(this, Premium.class));
+            setTitle("Premium");
+        }
+        else if (id == R.id.nav_rate) {
             Uri uri = Uri.parse("market://details?id=" + this.getPackageName());
             Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
             // To count with Play market backstack, After pressing back button,
@@ -709,7 +709,7 @@ public class StartPage extends AppCompatActivity
                     counter++;
                 }
                 i++;
-                helpCalcAllergy.checkFullString(s, allergies, allFoundAllergies);
+                //helpCalcAllergy.checkFullString(s, allergies, allFoundAllergies);
             }
             long stop = System.currentTimeMillis();
             Log.d(TAG, "TIME: " + (stop - start));
@@ -823,27 +823,6 @@ public class StartPage extends AppCompatActivity
 
 
         }
-    }
-    private void billing(){
-        ServiceConnection mServiceConn = new ServiceConnection() {
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-                mService = null;
-            }
-
-            @Override
-            public void onServiceConnected(ComponentName name,
-                                           IBinder service) {
-                mService = IInAppBillingService.Stub.asInterface(service);
-            }
-        };
-        Intent serviceIntent =
-                new Intent("com.android.vending.billing.InAppBillingService.BIND");
-        serviceIntent.setPackage("com.android.vending");
-        bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
-
-        Billing billing = new Billing(this);
-        billing.connection(getBaseContext());
     }
 
 

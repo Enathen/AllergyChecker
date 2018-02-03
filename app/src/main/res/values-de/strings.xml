@@ -293,5 +293,7 @@
     <string name="german">Deutsch</string>
     <string name="french">Französisch</string>
     <string name="netherlands">Niederländisch</string>
+    <string name="header_subscriptions">Subscriptions</string>
+    <string name="premium">Premium</string>
 
 </resources>

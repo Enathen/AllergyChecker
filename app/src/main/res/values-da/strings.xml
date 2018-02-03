@@ -288,6 +288,8 @@
     <string name="veal">Kalv</string>
     <string name="french">Fransk</string>
     <string name="netherlands">Hollandsk</string>
+    <string name="header_subscriptions">Subscriptions</string>
+    <string name="premium">Premium</string>
 
 
 </resources>

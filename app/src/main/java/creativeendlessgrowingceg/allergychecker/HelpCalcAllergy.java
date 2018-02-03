@@ -73,11 +73,8 @@ public class HelpCalcAllergy {
     public static String getStringByLocal(Context context, int id, String locale) {
         Configuration configuration = new Configuration(context.getResources().getConfiguration());
         configuration.setLocale(new Locale(locale));
-
-
         return context.createConfigurationContext(configuration).getResources().getString(id).toLowerCase().replaceAll("\\s+", "");
     }
-
     public void FixString(String[] splitStr, TreeMap<Integer, HashSet<String>> hashSetAllStrings, HashSet<String> hashSetToCheckLast) {
         for (int i = 0; i < splitStr.length; i++) {
             if (splitStr.length - 1 != i) {
@@ -99,7 +96,6 @@ public class HelpCalcAllergy {
                         hashSetAllStrings.put((splitStr[i - 1] + splitStr[i] + splitStr[i + 1]).length(), hashset);
                     }
                 }
-
             }
             hashSetToCheckLast.add(splitStr[i]);
             if (hashSetAllStrings.containsKey((splitStr[i]).length())) {
@@ -109,8 +105,6 @@ public class HelpCalcAllergy {
                 hashset.add(splitStr[i]);
                 hashSetAllStrings.put((splitStr[i]).length(), hashset);
             }
-
-
         }
     }
 

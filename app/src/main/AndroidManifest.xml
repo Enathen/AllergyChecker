@@ -3,10 +3,13 @@
     package="creativeendlessgrowingceg.allergychecker">
 
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="com.android.vending.BILLING" />
- <!--   <service android:name=".SpellingService"
+
+    <!--
+       <service android:name=".SpellingService"
         android:permission="android.permission.BIND_TEXT_SERVICE">
         <intent-filter >
             <action android:name="android.service.textservice.SpellCheckerService" />
@@ -15,7 +18,8 @@
         <meta-data
             android:name="android.view.textservice.scs"
             android:resource="@xml/spellinginfo" />
-    </service>-->
+    </service>
+    -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/allergychecker"
@@ -24,31 +28,43 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".design.activity.OnboardingPagerActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name" />
-        <activity
-            android:name=".design.activity.TakeoffActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_takeoff" >
-        </activity>
-        <activity
-            android:name=".StartPage"
-            android:label="@string/app_name"
-            android:configChanges="orientation|screenSize"
+        <activity android:name=".SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
+
             <intent-filter>
+
                 <action android:name="android.intent.action.MAIN" />
+
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".design.activity.OnboardingPagerActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".subscription.Premium"
+            android:label="@string/title_activity_takeoff" />
+        <activity
+            android:name=".design.activity.TakeoffActivity"
+            android:label="@string/title_activity_takeoff"
+            android:screenOrientation="portrait" />
 
         <activity
+            android:name=".StartPage"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        android:name=".camera.OcrCaptureActivity"
-        android:label="Read Text" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".camera.OcrCaptureActivity"
+            android:label="Read Text" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -56,8 +72,8 @@
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
+
+
     </application>
 
-
 </manifest>
-

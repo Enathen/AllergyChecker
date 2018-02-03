@@ -286,5 +286,7 @@
     <string name="veal">Kalv</string>
     <string name="french">franska</string>
     <string name="netherlands">holländska</string>
+    <string name="header_subscriptions">Subscriptions</string>
+    <string name="premium">Premium</string>
 
 </resources>

@@ -287,6 +287,8 @@
     <string name="beef">naudanliha</string>
     <string name="french">Ranskan kieli</string>
     <string name="netherlands">Hollannin kieli</string>
+    <string name="header_subscriptions">Subscriptions</string>
+    <string name="premium">Premium</string>
 
 
 </resources>

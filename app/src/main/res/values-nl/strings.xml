@@ -296,5 +296,7 @@
     <string name="german">Duitse</string>
     <string name="netherlands">Nederlands</string>
     <string name="french">Frans</string>
+    <string name="header_subscriptions">Subscriptions</string>
+    <string name="premium">Premium</string>
 
 </resources>

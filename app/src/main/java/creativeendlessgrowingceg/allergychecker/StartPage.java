@@ -38,7 +38,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.billingclient.api.BillingClient;
-import com.android.billingclient.api.Purchase;
 import com.android.vending.billing.IInAppBillingService;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -57,20 +56,23 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.TreeMap;
 
+import creativeendlessgrowingceg.allergychecker.billingmodule.billing.BillingManager;
+import creativeendlessgrowingceg.allergychecker.billingmodule.billing.BillingProvider;
 import creativeendlessgrowingceg.allergychecker.camera.OcrCaptureActivity;
 import creativeendlessgrowingceg.allergychecker.design.activity.OnboardingPagerActivity;
-import creativeendlessgrowingceg.allergychecker.subscription.Premium;
+import creativeendlessgrowingceg.allergychecker.subscription.SubscriptionsViewController;
 
 public class StartPage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
         , HistoryFragment.OnFragmentInteractionListener
         , StatisticsFragment.OnFragmentInteractionListener
-        , SettingsFragment.OnFragmentInteractionListener
+        , LanguageFragment.OnFragmentInteractionListener
         , MyAllergies.OnFragmentInteractionListener
         , AboutFragment.OnFragmentInteractionListener
         , TranslateHelp.OnFragmentInteractionListener
         , MyPreference.OnFragmentInteractionListener
-        , ShowAllergies.OnFragmentInteractionListener {
+        , ShowAllergies.OnFragmentInteractionListener
+        , BillingProvider{
     private static final String TAG = "StartPage";
     private static final String SHARED_PREFS_NAME = "StartPage";
     FloatingActionButton flash;
@@ -84,6 +86,9 @@ public class StartPage extends AppCompatActivity
     private String Language = "";
     private BillingClient mBillingClient;
     IInAppBillingService mService;
+    private BillingManager mBillingManager;
+    private SubscriptionsViewController mViewController;
+
     public StartPage(FragmentActivity activity) {
         prefs = activity.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
     }
@@ -101,7 +106,7 @@ public class StartPage extends AppCompatActivity
 
 
         Log.d(TAG, "LOCALE: " + Locale.getDefault().getLanguage());
-        new SettingsFragment().setGetLanguage(StartPage.this, Locale.getDefault().getLanguage());
+        new LanguageFragment().setGetLanguage(StartPage.this, Locale.getDefault().getLanguage());
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
         if (!sharedPreferences.getBoolean("firstTime", false)) {
@@ -112,6 +117,7 @@ public class StartPage extends AppCompatActivity
                     "firstTime", true);
             sharedPreferencesEditor.apply();
         }
+        checkPremium();
         Intent intent = getIntent();
         suggestions = (TextView) findViewById(R.id.ingredientsTextView);
         allergic = (TextView) findViewById(R.id.textViewFoundAllergies);
@@ -259,7 +265,10 @@ public class StartPage extends AppCompatActivity
         //billing.buyProduct("premium_upgrade");
     }
 
-    private void handlePurchase(Purchase purchase) {
+    private void checkPremium() {
+        mViewController = new SubscriptionsViewController();
+        mBillingManager = new BillingManager(this,mViewController.getUpdateListener());
+
     }
 
 
@@ -300,7 +309,7 @@ public class StartPage extends AppCompatActivity
 
         (findViewById(R.id.progressBar3)).setVisibility(View.VISIBLE);
 
-        Locale locale = new Locale(new SettingsFragment().getLanguageFromLFragment(this));
+        Locale locale = new Locale(new LanguageFragment().getLanguageFromLFragment(this));
         final Locale newLocale = new Locale(locale.getLanguage());
         Locale.setDefault(newLocale);
         final Configuration config = new Configuration();
@@ -497,10 +506,10 @@ public class StartPage extends AppCompatActivity
             setTitle("History");
         } else if (id == R.id.languageMenu) {
 
-            fragment = new SettingsFragment();
+            fragment = new LanguageFragment();
             setTitle("Language");
         } else if (id == R.id.allergies) {
-//this, getImageViewHashMap(), new SettingsFragment(this).getCategories()
+//this, getImageViewHashMap(), new LanguageFragment(this).getCategories()
             fragment = new MyAllergies();
             setTitle("Allergies");
         } else if (id == R.id.preference) {
@@ -522,9 +531,6 @@ public class StartPage extends AppCompatActivity
             fragment = new ShowAllergies();
             fragment.setArguments(b);
             setTitle("Show Allergies");
-        }  else if (id == R.id.premium) {
-            startActivity(new Intent(this, Premium.class));
-            setTitle("Premium");
         }
         else if (id == R.id.nav_rate) {
             Uri uri = Uri.parse("market://details?id=" + this.getPackageName());
@@ -625,6 +631,44 @@ public class StartPage extends AppCompatActivity
         return this;
     }
 
+    @Override
+    public BillingManager getBillingManager() {
+        return mBillingManager;
+    }
+
+    @Override
+    public boolean isPremiumPurchased() {
+        return mViewController.isPremiumPurchased();
+    }
+
+
+    @Override
+    public boolean isGoldMonthlySubscribed() {
+        return mViewController.isGoldMonthlySubscribed();
+    }
+
+    @Override
+    public boolean isGoldYearlySubscribed() {
+        return mViewController.isGoldYearlySubscribed();
+    }
+
+    public void premium() {
+        if (!isPremiumPurchased()){
+            Log.d(TAG, "premium: "+ new LanguageFragment().getCategories(this));
+            Set<String> set = new HashSet<>();
+            Set<Locale> setToDelete = new HashSet<>();
+            for (Locale locale:  new LanguageFragment().getCategories(this)) {
+                if(locale == Locale.getDefault() ||locale.getLanguage().equals("en")){
+                    set.add(locale.getLanguage());
+                }else{
+                    setToDelete.add(locale);
+                }
+            }
+            new LanguageFragment().setCategories(this, set,setToDelete);
+        }
+    }
+
+
     public class DateString {
         String string;
 
@@ -668,7 +712,7 @@ public class StartPage extends AppCompatActivity
             HashSet<String> hashSetToCheckLast = new HashSet<>();
             helpCalcAllergy.FixString(params[0].split("\\s+"), hashSetAllStrings, hashSetToCheckLast);
 
-            ArrayList<Locale> listOfLanguages = new SettingsFragment().getCategories(mContext);
+            ArrayList<Locale> listOfLanguages = new LanguageFragment().getCategories(mContext);
             if (listOfLanguages.isEmpty()) {
                 listOfLanguages.add(Locale.getDefault());
             }
@@ -800,7 +844,7 @@ public class StartPage extends AppCompatActivity
                 outputString = outputString.concat("\n" + getString(R.string.youCanUse) + "\n");
                 outputString = outputString.concat("\n" + getString(R.string.mightContainAllergies) + "\n");
                 outputString = outputString.concat(getString(R.string.scannedTextBelow) + "\n");
-                textView.setTextColor(getColor(R.color.colorAccent));
+                textView.setTextColor(Color.GREEN);
                 textView.setText(outputString);
                 ((LinearLayout) findViewById(R.id.linLayStartPage)).removeView(findViewById(R.id.linlayallergyFromWord));
 

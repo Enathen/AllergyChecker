@@ -15,9 +15,9 @@
  */
 package creativeendlessgrowingceg.allergychecker.billingmodule.billing;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
+
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClient.BillingResponse;
 import com.android.billingclient.api.BillingClient.FeatureType;
@@ -31,11 +31,15 @@ import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.SkuDetails;
 import com.android.billingclient.api.SkuDetailsParams;
 import com.android.billingclient.api.SkuDetailsResponseListener;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import creativeendlessgrowingceg.allergychecker.LanguageFragment;
+import creativeendlessgrowingceg.allergychecker.StartPage;
 
 /**
  * Handles all the interactions with Play Store (via Billing library), maintains connection to
@@ -57,7 +61,8 @@ public class BillingManager implements PurchasesUpdatedListener {
 
     private final BillingUpdatesListener mBillingUpdatesListener;
 
-    private final Activity mActivity;
+    private LanguageFragment mActivity;
+    private StartPage mActivityStartPage;
 
     private final List<Purchase> mPurchases = new ArrayList<>();
 
@@ -84,6 +89,7 @@ public class BillingManager implements PurchasesUpdatedListener {
             "fI6oSx5AmL9Xs4DrXNka4QdKMMBfWxw8wQaw1vcbq6ODL6BgFJphi5VfChVBh6odG0+dzgafwGpXdAlv" +
             "mrEJNdiMa0gljr9OnQIDAQAB";
 
+
     /**
      * Listener to the updates that happen when purchases list was updated or consumption of the
      * item was finished
@@ -100,12 +106,33 @@ public class BillingManager implements PurchasesUpdatedListener {
     public interface ServiceConnectedListener {
         void onServiceConnected(@BillingResponse int resultCode);
     }
+    public BillingManager(StartPage activity, final BillingUpdatesListener updatesListener) {
+        Log.d(TAG, "Creating Billing client.");
+        mActivityStartPage = activity;
+        mBillingUpdatesListener = updatesListener;
+        mBillingClient = BillingClient.newBuilder(mActivityStartPage.getBaseContext()).setListener(this).build();
 
-    public BillingManager(Activity activity, final BillingUpdatesListener updatesListener) {
+        Log.d(TAG, "Starting setup.");
+
+        // Start setup. This is asynchronous and the specified listener will be called
+        // once setup completes.
+        // It also starts to report all the new purchases through onPurchasesUpdated() callback.
+        startServiceConnection(new Runnable() {
+            @Override
+            public void run() {
+                // Notifying the listener that billing client is ready
+                mBillingUpdatesListener.onBillingClientSetupFinished();
+                // IAB is fully set up. Now, let's get an inventory of stuff we own.
+                Log.d(TAG, "Setup successful. Querying inventory.");
+                queryPurchases();
+            }
+        });
+    }
+    public BillingManager(LanguageFragment activity, final BillingUpdatesListener updatesListener) {
         Log.d(TAG, "Creating Billing client.");
         mActivity = activity;
         mBillingUpdatesListener = updatesListener;
-        mBillingClient = BillingClient.newBuilder(mActivity).setListener(this).build();
+        mBillingClient = BillingClient.newBuilder(mActivity.getContext()).setListener(this).build();
 
         Log.d(TAG, "Starting setup.");
 
@@ -159,7 +186,10 @@ public class BillingManager implements PurchasesUpdatedListener {
                 Log.d(TAG, "Launching in-app purchase flow. Replace old SKU? " + (oldSkus != null));
                 BillingFlowParams purchaseParams = BillingFlowParams.newBuilder()
                         .setSku(skuId).setType(billingType).setOldSkus(oldSkus).build();
-                mBillingClient.launchBillingFlow(mActivity, purchaseParams);
+                if(mActivity != null)
+                mBillingClient.launchBillingFlow(mActivity.getActivity(), purchaseParams);
+                if(mActivityStartPage != null)
+                    mBillingClient.launchBillingFlow(mActivityStartPage, purchaseParams);
             }
         };
 
@@ -167,7 +197,11 @@ public class BillingManager implements PurchasesUpdatedListener {
     }
 
     public Context getContext() {
-        return mActivity;
+        if(mActivity!= null)
+        return mActivity.getContext();
+        else{
+            return mActivityStartPage.getBaseContext();
+        }
     }
 
     /**
@@ -241,7 +275,7 @@ public class BillingManager implements PurchasesUpdatedListener {
 
     /**
      * Returns the value Billing client response code or BILLING_MANAGER_NOT_INITIALIZED if the
-     * clien connection response was not received yet.
+     * client connection response was not received yet.
      */
     public int getBillingClientResponseCode() {
         return mBillingClientResponseCode;
@@ -271,7 +305,9 @@ public class BillingManager implements PurchasesUpdatedListener {
      */
     private void onQueryPurchasesFinished(PurchasesResult result) {
         // Have we been disposed of in the meantime? If so, or bad result code, then quit
+
         if (mBillingClient == null || result.getResponseCode() != BillingResponse.OK) {
+
             Log.w(TAG, "Billing client was null or result code (" + result.getResponseCode()
                     + ") was bad - quitting");
             return;
@@ -338,6 +374,9 @@ public class BillingManager implements PurchasesUpdatedListener {
         };
 
         executeServiceRequest(queryToExecute);
+        if(mActivityStartPage != null)
+            mActivityStartPage.premium();
+
     }
 
     public void startServiceConnection(final Runnable executeOnSuccess) {
@@ -381,7 +420,7 @@ public class BillingManager implements PurchasesUpdatedListener {
     private boolean verifyValidSignature(String signedData, String signature) {
         // Some sanity checks to see if the developer (that's you!) really followed the
         // instructions to run this sample (don't put these checks on your app!)
-        if (BASE_64_ENCODED_PUBLIC_KEY.contains("")) {
+        if (BASE_64_ENCODED_PUBLIC_KEY.contains("CONSTRUCT_YOUR")) {
             throw new RuntimeException("Please update your app's public key at: "
                     + "BASE_64_ENCODED_PUBLIC_KEY");
         }

@@ -2,21 +2,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="creativeendlessgrowingceg.allergychecker.LanguageFragment">
+    tools:context="creativeendlessgrowingceg.allergychecker.ShowAllergies">
 
     <!-- TODO: Update blank fragment layout -->
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linearLayoutLanguage"
+            android:id="@+id/showAllergiesLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:text="Button" />
         </LinearLayout>
+
     </ScrollView>
+
 </FrameLayout>

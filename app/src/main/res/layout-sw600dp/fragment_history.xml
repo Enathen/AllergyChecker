@@ -2,21 +2,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="creativeendlessgrowingceg.allergychecker.LanguageFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-
-
+    tools:context="creativeendlessgrowingceg.allergychecker.HistoryFragment">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linearLayoutLanguage"
+            android:id="@+id/lineaLayoutFragHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
         </LinearLayout>
     </ScrollView>
+
 </FrameLayout>

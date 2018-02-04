@@ -1,4 +1,6 @@
-package creativeendlessgrowingceg.allergychecker.subscription;/*
+/*
+package creativeendlessgrowingceg.allergychecker.subscription;*/
+/*
  * Copyright 2017 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,7 +14,8 @@ package creativeendlessgrowingceg.allergychecker.subscription;/*
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *//*
+
 
 
 import android.app.AlertDialog;
@@ -37,6 +40,7 @@ import creativeendlessgrowingceg.allergychecker.billingmodule.skulist.AcquireFra
 import static com.android.billingclient.api.BillingClient.BillingResponse;
 
 
+*/
 /**
  * Example game using in-app billing version 3.
  *
@@ -86,7 +90,8 @@ import static com.android.billingclient.api.BillingClient.BillingResponse;
  * on startup, we check if we own the "gas" item, and, if so,
  * we have to apply its effects to our world and consume it. This
  * is also very important!
- */
+ *//*
+
 public class Premium extends FragmentActivity implements BillingProvider {
     // Debug tag, for logging
     private static final String TAG = "BaseGamePlayActivity";
@@ -127,13 +132,6 @@ public class Premium extends FragmentActivity implements BillingProvider {
         // Create and initialize BillingManager which talks to BillingLibrary
         mBillingManager = new BillingManager(this, mViewController.getUpdateListener());
 
-        //mScreenWait = findViewById(R.id.screen_wait);
-        //mScreenMain = findViewById(R.id.screen_main);
-
-
-        // Specify purchase and drive buttons listeners
-        // Note: This couldn't be done inside *.xml for Android TV since TV layout is inflated
-        // via AppCompat
         findViewById(R.id.button_purchase).setVisibility(View.VISIBLE);
         findViewById(R.id.button_purchase).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,9 +177,11 @@ public class Premium extends FragmentActivity implements BillingProvider {
 
 
 
-    /**
+    */
+/**
      * User clicked the "Buy Gas" button - show a purchase dialog with all available SKUs
-     */
+     *//*
+
     public void onPurchaseButtonClicked(final View arg0) {
         Log.d(TAG, "Purchase button clicked.");
 
@@ -209,9 +209,11 @@ public class Premium extends FragmentActivity implements BillingProvider {
         super.onDestroy();
     }
 
-    /**
+    */
+/**
      * Remove loading spinner and refresh the UI
-     */
+     *//*
+
     public void showRefreshedUi() {
         setWaitScreen(false);
         updateUi();
@@ -220,20 +222,24 @@ public class Premium extends FragmentActivity implements BillingProvider {
         }
     }
 
-    /**
+    */
+/**
      * Show an alert dialog to the user
      * @param messageId String id to display inside the alert dialog
-     */
+     *//*
+
     @UiThread
     void alert(@StringRes int messageId) {
         alert(messageId, null);
     }
 
-    /**
+    */
+/**
      * Show an alert dialog to the user
      * @param messageId String id to display inside the alert dialog
      * @param optionalParam Optional attribute for the string
-     */
+     *//*
+
     @UiThread
     void alert(@StringRes int messageId, @Nullable Object optionalParam) {
         if (Looper.getMainLooper().getThread() != Thread.currentThread()) {
@@ -262,36 +268,44 @@ public class Premium extends FragmentActivity implements BillingProvider {
         return mViewController;
     }
 
-    /**
+    */
+/**
      * Enables or disables the "please wait" screen.
-     */
+     *//*
+
     private void setWaitScreen(boolean set) {
         //mScreenMain.setVisibility(set ? View.GONE : View.VISIBLE);
         //mScreenWait.setVisibility(set ? View.VISIBLE : View.GONE);
     }
 
-    /**
+    */
+/**
      * Sets image resource and also adds a tag to be able to verify that image is correct in tests
-     */
+     *//*
+
     private void setImageResourceWithTestTag(ImageView imageView, @DrawableRes int resId) {
         imageView.setImageResource(resId);
         imageView.setTag(resId);
     }
 
-    /**
+    */
+/**
      * Update UI to reflect model
-     */
+     *//*
+
     @UiThread
     private void updateUi() {
         Log.d(TAG, "Updating the UI. Thread: " + Thread.currentThread().getName());
 
         Log.d(TAG, "IsPremium purchased: " + isPremiumPurchased());
-     /*   // Update gas gauge to reflect tank status
+     */
+/*   // Update gas gauge to reflect tank status
         setImageResourceWithTestTag(mGasImageView, mViewController.getTankResId());
 
         if (isGoldMonthlySubscribed() || isGoldYearlySubscribed()) {
             mCarImageView.setBackgroundColor(ContextCompat.getColor(this, R.color.gold));
-        }*/
+        }*//*
+
     }
 
     public boolean isAcquireFragmentShown() {
@@ -306,3 +320,4 @@ public class Premium extends FragmentActivity implements BillingProvider {
         return R.layout.fragment_premium;
     }
 }
+*/

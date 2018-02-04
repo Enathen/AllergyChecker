@@ -29,11 +29,6 @@
             android:id="@+id/showAllergies"
             android:icon="@drawable/wheatcircle"
             android:title="@string/showAllergies" />
-        <item
-            android:id="@+id/premium"
-            android:icon="@drawable/wheatcircle"
-            android:title="@string/premium" />
-
     </group>
     <item android:title="@string/help">
         <menu>

@@ -21,11 +21,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:weightSum="1">
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="250dp"
                     app:srcCompat="@drawable/allergychecker" />
 
                 <TextView
@@ -33,7 +34,8 @@
                     android:layout_height="wrap_content"
                     android:text="© AllergyChecker"
                     android:textAlignment="center"
-                    android:textColor="@color/fontColorTextWhite" />
+                    android:textColor="@color/fontColorTextWhite"
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -44,7 +46,9 @@
                     android:layout_height="wrap_content"
                     android:text="@string/specialThanksTo"
                     android:textAlignment="center"
-                    android:textColor="@color/fontColorTextWhite" />
+
+                    android:textColor="@color/fontColorTextWhite"
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -54,9 +58,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/thisappUses"
+
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite"
-                    android:textSize="22sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -68,7 +73,7 @@
                     android:text="@string/FAB"
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite"
-                    android:textSize="18sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -76,7 +81,7 @@
                     android:text="@string/OnBoardMe"
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite"
-                    android:textSize="18sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -84,7 +89,7 @@
                     android:text="@string/googleCamera"
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite"
-                    android:textSize="18sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -92,7 +97,7 @@
                     android:text="@string/BkTree"
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite"
-                    android:textSize="18sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -100,16 +105,16 @@
                     android:text="@string/googleAdMob"
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite"
-                    android:textSize="18sp" />
+                    android:textSize="30sp" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="GoogleSamples. Trivial Drive V2"
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite"
-                    android:textSize="18sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -121,7 +126,7 @@
                     android:text="@string/licence"
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite"
-                    android:textSize="22sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -129,7 +134,7 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="250dp"
                     app:srcCompat="@drawable/crengrlogo" />
 
                 <TextView
@@ -150,7 +155,8 @@
                     android:layout_height="wrap_content"
                     android:text="© Creative Endless Growing"
                     android:textAlignment="center"
-                    android:textColor="@color/fontColorTextWhite" />
+                    android:textColor="@color/fontColorTextWhite"
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="match_parent"

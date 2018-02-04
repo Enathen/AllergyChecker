@@ -8,11 +8,11 @@ import com.android.billingclient.api.Purchase;
 
 import java.util.List;
 
+import creativeendlessgrowingceg.allergychecker.LanguageFragment;
 import creativeendlessgrowingceg.allergychecker.R;
 import creativeendlessgrowingceg.allergychecker.billingmodule.billing.BillingManager;
 import creativeendlessgrowingceg.allergychecker.billingmodule.skulist.row.GoldMonthlyDelegate;
 import creativeendlessgrowingceg.allergychecker.billingmodule.skulist.row.GoldYearlyDelegate;
-import creativeendlessgrowingceg.allergychecker.billingmodule.skulist.row.PremiumDelegate;
 
 /**
  * @author Jonathan Alexander Norberg
@@ -30,7 +30,7 @@ public class SubscriptionsViewController {
     private static final int TANK_MAX = 4;
 
     private final UpdateListener mUpdateListener;
-    private Premium mActivity;
+    private LanguageFragment mActivity;
 
     // Tracks if we currently own subscriptions SKUs
     private boolean mGoldMonthly;
@@ -42,13 +42,14 @@ public class SubscriptionsViewController {
     // Current amount of gas in tank, in units
     private int mTank;
 
-    public SubscriptionsViewController(Premium activity) {
+    public SubscriptionsViewController(LanguageFragment activity) {
         mUpdateListener = new UpdateListener();
         mActivity = activity;
     }
 
-
-
+    public SubscriptionsViewController() {
+        mUpdateListener = new UpdateListener();
+    }
 
 
     public UpdateListener getUpdateListener() {
@@ -79,6 +80,7 @@ public class SubscriptionsViewController {
     private class UpdateListener implements BillingManager.BillingUpdatesListener {
         @Override
         public void onBillingClientSetupFinished() {
+            if(mActivity != null)
             mActivity.onBillingManagerSetupFinished();
         }
 
@@ -106,19 +108,17 @@ public class SubscriptionsViewController {
             for (Purchase purchase : purchases) {
                 Log.d(TAG, "onPurchasesUpdated: " + purchase.getOrderId());
                 switch (purchase.getSku()) {
-                    case PremiumDelegate.SKU_ID:
-                        Log.d(TAG, "You are Premium! Congratulations!!!");
-                        mIsPremium = true;
-                        break;
                     case GoldMonthlyDelegate.SKU_ID:
                         mGoldMonthly = true;
+                        mIsPremium = true;
                         break;
                     case GoldYearlyDelegate.SKU_ID:
                         mGoldYearly = true;
+                        mIsPremium = true;
                         break;
                 }
             }
-
+            if(mActivity != null)
             mActivity.showRefreshedUi();
         }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -85,7 +86,7 @@ public class HistoryFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        /*Locale locale = new Locale(new SettingsFragment(getContext()).getLanguageFromLFragment(getContext()));
+        /*Locale locale = new Locale(new LanguageFragment(getContext()).getLanguageFromLFragment(getContext()));
         final Locale newLocale = new Locale(locale.getLanguage());
         Locale.setDefault(newLocale);
         final Configuration config = new Configuration();
@@ -141,8 +142,8 @@ public class HistoryFragment extends Fragment {
                 tv.setText(s.substring(20));
                 tv.setGravity(Gravity.CENTER);
                 tv.setTextSize(22);
-                tv.setBackgroundColor(getContext().getColor(R.color.colorPrimaryDark));
-                tv.setTextColor(getContext().getColor(R.color.fontColorTextWhite));
+                tv.setBackgroundColor(Color.rgb(36,49,60));
+                tv.setTextColor(Color.WHITE);
                 tv.setVisibility(View.INVISIBLE);
 
                 tv.setOnClickListener(new View.OnClickListener() {
@@ -153,8 +154,8 @@ public class HistoryFragment extends Fragment {
                     }
                 });
                 final Button button = new Button(getContext());
-                button.setBackgroundColor(getContext().getColor(R.color.colorPrimaryDark));
-                button.setTextColor(getContext().getColor(R.color.fontColorTextWhite));
+                button.setBackgroundColor(Color.rgb(36,49,60));
+                button.setTextColor(Color.WHITE);
                 button.setTextSize(26);
                 button.setText(R.string.delete);
                 button.setGravity(View.TEXT_ALIGNMENT_CENTER);
@@ -256,7 +257,7 @@ public class HistoryFragment extends Fragment {
     }
 
     private Locale loadLocale() {
-        Locale locale = new Locale(new SettingsFragment().getLanguageFromLFragment(getContext()));
+        Locale locale = new Locale(new LanguageFragment().getLanguageFromLFragment(getContext()));
         Log.d(TAG, locale.getLanguage());
         return locale;
     }

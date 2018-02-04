@@ -28,6 +28,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.billingclient.api.BillingClient.SkuType;
@@ -56,6 +57,7 @@ public class AcquireFragment extends DialogFragment {
     private TextView mErrorTextView;
     private BillingProvider mBillingProvider;
     private boolean mWasRetryServiceConnection;
+    private ProgressBar progressBar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,6 +70,8 @@ public class AcquireFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.acquire_fragment, container, false);
+        progressBar = (ProgressBar) root.findViewById(R.id.progressBarLanguage);
+
         mErrorTextView = (TextView) root.findViewById(R.id.error_textview);
         mRecyclerView = (RecyclerView) root.findViewById(R.id.list);
         //mLoadingView = root.findViewById(R.id.screen_wait);
@@ -112,6 +116,8 @@ public class AcquireFragment extends DialogFragment {
      * Enables or disables "please wait" screen.
      */
     private void setWaitScreen(boolean set) {
+
+        progressBar.setVisibility(set ? View.VISIBLE : View.GONE);
         mRecyclerView.setVisibility(set ? View.GONE : View.VISIBLE);
         //mLoadingView.setVisibility(set ? View.VISIBLE : View.GONE);
     }

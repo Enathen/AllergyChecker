@@ -2,6 +2,8 @@ package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -11,11 +13,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -25,17 +29,22 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
+import creativeendlessgrowingceg.allergychecker.billingmodule.billing.BillingManager;
+import creativeendlessgrowingceg.allergychecker.billingmodule.billing.BillingProvider;
+import creativeendlessgrowingceg.allergychecker.billingmodule.skulist.AcquireFragment;
+import creativeendlessgrowingceg.allergychecker.subscription.SubscriptionsViewController;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link SettingsFragment.OnFragmentInteractionListener} interface
+ * {@link LanguageFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link SettingsFragment#newInstance} factory method to
+ * Use the {@link LanguageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 
-public class SettingsFragment extends Fragment {
+public class LanguageFragment extends Fragment implements BillingProvider{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -54,9 +63,18 @@ public class SettingsFragment extends Fragment {
     private ArrayList<RadioButtons> radioButtons = new ArrayList<>();
     private ArrayList<CheckBoxes> checkBoxes = new ArrayList<>();
     private StartPage startpage;
+    // Tag for a dialog that allows us to find it when screen was rotated
+    private static final String DIALOG_TAG = "dialog";
+
+    private static final int BILLING_MANAGER_NOT_INITIALIZED = -1;
+
+    private BillingManager mBillingManager;
+    private AcquireFragment mAcquireFragment;
+    private SubscriptionsViewController mViewController;
+    private ProgressBar parentProgressBar;
 
 
-    public SettingsFragment() {
+    public LanguageFragment() {
         // Required empty public constructor
     }
 
@@ -68,11 +86,11 @@ public class SettingsFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SettingsFragment.
+     * @return A new instance of fragment LanguageFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SettingsFragment newInstance(String param1, String param2) {
-        SettingsFragment fragment = new SettingsFragment();
+    public static LanguageFragment newInstance(String param1, String param2) {
+        LanguageFragment fragment = new LanguageFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -95,6 +113,21 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        // Start the controller and load game data
+        mViewController = new SubscriptionsViewController(this);
+
+       /* if (get().startsWith(DEFAULT_PACKAGE_PREFIX)) {
+            throw new RuntimeException("Please change the sample's package name!");
+        }*/
+
+        // Try to restore dialog fragment if we were showing it prior to screen rotation
+        if (savedInstanceState != null) {
+            mAcquireFragment = (AcquireFragment) getFragmentManager()
+                    .findFragmentByTag(DIALOG_TAG);
+        }
+
+        // Create and initialize BillingManager which talks to BillingLibrary
+        mBillingManager = new BillingManager(this, mViewController.getUpdateListener());
 
         preference = PreferenceManager.getDefaultSharedPreferences(getActivity());
         language = getLanguageFromLFragment(getContext());
@@ -106,9 +139,21 @@ public class SettingsFragment extends Fragment {
 
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linearLayoutLanguage);
+        Button button = new Button(getContext());
+        button.setText("Premium");
+        button.getBackground().setColorFilter(0xFF19b3ad, PorterDuff.Mode.MULTIPLY);
+        button.setTextSize(30);
+        button.setTextColor(Color.WHITE);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onPurchaseButtonClicked();
+            }
+        });
+        parentLinearLayout.addView(button);
+        // parentProgressBar = (ProgressBar) parentLinearLayout.findViewById(R.id.progressBarLanguage);
         //parentLinearLayout.addView(addStaticLanguages(inflater,languages.getstaticArrayListLanguage()));
         parentLinearLayout.addView(addLanguages(inflater));
-
 
         for (CheckBoxes checkBox : checkBoxes) {
             if (checkBox.locale.getLanguage().equals(language)) {
@@ -140,15 +185,20 @@ public class SettingsFragment extends Fragment {
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    editor.putBoolean(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), isChecked);
-                    editor.apply();
-
-                    checkIfParentCheckBoxShouldSwitch(((CheckBox) parentLinearLayout.findViewById(R.id.checkBoxRowCategory)), editor, arrayListLinearLayout);
-                    if (locale.getLanguage().equals(language)) {
-                        checkBox.setChecked(true);
-                        editor.putBoolean(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), true);
+                    if(isPremiumPurchased() || locale.getLanguage().equals("en") || locale.getLanguage().equals(Locale.getDefault().getLanguage())){
+                        editor.putBoolean(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), isChecked);
                         editor.apply();
                         checkIfParentCheckBoxShouldSwitch(((CheckBox) parentLinearLayout.findViewById(R.id.checkBoxRowCategory)), editor, arrayListLinearLayout);
+                        if (locale.getLanguage().equals(language)) {
+                            checkBox.setChecked(true);
+                            editor.putBoolean(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), true);
+                            editor.apply();
+                            checkIfParentCheckBoxShouldSwitch(((CheckBox) parentLinearLayout.findViewById(R.id.checkBoxRowCategory)), editor, arrayListLinearLayout);
+                        }
+                    }else{
+                        buttonView.setChecked(!isChecked);
+                        onPurchaseButtonClicked();
+                        mAcquireFragment = null;
                     }
 
                 }
@@ -181,9 +231,32 @@ public class SettingsFragment extends Fragment {
         for (LinearLayout linearLayout : arrayListLinearLayout) {
             topLinearLayout.addView(linearLayout);
         }
+        for (int i = 0; i < 4; i++) {
+            topLinearLayout.addView(new TextView(getContext()));
+        }
         return topLinearLayout;
     }
 
+    private void onPurchaseButtonClicked() {
+        Log.d(TAG, "Purchase button clicked.");
+        if(mAcquireFragment != null){
+            return;
+        }
+        if (mAcquireFragment == null) {
+            mAcquireFragment = new AcquireFragment();
+        }
+
+        if (!isAcquireFragmentShown()) {
+            mAcquireFragment.show(getFragmentManager(), DIALOG_TAG);
+
+            if (mBillingManager != null && mBillingManager.getBillingClientResponseCode() > BILLING_MANAGER_NOT_INITIALIZED) {
+                mAcquireFragment.onManagerReady(this);
+            }
+        }
+    }
+    public boolean isAcquireFragmentShown() {
+        return mAcquireFragment != null && mAcquireFragment.isVisible();
+    }
     private void checkIfParentCheckBoxShouldSwitch(CheckBox parentCheckBox, final SharedPreferences.Editor editor, final ArrayList<LinearLayout> arrayListLinearLayout) {
 
         for (CheckBoxes checkBox : checkBoxes) {
@@ -332,6 +405,64 @@ public class SettingsFragment extends Fragment {
         SharedPreferences.Editor sharedPreferencesEditor = PreferenceManager.getDefaultSharedPreferences(splashscreen).edit();
         sharedPreferencesEditor.putString("getLanguage", language);
         sharedPreferencesEditor.apply();
+    }
+
+    @Override
+    public BillingManager getBillingManager() {
+        return mBillingManager;
+    }
+
+    @Override
+    public boolean isPremiumPurchased() {
+        return mViewController.isPremiumPurchased();
+    }
+
+
+    @Override
+    public boolean isGoldMonthlySubscribed() {
+        return mViewController.isGoldMonthlySubscribed();
+    }
+
+    @Override
+    public boolean isGoldYearlySubscribed() {
+        return mViewController.isGoldYearlySubscribed();
+    }
+
+    public void onBillingManagerSetupFinished() {
+        if (mAcquireFragment != null) {
+            mAcquireFragment.onManagerReady(this);
+        }
+    }
+    /**
+     * Remove loading spinner and refresh the UI
+     */
+    public void showRefreshedUi() {
+        waitScreen(false);
+        updateUi();
+        if (mAcquireFragment != null) {
+            mAcquireFragment.refreshUI();
+        }
+    }
+
+    private void waitScreen(boolean b) {
+       // parentProgressBar.setVisibility(b ? View.VISIBLE : View.GONE);
+    }
+
+    private void updateUi() {
+
+    }
+
+    public void setCategories(StartPage categories, Set<String> set,Set<Locale> locales) {
+        SharedPreferences sp = categories.getSharedPreferences(TAG, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEdit1 = sp.edit();
+        mEdit1.putStringSet("languageSet", set);
+        mEdit1.apply();
+        SharedPreferences settings = categories.getSharedPreferences("box", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = settings.edit();
+        for (Locale locale : locales) {
+            editor.putBoolean(categories.getString(LanguagesAccepted.getCountryName(locale.getLanguage())), false);
+            editor.apply();
+        }
     }
 
     /**

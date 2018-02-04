@@ -26,7 +26,7 @@ import creativeendlessgrowingceg.allergychecker.billingmodule.billing.BillingPro
  * Handles Ui specific to "yearly gas" - subscription row
  */
 public class GoldYearlyDelegate extends UiManagingDelegate {
-    public static final String SKU_ID = "premium_language_yearly";
+    public static final String SKU_ID = "language_premium_yearly";
 
     public GoldYearlyDelegate(BillingProvider billingProvider) {
         super(billingProvider);

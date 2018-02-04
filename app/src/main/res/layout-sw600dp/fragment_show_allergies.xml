@@ -1,22 +1,29 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/FrameShowAllergies"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="creativeendlessgrowingceg.allergychecker.LanguageFragment">
+    tools:context="creativeendlessgrowingceg.allergychecker.ShowAllergies">
 
     <!-- TODO: Update blank fragment layout -->
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/linearLayoutLanguage"
+            android:id="@+id/showAllergiesLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
+            <ProgressBar
+                android:id="@+id/pbShowAllergies"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:visibility="visible" />
         </LinearLayout>
+
     </ScrollView>
+
 </FrameLayout>

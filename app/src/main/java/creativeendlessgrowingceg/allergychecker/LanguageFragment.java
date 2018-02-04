@@ -44,12 +44,15 @@ import creativeendlessgrowingceg.allergychecker.subscription.SubscriptionsViewCo
  * create an instance of this fragment.
  */
 
-public class LanguageFragment extends Fragment implements BillingProvider{
+public class LanguageFragment extends Fragment implements BillingProvider {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String TAG = "LanguageFragment";
+    // Tag for a dialog that allows us to find it when screen was rotated
+    private static final String DIALOG_TAG = "dialog";
+    private static final int BILLING_MANAGER_NOT_INITIALIZED = -1;
     String language;
     Locale myLocale;
     SharedPreferences preference;
@@ -63,11 +66,6 @@ public class LanguageFragment extends Fragment implements BillingProvider{
     private ArrayList<RadioButtons> radioButtons = new ArrayList<>();
     private ArrayList<CheckBoxes> checkBoxes = new ArrayList<>();
     private StartPage startpage;
-    // Tag for a dialog that allows us to find it when screen was rotated
-    private static final String DIALOG_TAG = "dialog";
-
-    private static final int BILLING_MANAGER_NOT_INITIALIZED = -1;
-
     private BillingManager mBillingManager;
     private AcquireFragment mAcquireFragment;
     private SubscriptionsViewController mViewController;
@@ -77,7 +75,6 @@ public class LanguageFragment extends Fragment implements BillingProvider{
     public LanguageFragment() {
         // Required empty public constructor
     }
-
 
 
     /**
@@ -109,6 +106,7 @@ public class LanguageFragment extends Fragment implements BillingProvider{
         startPageFile = new File(getActivity().getFilesDir(), "language.txt");
         preference = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -171,21 +169,21 @@ public class LanguageFragment extends Fragment implements BillingProvider{
         final LinearLayout parentLinearLayout = (LinearLayout) topLinearLayout.findViewById(R.id.linearLayoutRowCategoryHorizontal);
         ((ImageView) parentLinearLayout.findViewById(R.id.imageViewRowCategory)).setImageResource(R.drawable.translate);
         ((ImageView) parentLinearLayout.findViewById(R.id.dropDownList)).setVisibility(View.INVISIBLE);
-        ((TextView) parentLinearLayout.findViewById(R.id.textViewCategory)).setText(TextHandler.capitalLetter(R.string.checkAll,getContext()));
+        ((TextView) parentLinearLayout.findViewById(R.id.textViewCategory)).setText(TextHandler.capitalLetter(R.string.checkAll, getContext()));
         SharedPreferences settings = getActivity().getSharedPreferences("box", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = settings.edit();
         for (final Locale locale : LanguagesAccepted.getLanguages()) {
             LinearLayout newLinearLayout = (LinearLayout) inflater.inflate(R.layout.rowcategorylayout, null);
             ((ImageView) newLinearLayout.findViewById(R.id.imageViewRowCategory)).setImageResource(LanguagesAccepted.getFlag(locale.getLanguage()));
             ((ImageView) newLinearLayout.findViewById(R.id.dropDownList)).setVisibility(View.INVISIBLE);
-            ((TextView) newLinearLayout.findViewById(R.id.textViewCategory)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryName(locale.getLanguage()),getContext()));
+            ((TextView) newLinearLayout.findViewById(R.id.textViewCategory)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryName(locale.getLanguage()), getContext()));
             final CheckBox checkBox = (CheckBox) newLinearLayout.findViewById(R.id.checkBoxRowCategory);
             checkBoxes.add(new CheckBoxes(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), checkBox, locale));
             checkBox.setChecked(settings.getBoolean(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), false));
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if(isPremiumPurchased() || locale.getLanguage().equals("en") || locale.getLanguage().equals(Locale.getDefault().getLanguage())){
+                    if (isPremiumPurchased() || locale.getLanguage().equals("en") || locale.getLanguage().equals(Locale.getDefault().getLanguage())) {
                         editor.putBoolean(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), isChecked);
                         editor.apply();
                         checkIfParentCheckBoxShouldSwitch(((CheckBox) parentLinearLayout.findViewById(R.id.checkBoxRowCategory)), editor, arrayListLinearLayout);
@@ -195,10 +193,10 @@ public class LanguageFragment extends Fragment implements BillingProvider{
                             editor.apply();
                             checkIfParentCheckBoxShouldSwitch(((CheckBox) parentLinearLayout.findViewById(R.id.checkBoxRowCategory)), editor, arrayListLinearLayout);
                         }
-                    }else{
+                    } else {
                         buttonView.setChecked(!isChecked);
                         onPurchaseButtonClicked();
-                        mAcquireFragment = null;
+
                     }
 
                 }
@@ -220,12 +218,17 @@ public class LanguageFragment extends Fragment implements BillingProvider{
                 setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        for (LinearLayout linearLayout : arrayListLinearLayout) {
-                            ((CheckBox) linearLayout.findViewById(R.id.checkBoxRowCategory)).setChecked(isChecked);
-                        }
-                        editor.putBoolean(String.valueOf(R.string.languageFrom), isChecked);
-                        editor.apply();
 
+                        if (!isPremiumPurchased()) {
+                            onPurchaseButtonClicked();
+                            buttonView.setChecked(!isChecked);
+                        } else{
+                            for (LinearLayout linearLayout : arrayListLinearLayout) {
+                                ((CheckBox) linearLayout.findViewById(R.id.checkBoxRowCategory)).setChecked(isChecked);
+                            }
+                            editor.putBoolean(String.valueOf(R.string.languageFrom), isChecked);
+                            editor.apply();
+                        }
                     }
                 });
         for (LinearLayout linearLayout : arrayListLinearLayout) {
@@ -238,13 +241,8 @@ public class LanguageFragment extends Fragment implements BillingProvider{
     }
 
     private void onPurchaseButtonClicked() {
-        Log.d(TAG, "Purchase button clicked.");
-        if(mAcquireFragment != null){
-            return;
-        }
-        if (mAcquireFragment == null) {
-            mAcquireFragment = new AcquireFragment();
-        }
+
+        mAcquireFragment = new AcquireFragment();
 
         if (!isAcquireFragmentShown()) {
             mAcquireFragment.show(getFragmentManager(), DIALOG_TAG);
@@ -254,9 +252,11 @@ public class LanguageFragment extends Fragment implements BillingProvider{
             }
         }
     }
+
     public boolean isAcquireFragmentShown() {
         return mAcquireFragment != null && mAcquireFragment.isVisible();
     }
+
     private void checkIfParentCheckBoxShouldSwitch(CheckBox parentCheckBox, final SharedPreferences.Editor editor, final ArrayList<LinearLayout> arrayListLinearLayout) {
 
         for (CheckBoxes checkBox : checkBoxes) {
@@ -281,6 +281,7 @@ public class LanguageFragment extends Fragment implements BillingProvider{
         }
         parentCheckBox.setChecked(true);
     }
+
     public void saveCategories() {
         SharedPreferences sp = getActivity().getSharedPreferences(TAG, Context.MODE_PRIVATE);
         SharedPreferences.Editor mEdit1 = sp.edit();
@@ -433,6 +434,7 @@ public class LanguageFragment extends Fragment implements BillingProvider{
             mAcquireFragment.onManagerReady(this);
         }
     }
+
     /**
      * Remove loading spinner and refresh the UI
      */
@@ -445,14 +447,14 @@ public class LanguageFragment extends Fragment implements BillingProvider{
     }
 
     private void waitScreen(boolean b) {
-       // parentProgressBar.setVisibility(b ? View.VISIBLE : View.GONE);
+        // parentProgressBar.setVisibility(b ? View.VISIBLE : View.GONE);
     }
 
     private void updateUi() {
 
     }
 
-    public void setCategories(StartPage categories, Set<String> set,Set<Locale> locales) {
+    public void setCategories(StartPage categories, Set<String> set, Set<Locale> locales) {
         SharedPreferences sp = categories.getSharedPreferences(TAG, Context.MODE_PRIVATE);
         SharedPreferences.Editor mEdit1 = sp.edit();
         mEdit1.putStringSet("languageSet", set);

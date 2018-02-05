@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -88,6 +90,7 @@ public class StartPage extends AppCompatActivity
     IInAppBillingService mService;
     private BillingManager mBillingManager;
     private SubscriptionsViewController mViewController;
+    private boolean advancedSearch = false;
 
     public StartPage(FragmentActivity activity) {
         prefs = activity.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
@@ -107,16 +110,7 @@ public class StartPage extends AppCompatActivity
 
         Log.d(TAG, "LOCALE: " + Locale.getDefault().getLanguage());
         new LanguageFragment().setGetLanguage(StartPage.this, Locale.getDefault().getLanguage());
-        SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(this);
-        if (!sharedPreferences.getBoolean("firstTime", false)) {
-            startActivity(new Intent(this, OnboardingPagerActivity.class));
-            SharedPreferences.Editor sharedPreferencesEditor =
-                    PreferenceManager.getDefaultSharedPreferences(this).edit();
-            sharedPreferencesEditor.putBoolean(
-                    "firstTime", true);
-            sharedPreferencesEditor.apply();
-        }
+
         checkPremium();
         Intent intent = getIntent();
         suggestions = (TextView) findViewById(R.id.ingredientsTextView);
@@ -172,6 +166,7 @@ public class StartPage extends AppCompatActivity
         camera.setOnMenuButtonLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+
                 if (write.getVisibility() != View.VISIBLE) {
                     write.setVisibility(View.VISIBLE);
                     flash.setVisibility(View.VISIBLE);
@@ -183,6 +178,7 @@ public class StartPage extends AppCompatActivity
 
                     camera.close(true);
                 }
+
                 return true;
 
 
@@ -192,9 +188,20 @@ public class StartPage extends AppCompatActivity
         camera.setOnMenuButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(startPage, OcrCaptureActivity.class);
                 intent.putExtra("EXTRA_SESSION_ID", false);
                 startPage.startActivity(intent);
+                SharedPreferences sharedPreferences =
+                        PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                if (!sharedPreferences.getBoolean("firstTimer", false)) {
+                    startActivity(new Intent(StartPage.this, OnboardingPagerActivity.class));
+                    SharedPreferences.Editor sharedPreferencesEditor =
+                            PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
+                    sharedPreferencesEditor.putBoolean(
+                            "firstTimer", true);
+                    sharedPreferencesEditor.apply();
+                }
             }
         });
 
@@ -224,11 +231,9 @@ public class StartPage extends AppCompatActivity
             if (!str.equals("")) {
                 DateString dateString = new DateString(str);
                 dateStrings = getArray();
-                Log.d(TAG, String.valueOf(dateStrings.size()));
 
                 dateStrings.add(dateString.string);
 
-                Log.d(TAG, String.valueOf(dateStrings.size()));
             } else {
                 dateStrings = getArray();
             }
@@ -241,6 +246,7 @@ public class StartPage extends AppCompatActivity
         } else {
             str = intent.getStringExtra("HistoryFragment");
             if (str != null) {
+                advancedSearch =  intent.getBooleanExtra("advancedSearch",false);
                 suggestions.setText(str);
                 newString = str;
                 checkStringAgainstAllergies(str);
@@ -304,7 +310,8 @@ public class StartPage extends AppCompatActivity
 
     private void checkStringAgainstAllergies(String str) {
         findViewById(R.id.textViewtip).setVisibility(View.GONE);
-        displayInterstitial();
+        if(!advancedSearch)
+            displayInterstitial();
         //deleteConstrained();
 
         (findViewById(R.id.progressBar3)).setVisibility(View.VISIBLE);
@@ -319,32 +326,6 @@ public class StartPage extends AppCompatActivity
         res.updateConfiguration(config, res.getDisplayMetrics());
         new CalcAllergy(this, allergic, (ProgressBar) findViewById(R.id.progressBar3)).execute(str);
 
-    }
-
- /*   private void deleteConstrained() {
-        if (findViewById(R.id.lin_lay) != null) {
-            ((ConstraintLayout) findViewById(R.id.lin_lay)).removeView(findViewById(R.id.splash));
-            ((ConstraintLayout) findViewById(R.id.lin_lay)).removeView(findViewById(R.id.allergycheck));
-            ((LinearLayout) findViewById(R.id.linLayStartPage)).removeView(findViewById(R.id.lin_lay));
-
-        }
-    }*/
-
-    public ArrayList<String> getDateString() {
-        for (String dateString : dateStrings) {
-            Log.d(TAG, dateString);
-        }
-
-        return dateStrings;
-    }
-
-    public void setDateStrings(ArrayList<String> datastring) {
-        Log.d(TAG, String.valueOf(dateStrings.size()));
-        for (String string : datastring) {
-            if (!dateStrings.contains(string))
-                dateStrings.add(string);
-        }
-        Log.d(TAG, String.valueOf(dateStrings.size()));
     }
 
     public boolean saveArray() {
@@ -503,26 +484,26 @@ public class StartPage extends AppCompatActivity
         ((TextView) findViewById(R.id.textViewFoundAllergies)).setText("");
         if (id == R.id.history) {
             fragment = new HistoryFragment();
-            setTitle("History");
+            setTitle(getString(R.string.history));
         } else if (id == R.id.languageMenu) {
 
             fragment = new LanguageFragment();
-            setTitle("Language");
+            setTitle(getString(R.string.language));
         } else if (id == R.id.allergies) {
 //this, getImageViewHashMap(), new LanguageFragment(this).getCategories()
             fragment = new MyAllergies();
-            setTitle("Allergies");
+            setTitle(getString(R.string.allergy));
         } else if (id == R.id.preference) {
             fragment = new MyPreference();
-            setTitle("Preferences");
+            setTitle(getString(R.string.myPreference));
         } else if (id == R.id.tutorial) {
             startActivity(new Intent(this, OnboardingPagerActivity.class));
         } else if (id == R.id.about) {
             fragment = new AboutFragment();
-            setTitle("About");
+            setTitle(getString(R.string.about));
         } else if (id == R.id.translate) {
             fragment = new TranslateHelp();
-            setTitle("Translate");
+            setTitle(getString(R.string.helpTranslate));
         } else if (id == R.id.showAllergies) {
             Bundle b = new Bundle();
             b.putSerializable("ArrayList",LanguagesAccepted.getLanguages());
@@ -530,7 +511,7 @@ public class StartPage extends AppCompatActivity
 
             fragment = new ShowAllergies();
             fragment.setArguments(b);
-            setTitle("Show Allergies");
+            setTitle(getString(R.string.showAllergies));
         }
         else if (id == R.id.nav_rate) {
             Uri uri = Uri.parse("market://details?id=" + this.getPackageName());
@@ -673,9 +654,9 @@ public class StartPage extends AppCompatActivity
         String string;
 
         DateString(String string) {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss", new Locale("sv"));
-
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("sv"));
             this.string = simpleDateFormat.format(new Date()).concat(" " + string);
+            Log.d(TAG, "DateString: " + string+ " : " +this.string);
         }
     }
 
@@ -684,6 +665,7 @@ public class StartPage extends AppCompatActivity
         private StartPage mContext;
         private TextView textView;
         private ProgressBar viewById;
+        private String stringToCheck;
 
 
         public CalcAllergy(StartPage context, TextView textView, ProgressBar viewById) {
@@ -706,7 +688,8 @@ public class StartPage extends AppCompatActivity
 
         @Override
         protected ArrayList<AllAllergiesForEachInteger> doInBackground(String... params) {
-            // get the string from params, which is an array
+            // get the stringToCheck from params, which is an array
+            stringToCheck = params[0];
             TreeMap<Integer, HashSet<String>> hashSetAllStrings = new TreeMap<>();
 
             HashSet<String> hashSetToCheckLast = new HashSet<>();
@@ -753,7 +736,9 @@ public class StartPage extends AppCompatActivity
                     counter++;
                 }
                 i++;
-                //helpCalcAllergy.checkFullString(s, allergies, allFoundAllergies);
+                if(advancedSearch){
+                    helpCalcAllergy.checkFullString(s, allergies, allFoundAllergies);
+                }
             }
             long stop = System.currentTimeMillis();
             Log.d(TAG, "TIME: " + (stop - start));
@@ -849,7 +834,27 @@ public class StartPage extends AppCompatActivity
                 ((LinearLayout) findViewById(R.id.linLayStartPage)).removeView(findViewById(R.id.linlayallergyFromWord));
 
             }
+
             allergic.setText(outputString);
+            if(advancedSearch){
+                ((Button)findViewById(R.id.buttonAdvancedSearch)).setText(getString(R.string.regularSearch));
+            }
+            ((Button)findViewById(R.id.buttonAdvancedSearch)).getBackground().setColorFilter(0xFF19b3ad, PorterDuff.Mode.MULTIPLY);
+            ((Button)findViewById(R.id.buttonAdvancedSearch)).setVisibility(View.VISIBLE);
+
+            findViewById(R.id.buttonAdvancedSearch).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(StartPage.this, StartPage.class);
+                    if(advancedSearch){
+                        intent.putExtra("advancedSearch", false);
+                    }else{
+                        intent.putExtra("advancedSearch", true);
+                    }
+                    intent.putExtra("HistoryFragment", stringToCheck);
+                    startActivity(intent);
+                }
+            });
             // Do things like hide the progress bar or change a TextView
         }
 

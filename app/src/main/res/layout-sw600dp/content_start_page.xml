@@ -32,6 +32,15 @@
             android:orientation="vertical"
             >
 
+            <Button
+                android:id="@+id/buttonAdvancedSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/advancedSearch"
+                android:textColor="@color/fontColorTextWhite"
+                android:textSize="24sp"
+                android:visibility="gone" />
             <ProgressBar
                 android:id="@+id/progressBar3"
                 style="?android:attr/progressBarStyleHorizontal"
@@ -108,7 +117,7 @@
             <TextView
                 android:id="@+id/ingredientsTextView"
                 android:layout_width="match_parent"
-                android:layout_height="562dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center|top"
                 android:gravity="center|top"
                 android:textColor="@color/fontColorTextWhite"

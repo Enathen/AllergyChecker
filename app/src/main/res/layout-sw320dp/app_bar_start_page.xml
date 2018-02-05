@@ -115,6 +115,7 @@
                 fab:fab_size="normal" />
 
         </com.github.clans.fab.FloatingActionMenu>
+
     </android.support.constraint.ConstraintLayout>
 
 </android.support.design.widget.CoordinatorLayout>

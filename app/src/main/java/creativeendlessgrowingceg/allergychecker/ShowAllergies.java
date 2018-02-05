@@ -93,7 +93,12 @@ public class ShowAllergies extends Fragment {
         }
         parentFrame = (FrameLayout) inflater.inflate(R.layout.fragment_show_allergies, container, false);
         parentLinearLayout =(LinearLayout) parentFrame.findViewById(R.id.showAllergiesLinearLayout);
-        new ShowAllergies.CalcAllergy(this,inflater,container).execute();
+        if(!allergies.isEmpty()){
+            new ShowAllergies.CalcAllergy(this,inflater,container).execute();
+        }else{
+            parentLinearLayout.findViewById(R.id.textViewAllergiesFrag).setVisibility(View.VISIBLE);
+            parentLinearLayout.findViewById(R.id.pbShowAllergies).setVisibility(View.GONE);
+        }
 
         return parentFrame;
     }

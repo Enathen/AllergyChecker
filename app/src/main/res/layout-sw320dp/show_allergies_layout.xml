@@ -8,10 +8,10 @@
     <LinearLayout
         android:id="@+id/showAllergiesLanguage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:layout_weight="3"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
@@ -23,9 +23,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="left|center"
-            android:layout_height="match_parent">
+            android:gravity="left|center">
 
             <TextView
                 android:id="@+id/textViewStaticLanguage"
@@ -40,10 +40,10 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_weight="1"
-            android:gravity="left|center"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left|center">
 
             <TextView
                 android:id="@+id/textViewLocaleLanguage"
@@ -62,9 +62,9 @@
         android:id="@+id/textViewAllergicAgainst"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_marginLeft="10dp"
         android:textAlignment="textStart"
         android:textColor="@color/fontColorTextWhite"
-        android:textSize="24sp" />
+        android:textSize="30sp" />
 
 </LinearLayout>

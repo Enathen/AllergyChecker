@@ -146,13 +146,6 @@ public class HistoryFragment extends Fragment {
                 tv.setTextColor(Color.WHITE);
                 tv.setVisibility(View.INVISIBLE);
 
-                tv.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        v.setVisibility(View.INVISIBLE);
-                        topLinLayOut.removeView(tv);
-                    }
-                });
                 final Button button = new Button(getContext());
                 button.setBackgroundColor(Color.rgb(36,49,60));
                 button.setTextColor(Color.WHITE);
@@ -169,6 +162,14 @@ public class HistoryFragment extends Fragment {
                         topLinLayOut.removeView(newLinearLayout);
 
 
+                    }
+                });
+                tv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        v.setVisibility(View.INVISIBLE);
+                        topLinLayOut.removeView(tv);
+                        topLinLayOut.removeView(button);
                     }
                 });
                 String correctString = s.substring(0, 20);

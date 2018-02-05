@@ -63,8 +63,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:layout_marginLeft="10dp"
         android:textAlignment="textStart"
         android:textColor="@color/fontColorTextWhite"
-        android:textSize="24sp" />
+        android:textSize="36sp" />
 
 </LinearLayout>

@@ -36,7 +36,7 @@
 
         <EditText
             android:id="@+id/editTextFragmentTranslate"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
@@ -44,6 +44,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLength="300"
+            android:layout_marginRight="8dp"
             android:textColor="@color/fontColorTextWhite" />
     </RelativeLayout>
 

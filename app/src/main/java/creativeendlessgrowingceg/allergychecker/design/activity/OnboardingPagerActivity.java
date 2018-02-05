@@ -1,7 +1,6 @@
 package creativeendlessgrowingceg.allergychecker.design.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -43,12 +42,12 @@ public class OnboardingPagerActivity extends ActionBarActivity implements
         mPagerMgr.init();
         mPagerMgr.setTakeoffActivity(TakeoffActivity.class);
 
-        Page p = new Page(0, "#19b3ad", R.drawable.wheat,getString(R.string.firstIntro));
+        Page p = new Page(0, "#19b3ad", R.drawable.slide,getString(R.string.firstIntro));
 
         mPagerMgr.addPage(p);
-        p = new Page(1, "#354ABC", R.drawable.cameraclicked,getString(R.string.secondIntro));
+        p = new Page(1, "#354ABC", R.drawable.slide1,getString(R.string.secondIntro));
         mPagerMgr.addPage(p);
-        p = new Page(2, "#23f353", R.drawable.textbox,getString(R.string.thirdIntro));
+        p = new Page(2, "#23f353", R.drawable.slide2,getString(R.string.thirdIntro));
         mPagerMgr.addPage(p);
 
         Log.e("onCreate", "ViewpagerActivity onCreate called ---------------------------------->");
@@ -178,9 +177,10 @@ public class OnboardingPagerActivity extends ActionBarActivity implements
         if(lTakeoffActivity == null)
             lTakeoffActivity= TakeoffActivity.class;
 
-        Intent i = new Intent(this,lTakeoffActivity);
+        /*Intent i = new Intent(this,lTakeoffActivity);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
         startActivity(i);
-        finish();
+        finish();*/
+        onBackPressed();
     }
 }

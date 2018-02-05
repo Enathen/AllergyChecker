@@ -48,4 +48,10 @@
         android:layout_height="match_parent"
         android:gravity="center" />
 
+    <ProgressBar
+        android:id="@+id/progressBarLanguage"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </FrameLayout>

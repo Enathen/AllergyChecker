@@ -289,6 +289,17 @@
     <string name="netherlands">Hollannin kieli</string>
     <string name="header_subscriptions">Subscriptions</string>
     <string name="premium">Premium</string>
+    <string name="noAllergies">No Allergies</string>
+    <string name="holdCamera">Hold camera down to open more options.</string>
+    <string name="foundABug">Found a bug? Send tips!</string>
+    <string name="greatApp">Found this app helpful? Rate it!</string>
+    <string name="shareWithFriend">Found this app helpful? Share it with a friend!</string>
+    <string name="missingIngredient">Found a missing ingredient? Send a tips!</string>
+    <string name="wonderfulDay">Have a wonderful day!</string>
+    <string name="holdHistory">In History tab hold down timestamp to view more information</string>
+    <string name="foundBadTranslation">Found bad translation? Help translate it!</string>
+    <string name="advancedSearch">AdvancedSearch</string>
+    <string name="regularSearch">Regular search</string>
 
 
 </resources>

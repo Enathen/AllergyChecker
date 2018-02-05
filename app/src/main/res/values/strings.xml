@@ -341,4 +341,15 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="premium">Premium</string>
+    <string name="noAllergies">No allergies selected</string>
+    <string name="holdCamera">Hold camera down to open more options.</string>
+    <string name="foundABug">Found a bug? Send tips!</string>
+    <string name="greatApp">Found this app helpful? Rate it!</string>
+    <string name="shareWithFriend">Found this app helpful? Share it with a friend!</string>
+    <string name="missingIngredient">Found a missing ingredient? Send a tips!</string>
+    <string name="wonderfulDay">Have a wonderful day!</string>
+    <string name="holdHistory">In History tab hold down date to view more information</string>
+    <string name="foundBadTranslation">Found bad translation? Help translate it!</string>
+    <string name="advancedSearch">AdvancedSearch</string>
+    <string name="regularSearch">Regular search</string>
 </resources>

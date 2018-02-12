@@ -38,6 +38,7 @@ public class ShowAllergies extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private HashSet<Integer> allergies;
+    private HashSet<ImageView> imageViewHashSetToDestroy = new HashSet<>();
     private ArrayList<Locale> categories;
     private FrameLayout parentFrame;
     private LinearLayout parentLinearLayout;
@@ -67,13 +68,19 @@ public class ShowAllergies extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("HashSet",allergies);
+        outState.putSerializable("ArrayList",categories);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
         if (bundle != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-            allergies = (HashSet<Integer>) bundle.getSerializable("HashSet");
             categories = (ArrayList<Locale>) bundle.getSerializable("ArrayList");
         }
         if(savedInstanceState!= null){
@@ -88,11 +95,12 @@ public class ShowAllergies extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         if(savedInstanceState!= null){
-            allergies = (HashSet<Integer>) savedInstanceState.getSerializable("HashSet");
             categories = (ArrayList<Locale>) savedInstanceState.getSerializable("ArrayList");
         }
         parentFrame = (FrameLayout) inflater.inflate(R.layout.fragment_show_allergies, container, false);
         parentLinearLayout =(LinearLayout) parentFrame.findViewById(R.id.showAllergiesLinearLayout);
+        allergies = new LoadUIAllergies().getAllergies(this);
+
         if(!allergies.isEmpty()){
             new ShowAllergies.CalcAllergy(this,inflater,container).execute();
         }else{
@@ -153,6 +161,7 @@ public class ShowAllergies extends Fragment {
                 final LinearLayout pLinearLayout = (LinearLayout) inflater.inflate(R.layout.show_allergies_layout, container, false);
                 final LinearLayout linearLayout = (LinearLayout) pLinearLayout.findViewById(R.id.showAllergiesLanguage);
                 ((ImageView)linearLayout.findViewById(R.id.imageViewFlag)).setImageResource(LanguagesAccepted.getFlag(category.getLanguage()));
+                imageViewHashSetToDestroy.add(((ImageView)linearLayout.findViewById(R.id.imageViewFlag)));
                 ((TextView)linearLayout.findViewById(R.id.textViewStaticLanguage)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryNameStatic(category.getLanguage()),getContext()));
                 ((TextView)linearLayout.findViewById(R.id.textViewLocaleLanguage)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryName(category.getLanguage()),getContext()));
                 ((TextView)pLinearLayout.findViewById(R.id.textViewAllergicAgainst)).setText(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),R.string.allergyAgianst,category.getLanguage())));
@@ -216,6 +225,18 @@ public class ShowAllergies extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+
+    }
+    /**
+     * Called when the fragment is no longer in use.  This is called
+     * after {@link #onStop()} and before {@link #onDetach()}.
+     */
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        for (ImageView imageView : imageViewHashSetToDestroy) {
+            imageView.setImageDrawable(null);
+        }
     }
 
     /**

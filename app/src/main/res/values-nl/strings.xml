@@ -128,10 +128,6 @@
     <string name="deleteHistory">Geschiedenis verwijderen</string>
     <string name="scanPhotos">Nog geen geschiedenis!</string>
 
-    <string name="service_label">My Spell Checker</string>
-
-
-
 
     <string name="language">Taal</string>
     <string name="languageFrom">vertalen vanuit</string>
@@ -220,18 +216,12 @@
     <string name="inputIngredients">invoer ingrediënten</string>
     <string name="rate">Beoordeel</string>
     <string name="pressMe">druk op me\n om door te gaan!</string>
-    <string name="firstIntro">Als u op dit pictogram in het menu drukt, wordt het venster voor allergieën weergegeven. Van
-        daar kunt u uw allergieën invoegen.</string>
-    <string name="secondIntro">Tik om de camera te openen om ingrediënten te scannen. De camera vasthouden
-        knop naar beneden, verschijnt er een nieuw venster. In het nieuwe menu kunnen ingrediënten handmatig worden ingevoegd door te typen
-        ze in.</string>
-    <string name="thirdIntro">Zo gebruikt u de camera:\n
-        1. Houd de camera boven de tekst.\n
-        2. Er verschijnen witte tekstvakken.\n
-        3. Wanneer de tekst is bedekt. ​\n
-        4. TAP één tekstvak!\n
-        5. Tekst opgeslagen. Wacht op resultaat !!
-        </string>
+    <string name="firstIntro">Bij het scannen van tekst met de camera. Tekstvakken zullen de tekst behandelen. Tik op het tekstvak
+        zorgt ervoor dat de app alle tekst in de tekstvakken die zichtbaar zijn op het scherm analyseert. Een goed voorbeeld hoe
+        de tekstvakken moeten er uitzien zoals hierboven.</string>
+    <string name="secondIntro">Dit is ook een goed voorbeeld hoe de vakken eruit kunnen zien.</string>
+    <string name="thirdIntro">Tik niet op de tekstvakken wanneer de tekstvakken op deze manier verschijnen
+        omdat het slechts een klein percentage van de volledige tekst zal scannen.</string>
     <string name="tutorial">Zelfstudie</string>
     <string name="anis">Anis</string>
     <string name="coriander">Koriander</string>
@@ -281,7 +271,6 @@
     <string name="useflash">Flits Aan</string>
     <string name="useNoFlash">Flits uit</string>
     <string name="SharingIsCaring">Sharing is caring</string>
-    <string name="help">help</string>
     <string name="myPreference">Mijn voorkeuren</string>
     <string name="showAllergies">Toon allergieën</string>
     <string name="allergyAgianst">Allergisch tegen</string>
@@ -296,18 +285,18 @@
     <string name="german">Duitse</string>
     <string name="netherlands">Nederlands</string>
     <string name="french">Frans</string>
-    <string name="header_subscriptions">Subscriptions</string>
-    <string name="premium">Premium</string>
-    <string name="noAllergies">No Allergies</string>
-    <string name="holdCamera">Hold camera down to open more options.</string>
-    <string name="foundABug">Found a bug? Send tips!</string>
-    <string name="greatApp">Found this app helpful? Rate it!</string>
-    <string name="shareWithFriend">Found this app helpful? Share it with a friend!</string>
-    <string name="missingIngredient">Found a missing ingredient? Send a tips!</string>
-    <string name="wonderfulDay">Have a wonderful day!</string>
-    <string name="holdHistory">In History tab hold down timestamp to view more information</string>
-    <string name="foundBadTranslation">Found bad translation? Help translate it!</string>
-    <string name="advancedSearch">AdvancedSearch</string>
-    <string name="regularSearch">Regular search</string>
-
+    <string name="header_subscriptions">abonnementen</string>
+    <string name="noAllergies">Geen allergieën geselecteerd</string>
+    <string name="holdCamera">Houd de camera ingedrukt om meer opties te openen.</string>
+    <string name="foundABug">Een bug gevonden? Verzend tips!</string>
+    <string name="greatApp">Vond je deze app nuttig? Beoordeel het!</string>
+    <string name="shareWithFriend">Vond je deze app nuttig? Deel het met een vriend!</string>
+    <string name="wonderfulDay">Fijne dag!</string>
+    <string name="holdHistory">Houd de datum in de geschiedenis ingedrukt om meer informatie te bekijken</string>
+    <string name="foundBadTranslation">Slechte vertaling gevonden? Help het vertalen!</string>
+    <string name="advancedSearch">Geavanceerd zoeken</string>
+    <string name="regularSearch">Gebruikelijk zoeken</string>
+    <string name="italian">Italiaans</string>
+    <string name="portuguese">Portugese</string>
+    <string name="polish">Poolse</string>
 </resources>

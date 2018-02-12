@@ -126,10 +126,6 @@
     <string name="deleteHistory">Verlauf löschen</string>
     <string name="scanPhotos">Noch keine Geschichte!</string>
 
-    <string name="service_label">My Spell Checker</string>
-
-
-
 
     <string name="language">Sprache</string>
     <string name="languageFrom">Übersetzen von</string>
@@ -217,18 +213,12 @@
     <string name="inputIngredients">Eingabe Zutaten</string>
     <string name="rate">Bewertung</string>
     <string name="pressMe">Drück mich \num fortzufahren!</string>
-    <string name="firstIntro">Durch Drücken dieses Symbols aus dem Menü wird das Allergiefenster geöffnet. Von
-        Dort können Sie Ihre Allergien einfügen.</string>
-    <string name="secondIntro">Tippen Sie auf, um die Kamera zum Scannen von Zutaten aufzurufen. Halten Sie die Kamera
-        Taste gedrückt, öffnet ein neues Fenster. Aus dem neuen Menü können Zutaten manuell eingegeben werden
-        sie in.</string>
-    <string name="thirdIntro">So verwenden Sie die Kamera: \ n
-        1. Halten Sie die Kamera über den Text. \n
-        2. Weiße Textfelder erscheinen. \n
-        3. Wenn der Text abgedeckt ist. \n
-        4. TAP ein Textfeld! \n
-        4. Text gespeichert. Auf Ergebnis warten !!
-        </string>
+    <string name="firstIntro">Beim Scannen von Text mit der Kamera. Textfelder werden den Text abdecken. Tippen Sie auf das Textfeld
+        Die App analysiert den gesamten Text in den Textfeldern, die auf dem Bildschirm angezeigt werden können. Ein gutes Beispiel wie
+        Die Textfelder sollten so aussehen wie oben.</string>
+    <string name="secondIntro">Dies ist auch ein gutes Beispiel dafür, wie die Boxen aussehen könnten.</string>
+    <string name="thirdIntro">Sie sollten nicht auf die Textfelder tippen, wenn die Textfelder so angezeigt werden
+        da nur ein kleiner Prozentsatz des gesamten Texts gescannt wird.</string>
     <string name="tutorial">Tutorial</string>
     <string name="anis">Anis</string>
     <string name="coriander">Koriander </string>
@@ -278,7 +268,6 @@
     <string name="useflash">Blitz an</string>
     <string name="useNoFlash">Blitz Off</string>
     <string name="SharingIsCaring">Sharing is caring</string>
-    <string name="help">Hilfe</string>
     <string name="myPreference">Meine bevorzugte</string>
     <string name="showAllergies">Zeige Allergien</string>
     <string name="allergyAgianst">Allergisch gegen</string>
@@ -293,18 +282,19 @@
     <string name="german">Deutsch</string>
     <string name="french">Französisch</string>
     <string name="netherlands">Niederländisch</string>
-    <string name="header_subscriptions">Subscriptions</string>
-    <string name="premium">Premium</string>
-    <string name="noAllergies">No Allergies</string>
-    <string name="holdCamera">Hold camera down to open more options.</string>
-    <string name="foundABug">Found a bug? Send tips!</string>
-    <string name="greatApp">Found this app helpful? Rate it!</string>
-    <string name="shareWithFriend">Found this app helpful? Share it with a friend!</string>
-    <string name="missingIngredient">Found a missing ingredient? Send a tips!</string>
-    <string name="wonderfulDay">Have a wonderful day!</string>
-    <string name="holdHistory">In History tab hold down timestamp to view more information</string>
-    <string name="foundBadTranslation">Found bad translation? Help translate it!</string>
-    <string name="advancedSearch">AdvancedSearch</string>
-    <string name="regularSearch">Regular search</string>
+    <string name="header_subscriptions">Abonnements</string>
+    <string name="noAllergies">Keine Allergien ausgewählt</string>
+    <string name="holdCamera">Halten Sie die Kamera gedrückt, um weitere Optionen zu öffnen.</string>
+    <string name="foundABug">Einen Fehler gefunden? Sende Tipps!</string>
+    <string name="greatApp">Fanden Sie diese App hilfreich? Bewerten Sie es!</string>
+    <string name="shareWithFriend">Fanden Sie diese App hilfreich? Teile es mit einem Freund!</string>
+    <string name="wonderfulDay">Einen schönen Tag!</string>
+    <string name="holdHistory">Auf der Registerkarte Verlauf halten Sie das Datum gedrückt, um weitere Informationen anzuzeigen</string>
+    <string name="foundBadTranslation">Eine schlechte Übersetzung gefunden? Hilf mit, es zu übersetzen!</string>
+    <string name="advancedSearch">Erweiterte Suche</string>
+    <string name="regularSearch">regelmäßige Suche</string>
+    <string name="italian">Italienisch</string>
+    <string name="portuguese">Portugiesische</string>
+    <string name="polish">Polnische</string>
 
 </resources>

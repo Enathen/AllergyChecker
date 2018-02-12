@@ -71,6 +71,7 @@ public class SubscriptionsViewController {
     }
 
     public boolean isPremiumPurchased() {
+        Log.d(TAG, "isPremiumPurchased: " + mIsPremium);
         return mIsPremium;
     }
 

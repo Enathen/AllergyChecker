@@ -117,6 +117,7 @@ public class BillingManager implements PurchasesUpdatedListener {
         // Start setup. This is asynchronous and the specified listener will be called
         // once setup completes.
         // It also starts to report all the new purchases through onPurchasesUpdated() callback.
+
         startServiceConnection(new Runnable() {
             @Override
             public void run() {
@@ -390,6 +391,9 @@ public class BillingManager implements PurchasesUpdatedListener {
                     if (executeOnSuccess != null) {
                         executeOnSuccess.run();
                     }
+                }else{
+                    if(mActivityStartPage != null)
+                     mActivityStartPage.loadInter();
                 }
                 mBillingClientResponseCode = billingResponseCode;
             }

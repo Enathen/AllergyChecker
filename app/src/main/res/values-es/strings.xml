@@ -124,11 +124,6 @@
     <string name="deleteHistory">Borrar historial</string>
     <string name="scanPhotos">Sin historia aún!</string>
 
-    <string name="service_label">My Spell Checker</string>
-
-
-
-
 
     <string name="language">Idioma</string>
     <string name="languageFrom">Traducir de</string>
@@ -216,18 +211,12 @@
     <string name="inputIngredients">Escribir ingredientes</string>
     <string name="rate">Velocidad</string>
     <string name="pressMe">Presionarme \nContinuar!</string>
-    <string name="firstIntro">Al presionar este ícono desde el menú aparece la ventana de alergia. De
-        allí puedes insertar tus alergias.</string>
-    <string name="secondIntro">Toque para abrir la cámara y escanear los ingredientes. Sosteniendo la cámara
-        presionar el botón, aparece una nueva ventana. Desde el nuevo menú, los ingredientes se pueden insertar manualmente tecleando
-        ellos en. </string>
-    <string name="thirdIntro">Así es como usas la cámara:\n
-        1. Mantenga la cámara sobre el texto.\n
-        2. Aparecen cuadros de texto blancos.\n
-        3. Cuando cubrió el texto.\n
-        4. Toque un cuadro de texto!\n
-        4. Texto guardado. esperar el resultado!!
-        </string>
+    <string name="firstIntro">Al escanear texto con la cámara. Los cuadros de texto cubrirán el texto. Tocando el cuadro de texto
+        hará que la aplicación analice todo el texto en los cuadros de texto visibles en la pantalla. Un buen ejemplo de cómo
+        los cuadros de texto deben mirar es el de arriba.</string>
+    <string name="secondIntro">Este también es un buen ejemplo de cómo se verían las cajas.</string>
+    <string name="thirdIntro">No debe tocar los cuadros de texto cuando los cuadros de texto aparecen así
+        ya que solo escaneará un pequeño porcentaje del texto completo.</string>
     <string name="tutorial">Tutorial</string>
     <string name="anis">Anis</string>
     <string name="coriander">Cilantro </string>
@@ -275,7 +264,6 @@
     <string name="useflash">Usar linterna</string>
     <string name="useNoFlash">Usar no linterna</string>
     <string name="SharingIsCaring">Sharing is caring</string>
-    <string name="help">Ayuda</string>
     <string name="myPreference">Mis preferencias</string>
     <string name="showAllergies">Mostrar alergias</string>
     <string name="allergyAgianst">Alérgico contra</string>
@@ -291,19 +279,20 @@
     <string name="german">Alemán</string>
     <string name="french">francés</string>
     <string name="netherlands">holandés</string>
-    <string name="header_subscriptions">Subscriptions</string>
-    <string name="premium">Premium</string>
-    <string name="noAllergies">No Allergies</string>
-    <string name="holdCamera">Hold camera down to open more options.</string>
-    <string name="foundABug">Found a bug? Send tips!</string>
-    <string name="greatApp">Found this app helpful? Rate it!</string>
-    <string name="shareWithFriend">Found this app helpful? Share it with a friend!</string>
-    <string name="missingIngredient">Found a missing ingredient? Send a tips!</string>
-    <string name="wonderfulDay">Have a wonderful day!</string>
-    <string name="holdHistory">In History tab hold down timestamp to view more information</string>
-    <string name="foundBadTranslation">Found bad translation? Help translate it!</string>
-    <string name="advancedSearch">AdvancedSearch</string>
-    <string name="regularSearch">Regular search</string>
+    <string name="header_subscriptions">Suscripciones</string>
+    <string name="noAllergies">Sin alergias seleccionadas</string>
+    <string name="holdCamera">Mantenga presionada la cámara para abrir más opciones.</string>
+    <string name="foundABug">Encontrado un error? Enviar sugerencias!</string>
+    <string name="greatApp">¿Te resultó útil esta aplicación? ¡Puntúalo!</string>
+    <string name="shareWithFriend">¿Te resultó útil esta aplicación? ¡Compártelo con un amigo!</string>
+    <string name="wonderfulDay">¡Ten un día maravilloso!</string>
+    <string name="holdHistory">En la pestaña Historial, mantenga presionada la fecha para ver más información</string>
+    <string name="foundBadTranslation">¿Encontraste mala traducción? ¡Ayuda a traducirlo!</string>
+    <string name="advancedSearch">Búsqueda Avanzada</string>
+    <string name="regularSearch">Búsqueda regular</string>
+    <string name="italian">Italiano</string>
+    <string name="portuguese">Portuguesa</string>
+    <string name="polish">Polaco</string>
 
 
 </resources>

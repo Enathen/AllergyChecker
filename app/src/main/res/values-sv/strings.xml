@@ -122,10 +122,6 @@
     <string name="deleteHistory">Radera Historien</string>
     <string name="scanPhotos">Ingen historik än</string>
 
-    <string name="service_label">My Spell Checker</string>
-
-
-
 
     <string name="language">Språk</string>
     <string name="languageFrom">Översätt från</string>
@@ -207,18 +203,12 @@
     <string name="inputIngredients">Skriv ingredienser</string>
     <string name="rate">Betygsätt</string>
     <string name="pressMe">Tryck mig\nFör att fortsätta!</string>
-    <string name="firstIntro">"Mina Allergier" används för att fylla i dina allergier.\n
-        - Du hittar den i menyn.</string>
-    <string name="secondIntro">Tryck för att få fram Kameran.
-        Håll knappen nere för fler alternativ.
-    </string>
-    <string name="thirdIntro">Såhär använder du kameran:\n
-        1. Håll kameran över en text.\n
-        2. Vita boxar kommer täcka texten.\n
-        3. När de vita boxarna täckt texten.\n
-        4. Tryck på en vit box när det ser ut som all text är täckt!\n
-        5. Texten kommer då sparas, och analyseras.
-        </string>
+    <string name="firstIntro">När du skannar text med kameran. Kommer textrutor att täcka texten. Tryck på textrutan
+        så att appen analyserar all text i textrutorna som visas på skärmen. Ett bra exempel hur
+        Textrutorna ska se är den ovanstående.</string>
+    <string name="secondIntro">Detta är också ett bra exempel på hur textrutorna kan se ut.</string>
+    <string name="thirdIntro">Du bör inte trycka på textrutorna när textrutorna visas så här
+        eftersom det bara kommer att skanna en liten procentandel av hela texten.</string>
     <string name="tutorial">Handledning</string>
     <string name="anis">Anis</string>
     <string name="coriander">Koriander</string>
@@ -249,7 +239,7 @@
     <string name="pepsin">Pepsin</string>
 
     <string name="halal">Halal</string>
-    <string name="start">Start Sida</string>
+    <string name="start">Startsida</string>
     <string name="holdFor">Håll för mer information</string>
     <string name="about">Om</string>
     <string name="helpTranslate">Hjälp Översätt</string>
@@ -267,7 +257,6 @@
     <string name="useflash">ficklampa på</string>
     <string name="useNoFlash"> ficklampa av</string>
     <string name="SharingIsCaring">Sharing is caring</string>
-    <string name="help">Hjälp</string>
     <string name="myPreference">Mina Preferenser</string>
     <string name="showAllergies">Visa Allergier</string>
     <string name="allergyAgianst">Allergisk mot</string>
@@ -282,22 +271,22 @@
     <string name="german">Tyska</string>
     <string name="beef">Biff</string>
     <string name="meat">Kött</string>
-    <string name="pumpkinSeed">Pumpa Frön</string>
+    <string name="pumpkinSeed">Pumpafrön</string>
     <string name="veal">Kalv</string>
     <string name="french">franska</string>
     <string name="netherlands">holländska</string>
-    <string name="header_subscriptions">Subscriptions</string>
-    <string name="premium">Premium</string>
-    <string name="noAllergies">No Allergies</string>
-    <string name="holdCamera">Hold camera down to open more options.</string>
-    <string name="foundABug">Found a bug? Send tips!</string>
-    <string name="greatApp">Found this app helpful? Rate it!</string>
-    <string name="shareWithFriend">Found this app helpful? Share it with a friend!</string>
-    <string name="missingIngredient">Found a missing ingredient? Send a tips!</string>
-    <string name="wonderfulDay">Have a wonderful day!</string>
-    <string name="holdHistory">In History tab hold down timestamp to view more information</string>
-    <string name="foundBadTranslation">Found bad translation? Help translate it!</string>
-    <string name="advancedSearch">AdvancedSearch</string>
-    <string name="regularSearch">Regular search</string>
-
+    <string name="header_subscriptions">Abonnemang</string>
+    <string name="noAllergies">Inga allergier valda</string>
+    <string name="holdCamera">Håll kameran nere för mer tips.</string>
+    <string name="foundABug">Hittat ett fel? Skicka tips!</string>
+    <string name="greatApp">Tycker du denna app är hjälpsam? Betygsätt den!</string>
+    <string name="shareWithFriend">Tycker du denna app är hjälpsam? Dela den med en vän!</string>
+    <string name="wonderfulDay">Ha en underbar dag!</string>
+    <string name="holdHistory">I historie fliken tryck och håll ner datument för att få fram mer information</string>
+    <string name="foundBadTranslation">Hittat en dålig översättning? Hjälp översätt!</string>
+    <string name="advancedSearch">Avancerad sökning</string>
+    <string name="regularSearch">Vanlig sökning</string>
+    <string name="italian">Italienska</string>
+    <string name="portuguese">Portugisiska</string>
+    <string name="polish">Polska</string>
 </resources>

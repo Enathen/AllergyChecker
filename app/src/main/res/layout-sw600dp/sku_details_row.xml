@@ -17,7 +17,6 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_view"
     style="@style/CardViewStyle"
     android:layout_height="@dimen/sku_details_row_height"
     app:cardBackgroundColor="@color/row_bg_color">
@@ -27,7 +26,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:background="?attr/selectableItemBackground"
+        android:background="@color/colorPrimaryDark"
         android:padding="@dimen/sku_details_row_padding">
 
         <LinearLayout
@@ -43,6 +42,7 @@
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:textColor="@color/fontColorTextWhite"
                 android:textSize="@dimen/sku_details_row_text_size"
                 android:textStyle="bold"/>
 
@@ -75,6 +75,7 @@
                 android:layout_marginStart="@dimen/single_padding"
                 android:layout_marginLeft="@dimen/single_padding"
                 android:layout_width="0dp"
+                android:textColor="@color/fontColorTextWhite"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/sku_details_row_description_text_size"
                 android:layout_weight="1"/>

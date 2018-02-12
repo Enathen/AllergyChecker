@@ -128,10 +128,6 @@
     <string name="deleteHistory">Effacer l\'historique</string>
     <string name="scanPhotos">Pas encore d\'histoire!</string>
 
-    <string name="service_label">My Spell Checker</string>
-
-
-
 
     <string name="language">La langue</string>
     <string name="languageFrom">Traduit depuis</string>
@@ -219,18 +215,12 @@
     <string name="inputIngredients">Ingrédients d\'entrée</string>
     <string name="rate">Évaluer</string>
     <string name="pressMe">Presse moi \npour continuer!</string>
-    <string name="firstIntro">Appuyer sur cette icône dans le menu fait apparaître la fenêtre d\'allergie. De
-        Là, vous pouvez insérer vos allergies.</string>
-    <string name="secondIntro">Appuyez sur pour faire apparaître l\'appareil photo pour numériser les ingrédients. Tenant la caméra
-        bouton bas, ouvre une nouvelle fenêtre. À partir du nouveau menu, les ingrédients peuvent être insérés manuellement en tapant
-        les dans.</string>
-    <string name="thirdIntro">Voici comment vous utilisez l\'appareil photo: \n
-        1. Tenez la caméra par-dessus le texte. \n
-        2. Des zones de texte blanches apparaissent. \n
-        3. Lorsque couvert le texte. \n
-        4. TAP une boîte de texte! \n
-        4. Texte enregistré. Attendez le résultat !!
-        </string>
+    <string name="firstIntro">Lors de la numérisation de texte avec l\'appareil photo. Les zones de texte couvriront le texte. En tapant la zone de texte
+        fera l\'application analyser tout le texte dans les zones de texte visibles sur l\'écran. Un bon exemple comment
+        les zones de texte doivent ressembler à celle ci-dessus.</string>
+    <string name="secondIntro">C\'est aussi un bon exemple de la façon dont les boîtes pourraient ressembler.</string>
+    <string name="thirdIntro">Vous ne devez pas appuyer sur les zones de texte lorsque les zones de texte apparaissent comme ceci
+        car il ne numérisera qu\'un petit pourcentage du texte intégral.</string>
     <string name="tutorial">Tutoriel</string>
     <string name="anis">Anis</string>
     <string name="coriander">Coriandre</string>
@@ -280,7 +270,6 @@
     <string name="useflash">flash sur</string>
     <string name="useNoFlash">flash désactivé</string>
     <string name="SharingIsCaring">Sharing is caring</string>
-    <string name="help">Aidez-moi</string>
     <string name="myPreference">Mes préférences</string>
     <string name="showAllergies">Afficher les allergies</string>
     <string name="allergyAgianst">Allergique contre</string>
@@ -295,19 +284,19 @@
     <string name="french">français</string>
     <string name="german">Allemand</string>
     <string name="netherlands">Néerlandais</string>
-    <string name="header_subscriptions">Subscriptions</string>
-    <string name="premium">Premium</string>
-    <string name="noAllergies">No Allergies</string>
-    <string name="holdCamera">Hold camera down to open more options.</string>
-    <string name="foundABug">Found a bug? Send tips!</string>
-    <string name="greatApp">Found this app helpful? Rate it!</string>
-    <string name="shareWithFriend">Found this app helpful? Share it with a friend!</string>
-    <string name="missingIngredient">Found a missing ingredient? Send a tips!</string>
-    <string name="wonderfulDay">Have a wonderful day!</string>
-    <string name="holdHistory">In History tab hold down timestamp to view more information</string>
-    <string name="foundBadTranslation">Found bad translation? Help translate it!</string>
-    <string name="advancedSearch">AdvancedSearch</string>
-    <string name="regularSearch">Regular search</string>
-
+    <string name="header_subscriptions">Abonnements</string>
+    <string name="noAllergies">Aucune allergie sélectionnée</string>
+    <string name="holdCamera">Tenez l\'appareil photo enfoncé pour ouvrir plus d\'options.</string>
+    <string name="foundABug">Trouvé un bug? Envoyez des astuces!</string>
+    <string name="greatApp">Vous avez trouvé cette application utile? Notez le!</string>
+    <string name="shareWithFriend">Vous avez trouvé cette application utile? Partagez le avec un ami!</string>
+    <string name="wonderfulDay">Bonne journée!</string>
+    <string name="holdHistory">Dans l\'onglet Historique, appuyez sur la date pour afficher plus d\'informations</string>
+    <string name="foundBadTranslation">Mauvaise traduction trouvée? Aide le traduire!</string>
+    <string name="advancedSearch">Recherche Avancée</string>
+    <string name="regularSearch">recherche habituelle</string>
+    <string name="italian">Italien</string>
+    <string name="portuguese">Portugaise</string>
+    <string name="polish">Polonaise</string>
 
 </resources>

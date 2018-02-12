@@ -7,7 +7,7 @@ import android.content.Context;
  * @version 2018-01-23
  */
 
-public class TextHandler {
+class TextHandler {
     private static final TextHandler ourInstance = new TextHandler();
 
     public static TextHandler getInstance() {

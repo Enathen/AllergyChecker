@@ -43,7 +43,7 @@ public class SharedPreferenceClass {
         mEdit1.apply();
     }
 
-    public static HashSet<Integer> getSharedPreference(StartPage context, String getSharedPreference, String Mother) {
+    public static HashSet<Integer> getSharedPreference(Context context, String getSharedPreference, String Mother) {
         SharedPreferences sp = context.getSharedPreferences(Mother, Context.MODE_PRIVATE);
         Set<String> set = sp.getStringSet(getSharedPreference, new HashSet<String>());
         HashSet<Integer> hashSet = new HashSet<>();
@@ -64,5 +64,17 @@ public class SharedPreferenceClass {
 
     public static Set<String> getSharedPreferenceString(Context context, String getSharedPreference, String Mother) {
         return context.getSharedPreferences(Mother, Context.MODE_PRIVATE).getStringSet(getSharedPreference, new HashSet<String>());
+    }
+
+    public static void addSharedPreference(StartPage context, HashSet<Integer> hashSet, String allergySave, String tag) {
+        SharedPreferences sp = context.getSharedPreferences(tag, Context.MODE_PRIVATE);
+        SharedPreferences.Editor mEdit1 = sp.edit();
+        Set<String> set = context.getSharedPreferences(tag, Context.MODE_PRIVATE).getStringSet(allergySave, new HashSet<String>());
+        for (Integer integer : hashSet) {
+            set.add(integer.toString());
+        }
+
+        mEdit1.putStringSet(allergySave, set);
+        mEdit1.apply();
     }
 }

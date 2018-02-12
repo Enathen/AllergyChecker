@@ -123,10 +123,6 @@
     <string name="deleteHistory">Poista Historien</string>
     <string name="scanPhotos">Ei vielä historiaa</string>
 
-    <string name="service_label">My Spell Checker</string>
-
-
-
 
     <string name="language">Kieli</string>
     <string name="languageFrom">Kääntää</string>
@@ -209,18 +205,12 @@
     <string name="inputIngredients">Kirjoita ainesosia</string>
     <string name="rate">nopeus</string>
     <string name="pressMe">Kosketa minua \nJatka!</string>
-    <string name="firstIntro">"Allergiat" käytetään allergioiden täyttämiseen.\n
-        - Löydät sen valikosta.</string>
-    <string name="secondIntro">Tuo kamera näkyviin painamalla.
-        Pidä painiketta painettuna, jos haluat lisätietoja.
-    </string>
-    <string name="thirdIntro">Kameraa käytetään seuraavasti:\n
-        1. Pidä kameraa tekstin yläpuolella.\n
-        2. Valkoiset laatikot kattavat tekstin.\n
-        3. Kun valkoiset laatikot kattavat tekstin.\n
-        4. Kosketa valkoista ruutua, kun kaikki teksti on katettu!\n
-        5. Sitten teksti tallennetaan ja analysoidaan.
-        </string>
+    <string name="firstIntro">Kun skannaat tekstiä kameran kanssa. Teksti-ruutu kattaa tekstin. Napauttamalla tekstiruutua
+        tekee sovelluksen analysoida kaikki teksti ruudulla näkyvissä olevissa tekstiruutuissa. Hyvä esimerkki siitä, miten
+        tekstilaatikoiden pitäisi näyttää on yllä oleva.</string>
+    <string name="secondIntro">Tämä on myös hyvä esimerkki siitä, miten laatikot voivat näyttää.</string>
+    <string name="thirdIntro"> Älä napauta tekstilaatikoita, kun tekstilaatikkot näyttävät näin
+        koska se vain skannaa pienen prosenttiosuuden koko tekstistä.</string>
     <string name="tutorial">Oppitunti</string>
     <string name="anis">Anis</string>
     <string name="coriander">Korianteri</string>
@@ -269,7 +259,6 @@
     <string name="useflash">Taskulamppu on päällä</string>
     <string name="useNoFlash">Taskulampun pois päältä</string>
     <string name="SharingIsCaring">Sharing is caring</string>
-    <string name="help">Auttaa</string>
     <string name="myPreference">Omat asetukset</string>
     <string name="showAllergies">Näytä allergiat</string>
     <string name="allergyAgianst">Allerginen</string>
@@ -287,19 +276,19 @@
     <string name="beef">naudanliha</string>
     <string name="french">Ranskan kieli</string>
     <string name="netherlands">Hollannin kieli</string>
-    <string name="header_subscriptions">Subscriptions</string>
-    <string name="premium">Premium</string>
-    <string name="noAllergies">No Allergies</string>
-    <string name="holdCamera">Hold camera down to open more options.</string>
-    <string name="foundABug">Found a bug? Send tips!</string>
-    <string name="greatApp">Found this app helpful? Rate it!</string>
-    <string name="shareWithFriend">Found this app helpful? Share it with a friend!</string>
-    <string name="missingIngredient">Found a missing ingredient? Send a tips!</string>
-    <string name="wonderfulDay">Have a wonderful day!</string>
-    <string name="holdHistory">In History tab hold down timestamp to view more information</string>
-    <string name="foundBadTranslation">Found bad translation? Help translate it!</string>
-    <string name="advancedSearch">AdvancedSearch</string>
-    <string name="regularSearch">Regular search</string>
-
+    <string name="header_subscriptions">Tilaukset</string>
+    <string name="noAllergies">Ei allergioita valittu</string>
+    <string name="holdCamera">Pidä kamera alhaalla, jos haluat avata muita vaihtoehtoja.</string>
+    <string name="foundABug">Löysitkö virheen? Lähetä vinkkejä!</string>
+    <string name="greatApp">Onko tämä sovellus hyödyllinen? Arvioi se!</string>
+    <string name="shareWithFriend">Onko tämä sovellus hyödyllinen? Jaa se kaverillesi!</string>
+    <string name="wonderfulDay">Ole ihana päivä!</string>
+    <string name="holdHistory">Historiassa-välilehdessä pidä päiväys nähdäksesi lisätietoja</string>
+    <string name="foundBadTranslation">Löytyi huono käännös? Auta kääntää se!</string>
+    <string name="advancedSearch">Tarkennettu Haku</string>
+    <string name="regularSearch">säännöllinen haku</string>
+    <string name="italian">Italialainen</string>
+    <string name="portuguese">Portugalin</string>
+    <string name="polish">Puolan</string>
 
 </resources>

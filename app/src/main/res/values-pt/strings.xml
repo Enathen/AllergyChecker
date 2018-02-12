@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Allergy Checker</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_pager_indicator">SKIP</string>
+    <string name="title_activity_takeoff">App Takes off here</string>
+    <string name="ok">OK</string>
+
+    <string name="permission_camera_rationale">O acesso à câmera é necessário para detecção</string>
+    <string name="no_camera_permission">Este aplicativo não pode ser executado porque não possui permissão da câmera. O aplicativo agora vai sair.</string>
+
+    <string name="nuts">Nozes</string>
+    <string name="almond">Amêndoas</string>
+    <string name="brazil">Castanha-do-pará</string>
+    <string name="cocoa">Cacau</string>
+    <string name="hazelnut">Avelã</string>
+    <string name="macadamia">Porcas de macadâmia</string>
+
+    <string name="pecans">Pecans, Pecan</string>
+    <string name="pili">Pili Nuts</string>
+    <string name="pine">Nozes de pinheiro</string>
+    <string name="pistachios">Pistácios, pistaches</string>
+    <string name="soy">Soja</string>
+    <string name="tiger">Nozes de tigre</string>
+    <string name="walnuts">Nozes</string>
+    <string name="sesame">Sésamo</string>
+
+    <string name="tuna">Atum</string>
+    <string name="salmon">Salmão</string>
+    <string name="caviar">Caviar</string>
+    <string name="anchovies">Anchovas</string>
+    <string name="bass">Baixo</string>
+    <string name="catfish">Peixe-gato</string>
+    <string name="cod">Bacalhau</string>
+    <string name="flounder">Linguado</string>
+    <string name="haddock">Arinca</string>
+    <string name="hake">Pescada</string>
+    <string name="halibut">Linguado</string>
+    <string name="herring">arenque</string>
+    <string name="mahi">Mahi-mahi</string>
+    <string name="perch">Poleiro</string>
+    <string name="pollock">Pollock</string>
+    <string name="pike">Pique</string>
+    <string name="swordfish">Peixe-espada</string>
+    <string name="sole">Único</string>
+    <string name="snapper">Snapper</string>
+    <string name="surimi">Surimi</string>
+    <string name="tilapia">Tilapia</string>
+    <string name="trout">Truta</string>
+
+
+    <string name="barnacle">Barnacle</string>
+    <string name="crab">Caranguejo</string>
+    <string name="crawfish">Lagostins</string>
+    <string name="krill">Krill</string>
+    <string name="lobster">Lagosta</string>
+    <string name="prawns">Camarão</string>
+    <string name="shrimp">Camarão</string>
+    <string name="scampi">scampi</string>
+    <string name="abalone">Abalone</string>
+    <string name="clams">Mexilhão</string>
+    <string name="cockle">Cockle</string>
+    <string name="limpet">Lapa</string>
+    <string name="mussels">Mexilhões</string>
+    <string name="octopus">Polvo</string>
+    <string name="oysters">Ostras</string>
+    <string name="periwinkle">Pervinca</string>
+    <string name="urchin">Urchin</string>
+    <string name="scallops">Vieiras</string>
+    <string name="snails">Caramujos</string>
+    <string name="squid">Lula</string>
+    <string name="whelk">Whelk</string>
+
+    <string name="wheat">Trigo</string>
+    <string name="durum">Durum</string>
+    <string name="emmer">Emmer</string>
+    <string name="rye">Centeio</string>
+    <string name="barley">Cevada</string>
+    <string name="triticale">Triticale</string>
+    <string name="malt">Malte</string>
+    <string name="semolina">Semolina</string>
+    <string name="spelt">Soletrado</string>
+    <string name="farina">Farina</string>
+    <string name="farro">Farro</string>
+    <string name="graham">Graham</string>
+    <string name="kamut">Kamut</string>
+    <string name="einkorn">Einkorn</string>
+
+
+    <string name="apple">maçã</string>
+    <string name="pear">Pera</string>
+    <string name="tomato">Tomate</string>
+    <string name="strawberry">morango</string>
+    <string name="prune">Ameixa seca</string>
+    <string name="pomegranate">Romã</string>
+    <string name="pinapple">Abacaxi</string>
+    <string name="persimmon">Caqui</string>
+    <string name="peach">pêssego</string>
+    <string name="orange">laranja</string>
+    <string name="melon">Melão</string>
+    <string name="mango">Manga</string>
+    <string name="lychee">Lychee</string>
+    <string name="kiwi">Kiwi</string>
+    <string name="grape">Uva</string>
+    <string name="date">Encontro</string>
+    <string name="fig">FIG</string>
+    <string name="coconut">Coco</string>
+    <string name="cherry">Cereja</string>
+    <string name="banana">Banana</string>
+    <string name="apricot">Damasco</string>
+    <string name="acerola">Acerola</string>
+    <string name="avocado">Abacate</string>
+
+    <string name="shellfish">Marisco</string>
+    <string name="gluten">Glúten</string>
+    <string name="fish">Peixe</string>
+    <string name="milk">Leite</string>
+    <string name="seeds">Sementes</string>
+    <string name="deleteHistory">Apagar histórico</string>
+    <string name="scanPhotos">Ainda não há histórico!</string>
+
+
+    <string name="language">Língua</string>
+    <string name="languageFrom">Traduzir de</string>
+    <string name="languageGeneral">Idioma Geral</string>
+    <string name="startPageHeader">Toque abaixo para verificar o texto</string>
+    <string name="definitelyContained">Definitivamente contido</string>
+    <string name="history">História</string>
+    <string name="statistics">Estatisticas</string>
+    <string name="allergies">Alergias</string>
+    <string name="dontUse">Não use!</string>
+    <string name="scannedTextBelow">Texto escaneado abaixo:</string>
+    <string name="youCanUse">Pode ser usado!</string>
+    <string name="allergy">Alergia:</string>
+    <string name="contained">Contido</string>
+    <string name="times">vezes</string>
+    <string name="probablyContained">Provavelmente contido</string>
+    <string name="fromWord">Da palavra:</string>
+    <string name="myAllergies">Minhas alergias</string>
+    <string name="share">Compartilhar</string>
+    <string name="send">Enviar dicas</string>
+    <string name="mustBeInEnglish">O texto deve ser escrito em inglês ou sueco! Obrigado!</string>
+    <string name="sendTipsFrom">De onde você deseja enviar dicas?</string>
+    <string name="welcomeMessageInvite">Você quer saber se você pode comer algo rápido, isso não é alérgico a você? Ótimo! Este aplicativo permite que você digitalize texto em vários idiomas para ver se você pode comê-lo!</string>
+    <string name="time">vez</string>
+    <string name="buckwheat">Trigo mourisco</string>
+    <string name="mustardSeed">Semente de mostarda</string>
+    <string name="poppySeed">Semente de papoila</string>
+    <string name="pumpkinSeed">semente de abóbora</string>
+    <string name="sunflowerSeed">Semente de girassol</string>
+    <string name="fruit">Fruta</string>
+    <string name="vegetables">Legumes</string>
+    <string name="cannotUseCamera">Não é possível usar a câmera sem permissão!</string>
+    <string name="varning">Atenção!</string>
+    <string name="thisAppOnlySave">Se a permissão não for dada, este aplicativo não funcionará como pretendido. Lembre-se que a única coisa que está sendo salva é o texto. Se você não dá permissão, o aplicativo pode precisar ser reinstalado para funcionar! Tenha um dia fantástico!</string>
+
+
+    <string name="mightContainOther">Esta é apenas uma orientação! E pode conter outros alérgenos</string>
+    <string name="mightContainAllergies">Esta é apenas uma orientação! E pode conter alérgenos</string>
+
+    <string name="vegetarian">Vegetariano</string>
+    <string name="vegan">Vegano</string>
+    <string name="citrus">Citrus</string>
+    <string name="haram">Haram</string>
+    <string name="legumes">Legumes</string>
+    <string name="aspargus">Espargos</string>
+    <string name="bellPepper">Pimentão</string>
+    <string name="cabbage">Repolho</string>
+    <string name="carrot">Cenoura</string>
+    <string name="celery">Aipo</string>
+    <string name="garlic">Alho</string>
+    <string name="lettuce">Alface</string>
+    <string name="maize">Milho</string>
+    <string name="potato">Batata</string>
+    <string name="pumpkin">Abóbora</string>
+    <string name="zucchini">Abobrinha</string>
+    <string name="pig">Porco</string>
+    <string name="duck">Pato</string>
+    <string name="meat">Carne</string>
+    <string name="goat">Bode</string>
+    <string name="poultry">Aves</string>
+    <string name="lamb">Cordeiro</string>
+    <string name="sausage">Linguiça</string>
+    <string name="beef">Carne</string>
+    <string name="veal">Vitela</string>
+    <string name="gelatin">Gelatina</string>
+    <string name="dairy">Laticínios</string>
+    <string name="egg">Ovo</string>
+    <string name="honey">Mel</string>
+    <string name="lactoVegetarian">Lacto Vegetariano</string>
+    <string name="ovoVegetarian">Ovo Vegetariano</string>
+    <string name="lactoOvoVegetarian">Lacto Ovo Vegetariano</string>
+    <string name="demiVegetarian">Demi Vegetariano</string>
+    <string name="polloVegetarian">Pollo Vegetarian</string>
+    <string name="pescoVegetarian">Pesco Vegetariano</string>
+    <string name="chicken">Frango</string>
+    <string name="areYouSure">Tem certeza de que deseja excluir?</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="flashon">Flash ligado</string>
+    <string name="cancel">Cancelar</string>
+    <string name="inputIngredients">Inserir ingredientes</string>
+    <string name="rate">Taxa</string>
+    <string name="pressMe">Me pressione \ n para continuar!</string>
+    <string name="firstIntro">Ao digitalizar texto com a câmera. Caixas de texto irão cobrir o texto. Ao tocar na caixa de texto, o aplicativo analisará todo o texto nas caixas de texto visíveis na tela. Um bom exemplo de como as caixas de texto devem procurar é a que está acima.</string>
+    <string name="secondIntro">Este também é um bom exemplo de como as caixas podem parecer.</string>
+    <string name="thirdIntro">Você não deve tocar as caixas de texto quando as caixas de texto aparecerem assim, uma vez que apenas digitalizará uma pequena porcentagem do texto completo.</string>
+    <string name="tutorial">Tutorial</string>
+    <string name="anis">Anis</string>
+    <string name="coriander">Coentro</string>
+    <string name="cumin">Cominho</string>
+    <string name="fennel">Funcho</string>
+    <string name="parsley">Salsinha</string>
+    <string name="ragweed">Ragweed</string>
+    <string name="echinacea">Echinacea</string>
+    <string name="artichoke">Alcachofra</string>
+    <string name="dandelions">Dentes-de-leão</string>
+    <string name="hibiscus">Hibisco</string>
+    <string name="chickpea">Grão de bico</string>
+    <string name="lentil">Lentilhas</string>
+    <string name="lupin">Tremoço</string>
+    <string name="peanut">Amendoins</string>
+    <string name="pea">Ervilhas</string>
+    <string name="soybean">soja</string>
+    <string name="lemon">Limão</string>
+    <string name="lime">Lima</string>
+    <string name="grapefruit">Toranja</string>
+
+    <string name="bacon">Bacon</string>
+    <string name="choletsorol">Colesterol</string>
+    <string name="glycerol">Glicerol</string>
+    <string name="hormones">Hormônios</string>
+    <string name="lard">Lard</string>
+    <string name="magnesiumStearate">estearato de magnesio</string>
+    <string name="monoGlycerides">Mono Glicerídeos</string>
+    <string name="pepsin">Pepsina</string>
+
+    <string name="halal">Halal</string>
+    <string name="start">Página inicial</string>
+    <string name="holdFor">Aguarde mais informações</string>
+    <string name="about">Sobre</string>
+    <string name="helpTranslate">Ajuda a traduzir</string>
+    <string name="onlyFillChanges">Apenas preencha os que você muda, deixe os outros vazios! Obrigado ajudante!</string>
+
+    <string name="uncheckAll">Desmarcar todos</string>
+    <string name="checkAll">Verificar tudo</string>
+    <string name="delete">Excluir</string>
+    <string name="spice">Especiarias</string>
+    <string name="butter">manteiga</string>
+    <string name="casein">Caseína</string>
+    <string name="yoghurt">Iogurte</string>
+    <string name="custard">Quindim</string>
+    <string name="cream">Creme</string>
+    <string name="write">Escreva</string>
+    <string name="useflash">flash ligado</string>
+    <string name="useNoFlash">Flash desligado</string>
+    <string name="SharingIsCaring">Compartilhar é se importar</string>
+    <string name="myPreference">Minhas preferências</string>
+    <string name="showAllergies">Mostrar alergias</string>
+    <string name="allergyAgianst">al·lèrgic en contra</string>
+    <string name="lactose">Lactose</string>
+
+    <string name="english">Inglês</string>
+    <string name="swedish">Sueco</string>
+    <string name="spanish">Espanhol</string>
+    <string name="norway">Norueguês</string>
+    <string name="denmark">Dinamarquês</string>
+    <string name="finnish">Finlandês</string>
+    <string name="german">Alemão</string>
+    <string name="french">Francês</string>
+    <string name="netherlands">Holandês</string>
+    <string name="italian">Italiano</string>
+
+
+    <string name="header_subscriptions">Assinaturas</string>
+
+
+    <string name="noAllergies">Nenhuma alergia selecionada</string>
+    <string name="holdCamera">Mantenha a câmera pressionada para abrir mais opções.</string>
+    <string name="foundABug">Encontrou um bug? Envie dicas!</string>
+    <string name="greatApp">Encontrou este aplicativo útil? Avalie!</string>
+    <string name="shareWithFriend">Encontrou este aplicativo útil? Compartilhe isso com um amigo!</string>
+    <string name="wonderfulDay">Tenha um dia maravilhoso!</string>
+    <string name="holdHistory">Na guia Histórico mantenha pressionada a data para ver mais informações</string>
+    <string name="foundBadTranslation">Encontrou má tradução? Ajude a traduzi-lo!</string>
+    <string name="advancedSearch">Busca Avançada</string>
+    <string name="regularSearch">Pesquisa comum</string>
+    <string name="portuguese">Portugues</string>
+    <string name="polish">Polonesa</string>
+</resources>

@@ -9,7 +9,7 @@
             android:title="@string/myAllergies" />
         <item
             android:id="@+id/preference"
-            android:icon="@drawable/wheatcircle"
+            android:icon="@drawable/preference"
             android:title="@string/myPreference" />
         <item
             android:id="@+id/history"
@@ -48,10 +48,10 @@
                 android:id="@+id/nav_rate"
                 android:icon="@drawable/star"
                 android:title="@string/rate" />
-            <item
+<!--            <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="@string/share" />
+                android:title="@string/share" />-->
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"

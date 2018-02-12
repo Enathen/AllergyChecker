@@ -123,10 +123,6 @@
     <string name="deleteHistory">Slet historien</string>
     <string name="scanPhotos">Ingen historie endnu</string>
 
-    <string name="service_label">My Spell Checker</string>
-
-
-
 
     <string name="language">Sprog</string>
     <string name="languageFrom">Oversætte fra</string>
@@ -209,18 +205,12 @@
     <string name="inputIngredients">Skriv ingredienser</string>
     <string name="rate">Bedøm</string>
     <string name="pressMe">Rør ved mig\nFor at fortsætte!</string>
-    <string name="firstIntro">"Mine allergier" bruges til at udfylde dine allergier.\n
-        - Du kan finde den i menuen.</string>
-    <string name="secondIntro">Tryk for at få vist kameraet.
-        Hold knappen nede for flere muligheder.
-    </string>
-    <string name="thirdIntro">Sådan bruger du kameraet: \n
-        1. Hold kameraet over en tekst.\n
-        2. Hvide bokse vil dække teksten.\n
-        3. Når de hvide bokse dækker teksten.\n
-        4. Berør en hvid boks, når det ser ud til, at hele teksten er dækket!\n
-        5. Teksten bliver derefter gemt og analyseret.
-        </string>
+    <string name="firstIntro">Når du scanner tekst med kameraet. Tekstfelter dækker teksten. Tryk på tekstboksen
+        vil gøre appen analysere al tekst i tekstfelterne, der kan ses på skærmen. Et godt eksempel hvordan
+        tekstboksene skal se er den ovenstående.</string>
+    <string name="secondIntro">Dette er også et godt eksempel, hvordan boksene kan se ud.</string>
+    <string name="thirdIntro">Du bør ikke trykke på tekstbokse, når tekstfelterne vises som dette
+        da det kun scanner en lille procentdel af den fulde tekst.</string>
     <string name="tutorial">Selvstudier</string>
     <string name="anis">Anis</string>
     <string name="coriander">Koriander</string>
@@ -269,7 +259,6 @@
     <string name="useflash">Lommelygte på</string>
     <string name="useNoFlash">lommelygte av</string>
     <string name="SharingIsCaring">Sharing is caring</string>
-    <string name="help">Hjælp</string>
     <string name="myPreference">Mine præferencer</string>
     <string name="showAllergies">Visa allergier</string>
     <string name="allergyAgianst">Allergisk mod</string>
@@ -288,19 +277,20 @@
     <string name="veal">Kalv</string>
     <string name="french">Fransk</string>
     <string name="netherlands">Hollandsk</string>
-    <string name="header_subscriptions">Subscriptions</string>
-    <string name="premium">Premium</string>
-    <string name="noAllergies">No Allergies</string>
-    <string name="holdCamera">Hold camera down to open more options.</string>
-    <string name="foundABug">Found a bug? Send tips!</string>
-    <string name="greatApp">Found this app helpful? Rate it!</string>
-    <string name="shareWithFriend">Found this app helpful? Share it with a friend!</string>
-    <string name="missingIngredient">Found a missing ingredient? Send a tips!</string>
-    <string name="wonderfulDay">Have a wonderful day!</string>
-    <string name="holdHistory">In History tab hold down timestamp to view more information</string>
-    <string name="foundBadTranslation">Found bad translation? Help translate it!</string>
-    <string name="advancedSearch">AdvancedSearch</string>
-    <string name="regularSearch">Regular search</string>
+    <string name="header_subscriptions">Abonnementer</string>
+    <string name="noAllergies">Ingen allergier</string>
+    <string name="holdCamera">Hold kameraet nede for at åbne flere muligheder.</string>
+    <string name="foundABug">Har du fundet en fejl? Send tips!</string>
+    <string name="greatApp">Har du fundet denne app til hjælp? Bedøm det!</string>
+    <string name="shareWithFriend">Har du fundet denne app til hjælp? Del det med en ven!</string>
+    <string name="wonderfulDay">Hav en vidunderlig dag!</string>
+    <string name="holdHistory">Gå til fanen Historik ved at holde dato for at se flere oplysninger</string>
+    <string name="foundBadTranslation">Har du fundet en dårlig oversættelse? Hjælp oversæt det!</string>
+    <string name="advancedSearch">Avanceret søgning</string>
+    <string name="regularSearch">Almindelig søgning</string>
+    <string name="italian">Italiensk</string>
+    <string name="portuguese">Portugisisk</string>
+    <string name="polish">Polsk</string>
 
 
 </resources>

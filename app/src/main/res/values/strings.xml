@@ -13,7 +13,6 @@
         camera permission.  The application will now exit.</string>
     <string name="low_storage_error" translatable="false">Ocr dependencies cannot be downloaded due to low device storage</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
 
 
     <string name="nuts">Nuts</string>
@@ -127,8 +126,6 @@
     <string name="deleteHistory">Delete History</string>
     <string name="scanPhotos">No history yet!</string>
 
-    <string name="service_label">My Spell Checker</string>
-
 
     <string name="language">Language</string>
     <string name="languageFrom">Translate From</string>
@@ -213,18 +210,12 @@
     <string name="inputIngredients">Input ingredients</string>
     <string name="rate">Rate</string>
     <string name="pressMe">Press me \nto continue!</string>
-    <string name="firstIntro">Pressing this icon from the menu brings up the allergy window. From
-        there you can insert your allergies.</string>
-    <string name="secondIntro">Tap to bring up the camera to scan ingredients. Holding the camera
-        button down, pops up a new window. From the new menu ingredients can be inserted manually by typing
-        them in. </string>
-    <string name="thirdIntro">This is how you use the camera:\n
-        1. Hold the camera over text.\n
-        2. White text boxes appear.\n
-        3. When covered the text.\n
-        4. TAP one textbox!\n
-        5. Text saved. Wait for result!!
-        </string>
+    <string name="firstIntro">When scanning text with the camera. Text boxes will cover the text. Tapping the text box
+        will make the app analyze all text in the text boxes viewable on the screen. A good example how
+        the text boxes should look is the one above.</string>
+    <string name="secondIntro">This is also a good example how the boxes might look like.</string>
+    <string name="thirdIntro">You should not tap the text boxes when the text boxes appear like this
+        since it will only scan a small percentage of the full text.</string>
     <string name="tutorial">Tutorial</string>
     <string name="anis">Anis</string>
     <string name="coriander">Coriander</string>
@@ -284,7 +275,6 @@
     <string name="useflash">flash On</string>
     <string name="useNoFlash">flash Off</string>
     <string name="SharingIsCaring">Sharing is caring</string>
-    <string name="help">help</string>
     <string name="myPreference">My preferences</string>
     <string name="showAllergies">Show Allergies</string>
     <string name="allergyAgianst">Allergic Against</string>
@@ -299,6 +289,7 @@
     <string name="german">German</string>
     <string name="french">French</string>
     <string name="netherlands">Dutch</string>
+    <string name="italian">Italian</string>
 
     <string name="staticEnglish" translatable="false">English</string>
     <string name="staticSwedish" translatable="false">Svenska</string>
@@ -309,11 +300,9 @@
     <string name="staticGerman" translatable="false">Deutsch</string>
     <string name="staticFrench" translatable="false">Français</string>
     <string name="staticNetherland" translatable="false">Nederlands</string>
+    <string name="staticItalian" translatable="false">Italiano</string>
 
 
-    <string name="menu_settings" translatable="false">Settings</string>
-
-    <string name="alert_no_gas" translatable="false">Oh, no! Your premium has ended!</string>
     <string name="alert_already_purchased" translatable="false">Premium is already purchased</string>
 
     <string name="error_no_skus" translatable="false">We didn\'t find any SKUs to display&#8230; Check your internet
@@ -325,31 +314,26 @@
     <string name="button_purchase" translatable="false">Purchase</string>
     <string name="button_buy" translatable="false">Buy</string>
     <string name="button_own" translatable="false">Own</string>
-    <string name="button_update" translatable="false">Update</string>
     <string name="button_change" translatable="false">Change</string>
-    <string name="button_full_tank" translatable="false">Full tank</string>
-    <string name="toast_full_tank" translatable="false">Your tank is full, please use some gas before buying
-        more.</string>
 
     <string name="header_subscriptions">Subscriptions</string>
 
     <string name="content_description_app_loading_image" translatable="false">App loading image</string>
-    <string name="content_description_title_image" translatable="false">80\'s Video Game Style Car Logo</string>
-    <string name="content_desc_gas_gauge_indicator" translatable="false">Gas gauge indicator</string>
-    <string name="content_desc_free_vs_premium_indicator" translatable="false">Free or Premium Image Indicator</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="premium">Premium</string>
     <string name="noAllergies">No allergies selected</string>
     <string name="holdCamera">Hold camera down to open more options.</string>
     <string name="foundABug">Found a bug? Send tips!</string>
     <string name="greatApp">Found this app helpful? Rate it!</string>
     <string name="shareWithFriend">Found this app helpful? Share it with a friend!</string>
-    <string name="missingIngredient">Found a missing ingredient? Send a tips!</string>
     <string name="wonderfulDay">Have a wonderful day!</string>
     <string name="holdHistory">In History tab hold down date to view more information</string>
     <string name="foundBadTranslation">Found bad translation? Help translate it!</string>
-    <string name="advancedSearch">AdvancedSearch</string>
-    <string name="regularSearch">Regular search</string>
+    <string name="advancedSearch">Advanced search</string>
+    <string name="regularSearch">Common search</string>
+    <string name="portuguese">Portuguese</string>
+    <string name="polish">Polish</string>
+    <string name="staticPortuguese" translatable="false">Português</string>
+    <string name="staticPolish" translatable="false">Polskie</string>
+    <string name="pleaseCheckAllergies">Please check that your allergies and preference are correct!</string>
 </resources>

@@ -145,7 +145,7 @@
     <string name="fromWord">from word:</string>
     <string name="myAllergies">My allergies</string>
     <string name="share">Share</string>
-    <string name="send">Send tips</string>
+    <string name="send">Send Translation</string>
     <string name="mustBeInEnglish">Text must be written in English or Swedish! Thanks!</string>
     <string name="sendTipsFrom">Where you want to send tips from?</string>
     <string name="welcomeMessageInvite">Do you want to know if you can eat something fast, that is not allergic to you?
@@ -252,7 +252,7 @@
     <string name="about">About</string>
     <string name="helpTranslate">Help Translating</string>
     <string name="onlyFillChanges">Only fill those you change, leave others empty! Thanks Helper!</string>
-    <string name="specialThanksTo" translatable="false">Special thanks to Alpha Testers:</string>
+    <string name="specialThanksTo" translatable="false">Special thanks to all Alpha Testers</string>
     <string name="thisappUses" translatable="false">This app uses:</string>
     <string name="FAB" translatable="false">FloatingActionButton by Clans</string>
     <string name="BkTree" translatable="false">BK-tree by Kelsey Francis</string>
@@ -261,7 +261,7 @@
     <string name="googleCamera" translatable="false">Google Vision API - The Android Open Source Project</string>
     <string name="googleAdMob" translatable="false">Google, Inc. Google AdMob</string>
     <string name="translatedFrom" translatable="false">Translated From</string>
-    <string name="nameIfyouWantToBeInHelperList" translatable="false">Name if you want to be in helper list</string>
+    <string name="nameIfyouWantToBeInHelperList" translatable="false">Name if you want to be in helper translate list</string>
     <string name="uncheckAll">Uncheck all</string>
     <string name="checkAll">Check all</string>
     <string name="delete">Delete</string>

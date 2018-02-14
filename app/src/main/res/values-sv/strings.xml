@@ -10,7 +10,7 @@
     <string name="title_activity_takeoff">App Takes off here</string>
     <string name="ok">OK</string>
 
-    <string name="permission_camera_rationale">Tillgång till kameran behövs annars fungerar appen inte</string>
+    <string name="permission_camera_rationale">Tillgång till kameran behövs annars fungerar inte appen</string>
     <string name="no_camera_permission">Den här appen kan inte köras om den inte har tillgång till kameran. Kameran avslutas nu.</string>
     <string name="nuts">Nötter</string>
     <string name="almond">Mandel, mandlar</string>
@@ -119,13 +119,13 @@
     <string name="fish">Fisk</string>
     <string name="milk">Mjölk</string>
     <string name="seeds">Frön</string>
-    <string name="deleteHistory">Radera Historien</string>
+    <string name="deleteHistory">Radera historik</string>
     <string name="scanPhotos">Ingen historik än</string>
 
 
     <string name="language">Språk</string>
     <string name="languageFrom">Översätt från</string>
-    <string name="languageGeneral">generelt Språk</string>
+    <string name="languageGeneral">Generellt språk</string>
     <string name="startPageHeader">Tryck nedanför för att scanna text</string>
     <string name="definitelyContained">Innehåller definitivt</string>
     <string name="history">Historik</string>
@@ -141,8 +141,8 @@
     <string name="fromWord">från ord:</string>
     <string name="myAllergies">Mina allergier</string>
     <string name="share">Dela</string>
-    <string name="send">Skicka tips</string>
-    <string name="mustBeInEnglish">Texten måste bli skriven på Engelska eller Svenska! Tack!</string>
+    <string name="send">Skicka översättning</string>
+    <string name="mustBeInEnglish">Texten måste bli skriven på engelska eller svenska! Tack!</string>
     <string name="sendTipsFrom">Vart vill du skicka tips från?</string>
     <string name="welcomeMessageInvite">Vill du veta om du kan äta något snabbt? Som inte är allergiskt för dig?
     Toppen! Den här appen låter dig scanna text från olika språk som låter dig se om du är allergisk mot det!</string>
@@ -158,7 +158,7 @@
     <string name="vegetables">Grönsaker</string>
     <string name="cannotUseCamera">Kan inte använda kameran utan din tillåtelse!</string>
     <string name="varning">Varning!</string>
-    <string name="thisAppOnlySave">Om tillåtelse inte ges, kommer inte appen fungera som den ska. Det ända som sparas är texten. Om tillåtelse inte ges så kommer appen behöva ominstalleras! Ha en fantastisk dag!</string>
+    <string name="thisAppOnlySave">Om tillåtelse inte ges, kommer inte appen fungera som den ska. Det enda som sparas är texten. Om tillåtelse inte ges så kommer appen behöva ominstalleras! Ha en fantastisk dag!</string>
     <string name="mightContainOther">Det här är endast en riktlinje! Och kanske innehåller andra allergier</string>
     <string name="mightContainAllergies">Det här är endast en riktlinje! Och innehåller kanske allergier</string>
     <string name="vegetarian">Vegetarian</string>
@@ -203,12 +203,12 @@
     <string name="inputIngredients">Skriv ingredienser</string>
     <string name="rate">Betygsätt</string>
     <string name="pressMe">Tryck mig\nFör att fortsätta!</string>
-    <string name="firstIntro">När du skannar text med kameran. Kommer textrutor att täcka texten. Tryck på textrutan
-        så att appen analyserar all text i textrutorna som visas på skärmen. Ett bra exempel hur
-        Textrutorna ska se är den ovanstående.</string>
+    <string name="firstIntro">När du skannar text med kameran kommer textrutor att täcka över texten. Tryck på textrutan
+        så att appen kan analysera texten i textrutorna som visas på skärmen. Ett bra exempel på hur
+        textrutorna ska se ut är den ovanstående.</string>
     <string name="secondIntro">Detta är också ett bra exempel på hur textrutorna kan se ut.</string>
-    <string name="thirdIntro">Du bör inte trycka på textrutorna när textrutorna visas så här
-        eftersom det bara kommer att skanna en liten procentandel av hela texten.</string>
+    <string name="thirdIntro">Du bör inte trycka på textrutorna när de visas så här
+        eftersom det kommer bara att skanna en liten procentandel av hela texten.</string>
     <string name="tutorial">Handledning</string>
     <string name="anis">Anis</string>
     <string name="coriander">Koriander</string>
@@ -282,11 +282,12 @@
     <string name="greatApp">Tycker du denna app är hjälpsam? Betygsätt den!</string>
     <string name="shareWithFriend">Tycker du denna app är hjälpsam? Dela den med en vän!</string>
     <string name="wonderfulDay">Ha en underbar dag!</string>
-    <string name="holdHistory">I historie fliken tryck och håll ner datument för att få fram mer information</string>
+    <string name="holdHistory">I historiefliken tryck och håll ner datumet för att få fram mer information</string>
     <string name="foundBadTranslation">Hittat en dålig översättning? Hjälp översätt!</string>
     <string name="advancedSearch">Avancerad sökning</string>
     <string name="regularSearch">Vanlig sökning</string>
     <string name="italian">Italienska</string>
     <string name="portuguese">Portugisiska</string>
     <string name="polish">Polska</string>
+    <string name="pleaseCheckAllergies">Kontrollera att dina allergier och preferenser är korrekta!</string>
 </resources>

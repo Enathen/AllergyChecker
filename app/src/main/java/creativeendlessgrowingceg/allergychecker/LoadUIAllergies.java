@@ -1,5 +1,6 @@
 package creativeendlessgrowingceg.allergychecker;
 
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -138,18 +139,16 @@ public class LoadUIAllergies {
         HashSet<String> allergySavePictureNAME = (HashSet<String>) SharedPreferenceClass.getSharedPreferenceString(context, "allergySavePictureName", TAG);
         allergySavePictureNAME.addAll(SharedPreferenceClass.getSharedPreferenceString(context, "preferenceSavePictureName", TAG));
         HashSet<Integer> allergyToRemove = new HashSet<>();
+        for (String s : allergySavePictureNAME) {
+            Log.d(TAG, "savePicture: " + s);
+        }
         for (Integer integer : allergySavePicture) {
-            int checkExistence = context.getResources().getIdentifier(String.valueOf(integer), "drawable", context.getPackageName());
-            if (checkExistence != 0) {
-                if (!allergySavePictureNAME.contains(context.getResources().getResourceEntryName(integer))) {
-                    allergyToRemove.add(integer);
-                    Log.d(TAG, "savePictureREMOVE: "+ checkExistence + " : " + integer);
-                }
+            try {
+                Log.d(TAG, "savePicture: " + context.getResources().getIdentifier(String.valueOf(integer), "drawable", context.getPackageName()));
+                Log.d(TAG, "savePicture: "+ context.getDrawable(integer));
 
-            }
-            else{
-                Log.d(TAG, "savePictureREMOVE: "+ checkExistence + " : " + integer);
-                allergyToRemove.remove(integer);
+            } catch (Resources.NotFoundException e){
+                allergyToRemove.add(context.getResources().getIdentifier(String.valueOf(integer), "drawable", context.getPackageName()));
             }
         }
         allergySavePicture.removeAll(allergyToRemove);
@@ -260,7 +259,9 @@ public class LoadUIAllergies {
 
     private void saveAllergies() {
         HashSet<Integer> hashSet = new HashSet<>();
+        HashSet<Integer> hashSetNotOn = new HashSet<>();
         HashSet<Integer> hashSetPicture = new HashSet<>();
+        HashSet<Integer> hashSetPictureNotOn = new HashSet<>();
         for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
             for (AllergyCheckBoxClass checkBoxClass : allergyCheckBoxClass.getSameItemDifferentCategories()) {
                 if (!preference) {
@@ -271,9 +272,14 @@ public class LoadUIAllergies {
                 } else {
                     if (checkBoxClass.getParentCheckBox().isChecked()) {
                         hashSetPicture.add(checkBoxClass.getParentPicture());
+                    }else{
+                        hashSetPictureNotOn.add(checkBoxClass.getParentPicture());
                     }
                     if (checkBoxClass.isOn()) {
                         hashSet.add(checkBoxClass.getChildKey());
+                    }else{
+                        hashSetNotOn.add(checkBoxClass.getChildKey());
+
                     }
                 }
 
@@ -282,7 +288,14 @@ public class LoadUIAllergies {
         for (Integer integer : hashSet) {
             Log.d(TAG, "HASHSET: " + context.getString(integer));
         }
+
+        for (Integer integer : hashSetPicture) {
+            Log.d(TAG, "HASHSETpictu: " + integer);
+        }
         HashSet<Integer> allergiesToSave = SharedPreferenceClass.getSharedPreference(context, "allergiesToSave", TAG);
+        for (Integer integer : allergiesToSave) {
+            Log.d(TAG, "allergiesToSave: "+ integer);
+        }
         if (!preference) {
             for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
                 for (AllergyCheckBoxClass checkBoxClass : allergyCheckBoxClass.getSameItemDifferentCategories()) {
@@ -293,9 +306,6 @@ public class LoadUIAllergies {
                         }
                     }
                 }
-            }
-            for (Integer integer : hashSet) {
-                Log.d(TAG, "HASHSET: " + context.getString(integer));
             }
             SharedPreferenceClass.setSharedPreference(context, hashSet, "allergySave", TAG);
             SharedPreferenceClass.setSharedPreference(context, hashSetPicture, "allergySavePicture", TAG);
@@ -309,40 +319,56 @@ public class LoadUIAllergies {
 
             HashSet<Integer> allergySave = SharedPreferenceClass.getSharedPreference(context, "allergySave", TAG);
             ArrayList<Integer> parentKeys = AllergyList.getParentKeys();
+            hashSetPicture.addAll(SharedPreferenceClass.getSharedPreference(context,"allergySavePicture",TAG));
+            hashSet.addAll(SharedPreferenceClass.getSharedPreference(context,"allergySave",TAG));
+            for (Integer integer : hashSetNotOn) {
+                Log.d(TAG, "HASHSET NOT ON: " + context.getString(integer));
+            }
 
+            for (Integer integer : hashSetPictureNotOn) {
+                Log.d(TAG, "HASHSETpictuNOT OONB: " + integer);
+            }
+            for (Integer integer : hashSet) {
+
+                Log.d(TAG, "HASHSET PREFERENCE: " + context.getString(integer));
+            }
             for (Integer integer : allergySave) {
-                Log.d(TAG, "ALLERGIES: " + context.getString(integer));
+                Log.d(TAG, "allergySave: " + context.getString(integer));
             }
             //hashSet.addAll(allergySave);
             boolean open = false;
 
             for (Integer parentKey : parentKeys) {
-                Log.d(TAG, "parentkey: " + allergySave.contains(parentKey) + " : " + hashSet.contains(parentKey) + " : " + context.getString(parentKey));
                 if (!allergySave.contains(parentKey) && hashSet.contains(parentKey)) {
-                    Log.d(TAG, "Allergy does not Contains: " + context.getString(parentKey));
                     ArrayList<AllergyList.PictureIngredient> specifiedKey = new AllergyList(context).getSpecifiedKey(parentKey);
-                    for (AllergyList.PictureIngredient pictureIngredient : specifiedKey) {
-                        if(!allergiesToSave.contains(pictureIngredient.getId())){
-                            hashSet.add(pictureIngredient.getId());
-                            Log.d(TAG, "saveAllergies: " + pictureIngredient.getIngredient());
+                    if(specifiedKey != null){
+                        for (AllergyList.PictureIngredient pictureIngredient : specifiedKey) {
+                            if(!allergiesToSave.contains(pictureIngredient.getId())){
+                                hashSet.add(pictureIngredient.getId());
+                            }
                         }
+                        open = true;
+                        hashSetPicture.add(specifiedKey.get(0).getPicture());
                     }
-                    open = true;
-                    hashSetPicture.add(specifiedKey.get(0).getPicture());
-                } else if (allergySave.contains(parentKey) && !hashSet.contains(parentKey)) {
+
+                } else if (allergySave.contains(parentKey) && hashSetNotOn.contains(parentKey)) {
                     ArrayList<AllergyList.PictureIngredient> specifiedKey = new AllergyList(context).getSpecifiedKey(parentKey);
-                    for (AllergyList.PictureIngredient pictureIngredient : specifiedKey) {
-                        if (!allergySave.contains(pictureIngredient.getId())) {
-                            Log.d(TAG, "ALLERGYSAVE THIS : " + pictureIngredient.getIngredient());
-                            allergiesToSave.add(pictureIngredient.getId());
+                    if(specifiedKey != null){
+                        for (AllergyList.PictureIngredient pictureIngredient : specifiedKey) {
+                            if (!allergySave.contains(pictureIngredient.getId())) {
+                                Log.d(TAG, "ALLERGYSAVE THIS : " + pictureIngredient.getIngredient());
+                                allergiesToSave.add(pictureIngredient.getId());
+                            }
+                            hashSet.remove(pictureIngredient.getId());
+                            Log.d(TAG, "REMOVE: " + pictureIngredient.getIngredient());
                         }
-                        hashSet.remove(pictureIngredient.getId());
-                        Log.d(TAG, "REMOVE: " + pictureIngredient.getIngredient());
+                        open = true;
+                        hashSetPicture.remove(specifiedKey.get(0).getPicture());
+                        Log.d(TAG, "saveAllergies: " + specifiedKey.get(0).getPicture());
+                        hashSet.remove(parentKey);
+                        Log.d(TAG, "REMOVE: " + context.getString(parentKey));
                     }
-                    hashSetPicture.remove(specifiedKey.get(0).getPicture());
-                    open = true;
-                    hashSet.remove(parentKey);
-                    Log.d(TAG, "REMOVE: " + context.getString(parentKey));
+
                 }
 
             }

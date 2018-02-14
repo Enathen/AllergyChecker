@@ -312,7 +312,7 @@ public class StartPage extends AppCompatActivity
 
         // TODO add when after update
         int sdkInt = BuildConfig.VERSION_CODE;
-        String check = String.valueOf(sdkInt) + "checkAllergy";
+        String check = String.valueOf(sdkInt) + "checkAllergy1";
         String check2 = String.valueOf(sdkInt) + "load";
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(getBaseContext());
@@ -350,7 +350,12 @@ public class StartPage extends AppCompatActivity
 
 
     private void setProfilePicture() {
-        new LoadUIAllergies().savePicture(this, getImageViewHashMap(this));
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String check = String.valueOf(BuildConfig.VERSION_CODE) + "checkAllergy1";
+        if(sharedPreferences.getBoolean(check,false)){
+            new LoadUIAllergies().savePicture(this, getImageViewHashMap(this));
+        }
     }
 
     private void displayInterstitial() {
@@ -711,7 +716,7 @@ public class StartPage extends AppCompatActivity
     public void loadInter(){
         Log.d(TAG, "premium: " + loadInterstitial);
         if(loadInterstitial){
-
+            if(!advancedSearch)
             displayInterstitial();
         }
     }
@@ -719,6 +724,7 @@ public class StartPage extends AppCompatActivity
 
         if (!isPremiumPurchased()){
             if(loadInterstitial){
+                if(!advancedSearch)
                 displayInterstitial();
             }
             Log.d(TAG, "premium: "+ new LanguageFragment().getCategories(this));

@@ -142,7 +142,7 @@
     <string name="fromWord">Da palavra:</string>
     <string name="myAllergies">Minhas alergias</string>
     <string name="share">Compartilhar</string>
-    <string name="send">Enviar dicas</string>
+    <string name="send">Enviar tradução</string>
     <string name="mustBeInEnglish">O texto deve ser escrito em inglês ou sueco! Obrigado!</string>
     <string name="sendTipsFrom">De onde você deseja enviar dicas?</string>
     <string name="welcomeMessageInvite">Você quer saber se você pode comer algo rápido, isso não é alérgico a você? Ótimo! Este aplicativo permite que você digitalize texto em vários idiomas para ver se você pode comê-lo!</string>
@@ -291,4 +291,5 @@
     <string name="regularSearch">Pesquisa comum</string>
     <string name="portuguese">Portugues</string>
     <string name="polish">Polonesa</string>
+    <string name="pleaseCheckAllergies">Verifique se suas alergias e preferências estão corretas!</string>
 </resources>

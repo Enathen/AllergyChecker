@@ -43,9 +43,7 @@
             android:name=".design.activity.OnboardingPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".subscription.Premium"
-            android:label="@string/title_activity_takeoff" />
+
         <activity
             android:name=".design.activity.TakeoffActivity"
             android:label="@string/title_activity_takeoff"

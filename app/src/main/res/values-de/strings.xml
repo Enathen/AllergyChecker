@@ -145,7 +145,7 @@
     <string name="fromWord">Aus dem Wort:</string>
     <string name="myAllergies">Meine Allergien</string>
     <string name="share">Teilen</string>
-    <string name="send">Tipps senden</string>
+    <string name="send">" Übersetzung senden"</string>
     <string name="mustBeInEnglish">Text must be written in English or Swedish! Thanks!</string>
     <string name="sendTipsFrom">Where you want to send tips from?</string>
     <string name="welcomeMessageInvite">Do you want know if you can eat something fast, that is not allergic to you?
@@ -292,9 +292,10 @@
     <string name="holdHistory">Auf der Registerkarte Verlauf halten Sie das Datum gedrückt, um weitere Informationen anzuzeigen</string>
     <string name="foundBadTranslation">Eine schlechte Übersetzung gefunden? Hilf mit, es zu übersetzen!</string>
     <string name="advancedSearch">Erweiterte Suche</string>
-    <string name="regularSearch">regelmäßige Suche</string>
+    <string name="regularSearch">Regelmäßige Suche</string>
     <string name="italian">Italienisch</string>
     <string name="portuguese">Portugiesische</string>
     <string name="polish">Polnische</string>
+    <string name="pleaseCheckAllergies">Bitte überprüfen Sie, ob Ihre Allergien und Vorlieben stimmen!</string>
 
 </resources>

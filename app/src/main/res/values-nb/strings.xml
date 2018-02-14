@@ -139,7 +139,7 @@
     <string name="fromWord">fra ord:</string>
     <string name="myAllergies">Mine allergier</string>
     <string name="share">Dele</string>
-    <string name="send">Send tips</string>
+    <string name="send">Send oversettelse</string>
     <string name="mustBeInEnglish">Teksten må være skrevet på engelsk eller svensk! Takk!</string>
     <string name="sendTipsFrom">Hvor vil du sende tips fra?</string>
     <string name="welcomeMessageInvite">Vil du vite om du kan spise noe fort? Hvilken er ikke allergisk mot deg?
@@ -290,5 +290,6 @@
     <string name="italian">Italiensk</string>
     <string name="portuguese">Portugisisk</string>
     <string name="polish">Polsk</string>
+    <string name="pleaseCheckAllergies">Kontroller at allergier og preferanser er riktige!</string>
 
 </resources>

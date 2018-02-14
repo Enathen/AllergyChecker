@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +21,7 @@ import creativeendlessgrowingceg.allergychecker.design.model.Page;
 import creativeendlessgrowingceg.allergychecker.design.util.OnboardingSharedPref;
 
 
-public class OnboardingPagerActivity extends ActionBarActivity implements
+public class OnboardingPagerActivity extends AppCompatActivity implements
         OnboardingPageFragment.OnFragmentInteractionListener,
         OnBoardingPagerIndicator.OnboardingPagerIndicatorInteractionListener{
 

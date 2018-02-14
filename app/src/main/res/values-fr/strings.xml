@@ -298,5 +298,6 @@
     <string name="italian">Italien</string>
     <string name="portuguese">Portugaise</string>
     <string name="polish">Polonaise</string>
+    <string name="pleaseCheckAllergies">S\\\'il vous plaît vérifiez que vos allergies et préférences sont correctes!</string>
 
 </resources>

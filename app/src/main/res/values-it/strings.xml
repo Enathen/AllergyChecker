@@ -143,7 +143,7 @@
     <string name="fromWord">Da parola:</string>
     <string name="myAllergies">Le mie allergie</string>
     <string name="share">Condividere</string>
-    <string name="send">Invia suggerimenti</string>
+    <string name="send">Inviare la traduzione</string>
     <string name="mustBeInEnglish">Il testo deve essere scritto in inglese o svedese! Grazie!</string>
     <string name="sendTipsFrom">Da dove vuoi inviare suggerimenti?</string>
     <string name="welcomeMessageInvite">Vuoi sapere se puoi mangiare qualcosa di veloce, che non è allergico a te Grande! Questa app ti consente di scansionare il testo in più lingue per vedere se riesci a mangiarlo!</string>
@@ -290,4 +290,5 @@
     <string name="italian">Italiano</string>
     <string name="portuguese">Portoghese</string>
     <string name="polish">Polacca</string>
+    <string name="pleaseCheckAllergies">Per favore controlla che le tue allergie e le tue preferenze siano corrette!</string>
 </resources>

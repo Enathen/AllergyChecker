@@ -35,9 +35,11 @@
     <TextView
         android:id="@+id/error_textview"
         android:layout_width="match_parent"
+        android:textColor="@color/fontColorTextWhite"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        android:textSize="28dp"
         android:padding="@dimen/single_padding"
         android:visibility="gone" />
 

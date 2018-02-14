@@ -147,7 +147,7 @@
     <string name="fromWord">van woord:</string>
     <string name="myAllergies">Mijn allergieën</string>
     <string name="share">Delen</string>
-    <string name="send">Tips verzenden</string>
+    <string name="send">Stuur een vertaling</string>
     <string name="mustBeInEnglish">Tekst moet in het Engels of Zweeds zijn geschreven! Bedankt!</string>
     <string name="sendTipsFrom">Waar wil je tips sturen?</string>
     <string name="welcomeMessageInvite">Wilt u weten of u iets snel kunt eten, dat is niet allergisch voor u?
@@ -299,4 +299,5 @@
     <string name="italian">Italiaans</string>
     <string name="portuguese">Portugese</string>
     <string name="polish">Poolse</string>
+    <string name="pleaseCheckAllergies">Controleer of uw allergieën en voorkeur correct zijn!</string>
 </resources>

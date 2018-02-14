@@ -57,10 +57,6 @@ public class AllergyList {
         return arrayList;
     }
     public ArrayList<PictureIngredient> getSpecifiedKey(int key){
-        if(key == R.string.citrus){
-            setArrayListCitrus();
-            return getArrayListCitrus();
-        }
         if(key == R.string.fish){
             setArrayListFish();
             return getArrayListFish();
@@ -69,33 +65,9 @@ public class AllergyList {
             setArrayListShellfish();
             return getArrayListShellfish();
         }
-        if(key == R.string.fruit){
-            setArrayListFruit();
-            return getArrayListFruit();
-        }
-        if(key == R.string.seeds){
-            setArrayListSeeds();
-            return getArrayListSeeds();
-        }
-        if(key == R.string.gluten){
-            setArrayListGluten();
-            return getArrayListGluten();
-        }
-        if(key == R.string.nuts){
-            setArrayListNuts();
-            return getArrayListNuts();
-        }
-        if(key == R.string.spice){
-            setArrayListSpice();
-            return getArrayListSpice();
-        }
         if(key == R.string.dairy){
             setArrayListDairy();
             return getArrayListDairy();
-        }
-        if(key == R.string.legumes){
-            setArrayListLegumes();
-            return getArrayListLegumes();
         }
         return null;
     }

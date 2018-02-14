@@ -143,7 +143,7 @@
     <string name="fromWord">de palabra:</string>
     <string name="myAllergies">Mis alergias</string>
     <string name="share">Compartir</string>
-    <string name="send">Enviar sugerencias</string>
+    <string name="send">Enviar traducción</string>
     <string name="mustBeInEnglish">el texto debe escribirse en Inglés o Sueco! Gracias!</string>
     <string name="sendTipsFrom">¿Donde quieres enviar consejos de?</string>
     <string name="welcomeMessageInvite">¿Quieres saber si puedes comer algo rápido, que no es alérgico a ti?
@@ -293,6 +293,7 @@
     <string name="italian">Italiano</string>
     <string name="portuguese">Portuguesa</string>
     <string name="polish">Polaco</string>
+    <string name="pleaseCheckAllergies">¡Por favor verifique que sus alergias y preferencias sean correctas!</string>
 
 
 </resources>

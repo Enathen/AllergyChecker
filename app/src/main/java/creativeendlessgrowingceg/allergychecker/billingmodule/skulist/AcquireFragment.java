@@ -58,6 +58,7 @@ public class AcquireFragment extends DialogFragment {
     private BillingProvider mBillingProvider;
     private boolean mWasRetryServiceConnection;
     private ProgressBar progressBar;
+    private View root;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,7 +70,7 @@ public class AcquireFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.acquire_fragment, container, false);
+        root = inflater.inflate(R.layout.acquire_fragment, container, false);
         progressBar = (ProgressBar) root.findViewById(R.id.progressBarLanguage);
 
         mErrorTextView = (TextView) root.findViewById(R.id.error_textview);
@@ -138,6 +139,7 @@ public class AcquireFragment extends DialogFragment {
         }
 
         //mLoadingView.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
         mErrorTextView.setVisibility(View.VISIBLE);
         int billingResponseCode = mBillingProvider.getBillingManager()
                 .getBillingClientResponseCode();
@@ -192,13 +194,14 @@ public class AcquireFragment extends DialogFragment {
                 new SkuDetailsResponseListener() {
                     @Override
                     public void onSkuDetailsResponse(int responseCode, List<SkuDetails> skuDetailsList) {
-                        Log.d(TAG, "onSkuDetailsResponse: ");
                         for (SkuDetails skuDetails : skuDetailsList) {
                             Log.d(TAG, "onSkuDetailsResponse: "+ skuDetails.getDescription());
                         }
                         if (responseCode != BillingResponse.OK) {
                             Log.w(TAG, "Unsuccessful query for type: " + billingType
                                     + ". Error code: " + responseCode);
+
+                            displayAnErrorIfNeeded();
                         } else if (skuDetailsList != null
                                 && skuDetailsList.size() > 0) {
                             // If we successfully got SKUs, add a header in front of the row

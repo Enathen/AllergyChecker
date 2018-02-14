@@ -142,7 +142,7 @@
     <string name="fromWord">Sanasta:</string>
     <string name="myAllergies">Minun allergiat</string>
     <string name="share">Jaa</string>
-    <string name="send">Lähetä vinkkejä</string>
+    <string name="send">Lähetä käännös</string>
     <string name="mustBeInEnglish">Teksti on kirjoitettava englanniksi tai ruotsiksi! Kiitos!</string>
     <string name="sendTipsFrom">Mistä haluat lähettää vinkkejä?</string>
     <string name="welcomeMessageInvite">Haluatko tietää, voitko syödä jotain nopeasti? Mikä ei ole allerginen sinulle?
@@ -290,5 +290,6 @@
     <string name="italian">Italialainen</string>
     <string name="portuguese">Portugalin</string>
     <string name="polish">Puolan</string>
+    <string name="pleaseCheckAllergies">"Tarkista, että allergiat ja mieltymykset ovat oikein! "</string>
 
 </resources>

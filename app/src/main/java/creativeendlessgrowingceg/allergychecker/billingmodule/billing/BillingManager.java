@@ -165,7 +165,8 @@ public class BillingManager implements PurchasesUpdatedListener {
         } else if (resultCode == BillingResponse.USER_CANCELED) {
             Log.i(TAG, "onPurchasesUpdated() - user cancelled the purchase flow - skipping");
         } else {
-            Log.w(TAG, "onPurchasesUpdated() got unknown resultCode: " + resultCode);
+            Log.d(TAG, "onPurchasesUpdated() got unknown resultCode: " + resultCode);
+
         }
     }
 

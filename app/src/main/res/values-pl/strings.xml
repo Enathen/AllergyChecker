@@ -142,7 +142,7 @@
     <string name="fromWord">od słowa:</string>
     <string name="myAllergies">Moje alergie</string>
     <string name="share">Dzielić</string>
-    <string name="send">Wyślij wskazówki</string>
+    <string name="send">Wyślij tłumaczenie</string>
     <string name="mustBeInEnglish">Tekst musi być napisany po angielsku lub po szwedzku! Dzięki!</string>
     <string name="sendTipsFrom">Gdzie chcesz wysyłać porady?</string>
     <string name="welcomeMessageInvite">Czy chcesz wiedzieć, czy możesz zjeść coś szybko, to nie jest uczulenie na ciebie? Wspaniały! Ta aplikacja umożliwia skanowanie tekstu w wielu językach, aby sprawdzić, czy możesz go zjeść!</string>
@@ -288,4 +288,5 @@
     <string name="regularSearch">Typowe wyszukiwanie</string>
     <string name="portuguese">Portugalski</string>
     <string name="polish">Polski</string>
+    <string name="pleaseCheckAllergies">Sprawdź, czy twoje alergie i preferencje są prawidłowe!</string>
 </resources>

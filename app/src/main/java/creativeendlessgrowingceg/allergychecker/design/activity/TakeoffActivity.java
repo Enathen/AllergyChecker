@@ -1,7 +1,7 @@
 package creativeendlessgrowingceg.allergychecker.design.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,7 +9,8 @@ import android.view.View;
 import creativeendlessgrowingceg.allergychecker.R;
 
 
-public class TakeoffActivity extends ActionBarActivity {
+public class TakeoffActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

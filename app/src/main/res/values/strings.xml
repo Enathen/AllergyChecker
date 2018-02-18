@@ -329,11 +329,14 @@
     <string name="wonderfulDay">Have a wonderful day!</string>
     <string name="holdHistory">In History tab hold down date to view more information</string>
     <string name="foundBadTranslation">Found bad translation? Help translate it!</string>
-    <string name="advancedSearch">Advanced search</string>
-    <string name="regularSearch">Common search</string>
+    <string name="advancedSearch">Do unfiltered search</string>
+    <string name="regularSearch">Do filtered search</string>
     <string name="portuguese">Portuguese</string>
     <string name="polish">Polish</string>
     <string name="staticPortuguese" translatable="false">Português</string>
     <string name="staticPolish" translatable="false">Polskie</string>
     <string name="pleaseCheckAllergies">Please check that your allergies and preference are correct!</string>
+    <string name="slide3">Holding down the camera button brings up 2 options. One option is to use the flashlight on the camera and another option to manually write in ingredients that are contained in a product</string>
+    <string name="advancedSearchis">filtered search removes substrings of words: for instance pea is substring of peanut</string>
+    <string name="unfilteredSearchIs">Unfiltered search adds substrings of words: for instance straw is substring of strawberry</string>
 </resources>

@@ -32,15 +32,70 @@
             android:orientation="vertical"
             >
 
-            <Button
-                android:id="@+id/buttonAdvancedSearch"
+            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                ads:adSize="BANNER"
+                ads:adUnitId="ca-app-pub-3607354849437438/6554215935">
+                <!--ads:adUnitId="ca-app-pub-ca-app-pub-3940256099942544/6300978111">-->
+            </com.google.android.gms.ads.AdView>
+
+            <TextView
+                android:id="@+id/textViewtip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/advancedSearch"
+                android:text="TextView"
+                android:layout_marginTop="10dp"
+                android:textAlignment="center"
                 android:textColor="@color/fontColorTextWhite"
-                android:textSize="24sp"
-                android:visibility="gone" />
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/linlaybtnadvanced"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/imageViewQuestioninv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/question" />
+
+                <Button
+                    android:id="@+id/buttonAdvancedSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:text="@string/advancedSearch"
+                    android:textColor="@color/fontColorTextWhite"
+                    android:textSize="24sp"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/imageViewQuestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/question" />
+
+            </LinearLayout>
+
             <ProgressBar
                 android:id="@+id/progressBar3"
                 style="?android:attr/progressBarStyleHorizontal"
@@ -102,16 +157,6 @@
                 android:gravity="center"
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textViewtip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textAlignment="center"
-                android:textColor="@color/fontColorTextWhite"
-                android:textSize="36sp"
                 android:textStyle="bold" />
 
             <TextView

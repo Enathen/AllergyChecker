@@ -285,11 +285,14 @@
     <string name="wonderfulDay">Ha en vidunderlig dag!</string>
     <string name="holdHistory">I kategorien Historikk hold ned dato for å vise mer informasjon</string>
     <string name="foundBadTranslation">Fant dårlig oversettelse? Hjelp oversette det!</string>
-    <string name="advancedSearch">Avansert søk</string>
-    <string name="regularSearch">vanlig søk</string>
+    <string name="advancedSearch">Gjør ufiltrert søk</string>
+    <string name="regularSearch">Gjør filtrert søk</string>
     <string name="italian">Italiensk</string>
     <string name="portuguese">Portugisisk</string>
     <string name="polish">Polsk</string>
     <string name="pleaseCheckAllergies">Kontroller at allergier og preferanser er riktige!</string>
+    <string name="slide3">Ved å holde nede kameraknappen kommer 2 alternativer. Et alternativ er å bruke lommelykten på kameraet og et annet alternativ til å skrive inn ingredienser som er inneholdt i et produkt manuelt</string>
+    <string name="unfilteredSearchIs">Ufiltrert søk legger til substrings av ord: for eksempel jord er substring av jordbær</string>
+    <string name="advancedSearchis">filtrert søk fjerner understrenger av ord: for eksempel er jord en substans av jordnøtt</string>
 
 </resources>

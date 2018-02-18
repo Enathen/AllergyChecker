@@ -284,9 +284,12 @@
     <string name="wonderfulDay">Miłego dnia!</string>
     <string name="holdHistory">W zakładce Historia przytrzymaj datę, aby wyświetlić więcej informacji</string>
     <string name="foundBadTranslation">Znalazłeś złe tłumaczenie? Pomóż to przetłumaczyć!</string>
-    <string name="advancedSearch">Zaawansowane wyszukiwanie</string>
-    <string name="regularSearch">Typowe wyszukiwanie</string>
+    <string name="advancedSearch">Przeszukaj niefiltrowane</string>
+    <string name="regularSearch">Przeszukuj filtrowane</string>
     <string name="portuguese">Portugalski</string>
     <string name="polish">Polski</string>
     <string name="pleaseCheckAllergies">Sprawdź, czy twoje alergie i preferencje są prawidłowe!</string>
+    <string name="slide3">Przytrzymanie przycisku aparatu powoduje wyświetlenie 2 opcji. Jedną z opcji jest użycie latarki w aparacie i inna opcja ręcznego zapisu w składnikach zawartych w produkcie</string>
+    <string name="advancedSearchis">filtrowane wyszukiwanie usuwa podciągi słów: na przykład ziem jest podłańcuchem orzeszków ziemnych</string>
+    <string name="unfilteredSearchIs">Niefiltrowane wyszukiwanie dodaje podciągi słów: na przykład trus jest podłańcuchem truskawki</string>
 </resources>

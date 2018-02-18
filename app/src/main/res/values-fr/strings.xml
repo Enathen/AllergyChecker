@@ -293,11 +293,14 @@
     <string name="wonderfulDay">Bonne journée!</string>
     <string name="holdHistory">Dans l\'onglet Historique, appuyez sur la date pour afficher plus d\'informations</string>
     <string name="foundBadTranslation">Mauvaise traduction trouvée? Aide le traduire!</string>
-    <string name="advancedSearch">Recherche Avancée</string>
-    <string name="regularSearch">recherche habituelle</string>
+    <string name="advancedSearch">Faire une recherche non filtrée</string>
+    <string name="regularSearch">Faire une recherche filtrée</string>
     <string name="italian">Italien</string>
     <string name="portuguese">Portugaise</string>
     <string name="polish">Polonaise</string>
     <string name="pleaseCheckAllergies">S\\\'il vous plaît vérifiez que vos allergies et préférences sont correctes!</string>
+    <string name="slide3">Maintenez enfoncé le bouton de l\'appareil photo pour afficher 2 options. Une option consiste à utiliser la lampe de poche sur l\'appareil photo et une autre option pour écrire manuellement dans les ingrédients qui sont contenus dans un produit</string>
+    <string name="advancedSearchis">la recherche filtrée supprime les sous-chaînes de mots: par exemple, le caca est la sous-chaîne de la cacahuète</string>
+    <string name="unfilteredSearchIs">La recherche non filtrée ajoute des sous-chaînes de mots: par exemple, la frai est une sous-chaîne de fraise</string>
 
 </resources>

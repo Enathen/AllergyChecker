@@ -204,8 +204,7 @@ public class TranslateHelp extends Fragment {
             }
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                     "mailto", "AllergyCheckerCEGTranslate@gmail.com", null));
-            emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.nameIfyouWantToBeInHelperList)
-                    + " : " + "\n" + getString(R.string.translatedFrom) + ": " + Locale.getDefault().
+            emailIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.translatedFrom) + ": " + Locale.getDefault().
                     getDisplayLanguage() + "\n" + string);
             startActivity(Intent.createChooser(emailIntent, getResources().getText(R.string.sendTipsFrom)));
         }
@@ -391,7 +390,6 @@ public class TranslateHelp extends Fragment {
             arrayList.add(getString(R.string.rate));
             arrayList.add(getString(R.string.pressMe));
             arrayList.add(getString(R.string.firstIntro));
-            arrayList.add(getString(R.string.secondIntro));
             arrayList.add(getString(R.string.thirdIntro));
             arrayList.add(getString(R.string.tutorial));
             arrayList.add(getString(R.string.anis));

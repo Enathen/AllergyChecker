@@ -287,9 +287,12 @@
     <string name="wonderfulDay">Tenha um dia maravilhoso!</string>
     <string name="holdHistory">Na guia Histórico mantenha pressionada a data para ver mais informações</string>
     <string name="foundBadTranslation">Encontrou má tradução? Ajude a traduzi-lo!</string>
-    <string name="advancedSearch">Busca Avançada</string>
-    <string name="regularSearch">Pesquisa comum</string>
+    <string name="advancedSearch">Fazer pesquisa filtrada</string>
+    <string name="regularSearch">Pesquisa não filtrada</string>
     <string name="portuguese">Portugues</string>
     <string name="polish">Polonesa</string>
     <string name="pleaseCheckAllergies">Verifique se suas alergias e preferências estão corretas!</string>
+    <string name="slide3">Mantendo pressionado o botão da câmera traz 2 opções. Uma opção é usar a lanterna na câmera e outra opção para escrever manualmente ingredientes que estão contidos em um produto</string>
+    <string name="unfilteredSearchIs">Pesquisa não filtrada adiciona substrings de palavras: por exemplo, a mora é substring de morango</string>
+    <string name="advancedSearchis">pesquisa filtrada remove substrings de palavras: por exemplo, amend é substring de amendoim</string>
 </resources>

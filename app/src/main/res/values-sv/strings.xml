@@ -32,7 +32,7 @@
     <string name="salmon">Lax</string>
     <string name="caviar">Kaviar</string>
     <string name="anchovies">Ansjovis</string>
-    <string name="bass">Havsaborre</string>
+    <string name="bass">Havsabborre</string>
     <string name="catfish">Havskatt</string>
     <string name="cod">Torsk</string>
     <string name="flounder">Flundra</string>
@@ -41,7 +41,7 @@
     <string name="halibut">Hälleflundra</string>
     <string name="herring">Sill</string>
     <string name="mahi">Mahi</string>
-    <string name="perch">Aborre</string>
+    <string name="perch">Abbore</string>
     <string name="pollock">Sej</string>
     <string name="pike">Gädda</string>
     <string name="swordfish">Svärdfisk</string>
@@ -97,7 +97,7 @@
     <string name="prune">Katrinplommon</string>
     <string name="pomegranate">Granatäpple</string>
     <string name="pinapple">Ananas</string>
-    <string name="persimmon">Persimmon</string>
+    <string name="persimmon">Persimon</string>
     <string name="peach">Persika</string>
     <string name="orange">Apelsin, Apelsiner</string>
     <string name="melon">Melon</string>
@@ -284,10 +284,13 @@
     <string name="wonderfulDay">Ha en underbar dag!</string>
     <string name="holdHistory">I historiefliken tryck och håll ner datumet för att få fram mer information</string>
     <string name="foundBadTranslation">Hittat en dålig översättning? Hjälp översätt!</string>
-    <string name="advancedSearch">Avancerad sökning</string>
-    <string name="regularSearch">Vanlig sökning</string>
+    <string name="advancedSearch">Gör ofiltrerad sökning</string>
+    <string name="regularSearch">Gör filtrerad sökning</string>
     <string name="italian">Italienska</string>
     <string name="portuguese">Portugisiska</string>
     <string name="polish">Polska</string>
     <string name="pleaseCheckAllergies">Kontrollera att dina allergier och preferenser är korrekta!</string>
+    <string name="slide3">Om du håller ner kameraknappen visas två alternativ. Ett alternativ är att använda ficklampan  på kameran och ett annat alternativ att manuellt skriva in ingredienser som ingår i en produkt</string>
+    <string name="advancedSearchis">Filtrerad sökning tar bort substrängar av ord: till exempel är jord substräng av jordnötter</string>
+    <string name="unfilteredSearchIs">Ofilterad sökning lägger till substrängar av ord: till exempel jord är en substräng av jordgubbe</string>
 </resources>

@@ -291,11 +291,14 @@
     <string name="wonderfulDay">Einen schönen Tag!</string>
     <string name="holdHistory">Auf der Registerkarte Verlauf halten Sie das Datum gedrückt, um weitere Informationen anzuzeigen</string>
     <string name="foundBadTranslation">Eine schlechte Übersetzung gefunden? Hilf mit, es zu übersetzen!</string>
-    <string name="advancedSearch">Erweiterte Suche</string>
-    <string name="regularSearch">Regelmäßige Suche</string>
+    <string name="advancedSearch">Mache ungefilterte Suche</string>
+    <string name="regularSearch">Mache gefilterte Suche</string>
     <string name="italian">Italienisch</string>
     <string name="portuguese">Portugiesische</string>
     <string name="polish">Polnische</string>
     <string name="pleaseCheckAllergies">Bitte überprüfen Sie, ob Ihre Allergien und Vorlieben stimmen!</string>
+    <string name="slide3">Wenn Sie die Kamerataste gedrückt halten, werden 2 Optionen angezeigt. Eine Option ist die Verwendung der Taschenlampe an der Kamera und eine andere Option zum manuellen Schreiben von Zutaten, die in einem Produkt enthalten sind</string>
+    <string name="unfilteredSearchIs">Die ungefilterte Suche fügt Teilstrings von Wörtern hinzu: zum Beispiel ist erd Teilstring von Erdbeere</string>
+    <string name="advancedSearchis">Die gefilterte Suche entfernt Teilstrings von Wörtern: zum Beispiel ist Erd Teilstring von Erdnuss</string>
 
 </resources>

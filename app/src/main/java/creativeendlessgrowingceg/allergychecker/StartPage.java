@@ -45,7 +45,9 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -89,6 +91,8 @@ public class StartPage extends AppCompatActivity
     private SubscriptionsViewController mViewController;
     private boolean advancedSearch = false;
     private boolean loadInterstitial = false;
+    private AdView mAdView;
+    private AdRequest adRequest;
 
     public StartPage(FragmentActivity activity) {
         prefs = activity.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
@@ -120,7 +124,11 @@ public class StartPage extends AppCompatActivity
         //findViewById(R.id.textViewtip).setVisibility(View.GONE);
 
 
+        MobileAds.initialize(this, "ca-app-pub-3607354849437438~1697911164");
+        mAdView = findViewById(R.id.adView);
 
+
+        mAdView.setVisibility(View.VISIBLE);
         Log.d(TAG, "LOCALE: " + Locale.getDefault().getLanguage());
         new LanguageFragment().setGetLanguage(StartPage.this, Locale.getDefault().getLanguage());
 
@@ -132,7 +140,7 @@ public class StartPage extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        loadInterstitial();
+        //loadInterstitial();
         ((TextView)findViewById(R.id.textViewtip)).setText(StartPageTip.getTip(getBaseContext()));
         String newString = getString(R.string.startPageHeader);
         write = (FloatingActionButton) findViewById(R.id.write);
@@ -279,6 +287,7 @@ public class StartPage extends AppCompatActivity
                 Log.d(TAG, "SAVEDINSTANCESTATE: ");
                 str = null;
                 findViewById(R.id.textViewtip).setVisibility(View.GONE);
+
             }
             if (str != null) {
                 advancedSearch =  intent.getBooleanExtra("advancedSearch",false);
@@ -399,6 +408,28 @@ public class StartPage extends AppCompatActivity
 
         final Resources res = this.getResources();
         res.updateConfiguration(config, res.getDisplayMetrics());
+        final StartPage startPage = this;
+        findViewById(R.id.imageViewQuestion).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                break;
+                        }
+                    }
+                };
+                AlertDialog.Builder builder = new AlertDialog.Builder(startPage);
+                if(advancedSearch){
+                    builder.setMessage(R.string.advancedSearchis).setPositiveButton(R.string.ok, dialogClickListener).show();
+                }else{
+                    builder.setMessage(R.string.unfilteredSearchIs).setPositiveButton(R.string.ok, dialogClickListener).show();
+
+                }
+            }
+        });
         new CalcAllergy(this, allergic, (ProgressBar) findViewById(R.id.progressBar3)).execute(str);
 
     }
@@ -465,12 +496,18 @@ public class StartPage extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        int popStack = getFragmentManager().getBackStackEntryCount();
+        int popStack = getSupportFragmentManager().getBackStackEntryCount();
+        Log.d(TAG, "onBackPressed: " + popStack);
 
         if (popStack == 0) {
             super.onBackPressed();
+
         } else {
-            getFragmentManager().popBackStack();
+            getSupportFragmentManager().popBackStack();
+            if(popStack == 1){
+                Toast.makeText(this, R.string.start, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, StartPage.class));
+            }
         }
     }
 
@@ -617,11 +654,11 @@ public class StartPage extends AppCompatActivity
         if (fragment != null) {
             suggestions.setText("");
             allergic.setText("");
-            findViewById(R.id.buttonAdvancedSearch).setVisibility(View.GONE);
+            findViewById(R.id.linlaybtnadvanced).setVisibility(View.GONE);
+            mAdView.setVisibility(View.GONE);
             findViewById(R.id.textViewtip).setVisibility(View.GONE);
             if (findViewById(R.id.linlayallergyFromWord) != null) {
                 findViewById(R.id.linlayallergyFromWord).setVisibility(View.INVISIBLE);
-
             }
             findViewById(R.id.linLayHorizontalStartPage).setVisibility(View.INVISIBLE);
 
@@ -714,19 +751,21 @@ public class StartPage extends AppCompatActivity
         return mViewController.isGoldYearlySubscribed();
     }
     public void loadInter(){
-        Log.d(TAG, "premium: " + loadInterstitial);
-        if(loadInterstitial){
+        Log.d(TAG, "premiumBanner: " + loadInterstitial);
+        /*if(loadInterstitial){
             if(!advancedSearch)
             displayInterstitial();
-        }
+        }*/
+        adRequest = new AdRequest.Builder().addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build();
+        mAdView.loadAd(adRequest);
+
+
     }
     public void premium() {
 
         if (!isPremiumPurchased()){
-            if(loadInterstitial){
-                if(!advancedSearch)
-                displayInterstitial();
-            }
+            adRequest = new AdRequest.Builder().addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build();
+            mAdView.loadAd(adRequest);
             Log.d(TAG, "premium: "+ new LanguageFragment().getCategories(this));
             Set<String> set = new HashSet<>();
             Set<Locale> setToDelete = new HashSet<>();
@@ -828,7 +867,7 @@ public class StartPage extends AppCompatActivity
                     counter++;
                 }
                 i++;
-                if(advancedSearch){
+                if(!advancedSearch){
                     helpCalcAllergy.checkFullString(s, allergies, allFoundAllergies);
                 }
             }
@@ -928,15 +967,22 @@ public class StartPage extends AppCompatActivity
             }
 
             allergic.setText(outputString);
+
+
+
+
             if(advancedSearch){
                 ((Button)findViewById(R.id.buttonAdvancedSearch)).setText(getString(R.string.regularSearch));
+
             }
+
             ((Button)findViewById(R.id.buttonAdvancedSearch)).getBackground().setColorFilter(0xFF19b3ad, PorterDuff.Mode.MULTIPLY);
-            ((Button)findViewById(R.id.buttonAdvancedSearch)).setVisibility(View.VISIBLE);
+            (findViewById(R.id.linlaybtnadvanced)).setVisibility(View.VISIBLE);
 
             findViewById(R.id.buttonAdvancedSearch).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     Intent intent = new Intent(StartPage.this, StartPage.class);
                     if(advancedSearch){
                         intent.putExtra("advancedSearch", false);

@@ -23,6 +23,8 @@ import com.google.android.gms.vision.text.TextBlock;
 
 import creativeendlessgrowingceg.allergychecker.camera.ui.GraphicOverlay;
 
+import static java.lang.Thread.sleep;
+
 /**
  * A very simple Processor which gets detected TextBlocks and adds them to the overlay
  * as OcrGraphics.
@@ -39,7 +41,13 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
     // TODO:  Once this implements Detector.Processor<TextBlock>, implement the abstract methods.
     @Override
     public void receiveDetections(Detector.Detections<TextBlock> detections) {
+        try {
+            sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         mGraphicOverlay.clear();
+
         SparseArray<TextBlock> items = detections.getDetectedItems();
         
         for (int i = 0; i < items.size(); ++i) {

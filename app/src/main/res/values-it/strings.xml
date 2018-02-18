@@ -285,10 +285,13 @@
     <string name="wonderfulDay">Buona giornata!</string>
     <string name="holdHistory">Nella scheda Cronologia tenere premuto per visualizzare ulteriori informazioni</string>
     <string name="foundBadTranslation">Hai trovato una cattiva traduzione? Aiutaci a tradurlo!</string>
-    <string name="advancedSearch">Ricerca Avanzata</string>
-    <string name="regularSearch">Ricerca comune</string>
+    <string name="advancedSearch">Fare ricerca non filtrata</string>
+    <string name="regularSearch">" Fare ricerca filtrata"</string>
     <string name="italian">Italiano</string>
     <string name="portuguese">Portoghese</string>
     <string name="polish">Polacca</string>
     <string name="pleaseCheckAllergies">Per favore controlla che le tue allergie e le tue preferenze siano corrette!</string>
+    <string name="slide3">Tenendo premuto il pulsante della fotocamera vengono visualizzate 2 opzioni. Un\'opzione è quella di utilizzare la torcia sulla fotocamera e un\'altra opzione per scrivere manualmente negli ingredienti contenuti in un prodotto</string>
+    <string name="advancedSearchis">la ricerca filtrata rimuove sottostringhe di parole: ad esempio, arach è una sottostringa di arachidi</string>
+    <string name="unfilteredSearchIs">" La ricerca non filtrata aggiunge sottostringhe di parole: ad esempio frag è sottostringa di fragola"</string>
 </resources>

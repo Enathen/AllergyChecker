@@ -75,6 +75,8 @@ public class MyAllergies extends Fragment {
 
     }
 
+
+
     //create the look
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,6 +92,7 @@ public class MyAllergies extends Fragment {
         CheckAllergy();
         return parentFrameLayout;
     }
+
     private void CheckAllergy(){
 
         // TODO add when after update

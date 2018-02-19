@@ -89,7 +89,7 @@ public class StartPage extends AppCompatActivity
     private String Language = "";
     private BillingManager mBillingManager;
     private SubscriptionsViewController mViewController;
-    private boolean advancedSearch = false;
+    private boolean Unfiltered = true;
     private boolean loadInterstitial = false;
     private AdView mAdView;
     private AdRequest adRequest;
@@ -142,7 +142,6 @@ public class StartPage extends AppCompatActivity
         setSupportActionBar(toolbar);
         //loadInterstitial();
         ((TextView)findViewById(R.id.textViewtip)).setText(StartPageTip.getTip(getBaseContext()));
-        String newString = getString(R.string.startPageHeader);
         write = (FloatingActionButton) findViewById(R.id.write);
         camera = (FloatingActionMenu) findViewById(R.id.menu);
         final StartPage startPage = this;
@@ -241,7 +240,6 @@ public class StartPage extends AppCompatActivity
         intent = getIntent();
         String str = intent.getStringExtra("location");
         if(savedInstanceState != null){
-            advancedSearch = savedInstanceState.getBoolean("advancedSearch");
             Log.d(TAG, "SAVEDINSTANCESTATE: ");
             findViewById(R.id.textViewtip).setVisibility(View.GONE);
             str = null;
@@ -283,14 +281,13 @@ public class StartPage extends AppCompatActivity
         } else {
             str = intent.getStringExtra("HistoryFragment");
             if(savedInstanceState != null){
-                advancedSearch = savedInstanceState.getBoolean("advancedSearch");
                 Log.d(TAG, "SAVEDINSTANCESTATE: ");
                 str = null;
                 findViewById(R.id.textViewtip).setVisibility(View.GONE);
 
             }
             if (str != null) {
-                advancedSearch =  intent.getBooleanExtra("advancedSearch",false);
+                Unfiltered =  intent.getBooleanExtra("Unfiltered",true);
                 suggestions.setText(str);
                 checkStringAgainstAllergies(str);
             }else{
@@ -339,7 +336,8 @@ public class StartPage extends AppCompatActivity
             Log.d(TAG, "KEY: " +check);
             if (!sharedPreferences.getBoolean(check, false)) {
                 Fragment fragment = new MyAllergies();
-                fragment(fragment);
+
+                fragment(fragment, getString(R.string.myAllergies));
                 SharedPreferences.Editor sharedPreferencesEditor =
                         PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
                 sharedPreferencesEditor.putBoolean(
@@ -422,7 +420,7 @@ public class StartPage extends AppCompatActivity
                     }
                 };
                 AlertDialog.Builder builder = new AlertDialog.Builder(startPage);
-                if(advancedSearch){
+                if(Unfiltered){
                     builder.setMessage(R.string.advancedSearchis).setPositiveButton(R.string.ok, dialogClickListener).show();
                 }else{
                     builder.setMessage(R.string.unfilteredSearchIs).setPositiveButton(R.string.ok, dialogClickListener).show();
@@ -496,21 +494,36 @@ public class StartPage extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        int popStack = getSupportFragmentManager().getBackStackEntryCount();
-        Log.d(TAG, "onBackPressed: " + popStack);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        if (popStack == 0) {
-            super.onBackPressed();
-
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
         } else {
-            getSupportFragmentManager().popBackStack();
-            if(popStack == 1){
-                Toast.makeText(this, R.string.start, Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, StartPage.class));
+            int count = getSupportFragmentManager().getBackStackEntryCount();
+
+            if (count == 0) {
+                super.onBackPressed();
+                //additional code
+            } else {
+                if(count == 1){
+                    setTitle(R.string.app_name);
+                    findViewById(R.id.textViewtip).setVisibility(View.VISIBLE);
+                    findViewById(R.id.adView).setVisibility(View.VISIBLE);
+                    checkPremium();
+
+                }else{
+                    FragmentManager supportFragmentManager = getSupportFragmentManager();
+                    String topOnStack = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.getBackStackEntryCount()-2).getName();
+                    Log.d(TAG, "onBackPressed: "+ topOnStack);
+                    setTitle(topOnStack);
+
+                }
+                getSupportFragmentManager().popBackStack();
             }
         }
-    }
 
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -581,30 +594,36 @@ public class StartPage extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Fragment fragment = null;
-
+        String backtitle = "";
 
         if (id == R.id.history) {
             fragment = new HistoryFragment();
             setTitle(getString(R.string.history));
+            backtitle = getString(R.string.history);
         } else if (id == R.id.languageMenu) {
 
             fragment = new LanguageFragment();
             setTitle(getString(R.string.language));
+            backtitle = getString(R.string.language);
         } else if (id == R.id.allergies) {
 //this, getImageViewHashMap(), new LanguageFragment(this).getCategories()
             fragment = new MyAllergies();
             setTitle(getString(R.string.myAllergies));
+            backtitle = getString(R.string.myAllergies);
         } else if (id == R.id.preference) {
             fragment = new MyPreference();
             setTitle(getString(R.string.myPreference));
+            backtitle = getString(R.string.myPreference);
         } else if (id == R.id.tutorial) {
             startActivity(new Intent(this, OnboardingPagerActivity.class));
         } else if (id == R.id.about) {
             fragment = new AboutFragment();
             setTitle(getString(R.string.about));
+            backtitle = getString(R.string.about);
         } else if (id == R.id.translate) {
             fragment = new TranslateHelp();
             setTitle(getString(R.string.helpTranslate));
+            backtitle = getString(R.string.helpTranslate);
         } else if (id == R.id.showAllergies) {
             Bundle b = new Bundle();
             b.putSerializable("ArrayList",LanguagesAccepted.getLanguages(getBaseContext()));
@@ -612,6 +631,8 @@ public class StartPage extends AppCompatActivity
             fragment = new ShowAllergies();
             fragment.setArguments(b);
             setTitle(getString(R.string.showAllergies));
+            backtitle = getString(R.string.showAllergies);
+
         }
         else if (id == R.id.nav_rate) {
             Uri uri = Uri.parse("market://details?id=" + this.getPackageName());
@@ -644,13 +665,13 @@ public class StartPage extends AppCompatActivity
         }
 
         if (fragment != null) {
-            fragment(fragment);
+            fragment(fragment,backtitle);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    private void fragment(Fragment fragment){
+    private void fragment(Fragment fragment, String backtitle){
         if (fragment != null) {
             suggestions.setText("");
             allergic.setText("");
@@ -665,8 +686,9 @@ public class StartPage extends AppCompatActivity
 
             ((TextView) findViewById(R.id.textViewFoundAllergies)).setText("");
             FragmentManager fragmentManager = getSupportFragmentManager();
+
             fragmentManager.beginTransaction()
-                    .replace(R.id.startPageFrame, fragment).addToBackStack(null).commit();
+                    .replace(R.id.startPageFrame, fragment).addToBackStack(backtitle).commit();
             fragmentManager.executePendingTransactions();
         }
     }
@@ -753,7 +775,7 @@ public class StartPage extends AppCompatActivity
     public void loadInter(){
         Log.d(TAG, "premiumBanner: " + loadInterstitial);
         /*if(loadInterstitial){
-            if(!advancedSearch)
+            if(!Unfiltered)
             displayInterstitial();
         }*/
         adRequest = new AdRequest.Builder().addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build();
@@ -867,7 +889,7 @@ public class StartPage extends AppCompatActivity
                     counter++;
                 }
                 i++;
-                if(!advancedSearch){
+                if(Unfiltered){
                     helpCalcAllergy.checkFullString(s, allergies, allFoundAllergies);
                 }
             }
@@ -971,8 +993,11 @@ public class StartPage extends AppCompatActivity
 
 
 
-            if(advancedSearch){
+            if(Unfiltered){
                 ((Button)findViewById(R.id.buttonAdvancedSearch)).setText(getString(R.string.regularSearch));
+
+            }else{
+                ((Button)findViewById(R.id.buttonAdvancedSearch)).setText(getString(R.string.advancedSearch));
 
             }
 
@@ -984,10 +1009,10 @@ public class StartPage extends AppCompatActivity
                 public void onClick(View v) {
 
                     Intent intent = new Intent(StartPage.this, StartPage.class);
-                    if(advancedSearch){
-                        intent.putExtra("advancedSearch", false);
+                    if(Unfiltered){
+                        intent.putExtra("Unfiltered", false);
                     }else{
-                        intent.putExtra("advancedSearch", true);
+                        intent.putExtra("Unfiltered", true);
                     }
                     intent.putExtra("HistoryFragment", stringToCheck);
                     startActivity(intent);
@@ -1015,6 +1040,6 @@ public class StartPage extends AppCompatActivity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean("advancedSearch", true);
+        outState.putBoolean("Unfiltered", true);
     }
 }

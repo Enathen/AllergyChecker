@@ -135,12 +135,9 @@ public class LoadUIAllergies {
             imageView.setImageDrawable(context.getDrawable(R.drawable.emptyborder));
         }
         HashSet<Integer> allergySavePicture = SharedPreferenceClass.getSharedPreference(context, "allergySavePicture", TAG);
-        allergySavePicture.addAll(SharedPreferenceClass.getSharedPreference(context, "preferenceSavePicture", TAG));
-        HashSet<String> allergySavePictureNAME = (HashSet<String>) SharedPreferenceClass.getSharedPreferenceString(context, "allergySavePictureName", TAG);
-        allergySavePictureNAME.addAll(SharedPreferenceClass.getSharedPreferenceString(context, "preferenceSavePictureName", TAG));
         HashSet<Integer> allergyToRemove = new HashSet<>();
-        for (String s : allergySavePictureNAME) {
-            Log.d(TAG, "savePicture: " + s);
+        for (Integer integer : allergySavePicture) {
+            Log.d(TAG, "allergysavePicture: "+ integer);
         }
         for (Integer integer : allergySavePicture) {
             try {
@@ -149,9 +146,14 @@ public class LoadUIAllergies {
 
             } catch (Resources.NotFoundException e){
                 allergyToRemove.add(context.getResources().getIdentifier(String.valueOf(integer), "drawable", context.getPackageName()));
+
             }
         }
+        for (Integer integer : allergyToRemove) {
+            Log.d(TAG, "savePictureREMOVE: "+ integer);
+        }
         allergySavePicture.removeAll(allergyToRemove);
+        Log.d(TAG, "savePicture: "+ allergySavePicture);
         for (int id : allergySavePicture) {
             if (i > 7) {
                 break;
@@ -169,6 +171,9 @@ public class LoadUIAllergies {
                 }
             }
         }
+        SharedPreferenceClass.setSharedPreference(context, allergySavePicture, "allergySavePicture", TAG);
+        HashSet<Integer> allergySavePicture1 = SharedPreferenceClass.getSharedPreference(context, "allergySavePicture", TAG);
+        Log.d(TAG,""+allergySavePicture1 );
     }
 
     public HashSet<String> getCurrentlyActiveAllergies() {
@@ -293,9 +298,20 @@ public class LoadUIAllergies {
             Log.d(TAG, "HASHSETpictu: " + integer);
         }
         HashSet<Integer> allergiesToSave = SharedPreferenceClass.getSharedPreference(context, "allergiesToSave", TAG);
+        HashSet<Integer> allergiesToRemove = new HashSet<>();
+        Log.d(TAG, "saveAllergies1: "+ allergiesToSave);
         for (Integer integer : allergiesToSave) {
-            Log.d(TAG, "allergiesToSave: "+ integer);
+            try {
+                Log.d(TAG, "allergiesToSave: "+ context.getString(integer)) ;
+                if(context.getString(integer).contains("res/")){
+                    allergiesToRemove.add(integer);
+                }
+            }catch (Resources.NotFoundException e){
+                allergiesToRemove.add(integer);
+            }
         }
+        allergiesToSave.removeAll(allergiesToRemove);
+        Log.d(TAG, "saveAllergies2: "+ allergiesToSave);
         if (!preference) {
             for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
                 for (AllergyCheckBoxClass checkBoxClass : allergyCheckBoxClass.getSameItemDifferentCategories()) {
@@ -372,8 +388,8 @@ public class LoadUIAllergies {
                 }
 
             }
+            SharedPreferenceClass.setSharedPreference(context, allergiesToSave, "allergiesToSave", TAG);
             if (open) {
-                SharedPreferenceClass.setSharedPreference(context, allergiesToSave, "allergiesToSave", TAG);
                 SharedPreferenceClass.setSharedPreference(context, hashSet, "allergySave", TAG);
                 SharedPreferenceClass.setSharedPreference(context, hashSetPicture, "allergySavePicture", TAG);
                 HashSet<String> hashSetPictureName = new HashSet<>();
@@ -388,15 +404,11 @@ public class LoadUIAllergies {
     }
 
     synchronized public HashSet<Integer> getAllergies(StartPage startPage) {
-        HashSet<Integer> set = SharedPreferenceClass.getSharedPreference(startPage, "allergySave", "LoadUIAllergies");
-        set.addAll(SharedPreferenceClass.getSharedPreference(startPage, "preferenceSave", "LoadUIAllergies"));
-        return set;
+        return SharedPreferenceClass.getSharedPreference(startPage, "allergySave", "LoadUIAllergies");
     }
 
     synchronized public HashSet<Integer> getAllergies(ShowAllergies showAllergies) {
-        HashSet<Integer> set = SharedPreferenceClass.getSharedPreference(showAllergies.getContext(), "allergySave", "LoadUIAllergies");
-        set.addAll(SharedPreferenceClass.getSharedPreference(showAllergies.getContext(), "preferenceSave", "LoadUIAllergies"));
-        return set;
+        return SharedPreferenceClass.getSharedPreference(showAllergies.getContext(), "allergySave", "LoadUIAllergies");
     }
 
     private class AddCategories extends AsyncTask<String, Integer, String> {

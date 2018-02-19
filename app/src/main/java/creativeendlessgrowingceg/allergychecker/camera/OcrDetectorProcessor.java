@@ -41,11 +41,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
     // TODO:  Once this implements Detector.Processor<TextBlock>, implement the abstract methods.
     @Override
     public void receiveDetections(Detector.Detections<TextBlock> detections) {
-        try {
-            sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         mGraphicOverlay.clear();
 
         SparseArray<TextBlock> items = detections.getDetectedItems();
@@ -57,6 +53,11 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
             }
             OcrGraphic graphic = new OcrGraphic(mGraphicOverlay, item);
             mGraphicOverlay.add(graphic);
+        }
+        try {
+            sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 

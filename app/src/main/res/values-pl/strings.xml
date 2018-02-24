@@ -58,7 +58,6 @@
     <string name="crawfish">Langusta</string>
     <string name="krill">Krill</string>
     <string name="lobster">Homar</string>
-    <string name="prawns">Krewetki</string>
     <string name="shrimp">Krewetka</string>
     <string name="scampi">scampi</string>
     <string name="abalone">Uchowiec</string>
@@ -66,13 +65,12 @@
     <string name="cockle">Kąkol</string>
     <string name="limpet">Pijawka</string>
     <string name="mussels">Małże</string>
-    <string name="octopus">Ośmiornica</string>
+    <string name="octopus">Ośmiornica, Kałamarnica</string>
     <string name="oysters">ostrygi</string>
     <string name="periwinkle">Barwinek</string>
     <string name="urchin">Urwis</string>
     <string name="scallops">Przegrzebki</string>
     <string name="snails">ślimaki</string>
-    <string name="squid">Kałamarnica</string>
     <string name="whelk">Trądzik</string>
 
     <string name="wheat">Pszenica</string>
@@ -292,4 +290,5 @@
     <string name="slide3">Przytrzymanie przycisku aparatu powoduje wyświetlenie 2 opcji. Jedną z opcji jest użycie latarki w aparacie i inna opcja ręcznego zapisu w składnikach zawartych w produkcie</string>
     <string name="advancedSearchis">filtrowane wyszukiwanie usuwa podciągi słów: na przykład ziem jest podłańcuchem orzeszków ziemnych</string>
     <string name="unfilteredSearchIs">Niefiltrowane wyszukiwanie dodaje podciągi słów: na przykład trus jest podłańcuchem truskawki</string>
+    <string name="eNumbers">E numbers</string>
 </resources>

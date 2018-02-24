@@ -57,21 +57,19 @@
     <string name="crawfish">Kreps</string>
     <string name="krill">Krill</string>
     <string name="lobster">Hummer</string>
-    <string name="prawns">reke, reker</string>
-    <string name="shrimp">Liten reke</string>
+    <string name="shrimp">reke</string>
     <string name="scampi">Sjökräfta</string>
     <string name="abalone">Sjøøre</string>
     <string name="clams">Mussla</string>
     <string name="cockle">Hjerteskjell</string>
     <string name="limpet">Limpet</string>
     <string name="mussels">Blåskjell</string>
-    <string name="octopus">Blekksprut</string>
+    <string name="octopus">Blekksprut, Akkar</string>
     <string name="oysters">Østers</string>
     <string name="periwinkle">Shell</string>
     <string name="urchin">Kråkebolle</string>
     <string name="scallops">Kamskjell</string>
     <string name="snails">Snegl, Snegler</string>
-    <string name="squid">Akkar</string>
     <string name="whelk">Kongesnegl</string>
 
     <string name="wheat">Hvete</string>
@@ -294,5 +292,6 @@
     <string name="slide3">Ved å holde nede kameraknappen kommer 2 alternativer. Et alternativ er å bruke lommelykten på kameraet og et annet alternativ til å skrive inn ingredienser som er inneholdt i et produkt manuelt</string>
     <string name="unfilteredSearchIs">Ufiltrert søk legger til substrings av ord: for eksempel jord er substring av jordbær</string>
     <string name="advancedSearchis">filtrert søk fjerner understrenger av ord: for eksempel er jord en substans av jordnøtt</string>
+    <string name="eNumbers">E numbers</string>
 
 </resources>

@@ -58,7 +58,6 @@
     <string name="crawfish">Syöpä</string>
     <string name="krill">Krilli</string>
     <string name="lobster">Hummeri</string>
-    <string name="prawns">Katkarapu</string>
     <string name="shrimp">Katkarapu</string>
     <string name="scampi">Scampi</string>
     <string name="abalone">Merikorva</string>
@@ -72,7 +71,6 @@
     <string name="urchin">Viikari</string>
     <string name="scallops">Kampasimpukat</string>
     <string name="snails">Etanat, Etana</string>
-    <string name="squid">Kalmari</string>
     <string name="whelk">Torvisimpukka</string>
 
     <string name="wheat">Vehnä</string>
@@ -294,5 +292,6 @@
     <string name="slide3">Kameran painikkeen pitäminen alhaalla tuo kaksi vaihtoehtoa. Yksi vaihtoehto on käyttää taskulampun kameraa ja muuta vaihtoehtoa käsin kirjoittamaan tuotteen sisältämiin ainesosiin</string>
     <string name="advancedSearchis">suodatettu haku poistaa tekstin substraatit: esimerkiksi maap on maapähkinän merkkijono</string>
     <string name="unfilteredSearchIs">Suodattamaton haku lisää sanojen substraattit: esimerkiksi mansi on mansikan substringi</string>
+    <string name="eNumbers">E numbers</string>
 
 </resources>

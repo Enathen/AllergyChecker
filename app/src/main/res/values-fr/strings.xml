@@ -63,7 +63,6 @@
     <string name="crawfish">Écrevisses</string>
     <string name="krill">Krill</string>
     <string name="lobster">Homard</string>
-    <string name="prawns">Crevettes</string>
     <string name="shrimp">Crevettes</string>
     <string name="scampi">Scampi</string>
     <string name="abalone">Abalonee</string>
@@ -71,13 +70,12 @@
     <string name="cockle">Cockle</string>
     <string name="limpet">Limpet</string>
     <string name="mussels">Moules</string>
-    <string name="octopus">Poulpe</string>
+    <string name="octopus">Poulpe, Calmar</string>
     <string name="oysters">Huîtres</string>
     <string name="periwinkle">Pervenche</string>
     <string name="urchin">Oursin</string>
     <string name="scallops">Pétoncles</string>
     <string name="snails">Escargots</string>
-    <string name="squid">Calmar</string>
     <string name="whelk">Buccin</string>
 
     <string name="wheat">Blé</string>
@@ -302,5 +300,6 @@
     <string name="slide3">Maintenez enfoncé le bouton de l\'appareil photo pour afficher 2 options. Une option consiste à utiliser la lampe de poche sur l\'appareil photo et une autre option pour écrire manuellement dans les ingrédients qui sont contenus dans un produit</string>
     <string name="advancedSearchis">la recherche filtrée supprime les sous-chaînes de mots: par exemple, le caca est la sous-chaîne de la cacahuète</string>
     <string name="unfilteredSearchIs">La recherche non filtrée ajoute des sous-chaînes de mots: par exemple, la frai est une sous-chaîne de fraise</string>
+    <string name="eNumbers">E numbers</string>
 
 </resources>

@@ -59,21 +59,19 @@
     <string name="crawfish">Aragoste</string>
     <string name="krill">Krill</string>
     <string name="lobster">Aragosta</string>
-    <string name="prawns">Gamberi</string>
-    <string name="shrimp">Gamberetto</string>
+    <string name="shrimp">Gamberetto, Gamberi</string>
     <string name="scampi">Scampi</string>
     <string name="abalone">Orecchia di mare</string>
     <string name="clams">Vongole</string>
     <string name="cockle">Tellina</string>
     <string name="limpet">Patella</string>
     <string name="mussels">Cozze</string>
-    <string name="octopus">Polpo</string>
+    <string name="octopus">Polpo, Calamaro</string>
     <string name="oysters">Ostriche</string>
     <string name="periwinkle">Pervinca</string>
     <string name="urchin">Monello</string>
     <string name="scallops">Scaloppine</string>
     <string name="snails">Lumache</string>
-    <string name="squid">Calamaro</string>
     <string name="whelk">Buccino</string>
 
     <string name="wheat">Grano</string>
@@ -294,4 +292,5 @@
     <string name="slide3">Tenendo premuto il pulsante della fotocamera vengono visualizzate 2 opzioni. Un\'opzione è quella di utilizzare la torcia sulla fotocamera e un\'altra opzione per scrivere manualmente negli ingredienti contenuti in un prodotto</string>
     <string name="advancedSearchis">la ricerca filtrata rimuove sottostringhe di parole: ad esempio, arach è una sottostringa di arachidi</string>
     <string name="unfilteredSearchIs">" La ricerca non filtrata aggiunge sottostringhe di parole: ad esempio frag è sottostringa di fragola"</string>
+    <string name="eNumbers">E numbers</string>
 </resources>

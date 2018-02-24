@@ -254,7 +254,6 @@ public class TranslateHelp extends Fragment {
             arrayList.add(getString(R.string.crawfish));
             arrayList.add(getString(R.string.krill));
             arrayList.add(getString(R.string.lobster));
-            arrayList.add(getString(R.string.prawns));
             arrayList.add(getString(R.string.shrimp));
             arrayList.add(getString(R.string.scampi));
             arrayList.add(getString(R.string.abalone));
@@ -268,7 +267,6 @@ public class TranslateHelp extends Fragment {
             arrayList.add(getString(R.string.urchin));
             arrayList.add(getString(R.string.scallops));
             arrayList.add(getString(R.string.snails));
-            arrayList.add(getString(R.string.squid));
             arrayList.add(getString(R.string.whelk));
             arrayList.add(getString(R.string.wheat));
             arrayList.add(getString(R.string.durum));

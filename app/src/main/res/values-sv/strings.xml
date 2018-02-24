@@ -57,8 +57,7 @@
     <string name="crawfish">Kräfta, Kräftor</string>
     <string name="krill">Lysräka</string>
     <string name="lobster">Hummer</string>
-    <string name="prawns">Räka, Räkor</string>
-    <string name="shrimp">Liten Räka</string>
+    <string name="shrimp">Räka</string>
     <string name="scampi">Sjökräfta</string>
     <string name="abalone">Havsöra</string>
     <string name="clams">Mussla</string>
@@ -71,7 +70,6 @@
     <string name="urchin">Sjöborre</string>
     <string name="scallops">Kammussla</string>
     <string name="snails">Snigel, Sniglar</string>
-    <string name="squid">Bläckfisk (10), Bläckfiskar</string>
     <string name="whelk">Valthornssnäcka</string>
 
     <string name="wheat">Vete</string>
@@ -293,4 +291,5 @@
     <string name="slide3">Om du håller ner kameraknappen visas två alternativ. Ett alternativ är att använda ficklampan  på kameran och ett annat alternativ att manuellt skriva in ingredienser som ingår i en produkt</string>
     <string name="advancedSearchis">Filtrerad sökning tar bort substrängar av ord: till exempel är jord substräng av jordnötter</string>
     <string name="unfilteredSearchIs">Ofilterad sökning lägger till substrängar av ord: till exempel jord är en substräng av jordgubbe</string>
+    <string name="eNumbers">E numbers</string>
 </resources>

@@ -63,8 +63,6 @@
     <string name="crawfish">Rivierkreeften</string>
     <string name="krill">Krill</string>
     <string name="lobster">Kreeft</string>
-    <string name="prawns">Garnalen</string>
-    <string name="shrimp">Garnalen</string>
     <string name="scampi">Scampi</string>
     <string name="abalone">Abalone</string>
     <string name="clams">Mosselen</string>
@@ -77,7 +75,6 @@
     <string name="urchin">Egel</string>
     <string name="scallops">Jakobsschelpen</string>
     <string name="snails">Slakken</string>
-    <string name="squid">Squid</string>
     <string name="whelk">Puist</string>
 
     <string name="wheat">Tarwe</string>
@@ -303,4 +300,6 @@
     <string name="slide3">Als u de cameraknop ingedrukt houdt, worden er 2 opties weergegeven. Een optie is om de zaklamp op de camera te gebruiken en een andere optie om handmatig in ingrediënten te schrijven die in een product zitten</string>
     <string name="advancedSearchis">gefilterd zoeken verwijdert substrings van woorden: bijvoorbeeld pin is substring van pinda</string>
     <string name="unfilteredSearchIs">Ongefilterd zoeken voegt substrings van woorden toe: zo is bijvoorbeeld stro een substring van aardbei</string>
+    <string name="shrimp">Garnalen</string>
+    <string name="eNumbers">E numbers</string>
 </resources>

@@ -506,6 +506,7 @@ public class StartPage extends AppCompatActivity
                 //additional code
             } else {
                 if(count == 1){
+
                     setTitle(R.string.app_name);
                     findViewById(R.id.textViewtip).setVisibility(View.VISIBLE);
                     findViewById(R.id.adView).setVisibility(View.VISIBLE);
@@ -676,6 +677,7 @@ public class StartPage extends AppCompatActivity
             suggestions.setText("");
             allergic.setText("");
             findViewById(R.id.linlaybtnadvanced).setVisibility(View.GONE);
+            mAdView.pause();
             mAdView.setVisibility(View.GONE);
             findViewById(R.id.textViewtip).setVisibility(View.GONE);
             if (findViewById(R.id.linlayallergyFromWord) != null) {
@@ -744,8 +746,26 @@ public class StartPage extends AppCompatActivity
     protected void onPause() {
         super.onPause();
         findViewById(R.id.textViewtip).setVisibility(View.GONE);
+        mAdView.pause();
+        mAdView.setVisibility(View.GONE);
 
 
+    }
+
+    /**
+     * Dispatch onResume() to fragments.  Note that for better inter-operation
+     * with older versions of the platform, at the point of this call the
+     * fragments attached to the activity are <em>not</em> resumed.  This means
+     * that in some cases the previous state may still be saved, not allowing
+     * fragment transactions that modify the state.  To correctly interact
+     * with fragments in their proper state, you should instead override
+     * {@link #onResumeFragments()}.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        findViewById(R.id.textViewtip).setVisibility(View.VISIBLE);
+        mAdView.resume();
     }
 
     public Context startPage() {
@@ -786,8 +806,8 @@ public class StartPage extends AppCompatActivity
     public void premium() {
 
         if (!isPremiumPurchased()){
-            adRequest = new AdRequest.Builder().addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build();
-            mAdView.loadAd(adRequest);
+                adRequest = new AdRequest.Builder().addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build();
+                mAdView.loadAd(adRequest);
             Log.d(TAG, "premium: "+ new LanguageFragment().getCategories(this));
             Set<String> set = new HashSet<>();
             Set<Locale> setToDelete = new HashSet<>();
@@ -995,6 +1015,7 @@ public class StartPage extends AppCompatActivity
 
             if(Unfiltered){
                 ((Button)findViewById(R.id.buttonAdvancedSearch)).setText(getString(R.string.regularSearch));
+
 
             }else{
                 ((Button)findViewById(R.id.buttonAdvancedSearch)).setText(getString(R.string.advancedSearch));

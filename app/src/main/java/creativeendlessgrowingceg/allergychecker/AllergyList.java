@@ -799,376 +799,376 @@ public class AllergyList {
         arrayListE_Numbers.add(new E_Numbers("Calcium lactobionate",R.string.E399,0,0,"","https://en.wikipedia.org/wiki/Lactobionic_acid"));
 
 
-        arrayListE_Numbers.add(new E_Numbers("Alginic acid",R.string.E400,0,1,"","https://en.wikipedia.org/wiki/Curcumin"));
-        arrayListE_Numbers.add(new E_Numbers("Sodium alginate",R.string.E401,0,1,"","https://en.wikipedia.org/wiki/Riboflavin"));
-        arrayListE_Numbers.add(new E_Numbers("Potassium alginate",R.string.E402,0,1,"","https://en.wikipedia.org/wiki/Tartrazine"));
-        arrayListE_Numbers.add(new E_Numbers("Ammonium alginate",R.string.E403,0,1,"","https://en.wikipedia.org/wiki/Alkannin"));
-        arrayListE_Numbers.add(new E_Numbers("Calcium alginate",R.string.E404,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Propane-1,2-diol alginate",R.string.E405,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Agar",R.string.E406,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Carrageenan",R.string.E407,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Processed eucheuma seaweed",R.string.E407a,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Bakers yeast glycan",R.string.E408,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Arabinogalactan",R.string.E409,0,0,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Alginic acid",R.string.E400,0,1,"","https://en.wikipedia.org/wiki/Alginic_acid"));
+        arrayListE_Numbers.add(new E_Numbers("Sodium alginate",R.string.E401,0,1,"","https://en.wikipedia.org/wiki/Alginic_acid#Sodium_alginate"));
+        arrayListE_Numbers.add(new E_Numbers("Potassium alginate",R.string.E402,0,1,"","https://en.wikipedia.org/wiki/Alginic_acid"));
+        arrayListE_Numbers.add(new E_Numbers("Ammonium alginate",R.string.E403,0,1,"","https://en.wikipedia.org/wiki/Ammonium_alginate"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium alginate",R.string.E404,0,1,"","https://en.wikipedia.org/wiki/Calcium_alginate"));
+        arrayListE_Numbers.add(new E_Numbers("Propane-1,2-diol alginate",R.string.E405,0,1,"","https://en.wikipedia.org/wiki/Propylene_glycol_alginate"));
+        arrayListE_Numbers.add(new E_Numbers("Agar",R.string.E406,0,1,"","https://en.wikipedia.org/wiki/Agar"));
+        arrayListE_Numbers.add(new E_Numbers("Carrageenan",R.string.E407,0,1,"","https://en.wikipedia.org/wiki/Carrageenan"));
+        arrayListE_Numbers.add(new E_Numbers("Processed eucheuma seaweed",R.string.E407a,0,1,"","https://en.wikipedia.org/wiki/Carrageenan"));
+        arrayListE_Numbers.add(new E_Numbers("Bakers yeast glycan",R.string.E408,0,0,"","https://en.wikipedia.org/wiki/Bakers_yeast_glycan"));
+        arrayListE_Numbers.add(new E_Numbers("Arabinogalactan",R.string.E409,0,0,"","https://en.wikipedia.org/wiki/Arabinogalactan"));
 
-        arrayListE_Numbers.add(new E_Numbers("Locust bean gum",R.string.E410,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Oat gum",R.string.E411,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Guar gum",R.string.E412,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Tragacanth",R.string.E413,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Acacia gum",R.string.E414,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Xanthan gum",R.string.E415,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Karaya gum",R.string.E416,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Tara gum",R.string.E417,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Gellan gum",R.string.E418,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Gum ghatti",R.string.E419,0,0,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Locust bean gum",R.string.E410,0,1,"","https://en.wikipedia.org/wiki/Locust_bean_gum"));
+        arrayListE_Numbers.add(new E_Numbers("Oat gum",R.string.E411,0,0,"","https://en.wikipedia.org/wiki/Oat_gum"));
+        arrayListE_Numbers.add(new E_Numbers("Guar gum",R.string.E412,0,1,"","https://en.wikipedia.org/wiki/Guar_gum"));
+        arrayListE_Numbers.add(new E_Numbers("Tragacanth",R.string.E413,0,1,"","https://en.wikipedia.org/wiki/Tragacanth"));
+        arrayListE_Numbers.add(new E_Numbers("Acacia gum",R.string.E414,0,1,"","https://en.wikipedia.org/wiki/Gum_arabic"));
+        arrayListE_Numbers.add(new E_Numbers("Xanthan gum",R.string.E415,0,1,"","https://en.wikipedia.org/wiki/Xanthan_gum"));
+        arrayListE_Numbers.add(new E_Numbers("Karaya gum",R.string.E416,0,1,"","https://en.wikipedia.org/wiki/Gum_karaya"));
+        arrayListE_Numbers.add(new E_Numbers("Tara gum",R.string.E417,0,1,"","https://en.wikipedia.org/wiki/Tara_spinosa"));
+        arrayListE_Numbers.add(new E_Numbers("Gellan gum",R.string.E418,0,1,"","https://en.wikipedia.org/wiki/Gellan_gum"));
+        arrayListE_Numbers.add(new E_Numbers("Gum ghatti",R.string.E419,0,0,"","https://en.wikipedia.org/wiki/Anogeissus_latifolia"));
 
-        arrayListE_Numbers.add(new E_Numbers("Sorbitol",R.string.E420,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Mannitol",R.string.E421,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Glycerol",R.string.E422,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Curdlan",R.string.E424,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Konjac",R.string.E425,0,1,"Approved in the EU. May not be used in confectionery owing to choking risk.",""));
-        arrayListE_Numbers.add(new E_Numbers("Soybean hemicellulose",R.string.E426,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Cassia gum",R.string.E427,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Peptones",R.string.E429,0,0,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Sorbitol",R.string.E420,0,1,"","https://en.wikipedia.org/wiki/Sorbitol"));
+        arrayListE_Numbers.add(new E_Numbers("Mannitol",R.string.E421,0,1,"","https://en.wikipedia.org/wiki/Mannitol"));
+        arrayListE_Numbers.add(new E_Numbers("Glycerol",R.string.E422,0,1,"","https://en.wikipedia.org/wiki/Glycerol"));
+        arrayListE_Numbers.add(new E_Numbers("Curdlan",R.string.E424,0,0,"","https://en.wikipedia.org/wiki/Curdlan"));
+        arrayListE_Numbers.add(new E_Numbers("Konjac",R.string.E425,0,1,"","https://en.wikipedia.org/wiki/Konjac"));
+        arrayListE_Numbers.add(new E_Numbers("Soybean hemicellulose",R.string.E426,0,1,"","https://en.wikipedia.org/wiki/Soybean_hemicellulose"));
+        arrayListE_Numbers.add(new E_Numbers("Cassia gum",R.string.E427,0,1,"","https://en.wikipedia.org/wiki/Cassia_gum"));
+        arrayListE_Numbers.add(new E_Numbers("Peptones",R.string.E429,0,0,"","https://en.wikipedia.org/wiki/Peptide#Peptide_classes"));
 
-        arrayListE_Numbers.add(new E_Numbers("Polyoxyethene (8) stearate",R.string.E430,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Polyoxyethene (40) stearate",R.string.E431,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Polyoxyethene (20) sorbitan monolaurate",R.string.E432,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Polyoxyethene (20) sorbitan monooleate",R.string.E433,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Polyoxyethene (20) sorbitan monopalmitate",R.string.E434,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Polyoxyethene (20) sorbitan monostearate",R.string.E435,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Polyoxyethene (20) sorbitan tristearate",R.string.E436,0,1,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Polyoxyethene (8) stearate",R.string.E430,0,0,"","https://en.wikipedia.org/wiki/Polyoxyethene_(8)_stearate"));
+        arrayListE_Numbers.add(new E_Numbers("Polyoxyethene (40) stearate",R.string.E431,0,1,"","https://en.wikipedia.org/wiki/Polyoxyethene_(40)_stearate"));
+        arrayListE_Numbers.add(new E_Numbers("Polyoxyethene (20) sorbitan monolaurate",R.string.E432,0,1,"","https://en.wikipedia.org/wiki/Polysorbate_20"));
+        arrayListE_Numbers.add(new E_Numbers("Polyoxyethene (20) sorbitan monooleate",R.string.E433,0,1,"","https://en.wikipedia.org/wiki/Polysorbate_80"));
+        arrayListE_Numbers.add(new E_Numbers("Polyoxyethene (20) sorbitan monopalmitate",R.string.E434,0,1,"","https://en.wikipedia.org/wiki/Polyoxyethene_(20)_sorbitan_monopalmitate"));
+        arrayListE_Numbers.add(new E_Numbers("Polyoxyethene (20) sorbitan monostearate",R.string.E435,0,1,"","https://en.wikipedia.org/wiki/Polyoxyethene_(20)_sorbitan_monostearate"));
+        arrayListE_Numbers.add(new E_Numbers("Polyoxyethene (20) sorbitan tristearate",R.string.E436,0,1,"","https://en.wikipedia.org/wiki/Polyoxyethene_(20)_sorbitan_tristearate"));
 
-        arrayListE_Numbers.add(new E_Numbers("Pectins",R.string.E440,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Gelatine",R.string.E441,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Ammonium phosphatides",R.string.E442,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Brominated vegetable oil",R.string.E443,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sucrose acetate isobutyrate",R.string.E444,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Glycerol esters of wood rosins",R.string.E445,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Succistearin",R.string.E446,0,0,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Pectins",R.string.E440,0,1,"","https://en.wikipedia.org/wiki/Pectin"));
+        arrayListE_Numbers.add(new E_Numbers("Gelatine",R.string.E441,0,0,"","https://en.wikipedia.org/wiki/Gelatin"));
+        arrayListE_Numbers.add(new E_Numbers("Ammonium phosphatides",R.string.E442,0,1,"","https://en.wikipedia.org/wiki/Mixed_ammonium_salts_of_phosphorylated_glycerides"));
+        arrayListE_Numbers.add(new E_Numbers("Brominated vegetable oil",R.string.E443,0,2,"","https://en.wikipedia.org/wiki/Brominated_vegetable_oil"));
+        arrayListE_Numbers.add(new E_Numbers("Sucrose acetate isobutyrate",R.string.E444,0,0,"","https://en.wikipedia.org/wiki/Sucrose_acetate_isobutyrate"));
+        arrayListE_Numbers.add(new E_Numbers("Glycerol esters of wood rosins",R.string.E445,0,1,"","https://en.wikipedia.org/wiki/Glycerol_ester_of_wood_rosin"));
+        arrayListE_Numbers.add(new E_Numbers("Succistearin",R.string.E446,0,0,"","https://en.wikipedia.org/wiki/Succistearin"));
 
-        arrayListE_Numbers.add(new E_Numbers("Diphosphates",R.string.E450,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Triphosphates",R.string.E451,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Polyphosphates",R.string.E452,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Beta-cyclodextrin",R.string.E459,0,1,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Diphosphates",R.string.E450,0,1,"","https://en.wikipedia.org/wiki/Pyrophosphate"));
+        arrayListE_Numbers.add(new E_Numbers("Triphosphates",R.string.E451,0,1,"","https://en.wikipedia.org/wiki/Polyphosphate"));
+        arrayListE_Numbers.add(new E_Numbers("Polyphosphates",R.string.E452,0,1,"","https://en.wikipedia.org/wiki/Polyphosphate"));
+        arrayListE_Numbers.add(new E_Numbers("Beta-cyclodextrin",R.string.E459,0,1,"","https://en.wikipedia.org/wiki/Cyclodextrin"));
 
-        arrayListE_Numbers.add(new E_Numbers("Cellulose",R.string.E460,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Methyl cellulose",R.string.E461,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Ethyl cellulose",R.string.E462,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Hydroxypropyl cellulose",R.string.E463,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Hypromellose",R.string.E464,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Ethyl methyl cellulose",R.string.E465,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Carboxymethyl cellulose",R.string.E466,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Ethyl hydroxyethyl cellulose",R.string.E467,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Crosslinked sodium carboxymethyl cellulose",R.string.E468,0,1,"Approved in the EU. This additive is under discussion and may be included in a future amendment to the Directive on miscellaneous additives",""));
-        arrayListE_Numbers.add(new E_Numbers("Enzymically hydrolysed carboxymethylcellulose",R.string.E469,0,1,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Cellulose",R.string.E460,0,1,"","https://en.wikipedia.org/wiki/Cellulose"));
+        arrayListE_Numbers.add(new E_Numbers("Methyl cellulose",R.string.E461,0,1,"","https://en.wikipedia.org/wiki/Methyl_cellulose"));
+        arrayListE_Numbers.add(new E_Numbers("Ethyl cellulose",R.string.E462,0,1,"","https://en.wikipedia.org/wiki/Ethyl_cellulose"));
+        arrayListE_Numbers.add(new E_Numbers("Hydroxypropyl cellulose",R.string.E463,0,1,"","https://en.wikipedia.org/wiki/Hydroxypropyl_cellulose"));
+        arrayListE_Numbers.add(new E_Numbers("Hypromellose",R.string.E464,0,1,"","https://en.wikipedia.org/wiki/Hypromellose"));
+        arrayListE_Numbers.add(new E_Numbers("Ethyl methyl cellulose",R.string.E465,0,1,"","https://en.wikipedia.org/wiki/Ethyl_methyl_cellulose"));
+        arrayListE_Numbers.add(new E_Numbers("Carboxymethyl cellulose",R.string.E466,0,1,"","https://en.wikipedia.org/wiki/Carboxymethyl_cellulose"));
+        arrayListE_Numbers.add(new E_Numbers("Ethyl hydroxyethyl cellulose",R.string.E467,0,0,"","https://en.wikipedia.org/wiki/Ethulose"));
+        arrayListE_Numbers.add(new E_Numbers("Crosslinked sodium carboxymethyl cellulose",R.string.E468,0,1,"","https://en.wikipedia.org/wiki/Croscarmellose_sodium"));
+        arrayListE_Numbers.add(new E_Numbers("Enzymically hydrolysed carboxymethylcellulose",R.string.E469,0,1,"","https://en.wikipedia.org/wiki/Enzymically_hydrolysed_carboxymethylcellulose"));
 
-        arrayListE_Numbers.add(new E_Numbers("Sodium",R.string.E470a,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Magnesium salts of fatty acids",R.string.E470b,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Mono- and diglycerides of fatty acids",R.string.E471,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Acetic acid esters of mono- and diglycerides of fatty acids",R.string.E472a,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Lactic acid esters of mono- and diglycerides of fatty acids",R.string.E472b,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Citric acid esters of mono- and diglycerides of fatty acids",R.string.E472c,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Tartaric acid esters of mono- and diglycerides of fatty acids",R.string.E472d,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Mono- and diacetyl tartaric acid esters of mono- and diglycerides of fatty acids",R.string.E472e,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Mixed acetic and tartaric acid esters of mono- and diglycerides of fatty acids",R.string.E472f,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Succinylated monoglycerides",R.string.E472g,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sucrose esters of fatty acids",R.string.E473,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sucroglycerides",R.string.E474,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Polyglycerol esters of fatty acids",R.string.E475,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Polyglycerol polyricinoleate",R.string.E476,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Propane-1,2-diol esters of fatty acids, propylene glycol esters of fatty acids",R.string.E477,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Lactylated fatty acid esters of glycerol and propane-1",R.string.E478,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Thermally oxidized soya bean oil interacted with mono- and diglycerides of fatty acids",R.string.E479b,0,1,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Sodium",R.string.E470a,0,1,"","https://en.wikipedia.org/wiki/E470a"));
+        arrayListE_Numbers.add(new E_Numbers("Magnesium salts of fatty acids",R.string.E470b,0,1,"","https://en.wikipedia.org/wiki/Magnesium_stearate"));
+        arrayListE_Numbers.add(new E_Numbers("Mono- and diglycerides of fatty acids",R.string.E471,0,1,"","https://en.wikipedia.org/wiki/Mono-_and_diglycerides_of_fatty_acids"));
+        arrayListE_Numbers.add(new E_Numbers("Acetic acid esters of mono- and diglycerides of fatty acids",R.string.E472a,0,1,"","https://en.wikipedia.org/wiki/E472a"));
+        arrayListE_Numbers.add(new E_Numbers("Lactic acid esters of mono- and diglycerides of fatty acids",R.string.E472b,0,1,"","https://en.wikipedia.org/wiki/E472b"));
+        arrayListE_Numbers.add(new E_Numbers("Citric acid esters of mono- and diglycerides of fatty acids",R.string.E472c,0,1,"","https://en.wikipedia.org/wiki/E472c"));
+        arrayListE_Numbers.add(new E_Numbers("Tartaric acid esters of mono- and diglycerides of fatty acids",R.string.E472d,0,1,"","https://en.wikipedia.org/wiki/E472d"));
+        arrayListE_Numbers.add(new E_Numbers("Mono- and diacetyl tartaric acid esters of mono- and diglycerides of fatty acids",R.string.E472e,0,1,"","https://en.wikipedia.org/wiki/DATEM"));
+        arrayListE_Numbers.add(new E_Numbers("Mixed acetic and tartaric acid esters of mono- and diglycerides of fatty acids",R.string.E472f,0,1,"","https://en.wikipedia.org/wiki/E472f"));
+        arrayListE_Numbers.add(new E_Numbers("Succinylated monoglycerides",R.string.E472g,0,0,"","https://en.wikipedia.org/wiki/Succinylated_monoglycerides"));
+        arrayListE_Numbers.add(new E_Numbers("Sucrose esters of fatty acids",R.string.E473,0,1,"","https://en.wikipedia.org/wiki/E473"));
+        arrayListE_Numbers.add(new E_Numbers("Sucroglycerides",R.string.E474,0,1,"","https://en.wikipedia.org/wiki/Sucroglyceride"));
+        arrayListE_Numbers.add(new E_Numbers("Polyglycerol esters of fatty acids",R.string.E475,0,1,"","https://en.wikipedia.org/wiki/E475"));
+        arrayListE_Numbers.add(new E_Numbers("Polyglycerol polyricinoleate",R.string.E476,0,1,"","https://en.wikipedia.org/wiki/Polyglycerol_polyricinoleate"));
+        arrayListE_Numbers.add(new E_Numbers("Propane-1,2-diol esters of fatty acids, propylene glycol esters of fatty acids",R.string.E477,0,1,"","https://en.wikipedia.org/wiki/E477"));
+        arrayListE_Numbers.add(new E_Numbers("Lactylated fatty acid esters of glycerol and propane-1",R.string.E478,0,0,"","https://en.wikipedia.org/wiki/E478"));
+        arrayListE_Numbers.add(new E_Numbers("Thermally oxidized soya bean oil interacted with mono- and diglycerides of fatty acids",R.string.E479b,0,1,"","https://en.wikipedia.org/wiki/E479b"));
 
-        arrayListE_Numbers.add(new E_Numbers("Dioctyl sodium sulphosuccinate",R.string.E480,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sodium stearoyl-2-lactylate",R.string.E481,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium stearoyl-2-lactylate",R.string.E482,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Stearyl tartrate",R.string.E483,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Stearyl citrate",R.string.E484,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sodium stearoyl fumarate",R.string.E485,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium stearoyl fumarate",R.string.E486,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sodium laurylsulphate",R.string.E487,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Ethoxylated Mono- and Di-Glycerides",R.string.E488,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Methyl glucoside-coconut oil ester",R.string.E489,0,0,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Dioctyl sodium sulphosuccinate",R.string.E480,0,0,"","https://en.wikipedia.org/wiki/Docusate"));
+        arrayListE_Numbers.add(new E_Numbers("Sodium stearoyl-2-lactylate",R.string.E481,0,1,"","https://en.wikipedia.org/wiki/Sodium_stearoyl_lactylate"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium stearoyl-2-lactylate",R.string.E482,0,1,"","https://en.wikipedia.org/wiki/Calcium_stearoyl-2-lactylate"));
+        arrayListE_Numbers.add(new E_Numbers("Stearyl tartrate",R.string.E483,0,1,"","https://en.wikipedia.org/wiki/Stearyl_palmityl_tartrate"));
+        arrayListE_Numbers.add(new E_Numbers("Stearyl citrate",R.string.E484,0,0,"","https://en.wikipedia.org/wiki/Stearyl_citrate"));
+        arrayListE_Numbers.add(new E_Numbers("Sodium stearoyl fumarate",R.string.E485,0,0,"","https://en.wikipedia.org/wiki/Sodium_stearoyl_fumarate"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium stearoyl fumarate",R.string.E486,0,0,"","https://en.wikipedia.org/wiki/Calcium_stearoyl_fumarate"));
+        arrayListE_Numbers.add(new E_Numbers("Sodium laurylsulphate",R.string.E487,0,0,"","https://en.wikipedia.org/wiki/Sodium_dodecyl_sulfate"));
+        arrayListE_Numbers.add(new E_Numbers("Ethoxylated Mono- and Di-Glycerides",R.string.E488,0,0,"","https://en.wikipedia.org/wiki/E488"));
+        arrayListE_Numbers.add(new E_Numbers("Methyl glucoside-coconut oil ester",R.string.E489,0,0,"","https://en.wikipedia.org/wiki/E489"));
 
-        arrayListE_Numbers.add(new E_Numbers("Propane-1,2-diol",R.string.E490,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sorbitan monostearate",R.string.E491,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sorbitan tristearate",R.string.E492,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sorbitan monolaurate",R.string.E493,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sorbitan monooleate",R.string.E494,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sorbitan monopalmitate",R.string.E495,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sorbitan trioleate",R.string.E496,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Polyoxypropylene-polyoxyethylene polymers",R.string.E497,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Partial polyglycerol esters of polycondensed fatty acids of castor oil",R.string.E498,0,0,"",""));
-
-
-
-
-        arrayListE_Numbers.add(new E_Numbers("Sodium carbonates",R.string.E500,0,1,"","https://en.wikipedia.org/wiki/Curcumin"));
-        arrayListE_Numbers.add(new E_Numbers("Potassium carbonates",R.string.E501,0,1,"","https://en.wikipedia.org/wiki/Riboflavin"));
-        arrayListE_Numbers.add(new E_Numbers("Ammonium carbonates",R.string.E503,0,1,"","https://en.wikipedia.org/wiki/Alkannin"));
-        arrayListE_Numbers.add(new E_Numbers("Magnesium carbonates",R.string.E504,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Ferrous carbonate",R.string.E505,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Hydrochloric acid",R.string.E507,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Potassium chloride",R.string.E508,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium chloride",R.string.E509,0,1,"",""));
-
-        arrayListE_Numbers.add(new E_Numbers("Ammonium chloride",R.string.E510,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Magnesium chloride",R.string.E511,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Stannous chloride",R.string.E512,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sulphuric acid",R.string.E513,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sodium sulphates",R.string.E514,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Potassium Sulphates",R.string.E515,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium sulphate",R.string.E516,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Ammonium sulphate",R.string.E517,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Magnesium sulphate",R.string.E518,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Copper(II) sulphate",R.string.E519,0,0,"",""));
-
-        arrayListE_Numbers.add(new E_Numbers("Aluminium sulphate",R.string.E520,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Aluminium sodium sulphate",R.string.E521,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Aluminium potassium sulphate",R.string.E522,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Aluminium ammonium sulphate",R.string.E523,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sodium hydroxide",R.string.E524,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Potassium hydroxide",R.string.E525,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium hydroxide",R.string.E526,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Ammonium hydroxide",R.string.E527,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Magnesium hydroxide",R.string.E528,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium oxide",R.string.E529,0,1,"",""));
-
-        arrayListE_Numbers.add(new E_Numbers("Magnesium oxide",R.string.E530,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sodium ferrocyanide",R.string.E535,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Potassium ferrocyanide",R.string.E536,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Ferrous hexacyanomanganate",R.string.E537,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium ferrocyanide",R.string.E538,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sodium thiosulphate",R.string.E539,0,0,"",""));
-
-        arrayListE_Numbers.add(new E_Numbers("Dicalcium diphosphate",R.string.E540,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sodium aluminium phosphate",R.string.E541,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Bone phosphate",R.string.E542,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium sodium polyphosphate",R.string.E543,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium polyphosphate",R.string.E544,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Ammonium polyphosphate",R.string.E545,0,0,"",""));
-
-        arrayListE_Numbers.add(new E_Numbers("Sodium Silicates",R.string.E550,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Silicon dioxide",R.string.E551,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium silicate",R.string.E552,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Magnesium silicate",R.string.E553a,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Talc",R.string.E553b,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sodium aluminosilicate",R.string.E554,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Potassium aluminium silicate",R.string.E555,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium aluminosilicate",R.string.E556,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Zinc silicate",R.string.E557,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Bentonite",R.string.E558,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Aluminium silicate",R.string.E559,0,1,"",""));
-
-        arrayListE_Numbers.add(new E_Numbers("Potassium silicate",R.string.E560,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Vermiculite",R.string.E561,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sepiolite",R.string.E562,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sepiolitic clay",R.string.E563,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Lignosulphonates",R.string.E565,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Natrolite-phonolite",R.string.E566,0,0,"",""));
-
-        arrayListE_Numbers.add(new E_Numbers("Fatty acids",R.string.E570,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Magnesium stearate",R.string.E572,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Gluconic acid",R.string.E574,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Glucono delta-lactone",R.string.E575,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sodium gluconate",R.string.E576,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Potassium gluconate",R.string.E577,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium gluconate",R.string.E578,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Ferrous gluconate",R.string.E579,0,1,"",""));
-
-        arrayListE_Numbers.add(new E_Numbers("Magnesium gluconate",R.string.E580,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Ferrous lactate",R.string.E585,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("4-Hexylresorcinol",R.string.E586,0,1,"",""));
-
-        arrayListE_Numbers.add(new E_Numbers("Synthetic calcium aluminates",R.string.E598,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Perlite",R.string.E599,0,0,"",""));
-
-
-        arrayListE_Numbers.add(new E_Numbers("Glutamic acid",R.string.E620,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Monosodium glutamate (MSG)",R.string.E621,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Monopotassium glutamate",R.string.E622,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium diglutamate",R.string.E623,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Monoammonium glutamate",R.string.E624,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Magnesium diglutamate",R.string.E625,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Guanylic acid",R.string.E626,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Disodium guanylate",R.string.E627,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Dipotassium guanylate",R.string.E628,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium guanylate",R.string.E629,0,1,"",""));
-
-        arrayListE_Numbers.add(new E_Numbers("Inosinic acid",R.string.E630,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Disodium inosinate",R.string.E631,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Dipotassium inosinate",R.string.E632,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium inosinate",R.string.E633,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium 5'-ribonucleotides",R.string.E634,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Disodium 5'-ribonucleotides",R.string.E635,0,1,"",""));
-
-        arrayListE_Numbers.add(new E_Numbers("Glycine",R.string.E640,0,1,"",""));
-
-        arrayListE_Numbers.add(new E_Numbers("Zinc acetate",R.string.E650,0,1,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Propane-1,2-diol",R.string.E490,0,0,"","https://en.wikipedia.org/wiki/Propylene_glycol"));
+        arrayListE_Numbers.add(new E_Numbers("Sorbitan monostearate",R.string.E491,0,1,"","https://en.wikipedia.org/wiki/Sorbitan_monostearate"));
+        arrayListE_Numbers.add(new E_Numbers("Sorbitan tristearate",R.string.E492,0,1,"","https://en.wikipedia.org/wiki/Sorbitan_tristearate"));
+        arrayListE_Numbers.add(new E_Numbers("Sorbitan monolaurate",R.string.E493,0,1,"","https://en.wikipedia.org/wiki/Sorbitan_monolaurate"));
+        arrayListE_Numbers.add(new E_Numbers("Sorbitan monooleate",R.string.E494,0,1,"","https://en.wikipedia.org/wiki/Sorbitan_monooleate"));
+        arrayListE_Numbers.add(new E_Numbers("Sorbitan monopalmitate",R.string.E495,0,1,"","https://en.wikipedia.org/wiki/Sorbitan_monopalmitate"));
+        arrayListE_Numbers.add(new E_Numbers("Sorbitan trioleate",R.string.E496,0,0,"","https://en.wikipedia.org/wiki/Sorbitan_trioleate"));
+        arrayListE_Numbers.add(new E_Numbers("Polyoxypropylene-polyoxyethylene polymers",R.string.E497,0,0,"","https://en.wikipedia.org/wiki/E497"));
+        arrayListE_Numbers.add(new E_Numbers("Partial polyglycerol esters of polycondensed fatty acids of castor oil",R.string.E498,0,0,"","https://en.wikipedia.org/wiki/E498"));
 
 
 
 
+        arrayListE_Numbers.add(new E_Numbers("Sodium carbonates",R.string.E500,0,1,"","https://en.wikipedia.org/wiki/Carbonate"));
+        arrayListE_Numbers.add(new E_Numbers("Potassium carbonates",R.string.E501,0,1,"","https://en.wikipedia.org/wiki/Potassium_carbonate"));
+        arrayListE_Numbers.add(new E_Numbers("Ammonium carbonates",R.string.E503,0,1,"","https://en.wikipedia.org/wiki/Ammonium_carbonate"));
+        arrayListE_Numbers.add(new E_Numbers("Magnesium carbonates",R.string.E504,0,1,"","https://en.wikipedia.org/wiki/Magnesium_carbonate"));
+        arrayListE_Numbers.add(new E_Numbers("Ferrous carbonate",R.string.E505,0,0,"","https://en.wikipedia.org/wiki/Siderite"));
+        arrayListE_Numbers.add(new E_Numbers("Hydrochloric acid",R.string.E507,0,1,"","https://en.wikipedia.org/wiki/Hydrochloric_acid"));
+        arrayListE_Numbers.add(new E_Numbers("Potassium chloride",R.string.E508,0,1,"","https://en.wikipedia.org/wiki/Potassium_chloride"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium chloride",R.string.E509,0,1,"","https://en.wikipedia.org/wiki/Calcium_chloride"));
 
-        arrayListE_Numbers.add(new E_Numbers("Tetracyclines",R.string.E701,0,0,"","https://en.wikipedia.org/wiki/Curcumin"));
-        arrayListE_Numbers.add(new E_Numbers("Chlortetracycline",R.string.E702,0,0,"","https://en.wikipedia.org/wiki/Riboflavin"));
-        arrayListE_Numbers.add(new E_Numbers("Oxytetracycline",R.string.E703,0,0,"","https://en.wikipedia.org/wiki/Tartrazine"));
-        arrayListE_Numbers.add(new E_Numbers("Oleandomycin",R.string.E704,0,0,"","https://en.wikipedia.org/wiki/Alkannin"));
-        arrayListE_Numbers.add(new E_Numbers("Penicillin G potassium",R.string.E705,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Penicillin G sodium",R.string.E706,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Penicillin G procaine",R.string.E707,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Penicillin G benzathine",R.string.E708,0,0,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Ammonium chloride",R.string.E510,0,0,"","https://en.wikipedia.org/wiki/Ammonium_chloride"));
+        arrayListE_Numbers.add(new E_Numbers("Magnesium chloride",R.string.E511,0,1,"","https://en.wikipedia.org/wiki/Magnesium_chloride"));
+        arrayListE_Numbers.add(new E_Numbers("Stannous chloride",R.string.E512,0,1,"","https://en.wikipedia.org/wiki/Tin(II)_chloride"));
+        arrayListE_Numbers.add(new E_Numbers("Sulphuric acid",R.string.E513,0,1,"","https://en.wikipedia.org/wiki/Sulfuric_acid"));
+        arrayListE_Numbers.add(new E_Numbers("Sodium sulphates",R.string.E514,0,1,"","https://en.wikipedia.org/wiki/Sodium_sulfate"));
+        arrayListE_Numbers.add(new E_Numbers("Potassium Sulphates",R.string.E515,0,1,"","https://en.wikipedia.org/wiki/Potassium_sulfate"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium sulphate",R.string.E516,0,1,"","https://en.wikipedia.org/wiki/Calcium_sulfate"));
+        arrayListE_Numbers.add(new E_Numbers("Ammonium sulphate",R.string.E517,0,1,"","https://en.wikipedia.org/wiki/Ammonium_sulfate"));
+        arrayListE_Numbers.add(new E_Numbers("Magnesium sulphate",R.string.E518,0,0,"","https://en.wikipedia.org/wiki/Magnesium_sulfate"));
+        arrayListE_Numbers.add(new E_Numbers("Copper(II) sulphate",R.string.E519,0,0,"","https://en.wikipedia.org/wiki/Copper(II)_sulfate"));
 
-        arrayListE_Numbers.add(new E_Numbers("Spiramycins",R.string.E710,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Virginiamycins",R.string.E711,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Flavomycin",R.string.E712,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Tylosin",R.string.E713,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Monensin A",R.string.E714,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Avoparcin",R.string.E715,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Salinomycin",R.string.E716,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Avilamycin",R.string.E717,0,0,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Aluminium sulphate",R.string.E520,0,1,"","https://en.wikipedia.org/wiki/Aluminium_sulfate"));
+        arrayListE_Numbers.add(new E_Numbers("Aluminium sodium sulphate",R.string.E521,0,1,"","https://en.wikipedia.org/wiki/Sodium_aluminium_sulfate"));
+        arrayListE_Numbers.add(new E_Numbers("Aluminium potassium sulphate",R.string.E522,0,1,"","https://en.wikipedia.org/wiki/Potassium_alum"));
+        arrayListE_Numbers.add(new E_Numbers("Aluminium ammonium sulphate",R.string.E523,0,1,"","https://en.wikipedia.org/wiki/Ammonium_aluminium_sulfate"));
+        arrayListE_Numbers.add(new E_Numbers("Sodium hydroxide",R.string.E524,0,1,"","https://en.wikipedia.org/wiki/Sodium_hydroxide"));
+        arrayListE_Numbers.add(new E_Numbers("Potassium hydroxide",R.string.E525,0,1,"","https://en.wikipedia.org/wiki/Potassium_hydroxide"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium hydroxide",R.string.E526,0,1,"","https://en.wikipedia.org/wiki/Calcium_hydroxide"));
+        arrayListE_Numbers.add(new E_Numbers("Ammonium hydroxide",R.string.E527,0,1,"","https://en.wikipedia.org/wiki/Ammonia_solution"));
+        arrayListE_Numbers.add(new E_Numbers("Magnesium hydroxide",R.string.E528,0,1,"","https://en.wikipedia.org/wiki/Magnesium_hydroxide"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium oxide",R.string.E529,0,1,"","https://en.wikipedia.org/wiki/Calcium_oxide"));
 
+        arrayListE_Numbers.add(new E_Numbers("Magnesium oxide",R.string.E530,0,1,"","https://en.wikipedia.org/wiki/Magnesium_oxide"));
+        arrayListE_Numbers.add(new E_Numbers("Sodium ferrocyanide",R.string.E535,0,1,"","https://en.wikipedia.org/wiki/Sodium_ferrocyanide"));
+        arrayListE_Numbers.add(new E_Numbers("Potassium ferrocyanide",R.string.E536,0,1,"","https://en.wikipedia.org/wiki/Potassium_ferrocyanide"));
+        arrayListE_Numbers.add(new E_Numbers("Ferrous hexacyanomanganate",R.string.E537,0,0,"","https://en.wikipedia.org/wiki/Ferrous_hexacyanomanganate"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium ferrocyanide",R.string.E538,0,1,"","https://en.wikipedia.org/wiki/Calcium_ferrocyanide"));
+        arrayListE_Numbers.add(new E_Numbers("Sodium thiosulphate",R.string.E539,0,0,"","https://en.wikipedia.org/wiki/Sodium_thiosulfate"));
 
+        arrayListE_Numbers.add(new E_Numbers("Dicalcium diphosphate",R.string.E540,0,0,"","https://en.wikipedia.org/wiki/Calcium_pyrophosphate"));
+        arrayListE_Numbers.add(new E_Numbers("Sodium aluminium phosphate",R.string.E541,0,1,"","https://en.wikipedia.org/wiki/Sodium_aluminium_phosphate"));
+        arrayListE_Numbers.add(new E_Numbers("Bone phosphate",R.string.E542,0,0,"","https://en.wikipedia.org/wiki/Bone_phosphate"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium sodium polyphosphate",R.string.E543,0,0,"","https://en.wikipedia.org/wiki/Calcium_sodium_polyphosphate"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium polyphosphate",R.string.E544,0,0,"","https://en.wikipedia.org/wiki/Calcium_polyphosphate"));
+        arrayListE_Numbers.add(new E_Numbers("Ammonium polyphosphate",R.string.E545,0,0,"","https://en.wikipedia.org/wiki/Ammonium_polyphosphate"));
 
+        arrayListE_Numbers.add(new E_Numbers("Sodium Silicates",R.string.E550,0,0,"","https://en.wikipedia.org/wiki/Sodium_silicate"));
+        arrayListE_Numbers.add(new E_Numbers("Silicon dioxide",R.string.E551,0,1,"","https://en.wikipedia.org/wiki/Silicon_dioxide"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium silicate",R.string.E552,0,1,"","https://en.wikipedia.org/wiki/Calcium_silicate"));
+        arrayListE_Numbers.add(new E_Numbers("Magnesium silicate",R.string.E553a,0,1,"","https://en.wikipedia.org/wiki/Talc"));
+        arrayListE_Numbers.add(new E_Numbers("Talc",R.string.E553b,0,1,"","https://en.wikipedia.org/wiki/Talc"));
+        arrayListE_Numbers.add(new E_Numbers("Sodium aluminosilicate",R.string.E554,0,1,"","https://en.wikipedia.org/wiki/Sodium_aluminosilicate"));
+        arrayListE_Numbers.add(new E_Numbers("Potassium aluminium silicate",R.string.E555,0,1,"","https://en.wikipedia.org/wiki/Microcline"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium aluminosilicate",R.string.E556,0,1,"","https://en.wikipedia.org/wiki/Calcium_aluminosilicate"));
+        arrayListE_Numbers.add(new E_Numbers("Zinc silicate",R.string.E557,0,0,"","https://en.wikipedia.org/wiki/Hemimorphite"));
+        arrayListE_Numbers.add(new E_Numbers("Bentonite",R.string.E558,0,0,"","https://en.wikipedia.org/wiki/Bentonite"));
+        arrayListE_Numbers.add(new E_Numbers("Aluminium silicate",R.string.E559,0,1,"","https://en.wikipedia.org/wiki/Aluminium_silicate"));
 
-        arrayListE_Numbers.add(new E_Numbers("Dimethyl polysiloxane",R.string.E900,0,1,"","https://en.wikipedia.org/wiki/Curcumin"));
-        arrayListE_Numbers.add(new E_Numbers("Beeswax",R.string.E901,0,1,"","https://en.wikipedia.org/wiki/Riboflavin"));
-        arrayListE_Numbers.add(new E_Numbers("Candelilla wax",R.string.E902,0,1,"","https://en.wikipedia.org/wiki/Tartrazine"));
-        arrayListE_Numbers.add(new E_Numbers("Carnauba wax",R.string.E903,0,1,"","https://en.wikipedia.org/wiki/Alkannin"));
-        arrayListE_Numbers.add(new E_Numbers("Shellac",R.string.E904,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Paraffins",R.string.E905,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Mineral oil",R.string.E905a,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Petrolatum",R.string.E905b,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Petroleum wax",R.string.E905c,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Gum benzoic",R.string.E906,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Crystalline wax",R.string.E907,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Rice bran wax",R.string.E908,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Spermaceti wax",R.string.E909,0,0,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Potassium silicate",R.string.E560,0,0,"","https://en.wikipedia.org/wiki/Potassium_silicate"));
+        arrayListE_Numbers.add(new E_Numbers("Vermiculite",R.string.E561,0,0,"","https://en.wikipedia.org/wiki/Vermiculite"));
+        arrayListE_Numbers.add(new E_Numbers("Sepiolite",R.string.E562,0,0,"","https://en.wikipedia.org/wiki/Sepiolite"));
+        arrayListE_Numbers.add(new E_Numbers("Sepiolitic clay",R.string.E563,0,0,"","https://en.wikipedia.org/wiki/Sepiolitic_clay"));
+        arrayListE_Numbers.add(new E_Numbers("Lignosulphonates",R.string.E565,0,0,"","https://en.wikipedia.org/wiki/Lignosulfonates"));
+        arrayListE_Numbers.add(new E_Numbers("Natrolite-phonolite",R.string.E566,0,0,"","https://en.wikipedia.org/wiki/Natrolite-phonolite"));
 
-        arrayListE_Numbers.add(new E_Numbers("Wax esters",R.string.E910,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Methyl esters of fatty acids",R.string.E911,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Montanic acid esters",R.string.E912,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Lanolin",R.string.E913,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Oxidized polyethylene wax",R.string.E914,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Esters of colophony",R.string.E915,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium iodate",R.string.E916,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Potassium iodate",R.string.E917,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Nitrogen oxides",R.string.E918,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Nitrosyl chloride",R.string.E919,0,0,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Fatty acids",R.string.E570,0,1,"","https://en.wikipedia.org/wiki/Fatty_acid"));
+        arrayListE_Numbers.add(new E_Numbers("Magnesium stearate",R.string.E572,0,0,"","https://en.wikipedia.org/wiki/Magnesium_stearate"));
+        arrayListE_Numbers.add(new E_Numbers("Gluconic acid",R.string.E574,0,1,"","https://en.wikipedia.org/wiki/Gluconic_acid"));
+        arrayListE_Numbers.add(new E_Numbers("Glucono delta-lactone",R.string.E575,0,1,"","https://en.wikipedia.org/wiki/Glucono_delta-lactone"));
+        arrayListE_Numbers.add(new E_Numbers("Sodium gluconate",R.string.E576,0,1,"","https://en.wikipedia.org/wiki/Sodium_gluconate"));
+        arrayListE_Numbers.add(new E_Numbers("Potassium gluconate",R.string.E577,0,1,"","https://en.wikipedia.org/wiki/Potassium_gluconate"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium gluconate",R.string.E578,0,1,"","https://en.wikipedia.org/wiki/Calcium_gluconate"));
+        arrayListE_Numbers.add(new E_Numbers("Ferrous gluconate",R.string.E579,0,1,"","https://en.wikipedia.org/wiki/Iron(II)_gluconate"));
 
-        arrayListE_Numbers.add(new E_Numbers("L-cysteine",R.string.E920,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("L-cystine",R.string.E921,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Potassium persulphate",R.string.E922,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Ammonium persulphate",R.string.E923,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Potassium bromate",R.string.E924,0,2,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Calcium bromate",R.string.E924b,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Chlorine",R.string.E925,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Chlorine dioxide",R.string.E926,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Azodicarbonamide",R.string.E927a,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Carbamide",R.string.E927b,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Benzoyl peroxide",R.string.E928,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Acetone peroxide",R.string.E929,0,0,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Magnesium gluconate",R.string.E580,0,0,"","https://en.wikipedia.org/wiki/Magnesium_gluconate"));
+        arrayListE_Numbers.add(new E_Numbers("Ferrous lactate",R.string.E585,0,1,"","https://en.wikipedia.org/wiki/Iron(II)_lactate"));
+        arrayListE_Numbers.add(new E_Numbers("4-Hexylresorcinol",R.string.E586,0,1,"","https://en.wikipedia.org/wiki/Hexylresorcinol"));
 
-        arrayListE_Numbers.add(new E_Numbers("Calcium peroxide",R.string.E930,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Argon",R.string.E938,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Helium",R.string.E939,0,1,"",""));
-
-        arrayListE_Numbers.add(new E_Numbers("Dichlorodifluoromethane",R.string.E940,0,0,"Banned in all countries, in compliance with the Montreal Protocol.",""));
-        arrayListE_Numbers.add(new E_Numbers("Nitrogen",R.string.E941,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Nitrous oxide",R.string.E942,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Butane",R.string.E943a,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Isobutane",R.string.E943b,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Propane",R.string.E944,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Chloropentafluoroethane",R.string.E945,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Octafluorocyclobutane",R.string.E946,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Oxygen",R.string.E948,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Hydrogen",R.string.E949,0,1,"",""));
-
-        arrayListE_Numbers.add(new E_Numbers("Acesulfame potassium",R.string.E950,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Aspartame",R.string.E951,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Cyclamate",R.string.E952,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Isomalt, Isomaltitol",R.string.E953,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Saccharin",R.string.E954,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Sucralose",R.string.E955,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Alitame",R.string.E956,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Thaumatin",R.string.E957,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Glycyrrhizin",R.string.E958,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Neohesperidine dihydrochalcone",R.string.E959,0,1,"",""));
-
-        arrayListE_Numbers.add(new E_Numbers("Steviol glycosides",R.string.E960,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Neotame",R.string.E961,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Aspartame-acesulfame salt",R.string.E962,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Maltitol",R.string.E965,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Lactitol",R.string.E966,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Xylitol",R.string.E967,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Erythritol",R.string.E968,0,1,"",""));
-
-        arrayListE_Numbers.add(new E_Numbers("Quillaia extract",R.string.E999,0,1,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Synthetic calcium aluminates",R.string.E598,0,0,"","https://en.wikipedia.org/wiki/Calcium_aluminates"));
+        arrayListE_Numbers.add(new E_Numbers("Perlite",R.string.E599,0,0,"","https://en.wikipedia.org/wiki/Perlite"));
 
 
+        arrayListE_Numbers.add(new E_Numbers("Glutamic acid",R.string.E620,0,1,"","https://en.wikipedia.org/wiki/Glutamic_acid"));
+        arrayListE_Numbers.add(new E_Numbers("Monosodium glutamate (MSG)",R.string.E621,0,1,"","https://en.wikipedia.org/wiki/Monosodium_glutamate"));
+        arrayListE_Numbers.add(new E_Numbers("Monopotassium glutamate",R.string.E622,0,1,"","https://en.wikipedia.org/wiki/Monopotassium_glutamate"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium diglutamate",R.string.E623,0,1,"","https://en.wikipedia.org/wiki/Calcium_diglutamate"));
+        arrayListE_Numbers.add(new E_Numbers("Monoammonium glutamate",R.string.E624,0,1,"","https://en.wikipedia.org/wiki/Monoammonium_glutamate"));
+        arrayListE_Numbers.add(new E_Numbers("Magnesium diglutamate",R.string.E625,0,1,"","https://en.wikipedia.org/wiki/Magnesium_diglutamate"));
+        arrayListE_Numbers.add(new E_Numbers("Guanylic acid",R.string.E626,0,1,"","https://en.wikipedia.org/wiki/Guanosine_monophosphate"));
+        arrayListE_Numbers.add(new E_Numbers("Disodium guanylate",R.string.E627,0,1,"","https://en.wikipedia.org/wiki/Disodium_guanylate"));
+        arrayListE_Numbers.add(new E_Numbers("Dipotassium guanylate",R.string.E628,0,1,"","https://en.wikipedia.org/wiki/Dipotassium_guanylate"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium guanylate",R.string.E629,0,1,"","https://en.wikipedia.org/wiki/Calcium_guanylate"));
 
-        arrayListE_Numbers.add(new E_Numbers("Cholic acid",R.string.E1000,1,0,"","https://en.wikipedia.org/wiki/Curcumin"));
-        arrayListE_Numbers.add(new E_Numbers("Choline salts",R.string.E1001,1,0,"","https://en.wikipedia.org/wiki/Riboflavin"));
+        arrayListE_Numbers.add(new E_Numbers("Inosinic acid",R.string.E630,0,1,"","https://en.wikipedia.org/wiki/Inosinic_acid"));
+        arrayListE_Numbers.add(new E_Numbers("Disodium inosinate",R.string.E631,0,1,"","https://en.wikipedia.org/wiki/Disodium_inosinate"));
+        arrayListE_Numbers.add(new E_Numbers("Dipotassium inosinate",R.string.E632,0,1,"","https://en.wikipedia.org/wiki/Dipotassium_inosinate"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium inosinate",R.string.E633,0,1,"","https://en.wikipedia.org/wiki/Calcium_inosinate"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium 5'-ribonucleotides",R.string.E634,0,1,"","https://en.wikipedia.org/wiki/Calcium_5%27-ribonucleotide"));
+        arrayListE_Numbers.add(new E_Numbers("Disodium 5'-ribonucleotides",R.string.E635,0,1,"","https://en.wikipedia.org/wiki/Disodium_ribonucleotides"));
 
-        arrayListE_Numbers.add(new E_Numbers("Amylase",R.string.E1100,0,0,"","https://en.wikipedia.org/wiki/Tartrazine"));
-        arrayListE_Numbers.add(new E_Numbers("Proteases",R.string.E1101,1,0,"","https://en.wikipedia.org/wiki/Alkannin"));
-        arrayListE_Numbers.add(new E_Numbers("Glucose oxidase",R.string.E1102,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Invertase",R.string.E1103,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Lipases",R.string.E1104,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Lysozyme",R.string.E1105,0,0,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Glycine",R.string.E640,0,1,"","https://en.wikipedia.org/wiki/Glycine"));
 
-        arrayListE_Numbers.add(new E_Numbers("Polydextrose",R.string.E1200,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Polyvinylpyrrolidone",R.string.E1201,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Polyvinylpolypyrrolidone",R.string.E1202,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Polyvinyl alcohol",R.string.E1203,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Pullulan",R.string.E1204,0,1,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Zinc acetate",R.string.E650,0,1,"","https://en.wikipedia.org/wiki/Zinc_acetate"));
 
-        arrayListE_Numbers.add(new E_Numbers("Dextrin",R.string.E1400,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Modified starch",R.string.E1401,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Alkaline modified starch",R.string.E1402,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Bleached starch",R.string.E1403,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Oxidized starch",R.string.E1404,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Enzyme treated starch",R.string.E1405,0,0,"",""));
 
-        arrayListE_Numbers.add(new E_Numbers("Monostarch phosphate",R.string.E1410,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Distarch glycerol",R.string.E1411,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Distarch phosphate",R.string.E1412,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Phosphated distarch phosphate",R.string.E1413,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Acetylated distarch phosphate",R.string.E1414,0,1,"",""));
 
-        arrayListE_Numbers.add(new E_Numbers("Starch acetate esterified with acetic anhydride ",R.string.E1420,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Starch acetate esterified with vinyl acetate ",R.string.E1421,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Acetylated distarch adipate",R.string.E1422,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Acetylated distarch glycerol",R.string.E1423,0,0,"",""));
 
-        arrayListE_Numbers.add(new E_Numbers("Distarch glycerine",R.string.E1430,0,0,"",""));
 
-        arrayListE_Numbers.add(new E_Numbers("Hydroxy propyl starch",R.string.E1440,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Hydroxy propyl distarch glycerine",R.string.E1441,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Hydroxy propyl distarch phosphate",R.string.E1442,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Hydroxy propyl distarch glycerol",R.string.E1443,0,0,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Tetracyclines",R.string.E701,0,0,"","https://en.wikipedia.org/wiki/Tetracycline_antibiotics"));
+        arrayListE_Numbers.add(new E_Numbers("Chlortetracycline",R.string.E702,0,0,"","https://en.wikipedia.org/wiki/Chlortetracycline"));
+        arrayListE_Numbers.add(new E_Numbers("Oxytetracycline",R.string.E703,0,0,"","https://en.wikipedia.org/wiki/Oxytetracycline"));
+        arrayListE_Numbers.add(new E_Numbers("Oleandomycin",R.string.E704,0,0,"","https://en.wikipedia.org/wiki/Oleandomycin"));
+        arrayListE_Numbers.add(new E_Numbers("Penicillin G potassium",R.string.E705,0,0,"","https://en.wikipedia.org/wiki/Penicillin_G_potassium"));
+        arrayListE_Numbers.add(new E_Numbers("Penicillin G sodium",R.string.E706,0,0,"","https://en.wikipedia.org/wiki/Benzylpenicillin"));
+        arrayListE_Numbers.add(new E_Numbers("Penicillin G procaine",R.string.E707,0,0,"","https://en.wikipedia.org/wiki/Penicillin_G_procaine"));
+        arrayListE_Numbers.add(new E_Numbers("Penicillin G benzathine",R.string.E708,0,0,"","https://en.wikipedia.org/wiki/Benzathine_benzylpenicillin"));
 
-        arrayListE_Numbers.add(new E_Numbers("Starch sodium octenyl succinate",R.string.E1450,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Acetylated oxidised starch",R.string.E1451,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Starch aluminium octenyl succinate",R.string.E1452,0,1,"",""));
+        arrayListE_Numbers.add(new E_Numbers("Spiramycins",R.string.E710,0,0,"","https://en.wikipedia.org/wiki/Spiramycin"));
+        arrayListE_Numbers.add(new E_Numbers("Virginiamycins",R.string.E711,0,0,"","https://en.wikipedia.org/wiki/Virginiamycin"));
+        arrayListE_Numbers.add(new E_Numbers("Flavomycin",R.string.E712,0,0,"","https://en.wikipedia.org/wiki/Bambermycin"));
+        arrayListE_Numbers.add(new E_Numbers("Tylosin",R.string.E713,0,0,"","https://en.wikipedia.org/wiki/Tylosin"));
+        arrayListE_Numbers.add(new E_Numbers("Monensin A",R.string.E714,0,0,"","https://en.wikipedia.org/wiki/Monensin"));
+        arrayListE_Numbers.add(new E_Numbers("Avoparcin",R.string.E715,0,0,"","https://en.wikipedia.org/wiki/Avoparcin"));
+        arrayListE_Numbers.add(new E_Numbers("Salinomycin",R.string.E716,0,0,"","https://en.wikipedia.org/wiki/Salinomycin"));
+        arrayListE_Numbers.add(new E_Numbers("Avilamycin",R.string.E717,0,0,"","https://en.wikipedia.org/wiki/Avilamycin"));
 
-        arrayListE_Numbers.add(new E_Numbers("Benzylated hydrocarbons",R.string.E1501,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Butane-1, 3-diol",R.string.E1502,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Castor oil",R.string.E1503,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Ethyl acetate",R.string.E1504,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Triethyl citrate",R.string.E1505,0,1,"",""));
 
-        arrayListE_Numbers.add(new E_Numbers("Ethanol",R.string.E1510,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Glyceryl monoacetate",R.string.E1516,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Glyceryl diacetate or diacetin",R.string.E1517,0,0,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Glyceryl triacetate or triacetin",R.string.E1518,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Benzyl alcohol",R.string.E1519,0,0,"",""));
 
-        arrayListE_Numbers.add(new E_Numbers("Propylene glycol",R.string.E1520,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Polyethylene glycol 8000",R.string.E1521,0,1,"",""));
-        arrayListE_Numbers.add(new E_Numbers("Hydroxyethyl cellulose",R.string.E1525,0,0,"",""));
+
+        arrayListE_Numbers.add(new E_Numbers("Dimethyl polysiloxane",R.string.E900,0,1,"","https://en.wikipedia.org/wiki/Polydimethylsiloxane"));
+        arrayListE_Numbers.add(new E_Numbers("Beeswax",R.string.E901,0,1,"","https://en.wikipedia.org/wiki/Beeswax"));
+        arrayListE_Numbers.add(new E_Numbers("Candelilla wax",R.string.E902,0,1,"","https://en.wikipedia.org/wiki/Candelilla_wax"));
+        arrayListE_Numbers.add(new E_Numbers("Carnauba wax",R.string.E903,0,1,"","https://en.wikipedia.org/wiki/Carnauba_wax"));
+        arrayListE_Numbers.add(new E_Numbers("Shellac",R.string.E904,0,1,"","https://en.wikipedia.org/wiki/Shellac"));
+        arrayListE_Numbers.add(new E_Numbers("Paraffins",R.string.E905,0,1,"","https://en.wikipedia.org/wiki/Paraffin_wax"));
+        arrayListE_Numbers.add(new E_Numbers("Mineral oil",R.string.E905a,0,0,"","https://en.wikipedia.org/wiki/Mineral_oil"));
+        arrayListE_Numbers.add(new E_Numbers("Petrolatum",R.string.E905b,0,0,"","https://en.wikipedia.org/wiki/Petroleum_jelly"));
+        arrayListE_Numbers.add(new E_Numbers("Petroleum wax",R.string.E905c,0,0,"","https://en.wikipedia.org/wiki/Paraffin_wax"));
+        arrayListE_Numbers.add(new E_Numbers("Gum benzoic",R.string.E906,0,0,"","https://en.wikipedia.org/wiki/Benzoin_(resin)"));
+        arrayListE_Numbers.add(new E_Numbers("Crystalline wax",R.string.E907,0,0,"","https://en.wikipedia.org/wiki/Paraffin_wax"));
+        arrayListE_Numbers.add(new E_Numbers("Rice bran wax",R.string.E908,0,0,"","https://en.wikipedia.org/wiki/Rice_bran_wax"));
+        arrayListE_Numbers.add(new E_Numbers("Spermaceti wax",R.string.E909,0,0,"","https://en.wikipedia.org/wiki/Spermaceti"));
+
+        arrayListE_Numbers.add(new E_Numbers("Wax esters",R.string.E910,0,0,"","https://en.wikipedia.org/wiki/Wax_ester"));
+        arrayListE_Numbers.add(new E_Numbers("Methyl esters of fatty acids",R.string.E911,0,0,"","https://en.wikipedia.org/wiki/Fatty_acid_methyl_ester"));
+        arrayListE_Numbers.add(new E_Numbers("Montanic acid esters",R.string.E912,0,1,"","https://en.wikipedia.org/wiki/Montanic_acid"));
+        arrayListE_Numbers.add(new E_Numbers("Lanolin",R.string.E913,0,0,"","https://en.wikipedia.org/wiki/Lanolin"));
+        arrayListE_Numbers.add(new E_Numbers("Oxidized polyethylene wax",R.string.E914,0,1,"","https://en.wikipedia.org/wiki/Oxidized_polyethylene_wax"));
+        arrayListE_Numbers.add(new E_Numbers("Esters of colophony",R.string.E915,0,0,"","https://en.wikipedia.org/wiki/Rosin"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium iodate",R.string.E916,0,0,"","https://en.wikipedia.org/wiki/Calcium_iodate"));
+        arrayListE_Numbers.add(new E_Numbers("Potassium iodate",R.string.E917,0,0,"","https://en.wikipedia.org/wiki/Potassium_iodate"));
+        arrayListE_Numbers.add(new E_Numbers("Nitrogen oxides",R.string.E918,0,0,"","https://en.wikipedia.org/wiki/Nitrogen_oxide"));
+        arrayListE_Numbers.add(new E_Numbers("Nitrosyl chloride",R.string.E919,0,0,"","https://en.wikipedia.org/wiki/Nitrosyl_chloride"));
+
+        arrayListE_Numbers.add(new E_Numbers("L-cysteine",R.string.E920,0,1,"","https://en.wikipedia.org/wiki/Cysteine"));
+        arrayListE_Numbers.add(new E_Numbers("L-cystine",R.string.E921,0,0,"","https://en.wikipedia.org/wiki/Cystine"));
+        arrayListE_Numbers.add(new E_Numbers("Potassium persulphate",R.string.E922,0,0,"","https://en.wikipedia.org/wiki/Potassium_persulfate"));
+        arrayListE_Numbers.add(new E_Numbers("Ammonium persulphate",R.string.E923,0,0,"","https://en.wikipedia.org/wiki/Ammonium_persulfate"));
+        arrayListE_Numbers.add(new E_Numbers("Potassium bromate",R.string.E924,0,2,"","https://en.wikipedia.org/wiki/Potassium_bromate"));
+        arrayListE_Numbers.add(new E_Numbers("Calcium bromate",R.string.E924b,0,0,"","https://en.wikipedia.org/wiki/Calcium_bromate"));
+        arrayListE_Numbers.add(new E_Numbers("Chlorine",R.string.E925,0,0,"","https://en.wikipedia.org/wiki/Chlorine"));
+        arrayListE_Numbers.add(new E_Numbers("Chlorine dioxide",R.string.E926,0,0,"","https://en.wikipedia.org/wiki/Chlorine_dioxide"));
+        arrayListE_Numbers.add(new E_Numbers("Azodicarbonamide",R.string.E927a,0,0,"","https://en.wikipedia.org/wiki/Azodicarbonamide"));
+        arrayListE_Numbers.add(new E_Numbers("Carbamide (Urea)",R.string.E927b,0,1,"","https://en.wikipedia.org/wiki/Urea"));
+        arrayListE_Numbers.add(new E_Numbers("Benzoyl peroxide",R.string.E928,0,0,"","https://en.wikipedia.org/wiki/Benzoyl_peroxide"));
+        arrayListE_Numbers.add(new E_Numbers("Acetone peroxide",R.string.E929,0,0,"","https://en.wikipedia.org/wiki/Acetone_peroxide"));
+
+        arrayListE_Numbers.add(new E_Numbers("Calcium peroxide",R.string.E930,0,0,"","https://en.wikipedia.org/wiki/Calcium_peroxide"));
+        arrayListE_Numbers.add(new E_Numbers("Argon",R.string.E938,0,1,"","https://en.wikipedia.org/wiki/Argon"));
+        arrayListE_Numbers.add(new E_Numbers("Helium",R.string.E939,0,1,"","https://en.wikipedia.org/wiki/Helium"));
+
+        arrayListE_Numbers.add(new E_Numbers("Dichlorodifluoromethane",R.string.E940,0,0,"","https://en.wikipedia.org/wiki/Dichlorodifluoromethane"));
+        arrayListE_Numbers.add(new E_Numbers("Nitrogen",R.string.E941,0,1,"","https://en.wikipedia.org/wiki/Nitrogen"));
+        arrayListE_Numbers.add(new E_Numbers("Nitrous oxide",R.string.E942,0,1,"","https://en.wikipedia.org/wiki/Nitrous_oxide"));
+        arrayListE_Numbers.add(new E_Numbers("Butane",R.string.E943a,0,1,"","https://en.wikipedia.org/wiki/Butane"));
+        arrayListE_Numbers.add(new E_Numbers("Isobutane",R.string.E943b,0,1,"","https://en.wikipedia.org/wiki/Isobutane"));
+        arrayListE_Numbers.add(new E_Numbers("Propane",R.string.E944,0,1,"","https://en.wikipedia.org/wiki/Propane"));
+        arrayListE_Numbers.add(new E_Numbers("Chloropentafluoroethane",R.string.E945,0,0,"","https://en.wikipedia.org/wiki/Chloropentafluoroethane"));
+        arrayListE_Numbers.add(new E_Numbers("Octafluorocyclobutane",R.string.E946,0,0,"","https://en.wikipedia.org/wiki/Octafluorocyclobutane"));
+        arrayListE_Numbers.add(new E_Numbers("Oxygen",R.string.E948,0,1,"","https://en.wikipedia.org/wiki/Oxygen"));
+        arrayListE_Numbers.add(new E_Numbers("Hydrogen",R.string.E949,0,1,"","https://en.wikipedia.org/wiki/Hydrogen"));
+
+        arrayListE_Numbers.add(new E_Numbers("Acesulfame potassium",R.string.E950,0,1,"","https://en.wikipedia.org/wiki/Acesulfame_potassium"));
+        arrayListE_Numbers.add(new E_Numbers("Aspartame",R.string.E951,0,1,"","https://en.wikipedia.org/wiki/Aspartame"));
+        arrayListE_Numbers.add(new E_Numbers("Cyclamate",R.string.E952,0,1,"","https://en.wikipedia.org/wiki/Sodium_cyclamate"));
+        arrayListE_Numbers.add(new E_Numbers("Isomalt, Isomaltitol",R.string.E953,0,1,"","https://en.wikipedia.org/wiki/Isomalt"));
+        arrayListE_Numbers.add(new E_Numbers("Saccharin",R.string.E954,0,1,"","https://en.wikipedia.org/wiki/Saccharin"));
+        arrayListE_Numbers.add(new E_Numbers("Sucralose",R.string.E955,0,1,"","https://en.wikipedia.org/wiki/Sucralose"));
+        arrayListE_Numbers.add(new E_Numbers("Alitame",R.string.E956,0,0,"","https://en.wikipedia.org/wiki/Alitame"));
+        arrayListE_Numbers.add(new E_Numbers("Thaumatin",R.string.E957,0,1,"","https://en.wikipedia.org/wiki/Thaumatin"));
+        arrayListE_Numbers.add(new E_Numbers("Glycyrrhizin",R.string.E958,0,0,"","https://en.wikipedia.org/wiki/Glycyrrhizin"));
+        arrayListE_Numbers.add(new E_Numbers("Neohesperidine dihydrochalcone",R.string.E959,0,1,"","https://en.wikipedia.org/wiki/Neohesperidin_dihydrochalcone"));
+
+        arrayListE_Numbers.add(new E_Numbers("Steviol glycosides",R.string.E960,0,1,"","https://en.wikipedia.org/wiki/Steviol_glycoside"));
+        arrayListE_Numbers.add(new E_Numbers("Neotame",R.string.E961,0,1,"","https://en.wikipedia.org/wiki/Neotame"));
+        arrayListE_Numbers.add(new E_Numbers("Aspartame-acesulfame salt",R.string.E962,0,1,"","https://en.wikipedia.org/wiki/Aspartame-acesulfame_salt"));
+        arrayListE_Numbers.add(new E_Numbers("Maltitol",R.string.E965,0,1,"","https://en.wikipedia.org/wiki/Maltitol"));
+        arrayListE_Numbers.add(new E_Numbers("Lactitol",R.string.E966,0,1,"","https://en.wikipedia.org/wiki/Lactitol"));
+        arrayListE_Numbers.add(new E_Numbers("Xylitol",R.string.E967,0,1,"","https://en.wikipedia.org/wiki/Xylitol"));
+        arrayListE_Numbers.add(new E_Numbers("Erythritol",R.string.E968,0,1,"","https://en.wikipedia.org/wiki/Erythritol"));
+
+        arrayListE_Numbers.add(new E_Numbers("Quillaia extract",R.string.E999,0,1,"","https://en.wikipedia.org/wiki/Quillaia"));
+
+
+
+        arrayListE_Numbers.add(new E_Numbers("Cholic acid",R.string.E1000,1,0,"","https://en.wikipedia.org/wiki/Cholic_acid"));
+        arrayListE_Numbers.add(new E_Numbers("Choline salts",R.string.E1001,1,0,"","https://en.wikipedia.org/wiki/Choline"));
+
+        arrayListE_Numbers.add(new E_Numbers("Amylase",R.string.E1100,0,0,"","https://en.wikipedia.org/wiki/Amylase"));
+        arrayListE_Numbers.add(new E_Numbers("Proteases",R.string.E1101,1,0,"","https://en.wikipedia.org/wiki/Protease"));
+        arrayListE_Numbers.add(new E_Numbers("Glucose oxidase",R.string.E1102,0,0,"","https://en.wikipedia.org/wiki/Glucose_oxidase"));
+        arrayListE_Numbers.add(new E_Numbers("Invertase",R.string.E1103,0,1,"","https://en.wikipedia.org/wiki/Invertase"));
+        arrayListE_Numbers.add(new E_Numbers("Lipases",R.string.E1104,0,0,"","https://en.wikipedia.org/wiki/Lipase"));
+        arrayListE_Numbers.add(new E_Numbers("Lysozyme",R.string.E1105,0,0,"","https://en.wikipedia.org/wiki/Lysozyme"));
+
+        arrayListE_Numbers.add(new E_Numbers("Polydextrose",R.string.E1200,0,1,"","https://en.wikipedia.org/wiki/Polydextrose"));
+        arrayListE_Numbers.add(new E_Numbers("Polyvinylpyrrolidone",R.string.E1201,0,1,"","https://en.wikipedia.org/wiki/Polyvinylpyrrolidone"));
+        arrayListE_Numbers.add(new E_Numbers("Polyvinylpolypyrrolidone",R.string.E1202,0,1,"","https://en.wikipedia.org/wiki/Polyvinylpolypyrrolidone"));
+        arrayListE_Numbers.add(new E_Numbers("Polyvinyl alcohol",R.string.E1203,0,1,"","https://en.wikipedia.org/wiki/Polyvinyl_alcohol"));
+        arrayListE_Numbers.add(new E_Numbers("Pullulan",R.string.E1204,0,1,"","https://en.wikipedia.org/wiki/Pullulan"));
+
+        arrayListE_Numbers.add(new E_Numbers("Dextrin",R.string.E1400,0,0,"","https://en.wikipedia.org/wiki/Dextrin"));
+        arrayListE_Numbers.add(new E_Numbers("Modified starch",R.string.E1401,0,0,"","https://en.wikipedia.org/wiki/Modified_starch"));
+        arrayListE_Numbers.add(new E_Numbers("Alkaline modified starch",R.string.E1402,0,0,"","https://en.wikipedia.org/wiki/Alkaline_modified_starch"));
+        arrayListE_Numbers.add(new E_Numbers("Bleached starch",R.string.E1403,0,0,"","https://en.wikipedia.org/wiki/Bleached_starch"));
+        arrayListE_Numbers.add(new E_Numbers("Oxidized starch",R.string.E1404,0,1,"","https://en.wikipedia.org/wiki/Oxidized_starch"));
+        arrayListE_Numbers.add(new E_Numbers("Enzyme treated starch",R.string.E1405,0,0,"","https://en.wikipedia.org/wiki/Enzyme_treated_starch"));
+
+        arrayListE_Numbers.add(new E_Numbers("Monostarch phosphate",R.string.E1410,0,1,"","https://en.wikipedia.org/wiki/Monostarch_phosphate"));
+        arrayListE_Numbers.add(new E_Numbers("Distarch glycerol",R.string.E1411,0,0,"","https://en.wikipedia.org/wiki/Distarch_glycerol"));
+        arrayListE_Numbers.add(new E_Numbers("Distarch phosphate",R.string.E1412,0,1,"","https://en.wikipedia.org/wiki/Distarch_phosphate"));
+        arrayListE_Numbers.add(new E_Numbers("Phosphated distarch phosphate",R.string.E1413,0,1,"","https://en.wikipedia.org/wiki/Phosphated_distarch_phosphate"));
+        arrayListE_Numbers.add(new E_Numbers("Acetylated distarch phosphate",R.string.E1414,0,1,"","https://en.wikipedia.org/wiki/Acetylated_distarch_phosphate"));
+
+        arrayListE_Numbers.add(new E_Numbers("Starch acetate esterified with acetic anhydride ",R.string.E1420,0,1,"","https://en.wikipedia.org/wiki/E1420"));
+        arrayListE_Numbers.add(new E_Numbers("Starch acetate esterified with vinyl acetate ",R.string.E1421,0,0,"","https://en.wikipedia.org/wiki/E1421"));
+        arrayListE_Numbers.add(new E_Numbers("Acetylated distarch adipate",R.string.E1422,0,1,"","https://en.wikipedia.org/wiki/Acetylated_distarch_adipate"));
+        arrayListE_Numbers.add(new E_Numbers("Acetylated distarch glycerol",R.string.E1423,0,0,"","https://en.wikipedia.org/wiki/Acetylated_distarch_glycerol"));
+
+        arrayListE_Numbers.add(new E_Numbers("Distarch glycerine",R.string.E1430,0,0,"","https://en.wikipedia.org/wiki/Distarch_glycerine"));
+
+        arrayListE_Numbers.add(new E_Numbers("Hydroxy propyl starch",R.string.E1440,0,1,"","https://en.wikipedia.org/wiki/Hydroxy_propyl_starch"));
+        arrayListE_Numbers.add(new E_Numbers("Hydroxy propyl distarch glycerine",R.string.E1441,0,0,"","https://en.wikipedia.org/wiki/Hydroxy_propyl_distarch_glycerine"));
+        arrayListE_Numbers.add(new E_Numbers("Hydroxy propyl distarch phosphate",R.string.E1442,0,1,"","https://en.wikipedia.org/wiki/Hydroxypropyl_distarch_phosphate"));
+        arrayListE_Numbers.add(new E_Numbers("Hydroxy propyl distarch glycerol",R.string.E1443,0,0,"","https://en.wikipedia.org/wiki/Hydroxy_propyl_distarch_glycerol"));
+
+        arrayListE_Numbers.add(new E_Numbers("Starch sodium octenyl succinate",R.string.E1450,0,1,"","https://en.wikipedia.org/wiki/Starch_sodium_octenyl_succinate"));
+        arrayListE_Numbers.add(new E_Numbers("Acetylated oxidised starch",R.string.E1451,0,1,"","https://en.wikipedia.org/wiki/Acetylated_oxidised_starch"));
+        arrayListE_Numbers.add(new E_Numbers("Starch aluminium octenyl succinate",R.string.E1452,0,1,"","https://en.wikipedia.org/wiki/Starch_aluminium_octenyl_succinate"));
+
+        arrayListE_Numbers.add(new E_Numbers("Benzylated hydrocarbons",R.string.E1501,0,0,"","https://en.wikipedia.org/wiki/Benzylated_hydrocarbons"));
+        arrayListE_Numbers.add(new E_Numbers("Butane-1, 3-diol",R.string.E1502,0,0,"","https://en.wikipedia.org/wiki/1,3-Butanediol"));
+        arrayListE_Numbers.add(new E_Numbers("Castor oil",R.string.E1503,0,0,"","https://en.wikipedia.org/wiki/Castor_oil"));
+        arrayListE_Numbers.add(new E_Numbers("Ethyl acetate",R.string.E1504,0,0,"","https://en.wikipedia.org/wiki/Ethyl_acetate"));
+        arrayListE_Numbers.add(new E_Numbers("Triethyl citrate",R.string.E1505,0,1,"","https://en.wikipedia.org/wiki/Triethyl_citrate"));
+
+        arrayListE_Numbers.add(new E_Numbers("Ethanol",R.string.E1510,0,0,"","https://en.wikipedia.org/wiki/Ethanol"));
+        arrayListE_Numbers.add(new E_Numbers("Glyceryl monoacetate",R.string.E1516,0,0,"","https://en.wikipedia.org/wiki/Glyceryl_monoacetate"));
+        arrayListE_Numbers.add(new E_Numbers("Glyceryl diacetate or diacetin",R.string.E1517,0,0,"","https://en.wikipedia.org/wiki/Glyceryl_diacetate"));
+        arrayListE_Numbers.add(new E_Numbers("Glyceryl triacetate or triacetin",R.string.E1518,0,1,"","https://en.wikipedia.org/wiki/Triacetin"));
+        arrayListE_Numbers.add(new E_Numbers("Benzyl alcohol",R.string.E1519,0,0,"","https://en.wikipedia.org/wiki/Benzyl_alcohol"));
+
+        arrayListE_Numbers.add(new E_Numbers("Propylene glycol",R.string.E1520,0,1,"","https://en.wikipedia.org/wiki/Propylene_glycol"));
+        arrayListE_Numbers.add(new E_Numbers("Polyethylene glycol 8000",R.string.E1521,0,1,"","https://en.wikipedia.org/wiki/Polyethylene_glycol"));
+        arrayListE_Numbers.add(new E_Numbers("Hydroxyethyl cellulose",R.string.E1525,0,0,"","https://en.wikipedia.org/wiki/Hydroxyethyl_cellulose"));
         return arrayListE_Numbers;
     }
 

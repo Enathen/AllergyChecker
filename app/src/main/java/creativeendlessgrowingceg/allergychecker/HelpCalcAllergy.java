@@ -300,4 +300,18 @@ public class HelpCalcAllergy {
         }
         return list;
     }
+
+    public void checkFullStringEnumbers(String s, ArrayList<AllergyList.E_Numbers> eNumbersArrayList, ArrayList<AllergyList.E_Numbers> allFoundAllergies) {
+        Log.d(TAG, "checkFullStringEnumbers0: "+ s);
+        for (AllergyList.E_Numbers key : eNumbersArrayList) {
+
+            if (s.contains(key.getId().toLowerCase() )&& !allFoundAllergies.contains(key)) {
+                Log.d(TAG, "checkFullStringEnumbers1: "+ key);
+                allFoundAllergies.add(key);
+                Log.d(TAG, "checkFullStringEnumbers2: "+ allFoundAllergies);
+
+            }
+        }
+        eNumbersArrayList.removeAll(allFoundAllergies);
+    }
 }

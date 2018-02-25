@@ -7,6 +7,7 @@
 
     <color name="primary_color">#37474F</color>
     <color name="ascent_color">#4285F4</color>
+    <color name="URL">#0000EE</color>
 
     <color name="list_bg_color">#eeeeee</color>
     <color name="row_header_bg_color">#ffffff</color>

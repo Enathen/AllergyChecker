@@ -127,7 +127,7 @@ public class LoadUIAllergies {
 
     }
 
-    public void savePicture(StartPage context, HashMap<Integer, ImageView> imageViewHashMap) {
+    synchronized public void savePicture(StartPage context, HashMap<Integer, ImageView> imageViewHashMap) {
         String alreadyString = "00000000";
         ArrayList<Integer> alreadySelectedImages = new ArrayList<>();
         int i = 0;
@@ -176,7 +176,7 @@ public class LoadUIAllergies {
         Log.d(TAG,""+allergySavePicture1 );
     }
 
-    public HashSet<String> getCurrentlyActiveAllergies() {
+    synchronized public HashSet<String> getCurrentlyActiveAllergies() {
         HashSet<String> hashSet = new HashSet<>();
         for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
             for (AllergyCheckBoxClass checkBoxClass : allergyCheckBoxClass.getSameItemDifferentCategories()) {
@@ -188,7 +188,7 @@ public class LoadUIAllergies {
         return hashSet;
     }
 
-    public HashSet<String> getCurrentlyNotActiveAllergies() {
+    synchronized public HashSet<String> getCurrentlyNotActiveAllergies() {
         HashSet<String> hashSet = new HashSet<>();
         for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
             for (AllergyCheckBoxClass checkBoxClass : allergyCheckBoxClass.getSameItemDifferentCategories()) {
@@ -200,7 +200,7 @@ public class LoadUIAllergies {
         return hashSet;
     }
 
-    public HashSet<Integer> getCurrentlyActiveParentAllergies() {
+    synchronized public HashSet<Integer> getCurrentlyActiveParentAllergies() {
         HashSet<Integer> hashSet = new HashSet<>();
         for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
             if (allergyCheckBoxClass.getParentCheckBox().isChecked()) {
@@ -212,7 +212,7 @@ public class LoadUIAllergies {
         return hashSet;
     }
 
-    public HashSet<Integer> getCurrentlyNotActiveParentAllergies() {
+    synchronized public HashSet<Integer> getCurrentlyNotActiveParentAllergies() {
         HashSet<Integer> hashSet = new HashSet<>();
         for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
             if (!allergyCheckBoxClass.getParentCheckBox().isChecked()) {

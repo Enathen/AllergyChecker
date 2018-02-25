@@ -27,6 +27,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -75,6 +76,7 @@ public class StartPage extends AppCompatActivity
         , TranslateHelp.OnFragmentInteractionListener
         , MyPreference.OnFragmentInteractionListener
         , ShowAllergies.OnFragmentInteractionListener
+        , E_Numbers.OnFragmentInteractionListener
         , BillingProvider{
     private static final String TAG = "StartPage";
     private static final String SHARED_PREFS_NAME = "StartPage";
@@ -93,6 +95,7 @@ public class StartPage extends AppCompatActivity
     private boolean loadInterstitial = false;
     private AdView mAdView;
     private AdRequest adRequest;
+    private StartPage startPage;
 
     public StartPage(FragmentActivity activity) {
         prefs = activity.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
@@ -123,13 +126,18 @@ public class StartPage extends AppCompatActivity
 
         //findViewById(R.id.textViewtip).setVisibility(View.GONE);
 
+        startPage = this;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                MobileAds.initialize(startPage, "ca-app-pub-3607354849437438~1697911164");
+            }
+        });
 
-        MobileAds.initialize(this, "ca-app-pub-3607354849437438~1697911164");
         mAdView = findViewById(R.id.adView);
 
 
         mAdView.setVisibility(View.VISIBLE);
-        Log.d(TAG, "LOCALE: " + Locale.getDefault().getLanguage());
         new LanguageFragment().setGetLanguage(StartPage.this, Locale.getDefault().getLanguage());
 
 
@@ -240,11 +248,9 @@ public class StartPage extends AppCompatActivity
         intent = getIntent();
         String str = intent.getStringExtra("location");
         if(savedInstanceState != null){
-            Log.d(TAG, "SAVEDINSTANCESTATE: ");
             findViewById(R.id.textViewtip).setVisibility(View.GONE);
             str = null;
         }
-
         if (str != null) {
 
             str = str.replaceAll("[^\\p{L}\\p{Nd}\\s]+", "");
@@ -281,7 +287,6 @@ public class StartPage extends AppCompatActivity
         } else {
             str = intent.getStringExtra("HistoryFragment");
             if(savedInstanceState != null){
-                Log.d(TAG, "SAVEDINSTANCESTATE: ");
                 str = null;
                 findViewById(R.id.textViewtip).setVisibility(View.GONE);
 
@@ -291,12 +296,15 @@ public class StartPage extends AppCompatActivity
                 suggestions.setText(str);
                 checkStringAgainstAllergies(str);
             }else{
+
                 checkPremium();
+
+
             }
         }
 
         setProfilePicture();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -308,9 +316,33 @@ public class StartPage extends AppCompatActivity
         parentView.findViewById(R.id.LinLayHorNavHeadStartPage).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: ");
+                Fragment fragment = new ShowAllergies();
+                Bundle b = new Bundle();
+                b.putSerializable("ArrayList",LanguagesAccepted.getLanguages(getBaseContext()));
+
+                fragment.setArguments(b);
+                setTitle(getString(R.string.showAllergies));
+                fragment(fragment, getString(R.string.showAllergies));
+                drawer.closeDrawer(GravityCompat.START);
             }
         });
+        for (ImageView imageView : getImageViewHashMap(this).values()) {
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Fragment fragment = new ShowAllergies();
+                    Bundle b = new Bundle();
+                    b.putSerializable("ArrayList",LanguagesAccepted.getLanguages(getBaseContext()));
+
+                    fragment.setArguments(b);
+                    setTitle(getString(R.string.showAllergies));
+                    fragment(fragment, getString(R.string.showAllergies));
+                    drawer.closeDrawer(GravityCompat.START);
+
+                }
+            });
+        }
+
         CheckAllergy();
         //billing.buyProduct("premium_upgrade");
     }
@@ -502,15 +534,27 @@ public class StartPage extends AppCompatActivity
             int count = getSupportFragmentManager().getBackStackEntryCount();
 
             if (count == 0) {
+
                 super.onBackPressed();
                 //additional code
             } else {
                 if(count == 1){
-
                     setTitle(R.string.app_name);
                     findViewById(R.id.textViewtip).setVisibility(View.VISIBLE);
                     findViewById(R.id.adView).setVisibility(View.VISIBLE);
-                    checkPremium();
+
+                    TextView viewById = (TextView) findViewById(R.id.textViewFoundAllergies);
+                    CharSequence text = viewById.getText();
+                    if(text.length() >0){
+                        findViewById(R.id.linlaybtnadvanced).setVisibility(View.VISIBLE);
+                        if (findViewById(R.id.linlayallergyFromWord) != null) {
+                            findViewById(R.id.linlayallergyFromWord).setVisibility(View.VISIBLE);
+                        }
+                        findViewById(R.id.linLayHorizontalStartPage).setVisibility(View.VISIBLE);
+                        findViewById(R.id.ingredientsTextView).setVisibility(View.VISIBLE);
+                        findViewById(R.id.textViewFoundAllergies).setVisibility(View.VISIBLE);
+
+                    }
 
                 }else{
                     FragmentManager supportFragmentManager = getSupportFragmentManager();
@@ -674,8 +718,8 @@ public class StartPage extends AppCompatActivity
     }
     private void fragment(Fragment fragment, String backtitle){
         if (fragment != null) {
-            suggestions.setText("");
-            allergic.setText("");
+            suggestions.setVisibility(View.GONE);
+            allergic.setVisibility(View.GONE);
             findViewById(R.id.linlaybtnadvanced).setVisibility(View.GONE);
             mAdView.pause();
             mAdView.setVisibility(View.GONE);
@@ -686,7 +730,6 @@ public class StartPage extends AppCompatActivity
             findViewById(R.id.linLayHorizontalStartPage).setVisibility(View.INVISIBLE);
 
 
-            ((TextView) findViewById(R.id.textViewFoundAllergies)).setText("");
             FragmentManager fragmentManager = getSupportFragmentManager();
 
             fragmentManager.beginTransaction()
@@ -764,8 +807,12 @@ public class StartPage extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        findViewById(R.id.textViewtip).setVisibility(View.VISIBLE);
-        mAdView.resume();
+        if(getSupportFragmentManager().getBackStackEntryCount()==0){
+            findViewById(R.id.textViewtip).setVisibility(View.VISIBLE);
+            findViewById(R.id.adView).setVisibility(View.VISIBLE);
+            mAdView.resume();
+
+        }
     }
 
     public Context startPage() {
@@ -805,10 +852,11 @@ public class StartPage extends AppCompatActivity
     }
     public void premium() {
 
+        Log.d(TAG, "premium: ");
         if (!isPremiumPurchased()){
-                adRequest = new AdRequest.Builder().addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build();
-                mAdView.loadAd(adRequest);
-            Log.d(TAG, "premium: "+ new LanguageFragment().getCategories(this));
+            Log.d(TAG, "premiumNOTPURCHACED: ");
+            adRequest = new AdRequest.Builder().addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build();
+            mAdView.loadAd(adRequest);
             Set<String> set = new HashSet<>();
             Set<Locale> setToDelete = new HashSet<>();
             for (Locale locale:  new LanguageFragment().getCategories(this)) {
@@ -839,6 +887,7 @@ public class StartPage extends AppCompatActivity
         private TextView textView;
         private ProgressBar viewById;
         private String stringToCheck;
+        private ArrayList<AllergyList.E_Numbers> allfoundENumbers = new ArrayList<>();
 
 
         CalcAllergy(StartPage context, TextView textView, ProgressBar viewById) {
@@ -903,6 +952,12 @@ public class StartPage extends AppCompatActivity
             long start = System.currentTimeMillis();
             counter = hashSetToCheckLast.size() / 2;
             i = 0;
+            ArrayList<AllergyList.E_Numbers> eNumbersArrayList = new ArrayList<>();
+            if(true){
+                AllergyList allergyList = new AllergyList(getBaseContext());
+                eNumbersArrayList = allergyList.getArrayListE_Numbers();
+            }
+
             for (String s : hashSetToCheckLast) {
                 if (i % 2 == 0) {
                     publishProgress(hashSetToCheckLast.size() / 2, counter);
@@ -911,11 +966,19 @@ public class StartPage extends AppCompatActivity
                 i++;
                 if(Unfiltered){
                     helpCalcAllergy.checkFullString(s, allergies, allFoundAllergies);
+                }if(true){
+                    String number = s.replaceAll("\\D+","");
+                    Log.d(TAG, "doInBackground: "+ number);
+                    if(number.length()>2){
+                        helpCalcAllergy.checkFullStringEnumbers(s, eNumbersArrayList,allfoundENumbers);
+
+                    }
                 }
             }
             long stop = System.currentTimeMillis();
             Log.d(TAG, "TIME: " + (stop - start));
             Collections.sort(allFoundAllergies);
+            Collections.sort(allfoundENumbers);
             return allFoundAllergies;
         }
 
@@ -990,6 +1053,39 @@ public class StartPage extends AppCompatActivity
 
                 });
             }
+            if(!allfoundENumbers.isEmpty()){
+                linearLayout.addView(new TextView(getBaseContext()));
+                TextView textViewOverHead = new TextView(getBaseContext());
+                textViewOverHead.setTextSize(24);
+                textViewOverHead.setTextColor(Color.WHITE);
+                textViewOverHead.setText("E numbers found:");
+                linearLayout.addView(textViewOverHead);
+                linearLayout.addView(new TextView(getBaseContext()));
+
+                for (final AllergyList.E_Numbers allfoundENumber : allfoundENumbers) {
+                    Log.d(TAG, "ENUMBERS: " + allfoundENumber.getInformation() + " : " + allfoundENumber.getUrl());
+                    TextView textView = new TextView(getBaseContext());
+                    textView.setText(Html.fromHtml("<u>" + allfoundENumber.getId() + " : "+allfoundENumber.getName() + "</u>"));
+                    textView.setTextColor(Color.parseColor("#19b3ad"));
+                    textView.setTextSize(20);
+                    linearLayout.addView(textView);
+                    textView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Fragment fragment = new E_Numbers();
+                            Bundle b = new Bundle();
+                            b.putString("URL",allfoundENumber.getUrl());
+                            b.putString("ENUMBER",allfoundENumber.getInformation());
+                            b.putString("NAME", allfoundENumber.getName());
+                            b.putInt("US", allfoundENumber.getUS());
+                            b.putInt("EU", allfoundENumber.getEU());
+                            fragment.setArguments(b);
+                            fragment(fragment, getString(R.string.eNumbers));
+                        }
+                    });
+                }
+            }
+
             if (!allAllergiesForEachInteger.isEmpty()) {
 
                 outputString = outputString.concat("\n" + getString(R.string.dontUse) + "\n");

@@ -12,8 +12,8 @@
 
     <string name="permission_camera_rationale">Tilgang til kameraet er nødvendig for deteksjon</string>
     <string name="no_camera_permission">Denne appen kan ikke kjøres hvis den ikke har tilgang til kameraet. Kameraet slutter nå.</string>
-    <string name="nuts">Nøtter</string>
-    <string name="almond">Mandler</string>
+    <string name="nuts">Nøtter, nøtt</string>
+    <string name="almond">Mandler, Mandel</string>
     <string name="brazil">Paranøtter, Paranøtt</string>
     <string name="cocoa">Kakao</string>
     <string name="hazelnut">Hasselnøtter, Hasselnøtt</string>

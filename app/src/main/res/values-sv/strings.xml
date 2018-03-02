@@ -12,7 +12,7 @@
 
     <string name="permission_camera_rationale">Tillgång till kameran behövs annars fungerar inte appen</string>
     <string name="no_camera_permission">Den här appen kan inte köras om den inte har tillgång till kameran. Kameran avslutas nu.</string>
-    <string name="nuts">Nötter</string>
+    <string name="nuts">Nötter, Nöt</string>
     <string name="almond">Mandel, mandlar</string>
     <string name="brazil">Paranötter, Paranöt</string>
     <string name="cocoa">Kakao, Kakaoböna</string>

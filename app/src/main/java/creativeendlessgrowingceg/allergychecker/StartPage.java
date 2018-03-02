@@ -160,7 +160,7 @@ public class StartPage extends AppCompatActivity
                 Intent intent = new Intent(startPage, OcrCaptureActivity.class);
                 intent.putExtra("EXTRA_SESSION_ID", true);
                 startPage.startActivity(intent);
-                finish();
+
                 SharedPreferences sharedPreferences =
                         PreferenceManager.getDefaultSharedPreferences(getBaseContext());
                 if (!sharedPreferences.getBoolean("firstTimer", false)) {
@@ -170,7 +170,7 @@ public class StartPage extends AppCompatActivity
                     sharedPreferencesEditor.putBoolean(
                             "firstTimer", true);
                     sharedPreferencesEditor.apply();
-                    finish();
+
                 }
             }
         });
@@ -236,7 +236,7 @@ public class StartPage extends AppCompatActivity
                 startPage.startActivity(intent);
                 SharedPreferences sharedPreferences =
                         PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-                finish();
+
                 if (!sharedPreferences.getBoolean("firstTimer", false)) {
                     startActivity(new Intent(StartPage.this, OnboardingPagerActivity.class));
                     SharedPreferences.Editor sharedPreferencesEditor =
@@ -244,7 +244,7 @@ public class StartPage extends AppCompatActivity
                     sharedPreferencesEditor.putBoolean(
                             "firstTimer", true);
                     sharedPreferencesEditor.apply();
-                    finish();
+
                 }
             }
         });
@@ -611,7 +611,7 @@ public class StartPage extends AppCompatActivity
                         config.setLocale(locale);
                         getApplicationContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
                         Intent intent = getIntent();
-                        finish();
+
                         startActivity(intent);
                     } else {
                         Locale locale = new Locale("sv");
@@ -621,7 +621,7 @@ public class StartPage extends AppCompatActivity
                         config.setLocale(locale);
                         getApplicationContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
                         Intent intent = getIntent();
-                        finish();
+
                         startActivity(intent);
                     }
                     Toast.makeText(
@@ -922,7 +922,7 @@ public class StartPage extends AppCompatActivity
 
             HashSet<String> hashSetToCheckLast = new HashSet<>();
             helpCalcAllergy.FixString(params[0].split("\\s+"), hashSetAllStrings, hashSetToCheckLast);
-
+            String[] stringToCheckENumbers = stringToCheck.split("\\s+");
             ArrayList<Locale> listOfLanguages = new LanguageFragment().getCategories(mContext);
             if (listOfLanguages.isEmpty()) {
                 listOfLanguages.add(Locale.getDefault());
@@ -963,7 +963,16 @@ public class StartPage extends AppCompatActivity
                 AllergyList allergyList = new AllergyList(getBaseContext());
                 eNumbersArrayList = allergyList.getArrayListE_Numbers();
             }
+            for (int j = 0; j < stringToCheckENumbers.length; j++) {
+                if(true){
+                    String number = stringToCheckENumbers[j].replaceAll("\\D+","");
+                    Log.d(TAG, "doInBackground: "+ number);
+                    if(number.length()>2){
+                        helpCalcAllergy.checkFullStringEnumbers(stringToCheckENumbers[j], eNumbersArrayList,allfoundENumbers);
 
+                    }
+                }
+            }
             for (String s : hashSetToCheckLast) {
                 if (i % 2 == 0) {
                     publishProgress(hashSetToCheckLast.size() / 2, counter);
@@ -972,13 +981,6 @@ public class StartPage extends AppCompatActivity
                 i++;
                 if(Unfiltered){
                     helpCalcAllergy.checkFullString(s, allergies, allFoundAllergies);
-                }if(true){
-                    String number = s.replaceAll("\\D+","");
-                    Log.d(TAG, "doInBackground: "+ number);
-                    if(number.length()>2){
-                        helpCalcAllergy.checkFullStringEnumbers(s, eNumbersArrayList,allfoundENumbers);
-
-                    }
                 }
             }
             long stop = System.currentTimeMillis();

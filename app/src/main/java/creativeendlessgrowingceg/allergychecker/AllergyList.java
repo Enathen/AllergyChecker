@@ -2,7 +2,6 @@ package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -1263,8 +1262,6 @@ public class AllergyList {
             E_Numbers o1 = (E_Numbers) o;
             String number = getId().replaceAll("\\D+","");
             String number2 = o1.getId().replaceAll("\\D+","");
-            Log.d(TAG, "compareTo: "+ getId().compareTo(o1.getId())+ ":"+getId() + ":"+o1.getId());
-            Log.d(TAG, "compareTo: "+ number.length()+ ":"+number2.length());
             if(number.length()!=number2.length()){
                 return number.length()-number2.length();
 

@@ -160,6 +160,7 @@ public class StartPage extends AppCompatActivity
                 Intent intent = new Intent(startPage, OcrCaptureActivity.class);
                 intent.putExtra("EXTRA_SESSION_ID", true);
                 startPage.startActivity(intent);
+                finish();
                 SharedPreferences sharedPreferences =
                         PreferenceManager.getDefaultSharedPreferences(getBaseContext());
                 if (!sharedPreferences.getBoolean("firstTimer", false)) {
@@ -169,6 +170,7 @@ public class StartPage extends AppCompatActivity
                     sharedPreferencesEditor.putBoolean(
                             "firstTimer", true);
                     sharedPreferencesEditor.apply();
+                    finish();
                 }
             }
         });
@@ -188,6 +190,7 @@ public class StartPage extends AppCompatActivity
                         Intent intent = new Intent(startPage, StartPage.class);
                         intent.putExtra("location", input.getText().toString());
                         startPage.startActivity(intent);
+
                     }
                 });
                 builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -233,6 +236,7 @@ public class StartPage extends AppCompatActivity
                 startPage.startActivity(intent);
                 SharedPreferences sharedPreferences =
                         PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                finish();
                 if (!sharedPreferences.getBoolean("firstTimer", false)) {
                     startActivity(new Intent(StartPage.this, OnboardingPagerActivity.class));
                     SharedPreferences.Editor sharedPreferencesEditor =
@@ -240,6 +244,7 @@ public class StartPage extends AppCompatActivity
                     sharedPreferencesEditor.putBoolean(
                             "firstTimer", true);
                     sharedPreferencesEditor.apply();
+                    finish();
                 }
             }
         });
@@ -532,6 +537,7 @@ public class StartPage extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             int count = getSupportFragmentManager().getBackStackEntryCount();
+            Log.d(TAG, "onBackPressed COUNT: "+ count);
 
             if (count == 0) {
 

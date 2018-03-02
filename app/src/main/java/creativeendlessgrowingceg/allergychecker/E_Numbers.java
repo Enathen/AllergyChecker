@@ -109,12 +109,12 @@ public class E_Numbers extends Fragment {
         if(eu == 0){
             imageViewEU.setVisibility(View.INVISIBLE);
         } else if( eu == 2){
-            imageViewEU.setImageDrawable(getActivity().getDrawable(R.drawable.da));
+            imageViewEU.setImageDrawable(getActivity().getDrawable(R.drawable.euban));
         }
         if(us == 0){
             imageViewUS.setVisibility(View.INVISIBLE);
         } else if( us == 2){
-            imageViewUS.setImageDrawable(getActivity().getDrawable(R.drawable.da));
+            imageViewUS.setImageDrawable(getActivity().getDrawable(R.drawable.usban));
         }
         if(!child){
             imageViewCHILD.setVisibility(View.INVISIBLE);

@@ -846,6 +846,4 @@
     <string name="E1521" translatable="false">PEG is generally considered biologically inert and safe. However, studies of clinical safety are generally based on adults, not children. The FDA has been asked to investigate the possible effects of PEG in laxatives for children. Also, a minority of people are allergic to it. Allergy to PEG is usually discovered after a person has been diagnosed with an allergy to an increasing number of seemingly unrelated products, including processed foods, cosmetics, drugs, and other substances that contain PEG or were manufactured with PEG.</string>
     <string name="E1525" translatable="false">Hydroxyethyl cellulose is a gelling and thickening agent derived from cellulose. It is widely used in cosmetics, cleaning solutions, and other household products. Hydroxyethyl cellulose and methyl cellulose are frequently used with hydrophobic drugs in capsule formulations, to improve the drugs\' dissolution in the gastrointestinal fluids. This process is known as hydrophilization.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

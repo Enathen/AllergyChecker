@@ -200,20 +200,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
         // Set the TextRecognizer's Processor.
         textRecognizer.setProcessor(new OcrDetectorProcessor(mGraphicOverlay));
-        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case DialogInterface.BUTTON_NEUTRAL:
-                        Intent intent = new Intent(OcrCaptureActivity.this, StartPage.class);
-                        intent.putExtra("location", textTapped);
-                        startActivity(intent);
-                        finish();
-                }
-            }
-        };
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.downloadOfTextScannerNotComplete).setNeutralButton(R.string.ok, dialogClickListener).show();
+
         // Check if the TextRecognizer is operational.
         if (!textRecognizer.isOperational()) {
             Log.w(TAG, "Detector dependencies are not yet available.");
@@ -227,6 +214,21 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                 Toast.makeText(this, R.string.low_storage_error, Toast.LENGTH_LONG).show();
                 Log.w(TAG, getString(R.string.low_storage_error));
             }
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case DialogInterface.BUTTON_NEUTRAL:
+                            Intent intent = new Intent(OcrCaptureActivity.this, StartPage.class);
+                            intent.putExtra("location", textTapped);
+                            startActivity(intent);
+                            finish();
+                    }
+                }
+            };
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.downloadOfTextScannerNotComplete).setNeutralButton(R.string.ok, dialogClickListener).show();
+
         }
 
         // Create the mCameraSource using the TextRecognizer.

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -173,14 +174,9 @@ public class ShowAllergies extends Fragment {
                     public void onClick(View v) {
                         if(!linearLayouts.containsKey(pLinearLayout)){
                             linearLayouts.put(pLinearLayout,new ArrayList<LinearLayout>());
-                            for (Integer allergy : allergies) {
-                                LinearLayout linearLayout1 =(LinearLayout) inflater.inflate(R.layout.textviewssplitmiddle, container, false);
-                                ((TextView)linearLayout1.findViewById(R.id.tvLeft)).setText(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),allergy,category.getLanguage())));
-                                ((TextView)linearLayout1.findViewById(R.id.tvRight)).setText(TextHandler.capitalLetter(getString(allergy)));
-                                linearLayout1.setVisibility(View.INVISIBLE);
-
-                                linearLayouts.get(pLinearLayout).add(linearLayout1);
-                            }
+                            ProgressBar progressBar = new ProgressBar(getContext());
+                            pLinearLayout.addView(progressBar);
+                            new loadAllergy(inflater,container,pLinearLayout,category,progressBar).execute();
                         }
 
                         for (LinearLayout textViews: linearLayouts.get(v)){
@@ -252,5 +248,80 @@ public class ShowAllergies extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+    private class loadAllergy extends AsyncTask<String, Integer, HashMap<LinearLayout, Integer>> {
+
+        private final LayoutInflater inflater;
+        private ViewGroup container;
+        private LinearLayout pLinearLayout;
+        private Locale category;
+        private ProgressBar progressBar;
+
+        public loadAllergy( LayoutInflater inflater, ViewGroup container, LinearLayout pLinearLayout, Locale category, ProgressBar progressBar) {
+
+            this.inflater = inflater;
+            this.container = container;
+            this.pLinearLayout = pLinearLayout;
+            this.category = category;
+            this.progressBar = progressBar;
+        }
+
+        /**
+         * Override this method to perform a computation on a background thread. The
+         * specified parameters are the parameters passed to {@link #execute}
+         * by the caller of this task.
+         * <p>
+         * This method can call {@link #publishProgress} to publish updates
+         * on the UI thread.
+         *
+         * @param params The parameters of the task.
+         * @return A result, defined by the subclass of this task.
+         * @see #onPreExecute()
+         * @see #onPostExecute
+         * @see #publishProgress
+         */
+        @Override
+        protected HashMap<LinearLayout, Integer> doInBackground(String... params) {
+
+            HashMap<LinearLayout, Integer> linearLayout = new HashMap<>();
+            for (Integer allergy : allergies) {
+                linearLayout.put((LinearLayout) inflater.inflate(R.layout.textviewssplitmiddle, container, false),allergy);
+
+            }
+            return linearLayout;
+        }
+
+        /**
+         * <p>Runs on the UI thread after {@link #doInBackground}. The
+         * specified result is the value returned by {@link #doInBackground}.</p>
+         * <p>
+         * <p>This method won't be invoked if the task was cancelled.</p>
+         *
+         * @param allAllergiesForEachIntegers The result of the operation computed by {@link #doInBackground}.
+         * @see #onPreExecute
+         * @see #doInBackground
+         * @see #onCancelled(Object)
+         */
+        @Override
+        protected void onPostExecute(HashMap<LinearLayout, Integer> allAllergiesForEachIntegers) {
+            super.onPostExecute(allAllergiesForEachIntegers);
+            for (LinearLayout layout : allAllergiesForEachIntegers.keySet()) {
+                ((TextView)layout.findViewById(R.id.tvLeft)).setText(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),allAllergiesForEachIntegers.get(layout),category.getLanguage())));
+                ((TextView)layout.findViewById(R.id.tvRight)).setText(TextHandler.capitalLetter(getString(allAllergiesForEachIntegers.get(layout))));
+                layout.setVisibility(View.INVISIBLE);
+                linearLayouts.get(pLinearLayout).add(layout);
+            }
+            for (LinearLayout textViews: linearLayouts.get(pLinearLayout)){
+                ((LinearLayout) pLinearLayout).addView(textViews);
+                textViews.setVisibility(View.VISIBLE);
+                pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.VISIBLE);
+
+            }
+            pLinearLayout.removeView(progressBar);
+
+
+
+        }
+
     }
 }

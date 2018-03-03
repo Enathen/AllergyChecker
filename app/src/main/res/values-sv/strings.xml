@@ -289,7 +289,8 @@
     <string name="polish">Polska</string>
     <string name="pleaseCheckAllergies">Kontrollera att dina allergier och preferenser är korrekta!</string>
     <string name="slide3">Om du håller ner kameraknappen visas två alternativ. Ett alternativ är att använda ficklampan  på kameran och ett annat alternativ att manuellt skriva in ingredienser som ingår i en produkt</string>
-    <string name="advancedSearchis">Filtrerad sökning tar bort substrängar av ord: till exempel är jord substräng av jordnötter</string>
-    <string name="unfilteredSearchIs">Ofilterad sökning lägger till substrängar av ord: till exempel jord är en substräng av jordgubbe</string>
-    <string name="eNumbers">E numbers</string>
+    <string name="advancedSearchis">Filtrerad sökning tar bort delsträngar av ord: till exempel är jord delsträng av jordnötter</string>
+    <string name="unfilteredSearchIs">Ofilterad sökning lägger till delsträngar av ord: till exempel jord är en delsträng av jordgubbe</string>
+    <string name="eNumbers">E-Nummer</string>
+    <string name="downloadOfTextScannerNotComplete">Textigenkänningen har inte slutfört att laddas ned. Detta kan tyvärr ta några timmar på vissa telefoner. Se till att du är ansluten till internet och har 10 MB ledigt utrymme.</string>
 </resources>

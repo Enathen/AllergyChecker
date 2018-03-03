@@ -188,6 +188,7 @@ public class HistoryFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), StartPage.class);
                         intent.putExtra("HistoryFragment", s.substring(20));
                         startActivity(intent);
+                        getActivity().finish();
 
                     }
                 });

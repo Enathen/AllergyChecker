@@ -118,6 +118,9 @@ public class BillingManager implements PurchasesUpdatedListener {
         // once setup completes.
         // It also starts to report all the new purchases through onPurchasesUpdated() callback.
 
+
+    }
+    public void startServiceFromStartPage(){
         startServiceConnection(new Runnable() {
             @Override
             public void run() {

@@ -301,5 +301,6 @@
     <string name="advancedSearchis">gefilterd zoeken verwijdert substrings van woorden: bijvoorbeeld pin is substring van pinda</string>
     <string name="unfilteredSearchIs">Ongefilterd zoeken voegt substrings van woorden toe: zo is bijvoorbeeld stro een substring van aardbei</string>
     <string name="shrimp">Garnalen</string>
-    <string name="eNumbers">E numbers</string>
+    <string name="eNumbers">E nummers</string>
+    <string name="downloadOfTextScannerNotComplete">De tekstherkenner is nog niet klaar met downloaden. Dit kan helaas enkele uren duren op sommige telefoons. Zorg ervoor dat u verbonden bent met internet en dat u 10 MB vrije ruimte heeft.</string>
 </resources>

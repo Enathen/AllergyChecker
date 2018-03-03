@@ -295,7 +295,8 @@
     <string name="slide3">Al mantener presionado el botón de la cámara aparecen 2 opciones. Una opción es usar la linterna en la cámara y otra opción para escribir manualmente los ingredientes que están contenidos en un producto</string>
     <string name="advancedSearchis">búsqueda filtrada elimina subcadenas de palabras: por ejemplo, de ma es una subcadena de maní</string>
     <string name="unfilteredSearchIs">La búsqueda no filtrada agrega subcadenas de palabras: por ejemplo, fre es una subcadena de fresa</string>
-    <string name="eNumbers">E numbers</string>
+    <string name="eNumbers">Número E</string>
+    <string name="downloadOfTextScannerNotComplete">El reconocedor de texto no se ha terminado de descargar. Esto, lamentablemente, podría tomar un par de horas en algunos teléfonos. Asegúrese de estar conectado a Internet y tener 10 MB de espacio libre.</string>
 
 
 </resources>

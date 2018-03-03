@@ -298,6 +298,7 @@
     <string name="slide3">Wenn Sie die Kamerataste gedrückt halten, werden 2 Optionen angezeigt. Eine Option ist die Verwendung der Taschenlampe an der Kamera und eine andere Option zum manuellen Schreiben von Zutaten, die in einem Produkt enthalten sind</string>
     <string name="unfilteredSearchIs">Die ungefilterte Suche fügt Teilstrings von Wörtern hinzu: zum Beispiel ist erd Teilstring von Erdbeere</string>
     <string name="advancedSearchis">Die gefilterte Suche entfernt Teilstrings von Wörtern: zum Beispiel ist Erd Teilstring von Erdnuss</string>
-    <string name="eNumbers">E numbers</string>
+    <string name="eNumbers">"E-Nummern "</string>
+    <string name="downloadOfTextScannerNotComplete">Der Texterkenner wurde nicht heruntergeladen. Dies kann leider bei einigen Telefonen einige Stunden dauern. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind und 10 MB freien Speicherplatz haben.</string>
 
 </resources>

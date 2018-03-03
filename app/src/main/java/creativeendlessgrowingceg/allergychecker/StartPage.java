@@ -137,7 +137,7 @@ public class StartPage extends AppCompatActivity
         mAdView = findViewById(R.id.adView);
 
 
-        mAdView.setVisibility(View.VISIBLE);
+        //mAdView.setVisibility(View.VISIBLE);
         new LanguageFragment().setGetLanguage(StartPage.this, Locale.getDefault().getLanguage());
 
 
@@ -389,6 +389,13 @@ public class StartPage extends AppCompatActivity
 
         mViewController = new SubscriptionsViewController();
         mBillingManager = new BillingManager(this,mViewController.getUpdateListener());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mBillingManager.startServiceFromStartPage();
+            }
+        }).start();
+
 
     }
 
@@ -467,6 +474,7 @@ public class StartPage extends AppCompatActivity
         });
         new CalcAllergy(this, allergic, (ProgressBar) findViewById(R.id.progressBar3)).execute(str);
 
+
     }
 
     public boolean saveArray() {
@@ -540,8 +548,16 @@ public class StartPage extends AppCompatActivity
             Log.d(TAG, "onBackPressed COUNT: "+ count);
 
             if (count == 0) {
+                TextView viewById = (TextView) findViewById(R.id.textViewFoundAllergies);
+                CharSequence text = viewById.getText();
+                if(text.length()>0){
+                    Intent intent = new Intent(this, StartPage.class);
+                    startActivity(intent);
+                    finish();
+                }else{
 
-                super.onBackPressed();
+                    super.onBackPressed();
+                }
                 //additional code
             } else {
                 if(count == 1){
@@ -813,11 +829,15 @@ public class StartPage extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d(TAG, "onResume: ");
         if(getSupportFragmentManager().getBackStackEntryCount()==0){
+            Log.d(TAG, "onResume: ");
             findViewById(R.id.textViewtip).setVisibility(View.VISIBLE);
             findViewById(R.id.adView).setVisibility(View.VISIBLE);
-            mAdView.resume();
+            ((AdView)findViewById(R.id.adView)).resume();
 
+        }else{
+            findViewById(R.id.adView).setVisibility(View.GONE);
         }
     }
 
@@ -857,22 +877,24 @@ public class StartPage extends AppCompatActivity
 
     }
     public void premium() {
-
+        startPage = this;
         Log.d(TAG, "premium: ");
         if (!isPremiumPurchased()){
-            Log.d(TAG, "premiumNOTPURCHACED: ");
-            adRequest = new AdRequest.Builder().addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build();
-            mAdView.loadAd(adRequest);
-            Set<String> set = new HashSet<>();
-            Set<Locale> setToDelete = new HashSet<>();
-            for (Locale locale:  new LanguageFragment().getCategories(this)) {
-                if(locale == Locale.getDefault() ||locale.getLanguage().equals("en")){
-                    set.add(locale.getLanguage());
-                }else{
-                    setToDelete.add(locale);
-                }
-            }
-            new LanguageFragment().setCategories(this, set,setToDelete);
+
+                    Log.d(TAG, "premiumNOTPURCHACED: ");
+                    adRequest = new AdRequest.Builder().addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build();
+                    mAdView.loadAd(adRequest);
+                    Set<String> set = new HashSet<>();
+                    Set<Locale> setToDelete = new HashSet<>();
+                    for (Locale locale:  new LanguageFragment().getCategories(startPage)) {
+                        if(locale == Locale.getDefault() ||locale.getLanguage().equals("en")){
+                            set.add(locale.getLanguage());
+                        }else{
+                            setToDelete.add(locale);
+                        }
+                    }
+                    new LanguageFragment().setCategories(startPage, set,setToDelete);
+
         }
     }
 
@@ -1143,6 +1165,7 @@ public class StartPage extends AppCompatActivity
                     startActivity(intent);
                 }
             });
+            findViewById(R.id.textViewtip).setVisibility(View.GONE);
             // Do things like hide the progress bar or change a TextView
         }
 

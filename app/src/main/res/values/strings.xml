@@ -333,8 +333,8 @@
     <string name="staticPolish" translatable="false">Polskie</string>
     <string name="pleaseCheckAllergies">Please check that your allergies and preference are correct!</string>
     <string name="slide3">Holding down the camera button brings up 2 options. One option is to use the flashlight on the camera and another option to manually write in ingredients that are contained in a product</string>
-    <string name="advancedSearchis">filtered search removes substrings of words: for instance pea is substring of peanut</string>
-    <string name="unfilteredSearchIs">Unfiltered search adds substrings of words: for instance straw is substring of strawberry</string>
+    <string name="advancedSearchis">filtered search removes substrings of words: for instance, pea is a substring of peanut</string>
+    <string name="unfilteredSearchIs">Unfiltered search adds substrings of words: for instance, straw is a substring of strawberry</string>
     <string name="shrimp">Shrimp, Prawns</string>
     <string name="eNumbers">E numbers</string>
 
@@ -846,6 +846,6 @@
     <string name="E1521" translatable="false">PEG is generally considered biologically inert and safe. However, studies of clinical safety are generally based on adults, not children. The FDA has been asked to investigate the possible effects of PEG in laxatives for children. Also, a minority of people are allergic to it. Allergy to PEG is usually discovered after a person has been diagnosed with an allergy to an increasing number of seemingly unrelated products, including processed foods, cosmetics, drugs, and other substances that contain PEG or were manufactured with PEG.</string>
     <string name="E1525" translatable="false">Hydroxyethyl cellulose is a gelling and thickening agent derived from cellulose. It is widely used in cosmetics, cleaning solutions, and other household products. Hydroxyethyl cellulose and methyl cellulose are frequently used with hydrophobic drugs in capsule formulations, to improve the drugs\' dissolution in the gastrointestinal fluids. This process is known as hydrophilization.</string>
 
-    <string name="downloadOfTextScannerNotComplete">The text recognizer have not been finished downloading. This unfortunately might take a couple of hours on some phones. Make sure you are connected to the internet, and have 10mb free space.</string>
+    <string name="downloadOfTextScannerNotComplete">The text recognizer has not been finished downloading. This, unfortunately, might take a couple of hours on some phones. Make sure you are connected to the internet and have 10mb free space.</string>
 
 </resources>

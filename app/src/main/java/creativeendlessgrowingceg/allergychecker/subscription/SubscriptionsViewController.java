@@ -1,6 +1,5 @@
 package creativeendlessgrowingceg.allergychecker.subscription;
 
-import android.support.annotation.DrawableRes;
 import android.util.Log;
 
 import com.android.billingclient.api.BillingClient;
@@ -9,7 +8,6 @@ import com.android.billingclient.api.Purchase;
 import java.util.List;
 
 import creativeendlessgrowingceg.allergychecker.LanguageFragment;
-import creativeendlessgrowingceg.allergychecker.R;
 import creativeendlessgrowingceg.allergychecker.billingmodule.billing.BillingManager;
 import creativeendlessgrowingceg.allergychecker.billingmodule.skulist.row.GoldMonthlyDelegate;
 import creativeendlessgrowingceg.allergychecker.billingmodule.skulist.row.GoldYearlyDelegate;
@@ -22,12 +20,6 @@ import creativeendlessgrowingceg.allergychecker.billingmodule.skulist.row.GoldYe
 public class SubscriptionsViewController {
     private static final String TAG = "MainViewController";
 
-    // Graphics for the gas gauge
-    private static int[] TANK_RES_IDS = { R.drawable.gas0, R.drawable.gas1, R.drawable.gas2,
-            R.drawable.gas3, R.drawable.gas4 };
-
-    // How many units (1/4 tank is our unit) fill in the tank.
-    private static final int TANK_MAX = 4;
 
     private final UpdateListener mUpdateListener;
     private LanguageFragment mActivity;
@@ -64,11 +56,7 @@ public class SubscriptionsViewController {
         return mGoldYearly;
     }
 
-    public @DrawableRes
-    int getTankResId() {
-        int index = (mTank >= TANK_RES_IDS.length) ? (TANK_RES_IDS.length - 1) : mTank;
-        return TANK_RES_IDS[index];
-    }
+
 
     public boolean isPremiumPurchased() {
         Log.d(TAG, "isPremiumPurchased: " + mIsPremium);

@@ -293,7 +293,8 @@
     <string name="advancedSearchis">filtreret søgning fjerner substrings af ord: for eksempel jord er substring af jordnødde</string>
     <string name="unfilteredSearchIs">Ufiltreret søgning tilføjer substrings af ord: for eksempel jord er substring af jordbær</string>
     <string name="shrimp">Rejer</string>
-    <string name="eNumbers">E numbers</string>
+    <string name="eNumbers">E-numre</string>
+    <string name="downloadOfTextScannerNotComplete">Tekstgenkendelse er ikke færdig med at downloade. Dette kan desværre tage et par timer på nogle telefoner. Sørg for at du er forbundet til internettet og har 10mb ledig plads.</string>
 
 
 </resources>

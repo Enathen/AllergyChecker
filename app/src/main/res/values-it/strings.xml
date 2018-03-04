@@ -294,4 +294,5 @@
     <string name="unfilteredSearchIs">" La ricerca non filtrata aggiunge sottostringhe di parole: ad esempio frag è sottostringa di fragola"</string>
     <string name="eNumbers">Numeri E</string>
     <string name="downloadOfTextScannerNotComplete">Il riconoscimento del testo non è stato completato il download. Questo, sfortunatamente, potrebbe richiedere un paio d\'ore su alcuni telefoni. Assicurati di essere connesso a Internet e di avere 10 MB di spazio libero.</string>
+    <string name="sendTips">Inviare suggerimenti / bug</string>
 </resources>

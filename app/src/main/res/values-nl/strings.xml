@@ -303,4 +303,5 @@
     <string name="shrimp">Garnalen</string>
     <string name="eNumbers">E nummers</string>
     <string name="downloadOfTextScannerNotComplete">De tekstherkenner is nog niet klaar met downloaden. Dit kan helaas enkele uren duren op sommige telefoons. Zorg ervoor dat u verbonden bent met internet en dat u 10 MB vrije ruimte heeft.</string>
+    <string name="sendTips">Stuur tips / bugs</string>
 </resources>

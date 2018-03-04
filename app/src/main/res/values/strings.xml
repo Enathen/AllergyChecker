@@ -14,7 +14,7 @@
     <string name="low_storage_error" translatable="false">Ocr dependencies cannot be downloaded due to low device storage</string>
 
 
-    <string name="nuts">Nuts</string>
+    <string name="nuts">Nuts, Nut</string>
     <string name="almond">Almond, Almonds</string>
     <string name="brazil">Brazil Nuts</string>
     <string name="cocoa">Cocoa</string>
@@ -226,7 +226,7 @@
     <string name="chickpea">Chickpeas</string>
     <string name="lentil">Lentils</string>
     <string name="lupin">Lupin</string>
-    <string name="peanut">Peanuts</string>
+    <string name="peanut">Peanuts, Peanut</string>
     <string name="pea">Peas</string>
     <string name="soybean">soybean</string>
     <string name="lemon">Lemon</string>
@@ -268,8 +268,8 @@
     <string name="custard">Custard</string>
     <string name="cream">Cream</string>
     <string name="write">Write</string>
-    <string name="useflash">flash On</string>
-    <string name="useNoFlash">flash Off</string>
+    <string name="useflash">Flash On</string>
+    <string name="useNoFlash">Flash Off</string>
     <string name="SharingIsCaring">Sharing is caring</string>
     <string name="myPreference">My preferences</string>
     <string name="showAllergies">Show Allergies</string>
@@ -847,5 +847,8 @@
     <string name="E1525" translatable="false">Hydroxyethyl cellulose is a gelling and thickening agent derived from cellulose. It is widely used in cosmetics, cleaning solutions, and other household products. Hydroxyethyl cellulose and methyl cellulose are frequently used with hydrophobic drugs in capsule formulations, to improve the drugs\' dissolution in the gastrointestinal fluids. This process is known as hydrophilization.</string>
 
     <string name="downloadOfTextScannerNotComplete">The text recognizer has not been finished downloading. This, unfortunately, might take a couple of hours on some phones. Make sure you are connected to the internet and have 10mb free space.</string>
+    <string name="sendTips">Send tips / bugs</string>
+    <string name="useFocus">Focus On</string>
+    <string name="useNoFocus">Focus Off</string>
 
 </resources>

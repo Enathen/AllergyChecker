@@ -300,5 +300,6 @@
     <string name="advancedSearchis">Die gefilterte Suche entfernt Teilstrings von Wörtern: zum Beispiel ist Erd Teilstring von Erdnuss</string>
     <string name="eNumbers">"E-Nummern "</string>
     <string name="downloadOfTextScannerNotComplete">Der Texterkenner wurde nicht heruntergeladen. Dies kann leider bei einigen Telefonen einige Stunden dauern. Stellen Sie sicher, dass Sie mit dem Internet verbunden sind und 10 MB freien Speicherplatz haben.</string>
+    <string name="sendTips">Senden Sie Tipps / Bugs</string>
 
 </resources>

@@ -294,5 +294,6 @@
     <string name="advancedSearchis">filtrert søk fjerner understrenger av ord: for eksempel er jord en substans av jordnøtt</string>
     <string name="eNumbers">E tall</string>
     <string name="downloadOfTextScannerNotComplete">Tekstgjenkjenningen er ikke ferdig nedlasting. Dette kan dessverre ta noen timer på noen telefoner. Pass på at du er koblet til internett og har 10 MB ledig plass.</string>
+    <string name="sendTips">Send tips / feil</string>
 
 </resources>

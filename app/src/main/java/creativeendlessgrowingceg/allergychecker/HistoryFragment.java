@@ -99,7 +99,7 @@ public class HistoryFragment extends Fragment {
 
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.lineaLayoutFragHistory);
 
-        ArrayList<String> arrayList = new StartPage(getActivity()).getArrayFromHistory();
+        ArrayList<String> arrayList = new DateString(getActivity()).getArrayFromHistory();
         Collections.sort(arrayList, new stringComparator());
         Collections.reverse(arrayList);
 
@@ -149,7 +149,7 @@ public class HistoryFragment extends Fragment {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        new StartPage(getActivity()).deleteOneItemHistory(s);
+                        new DateString(getActivity()).deleteOneItemHistory(s);
                         topLinLayOut.removeView(button);
                         topLinLayOut.removeView(tv);
                         topLinLayOut.removeView(newLinearLayout);
@@ -223,7 +223,7 @@ public class HistoryFragment extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 switch (which) {
                                     case DialogInterface.BUTTON_POSITIVE:
-                                        new StartPage(getActivity()).deleteHistory();
+                                        new DateString(getActivity()).deleteHistory();
                                         Intent intent = new Intent(getActivity(), StartPage.class);
                                         startActivity(intent);
                                         break;

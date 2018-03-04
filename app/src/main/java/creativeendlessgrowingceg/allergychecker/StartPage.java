@@ -48,7 +48,6 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -96,6 +95,7 @@ public class StartPage extends AppCompatActivity
     private AdView mAdView;
     private AdRequest adRequest;
     private StartPage startPage;
+    private FloatingActionButton focus;
 
     public StartPage(FragmentActivity activity) {
         prefs = activity.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
@@ -123,19 +123,16 @@ public class StartPage extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
-
+        Log.d(TAG, "STARTO: ");
         //findViewById(R.id.textViewtip).setVisibility(View.GONE);
 
         startPage = this;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                MobileAds.initialize(startPage, "ca-app-pub-3607354849437438~1697911164");
-            }
-        });
+
 
         mAdView = findViewById(R.id.adView);
-
+        /*AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
+        adRequestBuilder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
+        mAdView.loadAd(adRequestBuilder.build());*/
 
         //mAdView.setVisibility(View.VISIBLE);
         new LanguageFragment().setGetLanguage(StartPage.this, Locale.getDefault().getLanguage());
@@ -151,26 +148,74 @@ public class StartPage extends AppCompatActivity
         //loadInterstitial();
         ((TextView)findViewById(R.id.textViewtip)).setText(StartPageTip.getTip(getBaseContext()));
         write = (FloatingActionButton) findViewById(R.id.write);
+        focus = (FloatingActionButton) findViewById(R.id.focusOn);
         camera = (FloatingActionMenu) findViewById(R.id.menu);
-        final StartPage startPage = this;
         flash = (FloatingActionButton) findViewById(R.id.flashon);
+        final StartPage startPage = this;
+        final SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        if(sharedPreferences.getBoolean("focus", true)){
+            focus.setLabelText(getString(R.string.useFocus));
+            focus.setImageDrawable(getDrawable(R.drawable.focuson));
+
+        }else{
+            focus.setLabelText(getString(R.string.useNoFocus));
+            focus.setImageDrawable(getDrawable(R.drawable.flash));
+
+        }
+        if(sharedPreferences.getBoolean("flash", false)){
+            flash.setLabelText(getString(R.string.useflash));
+            flash.setImageDrawable(getDrawable(R.drawable.flashon));
+
+        }else{
+            flash.setLabelText(getString(R.string.useNoFlash));
+            flash.setImageDrawable(getDrawable(R.drawable.flash));
+
+        }
+        focus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                SharedPreferences.Editor sharedPreferencesEditor =
+                        PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
+                if (sharedPreferences.getBoolean("focus", true)) {
+                    sharedPreferencesEditor.putBoolean(
+                            "focus", false);
+                    sharedPreferencesEditor.apply();
+                    focus.setImageDrawable(getDrawable(R.drawable.flash));
+                    focus.setLabelText(getString(R.string.useNoFocus));
+
+                }else{
+                    focus.setImageDrawable(getDrawable(R.drawable.focuson));
+                    sharedPreferencesEditor.putBoolean(
+                            "focus", true);
+                    sharedPreferencesEditor.apply();
+                    focus.setLabelText(getString(R.string.useFocus));
+                }
+            }
+        });
         flash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(startPage, OcrCaptureActivity.class);
-                intent.putExtra("EXTRA_SESSION_ID", true);
-                startPage.startActivity(intent);
 
-                SharedPreferences sharedPreferences =
-                        PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-                if (!sharedPreferences.getBoolean("firstTimer", false)) {
-                    startActivity(new Intent(StartPage.this, OnboardingPagerActivity.class));
-                    SharedPreferences.Editor sharedPreferencesEditor =
-                            PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
+
+
+                SharedPreferences.Editor sharedPreferencesEditor =
+                        PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
+                if (sharedPreferences.getBoolean("flash", false)) {
                     sharedPreferencesEditor.putBoolean(
-                            "firstTimer", true);
+                            "flash", false);
                     sharedPreferencesEditor.apply();
 
+                    flash.setImageDrawable(getDrawable(R.drawable.flash));
+                    flash.setLabelText(getString(R.string.useNoFlash));
+                }
+                else{
+                    flash.setImageDrawable(getDrawable(R.drawable.flashon));
+                    sharedPreferencesEditor.putBoolean(
+                            "flash", true);
+                    sharedPreferencesEditor.apply();
+                    flash.setLabelText(getString(R.string.useflash));
                 }
             }
         });
@@ -212,11 +257,13 @@ public class StartPage extends AppCompatActivity
                 if (write.getVisibility() != View.VISIBLE) {
                     write.setVisibility(View.VISIBLE);
                     flash.setVisibility(View.VISIBLE);
+                    focus.setVisibility(View.VISIBLE);
                     camera.open(true);
 
                 } else {
                     write.setVisibility(View.GONE);
                     flash.setVisibility(View.GONE);
+                    focus.setVisibility(View.GONE);
 
                     camera.close(true);
                 }
@@ -232,10 +279,9 @@ public class StartPage extends AppCompatActivity
             public void onClick(View v) {
 
                 Intent intent = new Intent(startPage, OcrCaptureActivity.class);
-                intent.putExtra("EXTRA_SESSION_ID", false);
+                intent.putExtra("focus", sharedPreferences.getBoolean("focus",true));
+                intent.putExtra("flash", sharedPreferences.getBoolean("flash",false));
                 startPage.startActivity(intent);
-                SharedPreferences sharedPreferences =
-                        PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
                 if (!sharedPreferences.getBoolean("firstTimer", false)) {
                     startActivity(new Intent(StartPage.this, OnboardingPagerActivity.class));
@@ -302,7 +348,7 @@ public class StartPage extends AppCompatActivity
                 checkStringAgainstAllergies(str);
             }else{
 
-                checkPremium();
+                checkpremium();
 
 
             }
@@ -348,9 +394,32 @@ public class StartPage extends AppCompatActivity
             });
         }
 
+        Log.d(TAG, "FINITObef: ");
+
+
+
+
+
+        Log.d(TAG, "FINITO: ");
         CheckAllergy();
+
         //billing.buyProduct("premium_upgrade");
     }
+
+    private void checkpremium() {
+        Log.d(TAG, "checkpremium: ");
+        mViewController = new SubscriptionsViewController();
+        mBillingManager = new BillingManager(startPage,mViewController.getUpdateListener());
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mBillingManager.startServiceFromStartPage();
+
+            }
+        }).start();
+
+    }
+
     private void CheckAllergy(){
 
         // TODO add when after update
@@ -385,19 +454,7 @@ public class StartPage extends AppCompatActivity
 
     }
 
-    private void checkPremium() {
 
-        mViewController = new SubscriptionsViewController();
-        mBillingManager = new BillingManager(this,mViewController.getUpdateListener());
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                mBillingManager.startServiceFromStartPage();
-            }
-        }).start();
-
-
-    }
 
 
     private void setProfilePicture() {
@@ -441,7 +498,7 @@ public class StartPage extends AppCompatActivity
 
         (findViewById(R.id.progressBar3)).setVisibility(View.VISIBLE);
         loadInterstitial = true;
-        checkPremium();
+        checkpremium();
         Locale locale = new Locale(new LanguageFragment().getLanguageFromLFragment(this));
         final Locale newLocale = new Locale(locale.getLanguage());
         Locale.setDefault(newLocale);
@@ -715,7 +772,7 @@ public class StartPage extends AppCompatActivity
                 startActivity(new Intent(Intent.ACTION_VIEW,
                         Uri.parse("http://play.google.com/store/apps/details?id=" + this.getPackageName())));
             }
-        } /*else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_share) {
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
             i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
@@ -723,7 +780,7 @@ public class StartPage extends AppCompatActivity
             sAux = sAux + "//play.google.com/store/apps/details?id=" + this.getPackageName() + "\n\n";
             i.putExtra(Intent.EXTRA_TEXT, sAux);
             startActivity(Intent.createChooser(i, "choose one"));
-        }*/ else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_send) {
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                     "mailto", "AllergyCheckerCEG@gmail.com", null));
             emailIntent.putExtra(Intent.EXTRA_TEXT, getResources().getText(R.string.mustBeInEnglish));
@@ -832,9 +889,14 @@ public class StartPage extends AppCompatActivity
         Log.d(TAG, "onResume: ");
         if(getSupportFragmentManager().getBackStackEntryCount()==0){
             Log.d(TAG, "onResume: ");
-            findViewById(R.id.textViewtip).setVisibility(View.VISIBLE);
+            TextView viewById = (TextView) findViewById(R.id.textViewFoundAllergies);
+            CharSequence text = viewById.getText();
+            if(text.length()<=0) {
+                findViewById(R.id.textViewtip).setVisibility(View.VISIBLE);
+            }
             findViewById(R.id.adView).setVisibility(View.VISIBLE);
             ((AdView)findViewById(R.id.adView)).resume();
+
 
         }else{
             findViewById(R.id.adView).setVisibility(View.GONE);
@@ -871,31 +933,36 @@ public class StartPage extends AppCompatActivity
             if(!Unfiltered)
             displayInterstitial();
         }*/
-        adRequest = new AdRequest.Builder().addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build());
 
 
     }
     public void premium() {
         startPage = this;
-        Log.d(TAG, "premium: ");
+        Log.d(TAG, "FINITOPREMIUMO: ");
         if (!isPremiumPurchased()){
 
-                    Log.d(TAG, "premiumNOTPURCHACED: ");
-                    adRequest = new AdRequest.Builder().addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build();
-                    mAdView.loadAd(adRequest);
-                    Set<String> set = new HashSet<>();
-                    Set<Locale> setToDelete = new HashSet<>();
-                    for (Locale locale:  new LanguageFragment().getCategories(startPage)) {
-                        if(locale == Locale.getDefault() ||locale.getLanguage().equals("en")){
-                            set.add(locale.getLanguage());
-                        }else{
-                            setToDelete.add(locale);
-                        }
-                    }
-                    new LanguageFragment().setCategories(startPage, set,setToDelete);
+            Log.d(TAG, "premiumNOTPURCHACED: ");
+
+            mAdView.loadAd(new AdRequest.Builder()
+                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build());
+            Log.d(TAG, "premiumNOTPURCHACED: ");
+
+            Set<String> set = new HashSet<>();
+            Set<Locale> setToDelete = new HashSet<>();
+            for (Locale locale:  new LanguageFragment().getCategories(startPage)) {
+                if(locale == Locale.getDefault() ||locale.getLanguage().equals("en")){
+                    set.add(locale.getLanguage());
+                }else{
+                    setToDelete.add(locale);
+                }
+            }
+            new LanguageFragment().setCategories(startPage, set,setToDelete);
 
         }
+        Log.d(TAG, "FINITOPREMIUMO: ");
+
     }
 
 
@@ -1121,7 +1188,7 @@ public class StartPage extends AppCompatActivity
                 outputString = outputString.concat("\n" + getString(R.string.dontUse) + "\n");
                 outputString = outputString.concat("\n" + getString(R.string.mightContainOther) + "\n");
                 outputString = outputString.concat(getString(R.string.scannedTextBelow) + "\n");
-                textView.setTextColor(Color.RED);
+                textView.setTextColor(Color.parseColor("#ff7f2a"));
                 textView.setText(outputString);
                 findViewById(R.id.linlayallergyFromWord).setVisibility(View.VISIBLE);
             } else {
@@ -1190,4 +1257,6 @@ public class StartPage extends AppCompatActivity
         super.onSaveInstanceState(outState);
         outState.putBoolean("Unfiltered", true);
     }
+
+
 }

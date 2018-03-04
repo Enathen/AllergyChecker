@@ -295,4 +295,5 @@
     <string name="advancedSearchis">pesquisa filtrada remove substrings de palavras: por exemplo, amend é substring de amendoim</string>
     <string name="eNumbers">Número E</string>
     <string name="downloadOfTextScannerNotComplete">O reconhecedor de texto não foi concluído o download. Isso, infelizmente, pode demorar algumas horas em alguns telefones. Certifique-se de que está conectado à Internet e tem espaço livre de 10mb.</string>
+    <string name="sendTips">Envie dicas / insetos</string>
 </resources>

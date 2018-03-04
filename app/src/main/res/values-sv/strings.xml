@@ -293,4 +293,5 @@
     <string name="unfilteredSearchIs">Ofilterad sökning lägger till delsträngar av ord: till exempel jord är en delsträng av jordgubbe</string>
     <string name="eNumbers">E-Nummer</string>
     <string name="downloadOfTextScannerNotComplete">Textigenkänningen har inte slutfört att laddas ned. Detta kan tyvärr ta några timmar på vissa telefoner. Se till att du är ansluten till internet och har 10 MB ledigt utrymme.</string>
+    <string name="sendTips">" skicka tips / buggar"</string>
 </resources>

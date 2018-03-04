@@ -294,5 +294,6 @@
     <string name="unfilteredSearchIs">Suodattamaton haku lisää sanojen substraattit: esimerkiksi mansi on mansikan substringi</string>
     <string name="eNumbers">E-koodi</string>
     <string name="downloadOfTextScannerNotComplete">Tekstin tunnistinta ei ole saatu latautumaan loppuun. Tämä valitettavasti saattaa kestää pari tuntia joillakin puhelimilla. Varmista, että olet yhteydessä internetiin ja että sinulla on 10mb vapaata tilaa.</string>
+    <string name="sendTips">Lähetä vinkkejä / vikoja</string>
 
 </resources>

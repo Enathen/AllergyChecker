@@ -292,4 +292,5 @@
     <string name="unfilteredSearchIs">Niefiltrowane wyszukiwanie dodaje podciągi słów: na przykład trus jest podłańcuchem truskawki</string>
     <string name="eNumbers">Numery E</string>
     <string name="downloadOfTextScannerNotComplete">Rozpoznawanie tekstu nie zostało zakończone. To niestety może zająć kilka godzin w niektórych telefonach. Upewnij się, że masz połączenie z internetem i masz 10 MB wolnego miejsca.</string>
+    <string name="sendTips">Wyślij wskazówki / błędy</string>
 </resources>

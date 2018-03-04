@@ -100,13 +100,13 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         setContentView(R.layout.ocr_capture);
 
         Intent intent = getIntent();
-        useFlash = intent.getBooleanExtra("EXTRA_SESSION_ID",false);
+        useFlash = intent.getBooleanExtra("flash",false);
         Log.d(TAG, String.valueOf(useFlash));
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay<OcrGraphic>) findViewById(R.id.graphicOverlay);
 
         // Set good defaults for capturing text.
-        boolean autoFocus = true;
+        boolean autoFocus = intent.getBooleanExtra("focus",true);
 
 
         // Check for the camera permission before accessing the camera.  If the

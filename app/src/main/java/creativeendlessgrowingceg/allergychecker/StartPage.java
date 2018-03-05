@@ -109,14 +109,9 @@ public class StartPage extends AppCompatActivity
         super.onDestroy();
         mBillingManager.destroy();
         Log.d(TAG, "onDestroy: ");
-        clearMemory();
 
     }
 
-    private void clearMemory() {
-
-        Runtime.getRuntime().gc();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,7 +155,7 @@ public class StartPage extends AppCompatActivity
 
         }else{
             focus.setLabelText(getString(R.string.useNoFocus));
-            focus.setImageDrawable(getDrawable(R.drawable.flash));
+            focus.setImageDrawable(getDrawable(R.drawable.focusoff));
 
         }
         if(sharedPreferences.getBoolean("flash", false)){
@@ -182,7 +177,7 @@ public class StartPage extends AppCompatActivity
                     sharedPreferencesEditor.putBoolean(
                             "focus", false);
                     sharedPreferencesEditor.apply();
-                    focus.setImageDrawable(getDrawable(R.drawable.flash));
+                    focus.setImageDrawable(getDrawable(R.drawable.focusoff));
                     focus.setLabelText(getString(R.string.useNoFocus));
 
                 }else{

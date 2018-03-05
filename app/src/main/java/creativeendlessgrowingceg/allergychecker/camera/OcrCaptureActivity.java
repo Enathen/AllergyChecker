@@ -26,6 +26,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraManager;
+import android.media.CamcorderProfile;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -230,13 +233,34 @@ public final class OcrCaptureActivity extends AppCompatActivity {
             builder.setMessage(R.string.downloadOfTextScannerNotComplete).setNeutralButton(R.string.ok, dialogClickListener).show();
 
         }
+        CameraManager manager = (CameraManager)this.getSystemService(Context.CAMERA_SERVICE);
+        float videoFrameRate= 30f;
+        int videoFrameWidth = 1280;
+        int videoFrameHeigth = 1024;
+        try {
+            for (String cameraId : manager.getCameraIdList()) {
+                int id = Integer.valueOf(cameraId);
+                if (CamcorderProfile.hasProfile(id, CamcorderProfile.QUALITY_HIGH_SPEED_LOW)) {
+                    CamcorderProfile profile = CamcorderProfile.get(id, CamcorderProfile.QUALITY_HIGH_SPEED_LOW);
+                    videoFrameHeigth = profile.videoFrameHeight;
+                    videoFrameWidth = profile.videoFrameWidth;
+                    videoFrameRate = profile.videoFrameRate;
+                    //...
+                }
+            }
+        } catch (CameraAccessException e) {
+            Log.d(TAG, "createCameraSource: "+ e);
 
+        }
+        Log.d(TAG, "VideoFrameRate: " + videoFrameRate);
+        Log.d(TAG, "videoFrameWidth: " + videoFrameWidth);
+        Log.d(TAG, "videoFrameHeigth: " + videoFrameHeigth);
         // Create the mCameraSource using the TextRecognizer.
         mCameraSource =
                 new CameraSource.Builder(getApplicationContext(), textRecognizer)
                         .setFacing(CameraSource.CAMERA_FACING_BACK)
-                        .setRequestedPreviewSize(1280, 1024)
-                        .setRequestedFps(15.0f)
+                        .setRequestedPreviewSize(videoFrameHeigth, videoFrameWidth)
+                        .setRequestedFps(videoFrameRate)
                         .setFlashMode(useFlash ? Camera.Parameters.FLASH_MODE_TORCH : null)
                         .setFocusMode(autoFocus ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null)
                         .build();

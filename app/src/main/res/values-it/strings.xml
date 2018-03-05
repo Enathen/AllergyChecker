@@ -289,10 +289,12 @@
     <string name="portuguese">Portoghese</string>
     <string name="polish">Polacca</string>
     <string name="pleaseCheckAllergies">Per favore controlla che le tue allergie e le tue preferenze siano corrette!</string>
-    <string name="slide3">Tenendo premuto il pulsante della fotocamera vengono visualizzate 2 opzioni. Un\'opzione è quella di utilizzare la torcia sulla fotocamera e un\'altra opzione per scrivere manualmente negli ingredienti contenuti in un prodotto</string>
+    <string name="slide3">Tenendo premuto il pulsante della fotocamera vengono visualizzate tre nuove opzioni.</string>
     <string name="advancedSearchis">la ricerca filtrata rimuove sottostringhe di parole: ad esempio, arach è una sottostringa di arachidi</string>
     <string name="unfilteredSearchIs">" La ricerca non filtrata aggiunge sottostringhe di parole: ad esempio frag è sottostringa di fragola"</string>
     <string name="eNumbers">Numeri E</string>
     <string name="downloadOfTextScannerNotComplete">Il riconoscimento del testo non è stato completato il download. Questo, sfortunatamente, potrebbe richiedere un paio d\'ore su alcuni telefoni. Assicurati di essere connesso a Internet e di avere 10 MB di spazio libero.</string>
     <string name="sendTips">Inviare suggerimenti / bug</string>
+    <string name="useNoFocus">autofocus spento</string>
+    <string name="useFocus">"Autofocus attivo "</string>
 </resources>

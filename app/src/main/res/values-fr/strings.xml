@@ -297,11 +297,13 @@
     <string name="portuguese">Portugaise</string>
     <string name="polish">Polonaise</string>
     <string name="pleaseCheckAllergies">S\'il vous plaît vérifiez que vos allergies et préférences sont correctes!</string>
-    <string name="slide3">Maintenez enfoncé le bouton de l\'appareil photo pour afficher 2 options. Une option consiste à utiliser la lampe de poche sur l\'appareil photo et une autre option pour écrire manuellement dans les ingrédients qui sont contenus dans un produit</string>
+    <string name="slide3">Maintenez enfoncé le bouton de l\'appareil photo pour afficher trois nouvelles options.</string>
     <string name="advancedSearchis">la recherche filtrée supprime les sous-chaînes de mots: par exemple, le caca est la sous-chaîne de la cacahuète</string>
     <string name="unfilteredSearchIs">La recherche non filtrée ajoute des sous-chaînes de mots: par exemple, la frai est une sous-chaîne de fraise</string>
     <string name="eNumbers">Numéros e</string>
     <string name="downloadOfTextScannerNotComplete">Le logiciel de reconnaissance de texte n\'a pas encore été téléchargé. Ceci, malheureusement, pourrait prendre quelques heures sur certains téléphones. Assurez-vous que vous êtes connecté à Internet et disposez d\'un espace libre de 10 Mo.</string>
     <string name="sendTips">Envoyer des astuces / bugs</string>
+    <string name="useNoFocus">Autofocus désactivé</string>
+    <string name="useFocus">Autofocus sur</string>
 
 </resources>

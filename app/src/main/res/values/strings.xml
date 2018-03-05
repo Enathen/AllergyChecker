@@ -332,7 +332,7 @@
     <string name="staticPortuguese" translatable="false">Português</string>
     <string name="staticPolish" translatable="false">Polskie</string>
     <string name="pleaseCheckAllergies">Please check that your allergies and preference are correct!</string>
-    <string name="slide3">Holding down the camera button brings up 2 options. One option is to use the flashlight on the camera and another option to manually write in ingredients that are contained in a product</string>
+    <string name="slide3">Holding down the camera button brings up three new options.</string>
     <string name="advancedSearchis">filtered search removes substrings of words: for instance, pea is a substring of peanut</string>
     <string name="unfilteredSearchIs">Unfiltered search adds substrings of words: for instance, straw is a substring of strawberry</string>
     <string name="shrimp">Shrimp, Prawns</string>
@@ -848,7 +848,7 @@
 
     <string name="downloadOfTextScannerNotComplete">The text recognizer has not been finished downloading. This, unfortunately, might take a couple of hours on some phones. Make sure you are connected to the internet and have 10mb free space.</string>
     <string name="sendTips">Send tips / bugs</string>
-    <string name="useFocus">Focus On</string>
-    <string name="useNoFocus">Focus Off</string>
+    <string name="useFocus">Autofocus On</string>
+    <string name="useNoFocus">Autofocus Off</string>
 
 </resources>

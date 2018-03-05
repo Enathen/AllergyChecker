@@ -115,7 +115,7 @@ public class AllergyList {
     private Integer setArrayListVegetables() {
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.tomato));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.aspargus));
-        arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.avocado));
+
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.bellPepper));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.cabbage));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.carrot));
@@ -547,6 +547,7 @@ public class AllergyList {
     public Integer setArrayListFruit() {
 
         arrayListFruit.add(new PictureIngredient(R.drawable.fruit, R.string.apple));
+        arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.avocado));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.pear));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.tomato));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.strawberry));

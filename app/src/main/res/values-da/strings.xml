@@ -289,13 +289,15 @@
     <string name="portuguese">Portugisisk</string>
     <string name="polish">Polsk</string>
     <string name="pleaseCheckAllergies">"Kontroller venligst, at din allergi og præference er korrekte! "</string>
-    <string name="slide3">Ved at holde kameraknappen nede, er der 2 muligheder. En mulighed er at bruge lommelygten på kameraet og en anden mulighed for manuelt at skrive ind ingredienser, der er indeholdt i et produkt</string>
+    <string name="slide3">Ved at holde kameraknappen nede vises tre nye muligheder.</string>
     <string name="advancedSearchis">filtreret søgning fjerner substrings af ord: for eksempel jord er substring af jordnødde</string>
     <string name="unfilteredSearchIs">Ufiltreret søgning tilføjer substrings af ord: for eksempel jord er substring af jordbær</string>
     <string name="shrimp">Rejer</string>
     <string name="eNumbers">E-numre</string>
     <string name="downloadOfTextScannerNotComplete">Tekstgenkendelse er ikke færdig med at downloade. Dette kan desværre tage et par timer på nogle telefoner. Sørg for at du er forbundet til internettet og har 10mb ledig plads.</string>
     <string name="sendTips">Send tips / fejl</string>
+    <string name="useFocus">Autofokus på</string>
+    <string name="useNoFocus">" Autofokus off"</string>
 
 
 </resources>

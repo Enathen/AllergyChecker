@@ -287,10 +287,12 @@
     <string name="portuguese">Portugalski</string>
     <string name="polish">Polski</string>
     <string name="pleaseCheckAllergies">Sprawdź, czy twoje alergie i preferencje są prawidłowe!</string>
-    <string name="slide3">Przytrzymanie przycisku aparatu powoduje wyświetlenie 2 opcji. Jedną z opcji jest użycie latarki w aparacie i inna opcja ręcznego zapisu w składnikach zawartych w produkcie</string>
+    <string name="slide3">Przytrzymanie przycisku aparatu powoduje wyświetlenie trzech nowych opcji.</string>
     <string name="advancedSearchis">filtrowane wyszukiwanie usuwa podciągi słów: na przykład ziem jest podłańcuchem orzeszków ziemnych</string>
     <string name="unfilteredSearchIs">Niefiltrowane wyszukiwanie dodaje podciągi słów: na przykład trus jest podłańcuchem truskawki</string>
     <string name="eNumbers">Numery E</string>
     <string name="downloadOfTextScannerNotComplete">Rozpoznawanie tekstu nie zostało zakończone. To niestety może zająć kilka godzin w niektórych telefonach. Upewnij się, że masz połączenie z internetem i masz 10 MB wolnego miejsca.</string>
     <string name="sendTips">Wyślij wskazówki / błędy</string>
+    <string name="useFocus">Autofokus włączony</string>
+    <string name="useNoFocus">autofokus wyłączony</string>
 </resources>

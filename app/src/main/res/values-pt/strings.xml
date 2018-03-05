@@ -290,10 +290,12 @@
     <string name="portuguese">Portugues</string>
     <string name="polish">Polonesa</string>
     <string name="pleaseCheckAllergies">Verifique se suas alergias e preferências estão corretas!</string>
-    <string name="slide3">Mantendo pressionado o botão da câmera traz 2 opções. Uma opção é usar a lanterna na câmera e outra opção para escrever manualmente ingredientes que estão contidos em um produto</string>
+    <string name="slide3">Mantendo pressionado o botão da câmera traz três novas opções.</string>
     <string name="unfilteredSearchIs">Pesquisa não filtrada adiciona substrings de palavras: por exemplo, a mora é substring de morango</string>
     <string name="advancedSearchis">pesquisa filtrada remove substrings de palavras: por exemplo, amend é substring de amendoim</string>
     <string name="eNumbers">Número E</string>
     <string name="downloadOfTextScannerNotComplete">O reconhecedor de texto não foi concluído o download. Isso, infelizmente, pode demorar algumas horas em alguns telefones. Certifique-se de que está conectado à Internet e tem espaço livre de 10mb.</string>
     <string name="sendTips">Envie dicas / insetos</string>
+    <string name="useFocus">Autofocus fam</string>
+    <string name="useNoFocus">Autofocus fora</string>
 </resources>

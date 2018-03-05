@@ -289,11 +289,13 @@
     <string name="portuguese">Portugalin</string>
     <string name="polish">Puolan</string>
     <string name="pleaseCheckAllergies">"Tarkista, että allergiat ja mieltymykset ovat oikein! "</string>
-    <string name="slide3">Kameran painikkeen pitäminen alhaalla tuo kaksi vaihtoehtoa. Yksi vaihtoehto on käyttää taskulampun kameraa ja muuta vaihtoehtoa käsin kirjoittamaan tuotteen sisältämiin ainesosiin</string>
+    <string name="slide3">Kamerapainikkeen pitäminen alhaalla tuo kolme uutta vaihtoehtoa.</string>
     <string name="advancedSearchis">suodatettu haku poistaa tekstin substraatit: esimerkiksi maap on maapähkinän merkkijono</string>
     <string name="unfilteredSearchIs">Suodattamaton haku lisää sanojen substraattit: esimerkiksi mansi on mansikan substringi</string>
     <string name="eNumbers">E-koodi</string>
     <string name="downloadOfTextScannerNotComplete">Tekstin tunnistinta ei ole saatu latautumaan loppuun. Tämä valitettavasti saattaa kestää pari tuntia joillakin puhelimilla. Varmista, että olet yhteydessä internetiin ja että sinulla on 10mb vapaata tilaa.</string>
     <string name="sendTips">Lähetä vinkkejä / vikoja</string>
+    <string name="useFocus">" Automaattinen tarkennus"</string>
+    <string name="useNoFocus">" Automaattinen tarkennus pois päältä"</string>
 
 </resources>

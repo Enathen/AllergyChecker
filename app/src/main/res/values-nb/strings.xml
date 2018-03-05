@@ -289,11 +289,13 @@
     <string name="portuguese">Portugisisk</string>
     <string name="polish">Polsk</string>
     <string name="pleaseCheckAllergies">Kontroller at allergier og preferanser er riktige!</string>
-    <string name="slide3">Ved å holde nede kameraknappen kommer 2 alternativer. Et alternativ er å bruke lommelykten på kameraet og et annet alternativ til å skrive inn ingredienser som er inneholdt i et produkt manuelt</string>
+    <string name="slide3">Ved å holde inne kameraknappen kommer tre nye alternativer opp.</string>
     <string name="unfilteredSearchIs">Ufiltrert søk legger til substrings av ord: for eksempel jord er substring av jordbær</string>
     <string name="advancedSearchis">filtrert søk fjerner understrenger av ord: for eksempel er jord en substans av jordnøtt</string>
     <string name="eNumbers">E tall</string>
     <string name="downloadOfTextScannerNotComplete">Tekstgjenkjenningen er ikke ferdig nedlasting. Dette kan dessverre ta noen timer på noen telefoner. Pass på at du er koblet til internett og har 10 MB ledig plass.</string>
     <string name="sendTips">Send tips / feil</string>
+    <string name="useFocus">Autofokus på</string>
+    <string name="useNoFocus">Autofokus av</string>
 
 </resources>

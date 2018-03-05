@@ -297,11 +297,13 @@
     <string name="portuguese">Portugese</string>
     <string name="polish">Poolse</string>
     <string name="pleaseCheckAllergies">Controleer of uw allergieën en voorkeur correct zijn!</string>
-    <string name="slide3">Als u de cameraknop ingedrukt houdt, worden er 2 opties weergegeven. Een optie is om de zaklamp op de camera te gebruiken en een andere optie om handmatig in ingrediënten te schrijven die in een product zitten</string>
+    <string name="slide3">Als je de cameraknop ingedrukt houdt, krijg je drie nieuwe opties.</string>
     <string name="advancedSearchis">gefilterd zoeken verwijdert substrings van woorden: bijvoorbeeld pin is substring van pinda</string>
     <string name="unfilteredSearchIs">Ongefilterd zoeken voegt substrings van woorden toe: zo is bijvoorbeeld stro een substring van aardbei</string>
     <string name="shrimp">Garnalen</string>
     <string name="eNumbers">E nummers</string>
     <string name="downloadOfTextScannerNotComplete">De tekstherkenner is nog niet klaar met downloaden. Dit kan helaas enkele uren duren op sommige telefoons. Zorg ervoor dat u verbonden bent met internet en dat u 10 MB vrije ruimte heeft.</string>
     <string name="sendTips">Stuur tips / bugs</string>
+    <string name="useFocus">Autofocus aan</string>
+    <string name="useNoFocus">" Autofocus uit"</string>
 </resources>

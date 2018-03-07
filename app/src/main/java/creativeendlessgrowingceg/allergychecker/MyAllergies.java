@@ -1,14 +1,9 @@
 package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,42 +84,11 @@ public class MyAllergies extends Fragment {
 
         loadUIAllergies = new LoadUIAllergies(false,inflater, (StartPage) getActivity(), parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyAllergies());
 
-        CheckAllergy();
+
         return parentFrameLayout;
     }
 
-    private void CheckAllergy(){
 
-        // TODO add when after update
-        int sdkInt = BuildConfig.VERSION_CODE;
-        String check = String.valueOf(sdkInt) + "dialog";
-        String check2 = String.valueOf(sdkInt) + "load";
-        SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(getContext());
-        if(sharedPreferences.getBoolean(check2,false)){
-        } else{
-            Log.d(TAG, "KEY: " +check);
-            if (!sharedPreferences.getBoolean(check, false)) {
-                SharedPreferences.Editor sharedPreferencesEditor =
-                        PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
-                sharedPreferencesEditor.putBoolean(
-                        check, true);
-                sharedPreferencesEditor.apply();
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which) {
-                            case DialogInterface.BUTTON_NEUTRAL:
-                                break;
-                        }
-                    }
-                };
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setMessage(R.string.pleaseCheckAllergies).setNeutralButton(R.string.ok, dialogClickListener).show();
-            }
-        }
-
-    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

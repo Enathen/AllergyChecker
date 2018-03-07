@@ -153,7 +153,6 @@ public class MyAllergies extends Fragment {
     public void onPause() {
         super.onPause();
         loadUIAllergies.saveCurrentlyActive(false);
-
         loadUIAllergies.savePicture((StartPage) getActivity(), new StartPage().getImageViewHashMap((StartPage)getActivity()));
         mListener = null;
     }

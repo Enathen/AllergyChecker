@@ -94,7 +94,6 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Log.d(TAG, "history" + Locale.getDefault().getLanguage());
         parentFrameLayout = (FrameLayout) inflater.inflate(R.layout.fragment_history, container, false);
 
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.lineaLayoutFragHistory);
@@ -103,11 +102,7 @@ public class HistoryFragment extends Fragment {
         Collections.sort(arrayList, new stringComparator());
         Collections.reverse(arrayList);
 
-        for (String s : arrayList) {
-            Log.d(TAG, s.substring(19));
-        }
         insertNew(inflater, container, arrayList);
-        Log.d(TAG, "history" + Locale.getDefault().getLanguage());
 
         return parentFrameLayout;
     }
@@ -180,7 +175,6 @@ public class HistoryFragment extends Fragment {
                 newLinearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.d(TAG, "TIMEHISTORY");
                         Locale.setDefault(loadLocale());
                         Configuration config = new Configuration();
                         config.setLocale(loadLocale());
@@ -252,9 +246,7 @@ public class HistoryFragment extends Fragment {
     }
 
     private Locale loadLocale() {
-        Locale locale = new Locale(new LanguageFragment().getLanguageFromLFragment(getContext()));
-        Log.d(TAG, locale.getLanguage());
-        return locale;
+        return new Locale(new LanguageFragment().getLanguageFromLFragment(getContext()));
     }
 
     // TODO: Rename method, update argument and hook method into UI event

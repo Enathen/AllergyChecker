@@ -41,6 +41,7 @@ public class HelpCalcAllergy {
                         distance++;
                     }
                 distance++;
+
             } else if (y.length() < x.length()) {
                 for (int i = 0; i < x.length() - 1; i++)
                     if (x.charAt(i) != y.charAt(i)) {
@@ -125,7 +126,6 @@ public class HelpCalcAllergy {
                     stringAllAllergiesForEachIntegerHashMap.put(list.get(i), new AllAllergiesForEachInteger(locale.getLanguage(),
                                     list.get(i), id, startPage.getString(id)));
                     allergies.put((list.get(i)).length(),stringAllAllergiesForEachIntegerHashMap);
-                    Log.d(TAG, "setLocaleString: " + list.get(i).length() + " : "+ allergies.get(list.get(i).length()).size()+ " : " + list.get(i) +" : " +  i);
 
 
                 } else {

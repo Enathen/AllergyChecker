@@ -224,6 +224,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                         case DialogInterface.BUTTON_NEUTRAL:
                             Intent intent = new Intent(OcrCaptureActivity.this, StartPage.class);
                             intent.putExtra("location", textTapped);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();
                     }
@@ -240,6 +241,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         try {
             for (String cameraId : manager.getCameraIdList()) {
                 int id = Integer.valueOf(cameraId);
+                Log.d(TAG, "createCameraSource: "+ id);
                 if (CamcorderProfile.hasProfile(id, CamcorderProfile.QUALITY_HIGH_SPEED_LOW)) {
                     CamcorderProfile profile = CamcorderProfile.get(id, CamcorderProfile.QUALITY_HIGH_SPEED_LOW);
                     videoFrameHeigth = profile.videoFrameHeight;
@@ -252,6 +254,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
             Log.d(TAG, "createCameraSource: "+ e);
 
         }
+
         Log.d(TAG, "VideoFrameRate: " + videoFrameRate);
         Log.d(TAG, "videoFrameWidth: " + videoFrameWidth);
         Log.d(TAG, "videoFrameHeigth: " + videoFrameHeigth);
@@ -259,7 +262,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         mCameraSource =
                 new CameraSource.Builder(getApplicationContext(), textRecognizer)
                         .setFacing(CameraSource.CAMERA_FACING_BACK)
-                        .setRequestedPreviewSize(videoFrameHeigth, videoFrameWidth)
+                        .setRequestedPreviewSize(videoFrameWidth, videoFrameHeigth)
                         .setRequestedFps(videoFrameRate)
                         .setFlashMode(useFlash ? Camera.Parameters.FLASH_MODE_TORCH : null)
                         .setFocusMode(autoFocus ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null)
@@ -420,6 +423,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
             //Toast.makeText(this, textTapped, Toast.LENGTH_LONG).show();
             Intent intent = new Intent(OcrCaptureActivity.this, StartPage.class);
             intent.putExtra("location", textTapped);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();
             }

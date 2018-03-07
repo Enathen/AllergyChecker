@@ -3,6 +3,7 @@ package creativeendlessgrowingceg.allergychecker;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -176,7 +177,7 @@ class LanguagesAccepted {
         Configuration configuration = new Configuration(context.getResources().getConfiguration());
         configuration.setLocale(new Locale(locale));
 
-
+        Log.d(TAG, "getStringByLocalNoTakeAwaySpace: " + id + " : " + context.getString(id));
         return context.createConfigurationContext(configuration).getResources().getString(id);
     }
 

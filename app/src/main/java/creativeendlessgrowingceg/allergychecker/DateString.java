@@ -22,22 +22,21 @@ public class DateString {
     private static final String SHARED_PREFS_NAME = "StartPage";
     private static final String TAG = "DATESTRING";
     private final SharedPreferences prefs;
-    String string;
+    ArrayList<String> dateStrings = new ArrayList<>();
     private Context startPage;
 
     DateString(String string,Context startPage) {
         this.startPage = startPage;
         prefs = startPage.getSharedPreferences(SHARED_PREFS_NAME, Activity.MODE_PRIVATE);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("sv"));
-        this.string = simpleDateFormat.format(new Date()).concat(" " + string);
-        Log.d(TAG, "DateString: " + string+ " : " +this.string);
+        dateStrings.add(simpleDateFormat.format(new Date()).concat(" " + string));
     }
     DateString(Context startPage) {
         this.startPage = startPage;
         prefs = startPage.getSharedPreferences(SHARED_PREFS_NAME, Activity.MODE_PRIVATE);
     }
-    public boolean saveArray() {
-        ArrayList<String> dateStrings = getArray();
+    public void saveArray() {
+        dateStrings.addAll(getArray());
         Collections.sort(getArray());
         for (String dateString : dateStrings) {
             Log.d(TAG, dateString);
@@ -48,7 +47,6 @@ public class DateString {
         if (dateStrings.size() > 128) {
             int sizeToMuch = dateStrings.size() % 128;
             for (int i = 0; i < sizeToMuch; i++) {
-                Log.d(TAG, "Remove History: " + dateStrings.get(i));
                 dateStrings.remove(i);
             }
         }
@@ -56,7 +54,7 @@ public class DateString {
         Set<String> set = new HashSet<>();
         set.addAll(dateStrings);
         mEdit1.putStringSet("list", set);
-        return mEdit1.commit();
+        mEdit1.commit();
     }
 
     public ArrayList<String> getArray() {
@@ -90,9 +88,7 @@ public class DateString {
     public ArrayList<String> getArrayFromHistory() {
         //NOTE: if shared preference is null, the method return empty Hashset and not null
         Set<String> set = prefs.getStringSet("list", new HashSet<String>());
-        for (String s : set) {
-            Log.d(TAG, "getArray: " + s);
-        }
+
         return new ArrayList<>(set);
     }
 }

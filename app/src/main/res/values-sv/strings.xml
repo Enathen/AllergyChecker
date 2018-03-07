@@ -64,7 +64,7 @@
     <string name="cockle">Hjärtmussla</string>
     <string name="limpet">Skålsnäcka</string>
     <string name="mussels">Mussla, Musslor</string>
-    <string name="octopus">Bläckfisk (8)</string>
+    <string name="octopus">Bläckfisk</string>
     <string name="oysters">Ostron</string>
     <string name="periwinkle">Snäcka</string>
     <string name="urchin">Sjöborre</string>
@@ -144,7 +144,21 @@
     <string name="sendTipsFrom">Vart vill du skicka tips från?</string>
     <string name="welcomeMessageInvite">Vill du veta om du kan äta något snabbt? Som inte är allergiskt för dig?
     Toppen! Den här appen låter dig scanna text från olika språk som låter dig se om du är allergisk mot det!</string>
-    <string name="time">gång</string>
+
+    <string name="buckwhea1t">Bovete</string>
+    <string name="buckwhe2at">Bovete</string>
+    <string name="buckwh3at">Bovete</string>
+    <string name="buck6wheat">Bovete</string>
+    <string name="buckw4heat">Bovete</string>
+    <string name="buckwh213eat">Bovete</string>
+    <string name="buc5kwheat">Bovete</string>
+    <string name="b7uckwheat">Bovete</string>
+    <string name="buckw35heat">Bovete</string>
+    <string name="buc412wheat">Bovete</string>
+    <string name="buckwcasdheat">Bovete</string>
+    <string name="buckwhedsat">Bovete</string>
+    <string name="buckwasdczheat">Bovete</string>
+    <string name="buckwzcxheat">Bovete</string>
 
 
 
@@ -287,13 +301,24 @@
     <string name="italian">Italienska</string>
     <string name="portuguese">Portugisiska</string>
     <string name="polish">Polska</string>
+
     <string name="pleaseCheckAllergies">Kontrollera att dina allergier och preferenser är korrekta!</string>
     <string name="slide3">" Om du håller ner kameraknappen visas tre nya alternativ."</string>
     <string name="advancedSearchis">Filtrerad sökning tar bort delsträngar av ord: till exempel är jord delsträng av jordnötter</string>
     <string name="unfilteredSearchIs">Ofilterad sökning lägger till delsträngar av ord: till exempel jord är en delsträng av jordgubbe</string>
     <string name="eNumbers">E-Nummer</string>
     <string name="downloadOfTextScannerNotComplete">Textigenkänningen har inte slutfört att laddas ned. Detta kan tyvärr ta några timmar på vissa telefoner. Se till att du är ansluten till internet och har 10 MB ledigt utrymme.</string>
-    <string name="sendTips">" skicka tips / buggar"</string>
+    <string name="sendTips">Skicka tips / buggar</string>
     <string name="useFocus">Fokus på</string>
-    <string name="useNoFocus">Fokus av</string>
+
+
+
+
+
+
+
+
+
+
+
 </resources>

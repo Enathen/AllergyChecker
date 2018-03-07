@@ -58,7 +58,7 @@ public class AllergyList {
         arrayList.add(R.string.gluten);
         return arrayList;
     }
-    public ArrayList<PictureIngredient> getSpecifiedKey(int key){
+    public ArrayList<PictureIngredient> getSpecifiedKeyAllergy(int key){
         if(key == R.string.fish){
             setArrayListFish();
             return getArrayListFish();
@@ -70,6 +70,41 @@ public class AllergyList {
         if(key == R.string.dairy){
             setArrayListDairy();
             return getArrayListDairy();
+        }
+        return null;
+    }
+    public ArrayList<PictureIngredient> getSpecifiedKeyPreference(int key){
+        if(key == R.string.vegan){
+            setArrayListVegan();
+            return getArrayListVegan();
+        }
+        if(key == R.string.vegetarian){
+            setArrayListVegetarian();
+            return getArrayListVegetarian();
+        }
+        if(key == R.string.demiVegetarian){
+            setArrayListDemiVegetarian();
+            return getArrayListDemiVegetarian();
+        }
+        if(key == R.string.ovoVegetarian){
+            setArrayListOvoVegetarian();
+            return getArrayListOvoVegetarian();
+        }
+        if(key == R.string.lactoVegetarian){
+            setArrayListLactoVegetarian();
+            return getArrayListLactoVegetarian();
+        }
+        if(key == R.string.lactoOvoVegetarian){
+            setArrayListLactoOvoVegetarian();
+            return getArrayListLactoOvoVegetarian();
+        }
+        if(key == R.string.pescoVegetarian){
+            setArrayListPescoVegetarian();
+            return getArrayListPescoVegetarian();
+        }
+        if(key == R.string.polloVegetarian){
+            setArrayListPolloVegetarian();
+            return getArrayListPolloVegetarian();
         }
         return null;
     }
@@ -98,13 +133,12 @@ public class AllergyList {
 
         TreeMap<Integer,ArrayList<AllergyList.PictureIngredient>> arrayLists = new TreeMap<>();
         arrayLists.put(setArrayListDemiVegetarian(),getArrayListDemiVegetarian());
-        arrayLists.put(setArrayListOvoVegetarian(),getArrayListLactoOvoVegetarian());
+        //arrayLists.put(setArrayListMuslim(),getArrayListMuslim());
         arrayLists.put(setArrayListLactoVegetarian(),getArrayListLactoVegetarian());
-        arrayLists.put(setArrayListMuslim(),getArrayListMuslim());
         arrayLists.put(setArrayListOvoVegetarian(),getArrayListOvoVegetarian());
+        arrayLists.put(setArrayListLactoOvoVegetarian(),getArrayListLactoOvoVegetarian());
         arrayLists.put(setArrayListPescoVegetarian(),getArrayListPescoVegetarian());
         arrayLists.put(setArrayListPolloVegetarian(),getArrayListPolloVegetarian());
-        arrayLists.put(setArrayListLactoOvoVegetarian(),getArrayListLactoOvoVegetarian());
         arrayLists.put(setArrayListVegan(),getArrayListVegan());
 
         arrayLists.put(setArrayListVegetarian(),getArrayListVegetarian());
@@ -300,7 +334,6 @@ public class AllergyList {
 
     private Integer setArrayListMuslim() {
         arrayListMuslim.add(new PictureIngredient(R.drawable.halal, R.string.pig));
-        arrayListMuslim.add(new PictureIngredient(R.drawable.halal, R.string.bacon));
         arrayListMuslim.add(new PictureIngredient(R.drawable.halal, R.string.gelatin));
         sort(arrayListMuslim);
         return R.string.halal;

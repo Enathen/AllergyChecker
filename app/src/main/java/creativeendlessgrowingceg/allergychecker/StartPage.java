@@ -1,7 +1,6 @@
 package creativeendlessgrowingceg.allergychecker;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -49,11 +48,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
@@ -82,7 +79,7 @@ public class StartPage extends AppCompatActivity
     FloatingActionButton flash;
     FloatingActionButton write;
     FloatingActionMenu camera;
-    ArrayList<String> dateStrings = new ArrayList<>();
+
     SharedPreferences prefs;
     private TextView suggestions;
     private TextView allergic;
@@ -108,7 +105,6 @@ public class StartPage extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         mBillingManager.destroy();
-        Log.d(TAG, "onDestroy: ");
 
     }
 
@@ -118,7 +114,6 @@ public class StartPage extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
-        Log.d(TAG, "STARTO: ");
         //findViewById(R.id.textViewtip).setVisibility(View.GONE);
 
         startPage = this;
@@ -229,7 +224,8 @@ public class StartPage extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(startPage, StartPage.class);
                         intent.putExtra("location", input.getText().toString());
-                        startPage.startActivity(intent);
+                        startActivity(intent);
+                        finish();
 
                     }
                 });
@@ -315,18 +311,14 @@ public class StartPage extends AppCompatActivity
 
             suggestions.setText(str);
             str = str.toLowerCase();
+
             if (!str.equals("")) {
-                DateString dateString = new DateString(str);
-                dateStrings = getArray();
+                DateString dateString = new DateString(str,startPage.getBaseContext());
+                dateString.saveArray();
 
-                dateStrings.add(dateString.string);
-
-            } else {
-                dateStrings = getArray();
             }
             //setDateStrings(dateStrings);
 
-            saveArray();
             checkStringAgainstAllergies(str);
 
 
@@ -388,14 +380,6 @@ public class StartPage extends AppCompatActivity
                 }
             });
         }
-
-        Log.d(TAG, "FINITObef: ");
-
-
-
-
-
-        Log.d(TAG, "FINITO: ");
         CheckAllergy();
 
         //billing.buyProduct("premium_upgrade");
@@ -434,21 +418,23 @@ public class StartPage extends AppCompatActivity
                     check, true);
             sharedPreferencesEditor.apply();
         } else{
-            Log.d(TAG, "KEY: " +check);
             if (!sharedPreferences.getBoolean(check, false)) {
                 Fragment fragment = new MyAllergies();
-
                 fragment(fragment, getString(R.string.myAllergies));
+                fragment = new MyPreference();
+
+                fragment(fragment, getString(R.string.myPreference));
                 SharedPreferences.Editor sharedPreferencesEditor =
                         PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
                 sharedPreferencesEditor.putBoolean(
                         check, true);
+                new LoadUIAllergies().checkStringDelete(this);
                 sharedPreferencesEditor.apply();
             }
         }
+        new LoadUIAllergies().checkStringDelete(this);
 
     }
-
 
 
 
@@ -527,66 +513,6 @@ public class StartPage extends AppCompatActivity
         new CalcAllergy(this, allergic, (ProgressBar) findViewById(R.id.progressBar3)).execute(str);
 
 
-    }
-
-    public boolean saveArray() {
-        Collections.sort(dateStrings);
-        for (String dateString : dateStrings) {
-            Log.d(TAG, dateString);
-        }
-        prefs = this.getSharedPreferences(SHARED_PREFS_NAME, Activity.MODE_PRIVATE);
-        SharedPreferences.Editor mEdit1 = prefs.edit();
-        Collections.sort(dateStrings, new HistoryFragment.stringComparator());
-        if (dateStrings.size() > 128) {
-            int sizeToMuch = dateStrings.size() % 128;
-            for (int i = 0; i < sizeToMuch; i++) {
-                Log.d(TAG, "Remove History: " + dateStrings.get(i));
-                dateStrings.remove(i);
-            }
-        }
-
-        Set<String> set = new HashSet<>();
-        set.addAll(dateStrings);
-        mEdit1.putStringSet("list", set);
-        return mEdit1.commit();
-    }
-
-    public ArrayList<String> getArray() {
-
-        SharedPreferences sp = this.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
-        Set<String> set = sp.getStringSet("list", new HashSet<String>());
-
-        return new ArrayList<>(set);
-    }
-
-    public void deleteOneItemHistory(String keys) {
-
-        SharedPreferences.Editor mEdit1 = prefs.edit();
-        Set<String> set = prefs.getStringSet("list", new HashSet<String>());
-        set.remove(keys);
-        mEdit1.remove("list");
-        mEdit1.commit();
-        mEdit1.putStringSet("list", set);
-        mEdit1.commit();
-
-
-    }
-
-    public void deleteHistory() {
-
-        SharedPreferences.Editor mEdit1 = prefs.edit();
-        mEdit1.remove("list");
-        mEdit1.apply();
-
-    }
-
-    public ArrayList<String> getArrayFromHistory() {
-        //NOTE: if shared preference is null, the method return empty Hashset and not null
-        Set<String> set = prefs.getStringSet("list", new HashSet<String>());
-        for (String s : set) {
-            Log.d(TAG, "getArray: " + s);
-        }
-        return new ArrayList<>(set);
     }
 
     @Override
@@ -881,9 +807,7 @@ public class StartPage extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume: ");
         if(getSupportFragmentManager().getBackStackEntryCount()==0){
-            Log.d(TAG, "onResume: ");
             TextView viewById = (TextView) findViewById(R.id.textViewFoundAllergies);
             CharSequence text = viewById.getText();
             if(text.length()<=0) {
@@ -928,8 +852,14 @@ public class StartPage extends AppCompatActivity
             if(!Unfiltered)
             displayInterstitial();
         }*/
-        mAdView.loadAd(new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build());
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ((AdView)findViewById(R.id.adView)).loadAd(new AdRequest.Builder()
+                        .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
+            }
+        });
+
 
 
     }
@@ -941,7 +871,7 @@ public class StartPage extends AppCompatActivity
             Log.d(TAG, "premiumNOTPURCHACED: ");
 
             mAdView.loadAd(new AdRequest.Builder()
-                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build());
+                    .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
             Log.d(TAG, "premiumNOTPURCHACED: ");
 
             Set<String> set = new HashSet<>();
@@ -961,15 +891,6 @@ public class StartPage extends AppCompatActivity
     }
 
 
-    private class DateString {
-        String string;
-
-        DateString(String string) {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("sv"));
-            this.string = simpleDateFormat.format(new Date()).concat(" " + string);
-            Log.d(TAG, "DateString: " + string+ " : " +this.string);
-        }
-    }
 
     private class CalcAllergy extends AsyncTask<String, Integer, ArrayList<AllAllergiesForEachInteger>> {
         private final HelpCalcAllergy helpCalcAllergy;
@@ -986,6 +907,7 @@ public class StartPage extends AppCompatActivity
             this.textView = textView;
             this.viewById = viewById;
             helpCalcAllergy = new HelpCalcAllergy();
+
         }
 
         // Runs in UI before background thread is called
@@ -1008,9 +930,8 @@ public class StartPage extends AppCompatActivity
             helpCalcAllergy.FixString(params[0].split("\\s+"), hashSetAllStrings, hashSetToCheckLast);
             String[] stringToCheckENumbers = stringToCheck.split("\\s+");
             ArrayList<Locale> listOfLanguages = new LanguageFragment().getCategories(mContext);
-            if (listOfLanguages.isEmpty()) {
-                listOfLanguages.add(Locale.getDefault());
-            }
+            listOfLanguages.add(Locale.getDefault());
+
             HashSet<Integer> hashSetFromOtherClass = new LoadUIAllergies().getAllergies(mContext);
             for (Integer hashSetFromOtherClas : hashSetFromOtherClass) {
                 Log.d(TAG, "doInBackground: " + getString(hashSetFromOtherClas));
@@ -1050,7 +971,6 @@ public class StartPage extends AppCompatActivity
             for (int j = 0; j < stringToCheckENumbers.length; j++) {
                 if(true){
                     String number = stringToCheckENumbers[j].replaceAll("\\D+","");
-                    Log.d(TAG, "doInBackground: "+ number);
                     if(number.length()>2){
                         helpCalcAllergy.checkFullStringEnumbers(stringToCheckENumbers[j], eNumbersArrayList,allfoundENumbers);
 
@@ -1111,12 +1031,10 @@ public class StartPage extends AppCompatActivity
                 } else {
                     newlinearLayout.findViewById(R.id.arrowLeft).setVisibility(View.INVISIBLE);
                     linearLayoutHashMap.get(allergiesForEachInteger.getMotherLanguage()).linearLayoutArrayList.add(newlinearLayout);
-                    Log.d(TAG, "onPostExecute: size" + linearLayoutHashMap.get(allergiesForEachInteger.getMotherLanguage()).linearLayoutArrayList.size());
                 }
             }
             for (final String string : linearLayoutHashMap.keySet()) {
                 if (linearLayoutHashMap.get(string).linearLayoutArrayList.isEmpty()) {
-                    Log.d(TAG, "onClick: " + string + "INV");
                     linearLayoutHashMap.get(string).parentLin.findViewById(R.id.arrowLeft).setVisibility(View.INVISIBLE);
                 }
                 ((TextView) linearLayoutHashMap.get(string).parentLin.findViewById(R.id.textViewAllergy)).
@@ -1225,6 +1143,7 @@ public class StartPage extends AppCompatActivity
                     }
                     intent.putExtra("HistoryFragment", stringToCheck);
                     startActivity(intent);
+                    finish();
                 }
             });
             findViewById(R.id.textViewtip).setVisibility(View.GONE);

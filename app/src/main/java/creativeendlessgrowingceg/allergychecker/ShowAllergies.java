@@ -100,7 +100,7 @@ public class ShowAllergies extends Fragment {
         }
         parentFrame = (FrameLayout) inflater.inflate(R.layout.fragment_show_allergies, container, false);
         parentLinearLayout =(LinearLayout) parentFrame.findViewById(R.id.showAllergiesLinearLayout);
-        allergies = new LoadUIAllergies().getAllergies(this);
+        allergies = new LoadUIAllergies().getAllergies(getContext());
 
         if(!allergies.isEmpty()){
             new ShowAllergies.CalcAllergy(this,inflater,container).execute();

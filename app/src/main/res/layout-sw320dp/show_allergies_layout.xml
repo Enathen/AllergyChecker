@@ -36,7 +36,7 @@
                 android:text="English"
                 android:textAlignment="textStart"
                 android:textColor="@color/fontColorTextWhite"
-                android:textSize="32sp" />
+                android:textSize="24sp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -53,7 +53,7 @@
                 android:layout_weight="1"
                 android:text="Engelska"
                 android:textColor="@color/fontColorTextWhite"
-                android:textSize="32sp" />
+                android:textSize="24sp" />
         </RelativeLayout>
 
     </LinearLayout>
@@ -65,6 +65,6 @@
         android:layout_marginLeft="10dp"
         android:textAlignment="textStart"
         android:textColor="@color/fontColorTextWhite"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 
 </LinearLayout>

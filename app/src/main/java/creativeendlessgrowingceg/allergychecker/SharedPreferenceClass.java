@@ -9,7 +9,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * Created by Enathen on 2018-01-12.
+ *
+ * @author Jonathan Alexander Norberg
+ * @version 2018-01-12
  */
 
 public class SharedPreferenceClass {

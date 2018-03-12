@@ -17,20 +17,17 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -39,7 +36,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -80,23 +76,19 @@ public class StartPage extends AppCompatActivity
     FloatingActionButton write;
     FloatingActionMenu camera;
 
-    SharedPreferences prefs;
     private TextView suggestions;
     private TextView allergic;
     private InterstitialAd interstitialAd;
-    private String Language = "";
     private BillingManager mBillingManager;
     private SubscriptionsViewController mViewController;
     private boolean Unfiltered = true;
     private boolean loadInterstitial = false;
     private AdView mAdView;
-    private AdRequest adRequest;
+    private AdView mAdViewRectangle;
     private StartPage startPage;
     private FloatingActionButton focus;
+    private boolean startPageBoolean = false;
 
-    public StartPage(FragmentActivity activity) {
-        prefs = activity.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
-    }
 
     public StartPage() {
     }
@@ -108,7 +100,11 @@ public class StartPage extends AppCompatActivity
 
     }
 
-
+    /**
+     * handles too much now
+     * take care of actavity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -117,14 +113,11 @@ public class StartPage extends AppCompatActivity
         //findViewById(R.id.textViewtip).setVisibility(View.GONE);
 
         startPage = this;
-
+        startPageBoolean = false;
 
         mAdView = findViewById(R.id.adView);
-        /*AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
-        adRequestBuilder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR);
-        mAdView.loadAd(adRequestBuilder.build());*/
+        mAdViewRectangle = findViewById(R.id.adViewRectangle);
 
-        //mAdView.setVisibility(View.VISIBLE);
         new LanguageFragment().setGetLanguage(StartPage.this, Locale.getDefault().getLanguage());
 
 
@@ -244,24 +237,8 @@ public class StartPage extends AppCompatActivity
         camera.setOnMenuButtonLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-
-                if (write.getVisibility() != View.VISIBLE) {
-                    write.setVisibility(View.VISIBLE);
-                    flash.setVisibility(View.VISIBLE);
-                    focus.setVisibility(View.VISIBLE);
-                    camera.open(true);
-
-                } else {
-                    write.setVisibility(View.GONE);
-                    flash.setVisibility(View.GONE);
-                    focus.setVisibility(View.GONE);
-
-                    camera.close(true);
-                }
-
+                toggleFAB();
                 return true;
-
-
             }
 
         });
@@ -335,7 +312,8 @@ public class StartPage extends AppCompatActivity
                 checkStringAgainstAllergies(str);
             }else{
 
-                checkpremium();
+                checkPremium();
+                startPageBoolean = true;
 
 
             }
@@ -380,13 +358,37 @@ public class StartPage extends AppCompatActivity
                 }
             });
         }
-        CheckAllergy();
+        checkNewVersion();
 
         //billing.buyProduct("premium_upgrade");
     }
+    public void closeFAB(){
+        write.setVisibility(View.GONE);
+        flash.setVisibility(View.GONE);
+        focus.setVisibility(View.GONE);
 
-    private void checkpremium() {
-        Log.d(TAG, "checkpremium: ");
+        camera.close(true);
+    }
+    public void toggleFAB(){
+        if (write.getVisibility() != View.VISIBLE) {
+            write.setVisibility(View.VISIBLE);
+            flash.setVisibility(View.VISIBLE);
+            focus.setVisibility(View.VISIBLE);
+            camera.open(true);
+
+        } else {
+            write.setVisibility(View.GONE);
+            flash.setVisibility(View.GONE);
+            focus.setVisibility(View.GONE);
+
+            camera.close(true);
+        }
+    }
+    /**
+     * startup premium check
+     */
+    private void checkPremium() {
+        Log.d(TAG, "checkPremium: ");
         mViewController = new SubscriptionsViewController();
         mBillingManager = new BillingManager(startPage,mViewController.getUpdateListener());
         new Thread(new Runnable() {
@@ -399,12 +401,16 @@ public class StartPage extends AppCompatActivity
 
     }
 
-    private void CheckAllergy(){
+    /**
+     * MOVE
+     * Check if there is a new version
+     */
+    private void checkNewVersion(){
 
         // TODO add when after update
         int sdkInt = BuildConfig.VERSION_CODE;
         String check = String.valueOf(sdkInt) + "checkAllergy1";
-        String check2 = String.valueOf(sdkInt) + "load";
+        String check2 = String.valueOf(sdkInt) + "load1";
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         if(!sharedPreferences.getBoolean("first",false)){
@@ -437,7 +443,10 @@ public class StartPage extends AppCompatActivity
     }
 
 
-
+    /**
+     * MOVE
+     * update profile picture
+     */
     private void setProfilePicture() {
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(getBaseContext());
@@ -447,10 +456,10 @@ public class StartPage extends AppCompatActivity
         }
     }
 
+
     private void displayInterstitial() {
         interstitialAd.loadAd(new AdRequest.Builder().addTestDevice("79C8186833AA41CD2C967FE87614751A").build());
     }
-
     public void loadInterstitial() {
         interstitialAd = new InterstitialAd(StartPage.this);
         interstitialAd.setAdUnitId("ca-app-pub-3607354849437438/9852745111");
@@ -474,12 +483,16 @@ public class StartPage extends AppCompatActivity
     }
 
     private void checkStringAgainstAllergies(String str) {
+        startPageBoolean = false;
+        mAdViewRectangle.setVisibility(View.GONE);
+        mAdViewRectangle.pause();
+        mAdView.setVisibility(View.VISIBLE);
         findViewById(R.id.textViewtip).setVisibility(View.GONE);
 
 
         (findViewById(R.id.progressBar3)).setVisibility(View.VISIBLE);
         loadInterstitial = true;
-        checkpremium();
+        checkPremium();
         Locale locale = new Locale(new LanguageFragment().getLanguageFromLFragment(this));
         final Locale newLocale = new Locale(locale.getLanguage());
         Locale.setDefault(newLocale);
@@ -515,11 +528,18 @@ public class StartPage extends AppCompatActivity
 
     }
 
+    /**
+     * on back press handler
+     * check if drawer is open
+     * check if it is no fragment open
+     * check if user is currently at analyze page.
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer.isDrawerOpen(GravityCompat.START) || camera.isOpened()) {
+            closeFAB();
             drawer.closeDrawer(GravityCompat.START);
         } else {
             int count = getSupportFragmentManager().getBackStackEntryCount();
@@ -541,11 +561,12 @@ public class StartPage extends AppCompatActivity
                 if(count == 1){
                     setTitle(R.string.app_name);
                     findViewById(R.id.textViewtip).setVisibility(View.VISIBLE);
-                    findViewById(R.id.adView).setVisibility(View.VISIBLE);
 
                     TextView viewById = (TextView) findViewById(R.id.textViewFoundAllergies);
                     CharSequence text = viewById.getText();
                     if(text.length() >0){
+                        findViewById(R.id.adView).setVisibility(View.VISIBLE);
+                        findViewById(R.id.textViewtip).setVisibility(View.GONE);
                         findViewById(R.id.linlaybtnadvanced).setVisibility(View.VISIBLE);
                         if (findViewById(R.id.linlayallergyFromWord) != null) {
                             findViewById(R.id.linlayallergyFromWord).setVisibility(View.VISIBLE);
@@ -553,7 +574,8 @@ public class StartPage extends AppCompatActivity
                         findViewById(R.id.linLayHorizontalStartPage).setVisibility(View.VISIBLE);
                         findViewById(R.id.ingredientsTextView).setVisibility(View.VISIBLE);
                         findViewById(R.id.textViewFoundAllergies).setVisibility(View.VISIBLE);
-
+                    }else{
+                        findViewById(R.id.adViewRectangle).setVisibility(View.VISIBLE);
                     }
 
                 }else{
@@ -568,70 +590,6 @@ public class StartPage extends AppCompatActivity
         }
 
 
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.start_page, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.language) {
-            //Creating the instance of PopupMenu
-            View drawer = findViewById(R.id.language);
-            PopupMenu popup = new PopupMenu(StartPage.this, drawer);
-            //Inflating the Popup using xml file
-            popup.getMenuInflater()
-                    .inflate(R.menu.popup_menu, popup.getMenu());
-
-            //registering popup with OnMenuItemClickListener
-            popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                public boolean onMenuItemClick(MenuItem item) {
-                    Language = item.getTitle().toString();
-                    Log.d(TAG, Language);
-                    if (Language.equals("English")) {
-                        Locale locale = new Locale("en");
-                        Locale.setDefault(locale);
-
-                        Configuration config = new Configuration();
-                        config.setLocale(locale);
-                        getApplicationContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-                        Intent intent = getIntent();
-
-                        startActivity(intent);
-                    } else {
-                        Locale locale = new Locale("sv");
-                        Locale.setDefault(locale);
-
-                        Configuration config = new Configuration();
-                        config.setLocale(locale);
-                        getApplicationContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-                        Intent intent = getIntent();
-
-                        startActivity(intent);
-                    }
-                    Toast.makeText(
-                            StartPage.this,
-                            "Changed language to: " + item.getTitle(),
-                            Toast.LENGTH_SHORT
-                    ).show();
-                    return true;
-                }
-            });
-
-            popup.show(); //showing popup menu
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -651,7 +609,6 @@ public class StartPage extends AppCompatActivity
             setTitle(getString(R.string.language));
             backtitle = getString(R.string.language);
         } else if (id == R.id.allergies) {
-//this, getImageViewHashMap(), new LanguageFragment(this).getCategories()
             fragment = new MyAllergies();
             setTitle(getString(R.string.myAllergies));
             backtitle = getString(R.string.myAllergies);
@@ -721,8 +678,11 @@ public class StartPage extends AppCompatActivity
             suggestions.setVisibility(View.GONE);
             allergic.setVisibility(View.GONE);
             findViewById(R.id.linlaybtnadvanced).setVisibility(View.GONE);
+            closeFAB();
             mAdView.pause();
             mAdView.setVisibility(View.GONE);
+            mAdViewRectangle.pause();
+            mAdViewRectangle.setVisibility(View.GONE);
             findViewById(R.id.textViewtip).setVisibility(View.GONE);
             if (findViewById(R.id.linlayallergyFromWord) != null) {
                 findViewById(R.id.linlayallergyFromWord).setVisibility(View.INVISIBLE);
@@ -754,21 +714,6 @@ public class StartPage extends AppCompatActivity
         return imageViewHashMap;
     }
 
-    public HashMap<Integer, ImageView> getImageViewHashMap() {
-        @SuppressLint("UseSparseArrays") HashMap<Integer, ImageView> imageViewHashMap = new HashMap<>();
-
-
-        imageViewHashMap.put(0, (ImageView) findViewById(R.id.imageViewNav1));
-        imageViewHashMap.put(1, (ImageView) findViewById(R.id.imageViewNav2));
-        imageViewHashMap.put(2, (ImageView) findViewById(R.id.imageViewNav3));
-        imageViewHashMap.put(3, (ImageView) findViewById(R.id.imageViewNav4));
-        imageViewHashMap.put(4, (ImageView) findViewById(R.id.imageViewNav5));
-        imageViewHashMap.put(5, (ImageView) findViewById(R.id.imageViewNav6));
-        imageViewHashMap.put(6, (ImageView) findViewById(R.id.imageViewNav7));
-        imageViewHashMap.put(7, (ImageView) findViewById(R.id.imageViewNav8));
-        return imageViewHashMap;
-    }
-
     @Override
     public void onFragmentInteraction(Uri uri) {
 
@@ -781,7 +726,8 @@ public class StartPage extends AppCompatActivity
 
         // Checks the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+        }
+        else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
         }
     }
 
@@ -791,6 +737,8 @@ public class StartPage extends AppCompatActivity
         findViewById(R.id.textViewtip).setVisibility(View.GONE);
         mAdView.pause();
         mAdView.setVisibility(View.GONE);
+        mAdViewRectangle.pause();
+        mAdViewRectangle.setVisibility(View.GONE);
 
 
     }
@@ -808,23 +756,25 @@ public class StartPage extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         if(getSupportFragmentManager().getBackStackEntryCount()==0){
-            TextView viewById = (TextView) findViewById(R.id.textViewFoundAllergies);
+            TextView viewById =  findViewById(R.id.textViewFoundAllergies);
             CharSequence text = viewById.getText();
             if(text.length()<=0) {
                 findViewById(R.id.textViewtip).setVisibility(View.VISIBLE);
+                findViewById(R.id.adViewRectangle).setVisibility(View.VISIBLE);
+                ((AdView)findViewById(R.id.adViewRectangle)).resume();
+            }else{
+                ((AdView)findViewById(R.id.adView)).resume();
+                findViewById(R.id.adView).setVisibility(View.VISIBLE);
+
             }
-            findViewById(R.id.adView).setVisibility(View.VISIBLE);
-            ((AdView)findViewById(R.id.adView)).resume();
 
 
         }else{
+            findViewById(R.id.adViewRectangle).setVisibility(View.GONE);
             findViewById(R.id.adView).setVisibility(View.GONE);
         }
     }
 
-    public Context startPage() {
-        return this;
-    }
 
     @Override
     public BillingManager getBillingManager() {
@@ -848,15 +798,18 @@ public class StartPage extends AppCompatActivity
     }
     public void loadInter(){
         Log.d(TAG, "premiumBanner: " + loadInterstitial);
-        /*if(loadInterstitial){
-            if(!Unfiltered)
-            displayInterstitial();
-        }*/
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ((AdView)findViewById(R.id.adView)).loadAd(new AdRequest.Builder()
-                        .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
+                if(startPageBoolean){
+
+                    ((AdView)findViewById(R.id.adViewRectangle)).loadAd(new AdRequest.Builder()
+                            .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
+
+                }else{
+                    ((AdView)findViewById(R.id.adView)).loadAd(new AdRequest.Builder()
+                            .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
+                }
             }
         });
 
@@ -865,14 +818,21 @@ public class StartPage extends AppCompatActivity
     }
     public void premium() {
         startPage = this;
-        Log.d(TAG, "FINITOPREMIUMO: ");
+
         if (!isPremiumPurchased()){
 
-            Log.d(TAG, "premiumNOTPURCHACED: ");
+            if(startPageBoolean){
 
-            mAdView.loadAd(new AdRequest.Builder()
-                    .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
-            Log.d(TAG, "premiumNOTPURCHACED: ");
+                ((AdView)findViewById(R.id.adView)).setVisibility(View.GONE);
+                ((AdView)findViewById(R.id.adViewRectangle)).loadAd(new AdRequest.Builder()
+                        .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
+
+            }else{
+                ((AdView)findViewById(R.id.adViewRectangle)).setVisibility(View.GONE);
+                ((AdView)findViewById(R.id.adView)).loadAd(new AdRequest.Builder()
+                        .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
+            }
+
 
             Set<String> set = new HashSet<>();
             Set<Locale> setToDelete = new HashSet<>();
@@ -885,11 +845,19 @@ public class StartPage extends AppCompatActivity
             }
             new LanguageFragment().setCategories(startPage, set,setToDelete);
 
+        }else {
+            ((AdView) findViewById(R.id.adView)).setVisibility(View.GONE);
+            ((AdView) findViewById(R.id.adViewRectangle)).setVisibility(View.GONE);
         }
-        Log.d(TAG, "FINITOPREMIUMO: ");
 
     }
 
+    public void clearFAB(View view) {
+        if (camera.isOpened()) {
+            closeFAB();
+
+        }
+    }
 
 
     private class CalcAllergy extends AsyncTask<String, Integer, ArrayList<AllAllergiesForEachInteger>> {
@@ -979,6 +947,7 @@ public class StartPage extends AppCompatActivity
             }
             for (String s : hashSetToCheckLast) {
                 if (i % 2 == 0) {
+
                     publishProgress(hashSetToCheckLast.size() / 2, counter);
                     counter++;
                 }

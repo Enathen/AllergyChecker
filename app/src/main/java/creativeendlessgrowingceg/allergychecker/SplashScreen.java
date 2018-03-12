@@ -58,13 +58,7 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
 
-               /* try {
 
-                    Thread.sleep(1500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }*/
-                //linearLayout.removeView(constraintLayout);
                 Intent i = new Intent(SplashScreen.this,StartPage.class);
 
 

@@ -6,7 +6,7 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
-import java.util.TreeMap;
+import java.util.LinkedHashMap;
 
 import static android.content.ContentValues.TAG;
 
@@ -22,7 +22,7 @@ public class CreateLinearLayout {
 
     private CreateLinearLayout() {
     }
-    static void onclickDropDownList(View v, TreeMap<Integer, LinearLayout> linearLayoutArrayList, LinearLayout parentLinearLayout) {
+    static void onclickDropDownList(View v, LinkedHashMap<Integer, LinearLayout> linearLayoutArrayList, LinearLayout parentLinearLayout) {
         if (v.getRotation() == 180) {
             v.setRotation(0);
             for (LinearLayout linearLayout : linearLayoutArrayList.values()) {

@@ -9,11 +9,6 @@ import java.util.ArrayList;
  */
 
 public class ColorRandom {
-    private static final ColorRandom ourInstance = new ColorRandom();
-    private static final String TAG = "ColorRandom";
-
-    private ColorRandom() {
-    }
 
     public static int getRandomColorFromArray(ArrayList<Integer> color, int i) {
         return color.get(i % color.size());

@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Locale;
+import java.util.TreeMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -249,7 +252,7 @@ public class ShowAllergies extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-    private class loadAllergy extends AsyncTask<String, Integer, HashMap<LinearLayout, Integer>> {
+    private class loadAllergy extends AsyncTask<String, Integer, LinkedHashMap<LinearLayout, Integer>> {
 
         private final LayoutInflater inflater;
         private ViewGroup container;
@@ -281,11 +284,17 @@ public class ShowAllergies extends Fragment {
          * @see #publishProgress
          */
         @Override
-        protected HashMap<LinearLayout, Integer> doInBackground(String... params) {
+        protected LinkedHashMap<LinearLayout, Integer> doInBackground(String... params) {
 
-            HashMap<LinearLayout, Integer> linearLayout = new HashMap<>();
+            LinkedHashMap<LinearLayout, Integer> linearLayout = new LinkedHashMap<>();
+            TreeMap<String,Integer> allergiesCorrectLocale = new TreeMap<>();
             for (Integer allergy : allergies) {
-                linearLayout.put((LinearLayout) inflater.inflate(R.layout.textviewssplitmiddle, container, false),allergy);
+                allergiesCorrectLocale.put(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),allergy,category.getLanguage())),allergy);
+
+
+            }
+            for (String s : allergiesCorrectLocale.keySet()) {
+                linearLayout.put((LinearLayout) inflater.inflate(R.layout.textviewssplitmiddle, container, false),allergiesCorrectLocale.get(s));
 
             }
             return linearLayout;
@@ -303,7 +312,7 @@ public class ShowAllergies extends Fragment {
          * @see #onCancelled(Object)
          */
         @Override
-        protected void onPostExecute(HashMap<LinearLayout, Integer> allAllergiesForEachIntegers) {
+        protected void onPostExecute(LinkedHashMap<LinearLayout, Integer> allAllergiesForEachIntegers) {
             super.onPostExecute(allAllergiesForEachIntegers);
             for (LinearLayout layout : allAllergiesForEachIntegers.keySet()) {
                 ((TextView)layout.findViewById(R.id.tvLeft)).setText(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),allAllergiesForEachIntegers.get(layout),category.getLanguage())));
@@ -311,6 +320,8 @@ public class ShowAllergies extends Fragment {
                 layout.setVisibility(View.INVISIBLE);
                 linearLayouts.get(pLinearLayout).add(layout);
             }
+
+
             for (LinearLayout textViews: linearLayouts.get(pLinearLayout)){
                 ((LinearLayout) pLinearLayout).addView(textViews);
                 textViews.setVisibility(View.VISIBLE);

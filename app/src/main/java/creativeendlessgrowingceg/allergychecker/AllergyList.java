@@ -2,6 +2,7 @@ package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -73,6 +74,51 @@ public class AllergyList {
         }
         return null;
     }
+    public boolean checkAvailablePicture(int picture){
+        if(picture == R.drawable.fish)
+            return true;
+        if(picture == R.drawable.shellfish)
+            return true;
+        if(picture == R.drawable.peach)
+            return true;
+        if(picture == R.drawable.milk)
+            return true;
+        if(picture == R.drawable.nuts)
+            return true;
+        if(picture == R.drawable.legumes)
+            return true;
+        if(picture == R.drawable.tomato)
+            return true;
+        if(picture == R.drawable.spice)
+            return true;
+        if(picture == R.drawable.orange)
+            return true;
+        if(picture == R.drawable.seeds)
+            return true;
+        if(picture == R.drawable.wheat)
+            return true;
+        if(picture == R.drawable.halal)
+            return true;
+        if(picture == R.drawable.vegetarian)
+            return true;
+        if(picture == R.drawable.vegan)
+            return true;
+        if(picture == R.drawable.lactovegitarian)
+            return true;
+        if(picture == R.drawable.ovoveg)
+            return true;
+        if(picture == R.drawable.pescoveg)
+            return true;
+        if(picture == R.drawable.polloveg)
+            return true;
+        if(picture == R.drawable.lactoovoveg)
+            return true;
+        if(picture == R.drawable.demiveg)
+            return true;
+        return false;
+
+
+    }
     public ArrayList<PictureIngredient> getSpecifiedKeyPreference(int key){
         if(key == R.string.vegan){
             setArrayListVegan();
@@ -124,6 +170,11 @@ public class AllergyList {
         arrayLists.put(setArrayListVegetables(),getArrayListVegetables());
         for (ArrayList<PictureIngredient> pictureIngredients : arrayLists.values()) {
             sort(pictureIngredients);
+        }
+        for (ArrayList<PictureIngredient> integer : arrayLists.values()) {
+            for (PictureIngredient pictureIngredient : integer) {
+                Log.d(TAG, "getMyAllergies: "+ pictureIngredient.getIngredient()+ " : " + pictureIngredient.getId());
+            }
         }
         return arrayLists;
     }
@@ -190,21 +241,21 @@ public class AllergyList {
     }
 
     private Integer setArrayListLactoOvoVegetarian() {
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.pig));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.duck));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.meat));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.goat));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.poultry));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.lamb));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.sausage));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.beef));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.veal));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.gelatin));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.shellfish));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.fish));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.dairy));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.egg));
-        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactovegitarian, R.string.chicken));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactoovoveg, R.string.pig));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactoovoveg, R.string.duck));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactoovoveg, R.string.meat));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactoovoveg, R.string.goat));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactoovoveg, R.string.poultry));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactoovoveg, R.string.lamb));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactoovoveg, R.string.sausage));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactoovoveg, R.string.beef));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactoovoveg, R.string.veal));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactoovoveg, R.string.gelatin));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactoovoveg, R.string.shellfish));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactoovoveg, R.string.fish));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactoovoveg, R.string.dairy));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactoovoveg, R.string.egg));
+        arrayListLactoOvoVegetarian.add(new PictureIngredient(R.drawable.lactoovoveg, R.string.chicken));
         sort(arrayListLactoOvoVegetarian);
         return R.string.lactoOvoVegetarian;
     }
@@ -579,17 +630,17 @@ public class AllergyList {
 
     public Integer setArrayListFruit() {
 
-        arrayListFruit.add(new PictureIngredient(R.drawable.fruit, R.string.apple));
-        arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.avocado));
+        arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.apple));
+        arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.avocado));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.pear));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.tomato));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.strawberry));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.prune));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.pomegranate));
-        arrayListFruit.add(new PictureIngredient(R.drawable.pinapple, R.string.pinapple));
+        arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.pinapple));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.persimmon));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.peach));
-        arrayListFruit.add(new PictureIngredient(R.drawable.orange, R.string.orange));
+        arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.orange));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.melon));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.mango));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.lychee));

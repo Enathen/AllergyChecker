@@ -128,8 +128,8 @@ public class MyPreference extends Fragment {
     private void CheckAllergy(){
 
         int sdkInt = BuildConfig.VERSION_CODE;
-        String check = String.valueOf(sdkInt) + "dialog";
-        String check2 = String.valueOf(sdkInt) + "load";
+        String check = String.valueOf(sdkInt) + "dialog1";
+        String check2 = String.valueOf(sdkInt) + "load1";
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(getContext());
         if(sharedPreferences.getBoolean(check2,false)){

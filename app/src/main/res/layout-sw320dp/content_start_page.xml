@@ -9,6 +9,7 @@
     tools:context="creativeendlessgrowingceg.allergychecker.StartPage"
     tools:showIn="@layout/app_bar_start_page"
     android:background="@color/colorPrimaryDark"
+
     android:layout_marginRight="0dp">
 
     <ScrollView
@@ -21,6 +22,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -38,6 +40,17 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 ads:adSize="FULL_BANNER"
+                android:visibility="gone"
+                ads:adUnitId="ca-app-pub-3607354849437438/6554215935">
+                <!--ads:adUnitId="ca-app-pub-ca-app-pub-3940256099942544/6300978111">-->
+            </com.google.android.gms.ads.AdView>
+            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adViewRectangle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                ads:adSize="MEDIUM_RECTANGLE"
                 ads:adUnitId="ca-app-pub-3607354849437438/6554215935">
                 <!--ads:adUnitId="ca-app-pub-ca-app-pub-3940256099942544/6300978111">-->
             </com.google.android.gms.ads.AdView>

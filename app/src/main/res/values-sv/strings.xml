@@ -137,7 +137,7 @@
     <string name="times">gånger</string>
     <string name="probablyContained">innehåller troligtvis</string>
     <string name="fromWord">från ord:</string>
-    <string name="myAllergies">Mina allergier</string>
+    <string name="myAllergies">Mina Allergier</string>
     <string name="share">Dela</string>
     <string name="send">Skicka översättning</string>
     <string name="mustBeInEnglish">Texten måste bli skriven på engelska eller svenska! Tack!</string>
@@ -145,8 +145,7 @@
     <string name="welcomeMessageInvite">Vill du veta om du kan äta något snabbt? Som inte är allergiskt för dig?
     Toppen! Den här appen låter dig scanna text från olika språk som låter dig se om du är allergisk mot det!</string>
 
-    <string name="buckwhea1t">Bovete</string>
-    <string name="buckwhe2at">Bovete</string>
+<!--
     <string name="buckwh3at">Bovete</string>
     <string name="buck6wheat">Bovete</string>
     <string name="buckw4heat">Bovete</string>
@@ -159,6 +158,9 @@
     <string name="buckwhedsat">Bovete</string>
     <string name="buckwasdczheat">Bovete</string>
     <string name="buckwzcxheat">Bovete</string>
+    <string name="buckwhea1t">Bovete</string>
+    <string name="buckwhe2at">Bovete</string>
+-->
 
 
 

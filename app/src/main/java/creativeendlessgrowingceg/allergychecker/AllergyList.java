@@ -2,7 +2,6 @@ package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -170,11 +169,6 @@ public class AllergyList {
         arrayLists.put(setArrayListVegetables(),getArrayListVegetables());
         for (ArrayList<PictureIngredient> pictureIngredients : arrayLists.values()) {
             sort(pictureIngredients);
-        }
-        for (ArrayList<PictureIngredient> integer : arrayLists.values()) {
-            for (PictureIngredient pictureIngredient : integer) {
-                Log.d(TAG, "getMyAllergies: "+ pictureIngredient.getIngredient()+ " : " + pictureIngredient.getId());
-            }
         }
         return arrayLists;
     }

@@ -45,7 +45,6 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -245,7 +244,10 @@ public class StartPage extends AppCompatActivity
         camera.setOnMenuButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(camera.isOpened()){
+                    closeFAB();
+                    return;
+                }
                 Intent intent = new Intent(startPage, OcrCaptureActivity.class);
                 intent.putExtra("focus", sharedPreferences.getBoolean("focus",true));
                 intent.putExtra("flash", sharedPreferences.getBoolean("flash",false));
@@ -273,19 +275,6 @@ public class StartPage extends AppCompatActivity
         if (str != null) {
 
             str = str.replaceAll("[^\\p{L}\\p{Nd}\\s]+", "");
-            String allergyString = str;
-            String[] parts = allergyString.split("\\s+");
-            Arrays.sort(parts);
-            StringBuilder sb = new StringBuilder();
-            for (String s : parts) {
-                sb.append(s);
-                sb.append(" ");
-            }
-
-            allergyString = sb.toString().trim();
-            Log.d(TAG, allergyString);
-            Log.d(TAG, str);
-
             suggestions.setText(str);
             str = str.toLowerCase();
 
@@ -901,9 +890,7 @@ public class StartPage extends AppCompatActivity
             listOfLanguages.add(Locale.getDefault());
 
             HashSet<Integer> hashSetFromOtherClass = new LoadUIAllergies().getAllergies(mContext);
-            for (Integer hashSetFromOtherClas : hashSetFromOtherClass) {
-                Log.d(TAG, "doInBackground: " + getString(hashSetFromOtherClas));
-            }
+
             @SuppressLint("UseSparseArrays") HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies = new HashMap<>();
 
             int length = 0;
@@ -920,11 +907,7 @@ public class StartPage extends AppCompatActivity
                 i++;
 
             }
-            for (HashMap<String, AllAllergiesForEachInteger> stringAllAllergiesForEachIntegerHashMap : allergies.values()) {
-                for (AllAllergiesForEachInteger allAllergiesForEachInteger : stringAllAllergiesForEachIntegerHashMap.values()) {
-                    Log.d(TAG, "STARTPAGE: " + allAllergiesForEachInteger.getNameOfIngredient());
-                }
-            }
+
 
             helpCalcAllergy.bkTree(length, hashSetAllStrings, allergies, allFoundAllergies);
 

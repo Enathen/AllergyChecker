@@ -267,9 +267,9 @@
     <string name="yoghurt">Yogurt, Yoghurt, Yoghourt</string>
     <string name="custard">Vaniljsås</string>
     <string name="cream">Grädde</string>
-    <string name="write">skriv in ingredienser</string>
-    <string name="useflash">ficklampa på</string>
-    <string name="useNoFlash"> ficklampa av</string>
+    <string name="write">Skriv In Ingredienser</string>
+    <string name="useflash">Ficklampa På</string>
+    <string name="useNoFlash">Ficklampa Av</string>
     <string name="SharingIsCaring">Sharing is caring</string>
     <string name="myPreference">Mina Preferenser</string>
     <string name="showAllergies">Visa Allergier</string>
@@ -311,8 +311,8 @@
     <string name="eNumbers">E-Nummer</string>
     <string name="downloadOfTextScannerNotComplete">Textigenkänningen har inte slutfört att laddas ned. Detta kan tyvärr ta några timmar på vissa telefoner. Se till att du är ansluten till internet och har 10 MB ledigt utrymme.</string>
     <string name="sendTips">Skicka tips / buggar</string>
-    <string name="useFocus">Fokus på</string>
-
+    <string name="useFocus">Fokus På</string>
+    <string name="useNoFocus">Fokus Av</string>
 
 
 

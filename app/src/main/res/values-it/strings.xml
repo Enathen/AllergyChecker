@@ -254,8 +254,8 @@
     <string name="custard">Crema pasticciera</string>
     <string name="cream">Crema</string>
     <string name="write">Scrivi</string>
-    <string name="useflash">Flash acceso</string>
-    <string name="useNoFlash">Flash spento</string>
+    <string name="useflash">Flash Acceso</string>
+    <string name="useNoFlash">Flash Spento</string>
     <string name="SharingIsCaring">La condivisione è la cura</string>
     <string name="myPreference">Le mie preferenze</string>
     <string name="showAllergies">Mostra allergie</string>
@@ -295,6 +295,6 @@
     <string name="eNumbers">Numeri E</string>
     <string name="downloadOfTextScannerNotComplete">Il riconoscimento del testo non è stato completato il download. Questo, sfortunatamente, potrebbe richiedere un paio d\'ore su alcuni telefoni. Assicurati di essere connesso a Internet e di avere 10 MB di spazio libero.</string>
     <string name="sendTips">Inviare suggerimenti / bug</string>
-    <string name="useNoFocus">autofocus spento</string>
-    <string name="useFocus">"Autofocus attivo "</string>
+    <string name="useNoFocus">Autofocus Spento</string>
+    <string name="useFocus">"Autofocus Attivo "</string>
 </resources>

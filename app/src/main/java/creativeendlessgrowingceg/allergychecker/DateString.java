@@ -3,7 +3,6 @@ package creativeendlessgrowingceg.allergychecker;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,9 +37,6 @@ public class DateString {
     public void saveArray() {
         dateStrings.addAll(getArray());
         Collections.sort(getArray());
-        for (String dateString : dateStrings) {
-            Log.d(TAG, dateString);
-        }
 
         SharedPreferences.Editor mEdit1 = prefs.edit();
         Collections.sort(dateStrings, new HistoryFragment.stringComparator());

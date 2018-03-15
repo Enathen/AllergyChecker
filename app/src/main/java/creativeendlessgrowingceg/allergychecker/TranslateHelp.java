@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Random;
@@ -153,6 +154,7 @@ public class TranslateHelp extends Fragment {
         @Override
         protected ArrayList<String> doInBackground(String... params) {
             ArrayList<String> strings = getAllStrings();
+
             linearLayouts = new ArrayList<>();
             for (String string : strings) {
                 linearLayouts.add((LinearLayout) inflater.inflate(R.layout.fragmenttranslatehelprelative, container, false));
@@ -172,7 +174,6 @@ public class TranslateHelp extends Fragment {
         @Override
         protected void onPostExecute(ArrayList<String> result) {
             int i = 0;
-            Collections.sort(result);
             for (String s : result) {
                 ((TextView) linearLayouts.get(i).findViewById(R.id.textViewTranslate)).setText(TextHandler.capitalLetter(s));
                 parentLinearLayout.addView(linearLayouts.get(i));
@@ -458,7 +459,15 @@ public class TranslateHelp extends Fragment {
             arrayList.add(getString(R.string.foundBadTranslation));
             arrayList.add(getString(R.string.advancedSearch));
             arrayList.add(getString(R.string.regularSearch));
+            Collections.sort(arrayList,new SortIgnoreCase());
             return arrayList;
+        }
+        public class SortIgnoreCase implements Comparator<Object> {
+            public int compare(Object o1, Object o2) {
+                String s1 = (String) o1;
+                String s2 = (String) o2;
+                return s1.toLowerCase().compareTo(s2.toLowerCase());
+            }
         }
     }
 }

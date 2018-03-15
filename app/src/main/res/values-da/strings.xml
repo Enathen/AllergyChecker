@@ -253,8 +253,8 @@
     <string name="custard">cremebudding</string>
     <string name="cream">Creme</string>
     <string name="write">Skriv i ingredienser</string>
-    <string name="useflash">Lommelygte på</string>
-    <string name="useNoFlash">lommelygte av</string>
+    <string name="useflash">Lommelygte På</string>
+    <string name="useNoFlash">Lommelygte Av</string>
     <string name="SharingIsCaring">Sharing is caring</string>
     <string name="myPreference">Mine præferencer</string>
     <string name="showAllergies">Visa allergier</string>
@@ -297,7 +297,7 @@
     <string name="downloadOfTextScannerNotComplete">Tekstgenkendelse er ikke færdig med at downloade. Dette kan desværre tage et par timer på nogle telefoner. Sørg for at du er forbundet til internettet og har 10mb ledig plads.</string>
     <string name="sendTips">Send tips / fejl</string>
     <string name="useFocus">Autofokus på</string>
-    <string name="useNoFocus">" Autofokus off"</string>
+    <string name="useNoFocus">Autofokus off</string>
 
 
 </resources>

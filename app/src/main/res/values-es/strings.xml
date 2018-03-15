@@ -259,8 +259,8 @@
     <string name="custard">Lactoso</string>
     <string name="cream">Crema</string>
     <string name="write">Escribir</string>
-    <string name="useflash">Usar linterna</string>
-    <string name="useNoFlash">Usar no linterna</string>
+    <string name="useflash">Usar Linterna</string>
+    <string name="useNoFlash">Usar No Linterna</string>
     <string name="SharingIsCaring">Sharing is caring</string>
     <string name="myPreference">Mis preferencias</string>
     <string name="showAllergies">Mostrar alergias</string>
@@ -298,8 +298,8 @@
     <string name="eNumbers">Número E</string>
     <string name="downloadOfTextScannerNotComplete">El reconocedor de texto no se ha terminado de descargar. Esto, lamentablemente, podría tomar un par de horas en algunos teléfonos. Asegúrese de estar conectado a Internet y tener 10 MB de espacio libre.</string>
     <string name="sendTips">Enviar sugerencias / errores</string>
-    <string name="useFocus">Autofoco en</string>
-    <string name="useNoFocus">Autofoco  de</string>
+    <string name="useFocus">Autofoco En</string>
+    <string name="useNoFocus">Autofoco  De</string>
 
 
 </resources>

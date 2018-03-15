@@ -254,8 +254,8 @@
     <string name="custard">Quindim</string>
     <string name="cream">Creme</string>
     <string name="write">Escreva</string>
-    <string name="useflash">flash ligado</string>
-    <string name="useNoFlash">Flash desligado</string>
+    <string name="useflash">Flash Ligado</string>
+    <string name="useNoFlash">Flash Desligado</string>
     <string name="SharingIsCaring">Compartilhar é se importar</string>
     <string name="myPreference">Minhas preferências</string>
     <string name="showAllergies">Mostrar alergias</string>
@@ -296,6 +296,6 @@
     <string name="eNumbers">Número E</string>
     <string name="downloadOfTextScannerNotComplete">O reconhecedor de texto não foi concluído o download. Isso, infelizmente, pode demorar algumas horas em alguns telefones. Certifique-se de que está conectado à Internet e tem espaço livre de 10mb.</string>
     <string name="sendTips">Envie dicas / insetos</string>
-    <string name="useFocus">Autofocus fam</string>
-    <string name="useNoFocus">Autofocus fora</string>
+    <string name="useFocus">Autofocus Fam</string>
+    <string name="useNoFocus">Autofocus Fora</string>
 </resources>

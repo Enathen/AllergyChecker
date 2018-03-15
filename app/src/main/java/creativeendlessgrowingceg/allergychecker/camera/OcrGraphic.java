@@ -23,6 +23,7 @@ import android.graphics.RectF;
 import com.google.android.gms.vision.text.Text;
 import com.google.android.gms.vision.text.TextBlock;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import creativeendlessgrowingceg.allergychecker.camera.ui.GraphicOverlay;
@@ -33,12 +34,14 @@ import creativeendlessgrowingceg.allergychecker.camera.ui.GraphicOverlay;
  */
 public class OcrGraphic extends GraphicOverlay.Graphic {
 
+    private static final String TAG = "OCRGRAPHIC";
     private int mId;
 
     private static final int TEXT_COLOR = Color.WHITE;
 
     private static Paint sRectPaint;
     private static Paint sTextPaint;
+    private static ArrayList<Integer> randomColor;
     private final TextBlock mText;
 
     OcrGraphic(GraphicOverlay overlay, TextBlock text) {
@@ -46,6 +49,10 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
 
         mText = text;
 
+       /* if(randomColor == null){
+            randomColor = ColorRandom.getRandomColor();
+            TEXT_COLOR = ColorRandom.getRandomColorFromArray(randomColor,new Random().nextInt(randomColor.size()));
+        }*/
         if (sRectPaint == null) {
             sRectPaint = new Paint();
             sRectPaint.setColor(TEXT_COLOR);

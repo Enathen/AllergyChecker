@@ -254,8 +254,8 @@
     <string name="custard">Krem</string>
     <string name="cream">Krem</string>
     <string name="write">Pisać</string>
-    <string name="useflash">Lampa włączony</string>
-    <string name="useNoFlash">Lampa zgaszona</string>
+    <string name="useflash">Lampa Włączony</string>
+    <string name="useNoFlash">Lampa Zgaszona</string>
     <string name="SharingIsCaring">Dzielenie się jest dbaniem o innych</string>
     <string name="myPreference">Moje preferencje</string>
     <string name="showAllergies">Pokaż alergie</string>
@@ -293,6 +293,6 @@
     <string name="eNumbers">Numery E</string>
     <string name="downloadOfTextScannerNotComplete">Rozpoznawanie tekstu nie zostało zakończone. To niestety może zająć kilka godzin w niektórych telefonach. Upewnij się, że masz połączenie z internetem i masz 10 MB wolnego miejsca.</string>
     <string name="sendTips">Wyślij wskazówki / błędy</string>
-    <string name="useFocus">Autofokus włączony</string>
-    <string name="useNoFocus">autofokus wyłączony</string>
+    <string name="useFocus">Autofokus Włączony</string>
+    <string name="useNoFocus">autofokus Wyłączony</string>
 </resources>

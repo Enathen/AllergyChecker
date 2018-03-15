@@ -265,8 +265,8 @@
     <string name="custard">Crème</string>
     <string name="cream">Crème</string>
     <string name="write">Écrire des ingrédients</string>
-    <string name="useflash">flash sur</string>
-    <string name="useNoFlash">flash désactivé</string>
+    <string name="useflash">Flash Sur</string>
+    <string name="useNoFlash">Flash Désactivé</string>
     <string name="SharingIsCaring">Sharing is caring</string>
     <string name="myPreference">Mes préférences</string>
     <string name="showAllergies">Afficher les allergies</string>
@@ -303,7 +303,7 @@
     <string name="eNumbers">Numéros e</string>
     <string name="downloadOfTextScannerNotComplete">Le logiciel de reconnaissance de texte n\'a pas encore été téléchargé. Ceci, malheureusement, pourrait prendre quelques heures sur certains téléphones. Assurez-vous que vous êtes connecté à Internet et disposez d\'un espace libre de 10 Mo.</string>
     <string name="sendTips">Envoyer des astuces / bugs</string>
-    <string name="useNoFocus">Autofocus désactivé</string>
-    <string name="useFocus">Autofocus sur</string>
+    <string name="useNoFocus">Autofocus Désactivé</string>
+    <string name="useFocus">Autofocus Sur</string>
 
 </resources>

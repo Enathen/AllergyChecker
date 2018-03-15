@@ -237,17 +237,20 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         CameraManager manager = (CameraManager)this.getSystemService(Context.CAMERA_SERVICE);
         float videoFrameRate= 30f;
         int videoFrameWidth = 1280;
-        int videoFrameHeigth = 1024;
+        int videoFrameHeight = 1024;
+
         try {
-            for (String cameraId : manager.getCameraIdList()) {
-                int id = Integer.valueOf(cameraId);
-                Log.d(TAG, "createCameraSource: "+ id);
-                if (CamcorderProfile.hasProfile(id, CamcorderProfile.QUALITY_HIGH_SPEED_LOW)) {
-                    CamcorderProfile profile = CamcorderProfile.get(id, CamcorderProfile.QUALITY_HIGH_SPEED_LOW);
-                    videoFrameHeigth = profile.videoFrameHeight;
-                    videoFrameWidth = profile.videoFrameWidth;
-                    videoFrameRate = profile.videoFrameRate;
-                    //...
+            if (manager != null) {
+                for (String cameraId : manager.getCameraIdList()) {
+                    int id = Integer.valueOf(cameraId);
+                    Log.d(TAG, "createCameraSource: "+ id);
+                    if (CamcorderProfile.hasProfile(id, CamcorderProfile.QUALITY_HIGH_SPEED_LOW)) {
+                        CamcorderProfile profile = CamcorderProfile.get(id, CamcorderProfile.QUALITY_HIGH_SPEED_LOW);
+                        videoFrameHeight = profile.videoFrameHeight;
+                        videoFrameWidth = profile.videoFrameWidth;
+                        videoFrameRate = profile.videoFrameRate;
+
+                    }
                 }
             }
         } catch (CameraAccessException e) {
@@ -257,12 +260,12 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
         Log.d(TAG, "VideoFrameRate: " + videoFrameRate);
         Log.d(TAG, "videoFrameWidth: " + videoFrameWidth);
-        Log.d(TAG, "videoFrameHeigth: " + videoFrameHeigth);
+        Log.d(TAG, "videoFrameHeight: " + videoFrameHeight);
         // Create the mCameraSource using the TextRecognizer.
         mCameraSource =
                 new CameraSource.Builder(getApplicationContext(), textRecognizer)
                         .setFacing(CameraSource.CAMERA_FACING_BACK)
-                        .setRequestedPreviewSize(videoFrameWidth, videoFrameHeigth)
+                        .setRequestedPreviewSize(videoFrameWidth, videoFrameHeight)
                         .setRequestedFps(videoFrameRate)
                         .setFlashMode(useFlash ? Camera.Parameters.FLASH_MODE_TORCH : null)
                         .setFocusMode(autoFocus ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null)
@@ -389,11 +392,10 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         //OcrGraphic graphic = mGraphicOverlay.getGraphicAtLocation(rawX, rawY);
         Set<OcrGraphic> graphic1 = new HashSet<>();
         graphic1 = mGraphicOverlay.getGraphic();
-
+        int length = 0;
         if (!graphic1.isEmpty()) {
             textTapped = "";
             final Set<OcrGraphic> finalGraphic = graphic1;
-            Log.d(TAG,"TIME");
             for (OcrGraphic ocrGraphic : finalGraphic) {
 
 
@@ -401,22 +403,24 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                 Log.d(TAG, "text data is being saved! " + ocrGraphic.getComponents().size());
                 for(Text currentText : textComponents) {
                     if (currentText != null && !currentText.getValue().equalsIgnoreCase("null")) {
-                        Log.d(TAG, "text data is being saved! " + currentText.getValue());
+                        //Log.d(TAG, "text data is being saved! " + currentText.getValue());
                         // Speak the string.
-                        Log.d(TAG, textTapped);
+                       // Log.d(TAG, textTapped);
                         if(textTapped.equals("null")){
                             textTapped = currentText.getValue();
+
                         }
                         else {
                             textTapped += " " + currentText.getValue();
                         }
+                        length += currentText.getValue().length();
+                        Log.d(TAG, "LENGTH: "+ length);
                     }
                     else {
                         Log.d(TAG, "text data is null");
                     }
                 }
             }
-            Log.d(TAG,"SWAGTIME");
 
 
 

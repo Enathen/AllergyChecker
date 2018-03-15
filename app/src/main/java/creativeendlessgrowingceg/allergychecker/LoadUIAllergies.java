@@ -18,6 +18,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * load an UI.
@@ -35,7 +36,7 @@ public class LoadUIAllergies {
     private boolean preference;
     private LayoutInflater inflater;
     private TreeMap<Integer, ArrayList<AllergyList.PictureIngredient>> myAllergies;
-    private TreeMap<String, AllergyCheckBoxClass> allergyInfo = new TreeMap<>();
+    private ConcurrentHashMap<String, AllergyCheckBoxClass> allergyInfo = new ConcurrentHashMap<>();
 
 
     public LoadUIAllergies(boolean preference, LayoutInflater inflater, StartPage context, FrameLayout parentFrameLayout, LinearLayout parentLinearLayout, TreeMap<Integer, ArrayList<AllergyList.PictureIngredient>> myAllergies) {

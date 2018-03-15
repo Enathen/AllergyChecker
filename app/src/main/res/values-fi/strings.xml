@@ -254,8 +254,8 @@
     <string name="custard">Vaniljakastike</string>
     <string name="cream">Kerma</string>
     <string name="write">Kirjoita ainesosia</string>
-    <string name="useflash">Taskulamppu on päällä</string>
-    <string name="useNoFlash">Taskulampun pois päältä</string>
+    <string name="useflash">Taskulamppu On Päällä</string>
+    <string name="useNoFlash">Taskulampun Pois Päältä</string>
     <string name="SharingIsCaring">Sharing is caring</string>
     <string name="myPreference">Omat asetukset</string>
     <string name="showAllergies">Näytä allergiat</string>
@@ -295,7 +295,7 @@
     <string name="eNumbers">E-koodi</string>
     <string name="downloadOfTextScannerNotComplete">Tekstin tunnistinta ei ole saatu latautumaan loppuun. Tämä valitettavasti saattaa kestää pari tuntia joillakin puhelimilla. Varmista, että olet yhteydessä internetiin ja että sinulla on 10mb vapaata tilaa.</string>
     <string name="sendTips">Lähetä vinkkejä / vikoja</string>
-    <string name="useFocus">" Automaattinen tarkennus"</string>
-    <string name="useNoFocus">" Automaattinen tarkennus pois päältä"</string>
+    <string name="useFocus">Automaattinen tarkennus</string>
+    <string name="useNoFocus">Automaattinen tarkennus pois päältä</string>
 
 </resources>

@@ -251,8 +251,8 @@
     <string name="custard">vaniljesaus</string>
     <string name="cream">Krem</string>
     <string name="write">Skriv inn ingredienser</string>
-    <string name="useflash">lommelykt på</string>
-    <string name="useNoFlash">lommelykt av</string>
+    <string name="useflash">Lommelykt På</string>
+    <string name="useNoFlash">Lommelykt Av</string>
     <string name="SharingIsCaring">Sharing is caring</string>
     <string name="myPreference">Mine preferanser</string>
     <string name="showAllergies">Visa allergier</string>
@@ -295,7 +295,7 @@
     <string name="eNumbers">E tall</string>
     <string name="downloadOfTextScannerNotComplete">Tekstgjenkjenningen er ikke ferdig nedlasting. Dette kan dessverre ta noen timer på noen telefoner. Pass på at du er koblet til internett og har 10 MB ledig plass.</string>
     <string name="sendTips">Send tips / feil</string>
-    <string name="useFocus">Autofokus på</string>
-    <string name="useNoFocus">Autofokus av</string>
+    <string name="useFocus">Autofokus På</string>
+    <string name="useNoFocus">Autofokus Av</string>
 
 </resources>

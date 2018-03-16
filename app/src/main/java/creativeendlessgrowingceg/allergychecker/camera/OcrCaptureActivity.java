@@ -47,7 +47,6 @@ import com.google.android.gms.vision.text.Text;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -86,6 +85,8 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     private boolean useFlash = false;
     // A TextToSpeech engine for speaking a String value.
     private String textTapped;
+    private OcrDetectorProcessor ocrDetectorProcessor;
+    private Toast toast;
 
     public OcrCaptureActivity() {
     }
@@ -126,7 +127,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
 
-        Snackbar.make(mGraphicOverlay, " Pinch/Stretch to zoom",
+        Snackbar.make(mGraphicOverlay, " Pinch/Stretch to zoom. Hold long to remove all text boxes",
                 Snackbar.LENGTH_LONG)
                 .show();
 
@@ -202,7 +203,8 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
 
         // Set the TextRecognizer's Processor.
-        textRecognizer.setProcessor(new OcrDetectorProcessor(mGraphicOverlay));
+        ocrDetectorProcessor = new OcrDetectorProcessor(mGraphicOverlay,this);
+        textRecognizer.setProcessor(ocrDetectorProcessor);
 
         // Check if the TextRecognizer is operational.
         if (!textRecognizer.isOperational()) {
@@ -389,14 +391,10 @@ public final class OcrCaptureActivity extends AppCompatActivity {
      * @return true if the tap was on a TextBlock
      */
     private boolean onTap(float rawX, float rawY) {
-        //OcrGraphic graphic = mGraphicOverlay.getGraphicAtLocation(rawX, rawY);
-        Set<OcrGraphic> graphic1 = new HashSet<>();
-        graphic1 = mGraphicOverlay.getGraphic();
-        int length = 0;
+        Set<OcrGraphic> graphic1 = mGraphicOverlay.getGraphic();
         if (!graphic1.isEmpty()) {
             textTapped = "";
-            final Set<OcrGraphic> finalGraphic = graphic1;
-            for (OcrGraphic ocrGraphic : finalGraphic) {
+            for (OcrGraphic ocrGraphic : graphic1) {
 
 
                 List<? extends Text> textComponents = ocrGraphic.getComponents();
@@ -408,13 +406,10 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                        // Log.d(TAG, textTapped);
                         if(textTapped.equals("null")){
                             textTapped = currentText.getValue();
-
                         }
                         else {
                             textTapped += " " + currentText.getValue();
                         }
-                        length += currentText.getValue().length();
-                        Log.d(TAG, "LENGTH: "+ length);
                     }
                     else {
                         Log.d(TAG, "text data is null");
@@ -438,13 +433,32 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         }
         return textTapped != null;
     }
+    public void cancelToast(){
+        if(toast != null)
+            toast.cancel();
+    }
     private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
 
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
             return onTap(e.getRawX(), e.getRawY()) || super.onSingleTapConfirmed(e);
         }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+            mGraphicOverlay.clear();
+
+            ocrDetectorProcessor.setSavedTextIterator(0);
+            ocrDetectorProcessor.cancelToast();
+            if(toast != null){
+                toast.cancel();
+            }
+            toast = Toast.makeText(getApplicationContext(), 0+ "", Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
+
+
 
     private class ScaleListener implements ScaleGestureDetector.OnScaleGestureListener {
 

@@ -15,12 +15,16 @@
  */
 package creativeendlessgrowingceg.allergychecker.camera;
 
+import android.util.Log;
 import android.util.SparseArray;
+import android.widget.Toast;
 
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
 
 import creativeendlessgrowingceg.allergychecker.camera.ui.GraphicOverlay;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * A very simple Processor which gets detected TextBlocks and adds them to the overlay
@@ -30,35 +34,64 @@ import creativeendlessgrowingceg.allergychecker.camera.ui.GraphicOverlay;
 public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
 
     private GraphicOverlay<OcrGraphic> mGraphicOverlay;
+    private static OcrCaptureActivity parent;
+    private int savedTextIterator = 0;
+    private Toast toast;
 
-
-    OcrDetectorProcessor(GraphicOverlay<OcrGraphic> ocrGraphicOverlay) {
+    OcrDetectorProcessor(GraphicOverlay<OcrGraphic> ocrGraphicOverlay, OcrCaptureActivity activity) {
         mGraphicOverlay = ocrGraphicOverlay;
+        parent = activity;
     }
 
     // TODO:  Once this implements Detector.Processor<TextBlock>, implement the abstract methods.
     @Override
     public void receiveDetections(Detector.Detections<TextBlock> detections) {
 
-        //mGraphicOverlay.clear();
-
         SparseArray<TextBlock> items = detections.getDetectedItems();
+        if(items.size()>0){
+            savedTextIterator++;
+            Log.d(TAG, "receiveDetections: "+savedTextIterator);
+            parent.runOnUiThread(new Runnable() {
+                public void run() {
+                    parent.cancelToast();
+                    if(toast != null){
+                        toast.cancel();
+                    }
+                    toast = Toast.makeText(parent.getBaseContext(), savedTextIterator + "", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+            });
+            mGraphicOverlay.removeToSeparate();
 
 
 
-        for (int i = 0; i < items.size(); ++i) {
-            TextBlock item = items.valueAt(i);
+
+            for (int i = 0; i < items.size(); ++i) {
+                TextBlock item = items.valueAt(i);
             /*if (item != null && item.getValue() != null) {
                 Log.d("Processor", "Text detected! " + item.getValue());
             }*/
-            OcrGraphic graphic = new OcrGraphic(mGraphicOverlay, item);
-            mGraphicOverlay.add(graphic);
+                OcrGraphic graphic = new OcrGraphic(mGraphicOverlay, item);
+                mGraphicOverlay.add(graphic);
 
+            }
         }
-    }
 
+    }
+    public void cancelToast(){
+        if (toast != null)
+            toast.cancel();
+    }
     @Override
     public void release() {
         mGraphicOverlay.clear();
+    }
+
+    public int getSavedTextIterator() {
+        return savedTextIterator;
+    }
+
+    public void setSavedTextIterator(int savedTextIterator) {
+        this.savedTextIterator = savedTextIterator;
     }
 }

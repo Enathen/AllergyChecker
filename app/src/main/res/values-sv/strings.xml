@@ -135,6 +135,7 @@
     <string name="allergy">Allergi:</string>
     <string name="contained">fanns</string>
     <string name="times">gånger</string>
+    <string name="time">gång</string>
     <string name="probablyContained">innehåller troligtvis</string>
     <string name="fromWord">från ord:</string>
     <string name="myAllergies">Mina Allergier</string>

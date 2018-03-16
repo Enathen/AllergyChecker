@@ -52,6 +52,15 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
     private float mHeightScaleFactor = 1.0f;
     private int mFacing = CameraSource.CAMERA_FACING_BACK;
     private Set<T> mGraphics = new HashSet<>();
+    private Set<T> mGraphicsSeparate = new HashSet<>();
+
+    public void removeToSeparate() {
+        synchronized (mLock) {
+            mGraphicsSeparate.addAll(mGraphics);
+            mGraphics.clear();
+        }
+        postInvalidate();
+    }
 
     /**
      * Base class for a custom graphics object to be rendered within the graphic overlay.  Subclass
@@ -134,6 +143,7 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
     public void clear() {
         synchronized (mLock) {
             mGraphics.clear();
+            mGraphicsSeparate.clear();
         }
         postInvalidate();
     }
@@ -145,6 +155,7 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
         synchronized (mLock) {
             mGraphics.add(graphic);
         }
+
         postInvalidate();
     }
 
@@ -191,6 +202,7 @@ public class GraphicOverlay<T extends GraphicOverlay.Graphic> extends View {
         postInvalidate();
     }
     public Set<T> getGraphic(){
+        mGraphics.addAll(mGraphicsSeparate);
         return mGraphics;
     }
     /**

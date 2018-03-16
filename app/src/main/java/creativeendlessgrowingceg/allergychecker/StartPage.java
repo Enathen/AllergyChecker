@@ -915,18 +915,26 @@ public class StartPage extends AppCompatActivity
             counter = hashSetToCheckLast.size() / 2;
             i = 0;
             ArrayList<AllergyList.E_Numbers> eNumbersArrayList = new ArrayList<>();
-            if(true){
-                AllergyList allergyList = new AllergyList(getBaseContext());
-                eNumbersArrayList = allergyList.getArrayListE_Numbers();
-            }
+
+            AllergyList allergyList = new AllergyList(getBaseContext());
+            eNumbersArrayList = allergyList.getArrayListE_Numbers();
+
             for (int j = 0; j < stringToCheckENumbers.length; j++) {
-                if(true){
+                if(j+1<stringToCheckENumbers.length && stringToCheckENumbers.length != 1){
+                    String number = stringToCheckENumbers[j] + stringToCheckENumbers[j+1].replaceAll("\\D+","");
+                    if(number.length()>2 && stringToCheckENumbers[j].compareToIgnoreCase("e") ==0){
+
+                        helpCalcAllergy.checkFullStringEnumbers(stringToCheckENumbers[j]+stringToCheckENumbers[j+1], eNumbersArrayList,allfoundENumbers);
+                    }
+                }else{
                     String number = stringToCheckENumbers[j].replaceAll("\\D+","");
                     if(number.length()>2){
-                        helpCalcAllergy.checkFullStringEnumbers(stringToCheckENumbers[j], eNumbersArrayList,allfoundENumbers);
 
+                        helpCalcAllergy.checkFullStringEnumbers(stringToCheckENumbers[j], eNumbersArrayList,allfoundENumbers);
                     }
                 }
+
+
             }
             for (String s : hashSetToCheckLast) {
                 if (i % 2 == 0) {

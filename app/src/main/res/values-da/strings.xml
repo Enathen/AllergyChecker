@@ -298,6 +298,7 @@
     <string name="sendTips">Send tips / fejl</string>
     <string name="useFocus">Autofokus på</string>
     <string name="useNoFocus">Autofokus off</string>
+    <string name="timeSleep">Sove kamera</string>
 
 
 </resources>

@@ -303,5 +303,6 @@
     <string name="sendTips">Senden Sie Tipps / Bugs</string>
     <string name="useFocus">Autofokus an</string>
     <string name="useNoFocus">Autofokus aus</string>
+    <string name="timeSleep">Schlaf-Kamera</string>
 
 </resources>

@@ -5,7 +5,11 @@ import android.graphics.Color;
 import java.util.ArrayList;
 
 /**
- * Created by Enathen on 2017-12-09.
+ *
+ * receive nice colors
+ *
+ * @author Jonathan Alexander Norberg
+ * @version 2017-12-09
  */
 
 public class ColorRandom {

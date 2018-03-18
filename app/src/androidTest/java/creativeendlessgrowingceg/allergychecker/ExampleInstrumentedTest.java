@@ -1,4 +1,4 @@
-package creativeendlessgrowingceg.allergychecker;
+/*package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Locale;
 
-/**
+*//**
  * Instrumentation test, which will execute on an Android device.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
+ *//*
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
     private static final String TAG = "test";
@@ -57,4 +57,4 @@ public class ExampleInstrumentedTest {
             }
         }
     }
-}
+}*/

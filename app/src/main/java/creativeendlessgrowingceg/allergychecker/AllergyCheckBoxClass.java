@@ -5,7 +5,12 @@ import android.widget.CheckBox;
 import java.util.ArrayList;
 
 /**
- * Created by Enathen on 2018-01-14.
+ * class to help checkbox in my allergies and my preference
+ * since you must know if same category or if you have same
+ * allergy in another category.
+ *
+ * @author Jonathan Alexander Norberg
+ * @version 2018-01-14
  */
 
 public class AllergyCheckBoxClass {
@@ -18,7 +23,7 @@ public class AllergyCheckBoxClass {
 
     private CheckBox childCheckBox;
     private String childIngredient;
-    private ArrayList<AllergyCheckBoxClass> neigbhourClasses = new ArrayList<>();
+    private ArrayList<AllergyCheckBoxClass> neighbourClasses = new ArrayList<>();
     private ArrayList<AllergyCheckBoxClass> sameItemDifferentCategories = new ArrayList<>();
     private boolean on = false;
     private boolean remove = false;
@@ -120,11 +125,11 @@ public class AllergyCheckBoxClass {
         this.remove = remove;
     }
 
-    public ArrayList<AllergyCheckBoxClass> getNeigbhourClasses() {
-        return neigbhourClasses;
+    public ArrayList<AllergyCheckBoxClass> getNeighbourClasses() {
+        return neighbourClasses;
     }
 
-    public void setNeigbhourClasses(ArrayList<AllergyCheckBoxClass> neigbhourClasses) {
-        this.neigbhourClasses = neigbhourClasses;
+    public void setNeighbourClasses(ArrayList<AllergyCheckBoxClass> neighbourClasses) {
+        this.neighbourClasses = neighbourClasses;
     }
 }

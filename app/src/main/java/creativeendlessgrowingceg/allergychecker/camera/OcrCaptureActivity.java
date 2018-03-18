@@ -71,8 +71,9 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     private static final int RC_HANDLE_CAMERA_PERM = 2;
 
     // Constants used to pass extra data in the intent
-    public static final String AutoFocus = "AutoFocus";
-    public static final String UseFlash = "UseFlash";
+    public static final String AutoFocus = "focus";
+    public static final String UseFlash = "flash";
+    public static final String SleepTimer = "timeSleep";
     public static final String TextBlockObject = "String";
 
     private CameraSource mCameraSource;
@@ -104,13 +105,14 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         setContentView(R.layout.ocr_capture);
 
         Intent intent = getIntent();
-        useFlash = intent.getBooleanExtra("flash",false);
+        useFlash = intent.getBooleanExtra(UseFlash,false);
         Log.d(TAG, String.valueOf(useFlash));
-        mPreview = (CameraSourcePreview) findViewById(R.id.preview);
-        mGraphicOverlay = (GraphicOverlay<OcrGraphic>) findViewById(R.id.graphicOverlay);
+        mPreview = findViewById(R.id.preview);
+        mGraphicOverlay = findViewById(R.id.graphicOverlay);
+
 
         // Set good defaults for capturing text.
-        boolean autoFocus = intent.getBooleanExtra("focus",true);
+        boolean autoFocus = intent.getBooleanExtra(AutoFocus,true);
 
 
         // Check for the camera permission before accessing the camera.  If the
@@ -118,7 +120,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         int rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         if (rc == PackageManager.PERMISSION_GRANTED) {
 
-            createCameraSource(autoFocus, useFlash);
+            createCameraSource(autoFocus, useFlash,intent.getIntExtra(SleepTimer,0));
         } else {
             requestCameraPermission();
         }
@@ -195,7 +197,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
      * the constant.
      */
     @SuppressLint("InlinedApi")
-    private void createCameraSource(boolean autoFocus, boolean useFlash) {
+    private void createCameraSource(boolean autoFocus, boolean useFlash,int timeSleep) {
         Context context = getApplicationContext();
 
         // Create the TextRecognizer
@@ -203,7 +205,8 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
 
         // Set the TextRecognizer's Processor.
-        ocrDetectorProcessor = new OcrDetectorProcessor(mGraphicOverlay,this);
+        Log.d(TAG, "createCameraSource: "+ timeSleep+ " : " + timeSleep*250);
+        ocrDetectorProcessor = new OcrDetectorProcessor(mGraphicOverlay,this,timeSleep*250);
         textRecognizer.setProcessor(ocrDetectorProcessor);
 
         // Check if the TextRecognizer is operational.
@@ -337,7 +340,8 @@ public final class OcrCaptureActivity extends AppCompatActivity {
             // We have permission, so create the camerasource
             boolean autoFocus = getIntent().getBooleanExtra(AutoFocus,false);
             boolean useFlash = getIntent().getBooleanExtra(UseFlash, false);
-            createCameraSource(autoFocus, useFlash);
+            int sleepTimer = getIntent().getIntExtra(SleepTimer, 0);
+            createCameraSource(autoFocus, useFlash,sleepTimer);
             return;
         }
 

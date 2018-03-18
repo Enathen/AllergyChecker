@@ -3,7 +3,11 @@ package creativeendlessgrowingceg.allergychecker;
 import android.support.annotation.NonNull;
 
 /**
- * Created by Enathen on 2017-12-01.
+ *
+ * Helper class for keeping all allergies
+ *
+ * @author Jonathan Alexander Norberg
+ * @version 2017-12-01
  */
 
 public class AllAllergiesForEachInteger implements Comparable<AllAllergiesForEachInteger> {

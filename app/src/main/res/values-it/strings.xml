@@ -297,4 +297,5 @@
     <string name="sendTips">Inviare suggerimenti / bug</string>
     <string name="useNoFocus">Autofocus Spento</string>
     <string name="useFocus">"Autofocus Attivo "</string>
+    <string name="timeSleep">Macchina fotografica del sonno</string>
 </resources>

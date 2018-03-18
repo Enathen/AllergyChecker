@@ -70,6 +70,7 @@ public class E_Numbers extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +87,12 @@ public class E_Numbers extends Fragment {
         }
     }
 
+    /**
+     * set up the view.
+     * set text info
+     * set eu, us
+     * and so on
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

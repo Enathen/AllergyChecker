@@ -10,12 +10,8 @@ import android.view.ViewGroup;
 
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link AboutFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link AboutFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Fragment about page for information about the app
+ * No controllers, very trivial
  */
 public class AboutFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -51,13 +47,11 @@ public class AboutFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override

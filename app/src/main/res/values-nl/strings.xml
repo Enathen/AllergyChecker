@@ -306,4 +306,5 @@
     <string name="sendTips">Stuur tips / bugs</string>
     <string name="useFocus">Autofocus Aan</string>
     <string name="useNoFocus">Autofocus Uit</string>
+    <string name="timeSleep">Slaapcamera</string>
 </resources>

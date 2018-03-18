@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,28 +23,19 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Random;
 
-
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link HistoryFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link HistoryFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * displays scanned allergies to be scanned again
+ *
+ * @author Jonathan Alexander Norberg
+ * @version 2017 Nov
  */
 public class HistoryFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String TAG = "HistoryFragment";
-    HashMap<LinearLayout, String> StoredString = new HashMap<>();
-    boolean saveButton = false;
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private OnFragmentInteractionListener mListener;
@@ -59,16 +49,6 @@ public class HistoryFragment extends Fragment {
     }
 
 
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment test.
-     */
-    // TODO: Rename and change types and number of parameters
     public HistoryFragment newInstance(String param1, String param2) {
         HistoryFragment fragment = new HistoryFragment();
         Bundle args = new Bundle();
@@ -89,6 +69,9 @@ public class HistoryFragment extends Fragment {
 
     }
 
+    /**
+     *  get dateString and inflate views
+     */
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -107,18 +90,16 @@ public class HistoryFragment extends Fragment {
         return parentFrameLayout;
     }
 
+    /**
+     * inflate view and create nice side borders
+     * @param arrayList of history strings
+     */
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void insertNew(final LayoutInflater inflater, final ViewGroup container, final ArrayList<String> arrayList) {
-        int colorGreenToRed = 26;
         ArrayList<Integer> color = ColorRandom.getRandomColor();
         rand = new Random().nextInt(color.size());
         if (!arrayList.isEmpty()) {
 
-            int baseIncrease = (255 - 26) / arrayList.size() - 1;
-            if (baseIncrease == 0) {
-                baseIncrease = 1;
-            }
-            Log.d(TAG, String.valueOf(baseIncrease));
             for (final String s : arrayList) {
 
                 final LinearLayout topLinLayOut = (LinearLayout) inflater.inflate(R.layout.historyrow, container, false);
@@ -167,10 +148,6 @@ public class HistoryFragment extends Fragment {
 
                 side.setBackgroundColor(ColorRandom.getRandomColorFromArray(color, rand));
                 side2.setBackgroundColor(ColorRandom.getRandomColorFromArray(color, rand));
-                colorGreenToRed += baseIncrease;
-                if (colorGreenToRed >= 255) {
-                    baseIncrease = -1;
-                }
                 textview.setText(TextHandler.capitalLetter(correctString));
                 newLinearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -244,7 +221,6 @@ public class HistoryFragment extends Fragment {
             parentLinearLayout.addView(linearLayout);
         }
     }
-
     private Locale loadLocale() {
         return new Locale(new LanguageFragment().getLanguageFromLFragment(getContext()));
     }
@@ -274,21 +250,14 @@ public class HistoryFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
+    /**
+     * compare dates to present it nice.
+     */
     public static class stringComparator implements Comparator<String> {
         @Override
         public int compare(String string1, String string2) {

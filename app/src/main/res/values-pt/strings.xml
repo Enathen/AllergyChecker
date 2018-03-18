@@ -298,4 +298,5 @@
     <string name="sendTips">Envie dicas / insetos</string>
     <string name="useFocus">Autofocus Fam</string>
     <string name="useNoFocus">Autofocus Fora</string>
+    <string name="timeSleep">Câmera de sono</string>
 </resources>

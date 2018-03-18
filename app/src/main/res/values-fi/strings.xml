@@ -297,5 +297,6 @@
     <string name="sendTips">Lähetä vinkkejä / vikoja</string>
     <string name="useFocus">Automaattinen tarkennus</string>
     <string name="useNoFocus">Automaattinen tarkennus pois päältä</string>
+    <string name="timeSleep">Nukkumikamera</string>
 
 </resources>

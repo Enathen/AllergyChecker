@@ -1,16 +1,13 @@
 package creativeendlessgrowingceg.allergychecker;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.View;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -23,24 +20,50 @@ import creativeendlessgrowingceg.allergychecker.bktree.Metric;
 import creativeendlessgrowingceg.allergychecker.bktree.MutableBkTree;
 
 /**
- * Created by Enathen on 2017-12-01.
+ *
+ * allergy calculate class
+ *
+ * @author Jonathan Alexander Norberg
+ * @version 2017-12-01
  */
 
 public class HelpCalcAllergy {
     private static final String TAG = "HelpCalcAllergy";
+
+    /**
+     * Hamming distance for the word
+     *
+     * distance from a word to another depending on their length and char differences.
+     *
+     */
     private Metric<String> hammingDistance = new Metric<String>() {
         @Override
         public int distance(String x, String y) {
             if (!(x.length() != y.length() || x.length() - 1 != y.length() || x.length() + 1 != y.length())) {
                 throw new IllegalArgumentException();
             }
+            Log.d(TAG, "Word X: " + x + " Y: " + y);
             int distance = 0;
+
             if (y.length() > x.length()) {
-                for (int i = 0; i < y.length() - 1; i++)
-                    if (x.charAt(i) != y.charAt(i)) {
-                        distance++;
+                int before = 0;
+                for (int i = 0; i < y.length() - 1; i++) {
+                    Log.d(TAG, "i+1+before: " + (i-1+before) + " y: "+ y.length());
+                    if(i+before >= y.length()){
+                        Log.d(TAG, "BREAK i+1+before: " + (i-1+before) + " y: "+ y.length());
+                        //distance++;
+                        break;
                     }
-                distance++;
+                    Log.d(TAG, "char X: " + x.charAt(i) + " char Y: " + y.charAt(i+before));
+                    if (x.charAt(i) != y.charAt(i+before)) {
+                        distance++;
+                        Log.d(TAG, "char X: " + x.charAt(i) + " char Y: " + y.charAt(i+before) + " distance: " + distance);
+                        before++;
+                        i--;
+                    }
+                }
+                //distance++;
+                Log.d(TAG, "Word X: " + x + " Y: " + y + " distance: " + distance);
 
             } else if (y.length() < x.length()) {
                 for (int i = 0; i < x.length() - 1; i++)
@@ -54,21 +77,18 @@ public class HelpCalcAllergy {
                         distance++;
                     }
             }
+            Log.d(TAG, "DISTANCE " + distance);
             return distance;
         }
     };
-    private boolean dontEat;
 
-    @NonNull
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static String getStringByLocal(Activity context, int id, String locale) {
-        Configuration configuration = new Configuration(context.getResources().getConfiguration());
-        configuration.setLocale(new Locale(locale));
-
-
-        return context.createConfigurationContext(configuration).getResources().getString(id).toLowerCase().replaceAll("\\s+", "");
-    }
-
+    /**
+     * convert string to locale desired
+     * @param context to use
+     * @param id to get string from
+     * @param locale to change to locale desired
+     * @return locale string
+     */
     @NonNull
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static String getStringByLocal(Context context, int id, String locale) {
@@ -76,6 +96,16 @@ public class HelpCalcAllergy {
         configuration.setLocale(new Locale(locale));
         return context.createConfigurationContext(configuration).getResources().getString(id).toLowerCase().replaceAll("\\s+", "");
     }
+    /**
+     * takes a string from all strings scanned checks below and above string and concatinate them
+     * helps with forinstance if the camera accident cut a string "Pea" "nut"
+     * though the string will only be concatinated above and below if there exist a
+     * du, de or di in the middle. this because some latin languages contains them for instance
+     * nuezu de brazil.
+     * @param splitStr splitted string
+     * @param hashSetAllStrings to add
+     * @param hashSetToCheckLast this to check full strig later
+     */
     public void FixString(String[] splitStr, TreeMap<Integer, HashSet<String>> hashSetAllStrings, HashSet<String> hashSetToCheckLast) {
         for (int i = 0; i < splitStr.length; i++) {
             if (splitStr.length - 1 != i) {
@@ -109,28 +139,37 @@ public class HelpCalcAllergy {
         }
     }
 
-    public int setLocaleString(int length, int id, HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies, ArrayList<Locale> listOfLanguages, StartPage startPage) {
+    /**
+     * Get all strings from list of language for instance jordnöt peanut peanödd e.t.c.
+     * @param length to speed up algorithm
+     * @param id to set R.string. ..
+     * @param allergies to insert into
+     * @param listOfLanguages to convert strings to
+     * @param context to getstring
+     * @return length
+     */
+    public int setLocaleString(int length, int id, HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies, ArrayList<Locale> listOfLanguages, Context context) {
 
         for (Locale locale : listOfLanguages) {
 
-            String localeString = getStringByLocal(startPage, id, locale.getLanguage());
+            String localeString = getStringByLocal(context, id, locale.getLanguage());
 
             if (length < localeString.length()) {
                 length = localeString.length() + 2;
             }
-            List<String> list = split(localeString);
+            List<String> list = TextHandler.split(localeString);
             for (int i = 0; i < list.size(); i++) {
 
                 if (allergies.containsKey(list.get(i).length())) {
                     HashMap<String, AllAllergiesForEachInteger> stringAllAllergiesForEachIntegerHashMap = allergies.get((list.get(i)).length());
                     stringAllAllergiesForEachIntegerHashMap.put(list.get(i), new AllAllergiesForEachInteger(locale.getLanguage(),
-                                    list.get(i), id, startPage.getString(id)));
+                                    list.get(i), id, context.getString(id)));
                     allergies.put((list.get(i)).length(),stringAllAllergiesForEachIntegerHashMap);
 
 
                 } else {
                     HashMap<String, AllAllergiesForEachInteger> hashSetn = new HashMap<>();
-                    hashSetn.put(list.get(i), new AllAllergiesForEachInteger(locale.getLanguage(), list.get(i), id, startPage.getString(id)));
+                    hashSetn.put(list.get(i), new AllAllergiesForEachInteger(locale.getLanguage(), list.get(i), id, context.getString(id)));
                     allergies.put((list.get(i)).length(), hashSetn);
 
                 }
@@ -140,6 +179,22 @@ public class HelpCalcAllergy {
         return length;
     }
 
+    /**
+     * handles the algorithm of nearby allergies.
+     *
+     * s > 4 means if string length bigger then 4 use this distance from another word
+     * for instance: lemon > 4 then max possible distance is 1 if the word matched against is 4 also
+     * then leman, lamon and so on is possible allergies
+     *
+     * if scanned string is smaller than allergy word the words might be lemn, lemo and so on only
+     * though if the word is bigger than 4 else small word will pop up all the time like "sej", from
+     * scanned text ej se which would make the user annoyed.
+     *
+     * @param length speed up algorithm if word longer then the longest allergy
+     * @param hashSetAllStrings all strings scanned
+     * @param allergies all allergies user have
+     * @param allFoundAllergies all found allergies
+     */
     public void bkTree(int length, TreeMap<Integer, HashSet<String>> hashSetAllStrings,
                        HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies,
                        ArrayList<AllAllergiesForEachInteger> allFoundAllergies) {
@@ -231,7 +286,12 @@ public class HelpCalcAllergy {
         }
     }
 
-
+    /**
+     *  check full string if substring is contained if allergy already found break.
+     * @param s to check
+     * @param allergies user have
+     * @param allFoundAllergies that already found
+     */
     public void checkFullString(String s, HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies, ArrayList<AllAllergiesForEachInteger> allFoundAllergies) {
         for (int key : allergies.keySet()) {
 
@@ -262,45 +322,12 @@ public class HelpCalcAllergy {
     }
 
 
-    public boolean checkIfAlreadyShown(View v) {
-        if (v.getRotation() == 0) {
-            v.setRotation(180);
-            return true;
-        } else {
-            v.setRotation(0);
-            return false;
-
-
-        }
-
-    }
-
-    public String cutFirstWord(String string) {
-        List<String> list = null;
-        if (string.contains(",")) {
-            list = Arrays.asList(string.split(","));
-
-        }
-        if (list == null) {
-            return string;
-        }
-        return list.get(0);
-    }
-
-    public List<String> split(String string) {
-        List<String> list = null;
-        if (string.contains(",")) {
-            list = Arrays.asList(string.split(","));
-
-        }
-        if (list == null) {
-            list = new ArrayList<>();
-            list.add(string);
-            return list;
-        }
-        return list;
-    }
-
+    /**
+     * check enumbers
+     * @param s to check e number
+     * @param eNumbersArrayList all E numbers
+     * @param allFoundAllergies all found E numbers
+     */
     public void checkFullStringEnumbers(String s, ArrayList<AllergyList.E_Numbers> eNumbersArrayList, ArrayList<AllergyList.E_Numbers> allFoundAllergies) {
         for (AllergyList.E_Numbers key : eNumbersArrayList) {
 
@@ -313,4 +340,5 @@ public class HelpCalcAllergy {
         }
         eNumbersArrayList.removeAll(allFoundAllergies);
     }
+
 }

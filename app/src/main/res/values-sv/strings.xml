@@ -314,14 +314,7 @@
     <string name="sendTips">Skicka tips / buggar</string>
     <string name="useFocus">Fokus På</string>
     <string name="useNoFocus">Fokus Av</string>
-
-
-
-
-
-
-
-
+    <string name="timeSleep">Sova kamera</string>
 
 
 </resources>

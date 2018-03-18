@@ -92,7 +92,7 @@ public class LoadUIAllergies {
 
         }
         for (AllergyCheckBoxClass allergyCheckBoxClass : allergyCheckBoxClasses) {
-            allergyCheckBoxClass.setNeigbhourClasses(allergyCheckBoxClasses);
+            allergyCheckBoxClass.setNeighbourClasses(allergyCheckBoxClasses);
 
         }
         linearLayoutToInsertLater.put(parentKey, categoriesLinearLayout);

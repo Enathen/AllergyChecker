@@ -851,5 +851,6 @@
     <string name="sendTips">Send tips / bugs</string>
     <string name="useFocus">Autofocus On</string>
     <string name="useNoFocus">Autofocus Off</string>
+    <string name="timeSleep">Sleep camera</string>
 
 </resources>

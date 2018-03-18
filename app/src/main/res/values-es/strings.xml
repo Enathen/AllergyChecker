@@ -300,6 +300,7 @@
     <string name="sendTips">Enviar sugerencias / errores</string>
     <string name="useFocus">Autofoco En</string>
     <string name="useNoFocus">Autofoco  De</string>
+    <string name="timeSleep">Cámara de dormir</string>
 
 
 </resources>

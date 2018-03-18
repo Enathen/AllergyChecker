@@ -305,5 +305,6 @@
     <string name="sendTips">Envoyer des astuces / bugs</string>
     <string name="useNoFocus">Autofocus Désactivé</string>
     <string name="useFocus">Autofocus Sur</string>
+    <string name="timeSleep">Caméra de sommeil</string>
 
 </resources>

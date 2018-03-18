@@ -89,7 +89,17 @@
                 fab:fab_colorRipple="#FFFFFF"
                 fab:fab_label="@string/write"
                 fab:fab_size="normal" />
-
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/timeSleep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/timesleep00"
+                android:visibility="gone"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_colorPressed="#66FFFFFF"
+                fab:fab_colorRipple="#FFFFFF"
+                fab:fab_label="@string/timeSleep"
+                fab:fab_size="normal" />
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/flashon"
                 android:layout_width="wrap_content"

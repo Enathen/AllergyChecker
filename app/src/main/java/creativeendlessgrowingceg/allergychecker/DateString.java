@@ -13,6 +13,8 @@ import java.util.Locale;
 import java.util.Set;
 
 /**
+ * helper with date and strings
+ *
  * @author Jonathan Alexander Norberg
  * @version 2018-03-04
  */
@@ -22,18 +24,20 @@ public class DateString {
     private static final String TAG = "DATESTRING";
     private final SharedPreferences prefs;
     ArrayList<String> dateStrings = new ArrayList<>();
-    private Context startPage;
 
-    DateString(String string,Context startPage) {
-        this.startPage = startPage;
+    DateString(String string, Context startPage) {
         prefs = startPage.getSharedPreferences(SHARED_PREFS_NAME, Activity.MODE_PRIVATE);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("sv"));
         dateStrings.add(simpleDateFormat.format(new Date()).concat(" " + string));
     }
+
     DateString(Context startPage) {
-        this.startPage = startPage;
         prefs = startPage.getSharedPreferences(SHARED_PREFS_NAME, Activity.MODE_PRIVATE);
     }
+
+    /**
+     * Save max 128 datestrings
+     */
     public void saveArray() {
         dateStrings.addAll(getArray());
         Collections.sort(getArray());
@@ -53,6 +57,9 @@ public class DateString {
         mEdit1.commit();
     }
 
+    /**
+     * @return ArrayList of datestrings
+     */
     public ArrayList<String> getArray() {
 
         Set<String> set = prefs.getStringSet("list", new HashSet<String>());
@@ -60,11 +67,14 @@ public class DateString {
         return new ArrayList<>(set);
     }
 
-    public void deleteOneItemHistory(String keys) {
+    /**
+     * @param key to get deleted
+     */
+    public void deleteOneItemHistory(String key) {
 
         SharedPreferences.Editor mEdit1 = prefs.edit();
         Set<String> set = prefs.getStringSet("list", new HashSet<String>());
-        set.remove(keys);
+        set.remove(key);
         mEdit1.remove("list");
         mEdit1.commit();
         mEdit1.putStringSet("list", set);
@@ -73,6 +83,9 @@ public class DateString {
 
     }
 
+    /**
+     * delete full history
+     */
     public void deleteHistory() {
 
         SharedPreferences.Editor mEdit1 = prefs.edit();
@@ -81,10 +94,11 @@ public class DateString {
 
     }
 
+    /**
+     * @return datestring
+     */
     public ArrayList<String> getArrayFromHistory() {
-        //NOTE: if shared preference is null, the method return empty Hashset and not null
-        Set<String> set = prefs.getStringSet("list", new HashSet<String>());
 
-        return new ArrayList<>(set);
+        return new ArrayList<>(prefs.getStringSet("list", new HashSet<String>()));
     }
 }

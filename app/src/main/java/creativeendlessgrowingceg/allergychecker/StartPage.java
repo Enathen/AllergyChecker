@@ -68,13 +68,14 @@ public class StartPage extends AppCompatActivity
         , MyPreference.OnFragmentInteractionListener
         , ShowAllergies.OnFragmentInteractionListener
         , E_Numbers.OnFragmentInteractionListener
-        , BillingProvider{
+        , BillingProvider {
     private static final String TAG = "StartPage";
     private static final String SHARED_PREFS_NAME = "StartPage";
-    FloatingActionButton flash;
-    FloatingActionButton write;
     FloatingActionMenu camera;
-
+    private FloatingActionButton flash;
+    private FloatingActionButton timeSleep;
+    private FloatingActionButton write;
+    private FloatingActionButton focus;
     private TextView suggestions;
     private TextView allergic;
     private InterstitialAd interstitialAd;
@@ -85,7 +86,6 @@ public class StartPage extends AppCompatActivity
     private AdView mAdView;
     private AdView mAdViewRectangle;
     private StartPage startPage;
-    private FloatingActionButton focus;
     private boolean startPageBoolean = false;
 
 
@@ -102,6 +102,7 @@ public class StartPage extends AppCompatActivity
     /**
      * handles too much now
      * take care of actavity
+     *
      * @param savedInstanceState
      */
     @Override
@@ -122,38 +123,95 @@ public class StartPage extends AppCompatActivity
 
         loadInterstitial = false;
         Intent intent = getIntent();
-        suggestions = (TextView) findViewById(R.id.ingredientsTextView);
-        allergic = (TextView) findViewById(R.id.textViewFoundAllergies);
+        suggestions = findViewById(R.id.ingredientsTextView);
+        allergic = findViewById(R.id.textViewFoundAllergies);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //loadInterstitial();
-        ((TextView)findViewById(R.id.textViewtip)).setText(StartPageTip.getTip(getBaseContext()));
-        write = (FloatingActionButton) findViewById(R.id.write);
-        focus = (FloatingActionButton) findViewById(R.id.focusOn);
-        camera = (FloatingActionMenu) findViewById(R.id.menu);
-        flash = (FloatingActionButton) findViewById(R.id.flashon);
+        ((TextView) findViewById(R.id.textViewtip)).setText(StartPageTip.getTip(getBaseContext()));
+        write = findViewById(R.id.write);
+        focus = findViewById(R.id.focusOn);
+        camera = findViewById(R.id.menu);
+        flash = findViewById(R.id.flashon);
+        timeSleep = findViewById(R.id.timeSleep);
         final StartPage startPage = this;
         final SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        if(sharedPreferences.getBoolean("focus", true)){
+        int timeSleepInt = sharedPreferences.getInt("timeSleep", 0);
+        if (timeSleepInt == 0) {
+            timeSleep.setLabelText(getString(R.string.timeSleep) + " " + 0 + " s");
+            timeSleep.setImageDrawable(getDrawable(R.drawable.timesleep00));
+        } else if (timeSleepInt == 1) {
+            timeSleep.setLabelText(getString(R.string.timeSleep) + " " + 0.25 + " s");
+            timeSleep.setImageDrawable(getDrawable(R.drawable.timesleep));
+
+        } else if (timeSleepInt == 2) {
+            timeSleep.setLabelText(getString(R.string.timeSleep) + " " + 0.5 + " s");
+            timeSleep.setImageDrawable(getDrawable(R.drawable.timesleep05));
+
+        } else if (timeSleepInt == 3) {
+            timeSleep.setLabelText(getString(R.string.timeSleep) + " " + 0.75 + " s");
+            timeSleep.setImageDrawable(getDrawable(R.drawable.timesleep075));
+
+        } else if (timeSleepInt == 4) {
+            timeSleep.setLabelText(getString(R.string.timeSleep) + " " + 1 + " s");
+            timeSleep.setImageDrawable(getDrawable(R.drawable.timesleep10));
+
+        }
+        if (sharedPreferences.getBoolean("focus", true)) {
             focus.setLabelText(getString(R.string.useFocus));
             focus.setImageDrawable(getDrawable(R.drawable.focuson));
 
-        }else{
+        } else {
             focus.setLabelText(getString(R.string.useNoFocus));
             focus.setImageDrawable(getDrawable(R.drawable.focusoff));
 
         }
-        if(sharedPreferences.getBoolean("flash", false)){
+        if (sharedPreferences.getBoolean("flash", false)) {
             flash.setLabelText(getString(R.string.useflash));
             flash.setImageDrawable(getDrawable(R.drawable.flashon));
 
-        }else{
+        } else {
             flash.setLabelText(getString(R.string.useNoFlash));
             flash.setImageDrawable(getDrawable(R.drawable.flash));
 
         }
+        timeSleep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor sharedPreferencesEditor =
+                        PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
+                int timeSleepInt = sharedPreferences.getInt("timeSleep", 0);
+                Log.d(TAG, "onClick: "+ timeSleepInt);
+                if (timeSleepInt == 4) {
+                    timeSleep.setLabelText(getString(R.string.timeSleep) + " " + 0 + " s");
+                    timeSleep.setImageDrawable(getDrawable(R.drawable.timesleep00));
+                } else if (timeSleepInt == 0) {
+                    timeSleep.setLabelText(getString(R.string.timeSleep) + " " + 0.25 + " s");
+                    timeSleep.setImageDrawable(getDrawable(R.drawable.timesleep));
+
+                } else if (timeSleepInt == 1) {
+                    timeSleep.setLabelText(getString(R.string.timeSleep) + " " + 0.5 + " s");
+                    timeSleep.setImageDrawable(getDrawable(R.drawable.timesleep05));
+
+                } else if (timeSleepInt == 2) {
+                    timeSleep.setLabelText(getString(R.string.timeSleep) + " " + 0.75 + " s");
+                    timeSleep.setImageDrawable(getDrawable(R.drawable.timesleep075));
+
+                } else if (timeSleepInt == 3) {
+                    timeSleep.setLabelText(getString(R.string.timeSleep) + " " + 1 + " s");
+                    timeSleep.setImageDrawable(getDrawable(R.drawable.timesleep10));
+
+                }
+                if(timeSleepInt+1> 4){
+                    timeSleepInt = -1;
+                }
+                sharedPreferencesEditor.putInt(
+                        "timeSleep", timeSleepInt+1);
+                sharedPreferencesEditor.apply();
+            }
+        });
         focus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -167,7 +225,7 @@ public class StartPage extends AppCompatActivity
                     focus.setImageDrawable(getDrawable(R.drawable.focusoff));
                     focus.setLabelText(getString(R.string.useNoFocus));
 
-                }else{
+                } else {
                     focus.setImageDrawable(getDrawable(R.drawable.focuson));
                     sharedPreferencesEditor.putBoolean(
                             "focus", true);
@@ -181,7 +239,6 @@ public class StartPage extends AppCompatActivity
             public void onClick(View v) {
 
 
-
                 SharedPreferences.Editor sharedPreferencesEditor =
                         PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
                 if (sharedPreferences.getBoolean("flash", false)) {
@@ -191,8 +248,7 @@ public class StartPage extends AppCompatActivity
 
                     flash.setImageDrawable(getDrawable(R.drawable.flash));
                     flash.setLabelText(getString(R.string.useNoFlash));
-                }
-                else{
+                } else {
                     flash.setImageDrawable(getDrawable(R.drawable.flashon));
                     sharedPreferencesEditor.putBoolean(
                             "flash", true);
@@ -244,13 +300,14 @@ public class StartPage extends AppCompatActivity
         camera.setOnMenuButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(camera.isOpened()){
+                if (camera.isOpened()) {
                     closeFAB();
                     return;
                 }
                 Intent intent = new Intent(startPage, OcrCaptureActivity.class);
-                intent.putExtra("focus", sharedPreferences.getBoolean("focus",true));
-                intent.putExtra("flash", sharedPreferences.getBoolean("flash",false));
+                intent.putExtra("focus", sharedPreferences.getBoolean("focus", true));
+                intent.putExtra("flash", sharedPreferences.getBoolean("flash", false));
+                intent.putExtra("timeSleep", sharedPreferences.getInt("timeSleep", 0));
                 startPage.startActivity(intent);
 
                 if (!sharedPreferences.getBoolean("firstTimer", false)) {
@@ -268,7 +325,7 @@ public class StartPage extends AppCompatActivity
 
         intent = getIntent();
         String str = intent.getStringExtra("location");
-        if(savedInstanceState != null){
+        if (savedInstanceState != null) {
             findViewById(R.id.textViewtip).setVisibility(View.GONE);
             str = null;
         }
@@ -279,7 +336,7 @@ public class StartPage extends AppCompatActivity
             str = str.toLowerCase();
 
             if (!str.equals("")) {
-                DateString dateString = new DateString(str,startPage.getBaseContext());
+                DateString dateString = new DateString(str, startPage.getBaseContext());
                 dateString.saveArray();
 
             }
@@ -290,16 +347,16 @@ public class StartPage extends AppCompatActivity
 
         } else {
             str = intent.getStringExtra("HistoryFragment");
-            if(savedInstanceState != null){
+            if (savedInstanceState != null) {
                 str = null;
                 findViewById(R.id.textViewtip).setVisibility(View.GONE);
 
             }
             if (str != null) {
-                Unfiltered =  intent.getBooleanExtra("Unfiltered",true);
+                Unfiltered = intent.getBooleanExtra("Unfiltered", true);
                 suggestions.setText(str);
                 checkStringAgainstAllergies(str);
-            }else{
+            } else {
 
                 checkPremium();
                 startPageBoolean = true;
@@ -309,13 +366,13 @@ public class StartPage extends AppCompatActivity
         }
 
         setProfilePicture();
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View parentView = navigationView.getHeaderView(0);
         parentView.findViewById(R.id.LinLayHorNavHeadStartPage).setOnClickListener(new View.OnClickListener() {
@@ -323,7 +380,7 @@ public class StartPage extends AppCompatActivity
             public void onClick(View v) {
                 Fragment fragment = new ShowAllergies();
                 Bundle b = new Bundle();
-                b.putSerializable("ArrayList",LanguagesAccepted.getLanguages(getBaseContext()));
+                b.putSerializable("ArrayList", LanguagesAccepted.getLanguages(getBaseContext()));
 
                 fragment.setArguments(b);
                 setTitle(getString(R.string.showAllergies));
@@ -337,7 +394,7 @@ public class StartPage extends AppCompatActivity
                 public void onClick(View v) {
                     Fragment fragment = new ShowAllergies();
                     Bundle b = new Bundle();
-                    b.putSerializable("ArrayList",LanguagesAccepted.getLanguages(getBaseContext()));
+                    b.putSerializable("ArrayList", LanguagesAccepted.getLanguages(getBaseContext()));
 
                     fragment.setArguments(b);
                     setTitle(getString(R.string.showAllergies));
@@ -351,35 +408,41 @@ public class StartPage extends AppCompatActivity
 
         //billing.buyProduct("premium_upgrade");
     }
-    public void closeFAB(){
+
+    public void closeFAB() {
         write.setVisibility(View.GONE);
         flash.setVisibility(View.GONE);
         focus.setVisibility(View.GONE);
+        timeSleep.setVisibility(View.GONE);
 
         camera.close(true);
     }
-    public void toggleFAB(){
+
+    public void toggleFAB() {
         if (write.getVisibility() != View.VISIBLE) {
             write.setVisibility(View.VISIBLE);
             flash.setVisibility(View.VISIBLE);
             focus.setVisibility(View.VISIBLE);
+            timeSleep.setVisibility(View.VISIBLE);
             camera.open(true);
 
         } else {
             write.setVisibility(View.GONE);
             flash.setVisibility(View.GONE);
             focus.setVisibility(View.GONE);
+            timeSleep.setVisibility(View.GONE);
 
             camera.close(true);
         }
     }
+
     /**
      * startup premium check
      */
     private void checkPremium() {
         Log.d(TAG, "checkPremium: ");
         mViewController = new SubscriptionsViewController();
-        mBillingManager = new BillingManager(startPage,mViewController.getUpdateListener());
+        mBillingManager = new BillingManager(startPage, mViewController.getUpdateListener());
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -394,7 +457,7 @@ public class StartPage extends AppCompatActivity
      * MOVE
      * Check if there is a new version
      */
-    private void checkNewVersion(){
+    private void checkNewVersion() {
 
         // TODO add when after update
         int sdkInt = BuildConfig.VERSION_CODE;
@@ -402,7 +465,7 @@ public class StartPage extends AppCompatActivity
         String check2 = String.valueOf(sdkInt) + "load1";
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        if(!sharedPreferences.getBoolean("first",false)){
+        if (!sharedPreferences.getBoolean("first", false)) {
             SharedPreferences.Editor sharedPreferencesEditor =
                     PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
             sharedPreferencesEditor.putBoolean(
@@ -412,7 +475,7 @@ public class StartPage extends AppCompatActivity
             sharedPreferencesEditor.putBoolean(
                     check, true);
             sharedPreferencesEditor.apply();
-        } else{
+        } else {
             if (!sharedPreferences.getBoolean(check, false)) {
                 Fragment fragment = new MyAllergies();
                 fragment(fragment, getString(R.string.myAllergies));
@@ -440,7 +503,7 @@ public class StartPage extends AppCompatActivity
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         String check = String.valueOf(BuildConfig.VERSION_CODE) + "checkAllergy1";
-        if(sharedPreferences.getBoolean(check,false)){
+        if (sharedPreferences.getBoolean(check, false)) {
             new LoadUIAllergies().savePicture(this, getImageViewHashMap(this));
         }
     }
@@ -449,6 +512,7 @@ public class StartPage extends AppCompatActivity
     private void displayInterstitial() {
         interstitialAd.loadAd(new AdRequest.Builder().addTestDevice("79C8186833AA41CD2C967FE87614751A").build());
     }
+
     public void loadInterstitial() {
         interstitialAd = new InterstitialAd(StartPage.this);
         interstitialAd.setAdUnitId("ca-app-pub-3607354849437438/9852745111");
@@ -504,9 +568,9 @@ public class StartPage extends AppCompatActivity
                     }
                 };
                 AlertDialog.Builder builder = new AlertDialog.Builder(startPage);
-                if(Unfiltered){
+                if (Unfiltered) {
                     builder.setMessage(R.string.advancedSearchis).setPositiveButton(R.string.ok, dialogClickListener).show();
-                }else{
+                } else {
                     builder.setMessage(R.string.unfilteredSearchIs).setPositiveButton(R.string.ok, dialogClickListener).show();
 
                 }
@@ -525,35 +589,35 @@ public class StartPage extends AppCompatActivity
      */
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         if (drawer.isDrawerOpen(GravityCompat.START) || camera.isOpened()) {
             closeFAB();
             drawer.closeDrawer(GravityCompat.START);
         } else {
             int count = getSupportFragmentManager().getBackStackEntryCount();
-            Log.d(TAG, "onBackPressed COUNT: "+ count);
+            Log.d(TAG, "onBackPressed COUNT: " + count);
 
             if (count == 0) {
-                TextView viewById = (TextView) findViewById(R.id.textViewFoundAllergies);
+                TextView viewById = findViewById(R.id.textViewFoundAllergies);
                 CharSequence text = viewById.getText();
-                if(text.length()>0){
+                if (text.length() > 0) {
                     Intent intent = new Intent(this, StartPage.class);
                     startActivity(intent);
                     finish();
-                }else{
+                } else {
 
                     super.onBackPressed();
                 }
                 //additional code
             } else {
-                if(count == 1){
+                if (count == 1) {
                     setTitle(R.string.app_name);
                     findViewById(R.id.textViewtip).setVisibility(View.VISIBLE);
 
-                    TextView viewById = (TextView) findViewById(R.id.textViewFoundAllergies);
+                    TextView viewById = findViewById(R.id.textViewFoundAllergies);
                     CharSequence text = viewById.getText();
-                    if(text.length() >0){
+                    if (text.length() > 0) {
                         findViewById(R.id.adView).setVisibility(View.VISIBLE);
                         findViewById(R.id.textViewtip).setVisibility(View.GONE);
                         findViewById(R.id.linlaybtnadvanced).setVisibility(View.VISIBLE);
@@ -563,14 +627,14 @@ public class StartPage extends AppCompatActivity
                         findViewById(R.id.linLayHorizontalStartPage).setVisibility(View.VISIBLE);
                         findViewById(R.id.ingredientsTextView).setVisibility(View.VISIBLE);
                         findViewById(R.id.textViewFoundAllergies).setVisibility(View.VISIBLE);
-                    }else{
+                    } else {
                         findViewById(R.id.adViewRectangle).setVisibility(View.VISIBLE);
                     }
 
-                }else{
+                } else {
                     FragmentManager supportFragmentManager = getSupportFragmentManager();
-                    String topOnStack = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.getBackStackEntryCount()-2).getName();
-                    Log.d(TAG, "onBackPressed: "+ topOnStack);
+                    String topOnStack = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.getBackStackEntryCount() - 2).getName();
+                    Log.d(TAG, "onBackPressed: " + topOnStack);
                     setTitle(topOnStack);
 
                 }
@@ -617,15 +681,14 @@ public class StartPage extends AppCompatActivity
             backtitle = getString(R.string.helpTranslate);
         } else if (id == R.id.showAllergies) {
             Bundle b = new Bundle();
-            b.putSerializable("ArrayList",LanguagesAccepted.getLanguages(getBaseContext()));
+            b.putSerializable("ArrayList", LanguagesAccepted.getLanguages(getBaseContext()));
 
             fragment = new ShowAllergies();
             fragment.setArguments(b);
             setTitle(getString(R.string.showAllergies));
             backtitle = getString(R.string.showAllergies);
 
-        }
-        else if (id == R.id.nav_rate) {
+        } else if (id == R.id.nav_rate) {
             Uri uri = Uri.parse("market://details?id=" + this.getPackageName());
             Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
             // To count with Play market backstack, After pressing back button,
@@ -656,13 +719,14 @@ public class StartPage extends AppCompatActivity
         }
 
         if (fragment != null) {
-            fragment(fragment,backtitle);
+            fragment(fragment, backtitle);
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    private void fragment(Fragment fragment, String backtitle){
+
+    private void fragment(Fragment fragment, String backtitle) {
         if (fragment != null) {
             suggestions.setVisibility(View.GONE);
             allergic.setVisibility(View.GONE);
@@ -686,9 +750,10 @@ public class StartPage extends AppCompatActivity
             fragmentManager.executePendingTransactions();
         }
     }
+
     public HashMap<Integer, ImageView> getImageViewHashMap(StartPage startPage) {
         @SuppressLint("UseSparseArrays") HashMap<Integer, ImageView> imageViewHashMap = new HashMap<>();
-        NavigationView navigationView = (NavigationView) startPage.findViewById(R.id.nav_view);
+        NavigationView navigationView = startPage.findViewById(R.id.nav_view);
 
         View parentView = navigationView.getHeaderView(0);
         imageViewHashMap.put(0, (ImageView) parentView.findViewById(R.id.imageViewNav1));
@@ -715,8 +780,7 @@ public class StartPage extends AppCompatActivity
 
         // Checks the orientation of the screen
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-        }
-        else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
         }
     }
 
@@ -744,21 +808,21 @@ public class StartPage extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        if(getSupportFragmentManager().getBackStackEntryCount()==0){
-            TextView viewById =  findViewById(R.id.textViewFoundAllergies);
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            TextView viewById = findViewById(R.id.textViewFoundAllergies);
             CharSequence text = viewById.getText();
-            if(text.length()<=0) {
+            if (text.length() <= 0) {
                 findViewById(R.id.textViewtip).setVisibility(View.VISIBLE);
                 findViewById(R.id.adViewRectangle).setVisibility(View.VISIBLE);
-                ((AdView)findViewById(R.id.adViewRectangle)).resume();
-            }else{
-                ((AdView)findViewById(R.id.adView)).resume();
+                ((AdView) findViewById(R.id.adViewRectangle)).resume();
+            } else {
+                ((AdView) findViewById(R.id.adView)).resume();
                 findViewById(R.id.adView).setVisibility(View.VISIBLE);
 
             }
 
 
-        }else{
+        } else {
             findViewById(R.id.adViewRectangle).setVisibility(View.GONE);
             findViewById(R.id.adView).setVisibility(View.GONE);
         }
@@ -785,58 +849,59 @@ public class StartPage extends AppCompatActivity
     public boolean isGoldYearlySubscribed() {
         return mViewController.isGoldYearlySubscribed();
     }
-    public void loadInter(){
+
+    public void loadInter() {
         Log.d(TAG, "premiumBanner: " + loadInterstitial);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(startPageBoolean){
+                if (startPageBoolean) {
 
-                    ((AdView)findViewById(R.id.adViewRectangle)).loadAd(new AdRequest.Builder()
+                    ((AdView) findViewById(R.id.adViewRectangle)).loadAd(new AdRequest.Builder()
                             .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
 
-                }else{
-                    ((AdView)findViewById(R.id.adView)).loadAd(new AdRequest.Builder()
+                } else {
+                    ((AdView) findViewById(R.id.adView)).loadAd(new AdRequest.Builder()
                             .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
                 }
             }
         });
 
 
-
     }
+
     public void premium() {
         startPage = this;
 
-        if (!isPremiumPurchased()){
+        if (!isPremiumPurchased()) {
 
-            if(startPageBoolean){
+            if (startPageBoolean) {
 
-                ((AdView)findViewById(R.id.adView)).setVisibility(View.GONE);
-                ((AdView)findViewById(R.id.adViewRectangle)).loadAd(new AdRequest.Builder()
+                findViewById(R.id.adView).setVisibility(View.GONE);
+                ((AdView) findViewById(R.id.adViewRectangle)).loadAd(new AdRequest.Builder()
                         .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
 
-            }else{
-                ((AdView)findViewById(R.id.adViewRectangle)).setVisibility(View.GONE);
-                ((AdView)findViewById(R.id.adView)).loadAd(new AdRequest.Builder()
+            } else {
+                findViewById(R.id.adViewRectangle).setVisibility(View.GONE);
+                ((AdView) findViewById(R.id.adView)).loadAd(new AdRequest.Builder()
                         .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
             }
 
 
             Set<String> set = new HashSet<>();
             Set<Locale> setToDelete = new HashSet<>();
-            for (Locale locale:  new LanguageFragment().getCategories(startPage)) {
-                if(locale == Locale.getDefault() ||locale.getLanguage().equals("en")){
+            for (Locale locale : new LanguageFragment().getCategories(startPage)) {
+                if (locale == Locale.getDefault() || locale.getLanguage().equals("en")) {
                     set.add(locale.getLanguage());
-                }else{
+                } else {
                     setToDelete.add(locale);
                 }
             }
-            new LanguageFragment().setCategories(startPage, set,setToDelete);
+            new LanguageFragment().setCategories(startPage, set, setToDelete);
 
-        }else {
-            ((AdView) findViewById(R.id.adView)).setVisibility(View.GONE);
-            ((AdView) findViewById(R.id.adViewRectangle)).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.adView).setVisibility(View.GONE);
+            findViewById(R.id.adViewRectangle).setVisibility(View.GONE);
         }
 
     }
@@ -848,6 +913,11 @@ public class StartPage extends AppCompatActivity
         }
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("Unfiltered", true);
+    }
 
     private class CalcAllergy extends AsyncTask<String, Integer, ArrayList<AllAllergiesForEachInteger>> {
         private final HelpCalcAllergy helpCalcAllergy;
@@ -920,18 +990,16 @@ public class StartPage extends AppCompatActivity
             eNumbersArrayList = allergyList.getArrayListE_Numbers();
 
             for (int j = 0; j < stringToCheckENumbers.length; j++) {
-                if(j+1<stringToCheckENumbers.length && stringToCheckENumbers.length != 1){
-                    String number = stringToCheckENumbers[j] + stringToCheckENumbers[j+1].replaceAll("\\D+","");
-                    if(number.length()>2 && stringToCheckENumbers[j].compareToIgnoreCase("e") ==0){
+                if (j + 1 < stringToCheckENumbers.length && stringToCheckENumbers.length != 1) {
+                    String number = stringToCheckENumbers[j] + stringToCheckENumbers[j + 1].replaceAll("\\D+", "");
+                    if (number.length() > 2 && stringToCheckENumbers[j].compareToIgnoreCase("e") == 0) {
 
-                        helpCalcAllergy.checkFullStringEnumbers(stringToCheckENumbers[j]+stringToCheckENumbers[j+1], eNumbersArrayList,allfoundENumbers);
+                        helpCalcAllergy.checkFullStringEnumbers(stringToCheckENumbers[j] + stringToCheckENumbers[j + 1], eNumbersArrayList, allfoundENumbers);
                     }
-                }else{
-                    String number = stringToCheckENumbers[j].replaceAll("\\D+","");
-                    if(number.length()>2){
-
-                        helpCalcAllergy.checkFullStringEnumbers(stringToCheckENumbers[j], eNumbersArrayList,allfoundENumbers);
-                    }
+                }
+                String number = stringToCheckENumbers[j].replaceAll("\\D+", "");
+                if (number.length() > 2) {
+                    helpCalcAllergy.checkFullStringEnumbers(stringToCheckENumbers[j], eNumbersArrayList, allfoundENumbers);
                 }
 
 
@@ -943,7 +1011,7 @@ public class StartPage extends AppCompatActivity
                     counter++;
                 }
                 i++;
-                if(Unfiltered){
+                if (Unfiltered) {
                     helpCalcAllergy.checkFullString(s, allergies, allFoundAllergies);
                 }
             }
@@ -971,13 +1039,13 @@ public class StartPage extends AppCompatActivity
             viewById.setVisibility(View.INVISIBLE);
             super.onPostExecute(allAllergiesForEachInteger);
             String outputString = "";
-            final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linLayHorizontalStartPage);
+            final LinearLayout linearLayout = findViewById(R.id.linLayHorizontalStartPage);
             final HashMap<String, Lin> linearLayoutHashMap = new HashMap<>();
             for (final AllAllergiesForEachInteger allergiesForEachInteger : allAllergiesForEachInteger) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 LinearLayout newlinearLayout = (LinearLayout) inflater.inflate(R.layout.linlayoutstartpagevertical, null);
                 ((ImageView) newlinearLayout.findViewById(R.id.imageViewHorStartPage)).setImageResource(LanguagesAccepted.getFlag(allergiesForEachInteger.getLanguage()));
-                ((TextView) newlinearLayout.findViewById(R.id.textViewAllergy)).setText(helpCalcAllergy.cutFirstWord(getString(allergiesForEachInteger.getId())).concat(": " + allergiesForEachInteger.getNameOfIngredient()));
+                ((TextView) newlinearLayout.findViewById(R.id.textViewAllergy)).setText(TextHandler.cutFirstWord(getString(allergiesForEachInteger.getId())).concat(": " + allergiesForEachInteger.getNameOfIngredient()));
                 ((TextView) newlinearLayout.findViewById(R.id.textViewFoundFromWord)).setText(TextHandler.capitalLetter(allergiesForEachInteger.getNameOfWordFound()));
                 if (!linearLayoutHashMap.containsKey(allergiesForEachInteger.getMotherLanguage())) {
                     LinearLayout parentLin = (LinearLayout) inflater.inflate(R.layout.linlayoutstartpageverticaltrue, null);
@@ -1003,7 +1071,7 @@ public class StartPage extends AppCompatActivity
                 linearLayoutHashMap.get(string).linearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (helpCalcAllergy.checkIfAlreadyShown(linearLayoutHashMap.get(string).parentLin.findViewById(R.id.arrowLeft))) {
+                        if (checkIfAlreadyShown(linearLayoutHashMap.get(string).parentLin.findViewById(R.id.arrowLeft))) {
                             if (!linearLayoutHashMap.get(string).linearLayoutArrayList.isEmpty()) {
                                 for (LinearLayout newLin : linearLayoutHashMap.get(string).linearLayoutArrayList) {
                                     linearLayoutHashMap.get(string).parentLin.addView(newLin);
@@ -1023,7 +1091,7 @@ public class StartPage extends AppCompatActivity
 
                 });
             }
-            if(!allfoundENumbers.isEmpty()){
+            if (!allfoundENumbers.isEmpty()) {
                 linearLayout.addView(new TextView(getBaseContext()));
                 TextView textViewOverHead = new TextView(getBaseContext());
                 textViewOverHead.setTextSize(24);
@@ -1035,7 +1103,7 @@ public class StartPage extends AppCompatActivity
                 for (final AllergyList.E_Numbers allfoundENumber : allfoundENumbers) {
                     Log.d(TAG, "ENUMBERS: " + allfoundENumber.getInformation() + " : " + allfoundENumber.getUrl());
                     TextView textView = new TextView(getBaseContext());
-                    textView.setText(Html.fromHtml("<u>" + allfoundENumber.getId() + " : "+allfoundENumber.getName() + "</u>"));
+                    textView.setText(Html.fromHtml("<u>" + allfoundENumber.getId() + " : " + allfoundENumber.getName() + "</u>"));
                     textView.setTextColor(Color.parseColor("#19b3ad"));
                     textView.setTextSize(20);
                     linearLayout.addView(textView);
@@ -1044,8 +1112,8 @@ public class StartPage extends AppCompatActivity
                         public void onClick(View view) {
                             Fragment fragment = new E_Numbers();
                             Bundle b = new Bundle();
-                            b.putString("URL",allfoundENumber.getUrl());
-                            b.putString("ENUMBER",allfoundENumber.getInformation());
+                            b.putString("URL", allfoundENumber.getUrl());
+                            b.putString("ENUMBER", allfoundENumber.getInformation());
                             b.putString("NAME", allfoundENumber.getName());
                             b.putInt("US", allfoundENumber.getUS());
                             b.putInt("EU", allfoundENumber.getEU());
@@ -1077,18 +1145,16 @@ public class StartPage extends AppCompatActivity
             allergic.setText(outputString);
 
 
+            if (Unfiltered) {
+                ((Button) findViewById(R.id.buttonAdvancedSearch)).setText(getString(R.string.regularSearch));
 
 
-            if(Unfiltered){
-                ((Button)findViewById(R.id.buttonAdvancedSearch)).setText(getString(R.string.regularSearch));
-
-
-            }else{
-                ((Button)findViewById(R.id.buttonAdvancedSearch)).setText(getString(R.string.advancedSearch));
+            } else {
+                ((Button) findViewById(R.id.buttonAdvancedSearch)).setText(getString(R.string.advancedSearch));
 
             }
 
-            ((Button)findViewById(R.id.buttonAdvancedSearch)).getBackground().setColorFilter(0xFF19b3ad, PorterDuff.Mode.MULTIPLY);
+            ((Button) findViewById(R.id.buttonAdvancedSearch)).getBackground().setColorFilter(0xFF19b3ad, PorterDuff.Mode.MULTIPLY);
             (findViewById(R.id.linlaybtnadvanced)).setVisibility(View.VISIBLE);
 
             findViewById(R.id.buttonAdvancedSearch).setOnClickListener(new View.OnClickListener() {
@@ -1096,9 +1162,9 @@ public class StartPage extends AppCompatActivity
                 public void onClick(View v) {
 
                     Intent intent = new Intent(StartPage.this, StartPage.class);
-                    if(Unfiltered){
+                    if (Unfiltered) {
                         intent.putExtra("Unfiltered", false);
-                    }else{
+                    } else {
                         intent.putExtra("Unfiltered", true);
                     }
                     intent.putExtra("HistoryFragment", stringToCheck);
@@ -1126,11 +1192,22 @@ public class StartPage extends AppCompatActivity
         }
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean("Unfiltered", true);
-    }
+    /**
+     *
+     * @param v
+     * @return
+     */
+    public boolean checkIfAlreadyShown(View v) {
+        if (v.getRotation() == 0) {
+            v.setRotation(180);
+            return true;
+        } else {
+            v.setRotation(0);
+            return false;
 
+
+        }
+
+    }
 
 }

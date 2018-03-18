@@ -25,6 +25,7 @@ import com.google.android.gms.vision.text.TextBlock;
 import creativeendlessgrowingceg.allergychecker.camera.ui.GraphicOverlay;
 
 import static android.content.ContentValues.TAG;
+import static java.lang.Thread.sleep;
 
 /**
  * A very simple Processor which gets detected TextBlocks and adds them to the overlay
@@ -35,12 +36,14 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
 
     private GraphicOverlay<OcrGraphic> mGraphicOverlay;
     private static OcrCaptureActivity parent;
+    private int timeSleep;
     private int savedTextIterator = 0;
     private Toast toast;
 
-    OcrDetectorProcessor(GraphicOverlay<OcrGraphic> ocrGraphicOverlay, OcrCaptureActivity activity) {
+    OcrDetectorProcessor(GraphicOverlay<OcrGraphic> ocrGraphicOverlay, OcrCaptureActivity activity, int timeSleep) {
         mGraphicOverlay = ocrGraphicOverlay;
         parent = activity;
+        this.timeSleep = timeSleep;
     }
 
     // TODO:  Once this implements Detector.Processor<TextBlock>, implement the abstract methods.
@@ -75,6 +78,13 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
                 mGraphicOverlay.add(graphic);
 
             }
+            Log.d(TAG, "receiveDetections: sleepo");
+            try {
+                sleep(timeSleep);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Log.d(TAG, "receiveDetections: sendo");
         }
 
     }

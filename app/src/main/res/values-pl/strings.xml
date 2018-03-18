@@ -295,4 +295,5 @@
     <string name="sendTips">Wyślij wskazówki / błędy</string>
     <string name="useFocus">Autofokus Włączony</string>
     <string name="useNoFocus">autofokus Wyłączony</string>
+    <string name="timeSleep">Kamera uśpienia</string>
 </resources>

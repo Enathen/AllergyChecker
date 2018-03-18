@@ -3,7 +3,6 @@ package creativeendlessgrowingceg.allergychecker;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,17 +10,23 @@ import java.util.Comparator;
 import java.util.Locale;
 
 /**
- * Created by Enathen on 2018-01-12.
+ * handles all languages and flags.
+ *
+ * @author Jonathan Alexander Norberg
+ * @version 2018-01-12
  */
 
 class LanguagesAccepted {
     private static final LanguagesAccepted ourInstance = new LanguagesAccepted();
-    private static final String TAG = "languageAccepted";
 
     public static LanguagesAccepted getInstance() {
         return ourInstance;
     }
 
+    /**
+     * @param context to help sort
+     * @return array list with allergies
+     */
     public static ArrayList<Locale> getLanguages(Context context) {
         ArrayList<Locale> arrayList = new ArrayList<>();
         arrayList.add(new Locale("sv"));
@@ -37,10 +42,16 @@ class LanguagesAccepted {
         arrayList.add(new Locale("pt"));
         arrayList.add(new Locale("pl"));
 
-        sort(arrayList,context);
+        sort(arrayList, context);
         return arrayList;
     }
 
+    /**
+     * get flags desired
+     *
+     * @param langCode to check
+     * @return desired flag if exist
+     */
     public static int getFlag(String langCode) {
         if (langCode.equals("sv")) {
             return R.drawable.se;
@@ -80,6 +91,13 @@ class LanguagesAccepted {
         }
         return 0;
     }
+
+    /**
+     * get name of country
+     *
+     * @param langCode to check
+     * @return desired country name
+     */
     public static int getCountryName(String langCode) {
         if (langCode.equals("sv")) {
             return R.string.swedish;
@@ -119,6 +137,13 @@ class LanguagesAccepted {
         }
         return 0;
     }
+
+    /**
+     * get static name.
+     *
+     * @param langCode to get
+     * @return static name
+     */
     public static int getCountryNameStatic(String langCode) {
         if (langCode.equals("sv")) {
             return R.string.staticSwedish;
@@ -158,6 +183,8 @@ class LanguagesAccepted {
         }
         return 0;
     }
+
+
     private static void sort(ArrayList<Locale> arrayList, final Context context) {
         Collections.sort(arrayList, new Comparator<Locale>() {
             @Override
@@ -166,13 +193,9 @@ class LanguagesAccepted {
             }
         });
     }
-    public static String getStringByLocal(Activity context, int id, String locale) {
-        Configuration configuration = new Configuration(context.getResources().getConfiguration());
-        configuration.setLocale(new Locale(locale));
 
 
-        return context.createConfigurationContext(configuration).getResources().getString(id).toLowerCase().replaceAll("\\s+", "");
-    }
+
     public static String getStringByLocalNoTakeAwaySpace(Activity context, int id, String locale) {
         Configuration configuration = new Configuration(context.getResources().getConfiguration());
         configuration.setLocale(new Locale(locale));

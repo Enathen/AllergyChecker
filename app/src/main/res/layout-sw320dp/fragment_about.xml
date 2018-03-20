@@ -44,7 +44,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/specialThanksTo"
                     android:textAlignment="center"
-                    android:textColor="@color/fontColorTextWhite" />
+                    android:textColor="@color/fontColorTextWhite"
+                    android:textSize="22sp" />
 
                 <TextView
                     android:layout_width="match_parent"

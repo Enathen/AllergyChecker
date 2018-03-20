@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * takes care of text.
  * @author Jonathan Alexander Norberg
  * @version 2018-01-23
  */

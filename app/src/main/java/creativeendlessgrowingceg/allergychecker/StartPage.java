@@ -919,7 +919,7 @@ public class StartPage extends AppCompatActivity
         outState.putBoolean("Unfiltered", true);
     }
 
-    private class CalcAllergy extends AsyncTask<String, Integer, ArrayList<AllAllergiesForEachInteger>> {
+    private class CalcAllergy extends AsyncTask<String, Integer, ArrayList<AllergiesClass>> {
         private final HelpCalcAllergy helpCalcAllergy;
         private StartPage mContext;
         private TextView textView;
@@ -948,7 +948,7 @@ public class StartPage extends AppCompatActivity
         // This is run in a background thread
 
         @Override
-        protected ArrayList<AllAllergiesForEachInteger> doInBackground(String... params) {
+        protected ArrayList<AllergiesClass> doInBackground(String... params) {
             // get the stringToCheck from params, which is an array
             stringToCheck = params[0];
             TreeMap<Integer, HashSet<String>> hashSetAllStrings = new TreeMap<>();
@@ -961,13 +961,14 @@ public class StartPage extends AppCompatActivity
 
             HashSet<Integer> hashSetFromOtherClass = new LoadUIAllergies().getAllergies(mContext);
 
-            @SuppressLint("UseSparseArrays") HashMap<Integer, HashMap<String, AllAllergiesForEachInteger>> allergies = new HashMap<>();
+            @SuppressLint("UseSparseArrays") HashMap<Integer, HashMap<String, AllergiesClass>> allergies = new HashMap<>();
 
             int length = 0;
             int counter = 0;
             int i = 0;
-            ArrayList<AllAllergiesForEachInteger> allFoundAllergies = new ArrayList<>();
+            ArrayList<AllergiesClass> allFoundAllergies = new ArrayList<>();
             for (int id : hashSetFromOtherClass) {
+                //Log.d(TAG, "I: "+ i + " counter :"+ counter);
                 publishProgress(hashSetFromOtherClass.size(), counter);
                 length = helpCalcAllergy.setLocaleString(length, id, allergies, listOfLanguages, StartPage.this);
 
@@ -982,7 +983,7 @@ public class StartPage extends AppCompatActivity
             helpCalcAllergy.bkTree(length, hashSetAllStrings, allergies, allFoundAllergies);
 
             long start = System.currentTimeMillis();
-            counter = hashSetToCheckLast.size() / 2;
+            counter = stringToCheckENumbers.length / 2;
             i = 0;
             ArrayList<AllergyList.E_Numbers> eNumbersArrayList = new ArrayList<>();
 
@@ -990,6 +991,13 @@ public class StartPage extends AppCompatActivity
             eNumbersArrayList = allergyList.getArrayListE_Numbers();
 
             for (int j = 0; j < stringToCheckENumbers.length; j++) {
+
+                if (i % 2 == 0) {
+
+                    publishProgress(stringToCheckENumbers.length, counter);
+                    counter++;
+                }
+                i++;
                 if (j + 1 < stringToCheckENumbers.length && stringToCheckENumbers.length != 1) {
                     String number = stringToCheckENumbers[j] + stringToCheckENumbers[j + 1].replaceAll("\\D+", "");
                     if (number.length() > 2 && stringToCheckENumbers[j].compareToIgnoreCase("e") == 0) {
@@ -1004,17 +1012,16 @@ public class StartPage extends AppCompatActivity
 
 
             }
+            counter = 0;
             for (String s : hashSetToCheckLast) {
-                if (i % 2 == 0) {
 
-                    publishProgress(hashSetToCheckLast.size() / 2, counter);
-                    counter++;
-                }
-                i++;
                 if (Unfiltered) {
                     helpCalcAllergy.checkFullString(s, allergies, allFoundAllergies);
                 }
+                publishProgress(hashSetToCheckLast.size(), counter);
+                counter++;
             }
+
             long stop = System.currentTimeMillis();
             Log.d(TAG, "TIME: " + (stop - start));
             Collections.sort(allFoundAllergies);
@@ -1035,13 +1042,13 @@ public class StartPage extends AppCompatActivity
 
         // This runs in UI when background thread finishes
         @Override
-        protected void onPostExecute(ArrayList<AllAllergiesForEachInteger> allAllergiesForEachInteger) {
+        protected void onPostExecute(ArrayList<AllergiesClass> allergiesClass) {
             viewById.setVisibility(View.INVISIBLE);
-            super.onPostExecute(allAllergiesForEachInteger);
+            super.onPostExecute(allergiesClass);
             String outputString = "";
             final LinearLayout linearLayout = findViewById(R.id.linLayHorizontalStartPage);
             final HashMap<String, Lin> linearLayoutHashMap = new HashMap<>();
-            for (final AllAllergiesForEachInteger allergiesForEachInteger : allAllergiesForEachInteger) {
+            for (final AllergiesClass allergiesForEachInteger : allergiesClass) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 LinearLayout newlinearLayout = (LinearLayout) inflater.inflate(R.layout.linlayoutstartpagevertical, null);
                 ((ImageView) newlinearLayout.findViewById(R.id.imageViewHorStartPage)).setImageResource(LanguagesAccepted.getFlag(allergiesForEachInteger.getLanguage()));
@@ -1124,7 +1131,7 @@ public class StartPage extends AppCompatActivity
                 }
             }
 
-            if (!allAllergiesForEachInteger.isEmpty()) {
+            if (!allergiesClass.isEmpty()) {
 
                 outputString = outputString.concat("\n" + getString(R.string.dontUse) + "\n");
                 outputString = outputString.concat("\n" + getString(R.string.mightContainOther) + "\n");

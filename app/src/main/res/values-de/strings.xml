@@ -295,7 +295,7 @@
     <string name="portuguese">Portugiesische</string>
     <string name="polish">Polnische</string>
     <string name="pleaseCheckAllergies">Bitte überprüfen Sie, ob Ihre Allergien und Vorlieben stimmen!</string>
-    <string name="slide3">Wenn Sie die Kamerataste gedrückt halten, werden drei neue Optionen angezeigt.</string>
+    <string name="slide3">Wenn Sie die Kamerataste gedrückt halten, werden vier neue Optionen angezeigt.</string>
     <string name="unfilteredSearchIs">Die ungefilterte Suche fügt Teilstrings von Wörtern hinzu: zum Beispiel ist erd Teilstring von Erdbeere</string>
     <string name="advancedSearchis">Die gefilterte Suche entfernt Teilstrings von Wörtern: zum Beispiel ist Erd Teilstring von Erdnuss</string>
     <string name="eNumbers">"E-Nummern "</string>

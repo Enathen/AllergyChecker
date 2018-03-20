@@ -143,8 +143,8 @@
     <string name="send">Lähetä käännös</string>
     <string name="mustBeInEnglish">Teksti on kirjoitettava englanniksi tai ruotsiksi! Kiitos!</string>
     <string name="sendTipsFrom">Mistä haluat lähettää vinkkejä?</string>
-    <string name="welcomeMessageInvite">Haluatko tietää, voitko syödä jotain nopeasti? Mikä ei ole allerginen sinulle?
-    Mahtavaa! Tämän sovelluksen avulla voit skannata tekstiä eri kielistä, jotta voit nähdä, oletko allerginen sille!</string>
+    <string name="welcomeMessageInvite">Do you want to know if you can eat something fast, that is not allergic to you?
+    Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
     <string name="time">kertaa</string>
 
 
@@ -289,7 +289,7 @@
     <string name="portuguese">Portugalin</string>
     <string name="polish">Puolan</string>
     <string name="pleaseCheckAllergies">"Tarkista, että allergiat ja mieltymykset ovat oikein! "</string>
-    <string name="slide3">Kamerapainikkeen pitäminen alhaalla tuo kolme uutta vaihtoehtoa.</string>
+    <string name="slide3">Kamerapainikkeen pitäminen alhaalla tuo neljä uutta vaihtoehtoa.</string>
     <string name="advancedSearchis">suodatettu haku poistaa tekstin substraatit: esimerkiksi maap on maapähkinän merkkijono</string>
     <string name="unfilteredSearchIs">Suodattamaton haku lisää sanojen substraattit: esimerkiksi mansi on mansikan substringi</string>
     <string name="eNumbers">E-koodi</string>

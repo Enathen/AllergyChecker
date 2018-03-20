@@ -148,8 +148,8 @@
     <string name="send">Envoyer des astuces</string>
     <string name="mustBeInEnglish">Le texte doit être écrit en anglais ou en suédois! Merci!</string>
     <string name="sendTipsFrom">D\'où voulez-vous envoyer des conseils?</string>
-    <string name="welcomeMessageInvite">Voulez-vous savoir si vous pouvez manger quelque chose rapidement, ce n\'est pas allergique à vous?
-    Génial! Cette application vous permet de scanner le texte en plusieurs langues pour voir si vous pouvez le manger!</string>
+    <string name="welcomeMessageInvite">Do you want to know if you can eat something fast, that is not allergic to you?
+    Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
     <string name="time">Temps</string>
     <string name="buckwheat">Sarrasin</string>
     <string name="mustardSeed">Graine de moutarde</string>
@@ -297,7 +297,7 @@
     <string name="portuguese">Portugaise</string>
     <string name="polish">Polonaise</string>
     <string name="pleaseCheckAllergies">S\'il vous plaît vérifiez que vos allergies et préférences sont correctes!</string>
-    <string name="slide3">Maintenez enfoncé le bouton de l\'appareil photo pour afficher trois nouvelles options.</string>
+    <string name="slide3">Maintenez enfoncé le bouton de l\'appareil photo pour afficher quatre nouvelles options.</string>
     <string name="advancedSearchis">la recherche filtrée supprime les sous-chaînes de mots: par exemple, le caca est la sous-chaîne de la cacahuète</string>
     <string name="unfilteredSearchIs">La recherche non filtrée ajoute des sous-chaînes de mots: par exemple, la frai est une sous-chaîne de fraise</string>
     <string name="eNumbers">Numéros e</string>

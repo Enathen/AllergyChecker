@@ -459,6 +459,19 @@ public class TranslateHelp extends Fragment {
             arrayList.add(getString(R.string.foundBadTranslation));
             arrayList.add(getString(R.string.advancedSearch));
             arrayList.add(getString(R.string.regularSearch));
+            arrayList.add(getString(R.string.portuguese));
+            arrayList.add(getString(R.string.polish));
+
+            arrayList.add(getString(R.string.pleaseCheckAllergies));
+            arrayList.add(getString(R.string.slide3));
+            arrayList.add(getString(R.string.advancedSearchis));
+            arrayList.add(getString(R.string.unfilteredSearchIs));
+            arrayList.add(getString(R.string.eNumbers));
+            arrayList.add(getString(R.string.downloadOfTextScannerNotComplete));
+            arrayList.add(getString(R.string.sendTips));
+            arrayList.add(getString(R.string.useFocus));
+            arrayList.add(getString(R.string.useNoFocus));
+            arrayList.add(getString(R.string.timeSleep));
             Collections.sort(arrayList,new SortIgnoreCase());
             return arrayList;
         }

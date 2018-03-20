@@ -306,7 +306,7 @@
     <string name="polish">Polska</string>
 
     <string name="pleaseCheckAllergies">Kontrollera att dina allergier och preferenser är korrekta!</string>
-    <string name="slide3">" Om du håller ner kameraknappen visas tre nya alternativ."</string>
+    <string name="slide3">Om du håller ner kameraknappen visas fyra nya alternativ.</string>
     <string name="advancedSearchis">Filtrerad sökning tar bort delsträngar av ord: till exempel är jord delsträng av jordnötter</string>
     <string name="unfilteredSearchIs">Ofilterad sökning lägger till delsträngar av ord: till exempel jord är en delsträng av jordgubbe</string>
     <string name="eNumbers">E-Nummer</string>

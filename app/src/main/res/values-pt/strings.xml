@@ -143,7 +143,8 @@
     <string name="send">Enviar tradução</string>
     <string name="mustBeInEnglish">O texto deve ser escrito em inglês ou sueco! Obrigado!</string>
     <string name="sendTipsFrom">De onde você deseja enviar dicas?</string>
-    <string name="welcomeMessageInvite">Você quer saber se você pode comer algo rápido, isso não é alérgico a você? Ótimo! Este aplicativo permite que você digitalize texto em vários idiomas para ver se você pode comê-lo!</string>
+    <string name="welcomeMessageInvite">Do you want to know if you can eat something fast, that is not allergic to you?
+    Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
     <string name="time">vez</string>
     <string name="buckwheat">Trigo mourisco</string>
     <string name="mustardSeed">Semente de mostarda</string>
@@ -290,7 +291,7 @@
     <string name="portuguese">Portugues</string>
     <string name="polish">Polonesa</string>
     <string name="pleaseCheckAllergies">Verifique se suas alergias e preferências estão corretas!</string>
-    <string name="slide3">Mantendo pressionado o botão da câmera traz três novas opções.</string>
+    <string name="slide3">Mantendo pressionado o botão da câmera traz quatro novas opções.</string>
     <string name="unfilteredSearchIs">Pesquisa não filtrada adiciona substrings de palavras: por exemplo, a mora é substring de morango</string>
     <string name="advancedSearchis">pesquisa filtrada remove substrings de palavras: por exemplo, amend é substring de amendoim</string>
     <string name="eNumbers">Número E</string>

@@ -1,11 +1,11 @@
 package creativeendlessgrowingceg.allergychecker;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,20 +23,13 @@ import java.util.Locale;
 import java.util.TreeMap;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ShowAllergies.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ShowAllergies#newInstance} factory method to
- * create an instance of this fragment.
+ * Show Allergies user have checked to show in foreign country.
  */
 public class ShowAllergies extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -114,7 +107,7 @@ public class ShowAllergies extends Fragment {
 
         return parentFrame;
     }
-    private class CalcAllergy extends AsyncTask<String, Integer, ArrayList<AllAllergiesForEachInteger>> {
+    private class CalcAllergy extends AsyncTask<String, Integer, ArrayList<AllergiesClass>> {
 
         private final ShowAllergies showAllergies;
         private final LayoutInflater inflater;
@@ -141,7 +134,7 @@ public class ShowAllergies extends Fragment {
          * @see #publishProgress
          */
         @Override
-        protected ArrayList<AllAllergiesForEachInteger> doInBackground(String... params) {
+        protected ArrayList<AllergiesClass> doInBackground(String... params) {
 
             return null;
         }
@@ -152,14 +145,15 @@ public class ShowAllergies extends Fragment {
          * <p>
          * <p>This method won't be invoked if the task was cancelled.</p>
          *
-         * @param allAllergiesForEachIntegers The result of the operation computed by {@link #doInBackground}.
+         * @param allergiesClasses The result of the operation computed by {@link #doInBackground}.
          * @see #onPreExecute
          * @see #doInBackground
          * @see #onCancelled(Object)
          */
+        @SuppressLint("SetTextI18n")
         @Override
-        protected void onPostExecute(ArrayList<AllAllergiesForEachInteger> allAllergiesForEachIntegers) {
-            super.onPostExecute(allAllergiesForEachIntegers);
+        protected void onPostExecute(ArrayList<AllergiesClass> allergiesClasses) {
+            super.onPostExecute(allergiesClasses);
 
             for (final Locale category : categories) {
                 final LinearLayout pLinearLayout = (LinearLayout) inflater.inflate(R.layout.show_allergies_layout, container, false);
@@ -168,7 +162,7 @@ public class ShowAllergies extends Fragment {
                 imageViewHashSetToDestroy.add(((ImageView)linearLayout.findViewById(R.id.imageViewFlag)));
                 ((TextView)linearLayout.findViewById(R.id.textViewStaticLanguage)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryNameStatic(category.getLanguage()),getContext()));
                 ((TextView)linearLayout.findViewById(R.id.textViewLocaleLanguage)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryName(category.getLanguage()),getContext()));
-                ((TextView)pLinearLayout.findViewById(R.id.textViewAllergicAgainst)).setText(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),R.string.allergyAgianst,category.getLanguage())));
+                ((TextView)pLinearLayout.findViewById(R.id.textViewAllergicAgainst)).setText(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),R.string.allergyAgianst,category.getLanguage()))+ "  Emergency Number: "+ 112);
                 pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.INVISIBLE);
 
 

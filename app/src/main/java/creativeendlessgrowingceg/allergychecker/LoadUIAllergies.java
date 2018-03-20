@@ -21,7 +21,8 @@ import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * load an UI.
+ * load my preference and my allergies.
+ * <p>
  * Created by Enathen on 2018-01-12.
  */
 
@@ -55,10 +56,11 @@ public class LoadUIAllergies {
     }
 
     /**
-     * add all categories
+     * add categories
      *
-     * @param parentKey          to set.
-     * @param parentKeyToPicture
+     * @param parentKey          int of parent
+     * @param parentCheckBox     checkbox of parent
+     * @param parentKeyToPicture key to picture of parent
      */
     private void addCategory(int parentKey, CheckBox parentCheckBox, int parentKeyToPicture) {
         LinkedHashMap<Integer, LinearLayout> categoriesLinearLayout = new LinkedHashMap<>();
@@ -100,6 +102,12 @@ public class LoadUIAllergies {
 
     }
 
+    /**
+     * create parents linear layout
+     * @param key to parent
+     * @param pictureID to parent
+     * @return checkbox of parent
+     */
     private CheckBox createParentLinearLayout(final int key, int pictureID) {
         final LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.rowcategorylayout, null);
         LinearLayout linearLayoutRow = (LinearLayout) linearLayout.findViewById(R.id.linearLayoutRowCategoryHorizontal);
@@ -131,7 +139,12 @@ public class LoadUIAllergies {
 
     }
 
-    synchronized public void savePicture(StartPage context, HashMap<Integer, ImageView> imageViewHashMap) {
+    /**
+     * save pictures
+     * @param context to get drawables
+     * @param imageViewHashMap of positions to set
+     */
+    synchronized void savePicture(StartPage context, HashMap<Integer, ImageView> imageViewHashMap) {
         String alreadyString = "00000000";
         Log.d(TAG, "savePicture: ");
 
@@ -142,20 +155,28 @@ public class LoadUIAllergies {
         HashSet<Integer> allergySavePreference = (SharedPreferenceClass.getSharedPreference(context, "preferenceSavePicture", TAG));
         Set<String> allergySavePictureName = (SharedPreferenceClass.getSharedPreferenceString(context, "allergySavePictureName", TAG));
         Set<String> allergySavePictureNamePreference = SharedPreferenceClass.getSharedPreferenceString(context, "preferenceSavePictureName", TAG);
-        if(allergySavePicture == null){
+        if (allergySavePicture == null) {
             return;
         }
         Log.d(TAG, "savePicturealler: " + allergySavePicture);
         Log.d(TAG, "savePictureprefi: " + allergySavePreference);
-        checkDeleteAllergySavePicture(context,allergySavePicture,allergySavePictureName,"allergySavePicture","allergySavePictureName");
-        checkDeleteAllergySavePicture(context,allergySavePreference,allergySavePictureNamePreference, "preferenceSavePicture", "preferenceSavePictureName");
+        checkDeleteAllergySavePicture(context, allergySavePicture, allergySavePictureName, "allergySavePicture", "allergySavePictureName");
+        checkDeleteAllergySavePicture(context, allergySavePreference, allergySavePictureNamePreference, "preferenceSavePicture", "preferenceSavePictureName");
 
 
-        addPicture(allergySavePreference,alreadyString,imageViewHashMap, addPicture(allergySavePicture,alreadyString,imageViewHashMap,0));
+        addPicture(allergySavePreference, alreadyString, imageViewHashMap, addPicture(allergySavePicture, alreadyString, imageViewHashMap, 0));
 
 
     }
 
+    /**
+     * add pictures. set imageresources of nav drawer icon
+     * @param allergySavePicture piasters
+     * @param alreadyString of used allergies
+     * @param imageViewHashMap pos to set
+     * @param i already set
+     * @return i
+     */
     private int addPicture(HashSet<Integer> allergySavePicture, String alreadyString, HashMap<Integer, ImageView> imageViewHashMap, int i) {
         ArrayList<Integer> alreadySelectedImages = new ArrayList<>();
 
@@ -179,8 +200,14 @@ public class LoadUIAllergies {
         return i;
     }
 
-
-
+    /**
+     * delete harmful picture
+     * @param context context
+     * @param allergySavePicture pictures
+     * @param allergySavePictureName name of pictures
+     * @param savePicture pictures to save tag
+     * @param savePictureName pictures name save tag
+     */
     private void checkDeleteAllergySavePicture(StartPage context, HashSet<Integer> allergySavePicture, Set<String> allergySavePictureName, String savePicture, String savePictureName) {
         HashSet<Integer> allergyToRemove = new HashSet<>();
 
@@ -188,16 +215,16 @@ public class LoadUIAllergies {
             try {
                 int drawable = context.getResources().getIdentifier(String.valueOf(integer), "drawable", context.getPackageName());
                 context.getDrawable(integer);
-                if(!allergySavePictureName.contains(context.getResources().getResourceEntryName(drawable))){
+                if (!allergySavePictureName.contains(context.getResources().getResourceEntryName(drawable))) {
                     allergyToRemove.add(drawable);
                     allergySavePictureName.remove(context.getResources().getResourceEntryName(drawable));
                     Log.d(TAG, "PICTUREREMOVE1: ");
                 }
-                if(!new AllergyList(context).checkAvailablePicture(integer)){
+                if (!new AllergyList(context).checkAvailablePicture(integer)) {
                     allergyToRemove.add(drawable);
                     Log.d(TAG, "PICTUREREMOVE2: ");
                 }
-            } catch (Resources.NotFoundException e){
+            } catch (Resources.NotFoundException e) {
                 allergyToRemove.add(context.getResources().getIdentifier(String.valueOf(integer), "drawable", context.getPackageName()));
                 Log.d(TAG, "PICTUREREMOVE3: ");
 
@@ -209,7 +236,8 @@ public class LoadUIAllergies {
         SharedPreferenceClass.setSharedPreference(context, (HashSet<String>) allergySavePictureName, savePictureName, TAG);
     }
 
-    synchronized public HashSet<String> getCurrentlyActiveAllergies() {
+
+    private synchronized HashSet<String> getCurrentlyActiveAllergies() {
         HashSet<String> hashSet = new HashSet<>();
         for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
             for (AllergyCheckBoxClass checkBoxClass : allergyCheckBoxClass.getSameItemDifferentCategories()) {
@@ -221,7 +249,7 @@ public class LoadUIAllergies {
         return hashSet;
     }
 
-    synchronized public HashSet<String> getCurrentlyNotActiveAllergies() {
+    private synchronized HashSet<String> getCurrentlyNotActiveAllergies() {
         HashSet<String> hashSet = new HashSet<>();
         for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
             for (AllergyCheckBoxClass checkBoxClass : allergyCheckBoxClass.getSameItemDifferentCategories()) {
@@ -233,7 +261,7 @@ public class LoadUIAllergies {
         return hashSet;
     }
 
-    synchronized public HashSet<Integer> getCurrentlyActiveParentAllergies() {
+    private synchronized HashSet<Integer> getCurrentlyActiveParentAllergies() {
         HashSet<Integer> hashSet = new HashSet<>();
         for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
             if (allergyCheckBoxClass.getParentCheckBox().isChecked()) {
@@ -245,7 +273,7 @@ public class LoadUIAllergies {
         return hashSet;
     }
 
-    synchronized public HashSet<Integer> getCurrentlyNotActiveParentAllergies() {
+    private synchronized HashSet<Integer> getCurrentlyNotActiveParentAllergies() {
         HashSet<Integer> hashSet = new HashSet<>();
         for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
             if (!allergyCheckBoxClass.getParentCheckBox().isChecked()) {
@@ -255,7 +283,7 @@ public class LoadUIAllergies {
         return hashSet;
     }
 
-    synchronized public HashMap<String, CheckBox> getCheckBoxToRemove() {
+    private synchronized HashMap<String, CheckBox> getCheckBoxToRemove() {
         HashMap<String, CheckBox> hashMap = new HashMap<>();
         for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
             if (allergyCheckBoxClass.isRemove()) {
@@ -272,7 +300,7 @@ public class LoadUIAllergies {
         return hashMap;
     }
 
-    synchronized public void saveCurrentlyActive(boolean preference) {
+    synchronized void saveCurrentlyActive(boolean preference) {
         Log.d(TAG, "saveCurrentlyActive: ");
         for (String key : getCheckBoxToRemove().keySet()) {
             SharedPreferenceClass.setBoolean(key, context, false);
@@ -300,36 +328,36 @@ public class LoadUIAllergies {
     private void saveAllergies() {
         HashSet<Integer> hashSet = new HashSet<>();
         HashSet<Integer> hashSetPicture = new HashSet<>();
-        HashSet<Integer> hashSetNot= new HashSet<>();
+        HashSet<Integer> hashSetNot = new HashSet<>();
         HashSet<Integer> hashSetPictureNot = new HashSet<>();
-        HashSet<Integer> hashSetPreference = SharedPreferenceClass.getSharedPreference(context,"preferenceSave",TAG);
-        HashSet<Integer> hashSetPicturePreference =  SharedPreferenceClass.getSharedPreference(context,"preferenceSavePicture",TAG);
-        getCheckedCheckBoxes(hashSet,hashSetPicture);
-        getCheckedCheckBoxesNot(hashSetNot,hashSetPictureNot);
+        HashSet<Integer> hashSetPreference = SharedPreferenceClass.getSharedPreference(context, "preferenceSave", TAG);
+        HashSet<Integer> hashSetPicturePreference = SharedPreferenceClass.getSharedPreference(context, "preferenceSavePicture", TAG);
+        getCheckedCheckBoxes(hashSet, hashSetPicture);
+        getCheckedCheckBoxesNot(hashSetNot, hashSetPictureNot);
 
-        saveHashSet(hashSet,"allergySave");
-        saveHashSet(hashSetPicture,"allergySavePicture");
-        savePictureName(hashSetPicture,"allergySavePictureName");
+        saveHashSet(hashSet, "allergySave");
+        saveHashSet(hashSetPicture, "allergySavePicture");
+        savePictureName(hashSetPicture, "allergySavePictureName");
 
-        debug(hashSet,hashSetPicture,hashSetNot,hashSetPictureNot,hashSetPreference,hashSetPicturePreference);
+        //debug(hashSet, hashSetPicture, hashSetNot, hashSetPictureNot, hashSetPreference, hashSetPicturePreference);
 
-        addPreferences(hashSet, hashSetPreference,hashSetPicturePreference);
-        removePreferences(hashSetNot, hashSetPreference,hashSetPicturePreference);
+        addPreferences(hashSet, hashSetPreference, hashSetPicturePreference);
+        removePreferences(hashSetNot, hashSetPreference, hashSetPicturePreference);
 
-        saveHashSet(hashSetPreference,"preferenceSave");
-        saveHashSet(hashSetPicturePreference,"preferenceSavePicture");
-        savePictureName(hashSetPicturePreference,"preferenceSavePictureName");
+        saveHashSet(hashSetPreference, "preferenceSave");
+        saveHashSet(hashSetPicturePreference, "preferenceSavePicture");
+        savePictureName(hashSetPicturePreference, "preferenceSavePictureName");
     }
 
     private void removePreferences(HashSet<Integer> hashSetNot, HashSet<Integer> hashSetPreference, HashSet<Integer> hashSetPicturePreference) {
         TreeMap<Integer, ArrayList<AllergyList.PictureIngredient>> myPreference = new AllergyList(context).getMyPreference();
         for (Integer integer : hashSetNot) {
             ArrayList<AllergyList.PictureIngredient> specifiedKey = new AllergyList(context).getSpecifiedKeyAllergy(integer);
-            if(specifiedKey != null){
+            if (specifiedKey != null) {
                 hashSetPreference.remove(integer);
                 for (Integer pictureIngredients : myPreference.keySet()) {
                     for (AllergyList.PictureIngredient pictureIngredient : myPreference.get(pictureIngredients)) {
-                        if(pictureIngredient.getId() == integer){
+                        if (pictureIngredient.getId() == integer) {
                             hashSetPicturePreference.remove(pictureIngredient.getPicture());
                         }
                     }
@@ -343,21 +371,21 @@ public class LoadUIAllergies {
         TreeMap<Integer, ArrayList<AllergyList.PictureIngredient>> myPreference = new AllergyList(context).getMyPreference();
         for (Integer integer : hashSet) {
             ArrayList<AllergyList.PictureIngredient> specifiedKey = new AllergyList(context).getSpecifiedKeyAllergy(integer);
-            if(specifiedKey != null){
+            if (specifiedKey != null) {
                 hashSetPreference.add(integer);
                 for (Integer pictureIngredients : myPreference.keySet()) {
                     boolean addPreference = true;
                     for (AllergyList.PictureIngredient pictureIngredient : myPreference.get(pictureIngredients)) {
-                        if(pictureIngredient.getId() == integer){
+                        if (pictureIngredient.getId() == integer) {
 
-                            Log.d(TAG, "addPreferences: " + context.getString(pictureIngredient.getId())+ " Parent:" + context.getString(pictureIngredients));
-                        }else{
-                            if(!hashSetPreference.contains(pictureIngredient.getId())){
+                            Log.d(TAG, "addPreferences: " + context.getString(pictureIngredient.getId()) + " Parent:" + context.getString(pictureIngredients));
+                        } else {
+                            if (!hashSetPreference.contains(pictureIngredient.getId())) {
                                 addPreference = false;
                             }
                         }
                     }
-                    if(addPreference){
+                    if (addPreference) {
                         hashSetPicturePreference.add(myPreference.get(pictureIngredients).get(0).getPicture());
                     }
                 }
@@ -367,9 +395,9 @@ public class LoadUIAllergies {
         }
     }
 
-    public void printHashSet(HashSet<Integer> hashSet,String name){
+    public void printHashSet(HashSet<Integer> hashSet, String name) {
         for (Integer integer : hashSet) {
-            Log.d(TAG, "Name: "+name + " : String: " + context.getString(integer));
+            Log.d(TAG, "Name: " + name + " : String: " + context.getString(integer));
         }
     }
 
@@ -377,25 +405,24 @@ public class LoadUIAllergies {
     synchronized private void savePreference() {
         HashSet<Integer> hashSet = new HashSet<>();
         HashSet<Integer> hashSetPicture = new HashSet<>();
-        HashSet<Integer> hashSetNot= new HashSet<>();
+        HashSet<Integer> hashSetNot = new HashSet<>();
         HashSet<Integer> hashSetPictureNot = new HashSet<>();
-        HashSet<Integer> hashSetAllergies = SharedPreferenceClass.getSharedPreference(context,"allergySave",TAG);
-        HashSet<Integer> hashSetPictureAllergies =  SharedPreferenceClass.getSharedPreference(context,"allergySavePicture",TAG);
-        getCheckedCheckBoxes(hashSet,hashSetPicture);
-        getCheckedCheckBoxesNot(hashSetNot,hashSetPictureNot);
+        HashSet<Integer> hashSetAllergies = SharedPreferenceClass.getSharedPreference(context, "allergySave", TAG);
+        HashSet<Integer> hashSetPictureAllergies = SharedPreferenceClass.getSharedPreference(context, "allergySavePicture", TAG);
+        getCheckedCheckBoxes(hashSet, hashSetPicture);
+        getCheckedCheckBoxesNot(hashSetNot, hashSetPictureNot);
 
         //debug(hashSet,hashSetPicture,hashSetNot,hashSetPictureNot,hashSetAllergies,hashSetPictureAllergies);
 
 
-        saveHashSet(hashSet,"preferenceSave");
-        saveHashSet(hashSetPicture,"preferenceSavePicture");
-        savePictureName(hashSetPicture,"preferenceSavePictureName");
+        saveHashSet(hashSet, "preferenceSave");
+        saveHashSet(hashSetPicture, "preferenceSavePicture");
+        savePictureName(hashSetPicture, "preferenceSavePictureName");
         removeAllergies(hashSetNot, hashSetAllergies, hashSetPictureAllergies);
-        addAllergies(hashSet,hashSetAllergies,hashSetPictureAllergies);
-        saveHashSet(hashSetAllergies,"allergySave");
-        saveHashSet(hashSetPictureAllergies,"allergySavePicture");
-        savePictureName(hashSetPictureAllergies,"allergySavePictureName");
-
+        addAllergies(hashSet, hashSetAllergies, hashSetPictureAllergies);
+        saveHashSet(hashSetAllergies, "allergySave");
+        saveHashSet(hashSetPictureAllergies, "allergySavePicture");
+        savePictureName(hashSetPictureAllergies, "allergySavePictureName");
 
 
     }
@@ -410,19 +437,19 @@ public class LoadUIAllergies {
     }
 
     private void debug(HashSet<Integer> hashSet, HashSet<Integer> hashSetPicture, HashSet<Integer> hashSetNot, HashSet<Integer> hashSetPictureNot, HashSet<Integer> hashSetAllergies, HashSet<Integer> hashSetPictureAllergies) {
-        printHashSet(hashSet,"hashSet");
-        printHashSet(hashSetPicture,"hashSetPicture");
-        printHashSet(hashSetNot,"hashSetNot");
-        printHashSet(hashSetPictureNot,"hashSetPictureNot");
-        printHashSet(hashSetAllergies,"hashSetOPOSITE");
-        printHashSet(hashSetPictureAllergies,"hashSetPictureOPOSITE");
+        printHashSet(hashSet, "hashSet");
+        printHashSet(hashSetPicture, "hashSetPicture");
+        printHashSet(hashSetNot, "hashSetNot");
+        printHashSet(hashSetPictureNot, "hashSetPictureNot");
+        printHashSet(hashSetAllergies, "hashSetOPOSITE");
+        printHashSet(hashSetPictureAllergies, "hashSetPictureOPOSITE");
     }
 
 
     private void addAllergies(HashSet<Integer> hashSet, HashSet<Integer> hashSetAllergies, HashSet<Integer> hashSetPictureAllergies) {
         for (Integer integer : hashSet) {
             ArrayList<AllergyList.PictureIngredient> specifiedKey = new AllergyList(context).getSpecifiedKeyAllergy(integer);
-            if(specifiedKey != null){
+            if (specifiedKey != null) {
                 for (AllergyList.PictureIngredient pictureIngredient : specifiedKey) {
                     hashSetAllergies.add(pictureIngredient.getId());
 
@@ -435,7 +462,7 @@ public class LoadUIAllergies {
 
     private void removeAllergies(HashSet<Integer> hashSetNot, HashSet<Integer> hashSetAllergies, HashSet<Integer> hashSetPictureAllergies) {
         for (Integer integer : hashSetNot) {
-            if(hashSetAllergies.contains(integer)){
+            if (hashSetAllergies.contains(integer)) {
                 ArrayList<AllergyList.PictureIngredient> specifiedKey = new AllergyList(context).getSpecifiedKeyAllergy(integer);
                 HashSet<Integer> remove = new HashSet<>();
                 for (AllergyList.PictureIngredient pictureIngredient : specifiedKey) {
@@ -449,7 +476,7 @@ public class LoadUIAllergies {
     }
 
     private void saveHashSet(HashSet<Integer> hashSet, String name) {
-        SharedPreferenceClass.setSharedPreference(context,hashSet,name,TAG);
+        SharedPreferenceClass.setSharedPreference(context, hashSet, name, TAG);
     }
 
     private void getCheckedCheckBoxesNot(HashSet<Integer> hashSetNot, HashSet<Integer> hashSetPictureNot) {
@@ -461,7 +488,7 @@ public class LoadUIAllergies {
                 }
                 if (!checkBoxClass.getChildCheckBox().isChecked()) {
                     hashSetNot.add(checkBoxClass.getChildKey());
-                    if(!preference){
+                    if (!preference) {
                         hashSetPictureNot.add(checkBoxClass.getParentPicture());
                         hashSetNot.add(checkBoxClass.getParentKey());
 
@@ -470,6 +497,7 @@ public class LoadUIAllergies {
             }
         }
     }
+
     private void getCheckedCheckBoxes(HashSet<Integer> hashSet, HashSet<Integer> hashSetPicture) {
         for (AllergyCheckBoxClass allergyCheckBoxClass : allergyInfo.values()) {
             for (AllergyCheckBoxClass checkBoxClass : allergyCheckBoxClass.getSameItemDifferentCategories()) {
@@ -479,7 +507,7 @@ public class LoadUIAllergies {
                 }
                 if (checkBoxClass.getChildCheckBox().isChecked()) {
                     hashSet.add(checkBoxClass.getChildKey());
-                    if(!preference){
+                    if (!preference) {
                         hashSetPicture.add(checkBoxClass.getParentPicture());
                         hashSet.add(checkBoxClass.getParentKey());
 
@@ -499,12 +527,10 @@ public class LoadUIAllergies {
     public void checkStringDelete(StartPage startPage) {
         TreeMap<Integer, ArrayList<AllergyList.PictureIngredient>> allergies = new AllergyList(startPage.getBaseContext()).getMyAllergies();
         TreeMap<Integer, ArrayList<AllergyList.PictureIngredient>> preference = new AllergyList(startPage.getBaseContext()).getMyPreference();
-        HashSet<Integer>  myAllergies = SharedPreferenceClass.getSharedPreference(startPage,"allergySave",TAG);
-        HashSet<Integer>  myPreference = SharedPreferenceClass.getSharedPreference(startPage,"preferenceSave",TAG);
-        removeStringAllergies(startPage,allergies,myAllergies,"allergySave");
-        removeStringAllergies(startPage,preference,myPreference,"preferenceSave");
-
-
+        HashSet<Integer> myAllergies = SharedPreferenceClass.getSharedPreference(startPage, "allergySave", TAG);
+        HashSet<Integer> myPreference = SharedPreferenceClass.getSharedPreference(startPage, "preferenceSave", TAG);
+        removeStringAllergies(startPage, allergies, myAllergies, "allergySave");
+        removeStringAllergies(startPage, preference, myPreference, "preferenceSave");
 
 
     }
@@ -516,24 +542,24 @@ public class LoadUIAllergies {
                 startPage.getString(myAllergy);
                 boolean destroy = true;
                 for (Integer integer : allergies.keySet()) {
-                    if(integer.equals(myAllergy)){
+                    if (integer.equals(myAllergy)) {
                         destroy = false;
                         break;
                     }
                     for (AllergyList.PictureIngredient pictureIngredients : allergies.get(integer)) {
-                        if(pictureIngredients.getId() == myAllergy){
+                        if (pictureIngredients.getId() == myAllergy) {
                             destroy = false;
                             break;
                         }
                     }
-                    if(!destroy){
+                    if (!destroy) {
                         break;
                     }
                 }
-                if(destroy){
+                if (destroy) {
                     allergiesToRemove.add(myAllergy);
                 }
-            }catch (Resources.NotFoundException e){
+            } catch (Resources.NotFoundException e) {
                 allergiesToRemove.add(myAllergy);
             }
         }

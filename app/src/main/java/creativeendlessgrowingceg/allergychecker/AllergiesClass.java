@@ -10,14 +10,14 @@ import android.support.annotation.NonNull;
  * @version 2017-12-01
  */
 
-public class AllAllergiesForEachInteger implements Comparable<AllAllergiesForEachInteger> {
+public class AllergiesClass implements Comparable<AllergiesClass> {
     private final String language;
     private final String nameOfIngredient;
     private final int id;
     private String motherLanguage;
     private String nameOfWordFound;
 
-    public AllAllergiesForEachInteger(String language, String nameOfIngredient, int ID, String motherLanguage) {
+    public AllergiesClass(String language, String nameOfIngredient, int ID, String motherLanguage) {
 
         this.language = language;
         this.nameOfIngredient = nameOfIngredient;
@@ -52,7 +52,7 @@ public class AllAllergiesForEachInteger implements Comparable<AllAllergiesForEac
 
 
     @Override
-    public int compareTo(@NonNull AllAllergiesForEachInteger o) {
+    public int compareTo(@NonNull AllergiesClass o) {
         return motherLanguage.compareToIgnoreCase(o.motherLanguage);
     }
 }

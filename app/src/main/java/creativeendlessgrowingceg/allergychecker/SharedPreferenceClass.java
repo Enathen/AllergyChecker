@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- *
+ * handles shared preferences easy
  * @author Jonathan Alexander Norberg
  * @version 2018-01-12
  */

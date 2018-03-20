@@ -143,9 +143,11 @@ public class LanguageFragment extends Fragment implements BillingProvider {
             final CheckBox checkBox = newLinearLayout.findViewById(R.id.checkBoxRowCategory);
             checkBoxes.add(new CheckBoxes(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), checkBox, locale));
             checkBox.setChecked(settings.getBoolean(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), false));
+
             checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    Log.d(TAG, "isPremiumPurchased: "+ isPremiumPurchased());
                     if (isPremiumPurchased() || locale.getLanguage().equals("en") || locale.getLanguage().equals(Locale.getDefault().getLanguage())) {
                         editor.putBoolean(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), isChecked);
                         editor.apply();

@@ -45,7 +45,7 @@ public class OnboardingPagerActivity extends AppCompatActivity implements
         Page p = new Page(0, "#19b3ad", R.drawable.slide,getString(R.string.firstIntro));
 
         mPagerMgr.addPage(p);
-        p = new Page(2, "#23f353", R.drawable.slide2,getString(R.string.thirdIntro));
+        p = new Page(2, "#23f353", R.drawable.slide2,getString(R.string.secondIntro));
         mPagerMgr.addPage(p);
         p = new Page(3, "#23f354", R.drawable.slide3,getString(R.string.slide3));
         mPagerMgr.addPage(p);

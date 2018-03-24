@@ -143,8 +143,7 @@
     <string name="send">Wyślij tłumaczenie</string>
     <string name="mustBeInEnglish">Tekst musi być napisany po angielsku lub po szwedzku! Dzięki!</string>
     <string name="sendTipsFrom">Gdzie chcesz wysyłać porady?</string>
-    <string name="welcomeMessageInvite">Do you want to know if you can eat something fast, that is not allergic to you?
-    Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
+    <string name="welcomeMessageInvite">Keep your allergies in Check, With Allergy Checker!</string>
     <string name="time">czas</string>
     <string name="buckwheat">Gryka</string>
     <string name="mustardSeed">Nasiona gorczycy</string>
@@ -205,8 +204,10 @@
     <string name="inputIngredients">Wprowadź składniki</string>
     <string name="rate">Oceniać</string>
     <string name="pressMe">Naciśnij mnie \n aby kontynuować!</string>
-    <string name="firstIntro">Podczas skanowania tekstu za pomocą aparatu. Pola tekstowe będą obejmować tekst. Kliknięcie pola tekstowego spowoduje, że aplikacja przeanalizuje cały tekst w polach tekstowych widocznych na ekranie. Dobrym przykładem tego, jak powinny wyglądać pola tekstowe, jest powyższy.</string>
-    <string name="secondIntro">Jest to również dobry przykład na to, jak mogą wyglądać pudełka.</string>
+    <string name="firstIntro">Podczas skanowania tekstu za pomocą aparatu. Pola tekstowe będą obejmować tekst.
+         Kliknięcie pola tekstowego spowoduje, że aplikacja przeanalizuje cały tekst w polach tekstowych widocznych na ekranie, a pola tekstowe zostaną wcześniej zapisane.
+         Dobrym przykładem tego, jak powinny wyglądać pola tekstowe, jest powyższy.</string>
+    <string name="secondIntro">Jeśli zauważysz, że skanowany tekst jest zły, przytrzymaj palec, aby usunąć cały zeskanowany tekst.</string>
     <string name="thirdIntro">Nie należy stukać w pola tekstowe, gdy pola tekstowe wyglądają tak, ponieważ skanują tylko niewielki procent pełnego tekstu.</string>
     <string name="tutorial">Seminarium</string>
     <string name="anis">Anis</string>

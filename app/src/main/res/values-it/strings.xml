@@ -144,8 +144,7 @@
     <string name="send">Inviare la traduzione</string>
     <string name="mustBeInEnglish">Il testo deve essere scritto in inglese o svedese! Grazie!</string>
     <string name="sendTipsFrom">Da dove vuoi inviare suggerimenti?</string>
-    <string name="welcomeMessageInvite">Do you want to know if you can eat something fast, that is not allergic to you?
-    Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
+    <string name="welcomeMessageInvite">Keep your allergies in Check, With Allergy Checker!</string>
     <string name="time">Tempo</string>
     <string name="buckwheat">Grano saraceno</string>
     <string name="mustardSeed">Semi di senape</string>
@@ -206,8 +205,10 @@
     <string name="inputIngredients">Ingredienti di input</string>
     <string name="rate">Vota</string>
     <string name="pressMe">Premi me \n per continuare!</string>
-    <string name="firstIntro">Durante la scansione del testo con la fotocamera. Le caselle di testo copriranno il testo. Toccando la casella di testo farà in modo che l\'app analizzi tutto il testo nelle caselle di testo visualizzabili sullo schermo. Un buon esempio come le caselle di testo dovrebbero apparire è quella sopra.</string>
-    <string name="secondIntro">Questo è anche un buon esempio di come potrebbero apparire le scatole.</string>
+    <string name="firstIntro">Durante la scansione del testo con la fotocamera. Le caselle di testo copriranno il testo.
+         Toccando una casella di testo, l\'app analizzerà tutto il testo nelle caselle di testo visualizzabili sullo schermo e le caselle di testo salvate in precedenza.
+         Un buon esempio di come dovrebbero apparire le caselle di testo è quello sopra.</string>
+    <string name="secondIntro">Se trovi che il testo è scansionato male, tieni premuto il dito per rimuovere tutto il testo scansionato.</string>
     <string name="thirdIntro">Non dovresti toccare le caselle di testo quando le caselle di testo appaiono in questo modo poiché analizzerà solo una piccola percentuale del testo completo.</string>
     <string name="tutorial">Lezione</string>
     <string name="anis">Anis</string>

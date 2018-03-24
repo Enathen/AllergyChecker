@@ -128,7 +128,7 @@ public class LanguageFragment extends Fragment implements BillingProvider {
         final ArrayList<LinearLayout> arrayListLinearLayout = new ArrayList<>();
         final LinearLayout topLinearLayout = (LinearLayout) inflater.inflate(R.layout.rowcategorylayout, null);
         final LinearLayout parentLinearLayout = topLinearLayout.findViewById(R.id.linearLayoutRowCategoryHorizontal);
-        ((ImageView) parentLinearLayout.findViewById(R.id.imageViewRowCategory)).setImageResource(R.drawable.translate);
+        ((ImageView) parentLinearLayout.findViewById(R.id.imageViewRowCategory)).setVisibility(View.INVISIBLE);
         parentLinearLayout.findViewById(R.id.dropDownList).setVisibility(View.INVISIBLE);
         ((TextView) parentLinearLayout.findViewById(R.id.textViewCategory)).setText(TextHandler.capitalLetter(R.string.checkAll, getContext()));
         SharedPreferences settings = getActivity().getSharedPreferences("box", Context.MODE_PRIVATE);

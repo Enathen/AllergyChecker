@@ -147,8 +147,7 @@
     <string name="send">Stuur een vertaling</string>
     <string name="mustBeInEnglish">Tekst moet in het Engels of Zweeds zijn geschreven! Bedankt!</string>
     <string name="sendTipsFrom">Waar wil je tips sturen?</string>
-    <string name="welcomeMessageInvite">Do you want to know if you can eat something fast, that is not allergic to you?
-    Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
+    <string name="welcomeMessageInvite">Keep your allergies in Check, With Allergy Checker!</string>
     <string name="time">Tijd</string>
     <string name="buckwheat">Boekweit</string>
     <string name="mustardSeed">Mosterdzaad</string>
@@ -213,10 +212,10 @@
     <string name="inputIngredients">invoer ingrediënten</string>
     <string name="rate">Beoordeel</string>
     <string name="pressMe">druk op me\n om door te gaan!</string>
-    <string name="firstIntro">Bij het scannen van tekst met de camera. Tekstvakken zullen de tekst behandelen. Tik op het tekstvak
-        zorgt ervoor dat de app alle tekst in de tekstvakken die zichtbaar zijn op het scherm analyseert. Een goed voorbeeld hoe
-        de tekstvakken moeten er uitzien zoals hierboven.</string>
-    <string name="secondIntro">Dit is ook een goed voorbeeld hoe de vakken eruit kunnen zien.</string>
+    <string name="firstIntro">Bij het scannen van tekst met de camera. Tekstvakken zullen de tekst behandelen.
+         Als u op een tekstvak tikt, analyseert de app alle tekst in de tekstkaders die zichtbaar zijn op het scherm en tekstvakken die van tevoren zijn opgeslagen.
+         Een goed voorbeeld van hoe de tekstvakken eruit moeten zien, is die hierboven.</string>
+    <string name="secondIntro">Als u de tekst vindt die u slecht scant, houdt u uw vinger ingedrukt om alle gescande tekst te verwijderen.</string>
     <string name="thirdIntro">Tik niet op de tekstvakken wanneer de tekstvakken op deze manier verschijnen
         omdat het slechts een klein percentage van de volledige tekst zal scannen.</string>
     <string name="tutorial">Zelfstudie</string>

@@ -51,6 +51,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import creativeendlessgrowingceg.allergychecker.billingmodule.billing.BillingManager;
 import creativeendlessgrowingceg.allergychecker.billingmodule.billing.BillingProvider;
@@ -332,14 +333,13 @@ public class StartPage extends AppCompatActivity
         if (str != null) {
 
             str = str.replaceAll("[^\\p{L}\\p{Nd}\\s]+", "");
-            suggestions.setText(str);
+            //suggestions.setText(str);
             str = str.toLowerCase();
-
             if (!str.equals("")) {
                 DateString dateString = new DateString(str, startPage.getBaseContext());
                 dateString.saveArray();
-
             }
+
             //setDateStrings(dateStrings);
 
             checkStringAgainstAllergies(str);
@@ -354,7 +354,7 @@ public class StartPage extends AppCompatActivity
             }
             if (str != null) {
                 Unfiltered = intent.getBooleanExtra("Unfiltered", true);
-                suggestions.setText(str);
+                //suggestions.setText(str);
                 checkStringAgainstAllergies(str);
             } else {
 
@@ -404,9 +404,8 @@ public class StartPage extends AppCompatActivity
                 }
             });
         }
-        checkNewVersion();
+        //checkNewVersion();
 
-        //billing.buyProduct("premium_upgrade");
     }
 
     public void closeFAB() {
@@ -486,11 +485,11 @@ public class StartPage extends AppCompatActivity
                         PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
                 sharedPreferencesEditor.putBoolean(
                         check, true);
-                new LoadUIAllergies().checkStringDelete(this);
+                //new LoadUIAllergies().checkStringDelete(this);
                 sharedPreferencesEditor.apply();
             }
         }
-        new LoadUIAllergies().checkStringDelete(this);
+       // new LoadUIAllergies().checkStringDelete(this);
 
     }
 
@@ -500,12 +499,7 @@ public class StartPage extends AppCompatActivity
      * update profile picture
      */
     private void setProfilePicture() {
-        SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        String check = String.valueOf(BuildConfig.VERSION_CODE) + "checkAllergy1";
-        if (sharedPreferences.getBoolean(check, false)) {
-            new LoadUIAllergies().savePicture(this, getImageViewHashMap(this));
-        }
+        new LoadUIAllergies().savePicture(this, getImageViewHashMap(this));
     }
 
 
@@ -515,7 +509,7 @@ public class StartPage extends AppCompatActivity
 
     public void loadInterstitial() {
         interstitialAd = new InterstitialAd(StartPage.this);
-        interstitialAd.setAdUnitId("ca-app-pub-3607354849437438/9852745111");
+        interstitialAd.setAdUnitId("ca-app-pub-3607354849437438~1697911164");
         interstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
@@ -926,6 +920,8 @@ public class StartPage extends AppCompatActivity
         private ProgressBar viewById;
         private String stringToCheck;
         private ArrayList<AllergyList.E_Numbers> allfoundENumbers = new ArrayList<>();
+        private TreeMap<Integer, TreeSet<String>> hashSetAllStrings;
+        private TreeSet<String> strings;
 
 
         CalcAllergy(StartPage context, TextView textView, ProgressBar viewById) {
@@ -951,7 +947,7 @@ public class StartPage extends AppCompatActivity
         protected ArrayList<AllergiesClass> doInBackground(String... params) {
             // get the stringToCheck from params, which is an array
             stringToCheck = params[0];
-            TreeMap<Integer, HashSet<String>> hashSetAllStrings = new TreeMap<>();
+            hashSetAllStrings = new TreeMap<>();
 
             HashSet<String> hashSetToCheckLast = new HashSet<>();
             helpCalcAllergy.FixString(params[0].split("\\s+"), hashSetAllStrings, hashSetToCheckLast);
@@ -968,7 +964,6 @@ public class StartPage extends AppCompatActivity
             int i = 0;
             ArrayList<AllergiesClass> allFoundAllergies = new ArrayList<>();
             for (int id : hashSetFromOtherClass) {
-                //Log.d(TAG, "I: "+ i + " counter :"+ counter);
                 publishProgress(hashSetFromOtherClass.size(), counter);
                 length = helpCalcAllergy.setLocaleString(length, id, allergies, listOfLanguages, StartPage.this);
 
@@ -1026,6 +1021,10 @@ public class StartPage extends AppCompatActivity
             Log.d(TAG, "TIME: " + (stop - start));
             Collections.sort(allFoundAllergies);
             Collections.sort(allfoundENumbers);
+            strings = new TreeSet<>();
+            for (TreeSet<String> stringTreeSet : hashSetAllStrings.values()) {
+                strings.addAll(stringTreeSet);
+            }
             return allFoundAllergies;
         }
 
@@ -1049,6 +1048,7 @@ public class StartPage extends AppCompatActivity
             final LinearLayout linearLayout = findViewById(R.id.linLayHorizontalStartPage);
             final HashMap<String, Lin> linearLayoutHashMap = new HashMap<>();
             for (final AllergiesClass allergiesForEachInteger : allergiesClass) {
+                Log.d(TAG, "onPostExecute: "+ allergiesForEachInteger.getNameOfWordFound());
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 LinearLayout newlinearLayout = (LinearLayout) inflater.inflate(R.layout.linlayoutstartpagevertical, null);
                 ((ImageView) newlinearLayout.findViewById(R.id.imageViewHorStartPage)).setImageResource(LanguagesAccepted.getFlag(allergiesForEachInteger.getLanguage()));
@@ -1060,7 +1060,7 @@ public class StartPage extends AppCompatActivity
                     linearLayout.addView(parentLin);
                     ArrayList<LinearLayout> l = new ArrayList<>();
                     linearLayoutHashMap.put(allergiesForEachInteger.getMotherLanguage(), new Lin(newlinearLayout, l, parentLin));
-                    Log.d(TAG, "onPostExecute: size" + linearLayoutHashMap.get(allergiesForEachInteger.getMotherLanguage()).linearLayoutArrayList.size());
+                    //Log.d(TAG, "onPostExecute: size" + linearLayoutHashMap.get(allergiesForEachInteger.getMotherLanguage()).linearLayoutArrayList.size());
 
 
                 } else {
@@ -1136,7 +1136,7 @@ public class StartPage extends AppCompatActivity
                 outputString = outputString.concat("\n" + getString(R.string.dontUse) + "\n");
                 outputString = outputString.concat("\n" + getString(R.string.mightContainOther) + "\n");
                 outputString = outputString.concat(getString(R.string.scannedTextBelow) + "\n");
-                textView.setTextColor(Color.parseColor("#ff7f2a"));
+                textView.setTextColor(Color.parseColor("#f23931"));
                 textView.setText(outputString);
                 findViewById(R.id.linlayallergyFromWord).setVisibility(View.VISIBLE);
             } else {
@@ -1180,6 +1180,22 @@ public class StartPage extends AppCompatActivity
                 }
             });
             findViewById(R.id.textViewtip).setVisibility(View.GONE);
+            //suggestions.setText("");
+
+            char charCurrent = 'a';
+            for (String string : strings) {
+                //Log.d(TAG, "onPostExecute: "+ string);
+                if (string.length()>1) {
+                    if (!Character.isDigit(string.charAt(0))) {
+                        if(string.charAt(0)!= charCurrent){
+                            charCurrent = string.charAt(0);
+                            suggestions.append("\n");
+                        }
+                        suggestions.append(string + "\n");
+                    }
+                }
+
+            }
             // Do things like hide the progress bar or change a TextView
         }
 
@@ -1216,5 +1232,4 @@ public class StartPage extends AppCompatActivity
         }
 
     }
-
 }

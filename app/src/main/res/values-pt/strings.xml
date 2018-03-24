@@ -143,8 +143,7 @@
     <string name="send">Enviar tradução</string>
     <string name="mustBeInEnglish">O texto deve ser escrito em inglês ou sueco! Obrigado!</string>
     <string name="sendTipsFrom">De onde você deseja enviar dicas?</string>
-    <string name="welcomeMessageInvite">Do you want to know if you can eat something fast, that is not allergic to you?
-    Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
+    <string name="welcomeMessageInvite">Keep your allergies in Check, With Allergy Checker!</string>
     <string name="time">vez</string>
     <string name="buckwheat">Trigo mourisco</string>
     <string name="mustardSeed">Semente de mostarda</string>
@@ -205,8 +204,10 @@
     <string name="inputIngredients">Inserir ingredientes</string>
     <string name="rate">Taxa</string>
     <string name="pressMe">Me pressione \ n para continuar!</string>
-    <string name="firstIntro">Ao digitalizar texto com a câmera. Caixas de texto irão cobrir o texto. Ao tocar na caixa de texto, o aplicativo analisará todo o texto nas caixas de texto visíveis na tela. Um bom exemplo de como as caixas de texto devem procurar é a que está acima.</string>
-    <string name="secondIntro">Este também é um bom exemplo de como as caixas podem parecer.</string>
+    <string name="firstIntro">Ao digitalizar texto com a câmera. Caixas de texto irão cobrir o texto.
+         Tocar em uma caixa de texto fará com que o aplicativo analise todo o texto nas caixas de texto visíveis na tela e as caixas de texto que estão sendo salvas anteriormente.
+         Um bom exemplo de como as caixas de texto devem ficar é o acima.</string>
+    <string name="secondIntro">Se você encontrar o texto que digitalizou incorretamente, mantenha o dedo pressionado para remover todo o texto digitalizado.</string>
     <string name="thirdIntro">Você não deve tocar as caixas de texto quando as caixas de texto aparecerem assim, uma vez que apenas digitalizará uma pequena porcentagem do texto completo.</string>
     <string name="tutorial">Tutorial</string>
     <string name="anis">Anis</string>

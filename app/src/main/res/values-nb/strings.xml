@@ -140,8 +140,7 @@
     <string name="send">Send oversettelse</string>
     <string name="mustBeInEnglish">Teksten må være skrevet på engelsk eller svensk! Takk!</string>
     <string name="sendTipsFrom">Hvor vil du sende tips fra?</string>
-    <string name="welcomeMessageInvite">Do you want to know if you can eat something fast, that is not allergic to you?
-    Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
+    <string name="welcomeMessageInvite">Keep your allergies in Check, With Allergy Checker!</string>
     <string name="time">gång</string>
 
 
@@ -200,10 +199,10 @@
     <string name="inputIngredients">Skrive ingredienser</string>
     <string name="rate">Ranger</string>
     <string name="pressMe">Trykk meg\nFor å fortsette!</string>
-    <string name="firstIntro">Når du skanner tekst med kameraet. Tekstbokser vil dekke teksten. Tapping av tekstboksen
-        vil gjøre appen analysere all tekst i tekstbokser som kan vises på skjermen. Et godt eksempel hvordan
-        Tekstboksene skal se er den som er over.</string>
-    <string name="secondIntro">Dette er også et godt eksempel på hvordan boksene kan se ut.</string>
+    <string name="firstIntro">Når du skanner tekst med kameraet. Tekstbokser vil dekke teksten.
+         Hvis du trykker på en tekstboks, får appen å analysere all tekst i tekstbokser som kan vises på skjermen, og tekstbokser blir lagret fra før.
+         Et godt eksempel på hvordan tekstboksene skal se er det over.</string>
+    <string name="secondIntro">Hvis du finner teksten du skanner dårlig, holder du fingeren ned for å fjerne all skannet tekst.</string>
     <string name="thirdIntro">Du bør ikke trykke på tekstfeltene når tekstfeltene vises slik
         siden det bare vil skanne en liten prosentandel av hele teksten.</string>
     <string name="tutorial">Opplæringen</string>

@@ -16,6 +16,8 @@
 
 package creativeendlessgrowingceg.allergychecker.bktree;
 
+import android.util.Log;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;

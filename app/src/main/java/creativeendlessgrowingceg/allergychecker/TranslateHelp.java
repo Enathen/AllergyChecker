@@ -389,7 +389,7 @@ public class TranslateHelp extends Fragment {
             arrayList.add(getString(R.string.rate));
             arrayList.add(getString(R.string.pressMe));
             arrayList.add(getString(R.string.firstIntro));
-            arrayList.add(getString(R.string.thirdIntro));
+            arrayList.add(getString(R.string.secondIntro));
             arrayList.add(getString(R.string.tutorial));
             arrayList.add(getString(R.string.anis));
             arrayList.add(getString(R.string.coriander));

@@ -143,26 +143,7 @@
     <string name="send">Skicka översättning</string>
     <string name="mustBeInEnglish">Texten måste bli skriven på engelska eller svenska! Tack!</string>
     <string name="sendTipsFrom">Vart vill du skicka tips från?</string>
-    <string name="welcomeMessageInvite">Vill du veta om du kan äta något snabbt? Som inte är allergiskt för dig?
-    Toppen! Den här appen låter dig scanna text från olika språk som låter dig se om du är allergisk mot det!</string>
-
-<!--
-    <string name="buckwh3at">Bovete</string>
-    <string name="buck6wheat">Bovete</string>
-    <string name="buckw4heat">Bovete</string>
-    <string name="buckwh213eat">Bovete</string>
-    <string name="buc5kwheat">Bovete</string>
-    <string name="b7uckwheat">Bovete</string>
-    <string name="buckw35heat">Bovete</string>
-    <string name="buc412wheat">Bovete</string>
-    <string name="buckwcasdheat">Bovete</string>
-    <string name="buckwhedsat">Bovete</string>
-    <string name="buckwasdczheat">Bovete</string>
-    <string name="buckwzcxheat">Bovete</string>
-    <string name="buckwhea1t">Bovete</string>
-    <string name="buckwhe2at">Bovete</string>
--->
-
+    <string name="welcomeMessageInvite">Håll dina allergier i schack, med Allergy Checker!</string>
 
 
     <string name="buckwheat">Bovete</string>
@@ -218,10 +199,10 @@
     <string name="inputIngredients">Skriv ingredienser</string>
     <string name="rate">Betygsätt</string>
     <string name="pressMe">Tryck mig\nFör att fortsätta!</string>
-    <string name="firstIntro">När du skannar text med kameran kommer textrutor att täcka över texten. Tryck på textrutan
-        så att appen kan analysera texten i textrutorna som visas på skärmen. Ett bra exempel på hur
-        textrutorna ska se ut är den ovanstående.</string>
-    <string name="secondIntro">Detta är också ett bra exempel på hur textrutorna kan se ut.</string>
+    <string name="firstIntro">När du skannar text med kameran. Textrutor kommer att täcka texten.
+        Om du trycker på en textruta får appen analysera all text i textrutorna som kan visas på skärmen och textrutorna sparas från tidigare.
+        Ett bra exempel på hur textrutorna ska se är den ovanstående.</string>
+    <string name="secondIntro">Om du tycker den text du skannat är dålig, håll ner fingret för att ta bort all sparad skannad text.</string>
     <string name="thirdIntro">Du bör inte trycka på textrutorna när de visas så här
         eftersom det kommer bara att skanna en liten procentandel av hela texten.</string>
     <string name="tutorial">Handledning</string>
@@ -257,7 +238,7 @@
     <string name="start">Startsida</string>
     <string name="holdFor">Håll för mer information</string>
     <string name="about">Om</string>
-    <string name="helpTranslate">Hjälp Översätt</string>
+    <string name="helpTranslate">Hjälp Att Översätta</string>
     <string name="onlyFillChanges">Fyll bara i dem du ändrar, Lämna dem andra tomma! Tack Hjälpare!</string>
     <string name="uncheckAll">avmarkera alla</string>
     <string name="checkAll">markera alla</string>
@@ -298,7 +279,7 @@
     <string name="shareWithFriend">Tycker du denna app är hjälpsam? Dela den med en vän!</string>
     <string name="wonderfulDay">Ha en underbar dag!</string>
     <string name="holdHistory">I historiefliken tryck och håll ner datumet för att få fram mer information</string>
-    <string name="foundBadTranslation">Hittat en dålig översättning? Hjälp översätt!</string>
+    <string name="foundBadTranslation">Hittat en dålig översättning? Hjälp att översätta!</string>
     <string name="advancedSearch">Gör ofiltrerad sökning</string>
     <string name="regularSearch">Gör filtrerad sökning</string>
     <string name="italian">Italienska</string>

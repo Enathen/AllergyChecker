@@ -144,8 +144,7 @@
     <string name="send">Enviar traducción</string>
     <string name="mustBeInEnglish">el texto debe escribirse en Inglés o Sueco! Gracias!</string>
     <string name="sendTipsFrom">¿Donde quieres enviar consejos de?</string>
-    <string name="welcomeMessageInvite">Do you want to know if you can eat something fast, that is not allergic to you?
-    Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
+    <string name="welcomeMessageInvite">Keep your allergies in Check, With Allergy Checker!</string>
     <string name="time">Vez</string>
     <string name="buckwheat">Alforfón</string>
     <string name="mustardSeed">Mostaza de semilla</string>
@@ -209,10 +208,10 @@
     <string name="inputIngredients">Escribir ingredientes</string>
     <string name="rate">Velocidad</string>
     <string name="pressMe">Presionarme \nContinuar!</string>
-    <string name="firstIntro">Al escanear texto con la cámara. Los cuadros de texto cubrirán el texto. Tocando el cuadro de texto
-        hará que la aplicación analice todo el texto en los cuadros de texto visibles en la pantalla. Un buen ejemplo de cómo
-        los cuadros de texto deben mirar es el de arriba.</string>
-    <string name="secondIntro">Este también es un buen ejemplo de cómo se verían las cajas.</string>
+    <string name="firstIntro">Al escanear texto con la cámara. Los cuadros de texto cubrirán el texto.
+        Al tocar un cuadro de texto, la aplicación analizará todo el texto en los cuadros de texto que se pueden ver en la pantalla y los cuadros de texto que se guardarán desde antes.
+        Un buen ejemplo de cómo deberían verse los cuadros de texto es el de arriba.</string>
+    <string name="secondIntro">Si encuentra que el texto que escanea mal, mantenga presionado el dedo para eliminar todo el texto escaneado.</string>
     <string name="thirdIntro">No debe tocar los cuadros de texto cuando los cuadros de texto aparecen así
         ya que solo escaneará un pequeño porcentaje del texto completo.</string>
     <string name="tutorial">Tutorial</string>

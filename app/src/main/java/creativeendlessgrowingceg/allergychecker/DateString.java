@@ -3,6 +3,7 @@ package creativeendlessgrowingceg.allergychecker;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -44,12 +45,13 @@ public class DateString {
 
         SharedPreferences.Editor mEdit1 = prefs.edit();
         Collections.sort(dateStrings, new HistoryFragment.stringComparator());
-        if (dateStrings.size() > 128) {
-            int sizeToMuch = dateStrings.size() % 128;
-            for (int i = 0; i < sizeToMuch; i++) {
-                dateStrings.remove(i);
-            }
+        Collections.reverse(dateStrings);
+        if (dateStrings.size() > 64) {
+            int sizeToMuch = dateStrings.size() - 64;
+            dateStrings.subList(dateStrings.size() - sizeToMuch, dateStrings.size()).clear();
+
         }
+
 
         Set<String> set = new HashSet<>();
         set.addAll(dateStrings);

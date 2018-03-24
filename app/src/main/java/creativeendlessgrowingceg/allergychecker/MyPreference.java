@@ -88,7 +88,7 @@ public class MyPreference extends Fragment {
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
 
         loadUIAllergies = new LoadUIAllergies(true,inflater, (StartPage) getActivity(), parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyPreference());
-        CheckAllergy();
+        //CheckAllergy();
         return parentFrameLayout;
     }
 

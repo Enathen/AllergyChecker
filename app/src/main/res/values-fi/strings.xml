@@ -143,8 +143,7 @@
     <string name="send">Lähetä käännös</string>
     <string name="mustBeInEnglish">Teksti on kirjoitettava englanniksi tai ruotsiksi! Kiitos!</string>
     <string name="sendTipsFrom">Mistä haluat lähettää vinkkejä?</string>
-    <string name="welcomeMessageInvite">Do you want to know if you can eat something fast, that is not allergic to you?
-    Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
+    <string name="welcomeMessageInvite">Keep your allergies in Check, With Allergy Checker!</string>
     <string name="time">kertaa</string>
 
 
@@ -203,10 +202,10 @@
     <string name="inputIngredients">Kirjoita ainesosia</string>
     <string name="rate">nopeus</string>
     <string name="pressMe">Kosketa minua \nJatka!</string>
-    <string name="firstIntro">Kun skannaat tekstiä kameran kanssa. Teksti-ruutu kattaa tekstin. Napauttamalla tekstiruutua
-        tekee sovelluksen analysoida kaikki teksti ruudulla näkyvissä olevissa tekstiruutuissa. Hyvä esimerkki siitä, miten
-        tekstilaatikoiden pitäisi näyttää on yllä oleva.</string>
-    <string name="secondIntro">Tämä on myös hyvä esimerkki siitä, miten laatikot voivat näyttää.</string>
+    <string name="firstIntro">Kun skannaat tekstiä kameran kanssa. Teksti-ruutu kattaa tekstin.
+         Teksti-ruutuun napauttamalla sovellus analysoi kaikki teksti ruudulla näkyvissä olevissa tekstiruutuissa ja tekstiruutuista, jotka on tallennettu aikaisemmin.
+         Hyvä esimerkki siitä, miten tekstilaatikot näyttävät, on edellä esitetty.</string>
+    <string name="secondIntro">Jos huomaat väärän tekstin, pidä alhaalla sormea poistaaksesi kaikki skannatut tekstit.</string>
     <string name="thirdIntro"> Älä napauta tekstilaatikoita, kun tekstilaatikkot näyttävät näin
         koska se vain skannaa pienen prosenttiosuuden koko tekstistä.</string>
     <string name="tutorial">Oppitunti</string>

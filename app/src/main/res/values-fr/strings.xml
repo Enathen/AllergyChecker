@@ -148,8 +148,7 @@
     <string name="send">Envoyer des astuces</string>
     <string name="mustBeInEnglish">Le texte doit être écrit en anglais ou en suédois! Merci!</string>
     <string name="sendTipsFrom">D\'où voulez-vous envoyer des conseils?</string>
-    <string name="welcomeMessageInvite">Do you want to know if you can eat something fast, that is not allergic to you?
-    Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
+    <string name="welcomeMessageInvite">Keep your allergies in Check, With Allergy Checker!</string>
     <string name="time">Temps</string>
     <string name="buckwheat">Sarrasin</string>
     <string name="mustardSeed">Graine de moutarde</string>
@@ -213,10 +212,10 @@
     <string name="inputIngredients">Ingrédients d\'entrée</string>
     <string name="rate">Évaluer</string>
     <string name="pressMe">Presse moi \npour continuer!</string>
-    <string name="firstIntro">Lors de la numérisation de texte avec l\'appareil photo. Les zones de texte couvriront le texte. En tapant la zone de texte
-        fera l\'application analyser tout le texte dans les zones de texte visibles sur l\'écran. Un bon exemple comment
-        les zones de texte doivent ressembler à celle ci-dessus.</string>
-    <string name="secondIntro">C\'est aussi un bon exemple de la façon dont les boîtes pourraient ressembler.</string>
+    <string name="firstIntro">Lors de la numérisation de texte avec l\'appareil photo. Les zones de texte couvriront le texte.
+         Si vous appuyez sur une zone de texte, l\'application analyse tout le texte dans les zones de texte affichables à l'écran et les zones de texte enregistrées précédemment.
+         Un bon exemple à quoi les boîtes de texte devraient ressembler est celui ci-dessus.</string>
+    <string name="secondIntro">Si le texte que vous numérisez est incorrect, maintenez votre doigt enfoncé pour supprimer tout le texte numérisé.</string>
     <string name="thirdIntro">Vous ne devez pas appuyer sur les zones de texte lorsque les zones de texte apparaissent comme ceci
         car il ne numérisera qu\'un petit pourcentage du texte intégral.</string>
     <string name="tutorial">Tutoriel</string>

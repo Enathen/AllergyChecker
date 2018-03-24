@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import creativeendlessgrowingceg.allergychecker.bktree.BkTreeSearcher;
 import creativeendlessgrowingceg.allergychecker.bktree.Metric;
@@ -106,14 +107,14 @@ public class HelpCalcAllergy {
      * @param hashSetAllStrings to add
      * @param hashSetToCheckLast this to check full strig later
      */
-    public void FixString(String[] splitStr, TreeMap<Integer, HashSet<String>> hashSetAllStrings, HashSet<String> hashSetToCheckLast) {
+    public void FixString(String[] splitStr, TreeMap<Integer, TreeSet<String>> hashSetAllStrings, HashSet<String> hashSetToCheckLast) {
         for (int i = 0; i < splitStr.length; i++) {
             if (splitStr.length - 1 != i) {
                 hashSetToCheckLast.add(splitStr[i] + splitStr[i + 1]);
                 if (hashSetAllStrings.containsKey((splitStr[i] + splitStr[i + 1]).length())) {
                     hashSetAllStrings.put((splitStr[i] + splitStr[i + 1]).length(), hashSetAllStrings.get((splitStr[i] + splitStr[i + 1]).length())).add(splitStr[i] + splitStr[i + 1]);
                 } else {
-                    HashSet<String> hashset = new HashSet<>();
+                    TreeSet<String> hashset = new TreeSet<>();
                     hashset.add(splitStr[i] + splitStr[i + 1]);
                     hashSetAllStrings.put((splitStr[i] + splitStr[i + 1]).length(), hashset);
                 }
@@ -122,7 +123,7 @@ public class HelpCalcAllergy {
                     if (hashSetAllStrings.containsKey((splitStr[i - 1] + splitStr[i] + splitStr[i + 1]).length())) {
                         hashSetAllStrings.put((splitStr[i - 1] + splitStr[i] + splitStr[i + 1]).length(), hashSetAllStrings.get((splitStr[i - 1] + splitStr[i] + splitStr[i + 1]).length())).add((splitStr[i - 1] + splitStr[i] + splitStr[i + 1]));
                     } else {
-                        HashSet<String> hashset = new HashSet<>();
+                        TreeSet<String> hashset = new TreeSet<>();
                         hashset.add(splitStr[i - 1] + splitStr[i] + splitStr[i + 1]);
                         hashSetAllStrings.put((splitStr[i - 1] + splitStr[i] + splitStr[i + 1]).length(), hashset);
                     }
@@ -132,7 +133,7 @@ public class HelpCalcAllergy {
             if (hashSetAllStrings.containsKey((splitStr[i]).length())) {
                 hashSetAllStrings.put((splitStr[i]).length(), hashSetAllStrings.get((splitStr[i]).length())).add(splitStr[i]);
             } else {
-                HashSet<String> hashset = new HashSet<>();
+                TreeSet<String> hashset = new TreeSet<>();
                 hashset.add(splitStr[i]);
                 hashSetAllStrings.put((splitStr[i]).length(), hashset);
             }
@@ -195,7 +196,7 @@ public class HelpCalcAllergy {
      * @param allergies all allergies user have
      * @param allFoundAllergies all found allergies
      */
-    public void bkTree(int length, TreeMap<Integer, HashSet<String>> hashSetAllStrings,
+    public void bkTree(int length, TreeMap<Integer, TreeSet<String>> hashSetAllStrings,
                        HashMap<Integer, HashMap<String, AllergiesClass>> allergies,
                        ArrayList<AllergiesClass> allFoundAllergies) {
         for (Integer s : hashSetAllStrings.keySet()) {
@@ -309,7 +310,7 @@ public class HelpCalcAllergy {
                     for (AllergiesClass allFoundAllergy : allFoundAllergies) {
                         if(allFoundAllergy.getNameOfIngredient().equals(all.getNameOfIngredient())){
                             open = false;
-                            Log.d(TAG, "checkFullString: " + allFoundAllergy.getNameOfIngredient());
+                            //Log.d(TAG, "checkFullString: " + allFoundAllergy.getNameOfIngredient());
                         }
                     }
                     if(open)

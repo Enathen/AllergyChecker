@@ -145,8 +145,7 @@
     <string name="send">Send Translation</string>
     <string name="mustBeInEnglish">Text must be written in English or Swedish! Thanks!</string>
     <string name="sendTipsFrom">Where you want to send tips from?</string>
-    <string name="welcomeMessageInvite">Do you want to know if you can eat something fast, that is not allergic to you?
-    Great! This app lets you scan text in multiple languages to see if you can eat it!</string>
+    <string name="welcomeMessageInvite">Keep your allergies in Check, With Allergy Checker!</string>
     <string name="time">time</string>
     <string name="buckwheat">Buckwheat</string>
     <string name="mustardSeed">Mustard Seed</string>
@@ -207,10 +206,10 @@
     <string name="inputIngredients">Input ingredients</string>
     <string name="rate">Rate</string>
     <string name="pressMe">Press me \nto continue!</string>
-    <string name="firstIntro">When scanning text with the camera. Text boxes will cover the text. Tapping the text box
-        will make the app analyze all text in the text boxes viewable on the screen. A good example how
-        the text boxes should look is the one above.</string>
-    <string name="secondIntro">This is also a good example how the boxes might look like.</string>
+    <string name="firstIntro">When scanning text with the camera. Text boxes will cover the text.
+        Tapping a text box will make the app analyze all text in the text boxes viewable on the screen and text boxes being saved from before.
+        A good example how the text boxes should look is the one above.</string>
+    <string name="secondIntro">If you find the text you scanned is bad, hold down your finger to remove all scanned text.</string>
     <string name="thirdIntro">You should not tap the text boxes when the text boxes appear like this
         since it will only scan a small percentage of the full text.</string>
     <string name="tutorial">Tutorial</string>
@@ -233,6 +232,24 @@
     <string name="lemon">Lemon</string>
     <string name="lime">Lime</string>
     <string name="grapefruit">Grapefruit</string>
+   <!-- <string name="grapefrsaduit">Grapefruit</string>
+    <string name="grapefascruit">Grapefruit</string>
+    <string name="gradvapeacsfruit">Grapefruit</string>
+    <string name="grapsdfefruit">Grapefruit</string>
+    <string name="grasdvpefruit">Grapefruit</string>
+    <string name="grapezdfcascvfruit">Grapefruit</string>
+    <string name="asd">Grapefruit</string>
+    <string name="grapezdasdfczxcasfvfruit">Grapefruit</string>
+    <string name="grapezvcxbdfvfruit">Grapefruit</string>
+    <string name="grapcxzxcezdfvfruit">Grapefruit</string>
+    <string name="grapezxxcvzzzdfvfruit">Grapefruit</string>
+    <string name="grapvbcnezdsdaffvfruit">Grapefruit</string>
+    <string name="grapvbcnzxcezdfvfruit">Grapefruit</string>
+    <string name="grapvbcnscaasezdfvfruit">Grapefruit</string>
+    <string name="grapvbcnezcvbdfvfruit">Grapefruit</string>
+    <string name="grapvbcnezdfasd124vfruit">Grapefruit</string>
+    <string name="grapvbcne54342zdfvfruit">Grapefruit</string>
+    <string name="grapvbcnez4576dfvfruit">Grapefruit</string>-->
 
     <string name="bacon">Bacon</string>
     <string name="choletsorol">Cholesterol</string>

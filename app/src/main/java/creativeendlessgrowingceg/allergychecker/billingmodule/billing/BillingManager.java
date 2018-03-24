@@ -82,7 +82,12 @@ public class BillingManager implements PurchasesUpdatedListener {
      * of their own and then fake messages from the server.
      */
     private static final String BASE_64_ENCODED_PUBLIC_KEY =
-            "Borttagen för inlämning";
+            "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoRCL" +
+            "I/xw206Xo+joxzQMfCEJ1+EOkqvLXh+Kb6Vx76v6n3EOH3pGYq1ansb8wsj7Nj+hm0D0UMnSYNu0K10O" +
+            "Q7uimxVVxrskXuvpbCIuDWwG6z+lwhXwceqNeCZ4pgOwHO42FKT3UGiWN/HQJvbLiDV8Nla1v2F3aDAv" +
+            "4tt/v3B8o2xvVBbqv2qiTtODUMgW6vXOOccjJfnWnzn+VF/MJ2VkAnYfep4sIwbGIayn454Ju2FzaHPA" +
+            "fI6oSx5AmL9Xs4DrXNka4QdKMMBfWxw8wQaw1vcbq6ODL6BgFJphi5VfChVBh6odG0+dzgafwGpXdAlv" +
+            "mrEJNdiMa0gljr9OnQIDAQAB";
 
 
     /**

@@ -18,9 +18,6 @@ class StartPageTip {
         arrayList.add(context.getString(R.string.greatApp));
         arrayList.add(context.getString(R.string.shareWithFriend));
         arrayList.add(context.getString(R.string.wonderfulDay));
-        arrayList.add(context.getString(R.string.wonderfulDay));
-        arrayList.add(context.getString(R.string.holdHistory));
-        arrayList.add(context.getString(R.string.foundBadTranslation));
         return arrayList.get(new Random().nextInt(arrayList.size()));
     }
 

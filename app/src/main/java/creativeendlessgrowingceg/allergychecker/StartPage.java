@@ -139,7 +139,7 @@ public class StartPage extends AppCompatActivity
         final StartPage startPage = this;
         final SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        int timeSleepInt = sharedPreferences.getInt("timeSleep", 0);
+        int timeSleepInt = sharedPreferences.getInt("timeSleep", 2);
         if (timeSleepInt == 0) {
             timeSleep.setLabelText(getString(R.string.timeSleep) + " " + 0 + " s");
             timeSleep.setImageDrawable(getDrawable(R.drawable.timesleep00));
@@ -183,7 +183,7 @@ public class StartPage extends AppCompatActivity
             public void onClick(View view) {
                 SharedPreferences.Editor sharedPreferencesEditor =
                         PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
-                int timeSleepInt = sharedPreferences.getInt("timeSleep", 0);
+                int timeSleepInt = sharedPreferences.getInt("timeSleep", 1);
                 Log.d(TAG, "onClick: "+ timeSleepInt);
                 if (timeSleepInt == 4) {
                     timeSleep.setLabelText(getString(R.string.timeSleep) + " " + 0 + " s");
@@ -694,14 +694,14 @@ public class StartPage extends AppCompatActivity
                 startActivity(goToMarket);
             } catch (ActivityNotFoundException e) {
                 startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://play.google.com/store/apps/details?id=" + this.getPackageName())));
+                        Uri.parse("https://play.google.com/store/apps/details?id=" + this.getPackageName())));
             }
         } else if (id == R.id.nav_share) {
             Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
             i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name));
             String sAux = "\n" + getString(R.string.welcomeMessageInvite) + "\n\n";
-            sAux = sAux + "//play.google.com/store/apps/details?id=" + this.getPackageName() + "\n\n";
+            sAux = sAux + "https://play.google.com/store/apps/details?id=" + this.getPackageName() + "\n\n";
             i.putExtra(Intent.EXTRA_TEXT, sAux);
             startActivity(Intent.createChooser(i, "choose one"));
         } else if (id == R.id.nav_send) {

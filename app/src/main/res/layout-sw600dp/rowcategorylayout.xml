@@ -13,7 +13,7 @@
     <LinearLayout
         android:id="@+id/linearLayoutRowCategoryHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/defaultRows"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
@@ -36,6 +36,7 @@
             android:textColor="@color/fontColorTextWhite"
             android:textSize="30sp"
             android:textStyle="bold"
+            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toRightOf="@+id/imageViewRowCategory"

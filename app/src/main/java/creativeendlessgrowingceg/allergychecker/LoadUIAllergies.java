@@ -146,7 +146,6 @@ public class LoadUIAllergies {
      */
     synchronized void savePicture(StartPage context, HashMap<Integer, ImageView> imageViewHashMap) {
         String alreadyString = "00000000";
-        Log.d(TAG, "savePicture: ");
 
         for (ImageView imageView : imageViewHashMap.values()) {
             imageView.setImageDrawable(context.getDrawable(R.drawable.emptyborder));
@@ -173,12 +172,9 @@ public class LoadUIAllergies {
         ArrayList<Integer> alreadySelectedImages = new ArrayList<>();
         HashSet<Integer> allergySavePictureNew = new HashSet<>();
         HashMap<Integer, Integer> integerIntegerHashMap = ValidateAllergiesPreferences.setupIDToValuePicture();
-        Log.d(TAG, "addPicture: "+ allergySavePicture);
         for (Integer integer : allergySavePicture) {
-            Log.d(TAG, "addPicture: "+ integer + " : "+integerIntegerHashMap.get(integer));
             allergySavePictureNew.add(integerIntegerHashMap.get(integer));
         }
-        Log.d(TAG, "addPicture: "+ allergySavePictureNew);
         allergySavePictureNew.remove(null);
         for (int id : allergySavePictureNew) {
             if (i > 7) {
@@ -301,7 +297,6 @@ public class LoadUIAllergies {
     }
 
     synchronized void saveCurrentlyActive(boolean preference) {
-        Log.d(TAG, "saveCurrentlyActive: ");
         for (String key : getCheckBoxToRemove().keySet()) {
             SharedPreferenceClass.setBoolean(key, context, false);
         }
@@ -334,14 +329,16 @@ public class LoadUIAllergies {
         HashSet<Integer> hashSetPicturePreference = SharedPreferenceClass.getSharedPreference(context, "preferenceSavePicture", TAG);
         getCheckedCheckBoxes(hashSet, hashSetPicture);
         getCheckedCheckBoxesNot(hashSetNot, hashSetPictureNot);
-
+        hashSet.remove(null);
+        hashSetPicture.remove(null);
         saveHashSet(hashSet, "allergySave");
         saveHashSet(hashSetPicture, "allergySavePicture");
 
         ValidateAllergiesPreferences.setupPictureToValueID();
         addPreferences(hashSet, hashSetPreference, hashSetPicturePreference);
         removePreferences(hashSetNot, hashSetPreference, hashSetPicturePreference);
-
+        hashSetPreference.remove(null);
+        hashSetPicturePreference.remove(null);
         saveHashSet(hashSetPreference, "preferenceSave");
         saveHashSet(hashSetPicturePreference, "preferenceSavePicture");
     }
@@ -530,6 +527,7 @@ public class LoadUIAllergies {
                 }
             }
         }
+
     }
 
     synchronized public HashSet<Integer> getAllergies(Context startPage) {

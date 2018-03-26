@@ -232,31 +232,14 @@
     <string name="lemon">Lemon</string>
     <string name="lime">Lime</string>
     <string name="grapefruit">Grapefruit</string>
-   <!-- <string name="grapefrsaduit">Grapefruit</string>
-    <string name="grapefascruit">Grapefruit</string>
-    <string name="gradvapeacsfruit">Grapefruit</string>
-    <string name="grapsdfefruit">Grapefruit</string>
-    <string name="grasdvpefruit">Grapefruit</string>
-    <string name="grapezdfcascvfruit">Grapefruit</string>
-    <string name="asd">Grapefruit</string>
-    <string name="grapezdasdfczxcasfvfruit">Grapefruit</string>
-    <string name="grapezvcxbdfvfruit">Grapefruit</string>
-    <string name="grapcxzxcezdfvfruit">Grapefruit</string>
-    <string name="grapezxxcvzzzdfvfruit">Grapefruit</string>
-    <string name="grapvbcnezdsdaffvfruit">Grapefruit</string>
-    <string name="grapvbcnzxcezdfvfruit">Grapefruit</string>
-    <string name="grapvbcnscaasezdfvfruit">Grapefruit</string>
-    <string name="grapvbcnezcvbdfvfruit">Grapefruit</string>
-    <string name="grapvbcnezdfasd124vfruit">Grapefruit</string>
-    <string name="grapvbcne54342zdfvfruit">Grapefruit</string>
-    <string name="grapvbcnez4576dfvfruit">Grapefruit</string>-->
+
 
     <string name="bacon">Bacon</string>
     <string name="choletsorol">Cholesterol</string>
     <string name="glycerol">Glycerol</string>
     <string name="hormones">Hormones</string>
     <string name="lard">Lard</string>
-    <string name="magnesiumStearate">magnesium stearate</string>
+    <string name="magnesiumStearate">Magnesium stearate</string>
     <string name="monoGlycerides">Mono Glycerides</string>
     <string name="pepsin">Pepsin</string>
 

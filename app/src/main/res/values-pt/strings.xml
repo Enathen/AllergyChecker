@@ -13,7 +13,7 @@
     <string name="permission_camera_rationale">O acesso à câmera é necessário para detecção</string>
     <string name="no_camera_permission">Este aplicativo não pode ser executado porque não possui permissão da câmera. O aplicativo agora vai sair.</string>
 
-    <string name="nuts">Nozes</string>
+    <string name="nuts">Nozes, Noz</string>
     <string name="almond">Amêndoas</string>
     <string name="brazil">Castanha-do-pará</string>
     <string name="cocoa">Cacau</string>

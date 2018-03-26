@@ -208,6 +208,7 @@
     <string name="thirdIntro">Du bør ikke trykke på tekstbokse, når tekstfelterne vises som dette
         da det kun scanner en lille procentdel af den fulde tekst.</string>
     <string name="tutorial">Selvstudier</string>
+
     <string name="anis">Anis</string>
     <string name="coriander">Koriander</string>
     <string name="cumin">Spisskummen</string>
@@ -237,6 +238,7 @@
     <string name="pepsin">Pepsin</string>
 
     <string name="halal">Halal</string>
+
     <string name="start">Start Sida</string>
     <string name="holdFor">Håll för mere information</string>
     <string name="about">Om</string>
@@ -245,6 +247,7 @@
     <string name="uncheckAll">Fjern markeringen af ​​alle</string>
     <string name="checkAll">Tjek alt</string>
     <string name="delete">slettet</string>
+
     <string name="spice">Krydderi</string>
     <string name="butter">Smør</string>
     <string name="casein">Kasein</string>

@@ -13,9 +13,8 @@
     <LinearLayout
         android:id="@+id/linearLayoutRowCategoryHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/defaultRows"
-        android:orientation="horizontal"
-        >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <ImageView
 
@@ -32,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
             android:layout_weight="0.48"
             android:text="TextView"
             android:textColor="@color/fontColorTextWhite"
@@ -56,7 +56,6 @@
             android:id="@+id/checkBoxRowCategory"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/defaultRows"
-            android:layout_marginEnd="2dp"
 
             android:button="@null"
             android:drawableRight="?android:attr/listChoiceIndicatorMultiple"

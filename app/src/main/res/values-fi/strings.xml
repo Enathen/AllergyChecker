@@ -13,7 +13,7 @@
     <string name="permission_camera_rationale">Pääsy kameraan tarvitaan tunnistamiseen!</string>
     <string name="no_camera_permission">Tätä sovellusta ei voi käyttää, koska sillä ei ole
         kameran lupa. Sovellus poistuu nyt.</string>
-    <string name="nuts">Pähkinät</string>
+    <string name="nuts">Pähkinät, Pähkinä</string>
     <string name="almond">Manteli</string>
     <string name="brazil">Brasilialaiset pähkinät</string>
     <string name="cocoa">Kakao, Kakao-papu</string>

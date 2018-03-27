@@ -10,8 +10,8 @@ import java.util.Random;
  * @version 2018-01-23
  */
 
-class StartPageTip {
-    static String getTip(Context context){
+public class StartPageTip {
+    public static String getTip(Context context){
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add(context.getString(R.string.holdCamera));
         arrayList.add(context.getString(R.string.foundABug));

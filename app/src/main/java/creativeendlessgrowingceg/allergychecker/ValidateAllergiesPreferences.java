@@ -4,15 +4,16 @@ import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * must preserve order. last insert
  * @author Jonathan Alexander Norberg
  * @version 2018-03-23
  */
 
 public class ValidateAllergiesPreferences {
-    static HashMap<Integer, Integer> AllergyKey = new HashMap<>();
-     static HashMap<Integer, Integer> keyAllergy = new HashMap<>();
+    private static HashMap<Integer, Integer> AllergyKey = new HashMap<>();
+     private static HashMap<Integer, Integer> keyAllergy = new HashMap<>();
      static HashMap<Integer, Integer> pictureToId = new HashMap<>();
-     static HashMap<Integer, Integer> idToPicture = new HashMap<>();
+     private static HashMap<Integer, Integer> idToPicture = new HashMap<>();
 
 
     static HashMap<Integer, Integer> setupAllergy() {

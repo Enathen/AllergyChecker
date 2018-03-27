@@ -28,8 +28,8 @@ import creativeendlessgrowingceg.allergychecker.bktree.MutableBkTree;
  * @version 2017-12-01
  */
 
-public class HelpCalcAllergy {
-    private static final String TAG = "HelpCalcAllergy";
+public class AlgorithmAllergies {
+    private static final String TAG = "AlgorithmAllergies";
 
     /**
      * Hamming distance for the word

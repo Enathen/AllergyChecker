@@ -1,4 +1,4 @@
-package creativeendlessgrowingceg.allergychecker;
+package creativeendlessgrowingceg.allergychecker.fragment;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -24,7 +24,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Locale;
-import java.util.Random;
+
+import creativeendlessgrowingceg.allergychecker.ColorRandom;
+import creativeendlessgrowingceg.allergychecker.DateAndHistory;
+import creativeendlessgrowingceg.allergychecker.R;
+import creativeendlessgrowingceg.allergychecker.TextHandler;
 
 /**
  * displays scanned allergies to be scanned again
@@ -42,7 +46,6 @@ public class HistoryFragment extends Fragment {
     private FrameLayout parentFrameLayout;
     private LinearLayout parentLinearLayout;
     private Bundle savedInstanceState;
-    private int rand;
 
     public HistoryFragment() {
         // Required empty public constructor
@@ -81,7 +84,7 @@ public class HistoryFragment extends Fragment {
 
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.lineaLayoutFragHistory);
 
-        ArrayList<String> arrayList = new DateString(getActivity()).getArrayFromHistory();
+        ArrayList<String> arrayList = new DateAndHistory(getActivity()).getArrayFromHistory();
         Collections.sort(arrayList, new stringComparator());
         Collections.reverse(arrayList);
 
@@ -96,8 +99,6 @@ public class HistoryFragment extends Fragment {
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void insertNew(final LayoutInflater inflater, final ViewGroup container, final ArrayList<String> arrayList) {
-        ArrayList<Integer> color = ColorRandom.getRandomColor();
-        rand = new Random().nextInt(color.size());
         if (!arrayList.isEmpty()) {
 
             for (final String s : arrayList) {
@@ -125,7 +126,7 @@ public class HistoryFragment extends Fragment {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        new DateString(getActivity()).deleteOneItemHistory(s);
+                        new DateAndHistory(getActivity()).deleteOneItemHistory(s);
                         topLinLayOut.removeView(button);
                         topLinLayOut.removeView(tv);
                         topLinLayOut.removeView(newLinearLayout);
@@ -144,10 +145,9 @@ public class HistoryFragment extends Fragment {
                 String correctString = s.substring(0, 20);
 
 
-                rand++;
-
-                side.setBackgroundColor(ColorRandom.getRandomColorFromArray(color, rand));
-                side2.setBackgroundColor(ColorRandom.getRandomColorFromArray(color, rand));
+                int randomColorFromArray = ColorRandom.getRandomColorFromArray();
+                side.setBackgroundColor(randomColorFromArray);
+                side2.setBackgroundColor(randomColorFromArray);
                 textview.setText(TextHandler.capitalLetter(correctString));
                 newLinearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -194,7 +194,7 @@ public class HistoryFragment extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 switch (which) {
                                     case DialogInterface.BUTTON_POSITIVE:
-                                        new DateString(getActivity()).deleteHistory();
+                                        new DateAndHistory(getActivity()).deleteHistory();
                                         Intent intent = new Intent(getActivity(), StartPage.class);
                                         startActivity(intent);
                                         break;

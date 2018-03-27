@@ -7,7 +7,7 @@ import com.android.billingclient.api.Purchase;
 
 import java.util.List;
 
-import creativeendlessgrowingceg.allergychecker.LanguageFragment;
+import creativeendlessgrowingceg.allergychecker.fragment.LanguageFragment;
 import creativeendlessgrowingceg.allergychecker.billingmodule.billing.BillingManager;
 import creativeendlessgrowingceg.allergychecker.billingmodule.skulist.row.GoldMonthlyDelegate;
 import creativeendlessgrowingceg.allergychecker.billingmodule.skulist.row.GoldYearlyDelegate;

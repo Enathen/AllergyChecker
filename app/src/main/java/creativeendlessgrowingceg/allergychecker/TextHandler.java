@@ -12,7 +12,7 @@ import java.util.List;
  * @version 2018-01-23
  */
 
-class TextHandler {
+public class TextHandler {
     private static final TextHandler ourInstance = new TextHandler();
 
     public static TextHandler getInstance() {
@@ -21,14 +21,14 @@ class TextHandler {
 
     private TextHandler() {
     }
-    static String capitalLetter(String string){
+    public static String capitalLetter(String string){
         return string.substring(0,1).toUpperCase() + string.substring(1);
     }
-    static String capitalLetter(int integer, Context context){
+    public static String capitalLetter(int integer, Context context){
         String string = context.getString(integer);
         return string.substring(0,1).toUpperCase() + string.substring(1);
     }
-    static String cutFirstWord(String string) {
+    public static String cutFirstWord(String string) {
         List<String> list = null;
         if (string.contains(",")) {
             list = Arrays.asList(string.split(","));

@@ -20,6 +20,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 
+import creativeendlessgrowingceg.allergychecker.fragment.StartPage;
+
 /**
  * load my preference and my allergies.
  * <p>
@@ -144,7 +146,7 @@ public class LoadUIAllergies {
      * @param context to get drawables
      * @param imageViewHashMap of positions to set
      */
-    synchronized void savePicture(StartPage context, HashMap<Integer, ImageView> imageViewHashMap) {
+    public synchronized void savePicture(StartPage context, HashMap<Integer, ImageView> imageViewHashMap) {
         String alreadyString = "00000000";
 
         for (ImageView imageView : imageViewHashMap.values()) {
@@ -296,7 +298,7 @@ public class LoadUIAllergies {
         return hashMap;
     }
 
-    synchronized void saveCurrentlyActive(boolean preference) {
+    public synchronized void saveCurrentlyActive(boolean preference) {
         for (String key : getCheckBoxToRemove().keySet()) {
             SharedPreferenceClass.setBoolean(key, context, false);
         }

@@ -53,9 +53,6 @@ public class AllergyCheckBoxClass {
         return sameItemDifferentCategories;
     }
 
-    public void setSameItemDifferentCategories(ArrayList<AllergyCheckBoxClass> sameItemDifferentCategories) {
-        this.sameItemDifferentCategories = sameItemDifferentCategories;
-    }
 
     public boolean isOn() {
         return on;
@@ -63,30 +60,6 @@ public class AllergyCheckBoxClass {
 
     public void setOn(boolean on) {
         this.on = on;
-    }
-
-    public void setParentCheckBox(CheckBox parentCheckBox) {
-        this.parentCheckBox = parentCheckBox;
-    }
-
-    public void setChildCheckBox(CheckBox childCheckBox) {
-        this.childCheckBox = childCheckBox;
-    }
-
-    public void setChildIngredient(String childIngredient) {
-        this.childIngredient = childIngredient;
-    }
-
-    public void setParentPicture(int parentPicture) {
-        this.parentPicture = parentPicture;
-    }
-
-    public void setParentKey(int parentKey) {
-        this.parentKey = parentKey;
-    }
-
-    public void setChildKey(int childKey) {
-        this.childKey = childKey;
     }
 
     public int getParentPicture() {
@@ -111,9 +84,6 @@ public class AllergyCheckBoxClass {
 
     public String getChildIngredient() {
         return childIngredient;
-    }
-    public boolean childEqualParent(){
-        return parentKey == childKey;
     }
 
 

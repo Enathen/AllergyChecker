@@ -1,4 +1,4 @@
-package creativeendlessgrowingceg.allergychecker;
+package creativeendlessgrowingceg.allergychecker.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import creativeendlessgrowingceg.allergychecker.R;
 
 
 /**

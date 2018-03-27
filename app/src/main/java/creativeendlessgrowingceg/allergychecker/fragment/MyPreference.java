@@ -1,14 +1,24 @@
-package creativeendlessgrowingceg.allergychecker;
+package creativeendlessgrowingceg.allergychecker.fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+
+import creativeendlessgrowingceg.allergychecker.AllergyList;
+import creativeendlessgrowingceg.allergychecker.BuildConfig;
+import creativeendlessgrowingceg.allergychecker.LoadUIAllergies;
+import creativeendlessgrowingceg.allergychecker.R;
 
 
 /**
@@ -19,12 +29,12 @@ import android.widget.LinearLayout;
  * Use the {@link MyPreference#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyAllergies extends Fragment {
+public class MyPreference extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private static final String TAG = "MyAllergies";
+    private static final String TAG = "MyPreference";
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -35,7 +45,9 @@ public class MyAllergies extends Fragment {
 
 
 
-    public MyAllergies() {
+
+
+    public MyPreference() {
 
     }
 
@@ -70,8 +82,6 @@ public class MyAllergies extends Fragment {
 
     }
 
-
-
     //create the look
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,12 +92,10 @@ public class MyAllergies extends Fragment {
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFrag);
 
-        loadUIAllergies = new LoadUIAllergies(false,inflater, (StartPage) getActivity(), parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyAllergies());
-
-
+        loadUIAllergies = new LoadUIAllergies(true,inflater, (StartPage) getActivity(), parentFrameLayout, parentLinearLayout, new AllergyList(getContext()).getMyPreference());
+        //CheckAllergy();
         return parentFrameLayout;
     }
-
 
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -107,20 +115,52 @@ public class MyAllergies extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+
     @Override
     public void onDetach() {
         super.onDetach();
+
         mListener = null;
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        loadUIAllergies.saveCurrentlyActive(false);
+        loadUIAllergies.saveCurrentlyActive(true);
         loadUIAllergies.savePicture((StartPage) getActivity(), new StartPage().getImageViewHashMap((StartPage)getActivity()));
         mListener = null;
     }
+    private void CheckAllergy(){
 
+        int sdkInt = BuildConfig.VERSION_CODE;
+        String check = String.valueOf(sdkInt) + "dialog1";
+        String check2 = String.valueOf(sdkInt) + "load1";
+        SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(getContext());
+        if(sharedPreferences.getBoolean(check2,false)){
+        } else{
+            Log.d(TAG, "KEY: " +check);
+            if (!sharedPreferences.getBoolean(check, false)) {
+                SharedPreferences.Editor sharedPreferencesEditor =
+                        PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+                sharedPreferencesEditor.putBoolean(
+                        check, true);
+                sharedPreferencesEditor.apply();
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_NEUTRAL:
+                                break;
+                        }
+                    }
+                };
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage(R.string.pleaseCheckAllergies).setNeutralButton(R.string.ok, dialogClickListener).show();
+            }
+        }
+
+    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -136,9 +176,7 @@ public class MyAllergies extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
 }
-
 
 
 

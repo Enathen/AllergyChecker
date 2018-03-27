@@ -3,7 +3,6 @@ package creativeendlessgrowingceg.allergychecker;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,6 +12,8 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
+import creativeendlessgrowingceg.allergychecker.fragment.HistoryFragment;
+
 /**
  * helper with date and strings
  *
@@ -20,19 +21,19 @@ import java.util.Set;
  * @version 2018-03-04
  */
 
-public class DateString {
+public class DateAndHistory {
     private static final String SHARED_PREFS_NAME = "StartPage";
     private static final String TAG = "DATESTRING";
     private final SharedPreferences prefs;
     ArrayList<String> dateStrings = new ArrayList<>();
 
-    DateString(String string, Context startPage) {
+    public DateAndHistory(String string, Context startPage) {
         prefs = startPage.getSharedPreferences(SHARED_PREFS_NAME, Activity.MODE_PRIVATE);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("sv"));
         dateStrings.add(simpleDateFormat.format(new Date()).concat(" " + string));
     }
 
-    DateString(Context startPage) {
+    public DateAndHistory(Context startPage) {
         prefs = startPage.getSharedPreferences(SHARED_PREFS_NAME, Activity.MODE_PRIVATE);
     }
 

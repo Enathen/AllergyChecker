@@ -16,7 +16,7 @@ import java.util.Locale;
  * @version 2018-01-12
  */
 
-class LanguagesAccepted {
+public class LanguagesAccepted {
     private static final LanguagesAccepted ourInstance = new LanguagesAccepted();
 
     public static LanguagesAccepted getInstance() {

@@ -1,9 +1,7 @@
-package creativeendlessgrowingceg.allergychecker;
+package creativeendlessgrowingceg.allergychecker.fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -13,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
@@ -26,6 +23,9 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
+import creativeendlessgrowingceg.allergychecker.LanguagesAccepted;
+import creativeendlessgrowingceg.allergychecker.R;
+import creativeendlessgrowingceg.allergychecker.TextHandler;
 import creativeendlessgrowingceg.allergychecker.billingmodule.billing.BillingManager;
 import creativeendlessgrowingceg.allergychecker.billingmodule.billing.BillingProvider;
 import creativeendlessgrowingceg.allergychecker.billingmodule.skulist.AcquireFragment;
@@ -97,7 +97,7 @@ public class LanguageFragment extends Fragment implements BillingProvider {
 
         //insert everything to this linear layout
         LinearLayout parentLinearLayout = parentFrameLayout.findViewById(R.id.linearLayoutLanguage);
-        Button button = new Button(getContext());
+        /*Button button = new Button(getContext());
         button.setText("Premium");
         button.getBackground().setColorFilter(0xFF19b3ad, PorterDuff.Mode.MULTIPLY);
         button.setTextSize(30);
@@ -108,7 +108,7 @@ public class LanguageFragment extends Fragment implements BillingProvider {
                 onPurchaseButtonClicked();
             }
         });
-        parentLinearLayout.addView(button);
+        parentLinearLayout.addView(button);*/
         parentLinearLayout.addView(addLanguages(inflater));
 
         for (CheckBoxes checkBox : checkBoxes) {
@@ -148,7 +148,7 @@ public class LanguageFragment extends Fragment implements BillingProvider {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     Log.d(TAG, "isPremiumPurchased: "+ isPremiumPurchased());
-                    if (isPremiumPurchased() || locale.getLanguage().equals("en") || locale.getLanguage().equals(Locale.getDefault().getLanguage())) {
+                    //if (isPremiumPurchased() || locale.getLanguage().equals("en") || locale.getLanguage().equals(Locale.getDefault().getLanguage())) {
                         editor.putBoolean(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), isChecked);
                         editor.apply();
                         checkIfParentCheckBoxShouldSwitch(((CheckBox) parentLinearLayout.findViewById(R.id.checkBoxRowCategory)), editor, arrayListLinearLayout);
@@ -158,11 +158,12 @@ public class LanguageFragment extends Fragment implements BillingProvider {
                             editor.apply();
                             checkIfParentCheckBoxShouldSwitch(((CheckBox) parentLinearLayout.findViewById(R.id.checkBoxRowCategory)), editor, arrayListLinearLayout);
                         }
-                    } else {
+                    //}
+                    /*else {
                         buttonView.setChecked(!isChecked);
                         onPurchaseButtonClicked();
 
-                    }
+                    }*/
 
                 }
 
@@ -179,16 +180,16 @@ public class LanguageFragment extends Fragment implements BillingProvider {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                        if (!isPremiumPurchased()) {
+                        /*if (!isPremiumPurchased()) {
                             onPurchaseButtonClicked();
                             buttonView.setChecked(!isChecked);
-                        } else {
+                        } else {*/
                             for (LinearLayout linearLayout : arrayListLinearLayout) {
                                 ((CheckBox) linearLayout.findViewById(R.id.checkBoxRowCategory)).setChecked(isChecked);
                             }
                             editor.putBoolean(String.valueOf(R.string.languageFrom), isChecked);
                             editor.apply();
-                        }
+                        //}
                     }
                 });
         for (LinearLayout linearLayout : arrayListLinearLayout) {
@@ -240,16 +241,16 @@ public class LanguageFragment extends Fragment implements BillingProvider {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                        if (!isPremiumPurchased()) {
+                        /*if (!isPremiumPurchased()) {
                             onPurchaseButtonClicked();
                             buttonView.setChecked(!isChecked);
-                        } else {
+                        } else {*/
                             for (LinearLayout linearLayout : arrayListLinearLayout) {
                                 ((CheckBox) linearLayout.findViewById(R.id.checkBoxRowCategory)).setChecked(isChecked);
                             }
                             editor.putBoolean(String.valueOf(R.string.languageFrom), isChecked);
                             editor.apply();
-                        }
+                        //}
                     }
                 });
                 return;

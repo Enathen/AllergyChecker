@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
+import creativeendlessgrowingceg.allergychecker.fragment.StartPage;
+
 /**
  * handles shared preferences easy
  * @author Jonathan Alexander Norberg

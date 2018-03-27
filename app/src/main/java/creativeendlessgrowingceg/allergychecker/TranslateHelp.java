@@ -19,7 +19,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.Random;
 
 
 /**
@@ -43,8 +42,6 @@ public class TranslateHelp extends Fragment {
     private OnFragmentInteractionListener mListener;
     private FrameLayout parentFrameLayout;
     private LinearLayout parentLinearLayout;
-    private int rand;
-    private ArrayList<Integer> colors;
 
     public TranslateHelp() {
         // Required empty public constructor
@@ -86,10 +83,8 @@ public class TranslateHelp extends Fragment {
         //insert everything to this linear layout
         parentLinearLayout = (LinearLayout) parentFrameLayout.findViewById(R.id.linlayoutFragTranslate);
         LinearLayout child = (LinearLayout) parentLinearLayout.findViewById(R.id.linearhorizontalFragTransHelp);
-        colors = ColorRandom.getRandomColor();
-        rand = new Random().nextInt(colors.size());
-        child.findViewById(R.id.sideFragTranslate).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors, rand));
-        child.findViewById(R.id.sideFragTranslate2).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors, rand));
+        child.findViewById(R.id.sideFragTranslate).setBackgroundColor(ColorRandom.getRandomColorFromArray());
+        child.findViewById(R.id.sideFragTranslate2).setBackgroundColor(ColorRandom.getRandomColorFromArray());
 
         //getCategories();
         new addAllStringsNecessary(inflater, container, getContext()).execute();
@@ -178,10 +173,10 @@ public class TranslateHelp extends Fragment {
                 ((TextView) linearLayouts.get(i).findViewById(R.id.textViewTranslate)).setText(TextHandler.capitalLetter(s));
                 parentLinearLayout.addView(linearLayouts.get(i));
                 editTextHashMap.put(s, (EditText) linearLayouts.get(i).findViewById(R.id.editTextFragmentTranslate));
-                linearLayouts.get(i).findViewById(R.id.sideBorder).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors, rand));
-                linearLayouts.get(i).findViewById(R.id.sideBorder1).setBackgroundColor(ColorRandom.getRandomColorFromArray(colors, rand));
+                int randomColorFromArray = ColorRandom.getRandomColorFromArray();
+                linearLayouts.get(i).findViewById(R.id.sideBorder).setBackgroundColor(randomColorFromArray);
+                linearLayouts.get(i).findViewById(R.id.sideBorder1).setBackgroundColor(randomColorFromArray);
                 i++;
-                rand++;
             }
             parentFrameLayout.findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
                 @Override

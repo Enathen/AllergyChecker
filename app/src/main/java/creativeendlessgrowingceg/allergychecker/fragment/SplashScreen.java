@@ -1,4 +1,4 @@
-package creativeendlessgrowingceg.allergychecker;
+package creativeendlessgrowingceg.allergychecker.fragment;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -7,6 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+
+import com.google.android.gms.ads.MobileAds;
+
+import creativeendlessgrowingceg.allergychecker.R;
 
 
 public class SplashScreen extends AppCompatActivity {
@@ -47,7 +51,7 @@ public class SplashScreen extends AppCompatActivity {
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.rotate);
         findViewById(R.id.imageViewSplash).startAnimation(animation);
-
+        MobileAds.initialize(getBaseContext(),"ca-app-pub-3607354849437438~1697911164");
 
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override

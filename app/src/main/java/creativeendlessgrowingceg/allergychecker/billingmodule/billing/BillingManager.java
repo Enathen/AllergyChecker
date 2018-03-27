@@ -38,8 +38,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import creativeendlessgrowingceg.allergychecker.LanguageFragment;
-import creativeendlessgrowingceg.allergychecker.StartPage;
+import creativeendlessgrowingceg.allergychecker.fragment.LanguageFragment;
+import creativeendlessgrowingceg.allergychecker.fragment.StartPage;
 
 /**
  * Handles all the interactions with Play Store (via Billing library), maintains connection to

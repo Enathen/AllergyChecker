@@ -51,7 +51,7 @@ import java.util.List;
 import java.util.Set;
 
 import creativeendlessgrowingceg.allergychecker.R;
-import creativeendlessgrowingceg.allergychecker.StartPage;
+import creativeendlessgrowingceg.allergychecker.fragment.StartPage;
 import creativeendlessgrowingceg.allergychecker.camera.ui.CameraSource;
 import creativeendlessgrowingceg.allergychecker.camera.ui.CameraSourcePreview;
 import creativeendlessgrowingceg.allergychecker.camera.ui.GraphicOverlay;

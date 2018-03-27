@@ -1,4 +1,4 @@
-package creativeendlessgrowingceg.allergychecker;
+package creativeendlessgrowingceg.allergychecker.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
@@ -53,6 +53,18 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import creativeendlessgrowingceg.allergychecker.AllergiesClass;
+import creativeendlessgrowingceg.allergychecker.AllergyList;
+import creativeendlessgrowingceg.allergychecker.BuildConfig;
+import creativeendlessgrowingceg.allergychecker.DateAndHistory;
+import creativeendlessgrowingceg.allergychecker.AlgorithmAllergies;
+import creativeendlessgrowingceg.allergychecker.LanguagesAccepted;
+import creativeendlessgrowingceg.allergychecker.LoadUIAllergies;
+import creativeendlessgrowingceg.allergychecker.R;
+import creativeendlessgrowingceg.allergychecker.ShowAllergies;
+import creativeendlessgrowingceg.allergychecker.StartPageTip;
+import creativeendlessgrowingceg.allergychecker.TextHandler;
+import creativeendlessgrowingceg.allergychecker.TranslateHelp;
 import creativeendlessgrowingceg.allergychecker.billingmodule.billing.BillingManager;
 import creativeendlessgrowingceg.allergychecker.billingmodule.billing.BillingProvider;
 import creativeendlessgrowingceg.allergychecker.camera.OcrCaptureActivity;
@@ -96,7 +108,10 @@ public class StartPage extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mBillingManager.destroy();
+        if(mBillingManager != null){
+            mBillingManager.destroy();
+
+        }
 
     }
 
@@ -336,8 +351,8 @@ public class StartPage extends AppCompatActivity
             //suggestions.setText(str);
             str = str.toLowerCase();
             if (!str.equals("")) {
-                DateString dateString = new DateString(str, startPage.getBaseContext());
-                dateString.saveArray();
+                DateAndHistory dateAndHistory = new DateAndHistory(str, startPage.getBaseContext());
+                dateAndHistory.saveArray();
             }
 
             //setDateStrings(dateStrings);
@@ -358,7 +373,8 @@ public class StartPage extends AppCompatActivity
                 checkStringAgainstAllergies(str);
             } else {
 
-                checkPremium();
+                //checkPremium();
+                loadInter();
                 startPageBoolean = true;
 
 
@@ -539,7 +555,8 @@ public class StartPage extends AppCompatActivity
 
         (findViewById(R.id.progressBar3)).setVisibility(View.VISIBLE);
         loadInterstitial = true;
-        checkPremium();
+        //checkPremium();
+        loadInter();
         Locale locale = new Locale(new LanguageFragment().getLanguageFromLFragment(this));
         final Locale newLocale = new Locale(locale.getLanguage());
         Locale.setDefault(newLocale);
@@ -844,20 +861,25 @@ public class StartPage extends AppCompatActivity
         return mViewController.isGoldYearlySubscribed();
     }
 
+    @SuppressLint("WrongConstant")
     public void loadInter() {
-        Log.d(TAG, "premiumBanner: " + loadInterstitial);
+        Log.d(TAG, "premiumBanner: " + startPageBoolean);
+
+        Log.d(TAG, "premiumBanner: " + findViewById(R.id.adViewRectangle).getVisibility());
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (startPageBoolean) {
-
+                    findViewById(R.id.adView).setVisibility(View.GONE);
                     ((AdView) findViewById(R.id.adViewRectangle)).loadAd(new AdRequest.Builder()
                             .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
 
                 } else {
+                    findViewById(R.id.adViewRectangle).setVisibility(View.GONE);
                     ((AdView) findViewById(R.id.adView)).loadAd(new AdRequest.Builder()
                             .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
                 }
+                Log.d(TAG, "premiumBannerRUN: " + findViewById(R.id.adViewRectangle).getVisibility());
             }
         });
 
@@ -867,7 +889,7 @@ public class StartPage extends AppCompatActivity
     public void premium() {
         startPage = this;
 
-        if (!isPremiumPurchased()) {
+        if (!isPremiumPurchased() || true) {
 
             if (startPageBoolean) {
 
@@ -914,7 +936,7 @@ public class StartPage extends AppCompatActivity
     }
 
     private class CalcAllergy extends AsyncTask<String, Integer, ArrayList<AllergiesClass>> {
-        private final HelpCalcAllergy helpCalcAllergy;
+        private final AlgorithmAllergies algorithmAllergies;
         private StartPage mContext;
         private TextView textView;
         private ProgressBar viewById;
@@ -922,6 +944,7 @@ public class StartPage extends AppCompatActivity
         private ArrayList<AllergyList.E_Numbers> allfoundENumbers = new ArrayList<>();
         private TreeMap<Integer, TreeSet<String>> hashSetAllStrings;
         private TreeSet<String> strings;
+        private String outputString;
 
 
         CalcAllergy(StartPage context, TextView textView, ProgressBar viewById) {
@@ -929,7 +952,7 @@ public class StartPage extends AppCompatActivity
 
             this.textView = textView;
             this.viewById = viewById;
-            helpCalcAllergy = new HelpCalcAllergy();
+            algorithmAllergies = new AlgorithmAllergies();
 
         }
 
@@ -950,7 +973,7 @@ public class StartPage extends AppCompatActivity
             hashSetAllStrings = new TreeMap<>();
 
             HashSet<String> hashSetToCheckLast = new HashSet<>();
-            helpCalcAllergy.FixString(params[0].split("\\s+"), hashSetAllStrings, hashSetToCheckLast);
+            algorithmAllergies.FixString(params[0].split("\\s+"), hashSetAllStrings, hashSetToCheckLast);
             String[] stringToCheckENumbers = stringToCheck.split("\\s+");
             ArrayList<Locale> listOfLanguages = new LanguageFragment().getCategories(mContext);
             listOfLanguages.add(Locale.getDefault());
@@ -965,7 +988,7 @@ public class StartPage extends AppCompatActivity
             ArrayList<AllergiesClass> allFoundAllergies = new ArrayList<>();
             for (int id : hashSetFromOtherClass) {
                 publishProgress(hashSetFromOtherClass.size(), counter);
-                length = helpCalcAllergy.setLocaleString(length, id, allergies, listOfLanguages, StartPage.this);
+                length = algorithmAllergies.setLocaleString(length, id, allergies, listOfLanguages, StartPage.this);
 
                 if (i % 2 == 0) {
                     counter++;
@@ -973,9 +996,11 @@ public class StartPage extends AppCompatActivity
                 i++;
 
             }
-
-
-            helpCalcAllergy.bkTree(length, hashSetAllStrings, allergies, allFoundAllergies);
+            outputString = "";
+            if (allergies.isEmpty()){
+                outputString = outputString.concat(getString(R.string.noAllergies)+ "\n\n");
+            }
+            algorithmAllergies.bkTree(length, hashSetAllStrings, allergies, allFoundAllergies);
 
             long start = System.currentTimeMillis();
             counter = stringToCheckENumbers.length / 2;
@@ -997,12 +1022,12 @@ public class StartPage extends AppCompatActivity
                     String number = stringToCheckENumbers[j] + stringToCheckENumbers[j + 1].replaceAll("\\D+", "");
                     if (number.length() > 2 && stringToCheckENumbers[j].compareToIgnoreCase("e") == 0) {
 
-                        helpCalcAllergy.checkFullStringEnumbers(stringToCheckENumbers[j] + stringToCheckENumbers[j + 1], eNumbersArrayList, allfoundENumbers);
+                        algorithmAllergies.checkFullStringEnumbers(stringToCheckENumbers[j] + stringToCheckENumbers[j + 1], eNumbersArrayList, allfoundENumbers);
                     }
                 }
                 String number = stringToCheckENumbers[j].replaceAll("\\D+", "");
                 if (number.length() > 2) {
-                    helpCalcAllergy.checkFullStringEnumbers(stringToCheckENumbers[j], eNumbersArrayList, allfoundENumbers);
+                    algorithmAllergies.checkFullStringEnumbers(stringToCheckENumbers[j], eNumbersArrayList, allfoundENumbers);
                 }
 
 
@@ -1011,7 +1036,7 @@ public class StartPage extends AppCompatActivity
             for (String s : hashSetToCheckLast) {
 
                 if (Unfiltered) {
-                    helpCalcAllergy.checkFullString(s, allergies, allFoundAllergies);
+                    algorithmAllergies.checkFullString(s, allergies, allFoundAllergies);
                 }
                 publishProgress(hashSetToCheckLast.size(), counter);
                 counter++;
@@ -1044,11 +1069,10 @@ public class StartPage extends AppCompatActivity
         protected void onPostExecute(ArrayList<AllergiesClass> allergiesClass) {
             viewById.setVisibility(View.INVISIBLE);
             super.onPostExecute(allergiesClass);
-            String outputString = "";
+
             final LinearLayout linearLayout = findViewById(R.id.linLayHorizontalStartPage);
             final HashMap<String, Lin> linearLayoutHashMap = new HashMap<>();
             for (final AllergiesClass allergiesForEachInteger : allergiesClass) {
-                Log.d(TAG, "onPostExecute: "+ allergiesForEachInteger.getNameOfWordFound());
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 LinearLayout newlinearLayout = (LinearLayout) inflater.inflate(R.layout.linlayoutstartpagevertical, null);
                 ((ImageView) newlinearLayout.findViewById(R.id.imageViewHorStartPage)).setImageResource(LanguagesAccepted.getFlag(allergiesForEachInteger.getLanguage()));
@@ -1196,6 +1220,7 @@ public class StartPage extends AppCompatActivity
                 }
 
             }
+            findViewById(R.id.adViewRectangle).setVisibility(View.GONE);
             // Do things like hide the progress bar or change a TextView
         }
 

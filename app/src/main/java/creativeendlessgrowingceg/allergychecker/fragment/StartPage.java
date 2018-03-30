@@ -95,7 +95,6 @@ public class StartPage extends AppCompatActivity
     private BillingManager mBillingManager;
     private SubscriptionsViewController mViewController;
     private boolean Unfiltered = true;
-    private boolean loadInterstitial = false;
     private AdView mAdView;
     private AdView mAdViewRectangle;
     private StartPage startPage;
@@ -137,7 +136,6 @@ public class StartPage extends AppCompatActivity
         new LanguageFragment().setGetLanguage(StartPage.this, Locale.getDefault().getLanguage());
 
 
-        loadInterstitial = false;
         Intent intent = getIntent();
         suggestions = findViewById(R.id.ingredientsTextView);
         allergic = findViewById(R.id.textViewFoundAllergies);
@@ -323,7 +321,7 @@ public class StartPage extends AppCompatActivity
                 Intent intent = new Intent(startPage, OcrCaptureActivity.class);
                 intent.putExtra("focus", sharedPreferences.getBoolean("focus", true));
                 intent.putExtra("flash", sharedPreferences.getBoolean("flash", false));
-                intent.putExtra("timeSleep", sharedPreferences.getInt("timeSleep", 0));
+                intent.putExtra("timeSleep", sharedPreferences.getInt("timeSleep", 2));
                 startPage.startActivity(intent);
 
                 if (!sharedPreferences.getBoolean("firstTimer", false)) {
@@ -374,8 +372,8 @@ public class StartPage extends AppCompatActivity
             } else {
 
                 //checkPremium();
-                loadInter();
                 startPageBoolean = true;
+                loadInter();
 
 
             }
@@ -554,7 +552,6 @@ public class StartPage extends AppCompatActivity
 
 
         (findViewById(R.id.progressBar3)).setVisibility(View.VISIBLE);
-        loadInterstitial = true;
         //checkPremium();
         loadInter();
         Locale locale = new Locale(new LanguageFragment().getLanguageFromLFragment(this));
@@ -865,21 +862,19 @@ public class StartPage extends AppCompatActivity
     public void loadInter() {
         Log.d(TAG, "premiumBanner: " + startPageBoolean);
 
-        Log.d(TAG, "premiumBanner: " + findViewById(R.id.adViewRectangle).getVisibility());
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (startPageBoolean) {
                     findViewById(R.id.adView).setVisibility(View.GONE);
                     ((AdView) findViewById(R.id.adViewRectangle)).loadAd(new AdRequest.Builder()
-                            .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
+                            .addTestDevice("85566EDEF434C46837B6373FFB555990").build());
 
                 } else {
                     findViewById(R.id.adViewRectangle).setVisibility(View.GONE);
                     ((AdView) findViewById(R.id.adView)).loadAd(new AdRequest.Builder()
-                            .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
+                            .addTestDevice("85566EDEF434C46837B6373FFB555990").build());
                 }
-                Log.d(TAG, "premiumBannerRUN: " + findViewById(R.id.adViewRectangle).getVisibility());
             }
         });
 
@@ -895,12 +890,12 @@ public class StartPage extends AppCompatActivity
 
                 findViewById(R.id.adView).setVisibility(View.GONE);
                 ((AdView) findViewById(R.id.adViewRectangle)).loadAd(new AdRequest.Builder()
-                        .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
+                        .addTestDevice("85566EDEF434C46837B6373FFB555990").build());
 
             } else {
                 findViewById(R.id.adViewRectangle).setVisibility(View.GONE);
                 ((AdView) findViewById(R.id.adView)).loadAd(new AdRequest.Builder()
-                        .addTestDevice("81BD52ECD677177D45DD2058AEFB079E").build());
+                        .addTestDevice("85566EDEF434C46837B6373FFB555990").build());
             }
 
 

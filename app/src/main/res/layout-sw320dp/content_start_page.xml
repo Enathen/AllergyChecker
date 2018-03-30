@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                ads:adSize="FULL_BANNER"
+                ads:adSize="BANNER"
                 android:visibility="gone"
                 ads:adUnitId="ca-app-pub-3607354849437438/7974257124">
                 <!--ads:adUnitId="ca-app-pub-ca-app-pub-3940256099942544/6300978111">-->

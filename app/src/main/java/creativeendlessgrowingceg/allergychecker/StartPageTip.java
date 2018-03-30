@@ -11,6 +11,7 @@ import java.util.Random;
  */
 
 public class StartPageTip {
+
     public static String getTip(Context context){
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add(context.getString(R.string.holdCamera));

@@ -471,7 +471,6 @@ public class LoadUIAllergies {
         HashMap<Integer, Integer> allergyKey = ValidateAllergiesPreferences.setupKey();
         for (Integer integer : hashSetNot) {
             Integer integer1 = allergyKey.get(integer);
-            Log.d(TAG, "removeAllergies: " + integer1);
             if (hashSetAllergies.contains(integer)) {
                 ArrayList<AllergyList.PictureIngredient> specifiedKey = new AllergyList(context).getSpecifiedKeyAllergy(integer1);
                 HashSet<Integer> remove = new HashSet<>();

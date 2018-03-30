@@ -120,7 +120,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         int rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         if (rc == PackageManager.PERMISSION_GRANTED) {
 
-            createCameraSource(autoFocus, useFlash,intent.getIntExtra(SleepTimer,0));
+            createCameraSource(autoFocus, useFlash,intent.getIntExtra(SleepTimer,2));
         } else {
             requestCameraPermission();
         }

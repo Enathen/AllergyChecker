@@ -225,6 +225,25 @@
     <string name="lemon">Citron</string>
     <string name="lime">Lime</string>
     <string name="grapefruit">Grapefrukt</string>
+
+    <string name="nightshade">Potatisväxt</string>
+    <string name="aubergine">Aubergine, Äggplanta, Äggört</string>
+    <string name="solanum">Solanum</string>
+    <string name="physalis">Physalis, Kapkrusbär</string>
+    <string name="pepino">Pepino</string>
+    <string name="naranjilla">Naranjilla</string>
+    <string name="chineseLantern">Judekörs</string>
+    <string name="tamarillo">Tamarillo</string>
+
+    <string name="peppers">paprikor</string>
+    <string name="cayenne">kajenn</string>
+    <string name="jalapeño">Jalapeño</string>
+    <string name="birdsEyeChili">bird\'s Eye Chili</string>
+    <string name="capsicum">Spansk peppar</string>
+    <string name="madameJeanette">Madame Jeanette</string>
+    <string name="newMexicochile">New Mexico chile</string>
+
+
     <string name="bacon">Bacon</string>
     <string name="choletsorol">Kolesterol</string>
     <string name="glycerol">Glycerol</string>
@@ -296,6 +315,18 @@
     <string name="useFocus">Fokus På</string>
     <string name="useNoFocus">Fokus Av</string>
     <string name="timeSleep">Sova kamera</string>
+    <string name="cashew">cashewnötter, cashewnöt</string>
 
-
+    <string name="panulirus">Panulirus</string>
+    <string name="mollusc">bjötdjur</string>
+    <string name="cellena">Cellena</string>
+    <string name="winkle">Winkle</string>
+    <string name="conchs">Conchs</string>
+    <string name="rockSnail">Rock Snail</string>
+    <string name="buccinidae">Valthornssnäckor</string>
+    <string name="chiton">Chiton</string>
+    <string name="mactridae">Mactridae</string>
+    <string name="pharidae">Knivmusslor</string>
+    <string name="donacidae">Donacidae</string>
+    <string name="trueLimpets">Patellogastropoda</string>
 </resources>

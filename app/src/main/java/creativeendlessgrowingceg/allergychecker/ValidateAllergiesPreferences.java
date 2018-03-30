@@ -191,8 +191,36 @@ public class ValidateAllergiesPreferences {
         AllergyKey.put(R.string.yoghurt, atomicInteger.addAndGet(1));
         AllergyKey.put(R.string.zucchini, atomicInteger.addAndGet(1));
         AllergyKey.put(R.string.date, atomicInteger.addAndGet(1));
-
-
+        AllergyKey.put(R.string.nightshade, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.aubergine, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.solanum, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.physalis, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.pepino, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.naranjilla, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.chineseLantern, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.tamarillo, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.peppers, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.cayenne, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.jalapeño, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.birdsEyeChili, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.capsicum, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.madameJeanette, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.newMexicochile, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.cashew, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.panulirus, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.mollusc, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.ormer, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.cellena, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.trueLimpets, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.winkle, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.conchs, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.rockSnail, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.buccinidae, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.chiton, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.mactridae, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.pharidae, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.donacidae, atomicInteger.addAndGet(1));
+        AllergyKey.put(R.string.crustaceans, atomicInteger.addAndGet(1));
         return AllergyKey;
     }
 
@@ -371,8 +399,37 @@ public class ValidateAllergiesPreferences {
         keyAllergy.put(atomicInteger.addAndGet(1),R.string.yoghurt);
         keyAllergy.put(atomicInteger.addAndGet(1),R.string.zucchini);
         keyAllergy.put(atomicInteger.addAndGet(1),R.string.date);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.nightshade);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.aubergine);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.solanum);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.physalis);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.pepino);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.naranjilla);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.chineseLantern);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.tamarillo);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.peppers);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.cayenne);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.jalapeño);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.birdsEyeChili);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.capsicum);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.madameJeanette);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.newMexicochile);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.cashew);
 
-
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.panulirus);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.mollusc);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.ormer);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.cellena);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.trueLimpets);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.winkle);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.conchs);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.rockSnail);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.buccinidae);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.chiton);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.mactridae);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.pharidae);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.donacidae);
+        keyAllergy.put(atomicInteger.addAndGet(1), R.string.crustaceans);
         return keyAllergy;
     }
     static HashMap<Integer, Integer> setupPictureToValueID() {
@@ -397,6 +454,9 @@ public class ValidateAllergiesPreferences {
         pictureToId.put(R.drawable.polloveg,atomicInteger.addAndGet(1));
         pictureToId.put(R.drawable.lactoovoveg,atomicInteger.addAndGet(1));
         pictureToId.put(R.drawable.demiveg,atomicInteger.addAndGet(1));
+        pictureToId.put(R.drawable.pepper,atomicInteger.addAndGet(1));
+        pictureToId.put(R.drawable.aubergine,atomicInteger.addAndGet(1));
+        pictureToId.put(R.drawable.octopus,atomicInteger.addAndGet(1));
         return pictureToId;
     }
     static HashMap<Integer, Integer> setupIDToValuePicture() {
@@ -421,6 +481,9 @@ public class ValidateAllergiesPreferences {
         idToPicture.put(atomicInteger.addAndGet(1), R.drawable.polloveg);
         idToPicture.put(atomicInteger.addAndGet(1), R.drawable.lactoovoveg);
         idToPicture.put(atomicInteger.addAndGet(1), R.drawable.demiveg);
+        idToPicture.put(atomicInteger.addAndGet(1), R.drawable.pepper);
+        idToPicture.put(atomicInteger.addAndGet(1), R.drawable.aubergine);
+        idToPicture.put(atomicInteger.addAndGet(1), R.drawable.octopus);
         return idToPicture;
     }
 }

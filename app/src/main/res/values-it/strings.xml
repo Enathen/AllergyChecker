@@ -231,6 +231,25 @@
     <string name="lime">Lime</string>
     <string name="grapefruit">Pompelmo</string>
 
+    <string name="nightshade">solano</string>
+    <string name="aubergine">melanzana</string>
+    <string name="solanum">Solanum</string>
+    <string name="physalis">Physalis</string>
+    <string name="pepino">Pepino</string>
+    <string name="naranjilla">Naranjilla</string>
+    <string name="chineseLantern">Chinese lantern</string>
+    <string name="tamarillo">Tamarillo</string>
+
+    <string name="cashew">Anacardio, Anacardi</string>
+    <string name="peppers">peperoni</string>
+    <string name="cayenne">peperoncino di Cayenna</string>
+    <string name="jalapeño">Jalapeño</string>
+    <string name="birdsEyeChili">Thai pepper</string>
+    <string name="capsicum">capsico</string>
+    <string name="madameJeanette">Madame Jeanette</string>
+    <string name="newMexicochile">New Mexico chile</string>
+
+
     <string name="bacon">Bacon</string>
     <string name="choletsorol">Colesterolo</string>
     <string name="glycerol">Glicerina</string>
@@ -300,4 +319,18 @@
     <string name="useNoFocus">Autofocus Spento</string>
     <string name="useFocus">"Autofocus Attivo "</string>
     <string name="timeSleep">Macchina fotografica del sonno</string>
+
+    <string name="panulirus">Panulirus</string>
+    <string name="mollusc">Molluschi</string>
+    <string name="cellena">Cellena</string>
+    <string name="trueLimpets">Patellogastropoda</string>
+    <string name="winkle">Littorina</string>
+    <string name="conchs">Catini</string>
+    <string name="rockSnail">Lumaca di roccia</string>
+    <string name="buccinidae">Buccinidae</string>
+
+    <string name="chiton">Chiton</string>
+    <string name="mactridae">Mactridae</string>
+    <string name="pharidae">Pharidae</string>
+    <string name="donacidae">Donacidae</string>
 </resources>

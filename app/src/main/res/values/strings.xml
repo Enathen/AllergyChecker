@@ -1,10 +1,10 @@
 <resources>
+    <!--Untranslatable-->
     <string name="app_name">Allergy Checker</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_pager_indicator">SKIP</string>
     <string name="title_activity_takeoff">App Takes off here</string>
     <string name="ok">OK</string>
@@ -12,15 +12,28 @@
     <string name="no_camera_permission">This application cannot run because it does not have the
         camera permission.  The application will now exit.</string>
     <string name="low_storage_error" translatable="false">Ocr dependencies cannot be downloaded due to low device storage</string>
+    <string name="alert_already_purchased" translatable="false">Premium is already purchased</string>
+    <string name="error_no_skus" translatable="false">We didn\'t find any SKUs to display&#8230; Check your internet
+        connection and make sure your Google Developer Console was setup correctly.</string>
+    <string name="error_billing_unavailable" translatable="false">Billing unavailable. Make sure your Google Play app
+        is setup correctly</string>
+    <string name="error_billing_default" translatable="false">Billing unavailable. Please check your device.</string>
+    <string name="button_purchase" translatable="false">Purchase</string>
+    <string name="button_buy" translatable="false">Buy</string>
+    <string name="button_own" translatable="false">Own</string>
+    <string name="button_change" translatable="false">Change</string>
+    <string name="header_subscriptions">Subscriptions</string>
+    <string name="content_description_app_loading_image" translatable="false">App loading image</string>
 
 
+
+<!--Nuts-->
     <string name="nuts">Nuts, Nut</string>
     <string name="almond">Almond, Almonds</string>
     <string name="brazil">Brazil Nuts</string>
     <string name="cocoa">Cocoa</string>
     <string name="hazelnut">Hazelnut, Hazelnuts</string>
     <string name="macadamia">Macadamia Nuts</string>
-
     <string name="pecans">Pecans, Pecan</string>
     <string name="pili">Pili Nuts</string>
     <string name="pine">Pine Nuts</string>
@@ -28,9 +41,10 @@
     <string name="soy">Soy</string>
     <string name="tiger">Tiger Nuts</string>
     <string name="walnuts">Walnuts</string>
-    <string name="sesame">Sesame</string>
+    <string name="cashew">Cashew nuts, Cashew</string>
 
-
+<!--Fish-->
+    <string name="fish">Fish</string>
     <string name="tuna">Tuna</string>
     <string name="salmon">Salmon</string>
     <string name="caviar">Caviar</string>
@@ -55,25 +69,10 @@
     <string name="trout">Trout</string>
 
 
-    <string name="barnacle">Barnacle</string>
-    <string name="crab">Crab</string>
-    <string name="crawfish">Crawfish</string>
-    <string name="krill">Krill</string>
-    <string name="lobster">Lobster</string>
-    <string name="scampi">Scampi</string>
-    <string name="abalone">Abalone</string>
-    <string name="clams">Clams</string>
-    <string name="cockle">Cockle</string>
-    <string name="limpet">Limpet</string>
-    <string name="mussels">Mussels</string>
-    <string name="octopus">Octopus,Squid</string>
-    <string name="oysters">Oysters</string>
-    <string name="periwinkle">Periwinkle</string>
-    <string name="urchin">Urchin</string>
-    <string name="scallops">Scallops</string>
-    <string name="snails">Snails</string>
-    <string name="whelk">Whelk</string>
 
+
+<!--Gluten-->
+    <string name="gluten">Gluten</string>
     <string name="wheat">Wheat</string>
     <string name="durum">Durum</string>
     <string name="emmer">Emmer</string>
@@ -89,11 +88,13 @@
     <string name="kamut">Kamut</string>
     <string name="einkorn">Einkorn</string>
 
-
+<!--Fruit-->
+    <string name="fruit">Fruit</string>
     <string name="apple">Apple</string>
     <string name="pear">Pear</string>
     <string name="tomato">Tomato</string>
     <string name="strawberry">Strawberry</string>
+    <string name="grapefruit">Grapefruit</string>
     <string name="prune">Prune</string>
     <string name="pomegranate">Pomegranate</string>
     <string name="pinapple">Pineapple</string>
@@ -115,15 +116,277 @@
     <string name="avocado">Avocado</string>
 
 
+
     <string name="shellfish">Shellfish</string>
-    <string name="gluten">Gluten</string>
-    <string name="fish">Fish</string>
-    <string name="milk">Milk</string>
+    <!--crustaceans-->
+    <string name="crustaceans">Crustaceans</string>
+    <string name="barnacle">Barnacle</string>
+    <string name="crab">Crab</string>
+    <string name="crawfish">Crawfish, Crayfish</string>
+    <string name="krill">Krill</string>
+    <string name="lobster">Lobster</string>
+    <string name="scampi">Scampi</string>
+    <string name="shrimp">Shrimp, Prawns</string>
+    <string name="panulirus">Panulirus</string>
+
+    <!--Molluscs-->
+
+    <string name="mollusc">Mollusc,Mollusk, Mollusks</string>
+    <string name="ormer">Ormer</string>
+    <string name="abalone">Abalone, Pāua, Ear shells, Sea ears, Muttonfish, Muttonshells, Ormer, Perlemoen, Pāua</string>
+    <string name="trueLimpets">True limpets, Patellogastropoda</string>
+    <string name="winkle">Winkle</string>
+    <string name="conchs">Conchs</string>
+    <string name="rockSnail">Rock Snail</string>
+    <string name="whelk">Whelk</string>
+    <string name="buccinidae">Buccinidae</string>
+    <string name="clams">Clams</string>
+    <string name="cockle">Cockle</string>
+    <string name="limpet">Limpet</string>
+    <string name="mussels">Mussels</string>
+    <string name="octopus">Octopus,Squid, cuttlefish, Cephalopods</string>
+    <string name="oysters">Oyster</string>
+    <string name="periwinkle">Periwinkle</string>
+    <string name="urchin">Urchin</string>
+    <string name="scallops">Scallop</string>
+    <string name="snails">Snail</string>
+    <string name="chiton">Chiton</string>
+    <string name="mactridae">Mactridae</string>
+    <string name="pharidae">Pharidae</string>
+    <string name="donacidae">Donacidae</string>
+    <string name="cellena">Cellena</string>
+
+    <!--Seeds-->
     <string name="seeds">Seeds</string>
+    <string name="mustardSeed">Mustard Seed</string>
+    <string name="sesame">Sesame</string>
+    <string name="poppySeed">Poppy Seed</string>
+    <string name="pumpkinSeed">pumpkin Seed</string>
+    <string name="sunflowerSeed">Sunflower Seed</string>
+    <string name="buckwheat">Buckwheat</string>
+
+
+
+
+
+    <!--meat-->
+    <string name="vegetarian">Vegetarian</string>
+    <string name="vegan">Vegan</string>
+    <string name="pig">Pig</string>
+    <string name="duck">Duck</string>
+    <string name="meat">Meat</string>
+    <string name="goat">Goat</string>
+    <string name="poultry">Poultry</string>
+    <string name="lamb">Lamb</string>
+    <string name="sausage">Sausage</string>
+    <string name="beef">Beef</string>
+    <string name="veal">Veal</string>
+    <string name="gelatin">Gelatin</string>
+    <string name="dairy">Dairy</string>
+    <string name="egg">Egg</string>
+    <string name="honey">Honey</string>
+    <string name="lactoVegetarian">Lacto Vegetarian</string>
+    <string name="ovoVegetarian">Ovo Vegetarian</string>
+    <string name="lactoOvoVegetarian">Lacto Ovo Vegetarian</string>
+    <string name="demiVegetarian">Demi Vegetarian</string>
+    <string name="polloVegetarian">Pollo Vegetarian</string>
+    <string name="pescoVegetarian">Pesco Vegetarian</string>
+    <string name="chicken">Chicken</string>
+
+
+
+
+    <!--Citrus-->
+    <string name="citrus">Citrus</string>
+    <string name="lemon">Lemon</string>
+    <string name="lime">Lime</string>
+
+
+<!--Spice-->
+    <string name="spice">Spices</string>
+    <string name="anis">Anis</string>
+    <string name="coriander">Coriander</string>
+    <string name="cumin">Cumin</string>
+    <string name="fennel">Fennel</string>
+    <string name="parsley">Parsley</string>
+    <string name="ragweed">Ragweed</string>
+    <string name="echinacea">Echinacea</string>
+    <string name="artichoke">Artichoke</string>
+    <string name="dandelions">Dandelions</string>
+    <string name="hibiscus">Hibiscus</string>
+
+
+
+
+<!--Vegatables-->
+    <string name="vegetables">Vegetables</string>
+    <string name="aspargus">Asparagus</string>
+    <string name="cabbage">Cabbage</string>
+    <string name="carrot">Carrot</string>
+    <string name="celery">Celery</string>
+    <string name="garlic">Garlic</string>
+    <string name="lettuce">Lettuce</string>
+    <string name="maize">Maize, Corn</string>
+    <string name="potato">Potato</string>
+    <string name="pumpkin">Pumpkin</string>
+    <string name="zucchini">Zucchini</string>
+
+
+
+
+<!--Legumes-->
+    <string name="legumes">Legumes</string>
+    <string name="chickpea">Chickpeas</string>
+    <string name="lentil">Lentils</string>
+    <string name="lupin">Lupin</string>
+    <string name="peanut">Peanuts, Peanut</string>
+    <string name="pea">Peas</string>
+    <string name="soybean">soybean</string>
+<!--Eggplant-->
+    <string name="nightshade">Nightshade, Solanaceae</string>
+    <string name="aubergine">Aubergine, Eggplant</string>
+    <string name="solanum">Solanum</string>
+    <string name="physalis">Physalis, Goldenberry</string>
+    <string name="pepino">Pepino</string>
+    <string name="naranjilla">Naranjilla</string>
+    <string name="chineseLantern">Chinese lantern</string>
+    <string name="tamarillo">Tamarillo</string>
+
+<!--Peppers-->
+
+    <string name="peppers">Peppers</string>
+    <string name="bellPepper">Bell Pepper</string>
+    <string name="cayenne">Cayenne</string>
+    <string name="jalapeño">Jalapeño</string>
+    <string name="birdsEyeChili">bird\'s Eye Chili</string>
+    <string name="capsicum">Capsicum</string>
+    <string name="madameJeanette">Madame Jeanette</string>
+    <string name="newMexicochile">New Mexico chile</string>
+
+
+<!--Pig-->
+    <string name="haram">Haram</string>
+    <string name="halal">Halal</string>
+    <string name="bacon">Bacon</string>
+    <string name="choletsorol">Cholesterol</string>
+    <string name="glycerol">Glycerol</string>
+    <string name="hormones">Hormones</string>
+    <string name="lard">Lard</string>
+    <string name="magnesiumStearate">Magnesium stearate</string>
+    <string name="monoGlycerides">Mono Glycerides</string>
+    <string name="pepsin">Pepsin</string>
+
+
+
+
+
+
+    <!--Milk-->
+    <string name="milk">Milk</string>
+    <string name="lactose">Lactose</string>
+    <string name="butter">Butter</string>
+    <string name="casein">Casein</string>
+    <string name="yoghurt">Yogurt, Yoghurt, Yoghourt</string>
+    <string name="custard">Custard</string>
+    <string name="cream">Cream</string>
+
+
+    <!--Languages-->
+    <string name="english">English</string>
+    <string name="swedish">Swedish</string>
+    <string name="spanish">Spanish</string>
+    <string name="norway">Norwegian</string>
+    <string name="denmark">Danish</string>
+    <string name="finnish">Finnish</string>
+    <string name="german">German</string>
+    <string name="french">French</string>
+    <string name="netherlands">Dutch</string>
+    <string name="italian">Italian</string>
+    <string name="portuguese">Portuguese</string>
+    <string name="polish">Polish</string>
+
+    <!--Static Languages-->
+    <string name="staticEnglish" translatable="false">English</string>
+    <string name="staticSwedish" translatable="false">Svenska</string>
+    <string name="staticSpanish" translatable="false">Español</string>
+    <string name="staticNorway" translatable="false">norsk</string>
+    <string name="staticDenmark" translatable="false">Dansk</string>
+    <string name="staticFinnish" translatable="false">Suomalainen</string>
+    <string name="staticGerman" translatable="false">Deutsch</string>
+    <string name="staticFrench" translatable="false">Français</string>
+    <string name="staticNetherland" translatable="false">Nederlands</string>
+    <string name="staticItalian" translatable="false">Italiano</string>
+
+
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="noAllergies">No allergies selected</string>
+    <string name="holdCamera">Hold camera down to open more options.</string>
+    <string name="foundABug">Found a bug? Send tips!</string>
+    <string name="greatApp">Found this app helpful? Rate it!</string>
+    <string name="shareWithFriend">Found this app helpful? Share it with a friend!</string>
+    <string name="wonderfulDay">Have a wonderful day!</string>
+    <string name="holdHistory">In History tab hold down date to view more information</string>
+    <string name="foundBadTranslation">Found bad translation? Help translate it!</string>
+    <string name="advancedSearch">Do unfiltered search</string>
+    <string name="regularSearch">Do filtered search</string>
+    <string name="pleaseCheckAllergies">Please check that your allergies and preference are correct!</string>
+    <string name="slide3">Holding down the camera button brings up four new options.</string>
+    <string name="advancedSearchis">filtered search removes substrings of words: for instance, pea is a substring of peanut</string>
+    <string name="unfilteredSearchIs">Unfiltered search adds substrings of words: for instance, straw is a substring of strawberry</string>
+    <string name="start">Start Page</string>
+    <string name="holdFor">Hold for More Info</string>
+    <string name="about">About</string>
+    <string name="helpTranslate">Help Translating</string>
+    <string name="onlyFillChanges">Only fill those you change, leave others empty! Thanks Helper!</string>
+    <string name="specialThanksTo" translatable="false">Special thanks to all Alpha Testers</string>
+    <string name="thisappUses" translatable="false">This app uses:</string>
+    <string name="FAB" translatable="false">FloatingActionButton by Clans</string>
+    <string name="BkTree" translatable="false">BK-tree by Kelsey Francis</string>
+    <string name="OnBoardMe" translatable="false">OnboardMe by simith</string>
+    <string name="licence" translatable="false">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
+    <string name="googleCamera" translatable="false">Google Vision API - The Android Open Source Project</string>
+    <string name="googleAdMob" translatable="false">Google, Inc. Google AdMob</string>
+    <string name="translatedFrom" translatable="false">Translated From</string>
+    <string name="nameIfyouWantToBeInHelperList" translatable="false">Name if you want to be in helper translate list</string>
+    <string name="uncheckAll">Uncheck all</string>
+    <string name="checkAll">Check all</string>
+    <string name="delete">Delete</string>
+    <string name="downloadOfTextScannerNotComplete">The text recognizer has not been finished downloading. This, unfortunately, might take a couple of hours on some phones. Make sure you are connected to the internet and have 10mb free space.</string>
+    <string name="sendTips">Send tips / bugs</string>
+    <string name="useFocus">Autofocus On</string>
+    <string name="useNoFocus">Autofocus Off</string>
+    <string name="timeSleep">Sleep camera</string>
+    <string name="write">Write Ingredients</string>
+    <string name="useflash">Flash On</string>
+    <string name="useNoFlash">Flash Off</string>
+    <string name="SharingIsCaring">Sharing is caring</string>
+    <string name="myPreference">My preferences</string>
+    <string name="showAllergies">Show Allergies</string>
+    <string name="allergyAgianst">Allergic Against</string>
+    <string name="cannotUseCamera">Cannot use camera without permission!</string>
+    <string name="varning">Warning!</string>
+    <string name="thisAppOnlySave">If permission is not given, this app will not work as intended. Remember the only thing getting saved is the text. If you don\'t give permission the application might need to be reinstalled to work! Have a fantastic day!</string>
+    <string name="mightContainOther">This is only a guideline! And might contain other allergens</string>
+    <string name="mightContainAllergies">This is only a guideline! And might contain allergens</string>
+    <string name="areYouSure">Are you sure you want to delete?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="flashon">Flash On</string>
+    <string name="cancel">Cancel</string>
+    <string name="inputIngredients">Input ingredients</string>
+    <string name="rate">Rate</string>
+    <string name="pressMe">Press me \nto continue!</string>
+    <string name="firstIntro">When scanning text with the camera. Text boxes will cover the text.
+        Tapping a text box will make the app analyze all text in the text boxes viewable on the screen and text boxes being saved from before.
+        A good example how the text boxes should look is the one above.</string>
+    <string name="secondIntro">If you find the text you scanned is bad, hold down your finger to remove all scanned text.</string>
+    <string name="thirdIntro">You should not tap the text boxes when the text boxes appear like this
+        since it will only scan a small percentage of the full text.</string>
+    <string name="tutorial">Tutorial</string>
     <string name="deleteHistory">Delete History</string>
     <string name="scanPhotos">No history yet!</string>
-
-
     <string name="language">Language</string>
     <string name="languageFrom">Translate From</string>
     <string name="languageGeneral">General Language</string>
@@ -147,197 +410,10 @@
     <string name="sendTipsFrom">Where you want to send tips from?</string>
     <string name="welcomeMessageInvite">Keep your allergies in Check, With Allergy Checker!</string>
     <string name="time">time</string>
-    <string name="buckwheat">Buckwheat</string>
-    <string name="mustardSeed">Mustard Seed</string>
-    <string name="poppySeed">Poppy Seed</string>
-    <string name="pumpkinSeed">pumpkin Seed</string>
-    <string name="sunflowerSeed">Sunflower Seed</string>
-    <string name="fruit">Fruit</string>
-    <string name="vegetables">Vegetables</string>
-    <string name="cannotUseCamera">Cannot use camera without permission!</string>
-    <string name="varning">Warning!</string>
-    <string name="thisAppOnlySave">If permission is not given, this app will not work as intended. Remember the only thing getting saved is the text. If you don\'t give permission the application might need to be reinstalled to work! Have a fantastic day!</string>
 
 
-    <string name="mightContainOther">This is only a guideline! And might contain other allergens</string>
-    <string name="mightContainAllergies">This is only a guideline! And might contain allergens</string>
-
-    <string name="vegetarian">Vegetarian</string>
-    <string name="vegan">Vegan</string>
-    <string name="citrus">Citrus</string>
-    <string name="haram">Haram</string>
-    <string name="legumes">Legumes</string>
-    <string name="aspargus">Asparagus</string>
-    <string name="bellPepper">Bell Pepper</string>
-    <string name="cabbage">Cabbage</string>
-    <string name="carrot">Carrot</string>
-    <string name="celery">Celery</string>
-    <string name="garlic">Garlic</string>
-    <string name="lettuce">Lettuce</string>
-    <string name="maize">Maize, Corn</string>
-    <string name="potato">Potato</string>
-    <string name="pumpkin">Pumpkin</string>
-    <string name="zucchini">Zucchini</string>
-    <string name="pig">Pig</string>
-    <string name="duck">Duck</string>
-    <string name="meat">Meat</string>
-    <string name="goat">Goat</string>
-    <string name="poultry">Poultry</string>
-    <string name="lamb">Lamb</string>
-    <string name="sausage">Sausage</string>
-    <string name="beef">Beef</string>
-    <string name="veal">Veal</string>
-    <string name="gelatin">Gelatin</string>
-    <string name="dairy">Dairy</string>
-    <string name="egg">Egg</string>
-    <string name="honey">Honey</string>
-    <string name="lactoVegetarian">Lacto Vegetarian</string>
-    <string name="ovoVegetarian">Ovo Vegetarian</string>
-    <string name="lactoOvoVegetarian">Lacto Ovo Vegetarian</string>
-    <string name="demiVegetarian">Demi Vegetarian</string>
-    <string name="polloVegetarian">Pollo Vegetarian</string>
-    <string name="pescoVegetarian">Pesco Vegetarian</string>
-    <string name="chicken">Chicken</string>
-    <string name="areYouSure">Are you sure you want to delete?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="flashon">Flash On</string>
-    <string name="cancel">Cancel</string>
-    <string name="inputIngredients">Input ingredients</string>
-    <string name="rate">Rate</string>
-    <string name="pressMe">Press me \nto continue!</string>
-    <string name="firstIntro">When scanning text with the camera. Text boxes will cover the text.
-        Tapping a text box will make the app analyze all text in the text boxes viewable on the screen and text boxes being saved from before.
-        A good example how the text boxes should look is the one above.</string>
-    <string name="secondIntro">If you find the text you scanned is bad, hold down your finger to remove all scanned text.</string>
-    <string name="thirdIntro">You should not tap the text boxes when the text boxes appear like this
-        since it will only scan a small percentage of the full text.</string>
-    <string name="tutorial">Tutorial</string>
-    <string name="anis">Anis</string>
-    <string name="coriander">Coriander</string>
-    <string name="cumin">Cumin</string>
-    <string name="fennel">Fennel</string>
-    <string name="parsley">Parsley</string>
-    <string name="ragweed">Ragweed</string>
-    <string name="echinacea">Echinacea</string>
-    <string name="artichoke">Artichoke</string>
-    <string name="dandelions">Dandelions</string>
-    <string name="hibiscus">Hibiscus</string>
-    <string name="chickpea">Chickpeas</string>
-    <string name="lentil">Lentils</string>
-    <string name="lupin">Lupin</string>
-    <string name="peanut">Peanuts, Peanut</string>
-    <string name="pea">Peas</string>
-    <string name="soybean">soybean</string>
-    <string name="lemon">Lemon</string>
-    <string name="lime">Lime</string>
-    <string name="grapefruit">Grapefruit</string>
-
-
-    <string name="bacon">Bacon</string>
-    <string name="choletsorol">Cholesterol</string>
-    <string name="glycerol">Glycerol</string>
-    <string name="hormones">Hormones</string>
-    <string name="lard">Lard</string>
-    <string name="magnesiumStearate">Magnesium stearate</string>
-    <string name="monoGlycerides">Mono Glycerides</string>
-    <string name="pepsin">Pepsin</string>
-
-    <string name="halal">Halal</string>
-    <string name="start">Start Page</string>
-    <string name="holdFor">Hold for More Info</string>
-    <string name="about">About</string>
-    <string name="helpTranslate">Help Translating</string>
-    <string name="onlyFillChanges">Only fill those you change, leave others empty! Thanks Helper!</string>
-    <string name="specialThanksTo" translatable="false">Special thanks to all Alpha Testers</string>
-    <string name="thisappUses" translatable="false">This app uses:</string>
-    <string name="FAB" translatable="false">FloatingActionButton by Clans</string>
-    <string name="BkTree" translatable="false">BK-tree by Kelsey Francis</string>
-    <string name="OnBoardMe" translatable="false">OnboardMe by simith</string>
-    <string name="licence" translatable="false">All of which is under Apache License version 2.0 may be optained at: http://www.apache.org/licenses/LICENSE-2.0</string>
-    <string name="googleCamera" translatable="false">Google Vision API - The Android Open Source Project</string>
-    <string name="googleAdMob" translatable="false">Google, Inc. Google AdMob</string>
-    <string name="translatedFrom" translatable="false">Translated From</string>
-    <string name="nameIfyouWantToBeInHelperList" translatable="false">Name if you want to be in helper translate list</string>
-    <string name="uncheckAll">Uncheck all</string>
-    <string name="checkAll">Check all</string>
-    <string name="delete">Delete</string>
-    <string name="spice">Spices</string>
-    <string name="butter">Butter</string>
-    <string name="casein">Casein</string>
-    <string name="yoghurt">Yogurt, Yoghurt, Yoghourt</string>
-    <string name="custard">Custard</string>
-    <string name="cream">Cream</string>
-    <string name="write">Write Ingredients</string>
-    <string name="useflash">Flash On</string>
-    <string name="useNoFlash">Flash Off</string>
-    <string name="SharingIsCaring">Sharing is caring</string>
-    <string name="myPreference">My preferences</string>
-    <string name="showAllergies">Show Allergies</string>
-    <string name="allergyAgianst">Allergic Against</string>
-    <string name="lactose">Lactose</string>
-
-    <string name="english">English</string>
-    <string name="swedish">Swedish</string>
-    <string name="spanish">Spanish</string>
-    <string name="norway">Norwegian</string>
-    <string name="denmark">Danish</string>
-    <string name="finnish">Finnish</string>
-    <string name="german">German</string>
-    <string name="french">French</string>
-    <string name="netherlands">Dutch</string>
-    <string name="italian">Italian</string>
-
-    <string name="staticEnglish" translatable="false">English</string>
-    <string name="staticSwedish" translatable="false">Svenska</string>
-    <string name="staticSpanish" translatable="false">Español</string>
-    <string name="staticNorway" translatable="false">norsk</string>
-    <string name="staticDenmark" translatable="false">Dansk</string>
-    <string name="staticFinnish" translatable="false">Suomalainen</string>
-    <string name="staticGerman" translatable="false">Deutsch</string>
-    <string name="staticFrench" translatable="false">Français</string>
-    <string name="staticNetherland" translatable="false">Nederlands</string>
-    <string name="staticItalian" translatable="false">Italiano</string>
-
-
-    <string name="alert_already_purchased" translatable="false">Premium is already purchased</string>
-
-    <string name="error_no_skus" translatable="false">We didn\'t find any SKUs to display&#8230; Check your internet
-        connection and make sure your Google Developer Console was setup correctly.</string>
-    <string name="error_billing_unavailable" translatable="false">Billing unavailable. Make sure your Google Play app
-        is setup correctly</string>
-    <string name="error_billing_default" translatable="false">Billing unavailable. Please check your device.</string>
-
-    <string name="button_purchase" translatable="false">Purchase</string>
-    <string name="button_buy" translatable="false">Buy</string>
-    <string name="button_own" translatable="false">Own</string>
-    <string name="button_change" translatable="false">Change</string>
-
-    <string name="header_subscriptions">Subscriptions</string>
-
-    <string name="content_description_app_loading_image" translatable="false">App loading image</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="noAllergies">No allergies selected</string>
-    <string name="holdCamera">Hold camera down to open more options.</string>
-    <string name="foundABug">Found a bug? Send tips!</string>
-    <string name="greatApp">Found this app helpful? Rate it!</string>
-    <string name="shareWithFriend">Found this app helpful? Share it with a friend!</string>
-    <string name="wonderfulDay">Have a wonderful day!</string>
-    <string name="holdHistory">In History tab hold down date to view more information</string>
-    <string name="foundBadTranslation">Found bad translation? Help translate it!</string>
-    <string name="advancedSearch">Do unfiltered search</string>
-    <string name="regularSearch">Do filtered search</string>
-    <string name="portuguese">Portuguese</string>
-    <string name="polish">Polish</string>
-    <string name="pleaseCheckAllergies">Please check that your allergies and preference are correct!</string>
-    <string name="slide3">Holding down the camera button brings up four new options.</string>
-    <string name="advancedSearchis">filtered search removes substrings of words: for instance, pea is a substring of peanut</string>
-    <string name="unfilteredSearchIs">Unfiltered search adds substrings of words: for instance, straw is a substring of strawberry</string>
-    <string name="shrimp">Shrimp, Prawns</string>
+    <!--Enumbers-->
     <string name="eNumbers">E numbers</string>
-
-
     <string name="staticPortuguese" translatable="false">Português</string>
     <string name="staticPolish" translatable="false">Polskie</string>
     <string name="E100" translatable="false">Curcumin is a bright yellow chemical produced by some plants. It is the principal curcuminoid of turmeric (Curcuma longa), a member of the ginger family, Zingiberaceae. It is sold as an herbal supplement, cosmetics ingredient, food flavoring, and food coloring.</string>
@@ -847,10 +923,7 @@
     <string name="E1521" translatable="false">PEG is generally considered biologically inert and safe. However, studies of clinical safety are generally based on adults, not children. The FDA has been asked to investigate the possible effects of PEG in laxatives for children. Also, a minority of people are allergic to it. Allergy to PEG is usually discovered after a person has been diagnosed with an allergy to an increasing number of seemingly unrelated products, including processed foods, cosmetics, drugs, and other substances that contain PEG or were manufactured with PEG.</string>
     <string name="E1525" translatable="false">Hydroxyethyl cellulose is a gelling and thickening agent derived from cellulose. It is widely used in cosmetics, cleaning solutions, and other household products. Hydroxyethyl cellulose and methyl cellulose are frequently used with hydrophobic drugs in capsule formulations, to improve the drugs\' dissolution in the gastrointestinal fluids. This process is known as hydrophilization.</string>
 
-    <string name="downloadOfTextScannerNotComplete">The text recognizer has not been finished downloading. This, unfortunately, might take a couple of hours on some phones. Make sure you are connected to the internet and have 10mb free space.</string>
-    <string name="sendTips">Send tips / bugs</string>
-    <string name="useFocus">Autofocus On</string>
-    <string name="useNoFocus">Autofocus Off</string>
-    <string name="timeSleep">Sleep camera</string>
+
+
 
 </resources>

@@ -16,8 +16,6 @@
 
 package creativeendlessgrowingceg.allergychecker.bktree;
 
-import android.util.Log;
-
 import java.util.ArrayDeque;
 import java.util.HashSet;
 import java.util.Queue;
@@ -68,7 +66,6 @@ public final class BkTreeSearcher<E> {
         while (!queue.isEmpty()) {
             BkTree.Node<E> node = queue.remove();
             E element = node.getElement();
-            Log.d("TEST", "1 ");
             int distance = metric.distance(element, query);
             if (distance < 0) {
                 throw new IllegalMetricException(

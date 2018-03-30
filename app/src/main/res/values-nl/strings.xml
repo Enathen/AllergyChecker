@@ -239,6 +239,24 @@
     <string name="lime">Lime</string>
     <string name="grapefruit">Grapefruit</string>
 
+    <string name="nightshade">nachtschade</string>
+    <string name="aubergine">Aubergine</string>
+    <string name="solanum">Solanum</string>
+    <string name="physalis">Physalis</string>
+    <string name="pepino">Pepino</string>
+    <string name="naranjilla">Lulo, Naranjilla</string>
+    <string name="chineseLantern">Chinese lantern</string>
+    <string name="tamarillo">Tamarillo</string>
+
+
+    <string name="peppers">Pepers</string>
+    <string name="cayenne">Cayenne</string>
+    <string name="jalapeño">Jalapeño</string>
+    <string name="birdsEyeChili">bird\'s Eye Chili</string>
+    <string name="capsicum">Spaanse peper</string>
+    <string name="madameJeanette">Madame Jeanette</string>
+    <string name="newMexicochile">New Mexico chile</string>
+
     <string name="bacon">Bacon</string>
     <string name="choletsorol">Cholesterol</string>
     <string name="glycerol">Glycerol</string>
@@ -271,7 +289,7 @@
     <string name="showAllergies">Toon allergieën</string>
     <string name="allergyAgianst">Allergisch tegen</string>
     <string name="lactose">Lactose</string>
-
+    <string name="cashew">Cashewnoten, Cashewnoot</string>
     <string name="english">Engels</string>
     <string name="swedish">Zweeds</string>
     <string name="spanish">Spaans</string>
@@ -306,4 +324,18 @@
     <string name="useFocus">Autofocus Aan</string>
     <string name="useNoFocus">Autofocus Uit</string>
     <string name="timeSleep">Slaapcamera</string>
+
+    <string name="panulirus">Panulirus</string>
+    <string name="mollusc">Weekdieren</string>
+    <string name="cellena">Cellena</string>
+    <string name="trueLimpets">Patellogastropoda</string>
+    <string name="winkle">Alikruik</string>
+    <string name="conchs">Conchs</string>
+    <string name="rockSnail">Rock Snail</string>
+    <string name="buccinidae">Buccinidae</string>
+
+    <string name="chiton">Chiton</string>
+    <string name="mactridae">Mactridae</string>
+    <string name="pharidae">Pharidae</string>
+    <string name="donacidae">Donacidae</string>
 </resources>

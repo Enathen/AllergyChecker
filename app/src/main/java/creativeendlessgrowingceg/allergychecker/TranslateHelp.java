@@ -467,6 +467,21 @@ public class TranslateHelp extends Fragment {
             arrayList.add(getString(R.string.useFocus));
             arrayList.add(getString(R.string.useNoFocus));
             arrayList.add(getString(R.string.timeSleep));
+            arrayList.add(getString(R.string.nightshade));
+            arrayList.add(getString(R.string.aubergine));
+            arrayList.add(getString(R.string.solanum));
+            arrayList.add(getString(R.string.physalis));
+            arrayList.add(getString(R.string.pepino));
+            arrayList.add(getString(R.string.naranjilla));
+            arrayList.add(getString(R.string.chineseLantern));
+            arrayList.add(getString(R.string.tamarillo));
+            arrayList.add(getString(R.string.peppers));
+            arrayList.add(getString(R.string.cayenne));
+            arrayList.add(getString(R.string.jalapeño));
+            arrayList.add(getString(R.string.birdsEyeChili));
+            arrayList.add(getString(R.string.capsicum));
+            arrayList.add(getString(R.string.madameJeanette));
+            arrayList.add(getString(R.string.newMexicochile));
             Collections.sort(arrayList,new SortIgnoreCase());
             return arrayList;
         }

@@ -228,6 +228,25 @@
     <string name="lemon">Sitruuna</string>
     <string name="lime">Kalkki</string>
     <string name="grapefruit">Greippi</string>
+
+    <string name="nightshade">Koisokasvit,belladonna</string>
+    <string name="aubergine">munakoisoa</string>
+    <string name="solanum">Koisot</string>
+    <string name="physalis">Karviaiskoiso, kapinkarviainen, Kapinmarja, ananaskirsikka</string>
+    <string name="pepino">Pepino</string>
+    <string name="naranjilla">Naranjilla</string>
+    <string name="chineseLantern">Lyhtykoiso</string>
+    <string name="tamarillo">Puutomaatti, Tomatillo</string>
+
+    <string name="peppers">paprikat</string>
+    <string name="cayenne">cayennenpippuri</string>
+    <string name="jalapeño">Jalapeño</string>
+    <string name="birdsEyeChili">Rawit</string>
+    <string name="capsicum">Paprika</string>
+    <string name="madameJeanette">Madame Jeanette</string>
+    <string name="newMexicochile">New Mexico chile</string>
+    <string name="cashew">Cashew pähkinät, Cashew</string>
+
     <string name="bacon">Pekoni</string>
     <string name="choletsorol">Kolesteroli</string>
     <string name="glycerol">Glycerol</string>
@@ -298,4 +317,17 @@
     <string name="useNoFocus">Automaattinen tarkennus pois päältä</string>
     <string name="timeSleep">Nukkumikamera</string>
 
+    <string name="panulirus">Panulirus</string>
+    <string name="mollusc">Nilviäiset</string>
+    <string name="cellena">Cellena</string>
+    <string name="trueLimpets">Patellogastropoda</string>
+    <string name="winkle">Nyhtää</string>
+    <string name="conchs">Conchs</string>
+    <string name="rockSnail">Rock Snail</string>
+    <string name="buccinidae">Buccinidae</string>
+
+    <string name="chiton">Chiton</string>
+    <string name="mactridae">Mactridae</string>
+    <string name="pharidae">Pharidae</string>
+    <string name="donacidae">Donacidae</string>
 </resources>

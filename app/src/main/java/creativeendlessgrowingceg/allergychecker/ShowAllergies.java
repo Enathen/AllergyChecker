@@ -163,7 +163,7 @@ public class ShowAllergies extends Fragment {
                 ((TextView)linearLayout.findViewById(R.id.textViewStaticLanguage)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryNameStatic(category.getLanguage()),getContext()));
                 ((TextView)linearLayout.findViewById(R.id.textViewLocaleLanguage)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryName(category.getLanguage()),getContext()));
                 ((TextView)pLinearLayout.findViewById(R.id.textViewAllergicAgainst)).setText(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),R.string.allergyAgianst,category.getLanguage()))+ "  Emergency Number: "+ 112);
-                pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.INVISIBLE);
+                pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.GONE);
 
 
                 pLinearLayout.setOnClickListener(new View.OnClickListener() {
@@ -185,7 +185,7 @@ public class ShowAllergies extends Fragment {
                             }else {
                                 ((LinearLayout) v).removeView(textViews);
                                 textViews.setVisibility(View.INVISIBLE);
-                                pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.INVISIBLE);
+                                pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.GONE);
                             }
                         }
                     }

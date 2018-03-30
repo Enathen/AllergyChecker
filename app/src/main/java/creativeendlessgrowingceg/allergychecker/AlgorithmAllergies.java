@@ -203,6 +203,8 @@ public class AlgorithmAllergies {
             if (length < s) {
                 continue;
             }
+            if(s <=3)
+                continue;
             MutableBkTree<String> bkTree = new MutableBkTree<>(hammingDistance);
             bkTree.addAll(hashSetAllStrings.get(s));
             BkTreeSearcher<String> searcher = new BkTreeSearcher<>(bkTree);

@@ -230,6 +230,23 @@
     <string name="lime">Lima</string>
     <string name="grapefruit">Toranja</string>
 
+    <string name="nightshade">Pretinha</string>
+    <string name="aubergine">Beringela</string>
+    <string name="solanum">Solanum</string>
+    <string name="physalis">Physalis</string>
+    <string name="pepino">Pepino, Melão-andino</string>
+    <string name="naranjilla">Lulo, Naranjilla</string>
+    <string name="chineseLantern">Chinese lantern</string>
+    <string name="tamarillo">Tamarillo</string>
+    <string name="cashew">Castanha de caju</string>
+    <string name="peppers">Pimenta-caiena</string>
+    <string name="cayenne">Pimenta de caiena</string>
+    <string name="jalapeño">Pimenta jalapeno</string>
+    <string name="birdsEyeChili">bird\'s Eye Chili</string>
+    <string name="capsicum">Pimento</string>
+    <string name="madameJeanette">Madame Jeanette</string>
+    <string name="newMexicochile">New Mexico chile</string>
+
     <string name="bacon">Bacon</string>
     <string name="choletsorol">Colesterol</string>
     <string name="glycerol">Glicerol</string>
@@ -301,4 +318,18 @@
     <string name="useFocus">Autofocus Fam</string>
     <string name="useNoFocus">Autofocus Fora</string>
     <string name="timeSleep">Câmera de sono</string>
+
+    <string name="panulirus">Panulirus</string>
+    <string name="mollusc">Mollusco</string>
+    <string name="cellena">Cellena</string>
+    <string name="trueLimpets">Patellogastropoda</string>
+    <string name="winkle">Caramujo</string>
+    <string name="conchs">Conchs</string>
+    <string name="rockSnail">Caracol rocha</string>
+    <string name="buccinidae">Buccinidae</string>
+
+    <string name="chiton">Chiton</string>
+    <string name="mactridae">Mactridae</string>
+    <string name="pharidae">Pharidae</string>
+    <string name="donacidae">Donacidae</string>
 </resources>

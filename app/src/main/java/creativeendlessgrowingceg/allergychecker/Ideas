@@ -1,19 +1,26 @@
 Short Time:
-Refactorering $$$$
--> splitta up createLinearLayout
 gå igenom alla allergier på wikepedia
-
+Mer focus på startsidan $$
+intro tidigare $$
+paranteser infoga mellanslag $$
 Settings fragment för att ta bort fula grejer fixa slider till sleepTimer då $$
 -> för in settings button i högra hörnet
+
+
+
 
 Medium Time:
 Change Design $$$
  -> history fragment inte så snygg när man trycker ut
  -> Show allergies ful inte ha med allergisk mot raden
- ->
+ -> allergier flytta bara hur många gånger hittat sen om användaren trycker från vad!
+Refactorering $$$$
+-> splitta up createLinearLayout
 design Maskot $
 skicka allergier till andra $
-ändra FAB till lifesum med, from photo, take photo, scan, voice, write $$
+ändra FAB till lifesum med, from photo, take photo, scan, voice, write $$ måste ha photo då
+
+
 
 Long Time:
 Translate all words in scanned text $

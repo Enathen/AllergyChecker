@@ -344,7 +344,8 @@ public class StartPage extends AppCompatActivity
             str = null;
         }
         if (str != null) {
-
+            str = str.replaceAll("\\("," ");
+            str = str.replaceAll("\\)"," ");
             str = str.replaceAll("[^\\p{L}\\p{Nd}\\s]+", "");
             //suggestions.setText(str);
             str = str.toLowerCase();
@@ -1127,7 +1128,6 @@ public class StartPage extends AppCompatActivity
                 linearLayout.addView(new TextView(getBaseContext()));
 
                 for (final AllergyList.E_Numbers allfoundENumber : allfoundENumbers) {
-                    Log.d(TAG, "ENUMBERS: " + allfoundENumber.getInformation() + " : " + allfoundENumber.getUrl());
                     TextView textView = new TextView(getBaseContext());
                     textView.setText(Html.fromHtml("<u>" + allfoundENumber.getId() + " : " + allfoundENumber.getName() + "</u>"));
                     textView.setTextColor(Color.parseColor("#19b3ad"));

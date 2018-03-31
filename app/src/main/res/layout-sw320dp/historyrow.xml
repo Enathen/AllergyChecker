@@ -25,6 +25,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="1.01"
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
@@ -32,9 +34,7 @@
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/fontColorTextWhite"
-            android:textSize="34sp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView

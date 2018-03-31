@@ -217,7 +217,8 @@ public class AlgorithmAllergies {
                         matches = searcher.search(allergiesClass.getNameOfIngredient(), 1);
 
                     } else if (s<=4) {
-                        matches = searcher.search(allergiesClass.getNameOfIngredient(), 1);
+                        continue;
+                        //matches = searcher.search(allergiesClass.getNameOfIngredient(), 1);
                     } else {
                         matches = searcher.search(allergiesClass.getNameOfIngredient(), 2);
                     }
@@ -239,9 +240,9 @@ public class AlgorithmAllergies {
                 HashMap<String, AllergiesClass> allAllergies = allergies.get(s + 1);
                 for (AllergiesClass allergiesClass : allAllergies.values()) {
                     Set<BkTreeSearcher.Match<? extends String>> matches;
-                    if (s + 1 < 7) {
+                    if (s + 1 < 9) {
                         matches = searcher.search(allergiesClass.getNameOfIngredient(), 1);
-                    } else if (s + 1 < 10) {
+                    } else if (s + 1 < 13) {
                         matches = searcher.search(allergiesClass.getNameOfIngredient(), 2);
                     } else {
                         matches = searcher.search(allergiesClass.getNameOfIngredient(), 3);
@@ -308,14 +309,14 @@ public class AlgorithmAllergies {
                             allergiesClass.getId(),
                             allergiesClass.getMotherLanguage());
                     all.setNameOfWordFound(s);
-                    Boolean open = true;
+                    /*Boolean open = true;
                     for (AllergiesClass allFoundAllergy : allFoundAllergies) {
                         if(allFoundAllergy.getNameOfIngredient().equals(all.getNameOfIngredient())){
                             open = false;
-                            //Log.d(TAG, "checkFullString: " + allFoundAllergy.getNameOfIngredient());
+                            Log.d(TAG, "checkFullString: " + allFoundAllergy.getNameOfWordFound());
                         }
-                    }
-                    if(open)
+                    }*/
+                    //if(open)
                         allFoundAllergies.add(all);
                     //alreadyContainedAllergies.add(allergiesClass.getNameOfIngredient());
                 }

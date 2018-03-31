@@ -132,7 +132,7 @@
     <!--Molluscs-->
 
     <string name="mollusc">Mollusc,Mollusk, Mollusks</string>
-    <string name="ormer">Ormer</string>
+    <string name="ormer" translatable="false">Ormer</string>
     <string name="abalone">Abalone, Pāua, Ear shells, Sea ears, Muttonfish, Muttonshells, Ormer, Perlemoen, Pāua</string>
     <string name="trueLimpets">True limpets, Patellogastropoda</string>
     <string name="winkle">Winkle</string>

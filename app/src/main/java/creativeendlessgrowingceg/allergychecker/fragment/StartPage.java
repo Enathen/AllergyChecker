@@ -53,11 +53,11 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import creativeendlessgrowingceg.allergychecker.AlgorithmAllergies;
 import creativeendlessgrowingceg.allergychecker.AllergiesClass;
 import creativeendlessgrowingceg.allergychecker.AllergyList;
 import creativeendlessgrowingceg.allergychecker.BuildConfig;
 import creativeendlessgrowingceg.allergychecker.DateAndHistory;
-import creativeendlessgrowingceg.allergychecker.AlgorithmAllergies;
 import creativeendlessgrowingceg.allergychecker.LanguagesAccepted;
 import creativeendlessgrowingceg.allergychecker.LoadUIAllergies;
 import creativeendlessgrowingceg.allergychecker.R;
@@ -335,7 +335,6 @@ public class StartPage extends AppCompatActivity
                 }
             }
         });
-
 
         intent = getIntent();
         String str = intent.getStringExtra("location");

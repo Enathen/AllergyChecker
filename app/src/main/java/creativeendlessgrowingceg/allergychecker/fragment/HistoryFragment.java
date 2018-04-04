@@ -4,14 +4,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,27 +106,18 @@ public class HistoryFragment extends Fragment {
                 TextView side = (TextView) topLinLayOut.findViewById(R.id.sideBorder);
                 TextView side2 = (TextView) topLinLayOut.findViewById(R.id.sideBorder1);
                 TextView textview = (TextView) newLinearLayout.findViewById(R.id.textViewHistoryRow);
-                final TextView tv = new TextView(getContext());
-                tv.setText(s.substring(20));
-                tv.setGravity(Gravity.CENTER);
-                tv.setTextSize(22);
-                tv.setBackgroundColor(Color.rgb(36,49,60));
-                tv.setTextColor(Color.WHITE);
-                tv.setVisibility(View.INVISIBLE);
+                final TextView tv = (TextView) topLinLayOut.findViewById(R.id.textViewHistoryText);
+                final Button button = (Button) topLinLayOut.findViewById(R.id.textViewHistoryDelete);
 
-                final Button button = new Button(getContext());
-                button.setBackgroundColor(Color.rgb(36,49,60));
-                button.setTextColor(Color.WHITE);
-                button.setTextSize(26);
-                button.setText(R.string.delete);
-                button.setGravity(View.TEXT_ALIGNMENT_CENTER);
-                button.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                tv.setText(s.substring(20));
+
+
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         new DateAndHistory(getActivity()).deleteOneItemHistory(s);
-                        topLinLayOut.removeView(button);
-                        topLinLayOut.removeView(tv);
+                        button.setVisibility(View.GONE);
+                        tv.setVisibility(View.GONE);
                         topLinLayOut.removeView(newLinearLayout);
 
 
@@ -137,9 +126,8 @@ public class HistoryFragment extends Fragment {
                 tv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        v.setVisibility(View.INVISIBLE);
-                        topLinLayOut.removeView(tv);
-                        topLinLayOut.removeView(button);
+                        button.setVisibility(View.GONE);
+                        tv.setVisibility(View.GONE);
                     }
                 });
                 String correctString = s.substring(0, 20);
@@ -168,14 +156,13 @@ public class HistoryFragment extends Fragment {
                     public boolean onLongClick(View v) {
 
                         if (tv.getVisibility() == View.VISIBLE) {
-                            tv.setVisibility(View.INVISIBLE);
-                            topLinLayOut.removeView(tv);
-                            topLinLayOut.removeView(button);
+                            tv.setVisibility(View.GONE);
+                            button.setVisibility(View.GONE);
+
 
                         } else {
-                            topLinLayOut.addView(tv);
-                            topLinLayOut.addView(button);
                             tv.setVisibility(View.VISIBLE);
+                            button.setVisibility(View.VISIBLE);
                         }
                         return true;
                     }

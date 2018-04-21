@@ -11,9 +11,11 @@ import java.util.Random;
  */
 
 public class StartPageTip {
-
+    static ArrayList<String> arrayList = new ArrayList<>();
     public static String getTip(Context context){
-        ArrayList<String> arrayList = new ArrayList<>();
+        if(!arrayList.isEmpty()){
+            return arrayList.get(new Random().nextInt(arrayList.size()));
+        }
         arrayList.add(context.getString(R.string.holdCamera));
         arrayList.add(context.getString(R.string.foundABug));
         arrayList.add(context.getString(R.string.greatApp));

@@ -1,4 +1,4 @@
-package creativeendlessgrowingceg.allergychecker;
+package creativeendlessgrowingceg.allergychecker.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +19,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
+
+import creativeendlessgrowingceg.allergychecker.ColorRandom;
+import creativeendlessgrowingceg.allergychecker.R;
+import creativeendlessgrowingceg.allergychecker.TextHandler;
 
 
 /**

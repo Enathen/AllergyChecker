@@ -31,14 +31,14 @@
     <string name="nuts">Nuts, Nut</string>
     <string name="almond">Almond, Almonds</string>
     <string name="brazil">Brazil Nuts</string>
-    <string name="cocoa">Cocoa</string>
+    <string name="cocoa">Cocoa, Cacao</string>
     <string name="hazelnut">Hazelnut, Hazelnuts</string>
     <string name="macadamia">Macadamia Nuts</string>
     <string name="pecans">Pecans, Pecan</string>
     <string name="pili">Pili Nuts</string>
     <string name="pine">Pine Nuts</string>
     <string name="pistachios">Pistachios, Pistachios</string>
-    <string name="soy">Soy</string>
+    <string name="soy">Soy, Soya</string>
     <string name="tiger">Tiger Nuts</string>
     <string name="walnuts">Walnuts</string>
     <string name="cashew">Cashew nuts, Cashew</string>
@@ -87,6 +87,7 @@
     <string name="graham">Graham</string>
     <string name="kamut">Kamut</string>
     <string name="einkorn">Einkorn</string>
+    <string name="oat">Oat, Oats</string>
 
 <!--Fruit-->
     <string name="fruit">Fruit</string>
@@ -225,6 +226,7 @@
     <string name="carrot">Carrot</string>
     <string name="celery">Celery</string>
     <string name="garlic">Garlic</string>
+    <string name="onion">Onion</string>
     <string name="lettuce">Lettuce</string>
     <string name="maize">Maize, Corn</string>
     <string name="potato">Potato</string>
@@ -241,7 +243,7 @@
     <string name="lupin">Lupin</string>
     <string name="peanut">Peanuts, Peanut</string>
     <string name="pea">Peas</string>
-    <string name="soybean">soybean</string>
+    <string name="soybean">Soybean</string>
 <!--Eggplant-->
     <string name="nightshade">Nightshade, Solanaceae</string>
     <string name="aubergine">Aubergine, Eggplant</string>

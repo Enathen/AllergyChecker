@@ -1,4 +1,4 @@
-package creativeendlessgrowingceg.allergychecker;
+package creativeendlessgrowingceg.allergychecker.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -21,6 +21,12 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.TreeMap;
+
+import creativeendlessgrowingceg.allergychecker.AllergiesClass;
+import creativeendlessgrowingceg.allergychecker.LanguagesAccepted;
+import creativeendlessgrowingceg.allergychecker.LoadUIAllergies;
+import creativeendlessgrowingceg.allergychecker.R;
+import creativeendlessgrowingceg.allergychecker.TextHandler;
 
 /**
  * Show Allergies user have checked to show in foreign country.

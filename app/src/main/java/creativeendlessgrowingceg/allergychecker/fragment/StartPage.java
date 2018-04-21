@@ -61,10 +61,8 @@ import creativeendlessgrowingceg.allergychecker.DateAndHistory;
 import creativeendlessgrowingceg.allergychecker.LanguagesAccepted;
 import creativeendlessgrowingceg.allergychecker.LoadUIAllergies;
 import creativeendlessgrowingceg.allergychecker.R;
-import creativeendlessgrowingceg.allergychecker.ShowAllergies;
 import creativeendlessgrowingceg.allergychecker.StartPageTip;
 import creativeendlessgrowingceg.allergychecker.TextHandler;
-import creativeendlessgrowingceg.allergychecker.TranslateHelp;
 import creativeendlessgrowingceg.allergychecker.billingmodule.billing.BillingManager;
 import creativeendlessgrowingceg.allergychecker.billingmodule.billing.BillingProvider;
 import creativeendlessgrowingceg.allergychecker.camera.OcrCaptureActivity;
@@ -343,11 +341,8 @@ public class StartPage extends AppCompatActivity
             str = null;
         }
         if (str != null) {
-            str = str.replaceAll("\\("," ");
-            str = str.replaceAll("\\)"," ");
-            str = str.replaceAll("[^\\p{L}\\p{Nd}\\s]+", "");
-            //suggestions.setText(str);
-            str = str.toLowerCase();
+            str = TextHandler.FixText(str);
+
             if (!str.equals("")) {
                 DateAndHistory dateAndHistory = new DateAndHistory(str, startPage.getBaseContext());
                 dateAndHistory.saveArray();
@@ -967,15 +962,15 @@ public class StartPage extends AppCompatActivity
             stringToCheck = params[0];
             hashSetAllStrings = new TreeMap<>();
 
-            HashSet<String> hashSetToCheckLast = new HashSet<>();
-            algorithmAllergies.FixString(params[0].split("\\s+"), hashSetAllStrings, hashSetToCheckLast);
+            hashSetAllStrings = algorithmAllergies.FixStringAllStrings(params[0].split("\\s+"));
+            HashSet<String> hashSetToCheckLast = algorithmAllergies.FixStringAllStringsToCheckLast(params[0].split("\\s+"));
             String[] stringToCheckENumbers = stringToCheck.split("\\s+");
             ArrayList<Locale> listOfLanguages = new LanguageFragment().getCategories(mContext);
             listOfLanguages.add(Locale.getDefault());
 
             HashSet<Integer> hashSetFromOtherClass = new LoadUIAllergies().getAllergies(mContext);
 
-            @SuppressLint("UseSparseArrays") HashMap<Integer, HashMap<String, AllergiesClass>> allergies = new HashMap<>();
+            @SuppressLint("UseSparseArrays") HashMap<String, AllergiesClass> allergies = new HashMap<>();
 
             int length = 0;
             int counter = 0;
@@ -983,7 +978,7 @@ public class StartPage extends AppCompatActivity
             ArrayList<AllergiesClass> allFoundAllergies = new ArrayList<>();
             for (int id : hashSetFromOtherClass) {
                 publishProgress(hashSetFromOtherClass.size(), counter);
-                length = algorithmAllergies.setLocaleString(length, id, allergies, listOfLanguages, StartPage.this);
+                length = algorithmAllergies.translateAllAllergies(id, allergies, listOfLanguages, StartPage.this);
 
                 if (i % 2 == 0) {
                     counter++;
@@ -995,7 +990,7 @@ public class StartPage extends AppCompatActivity
             if (allergies.isEmpty()){
                 outputString = outputString.concat(getString(R.string.noAllergies)+ "\n\n");
             }
-            algorithmAllergies.bkTree(length, hashSetAllStrings, allergies, allFoundAllergies);
+            allFoundAllergies.addAll(algorithmAllergies.bkTree(length, hashSetAllStrings, allergies));
 
             long start = System.currentTimeMillis();
             counter = stringToCheckENumbers.length / 2;

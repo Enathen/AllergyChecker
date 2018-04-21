@@ -258,6 +258,7 @@ public class AllergyList {
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.potato));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.pumpkin));
         arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.zucchini));
+        arrayListVegetables.add(new PictureIngredient(R.drawable.tomato, R.string.onion));
 
 
         sort(arrayListVegetables);
@@ -621,6 +622,7 @@ public class AllergyList {
         arrayListGluten.add(new PictureIngredient(R.drawable.wheat, R.string.kamut));
         arrayListGluten.add(new PictureIngredient(R.drawable.wheat, R.string.einkorn));
         arrayListGluten.add(new PictureIngredient(R.drawable.wheat, R.string.wheat));
+        arrayListGluten.add(new PictureIngredient(R.drawable.wheat, R.string.oat));
 
         sort(arrayListGluten);
         return R.string.gluten;

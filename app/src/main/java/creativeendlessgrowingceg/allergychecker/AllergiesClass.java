@@ -16,6 +16,7 @@ public class AllergiesClass implements Comparable<AllergiesClass> {
     private final int id;
     private String motherLanguage;
     private String nameOfWordFound;
+    private int distance;
 
     public AllergiesClass(String language, String nameOfIngredient, int ID, String motherLanguage) {
 
@@ -24,6 +25,19 @@ public class AllergiesClass implements Comparable<AllergiesClass> {
 
         id = ID;
         this.motherLanguage = motherLanguage;
+    }
+    public AllergiesClass(String language, String nameOfIngredient, int ID, String motherLanguage, int distance) {
+
+        this.language = language;
+        this.nameOfIngredient = nameOfIngredient;
+
+        id = ID;
+        this.motherLanguage = motherLanguage;
+        this.distance = distance;
+    }
+
+    public int getDistance() {
+        return distance;
     }
 
     public String getNameOfWordFound() {

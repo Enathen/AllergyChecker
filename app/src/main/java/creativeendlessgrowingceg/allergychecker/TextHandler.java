@@ -14,6 +14,7 @@ import java.util.List;
 
 public class TextHandler {
     private static final TextHandler ourInstance = new TextHandler();
+    private static final String TAG = "TextHandler";
 
     public static TextHandler getInstance() {
         return ourInstance;
@@ -52,5 +53,36 @@ public class TextHandler {
             return list;
         }
         return list;
+    }
+
+    public static String FixText(String str) {
+        str = str.replaceAll("\\("," ");
+        str = str.replaceAll("\\)"," ");
+        str = str.replaceAll("[^\\p{L}\\p{Nd}\\s]+", "");
+        //suggestions.setText(str);
+        str = str.toLowerCase();
+        return str;
+    }
+    public static String splitUpString(String string, int amountOfCharToRemove){
+        amountOfCharToRemove--;
+        String strings = string;
+        for (int i = 0; i < string.length(); i++) {
+            StringBuilder sb = new StringBuilder(string);
+            String s = String.valueOf(sb.deleteCharAt(i));
+            if(strings.isEmpty()){
+                strings = strings.concat(s);
+            }else{
+                strings = strings.concat(" " + s);
+
+            }
+            //Log.d(TAG, "SPLUT: "+ strings);
+            if(amountOfCharToRemove!=0){
+
+                strings = strings.concat(" " + splitUpString(s, amountOfCharToRemove));
+
+            }
+
+        }
+        return strings;
     }
 }

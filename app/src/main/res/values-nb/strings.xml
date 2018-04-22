@@ -333,4 +333,5 @@
     <string name="crustaceans">Krepsdyr</string>
     <string name="oat">Havre</string>
     <string name="onion">Løk</string>
+    <string name="noLanguageSelected">Ingen språk valgt</string>
 </resources>

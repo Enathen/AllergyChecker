@@ -341,4 +341,5 @@
     <string name="crustaceans">Schaaldieren</string>
     <string name="oat">haver</string>
     <string name="onion">Ui</string>
+    <string name="noLanguageSelected">Geen talen geselecteerd</string>
 </resources>

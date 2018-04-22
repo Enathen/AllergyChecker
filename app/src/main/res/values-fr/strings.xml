@@ -343,4 +343,5 @@
     <string name="crustaceans">Crustacés</string>
     <string name="oat">Avoine</string>
     <string name="onion">Oignon</string>
+    <string name="noLanguageSelected">Aucune langue sélectionnée</string>
 </resources>

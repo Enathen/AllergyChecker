@@ -338,4 +338,5 @@
     <string name="crustaceans">Krebstiere</string>
     <string name="oat">Hafer</string>
     <string name="onion">Zwiebel</string>
+    <string name="noLanguageSelected">Keine Sprachen ausgewählt</string>
 </resources>

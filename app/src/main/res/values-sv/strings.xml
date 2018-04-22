@@ -332,4 +332,5 @@
     <string name="crustaceans">Kräftdjur</string>
     <string name="oat">Havre</string>
     <string name="onion">Lök</string>
+    <string name="noLanguageSelected">Inga språk valda</string>
 </resources>

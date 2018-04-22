@@ -150,6 +150,14 @@ public class StartPage extends AppCompatActivity
         final StartPage startPage = this;
         final SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        if(!sharedPreferences.getBoolean("FirstTimerLanguage", false)){
+            new LanguageFragment().saveDefaultLanguage(this);
+            SharedPreferences.Editor sharedPreferencesEditor =
+                    PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
+            sharedPreferencesEditor.putBoolean(
+                    "FirstTimerLanguage", true);
+            sharedPreferencesEditor.apply();
+        }
         int timeSleepInt = sharedPreferences.getInt("timeSleep", 2);
         if (timeSleepInt == 0) {
             timeSleep.setLabelText(getString(R.string.timeSleep) + " " + 0 + " s");
@@ -719,6 +727,19 @@ public class StartPage extends AppCompatActivity
             emailIntent.putExtra(Intent.EXTRA_TEXT, getResources().getText(R.string.mustBeInEnglish));
             startActivity(Intent.createChooser(emailIntent, getResources().getText(R.string.sendTipsFrom)));
 
+        }else if (id == R.id.instagram) {
+            Uri uri = Uri.parse("http://instagram.com/allergychecker");
+            Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+            likeIng.setPackage("com.instagram.android");
+
+            try {
+                startActivity(likeIng);
+            } catch (ActivityNotFoundException e) {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://instagram.com/allergychecker")));
+            }
+
         }
 
         if (fragment != null) {
@@ -966,7 +987,11 @@ public class StartPage extends AppCompatActivity
             HashSet<String> hashSetToCheckLast = algorithmAllergies.FixStringAllStringsToCheckLast(params[0].split("\\s+"));
             String[] stringToCheckENumbers = stringToCheck.split("\\s+");
             ArrayList<Locale> listOfLanguages = new LanguageFragment().getCategories(mContext);
-            listOfLanguages.add(Locale.getDefault());
+            //listOfLanguages.add(Locale.getDefault());
+            outputString = "";
+            if(listOfLanguages.isEmpty()){
+                outputString = getString(R.string.noLanguageSelected) + "\n\n";
+            }
 
             HashSet<Integer> hashSetFromOtherClass = new LoadUIAllergies().getAllergies(mContext);
 
@@ -986,9 +1011,12 @@ public class StartPage extends AppCompatActivity
                 i++;
 
             }
-            outputString = "";
+
             if (allergies.isEmpty()){
-                outputString = outputString.concat(getString(R.string.noAllergies)+ "\n\n");
+                if(!listOfLanguages.isEmpty()){
+
+                    outputString = outputString.concat(getString(R.string.noAllergies)+ "\n\n");
+                }
             }
             allFoundAllergies.addAll(algorithmAllergies.bkTree(length, hashSetAllStrings, allergies));
 

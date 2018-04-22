@@ -1,5 +1,6 @@
 package creativeendlessgrowingceg.allergychecker.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -109,13 +110,22 @@ public class LanguageFragment extends Fragment implements BillingProvider {
             }
         });
         parentLinearLayout.addView(button);*/
+        final SharedPreferences sharedPreferences =
+                PreferenceManager.getDefaultSharedPreferences(getContext());
         parentLinearLayout.addView(addLanguages(inflater));
-
-        for (CheckBoxes checkBox : checkBoxes) {
-            if (checkBox.locale.getLanguage().equals(language)) {
-                checkBox.checkBox.setChecked(true);
+        if(!sharedPreferences.getBoolean("FirstTimerLanguageFrag", false)){
+            for (CheckBoxes checkBox : checkBoxes) {
+                if (checkBox.locale.getLanguage().equals(language)) {
+                    checkBox.checkBox.setChecked(true);
+                }
             }
+            SharedPreferences.Editor sharedPreferencesEditor =
+                    PreferenceManager.getDefaultSharedPreferences(getContext()).edit();
+            sharedPreferencesEditor.putBoolean(
+                    "FirstTimerLanguageFrag", true);
+            sharedPreferencesEditor.apply();
         }
+
 
 
         return parentFrameLayout;
@@ -152,12 +162,12 @@ public class LanguageFragment extends Fragment implements BillingProvider {
                         editor.putBoolean(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), isChecked);
                         editor.apply();
                         checkIfParentCheckBoxShouldSwitch(((CheckBox) parentLinearLayout.findViewById(R.id.checkBoxRowCategory)), editor, arrayListLinearLayout);
-                        if (locale.getLanguage().equals(language)) {
+               /*         if (locale.getLanguage().equals(language)) {
                             checkBox.setChecked(true);
                             editor.putBoolean(getString(LanguagesAccepted.getCountryName(locale.getLanguage())), true);
                             editor.apply();
                             checkIfParentCheckBoxShouldSwitch(((CheckBox) parentLinearLayout.findViewById(R.id.checkBoxRowCategory)), editor, arrayListLinearLayout);
-                        }
+                        }*/
                     //}
                     /*else {
                         buttonView.setChecked(!isChecked);
@@ -439,6 +449,25 @@ public class LanguageFragment extends Fragment implements BillingProvider {
         for (Locale locale : locales) {
             editor.putBoolean(context.getString(LanguagesAccepted.getCountryName(locale.getLanguage())), false);
             editor.apply();
+        }
+    }
+
+    public void saveDefaultLanguage(Activity activity) {
+        for (Locale locale : LanguagesAccepted.getLanguages(activity.getBaseContext())) {
+            if (locale.getLanguage().equals(Locale.getDefault().getLanguage())) {
+                Log.d(TAG, "saveDefaultLanguage: ");
+                SharedPreferences sp = activity.getSharedPreferences(TAG, Context.MODE_PRIVATE);
+                SharedPreferences.Editor mEdit1 = sp.edit();
+
+
+                Set<String> set = new ArraySet<>();
+
+                set.add(String.valueOf(Locale.getDefault().getCountry()));
+                mEdit1.putStringSet("languageSet", set);
+                mEdit1.apply();
+                return;
+            }
+
         }
     }
 

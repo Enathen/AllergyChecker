@@ -45,6 +45,10 @@
     <item android:title="@string/SharingIsCaring">
         <menu>
             <item
+                android:id="@+id/instagram"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="@string/instagram" />
+            <item
                 android:id="@+id/nav_rate"
                 android:icon="@drawable/star"
                 android:title="@string/rate" />
@@ -56,6 +60,7 @@
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/sendTips" />
+
         </menu>
     </item>
 

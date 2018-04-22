@@ -336,4 +336,5 @@
     <string name="crustaceans">Crostacei</string>
     <string name="oat">Avena</string>
     <string name="onion">Cipolla</string>
+    <string name="noLanguageSelected">Nessuna lingua selezionata</string>
 </resources>

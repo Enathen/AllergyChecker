@@ -355,10 +355,15 @@ public class StartPage extends AppCompatActivity
                 DateAndHistory dateAndHistory = new DateAndHistory(str, startPage.getBaseContext());
                 dateAndHistory.saveArray();
             }
+            if(!str.trim().equals("")){
+                checkStringAgainstAllergies(str);
+
+            }else{
+                findViewById(R.id.adViewRectangle).setVisibility(View.VISIBLE);
+            }
 
             //setDateStrings(dateStrings);
 
-            checkStringAgainstAllergies(str);
 
 
         } else {
@@ -587,6 +592,7 @@ public class StartPage extends AppCompatActivity
                 }
             }
         });
+        Log.d(TAG, "checkStringAgainstAllergies: "+ str);
         new CalcAllergy(this, allergic, (ProgressBar) findViewById(R.id.progressBar3)).execute(str);
 
 
@@ -632,9 +638,9 @@ public class StartPage extends AppCompatActivity
                         findViewById(R.id.adView).setVisibility(View.VISIBLE);
                         findViewById(R.id.textViewtip).setVisibility(View.GONE);
                         findViewById(R.id.linlaybtnadvanced).setVisibility(View.VISIBLE);
-                        if (findViewById(R.id.linlayallergyFromWord) != null) {
+                       /* if (findViewById(R.id.linlayallergyFromWord) != null) {
                             findViewById(R.id.linlayallergyFromWord).setVisibility(View.VISIBLE);
-                        }
+                        }*/
                         findViewById(R.id.linLayHorizontalStartPage).setVisibility(View.VISIBLE);
                         findViewById(R.id.ingredientsTextView).setVisibility(View.VISIBLE);
                         findViewById(R.id.textViewFoundAllergies).setVisibility(View.VISIBLE);
@@ -761,9 +767,9 @@ public class StartPage extends AppCompatActivity
             mAdViewRectangle.pause();
             mAdViewRectangle.setVisibility(View.GONE);
             findViewById(R.id.textViewtip).setVisibility(View.GONE);
-            if (findViewById(R.id.linlayallergyFromWord) != null) {
+        /*    if (findViewById(R.id.linlayallergyFromWord) != null) {
                 findViewById(R.id.linlayallergyFromWord).setVisibility(View.INVISIBLE);
-            }
+            }*/
             findViewById(R.id.linLayHorizontalStartPage).setVisibility(View.INVISIBLE);
 
 
@@ -1020,6 +1026,7 @@ public class StartPage extends AppCompatActivity
             }
             allFoundAllergies.addAll(algorithmAllergies.bkTree(length, hashSetAllStrings, allergies));
 
+
             long start = System.currentTimeMillis();
             counter = stringToCheckENumbers.length / 2;
             i = 0;
@@ -1091,12 +1098,12 @@ public class StartPage extends AppCompatActivity
             final LinearLayout linearLayout = findViewById(R.id.linLayHorizontalStartPage);
             final HashMap<String, Lin> linearLayoutHashMap = new HashMap<>();
             for (final AllergiesClass allergiesForEachInteger : allergiesClass) {
-                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                LinearLayout newlinearLayout = (LinearLayout) inflater.inflate(R.layout.linlayoutstartpagevertical, null);
-                ((ImageView) newlinearLayout.findViewById(R.id.imageViewHorStartPage)).setImageResource(LanguagesAccepted.getFlag(allergiesForEachInteger.getLanguage()));
-                ((TextView) newlinearLayout.findViewById(R.id.textViewAllergy)).setText(TextHandler.cutFirstWord(getString(allergiesForEachInteger.getId())).concat(": " + allergiesForEachInteger.getNameOfIngredient()));
-                ((TextView) newlinearLayout.findViewById(R.id.textViewFoundFromWord)).setText(TextHandler.capitalLetter(allergiesForEachInteger.getNameOfWordFound()));
+
+
                 if (!linearLayoutHashMap.containsKey(allergiesForEachInteger.getMotherLanguage())) {
+                    LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    LinearLayout newlinearLayout = (LinearLayout) inflater.inflate(R.layout.linlayoutstartpagevertical2, null);
+                    ((TextView) newlinearLayout.findViewById(R.id.textViewAllergy)).setText(TextHandler.cutFirstWord(getString(allergiesForEachInteger.getId())));
                     LinearLayout parentLin = (LinearLayout) inflater.inflate(R.layout.linlayoutstartpageverticaltrue, null);
                     parentLin.addView(newlinearLayout);
                     linearLayout.addView(parentLin);
@@ -1105,17 +1112,22 @@ public class StartPage extends AppCompatActivity
                     //Log.d(TAG, "onPostExecute: size" + linearLayoutHashMap.get(allergiesForEachInteger.getMotherLanguage()).linearLayoutArrayList.size());
 
 
-                } else {
-                    newlinearLayout.findViewById(R.id.arrowLeft).setVisibility(View.INVISIBLE);
-                    linearLayoutHashMap.get(allergiesForEachInteger.getMotherLanguage()).linearLayoutArrayList.add(newlinearLayout);
                 }
+                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LinearLayout newlinearLayout = (LinearLayout) inflater.inflate(R.layout.linlayoutstartpagevertical, null);
+                ((ImageView) newlinearLayout.findViewById(R.id.imageViewHorStartPage)).setImageResource(LanguagesAccepted.getFlag(allergiesForEachInteger.getLanguage()));
+                ((TextView) newlinearLayout.findViewById(R.id.textViewAllergy)).setText(TextHandler.cutFirstWord(allergiesForEachInteger.getNameOfIngredient()));
+                ((TextView) newlinearLayout.findViewById(R.id.textViewFoundFromWord)).setText(TextHandler.capitalLetter(allergiesForEachInteger.getNameOfWordFound()));
+                newlinearLayout.findViewById(R.id.arrowLeft).setVisibility(View.INVISIBLE);
+                linearLayoutHashMap.get(allergiesForEachInteger.getMotherLanguage()).linearLayoutArrayList.add(newlinearLayout);
+
             }
             for (final String string : linearLayoutHashMap.keySet()) {
                 if (linearLayoutHashMap.get(string).linearLayoutArrayList.isEmpty()) {
                     linearLayoutHashMap.get(string).parentLin.findViewById(R.id.arrowLeft).setVisibility(View.INVISIBLE);
                 }
                 ((TextView) linearLayoutHashMap.get(string).parentLin.findViewById(R.id.textViewAllergy)).
-                        append(" " + (linearLayoutHashMap.get(string).linearLayoutArrayList.size() + 1));
+                        append(" " + (linearLayoutHashMap.get(string).linearLayoutArrayList.size()));
 
                 linearLayoutHashMap.get(string).linearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1179,14 +1191,14 @@ public class StartPage extends AppCompatActivity
                 outputString = outputString.concat(getString(R.string.scannedTextBelow) + "\n");
                 textView.setTextColor(Color.parseColor("#f23931"));
                 textView.setText(outputString);
-                findViewById(R.id.linlayallergyFromWord).setVisibility(View.VISIBLE);
+               // findViewById(R.id.linlayallergyFromWord).setVisibility(View.VISIBLE);
             } else {
                 outputString = outputString.concat("\n" + getString(R.string.youCanUse) + "\n");
                 outputString = outputString.concat("\n" + getString(R.string.mightContainAllergies) + "\n");
                 outputString = outputString.concat(getString(R.string.scannedTextBelow) + "\n");
                 textView.setTextColor(Color.GREEN);
                 textView.setText(outputString);
-                ((LinearLayout) findViewById(R.id.linLayStartPage)).removeView(findViewById(R.id.linlayallergyFromWord));
+                //((LinearLayout) findViewById(R.id.linLayStartPage)).removeView(findViewById(R.id.linlayallergyFromWord));
 
             }
 

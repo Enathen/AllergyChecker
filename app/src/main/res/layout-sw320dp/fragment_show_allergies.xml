@@ -28,6 +28,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/noAllergies"
                 android:textAlignment="center"
+                android:fontFamily="@font/yatra"
                 android:textColor="@color/fontColorTextWhite"
                 android:textSize="30sp"
                 android:visibility="gone" />

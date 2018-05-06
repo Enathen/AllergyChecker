@@ -27,14 +27,11 @@
         android:roundIcon="@mipmap/allergychecker"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".fragment.SplashScreen"
+        <activity
+            android:name=".fragment.SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
-
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -43,12 +40,10 @@
             android:name=".design.activity.OnboardingPagerActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".design.activity.TakeoffActivity"
             android:label="@string/title_activity_takeoff"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".fragment.StartPage"
             android:configChanges="orientation|screenSize"
@@ -71,7 +66,9 @@
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
-
+        <activity
+            android:name=".fragment.BottomNavigationName"
+            android:label="@string/title_activity_bottom_navigation_name"></activity>
     </application>
 
 </manifest>

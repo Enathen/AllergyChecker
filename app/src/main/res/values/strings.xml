@@ -26,8 +26,7 @@
     <string name="content_description_app_loading_image" translatable="false">App loading image</string>
 
 
-
-<!--Nuts-->
+    <!--Nuts-->
     <string name="nuts">Nuts, Nut</string>
     <string name="almond">Almond, Almonds</string>
     <string name="brazil">Brazil Nuts</string>
@@ -43,7 +42,7 @@
     <string name="walnuts">Walnuts</string>
     <string name="cashew">Cashew nuts, Cashew</string>
 
-<!--Fish-->
+    <!--Fish-->
     <string name="fish">Fish</string>
     <string name="tuna">Tuna</string>
     <string name="salmon">Salmon</string>
@@ -69,9 +68,7 @@
     <string name="trout">Trout</string>
 
 
-
-
-<!--Gluten-->
+    <!--Gluten-->
     <string name="gluten">Gluten</string>
     <string name="wheat">Wheat</string>
     <string name="durum">Durum</string>
@@ -89,7 +86,7 @@
     <string name="einkorn">Einkorn</string>
     <string name="oat">Oat, Oats</string>
 
-<!--Fruit-->
+    <!--Fruit-->
     <string name="fruit">Fruit</string>
     <string name="apple">Apple</string>
     <string name="pear">Pear</string>
@@ -115,7 +112,6 @@
     <string name="apricot">Apricot</string>
     <string name="acerola">Acerola</string>
     <string name="avocado">Avocado</string>
-
 
 
     <string name="shellfish">Shellfish</string>
@@ -167,9 +163,6 @@
     <string name="buckwheat">Buckwheat</string>
 
 
-
-
-
     <!--meat-->
     <string name="vegetarian">Vegetarian</string>
     <string name="vegan">Vegan</string>
@@ -195,15 +188,13 @@
     <string name="chicken">Chicken</string>
 
 
-
-
     <!--Citrus-->
     <string name="citrus">Citrus</string>
     <string name="lemon">Lemon</string>
     <string name="lime">Lime</string>
 
 
-<!--Spice-->
+    <!--Spice-->
     <string name="spice">Spices</string>
     <string name="anis">Anis</string>
     <string name="coriander">Coriander</string>
@@ -217,9 +208,7 @@
     <string name="hibiscus">Hibiscus</string>
 
 
-
-
-<!--Vegatables-->
+    <!--Vegatables-->
     <string name="vegetables">Vegetables</string>
     <string name="aspargus">Asparagus</string>
     <string name="cabbage">Cabbage</string>
@@ -234,9 +223,7 @@
     <string name="zucchini">Zucchini</string>
 
 
-
-
-<!--Legumes-->
+    <!--Legumes-->
     <string name="legumes">Legumes</string>
     <string name="chickpea">Chickpeas</string>
     <string name="lentil">Lentils</string>
@@ -244,7 +231,7 @@
     <string name="peanut">Peanuts, Peanut</string>
     <string name="pea">Peas</string>
     <string name="soybean">Soybean</string>
-<!--Eggplant-->
+    <!--Eggplant-->
     <string name="nightshade">Nightshade, Solanaceae</string>
     <string name="aubergine">Aubergine, Eggplant</string>
     <string name="solanum">Solanum</string>
@@ -254,7 +241,7 @@
     <string name="chineseLantern">Chinese lantern</string>
     <string name="tamarillo">Tamarillo</string>
 
-<!--Peppers-->
+    <!--Peppers-->
 
     <string name="peppers">Peppers</string>
     <string name="bellPepper">Bell Pepper</string>
@@ -266,7 +253,7 @@
     <string name="newMexicochile">New Mexico chile</string>
 
 
-<!--Pig-->
+    <!--Pig-->
     <string name="haram">Haram</string>
     <string name="halal">Halal</string>
     <string name="bacon">Bacon</string>
@@ -277,10 +264,6 @@
     <string name="magnesiumStearate">Magnesium stearate</string>
     <string name="monoGlycerides">Mono Glycerides</string>
     <string name="pepsin">Pepsin</string>
-
-
-
-
 
 
     <!--Milk-->
@@ -318,8 +301,6 @@
     <string name="staticFrench" translatable="false">Français</string>
     <string name="staticNetherland" translatable="false">Nederlands</string>
     <string name="staticItalian" translatable="false">Italiano</string>
-
-
 
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -926,6 +907,12 @@
     <string name="E1525" translatable="false">Hydroxyethyl cellulose is a gelling and thickening agent derived from cellulose. It is widely used in cosmetics, cleaning solutions, and other household products. Hydroxyethyl cellulose and methyl cellulose are frequently used with hydrophobic drugs in capsule formulations, to improve the drugs\' dissolution in the gastrointestinal fluids. This process is known as hydrophilization.</string>
     <string name="noLanguageSelected">No languages selected</string>
     <string name="instagram" translatable="false">Allergy Checker</string>
+    <string name="title_activity_bottom_nav_drawer">BottomNavDrawer</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="camera">Camera</string>
+    <string name="title_activity_bottom_navigation_name">BottomNavigationName</string>
 
 
 </resources>

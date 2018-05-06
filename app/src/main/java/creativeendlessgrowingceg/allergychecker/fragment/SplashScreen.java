@@ -15,9 +15,10 @@ import creativeendlessgrowingceg.allergychecker.R;
 
 public class SplashScreen extends AppCompatActivity {
 
+    private static final String TAG = "Splashscreen";
+
     public SplashScreen() {
     }
-    private static final String TAG = "Splashscreen";
 
     /**
      * Called when the activity is starting.  This is where most initialization
@@ -51,7 +52,7 @@ public class SplashScreen extends AppCompatActivity {
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.rotate);
         findViewById(R.id.imageViewSplash).startAnimation(animation);
-        MobileAds.initialize(getBaseContext(),"ca-app-pub-3607354849437438~1697911164");
+        MobileAds.initialize(getBaseContext(), "ca-app-pub-3607354849437438~1697911164");
 
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -61,11 +62,7 @@ public class SplashScreen extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-
-
-                Intent i = new Intent(SplashScreen.this,StartPage.class);
-
-
+                Intent i = new Intent(SplashScreen.this, BottomNavigationName.class);
                 startActivity(i);
                 finish();
             }
@@ -76,8 +73,6 @@ public class SplashScreen extends AppCompatActivity {
             }
         });
     }
-
-
 
 
 }

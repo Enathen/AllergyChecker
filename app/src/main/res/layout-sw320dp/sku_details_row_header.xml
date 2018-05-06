@@ -20,7 +20,7 @@
     style="@style/CardViewStyle"
     android:layout_height="@dimen/sku_details_row_header_height"
     android:focusable="true"
-    app:cardBackgroundColor="@color/colorPrimaryDark">
+    app:cardBackgroundColor="@color/colorPrimaryLight">
 
     <TextView
         android:id="@+id/title"

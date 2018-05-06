@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-
             >
 
             <ProgressBar
@@ -31,11 +30,12 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorPrimaryLight"
                 android:text="@string/uncheckAll"
                 android:textAllCaps="false"
                 android:textColor="@color/fontColorTextWhite"
                 android:textSize="32sp"
+                android:fontFamily="@font/yatra"
                 android:visibility="gone" />
 
         </LinearLayout>

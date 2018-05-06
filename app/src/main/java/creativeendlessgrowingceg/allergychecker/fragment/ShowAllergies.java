@@ -166,7 +166,7 @@ public class ShowAllergies extends Fragment {
                 final LinearLayout linearLayout = (LinearLayout) pLinearLayout.findViewById(R.id.showAllergiesLanguage);
                 ((ImageView)linearLayout.findViewById(R.id.imageViewFlag)).setImageResource(LanguagesAccepted.getFlag(category.getLanguage()));
                 imageViewHashSetToDestroy.add(((ImageView)linearLayout.findViewById(R.id.imageViewFlag)));
-                ((TextView)linearLayout.findViewById(R.id.textViewStaticLanguage)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryNameStatic(category.getLanguage()),getContext()));
+                //((TextView)linearLayout.findViewById(R.id.textViewStaticLanguage)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryNameStatic(category.getLanguage()),getContext()));
                 ((TextView)linearLayout.findViewById(R.id.textViewLocaleLanguage)).setText(TextHandler.capitalLetter(LanguagesAccepted.getCountryName(category.getLanguage()),getContext()));
                 ((TextView)pLinearLayout.findViewById(R.id.textViewAllergicAgainst)).setText(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),R.string.allergyAgianst,category.getLanguage()))+ "  Emergency Number: "+ 112);
                 pLinearLayout.findViewById(R.id.textViewAllergicAgainst).setVisibility(View.GONE);

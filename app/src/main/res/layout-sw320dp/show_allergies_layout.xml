@@ -7,7 +7,6 @@
 
     <LinearLayout
         android:id="@+id/showAllergiesLanguage"
-        android:layout_marginVertical="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -17,28 +16,10 @@
 
         <ImageView
             android:id="@+id/imageViewFlag"
-            android:layout_width="75dp"
+            android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
             app:srcCompat="@drawable/gb" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="left|center">
-
-            <TextView
-                android:id="@+id/textViewStaticLanguage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-
-                android:text="English"
-                android:textAlignment="textStart"
-                android:textColor="@color/fontColorTextWhite"
-                android:textSize="24sp" />
-        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -51,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
+                android:fontFamily="@font/yatra"
                 android:layout_weight="1"
                 android:text="Engelska"
                 android:textColor="@color/fontColorTextWhite"
@@ -64,6 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:fontFamily="@font/yatra"
         android:textAlignment="textStart"
         android:textColor="@color/fontColorTextWhite"
         android:textSize="24sp" />

@@ -8,7 +8,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="creativeendlessgrowingceg.allergychecker.fragment.StartPage"
     tools:showIn="@layout/app_bar_start_page"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/gradient"
 
     android:layout_marginRight="0dp">
 
@@ -60,6 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/yatra"
                 android:text="TextView"
                 android:textAlignment="center"
                 android:textColor="@color/fontColorTextWhite"
@@ -90,6 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/yatra"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:text="@string/regularSearch"
@@ -126,6 +128,7 @@
             <TextView
                 android:id="@+id/textViewFoundAllergies"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/yatra"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@android:color/holo_red_dark"
@@ -137,6 +140,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|top"
+                android:fontFamily="@font/yatra"
                 android:gravity="center|top"
                 android:textAlignment="textStart"
                 android:textColor="@color/fontColorTextWhite"

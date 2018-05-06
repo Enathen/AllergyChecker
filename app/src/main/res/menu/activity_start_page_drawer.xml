@@ -5,36 +5,44 @@
 
         <item
             android:id="@+id/allergies"
+            android:fontFamily="@font/yatra"
             android:icon="@drawable/wheatcircle"
             android:title="@string/myAllergies" />
         <item
             android:id="@+id/preference"
+            android:fontFamily="@font/yatra"
             android:icon="@drawable/preference"
             android:title="@string/myPreference" />
         <item
             android:id="@+id/history"
+            android:fontFamily="@font/yatra"
 
             android:icon="@drawable/history"
             android:title="@string/history" />
         <item
             android:id="@+id/languageMenu"
+            android:fontFamily="@font/yatra"
             android:icon="@drawable/language"
             android:title="@string/language" />
 
         <item
             android:id="@+id/translate"
+            android:fontFamily="@font/yatra"
             android:icon="@drawable/translatetiny"
             android:title="@string/helpTranslate" />
         <item
             android:id="@+id/showAllergies"
+            android:fontFamily="@font/yatra"
             android:icon="@drawable/wheatcircle"
             android:title="@string/showAllergies" />
         <item
             android:id="@+id/about"
+            android:fontFamily="@font/yatra"
             android:icon="@drawable/about"
             android:title="@string/about" />
         <item
             android:id="@+id/tutorial"
+            android:fontFamily="@font/yatra"
             android:icon="@drawable/tutorial"
             android:title="@string/tutorial" />
     </group>
@@ -42,22 +50,27 @@
 
 
 
-    <item android:title="@string/SharingIsCaring">
+    <item android:title="@string/SharingIsCaring"
+        android:fontFamily="@font/yatra">
         <menu>
             <item
                 android:id="@+id/instagram"
+                android:fontFamily="@font/yatra"
                 android:icon="@drawable/ic_menu_camera"
                 android:title="@string/instagram" />
             <item
                 android:id="@+id/nav_rate"
+                android:fontFamily="@font/yatra"
                 android:icon="@drawable/star"
                 android:title="@string/rate" />
             <item
                 android:id="@+id/nav_share"
+                android:fontFamily="@font/yatra"
                 android:icon="@drawable/ic_menu_share"
                 android:title="@string/share" />
             <item
                 android:id="@+id/nav_send"
+                android:fontFamily="@font/yatra"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/sendTips" />
 

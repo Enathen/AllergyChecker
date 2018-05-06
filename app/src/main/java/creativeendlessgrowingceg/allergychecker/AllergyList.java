@@ -633,7 +633,6 @@ public class AllergyList {
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.apple));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.avocado));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.pear));
-        arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.tomato));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.strawberry));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.prune));
         arrayListFruit.add(new PictureIngredient(R.drawable.peach, R.string.pomegranate));
@@ -667,7 +666,6 @@ public class AllergyList {
         arrayListNightshades.add(new PictureIngredient(R.drawable.aubergine, R.string.naranjilla));
         arrayListNightshades.add(new PictureIngredient(R.drawable.aubergine, R.string.chineseLantern));
         arrayListNightshades.add(new PictureIngredient(R.drawable.aubergine, R.string.tamarillo));
-        arrayListNightshades.add(new PictureIngredient(R.drawable.aubergine, R.string.tomato));
         arrayListNightshades.add(new PictureIngredient(R.drawable.aubergine, R.string.potato));
 
         sort(arrayListNightshades);

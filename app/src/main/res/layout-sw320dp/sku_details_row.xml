@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimaryLight"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/sku_details_row_padding">
@@ -43,6 +43,7 @@
                 android:textColor="@color/fontColorTextWhite"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:fontFamily="@font/yatra"
                 android:textSize="@dimen/sku_details_row_text_size"
                 android:textStyle="bold" />
 
@@ -51,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/single_padding"
+                android:fontFamily="@font/yatra"
                 android:layout_marginStart="@dimen/single_padding"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/sku_details_row_text_size"
@@ -80,6 +82,7 @@
                 android:layout_marginStart="@dimen/single_padding"
                 android:layout_weight="1"
                 android:textAlignment="center"
+                android:fontFamily="@font/yatra"
                 android:textColor="@color/fontColorTextWhite"
                 android:textSize="@dimen/sku_details_row_description_text_size" />
 
@@ -88,6 +91,7 @@
         <Button
             android:id="@+id/state_button"
             style="@style/ButtonStyle"
+            android:fontFamily="@font/yatra"
             android:layout_marginTop="@dimen/single_padding"
             android:background="@color/colorAccent"
             android:contentDescription="@string/button_buy" />

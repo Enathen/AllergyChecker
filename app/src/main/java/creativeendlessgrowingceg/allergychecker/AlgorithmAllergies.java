@@ -193,7 +193,7 @@ public class AlgorithmAllergies {
         BkTreeSearcher<String> searcher = new BkTreeSearcher<>(bkTree);
         for (AllergiesClass allergiesClass : allergies.values()) {
             Set<BkTreeSearcher.Match<? extends String>> matches;
-            if (allergiesClass.getNameOfIngredient().length() < 4) {
+            if (allergiesClass.getNameOfIngredient().length() < 5) {
                 continue;
             }
             if (allergiesClass.getNameOfIngredient().length() < 7) {

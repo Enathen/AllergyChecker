@@ -7,7 +7,7 @@
     -
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_pager_indicator">SKIP</string>
-    -
+
     <string name="title_activity_takeoff">App Takes off here</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="permission_camera_rationale">El acceso a la cámara es necesario para la detección</string>
@@ -105,7 +105,7 @@
     <string name="lychee">Lychee</string>
     <string name="kiwi">Kiwi</string>
     <string name="grape">Uva</string>
-    <string name="date">Fecha</string>
+    <string name="date">Dátil</string>
     <string name="fig">Fig</string>
     <string name="coconut">Coco</string>
     <string name="cherry">Cereza</string>

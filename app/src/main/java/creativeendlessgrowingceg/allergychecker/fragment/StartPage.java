@@ -10,6 +10,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -26,9 +27,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.InputType;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -124,7 +129,9 @@ public class StartPage extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
         //findViewById(R.id.textViewtip).setVisibility(View.GONE);
-
+        Intent intent = new Intent(this, BottomNavigationName.class);
+        startActivity(intent);
+        finish();
         startPage = this;
         startPageBoolean = false;
 
@@ -134,12 +141,24 @@ public class StartPage extends AppCompatActivity
         new LanguageFragment().setGetLanguage(StartPage.this, Locale.getDefault().getLanguage());
 
 
-        Intent intent = getIntent();
+        intent = getIntent();
         suggestions = findViewById(R.id.ingredientsTextView);
         allergic = findViewById(R.id.textViewFoundAllergies);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setBackgroundColor(Color.parseColor("#00000000"));
         setSupportActionBar(toolbar);
+        for(int i = 0; i < toolbar.getChildCount(); i++)
+        { View view = toolbar.getChildAt(i);
+
+            if(view instanceof TextView) {
+                TextView textView = (TextView) view;
+
+                Typeface myCustomFont=Typeface.createFromAsset(getAssets(),"yatra.ttf");
+                textView.setTypeface(myCustomFont); }
+
+
+        }
         //loadInterstitial();
         ((TextView) findViewById(R.id.textViewtip)).setText(StartPageTip.getTip(getBaseContext()));
         write = findViewById(R.id.write);
@@ -426,8 +445,24 @@ public class StartPage extends AppCompatActivity
                 }
             });
         }
-        //checkNewVersion();
 
+        //checkNewVersion();
+        Menu m = navigationView.getMenu();
+        for (int i=0;i<m.size();i++) {
+            MenuItem mi = m.getItem(i);
+
+            //for aapplying a font to subMenu ...
+            SubMenu subMenu = mi.getSubMenu();
+            if (subMenu!=null && subMenu.size() >0 ) {
+                for (int j=0; j <subMenu.size();j++) {
+                    MenuItem subMenuItem = subMenu.getItem(j);
+                    applyFontToMenuItem(subMenuItem);
+                }
+            }
+
+            //the method we have create in activity
+            applyFontToMenuItem(mi);
+        }
     }
 
     public void closeFAB() {
@@ -755,7 +790,13 @@ public class StartPage extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    private void applyFontToMenuItem(MenuItem mi) {
+        Typeface font = Typeface.createFromAsset(getAssets(),"yatra.ttf");
 
+        SpannableString mNewTitle = new SpannableString(mi.getTitle());
+        mNewTitle.setSpan(new CustomTypefaceSpan("yatra.ttf" , font), 0 , mNewTitle.length(),  Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        mi.setTitle(mNewTitle);
+    }
     private void fragment(Fragment fragment, String backtitle) {
         if (fragment != null) {
             suggestions.setVisibility(View.GONE);

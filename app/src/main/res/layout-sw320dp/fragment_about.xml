@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:background="@color/colorPrimaryDark"
         android:orientation="vertical">
 
         <ScrollView
@@ -32,22 +31,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="© AllergyChecker"
+                    android:fontFamily="@font/yatra"
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite" />
 
                 <TextView
                     android:layout_width="match_parent"
+                    android:fontFamily="@font/yatra"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yatra"
                     android:text="@string/specialThanksTo"
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite"
                     android:textSize="22sp" />
 
                 <TextView
+
+                    android:fontFamily="@font/yatra"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -55,17 +59,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/thisappUses"
+                    android:fontFamily="@font/yatra"
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite"
                     android:textSize="22sp" />
 
                 <TextView
                     android:layout_width="match_parent"
+                    android:fontFamily="@font/yatra"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yatra"
                     android:text="@string/FAB"
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite"
@@ -75,6 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/OnBoardMe"
+                    android:fontFamily="@font/yatra"
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite"
                     android:textSize="18sp" />
@@ -82,6 +90,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yatra"
                     android:text="@string/googleCamera"
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite"
@@ -89,6 +98,7 @@
 
                 <TextView
                     android:layout_width="match_parent"
+                    android:fontFamily="@font/yatra"
                     android:layout_height="wrap_content"
                     android:text="@string/BkTree"
                     android:textAlignment="center"
@@ -98,6 +108,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yatra"
                     android:text="@string/googleAdMob"
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite"
@@ -106,6 +117,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yatra"
                     android:text="GoogleSamples. Trivial Drive V2"
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite"
@@ -117,6 +129,7 @@
 
                 <TextView
                     android:layout_width="match_parent"
+                    android:fontFamily="@font/yatra"
                     android:layout_height="wrap_content"
                     android:text="@string/licence"
                     android:textAlignment="center"
@@ -134,6 +147,7 @@
 
                 <TextView
                     android:layout_width="match_parent"
+                    android:fontFamily="@font/yatra"
                     android:layout_height="wrap_content" />
 
                 <ImageView
@@ -143,17 +157,20 @@
 
                 <TextView
                     android:layout_width="match_parent"
+                    android:fontFamily="@font/yatra"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/yatra"
                     android:text="© Creative Endless Growing"
                     android:textAlignment="center"
                     android:textColor="@color/fontColorTextWhite" />
 
                 <TextView
                     android:layout_width="match_parent"
+                    android:fontFamily="@font/yatra"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>

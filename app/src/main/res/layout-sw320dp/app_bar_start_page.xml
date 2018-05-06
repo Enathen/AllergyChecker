@@ -11,16 +11,14 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimaryDark"
-            app:titleTextColor="@color/fontColorTextWhite"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:background="@android:color/transparent" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -42,7 +40,7 @@
             android:longClickable="true"
             android:clickable="false"
             fab:menu_buttonSpacing="0dp"
-            fab:menu_colorNormal="@color/colorPrimary"
+            fab:menu_colorNormal="@color/colorAccent"
             fab:menu_colorPressed="#66FFFFFF"
             fab:menu_colorRipple="#FFFFFF"
             fab:menu_fab_size="normal"
@@ -83,10 +81,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/write"
+                android:fontFamily="@font/yatra"
                 android:visibility="gone"
-                fab:fab_colorNormal="@color/colorPrimary"
-                fab:fab_colorPressed="#66FFFFFF"
-                fab:fab_colorRipple="#FFFFFF"
+                fab:fab_colorNormal="@color/colorAccent"
+                fab:fab_colorPressed="@color/fontColorTextWhite"
+                fab:fab_colorRipple="@color/colorPrimaryLight"
                 fab:fab_label="@string/write"
                 fab:fab_size="normal" />
 
@@ -96,9 +95,9 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/timesleep00"
                 android:visibility="gone"
-                fab:fab_colorNormal="@color/colorPrimary"
-                fab:fab_colorPressed="#66FFFFFF"
-                fab:fab_colorRipple="#FFFFFF"
+                fab:fab_colorNormal="@color/colorAccent"
+                fab:fab_colorPressed="@color/fontColorTextWhite"
+                fab:fab_colorRipple="@color/colorPrimaryLight"
                 fab:fab_label="@string/timeSleep"
                 fab:fab_size="normal" />
 
@@ -108,12 +107,11 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/flashon"
                 android:visibility="gone"
-                fab:fab_colorNormal="@color/colorPrimary"
-                fab:fab_colorPressed="#66FFFFFF"
-                fab:fab_colorRipple="#FFFFFF"
+                fab:fab_colorNormal="@color/colorAccent"
+                fab:fab_colorPressed="@color/fontColorTextWhite"
+                fab:fab_colorRipple="@color/colorPrimaryLight"
                 fab:fab_label="@string/useflash"
-                fab:fab_size="normal"
-                fab:rippleColor="@color/colorPrimaryDark" />
+                fab:fab_size="normal" />
 
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/focusOn"
@@ -121,9 +119,9 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/focuson"
                 android:visibility="gone"
-                fab:fab_colorNormal="@color/colorPrimary"
-                fab:fab_colorPressed="#66FFFFFF"
-                fab:fab_colorRipple="#FFFFFF"
+                fab:fab_colorNormal="@color/colorAccent"
+                fab:fab_colorPressed="@color/fontColorTextWhite"
+                fab:fab_colorRipple="@color/colorPrimaryLight"
                 fab:fab_label="@string/useFocus"
                 fab:fab_size="normal" />
 

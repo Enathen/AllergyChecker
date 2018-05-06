@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
 
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/gradient"
 
     android:orientation="vertical"
     android:paddingBottom="10dp"

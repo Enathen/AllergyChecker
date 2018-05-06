@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorPrimaryLight"
     tools:context="creativeendlessgrowingceg.allergychecker.fragment.E_Numbers">
 
     <!-- TODO: Update blank fragment layout -->
@@ -24,6 +24,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="TextView"
+                android:fontFamily="@font/yatra"
                 android:textColor="@color/colorAccent"
                 android:textSize="28sp" />
 
@@ -72,6 +73,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:fontFamily="@font/yatra"
                 android:background="@color/fontColorTextWhite"
                 android:text="TextView" />
 
@@ -83,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="TextView"
+                android:fontFamily="@font/yatra"
                 android:textColor="@color/fontColorTextWhite"
                 android:textSize="18sp" />
 

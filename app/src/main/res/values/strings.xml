@@ -914,5 +914,12 @@
     <string name="camera">Camera</string>
     <string name="title_activity_bottom_navigation_name">BottomNavigationName</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="wordCount">Words scanned</string>
+    <string name="foundAllergiesCount">Found allergies count</string>
+    <string name="scannedCount">Scanned count</string>
+    <string name="flash">Flash</string>
+
 
 </resources>

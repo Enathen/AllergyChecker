@@ -58,33 +58,19 @@ public class ColorRandom {
         randomColor.add(Color.parseColor("#F50057"));
         randomColor.add(Color.parseColor("#C51162"));
         randomColor.add(Color.parseColor("#9C27B0"));
-
         randomColor.add(Color.parseColor("#F3E5F5"));
-
         randomColor.add(Color.parseColor("#E1BEE7"));
-
         randomColor.add(Color.parseColor("#CE93D8"));
-
         randomColor.add(Color.parseColor("#BA68C8"));
-
         randomColor.add(Color.parseColor("#AB47BC"));
-
         randomColor.add(Color.parseColor("#9C27B0"));
-
         randomColor.add(Color.parseColor("#8E24AA"));
-
         randomColor.add(Color.parseColor("#7B1FA2"));
-
         randomColor.add(Color.parseColor("#6A1B9A"));
-
         randomColor.add(Color.parseColor("#4A148C"));
-
         randomColor.add(Color.parseColor("#EA80FC"));
-
         randomColor.add(Color.parseColor("#E040FB"));
-
         randomColor.add(Color.parseColor("#D500F9"));
-
         randomColor.add(Color.parseColor("#AA00FF"));
 
 

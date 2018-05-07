@@ -24,7 +24,7 @@ public class ExampleInstrumentedTest {
 
     private Context appContext;
     private AlgorithmAllergies algorithmAllergies;
-    private TreeMap<Integer, ArrayList<AllergyList.PictureIngredient>> myAllergies;
+    private TreeMap<Integer, ArrayList<Integer>> myAllergies;
     private int i;
     HashMap<String, AllergiesClass> allergies = new HashMap<>();
 
@@ -38,8 +38,8 @@ public class ExampleInstrumentedTest {
         ArrayList<Locale> languages = new ArrayList<>();
         languages.add(new Locale("en"));
         i = 0;
-        for (ArrayList<AllergyList.PictureIngredient> ingredients : myAllergies.values()) {
-            for (AllergyList.PictureIngredient ingredient : ingredients) {
+        for (ArrayList<Integer> ingredients : myAllergies.values()) {
+            for (Integer ingredient : ingredients) {
                 i = algorithmAllergies.translateAllAllergies(ingredient.getId(), allergies, languages, appContext);
             }
         }

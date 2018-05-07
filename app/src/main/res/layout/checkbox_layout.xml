@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayoutCheckboxLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:visibility="gone">
+
+    <ImageView
+        android:id="@+id/imageViewCheckBoxLayout"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="16dp"
+        android:layout_weight="1"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/ic_border" />
+
+    <TextView
+        android:id="@+id/textViewCheckboxLayoutStart"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_weight="5"
+        android:fontFamily="@font/yatra"
+        android:text="TextView"
+        android:textAlignment="textStart"
+        android:textColor="@color/fontColorTextWhite"
+        android:textSize="16sp" />
+
+    <CheckBox
+        android:id="@+id/checkBoxCheckBoxLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:buttonTint="@color/checkBoxColor"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/textViewCheckboxLayoutEnd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_weight="3"
+        android:fontFamily="@font/yatra"
+        android:text="TextView"
+        android:textAlignment="textStart"
+        android:textColor="@color/checkBoxColor"
+        android:textSize="16sp"
+        android:visibility="invisible" />
+
+</LinearLayout>

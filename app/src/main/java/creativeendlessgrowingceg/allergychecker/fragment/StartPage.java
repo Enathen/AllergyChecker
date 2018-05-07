@@ -129,9 +129,6 @@ public class StartPage extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
         //findViewById(R.id.textViewtip).setVisibility(View.GONE);
-        Intent intent = new Intent(this, BottomNavigationName.class);
-        startActivity(intent);
-        finish();
         startPage = this;
         startPageBoolean = false;
 
@@ -141,7 +138,7 @@ public class StartPage extends AppCompatActivity
         new LanguageFragment().setGetLanguage(StartPage.this, Locale.getDefault().getLanguage());
 
 
-        intent = getIntent();
+        Intent intent = getIntent();
         suggestions = findViewById(R.id.ingredientsTextView);
         allergic = findViewById(R.id.textViewFoundAllergies);
 

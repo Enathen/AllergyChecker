@@ -920,6 +920,7 @@
     <string name="foundAllergiesCount">Found allergies count</string>
     <string name="scannedCount">Scanned count</string>
     <string name="flash">Flash</string>
+    <string name="focus">Focus</string>
 
 
 </resources>

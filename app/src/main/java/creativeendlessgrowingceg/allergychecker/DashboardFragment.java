@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
+import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import creativeendlessgrowingceg.allergychecker.fragment.HistoryFragment;
@@ -81,36 +82,51 @@ public class DashboardFragment extends Fragment {
         FrameLayout inflate = (FrameLayout) inflater.inflate(R.layout.fragment_dashbord, container, false);
 
         CardClassSetup linearCardClass = new CardClassSetup();
-        //TODO color background depending on size
         AtomicInteger atomicInteger = new AtomicInteger(0);
         ColorGradientPicker colorGradientPicker = new ColorGradientPicker();
 
-        CardClassLayout history = new CardClassLayout().useCardClassLayout(getContext(), "History", R.drawable.history, (LinearLayout) inflate.findViewById(R.id.linearCardHistory), colorGradientPicker.ColorGradientPickerPick(5, atomicInteger.get()));
-        CardClassLayout statistic = new CardClassLayout().useCardClassLayout(getContext(), "Statistic", R.drawable.star, (LinearLayout) inflate.findViewById(R.id.linearCardStatistic), colorGradientPicker.ColorGradientPickerPick(5, atomicInteger.addAndGet(1)));
-        CardClassLayout language = new CardClassLayout().useCardClassLayout(getContext(), "Language", R.drawable.language, (LinearLayout) inflate.findViewById(R.id.linearCardLanguage), colorGradientPicker.ColorGradientPickerPick(5, atomicInteger.addAndGet(1)));
-        CardClassLayout showAllergies = new CardClassLayout().useCardClassLayout(getContext(), "Show Allergies", R.drawable.wheatcircle, (LinearLayout) inflate.findViewById(R.id.linearCardShowAllergies), colorGradientPicker.ColorGradientPickerPick(5, atomicInteger.addAndGet(1)));
-        CardClassLayout camera = new CardClassLayout().useCardClassLayout(getContext(), "Camera", R.drawable.ic_menu_camera, (LinearLayout) inflate.findViewById(R.id.linearCardCamera), colorGradientPicker.ColorGradientPickerPick(5, atomicInteger.addAndGet(1)));
+
+        CardClassLayout history = new CardClassLayout.CardClassLayoutBuilder(getContext(), "History", R.drawable.history, colorGradientPicker.ColorGradientPickerPick(5, atomicInteger.addAndGet(1)),(LinearLayout) inflate.findViewById(R.id.linearCardHistory)).optionalLinearSizeHorizontalHeight(300).buildCardClassLayout();
+        CardClassLayout statistic = new CardClassLayout.CardClassLayoutBuilder(getContext(), "Statistic", R.drawable.star, colorGradientPicker.ColorGradientPickerPick(5, atomicInteger.addAndGet(1)),(LinearLayout) inflate.findViewById(R.id.linearCardStatistic)).optionalLinearSizeHorizontalHeight(300).buildCardClassLayout();
+        CardClassLayout language = new CardClassLayout.CardClassLayoutBuilder(getContext(), "Language", R.drawable.star, colorGradientPicker.ColorGradientPickerPick(5, atomicInteger.addAndGet(1)),(LinearLayout) inflate.findViewById(R.id.linearCardLanguage)).optionalLinearSizeHorizontalHeight(300).buildCardClassLayout();
+        CardClassLayout showAllergies = new CardClassLayout.CardClassLayoutBuilder(getContext(), "Allergies", R.drawable.star, colorGradientPicker.ColorGradientPickerPick(5, atomicInteger.addAndGet(1)),(LinearLayout) inflate.findViewById(R.id.linearCardShowAllergies)).optionalLinearSizeHorizontalHeight(300).buildCardClassLayout();
+        CardClassLayout camera = new CardClassLayout.CardClassLayoutBuilder(getContext(), "Camera", R.drawable.star, colorGradientPicker.ColorGradientPickerPick(5, atomicInteger.addAndGet(1)),(LinearLayout) inflate.findViewById(R.id.linearCardCamera)).optionalLinearSizeHorizontalHeight(300).buildCardClassLayout();
         historySetup(history,linearCardClass);
         statisticSetup(statistic,linearCardClass);
         languageSetup(language,linearCardClass);
+        showAllergiesSetup(showAllergies,linearCardClass);
         cameraSetup(camera,linearCardClass);
-        linearCardClass.CardDefaultTransition(history);
-        linearCardClass.CardDefaultTransition(statistic);
-        linearCardClass.CardDefaultTransition(language);
-        linearCardClass.CardDefaultTransition(showAllergies);
-        linearCardClass.CardDefaultTransition(camera);
+
 
         return inflate;
 
     }
 
+
+
+
+    private void showAllergiesSetup(CardClassLayout showAllergies, CardClassSetup linearCardClass) {
+        linearCardClass.CardDefaultTransition(showAllergies,CardClassSetup.fade());
+        //TODO add spinner
+        TreeSet<String> stringTreeSet = new TreeSet<>();
+        for (Integer integer : new LoadUIAllergies().getAllergies(getContext())) {
+            stringTreeSet.add(getString(integer));
+        }
+        for (String string : stringTreeSet) {
+            linearCardClass.addCheckBox(showAllergies, new CheckBoxLayout.CheckBoxBuilder(getContext(),string).buildCheckBoxLayout().getView());
+        }
+    }
+
     private void cameraSetup(CardClassLayout camera, CardClassSetup linearCardClass) {
-        linearCardClass.addCheckBox(camera, new CheckBoxLayout.CheckBoxBuilder(getContext(),getString(R.string.flash)).optionalImage(R.drawable.flashon).optionalCheckBox().buildCheckBoxLayout().getView());
-        linearCardClass.addCheckBox(camera, new CheckBoxLayout.CheckBoxBuilder(getContext(),getString(R.string.flash)).optionalImage(R.drawable.flashon).optionalCheckBox().buildCheckBoxLayout().getView());
+        //add button
+        linearCardClass.CardDefaultTransition(camera,CardClassSetup.explode());
+        linearCardClass.addCheckBox(camera, new CheckBoxLayout.CheckBoxBuilder(getContext(),getString(R.string.flash)).optionalCheckBox().buildCheckBoxLayout().getView());
+        linearCardClass.addCheckBox(camera, new CheckBoxLayout.CheckBoxBuilder(getContext(),getString(R.string.focus)).optionalCheckBox().buildCheckBoxLayout().getView());
 
     }
 
     private void languageSetup(CardClassLayout language, CardClassSetup linearCardClass) {
+        linearCardClass.CardDefaultTransition(language,CardClassSetup.explode());
         for (Locale locale : LanguagesAccepted.getLanguages(getContext())) {
             linearCardClass.addCheckBox(language, new CheckBoxLayout.CheckBoxBuilder(getContext(),
                     getString(LanguagesAccepted.getCountryName(locale.getLanguage()))).optionalImage(LanguagesAccepted.getFlag(locale.getLanguage())).optionalCheckBox().buildCheckBoxLayout().getView());
@@ -118,6 +134,7 @@ public class DashboardFragment extends Fragment {
     }
 
     private void statisticSetup(CardClassLayout statistic, CardClassSetup linearCardClass) {
+        linearCardClass.CardDefaultTransition(statistic,CardClassSetup.explode());
         SharedPreferences sp = getContext().getSharedPreferences(contextName(), Context.MODE_PRIVATE);
         linearCardClass.addCheckBox(statistic, new CheckBoxLayout.CheckBoxBuilder(getContext(), getString(R.string.wordCount)).optionalLastString(sp.getString(wordCount(), "100")).buildCheckBoxLayout().getView());
         linearCardClass.addCheckBox(statistic, new CheckBoxLayout.CheckBoxBuilder(getContext(), getString(R.string.foundAllergiesCount)).optionalLastString(sp.getString(foundCount(), "50000")).buildCheckBoxLayout().getView());
@@ -126,6 +143,7 @@ public class DashboardFragment extends Fragment {
 
     }
     private void historySetup(CardClassLayout history, CardClassSetup linearCardClass) {
+        linearCardClass.CardDefaultTransition(history,CardClassSetup.explode());
         ArrayList<String> arrayList = new DateAndHistory(getActivity()).getArrayFromHistory();
         Collections.sort(arrayList, new HistoryFragment.stringComparator());
         Collections.reverse(arrayList);

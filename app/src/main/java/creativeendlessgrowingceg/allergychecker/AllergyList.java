@@ -26,15 +26,6 @@ public class AllergyList {
     private ArrayList<Integer> arrayListFish = new ArrayList<>();
     private ArrayList<Integer> arrayListSeeds = new ArrayList<>();
     private ArrayList<Integer> arrayListFruit = new ArrayList<>();
-    private ArrayList<Integer> arrayListVegetables = new ArrayList<>();
-    private ArrayList<Integer> arrayListOvoVegetarian = new ArrayList<>();
-    private ArrayList<Integer> arrayListLactoOvoVegetarian = new ArrayList<>();
-    private ArrayList<Integer> arrayListLactoVegetarian = new ArrayList<>();
-    private ArrayList<Integer> arrayListDemiVegetarian = new ArrayList<>();
-    private ArrayList<Integer> arrayListPolloVegetarian = new ArrayList<>();
-    private ArrayList<Integer> arrayListPescoVegetarian = new ArrayList<>();
-    private ArrayList<Integer> arrayListVegetarian = new ArrayList<>();
-    private ArrayList<Integer> arrayListVegan = new ArrayList<>();
     private ArrayList<Integer> arrayListCitrus = new ArrayList<>();
     private ArrayList<Integer> arrayListMuslim = new ArrayList<>();
     private ArrayList<Integer> arrayListKosher = new ArrayList<>();
@@ -45,7 +36,33 @@ public class AllergyList {
     private ArrayList<Integer> arrayListNightshades = new ArrayList<>();
     private ArrayList<Integer> arrayListMollusk = new ArrayList<>();
     private ArrayList<Integer> arrayListCrustaceans = new ArrayList<>();
+    private ArrayList<Integer> arrayListMeat = new ArrayList<>();
+    private ArrayList<Integer> arrayListVegetables= new ArrayList<>();
 
+
+    public int setArrayListMeat() {
+        arrayListMeat.add( R.string.pig);
+        arrayListMeat.add( R.string.duck);
+        arrayListMeat.add( R.string.meat);
+        arrayListMeat.add( R.string.goat);
+        arrayListMeat.add( R.string.poultry);
+        arrayListMeat.add( R.string.lamb);
+        arrayListMeat.add( R.string.sausage);
+        arrayListMeat.add( R.string.beef);
+        arrayListMeat.add( R.string.veal);
+        arrayListMeat.add( R.string.gelatin);
+        arrayListMeat.add( R.string.crustaceans);
+        arrayListMeat.add( R.string.mollusc);
+        arrayListMeat.add( R.string.fish);
+        arrayListMeat.add( R.string.dairy);
+        arrayListMeat.add( R.string.egg);
+        arrayListMeat.add( R.string.honey);
+        arrayListMeat.add( R.string.chicken);
+
+
+        sort(arrayListMeat);
+        return R.string.meat;
+    }
 
     public AllergyList(Context context) {
         this.context = context;
@@ -155,47 +172,7 @@ public class AllergyList {
 
     }
 
-    /**
-     * get list of the key searched for
-     *
-     * @param key int to check
-     * @return list of searched key
-     */
-    public ArrayList<Integer> getSpecifiedKeyPreference(int key) {
-        if (key == R.string.vegan) {
-            setArrayListVegan();
-            return getArrayListVegan();
-        }
-        if (key == R.string.vegetarian) {
-            setArrayListVegetarian();
-            return getArrayListVegetarian();
-        }
-        if (key == R.string.demiVegetarian) {
-            setArrayListDemiVegetarian();
-            return getArrayListDemiVegetarian();
-        }
-        if (key == R.string.ovoVegetarian) {
-            setArrayListOvoVegetarian();
-            return getArrayListOvoVegetarian();
-        }
-        if (key == R.string.lactoVegetarian) {
-            setArrayListLactoVegetarian();
-            return getArrayListLactoVegetarian();
-        }
-        if (key == R.string.lactoOvoVegetarian) {
-            setArrayListLactoOvoVegetarian();
-            return getArrayListLactoOvoVegetarian();
-        }
-        if (key == R.string.pescoVegetarian) {
-            setArrayListPescoVegetarian();
-            return getArrayListPescoVegetarian();
-        }
-        if (key == R.string.polloVegetarian) {
-            setArrayListPolloVegetarian();
-            return getArrayListPolloVegetarian();
-        }
-        return null;
-    }
+
 
     /**
      * get all allergies
@@ -218,31 +195,13 @@ public class AllergyList {
         arrayLists.put(setArrayListVegetables(), getArrayListVegetables());
         arrayLists.put(setArrayListNightshade(), getArrayListNightshade());
         arrayLists.put(setArrayListPeppers(), getArrayListPeppers());
+        arrayLists.put(setArrayListMeat(), getArrayListMeat());
         for (ArrayList<Integer> pictureIngredients : arrayLists.values()) {
             sort(pictureIngredients);
         }
         return arrayLists;
     }
 
-    /**
-     * @return all preferences
-     */
-    public TreeMap<Integer, ArrayList<Integer>> getMyPreference() {
-
-        TreeMap<Integer, ArrayList<Integer>> arrayLists = new TreeMap<>();
-        arrayLists.put(setArrayListDemiVegetarian(), getArrayListDemiVegetarian());
-        //arrayLists.put(setArrayListMuslim(),getArrayListMuslim());
-        arrayLists.put(setArrayListLactoVegetarian(), getArrayListLactoVegetarian());
-        arrayLists.put(setArrayListOvoVegetarian(), getArrayListOvoVegetarian());
-        arrayLists.put(setArrayListLactoOvoVegetarian(), getArrayListLactoOvoVegetarian());
-        arrayLists.put(setArrayListPescoVegetarian(), getArrayListPescoVegetarian());
-        arrayLists.put(setArrayListPolloVegetarian(), getArrayListPolloVegetarian());
-        arrayLists.put(setArrayListVegan(), getArrayListVegan());
-
-        arrayLists.put(setArrayListVegetarian(), getArrayListVegetarian());
-
-        return arrayLists;
-    }
 
 
     private Integer setArrayListVegetables() {
@@ -265,161 +224,7 @@ public class AllergyList {
         return R.string.vegetables;
     }
 
-    private Integer setArrayListVegetarian() {
-        arrayListVegetarian.add( R.string.pig);
-        arrayListVegetarian.add( R.string.duck);
-        arrayListVegetarian.add( R.string.meat);
-        arrayListVegetarian.add( R.string.goat);
-        arrayListVegetarian.add( R.string.poultry);
-        arrayListVegetarian.add( R.string.lamb);
-        arrayListVegetarian.add( R.string.sausage);
-        arrayListVegetarian.add( R.string.beef);
-        arrayListVegetarian.add( R.string.veal);
-        arrayListVegetarian.add( R.string.gelatin);
-        arrayListVegetarian.add( R.string.crustaceans);
-        arrayListVegetarian.add( R.string.mollusc);
-        arrayListVegetarian.add( R.string.fish);
-        arrayListVegetarian.add( R.string.chicken);
-        sort(arrayListVegetarian);
-        return R.string.vegetarian;
-    }
 
-    private Integer setArrayListLactoOvoVegetarian() {
-        arrayListLactoOvoVegetarian.add( R.string.pig);
-        arrayListLactoOvoVegetarian.add( R.string.duck);
-        arrayListLactoOvoVegetarian.add( R.string.meat);
-        arrayListLactoOvoVegetarian.add( R.string.goat);
-        arrayListLactoOvoVegetarian.add( R.string.poultry);
-        arrayListLactoOvoVegetarian.add( R.string.lamb);
-        arrayListLactoOvoVegetarian.add( R.string.sausage);
-        arrayListLactoOvoVegetarian.add( R.string.beef);
-        arrayListLactoOvoVegetarian.add( R.string.veal);
-        arrayListLactoOvoVegetarian.add( R.string.gelatin);
-        arrayListLactoOvoVegetarian.add( R.string.crustaceans);
-        arrayListLactoOvoVegetarian.add( R.string.mollusc);
-        arrayListLactoOvoVegetarian.add( R.string.fish);
-        arrayListLactoOvoVegetarian.add( R.string.dairy);
-        arrayListLactoOvoVegetarian.add( R.string.egg);
-        arrayListLactoOvoVegetarian.add( R.string.chicken);
-        sort(arrayListLactoOvoVegetarian);
-        return R.string.lactoOvoVegetarian;
-    }
-
-    private Integer setArrayListOvoVegetarian() {
-        arrayListOvoVegetarian.add( R.string.pig);
-        arrayListOvoVegetarian.add( R.string.duck);
-        arrayListOvoVegetarian.add( R.string.meat);
-        arrayListOvoVegetarian.add( R.string.goat);
-        arrayListOvoVegetarian.add( R.string.poultry);
-        arrayListOvoVegetarian.add( R.string.lamb);
-        arrayListOvoVegetarian.add( R.string.sausage);
-        arrayListOvoVegetarian.add( R.string.beef);
-        arrayListOvoVegetarian.add( R.string.veal);
-        arrayListOvoVegetarian.add( R.string.gelatin);
-        arrayListOvoVegetarian.add( R.string.crustaceans);
-        arrayListOvoVegetarian.add( R.string.mollusc);
-        arrayListOvoVegetarian.add( R.string.fish);
-        arrayListOvoVegetarian.add( R.string.dairy);
-        arrayListOvoVegetarian.add( R.string.chicken);
-        sort(arrayListOvoVegetarian);
-        return R.string.ovoVegetarian;
-    }
-
-    private Integer setArrayListDemiVegetarian() {
-        arrayListDemiVegetarian.add( R.string.pig);
-        arrayListDemiVegetarian.add( R.string.duck);
-        arrayListDemiVegetarian.add( R.string.meat);
-
-        arrayListDemiVegetarian.add( R.string.goat);
-        arrayListDemiVegetarian.add( R.string.poultry);
-        arrayListDemiVegetarian.add( R.string.lamb);
-        arrayListDemiVegetarian.add( R.string.sausage);
-        arrayListDemiVegetarian.add( R.string.beef);
-        arrayListDemiVegetarian.add( R.string.veal);
-        arrayListDemiVegetarian.add( R.string.gelatin);
-        arrayListDemiVegetarian.add( R.string.crustaceans);
-        arrayListDemiVegetarian.add( R.string.mollusc);
-        arrayListDemiVegetarian.add( R.string.chicken);
-        sort(arrayListDemiVegetarian);
-        return R.string.demiVegetarian;
-    }
-
-    private Integer setArrayListLactoVegetarian() {
-        arrayListLactoVegetarian.add( R.string.pig);
-        arrayListLactoVegetarian.add( R.string.duck);
-        arrayListLactoVegetarian.add( R.string.meat);
-        arrayListLactoVegetarian.add( R.string.goat);
-        arrayListLactoVegetarian.add( R.string.poultry);
-        arrayListLactoVegetarian.add( R.string.lamb);
-        arrayListLactoVegetarian.add( R.string.sausage);
-        arrayListLactoVegetarian.add( R.string.beef);
-        arrayListLactoVegetarian.add( R.string.veal);
-        arrayListLactoVegetarian.add( R.string.gelatin);
-        arrayListLactoVegetarian.add( R.string.crustaceans);
-        arrayListLactoVegetarian.add( R.string.mollusc);
-        arrayListLactoVegetarian.add( R.string.fish);
-        arrayListLactoVegetarian.add( R.string.egg);
-        arrayListLactoVegetarian.add( R.string.chicken);
-        sort(arrayListLactoVegetarian);
-        return R.string.lactoVegetarian;
-    }
-
-    private Integer setArrayListPolloVegetarian() {
-        arrayListPolloVegetarian.add( R.string.pig);
-        arrayListPolloVegetarian.add( R.string.duck);
-        arrayListPolloVegetarian.add( R.string.meat);
-        arrayListPolloVegetarian.add( R.string.goat);
-        arrayListPolloVegetarian.add( R.string.lamb);
-        arrayListPolloVegetarian.add( R.string.sausage);
-        arrayListPolloVegetarian.add( R.string.beef);
-        arrayListPolloVegetarian.add( R.string.veal);
-        arrayListPolloVegetarian.add( R.string.gelatin);
-        arrayListPolloVegetarian.add( R.string.crustaceans);
-        arrayListPolloVegetarian.add( R.string.mollusc);
-        arrayListPolloVegetarian.add( R.string.fish);
-        arrayListPolloVegetarian.add( R.string.chicken);
-        sort(arrayListPolloVegetarian);
-        return R.string.polloVegetarian;
-    }
-
-    private Integer setArrayListPescoVegetarian() {
-        arrayListPescoVegetarian.add( R.string.pig);
-        arrayListPescoVegetarian.add( R.string.duck);
-        arrayListPescoVegetarian.add( R.string.meat);
-        arrayListPescoVegetarian.add( R.string.goat);
-        arrayListPescoVegetarian.add( R.string.poultry);
-        arrayListPescoVegetarian.add( R.string.lamb);
-        arrayListPescoVegetarian.add( R.string.sausage);
-        arrayListPescoVegetarian.add( R.string.beef);
-        arrayListPescoVegetarian.add( R.string.veal);
-        arrayListPescoVegetarian.add( R.string.gelatin);
-        arrayListPescoVegetarian.add( R.string.crustaceans);
-        arrayListPescoVegetarian.add( R.string.mollusc);
-        sort(arrayListPescoVegetarian);
-        return R.string.pescoVegetarian;
-    }
-
-    private Integer setArrayListVegan() {
-        arrayListVegan.add( R.string.pig);
-        arrayListVegan.add( R.string.duck);
-        arrayListVegan.add( R.string.meat);
-        arrayListVegan.add( R.string.goat);
-        arrayListVegan.add( R.string.poultry);
-        arrayListVegan.add( R.string.lamb);
-        arrayListVegan.add( R.string.sausage);
-        arrayListVegan.add( R.string.beef);
-        arrayListVegan.add( R.string.veal);
-        arrayListVegan.add( R.string.gelatin);
-        arrayListVegan.add( R.string.crustaceans);
-        arrayListVegan.add( R.string.mollusc);
-        arrayListVegan.add( R.string.fish);
-        arrayListVegan.add( R.string.dairy);
-        arrayListVegan.add( R.string.egg);
-        arrayListVegan.add( R.string.honey);
-        arrayListVegan.add( R.string.chicken);
-        sort(arrayListVegan);
-        return R.string.vegan;
-    }
 
     private Integer setArrayListCitrus() {
         arrayListCitrus.add( R.string.lemon);
@@ -700,41 +505,10 @@ public class AllergyList {
         return arrayListVegetables;
     }
 
-    public ArrayList<Integer> getArrayListOvoVegetarian() {
-        return arrayListOvoVegetarian;
-    }
-
-    public ArrayList<Integer> getArrayListLactoOvoVegetarian() {
-        return arrayListLactoOvoVegetarian;
-    }
-
-    public ArrayList<Integer> getArrayListLactoVegetarian() {
-        return arrayListLactoVegetarian;
-    }
-
-    public ArrayList<Integer> getArrayListDemiVegetarian() {
-        return arrayListDemiVegetarian;
-    }
-
-    public ArrayList<Integer> getArrayListPolloVegetarian() {
-        return arrayListPolloVegetarian;
-    }
-
-    public ArrayList<Integer> getArrayListPescoVegetarian() {
-        return arrayListPescoVegetarian;
-    }
-
     public ArrayList<Integer> getArrayListKosher() {
         return arrayListKosher;
     }
 
-    public ArrayList<Integer> getArrayListVegetarian() {
-        return arrayListVegetarian;
-    }
-
-    public ArrayList<Integer> getArrayListVegan() {
-        return arrayListVegan;
-    }
 
     public ArrayList<Integer> getArrayListCitrus() {
         return arrayListCitrus;
@@ -1369,6 +1143,10 @@ public class AllergyList {
 
     public ArrayList<Integer> getArrayListNightshade() {
         return arrayListNightshades;
+    }
+
+    public ArrayList<Integer> getArrayListMeat() {
+        return arrayListMeat;
     }
 
     /**

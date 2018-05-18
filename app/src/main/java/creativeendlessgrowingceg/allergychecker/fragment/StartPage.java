@@ -64,7 +64,6 @@ import creativeendlessgrowingceg.allergychecker.AllergyList;
 import creativeendlessgrowingceg.allergychecker.BuildConfig;
 import creativeendlessgrowingceg.allergychecker.DateAndHistory;
 import creativeendlessgrowingceg.allergychecker.LanguagesAccepted;
-import creativeendlessgrowingceg.allergychecker.LoadUIAllergies;
 import creativeendlessgrowingceg.allergychecker.R;
 import creativeendlessgrowingceg.allergychecker.StartPageTip;
 import creativeendlessgrowingceg.allergychecker.TextHandler;
@@ -78,11 +77,8 @@ public class StartPage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
         , HistoryFragment.OnFragmentInteractionListener
         , LanguageFragment.OnFragmentInteractionListener
-        , MyAllergies.OnFragmentInteractionListener
         , AboutFragment.OnFragmentInteractionListener
         , TranslateHelp.OnFragmentInteractionListener
-        , MyPreference.OnFragmentInteractionListener
-        , ShowAllergies.OnFragmentInteractionListener
         , E_Numbers.OnFragmentInteractionListener
         , BillingProvider {
     private static final String TAG = "StartPage";
@@ -403,7 +399,6 @@ public class StartPage extends AppCompatActivity
             }
         }
 
-        setProfilePicture();
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -412,36 +407,6 @@ public class StartPage extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        View parentView = navigationView.getHeaderView(0);
-        parentView.findViewById(R.id.LinLayHorNavHeadStartPage).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new ShowAllergies();
-                Bundle b = new Bundle();
-                b.putSerializable("ArrayList", LanguagesAccepted.getLanguages(getBaseContext()));
-
-                fragment.setArguments(b);
-                setTitle(getString(R.string.showAllergies));
-                fragment(fragment, getString(R.string.showAllergies));
-                drawer.closeDrawer(GravityCompat.START);
-            }
-        });
-        for (ImageView imageView : getImageViewHashMap(this).values()) {
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Fragment fragment = new ShowAllergies();
-                    Bundle b = new Bundle();
-                    b.putSerializable("ArrayList", LanguagesAccepted.getLanguages(getBaseContext()));
-
-                    fragment.setArguments(b);
-                    setTitle(getString(R.string.showAllergies));
-                    fragment(fragment, getString(R.string.showAllergies));
-                    drawer.closeDrawer(GravityCompat.START);
-
-                }
-            });
-        }
 
         //checkNewVersion();
         Menu m = navigationView.getMenu();
@@ -506,55 +471,10 @@ public class StartPage extends AppCompatActivity
 
     }
 
-    /**
-     * MOVE
-     * Check if there is a new version
-     */
-    private void checkNewVersion() {
-
-        // TODO add when after update
-        int sdkInt = BuildConfig.VERSION_CODE;
-        String check = String.valueOf(sdkInt) + "checkAllergy1";
-        String check2 = String.valueOf(sdkInt) + "load1";
-        SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        if (!sharedPreferences.getBoolean("first", false)) {
-            SharedPreferences.Editor sharedPreferencesEditor =
-                    PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
-            sharedPreferencesEditor.putBoolean(
-                    "first", true);
-            sharedPreferencesEditor.putBoolean(
-                    check2, true);
-            sharedPreferencesEditor.putBoolean(
-                    check, true);
-            sharedPreferencesEditor.apply();
-        } else {
-            if (!sharedPreferences.getBoolean(check, false)) {
-                Fragment fragment = new MyAllergies();
-                fragment(fragment, getString(R.string.myAllergies));
-                fragment = new MyPreference();
-
-                fragment(fragment, getString(R.string.myPreference));
-                SharedPreferences.Editor sharedPreferencesEditor =
-                        PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
-                sharedPreferencesEditor.putBoolean(
-                        check, true);
-                //new LoadUIAllergies().checkStringDelete(this);
-                sharedPreferencesEditor.apply();
-            }
-        }
-       // new LoadUIAllergies().checkStringDelete(this);
-
-    }
 
 
-    /**
-     * MOVE
-     * update profile picture
-     */
-    private void setProfilePicture() {
-        new LoadUIAllergies().savePicture(this, getImageViewHashMap(this));
-    }
+
+
 
 
     private void displayInterstitial() {
@@ -710,14 +630,6 @@ public class StartPage extends AppCompatActivity
             fragment = new LanguageFragment();
             setTitle(getString(R.string.language));
             backtitle = getString(R.string.language);
-        } else if (id == R.id.allergies) {
-            fragment = new MyAllergies();
-            setTitle(getString(R.string.myAllergies));
-            backtitle = getString(R.string.myAllergies);
-        } else if (id == R.id.preference) {
-            fragment = new MyPreference();
-            setTitle(getString(R.string.myPreference));
-            backtitle = getString(R.string.myPreference);
         } else if (id == R.id.tutorial) {
             startActivity(new Intent(this, OnboardingPagerActivity.class));
         } else if (id == R.id.about) {
@@ -728,15 +640,6 @@ public class StartPage extends AppCompatActivity
             fragment = new TranslateHelp();
             setTitle(getString(R.string.helpTranslate));
             backtitle = getString(R.string.helpTranslate);
-        } else if (id == R.id.showAllergies) {
-            Bundle b = new Bundle();
-            b.putSerializable("ArrayList", LanguagesAccepted.getLanguages(getBaseContext()));
-
-            fragment = new ShowAllergies();
-            fragment.setArguments(b);
-            setTitle(getString(R.string.showAllergies));
-            backtitle = getString(R.string.showAllergies);
-
         } else if (id == R.id.nav_rate) {
             Uri uri = Uri.parse("market://details?id=" + this.getPackageName());
             Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
@@ -1024,7 +927,7 @@ public class StartPage extends AppCompatActivity
         @Override
         protected ArrayList<AllergiesClass> doInBackground(String... params) {
             // get the stringToCheck from params, which is an array
-            stringToCheck = params[0];
+            /*stringToCheck = params[0];
             hashSetAllStrings = new TreeMap<>();
 
             hashSetAllStrings = algorithmAllergies.FixStringAllStrings(params[0].split("\\s+"));
@@ -1037,7 +940,7 @@ public class StartPage extends AppCompatActivity
                 outputString = getString(R.string.noLanguageSelected) + "\n\n";
             }
 
-            HashSet<Integer> hashSetFromOtherClass = new LoadUIAllergies().getAllergies(mContext);
+            //HashSet<Integer> hashSetFromOtherClass = new LoadUIAllergies().getAllergies(mContext);
 
             @SuppressLint("UseSparseArrays") HashMap<String, AllergiesClass> allergies = new HashMap<>();
 
@@ -1114,6 +1017,8 @@ public class StartPage extends AppCompatActivity
                 strings.addAll(stringTreeSet);
             }
             return allFoundAllergies;
+        */
+        return null;
         }
 
         // This is called from background thread but runs in UI

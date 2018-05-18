@@ -8,9 +8,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import creativeendlessgrowingceg.allergychecker.DashboardFragment;
+import creativeendlessgrowingceg.allergychecker.MyAllergiesNew;
 import creativeendlessgrowingceg.allergychecker.R;
-
-import static creativeendlessgrowingceg.allergychecker.Gradient.setGradient;
 
 public class BottomNavigationName extends AppCompatActivity {
 
@@ -26,12 +25,17 @@ public class BottomNavigationName extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    return true;
-                case R.id.navigation_dashboard:
-                    DashboardFragment nextFrag= new DashboardFragment();
-
+                    MyAllergiesNew nextFrag= new MyAllergiesNew();
                     BottomNavigationName.this.getFragmentManager().beginTransaction()
                             .replace(R.id.container, nextFrag,"Dashboard")
+                            .addToBackStack(null)
+                            .commit();
+                    return true;
+                case R.id.navigation_dashboard:
+                    DashboardFragment nextFrag2 = new DashboardFragment();
+
+                    BottomNavigationName.this.getFragmentManager().beginTransaction()
+                            .replace(R.id.container, nextFrag2,"Dashboard")
                             .addToBackStack(null)
                             .commit();
 
@@ -52,10 +56,10 @@ public class BottomNavigationName extends AppCompatActivity {
         BottomNavigationView navigation =  findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_dashboard);
-        setGradient(findViewById(R.id.container),
+        /*setGradient(findViewById(R.id.container),
                 getColor(R.color.colorPrimaryLight),
                 getColor(R.color.colorAccent),
-                getColor(R.color.colorPrimary), 0f, 0.5f, 1f);
+                getColor(R.color.colorPrimary), 0f, 0.5f, 1f);*/
 
 
     }

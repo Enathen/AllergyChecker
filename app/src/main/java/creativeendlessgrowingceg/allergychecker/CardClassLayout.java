@@ -3,7 +3,6 @@ package creativeendlessgrowingceg.allergychecker;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,13 +15,13 @@ import android.widget.TextView;
 
 public class CardClassLayout {
 
+    private LinearLayout parentLinearLayout;
     private ImageView imageViewHorizontal;
     private ImageView imageViewVertical;
     private TextView textViewHorizontal;
     private TextView textViewVertical;
     private LinearLayout linearLayoutHorizontal;
     private LinearLayout linearLayoutVertical;
-    private RecyclerView recycleViewVertical;
 
     public CardClassLayout(CardClassLayoutBuilder cardClassLayoutBuilder) {
 
@@ -32,11 +31,15 @@ public class CardClassLayout {
         this.textViewVertical = cardClassLayoutBuilder.textViewVertical;
         this.linearLayoutHorizontal = cardClassLayoutBuilder.linearLayoutHorizontal;
         this.linearLayoutVertical = cardClassLayoutBuilder.linearLayoutVertical;
-        this.recycleViewVertical = cardClassLayoutBuilder.recycleViewVertical;
+        parentLinearLayout = cardClassLayoutBuilder.parentLinearLayout;
     }
 
-    public RecyclerView getRecycleViewVertical() {
-        return recycleViewVertical;
+    public LinearLayout getParentLinearLayout() {
+        return parentLinearLayout;
+    }
+
+    public void setParentLinearLayout(LinearLayout parentLinearLayout) {
+        this.parentLinearLayout = parentLinearLayout;
     }
 
     public ImageView getImageViewHorizontal() {
@@ -96,7 +99,7 @@ public class CardClassLayout {
         private TextView textViewVertical;
         private LinearLayout linearLayoutHorizontal;
         private LinearLayout linearLayoutVertical;
-        private RecyclerView recycleViewVertical;
+        private LinearLayout parentLinearLayout;
 
         public CardClassLayoutBuilder(Context context, String text, int drawable, int color, LinearLayout linearLayout) {
             this.context = context;
@@ -104,10 +107,10 @@ public class CardClassLayout {
 
         }
 
-        public CardClassLayoutBuilder(String text, int drawable, int color, Context context) {
+        public CardClassLayoutBuilder(Context context, String text, int drawable, int color) {
             this.context = context;
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.checkbox_layout, null);
+            LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.linear_card, null);
             setup(linearLayout, text, drawable, color);
 
         }
@@ -119,14 +122,14 @@ public class CardClassLayout {
             imageViewVertical = linearLayout.findViewById(R.id.imageViewCardVertical);
             textViewHorizontal = linearLayout.findViewById(R.id.textViewCardHorizontal);
             textViewVertical = linearLayout.findViewById(R.id.textViewCardVertical);
-            recycleViewVertical = linearLayout.findViewById(R.id.recycleViewLinearLayout);
             textViewHorizontal.setText(text);
+            textViewHorizontal.setTextColor(color);
             textViewVertical.setText(text);
             imageViewHorizontal.setImageDrawable(context.getDrawable(drawable));
             imageViewVertical.setImageDrawable(context.getDrawable(drawable));
-            imageViewHorizontal.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+            imageViewHorizontal.setColorFilter(color, PorterDuff.Mode.SRC_IN);
             imageViewVertical.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
-            linearLayout.setBackgroundColor(color);
+            parentLinearLayout = linearLayout;
         }
 
         public CardClassLayoutBuilder optionalLinearSizeVerticalHeight(int size) {

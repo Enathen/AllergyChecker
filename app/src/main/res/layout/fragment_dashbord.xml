@@ -6,38 +6,39 @@
     tools:context="creativeendlessgrowingceg.allergychecker.DashboardFragment">
 
     <ScrollView
+        android:id="@+id/scrollViewDashboardFrag"
         android:layout_width="match_parent"
+
         android:layout_height="match_parent">
 
         <LinearLayout
+
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
+
             <include
                 android:id="@+id/linearCardHistory"
 
-                layout="@layout/linear_card"
-                />
+                layout="@layout/linear_card" />
 
             <include
                 android:id="@+id/linearCardStatistic"
-                layout="@layout/linear_card"
-                 />
+                layout="@layout/linear_card" />
 
             <include
                 android:id="@+id/linearCardLanguage"
-                layout="@layout/linear_card"
-                 />
+                layout="@layout/linear_card" />
+
             <include
                 android:id="@+id/linearCardShowAllergies"
-                layout="@layout/linear_card"
-                />
+                layout="@layout/linear_card" />
+
             <include
                 android:id="@+id/linearCardCamera"
-                layout="@layout/linear_card"
-                 />
-
-
+                layout="@layout/linear_card" />
 
 
         </LinearLayout>

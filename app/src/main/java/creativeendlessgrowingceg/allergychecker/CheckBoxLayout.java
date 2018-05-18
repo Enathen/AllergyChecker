@@ -1,10 +1,13 @@
 package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -98,10 +101,36 @@ public class CheckBoxLayout {
             beginImageView.setVisibility(View.VISIBLE);
             return this;
         }
-        public CheckBoxBuilder optionalCheckBox() {
+        public CheckBoxBuilder optionalCheckBox(String checkBoxString) {
+            return checkBoxSetuo(checkBoxString);
+        }
+        public CheckBoxBuilder optionalCheckBox(Integer integer) {
+            return checkBoxSetuo(String.valueOf(integer));
+        }
+        private CheckBoxBuilder checkBoxSetuo(String string){
             view.findViewById(R.id.checkBoxCheckBoxLayout).setVisibility(View.VISIBLE);
             checkBox = view.findViewById(R.id.checkBoxCheckBoxLayout);
+            final SharedPreferences sharedPreferences =
+                    PreferenceManager.getDefaultSharedPreferences(context);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    checkBox.setChecked(!checkBox.isChecked());
+                }
+            });
+            checkBox.setChecked(sharedPreferences.getBoolean( string,false));
+            checkBox.setOnCheckedChangeListener(checkboxOnChecked(sharedPreferences, string));
             return this;
+        }
+        private CompoundButton.OnCheckedChangeListener checkboxOnChecked(final SharedPreferences sharedPreferences, final String string){
+            return new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                    SharedPreferences.Editor edit = sharedPreferences.edit();
+                    edit.putBoolean(string,b).apply();
+                }
+            };
         }
 
         public CheckBoxBuilder optionalLastString(String lastStringTextView) {
@@ -110,6 +139,7 @@ public class CheckBoxLayout {
             this.lastStringTextView.setVisibility(View.VISIBLE);
             return this;
         }
+
         public CheckBoxBuilder buildListener(View.OnClickListener onClickListener) {
             view.setOnClickListener(onClickListener);
             return this;
@@ -126,5 +156,17 @@ public class CheckBoxLayout {
             beginImageView.setVisibility(View.VISIBLE);
             return this;
         }
+
+        public CheckBoxBuilder optionalMarginBottom() {
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            params.setMargins(0, 8, 0, 8);
+            view.setLayoutParams(params);
+            return this;
+        }
+
+
     }
 }

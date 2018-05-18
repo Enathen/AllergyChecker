@@ -50,6 +50,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+import creativeendlessgrowingceg.allergychecker.APISharedPreference;
 import creativeendlessgrowingceg.allergychecker.R;
 import creativeendlessgrowingceg.allergychecker.fragment.StartPage;
 import creativeendlessgrowingceg.allergychecker.camera.ui.CameraSource;
@@ -71,9 +72,9 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     private static final int RC_HANDLE_CAMERA_PERM = 2;
 
     // Constants used to pass extra data in the intent
-    public static final String AutoFocus = "focus";
-    public static final String UseFlash = "flash";
-    public static final String SleepTimer = "timeSleep";
+    public static final String AutoFocus = APISharedPreference.getFocus();
+    public static final String UseFlash = APISharedPreference.getFlash();
+    public static final String SleepTimer = APISharedPreference.getTimeSleep();
     public static final String TextBlockObject = "String";
 
     private CameraSource mCameraSource;
@@ -120,7 +121,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         int rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         if (rc == PackageManager.PERMISSION_GRANTED) {
 
-            createCameraSource(autoFocus, useFlash,intent.getIntExtra(SleepTimer,2));
+            createCameraSource(autoFocus, useFlash,intent.getIntExtra(SleepTimer,5));
         } else {
             requestCameraPermission();
         }
@@ -205,8 +206,8 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
 
         // Set the TextRecognizer's Processor.
-        Log.d(TAG, "createCameraSource: "+ timeSleep+ " : " + timeSleep*250);
-        ocrDetectorProcessor = new OcrDetectorProcessor(mGraphicOverlay,this,timeSleep*250);
+        Log.d(TAG, "createCameraSource: "+ timeSleep+ " : " + timeSleep*100);
+        ocrDetectorProcessor = new OcrDetectorProcessor(mGraphicOverlay,this,timeSleep*100);
         textRecognizer.setProcessor(ocrDetectorProcessor);
 
         // Check if the TextRecognizer is operational.

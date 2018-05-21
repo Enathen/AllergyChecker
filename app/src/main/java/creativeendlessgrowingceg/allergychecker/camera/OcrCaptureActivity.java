@@ -52,10 +52,10 @@ import java.util.Set;
 
 import creativeendlessgrowingceg.allergychecker.APISharedPreference;
 import creativeendlessgrowingceg.allergychecker.R;
-import creativeendlessgrowingceg.allergychecker.fragment.StartPage;
 import creativeendlessgrowingceg.allergychecker.camera.ui.CameraSource;
 import creativeendlessgrowingceg.allergychecker.camera.ui.CameraSourcePreview;
 import creativeendlessgrowingceg.allergychecker.camera.ui.GraphicOverlay;
+import creativeendlessgrowingceg.allergychecker.fragment.BottomNavigationName;
 
 /**
  * Activity for the Ocr Detecting app.  This app detects text and displays the value with the
@@ -228,8 +228,8 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     switch (which) {
                         case DialogInterface.BUTTON_NEUTRAL:
-                            Intent intent = new Intent(OcrCaptureActivity.this, StartPage.class);
-                            intent.putExtra("location", textTapped);
+                            Intent intent = new Intent(OcrCaptureActivity.this, BottomNavigationName.class);
+                            intent.putExtra(APISharedPreference.getScannedText, textTapped);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();
@@ -425,8 +425,8 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
 
             //Toast.makeText(this, textTapped, Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(OcrCaptureActivity.this, StartPage.class);
-            intent.putExtra("location", textTapped);
+            Intent intent = new Intent(OcrCaptureActivity.this, BottomNavigationName.class);
+            intent.putExtra(APISharedPreference.getScannedText, textTapped);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();

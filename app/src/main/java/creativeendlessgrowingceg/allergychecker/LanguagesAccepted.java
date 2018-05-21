@@ -3,6 +3,7 @@ package creativeendlessgrowingceg.allergychecker;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,7 +46,18 @@ public class LanguagesAccepted {
         sort(arrayList, context);
         return arrayList;
     }
+    public static ArrayList<Locale> getActiveLanguages(Context context) {
+        ArrayList<Locale> languages = getLanguages(context);
+        ArrayList<Locale> arrayList = new ArrayList<>();
+        for (Locale language : languages) {
+            if(PreferenceManager.getDefaultSharedPreferences(context).getBoolean(language.getLanguage(),false)){
+                arrayList.add(language);
+            }
+        }
 
+        sort(arrayList, context);
+        return arrayList;
+    }
     /**
      * get flags desired
      *

@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static creativeendlessgrowingceg.allergychecker.AllergyList.checkAvailablePicture;
+
 
 public class MyAllergiesNew extends Fragment {
 
@@ -73,9 +75,9 @@ public class MyAllergiesNew extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        final CardClassLayout cardClassLayout = new CardClassLayout.CardClassLayoutBuilder(getContext(), TextHandler.capitalLetter(TextHandler.cutFirstWord(getString(integer))), R.drawable.history, colorGradientPicker.
-                                ColorGradientPickerPick(myAllergyPreference.size(), atomicInteger.addAndGet(1))).
-                                optionalLinearSizeHorizontalHeight(300).buildCardClassLayout();
+                        final CardClassLayout cardClassLayout = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(integer), checkAvailablePicture(integer), colorGradientPicker.
+                                ColorGradientPickerPick(myAllergyPreference.size(), atomicInteger.addAndGet(1),getContext())).
+                                optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
 
                         cardClassLayout.getLinearLayoutHorizontal().setOnClickListener(new View.OnClickListener() {
                             @Override

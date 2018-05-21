@@ -14,26 +14,34 @@ public class AllergiesClass implements Comparable<AllergiesClass> {
     private final String language;
     private final String nameOfIngredient;
     private final int id;
-    private String motherLanguage;
+    private String motherAllergy;
     private String nameOfWordFound;
     private int distance;
+    private int foundAllergies;
 
-    public AllergiesClass(String language, String nameOfIngredient, int ID, String motherLanguage) {
+    public AllergiesClass(String language, String nameOfIngredient, int ID, String motherAllergy) {
 
         this.language = language;
         this.nameOfIngredient = nameOfIngredient;
 
         id = ID;
-        this.motherLanguage = motherLanguage;
+        this.motherAllergy = motherAllergy;
     }
-    public AllergiesClass(String language, String nameOfIngredient, int ID, String motherLanguage, int distance) {
+    public AllergiesClass(String language, String nameOfIngredient, int ID, String motherAllergy, int distance) {
 
         this.language = language;
         this.nameOfIngredient = nameOfIngredient;
 
         id = ID;
-        this.motherLanguage = motherLanguage;
+        this.motherAllergy = motherAllergy;
         this.distance = distance;
+    }
+
+    public int getFoundAllergies() {
+        return foundAllergies;
+    }
+    public void increaseFoundAllergies(){
+        foundAllergies++;
     }
 
     public int getDistance() {
@@ -60,13 +68,13 @@ public class AllergiesClass implements Comparable<AllergiesClass> {
         return id;
     }
 
-    public String getMotherLanguage() {
-        return motherLanguage;
+    public String getMotherAllergy() {
+        return motherAllergy;
     }
 
 
     @Override
     public int compareTo(@NonNull AllergiesClass o) {
-        return motherLanguage.compareToIgnoreCase(o.motherLanguage);
+        return motherAllergy.compareToIgnoreCase(o.motherAllergy);
     }
 }

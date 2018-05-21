@@ -67,7 +67,7 @@ public class ExampleInstrumentedTest {
             String s = TextHandler.FixText(string);
             TreeMap<Integer, TreeSet<String>> integerTreeSetTreeMap = algorithmAllergies.FixStringAllStrings(s.split("\\s+"));
 
-            ArrayList<AllergiesClass> allergiesClasses = algorithmAllergies.bkTree(i, integerTreeSetTreeMap, allergies);
+            ArrayList<AllergiesClass> allergiesClasses = algorithmAllergies.bkTree(i, integerTreeSetTreeMap);
             printAllergiesFound(allergiesClasses);
 
         }

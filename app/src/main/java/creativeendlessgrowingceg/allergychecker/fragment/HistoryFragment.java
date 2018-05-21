@@ -93,7 +93,7 @@ public class HistoryFragment extends Fragment {
 
     /**
      * inflate view and create nice side borders
-     * @param arrayList of history strings
+     * @param arrayList of getHistory strings
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void insertNew(final LayoutInflater inflater, final ViewGroup container, final ArrayList<String> arrayList) {

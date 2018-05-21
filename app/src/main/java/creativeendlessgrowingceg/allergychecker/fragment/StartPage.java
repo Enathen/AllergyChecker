@@ -50,7 +50,6 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
@@ -61,7 +60,6 @@ import java.util.TreeSet;
 import creativeendlessgrowingceg.allergychecker.AlgorithmAllergies;
 import creativeendlessgrowingceg.allergychecker.AllergiesClass;
 import creativeendlessgrowingceg.allergychecker.AllergyList;
-import creativeendlessgrowingceg.allergychecker.BuildConfig;
 import creativeendlessgrowingceg.allergychecker.DateAndHistory;
 import creativeendlessgrowingceg.allergychecker.LanguagesAccepted;
 import creativeendlessgrowingceg.allergychecker.R;
@@ -364,7 +362,7 @@ public class StartPage extends AppCompatActivity
             str = TextHandler.FixText(str);
 
             if (!str.equals("")) {
-                DateAndHistory dateAndHistory = new DateAndHistory(str, startPage.getBaseContext());
+                DateAndHistory dateAndHistory = new DateAndHistory( startPage.getBaseContext(),str);
                 dateAndHistory.saveArray();
             }
             if(!str.trim().equals("")){
@@ -926,8 +924,8 @@ public class StartPage extends AppCompatActivity
 
         @Override
         protected ArrayList<AllergiesClass> doInBackground(String... params) {
-            // get the stringToCheck from params, which is an array
-            /*stringToCheck = params[0];
+      /*      // get the stringToCheck from params, which is an array
+            stringToCheck = params[0];
             hashSetAllStrings = new TreeMap<>();
 
             hashSetAllStrings = algorithmAllergies.FixStringAllStrings(params[0].split("\\s+"));
@@ -1016,8 +1014,7 @@ public class StartPage extends AppCompatActivity
             for (TreeSet<String> stringTreeSet : hashSetAllStrings.values()) {
                 strings.addAll(stringTreeSet);
             }
-            return allFoundAllergies;
-        */
+            return allFoundAllergies;*/
         return null;
         }
 
@@ -1043,7 +1040,7 @@ public class StartPage extends AppCompatActivity
             for (final AllergiesClass allergiesForEachInteger : allergiesClass) {
 
 
-                if (!linearLayoutHashMap.containsKey(allergiesForEachInteger.getMotherLanguage())) {
+                if (!linearLayoutHashMap.containsKey(allergiesForEachInteger.getMotherAllergy())) {
                     LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     LinearLayout newlinearLayout = (LinearLayout) inflater.inflate(R.layout.linlayoutstartpagevertical2, null);
                     ((TextView) newlinearLayout.findViewById(R.id.textViewAllergy)).setText(TextHandler.cutFirstWord(getString(allergiesForEachInteger.getId())));
@@ -1051,8 +1048,8 @@ public class StartPage extends AppCompatActivity
                     parentLin.addView(newlinearLayout);
                     linearLayout.addView(parentLin);
                     ArrayList<LinearLayout> l = new ArrayList<>();
-                    linearLayoutHashMap.put(allergiesForEachInteger.getMotherLanguage(), new Lin(newlinearLayout, l, parentLin));
-                    //Log.d(TAG, "onPostExecute: size" + linearLayoutHashMap.get(allergiesForEachInteger.getMotherLanguage()).linearLayoutArrayList.size());
+                    linearLayoutHashMap.put(allergiesForEachInteger.getMotherAllergy(), new Lin(newlinearLayout, l, parentLin));
+                    //Log.d(TAG, "onPostExecute: size" + linearLayoutHashMap.get(allergiesForEachInteger.getMotherAllergy()).linearLayoutArrayList.size());
 
 
                 }
@@ -1062,7 +1059,7 @@ public class StartPage extends AppCompatActivity
                 ((TextView) newlinearLayout.findViewById(R.id.textViewAllergy)).setText(TextHandler.cutFirstWord(allergiesForEachInteger.getNameOfIngredient()));
                 ((TextView) newlinearLayout.findViewById(R.id.textViewFoundFromWord)).setText(TextHandler.capitalLetter(allergiesForEachInteger.getNameOfWordFound()));
                 newlinearLayout.findViewById(R.id.arrowLeft).setVisibility(View.INVISIBLE);
-                linearLayoutHashMap.get(allergiesForEachInteger.getMotherLanguage()).linearLayoutArrayList.add(newlinearLayout);
+                linearLayoutHashMap.get(allergiesForEachInteger.getMotherAllergy()).linearLayoutArrayList.add(newlinearLayout);
 
             }
             for (final String string : linearLayoutHashMap.keySet()) {

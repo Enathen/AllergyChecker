@@ -6,6 +6,10 @@ package creativeendlessgrowingceg.allergychecker;
  */
 
 public class APISharedPreference {
+    public static String getScannedText = "ScannedText";
+    public static String getHistory = "History";
+    public static String dateAndHistory = "DateAndHistory";
+
     public static String getFlash(){
         return "Flash";
     }
@@ -25,8 +29,11 @@ public class APISharedPreference {
     public static String getFoundCount(){
         return "StatisticFoundCount";
     }
-    public static String getScannedCount(){
-        return "StatisticScannedCount";
+    public static String getSpinnerPosition(){
+        return "SpinnerPosition";
     }
 
+    public static String getFoundENumbers() {
+        return  "FoundENumbers";
+    }
 }

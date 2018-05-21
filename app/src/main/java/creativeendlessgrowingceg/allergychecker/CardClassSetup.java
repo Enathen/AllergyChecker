@@ -24,7 +24,7 @@ public class CardClassSetup {
 
     public static TransitionSet explode() {
         return new TransitionSet()
-                .addTransition(new Explode()).setDuration(500);
+                .addTransition(new Explode()).setDuration(250);
     }
 
     public static TransitionSet fade() {
@@ -34,7 +34,7 @@ public class CardClassSetup {
 
     public static TransitionSet end() {
         return new TransitionSet()
-                .addTransition(new Slide(Gravity.END)).setDuration(500);
+                .addTransition(new Slide(Gravity.END)).setDuration(1000);
     }
 
     public void CardDefaultTransition(CardClassLayout cardClassLayout, final TransitionSet set) {

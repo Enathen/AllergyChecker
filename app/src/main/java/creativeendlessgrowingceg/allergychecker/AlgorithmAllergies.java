@@ -150,10 +150,10 @@ public class AlgorithmAllergies {
         return length;
     }*/
 
-    public int translateAllAllergies(int id, HashMap<String, AllergiesClass> allergies, ArrayList<Locale> listOfLanguages, Context context) {
+    public int translateAllAllergies(int id, HashMap<String, AllergiesClass> allergies, ArrayList<Locale> listOfLanguages, SettingsFragment context) {
         int length = 0;
         for (Locale locale : listOfLanguages) {
-            String localeString = getStringByLocal(context, id, locale.getLanguage());
+            String localeString = getStringByLocal(context.getContext(), id, locale.getLanguage());
             List<String> list = TextHandler.split(localeString);
             for (int i = 0; i < list.size(); i++) {
                 allergies.put(list.get(i), new AllergiesClass(locale.getLanguage(),
@@ -176,13 +176,11 @@ public class AlgorithmAllergies {
      * if scanned string is smaller than allergy word the words might be lemn, lemo and so on only
      * though if the word is bigger than 4 else small word will pop up all the time like "sej", from
      * scanned text ej se which would make the user annoyed.
-     *
-     * @param length            speed up algorithm if word longer then the longest allergy
      * @param hashSetAllStrings all strings scanned
      * @param allergies         all allergies user have
      */
-    public ArrayList<AllergiesClass> bkTree(int length, TreeMap<Integer, TreeSet<String>> hashSetAllStrings, HashMap<String, AllergiesClass> allergies) {
-        ArrayList<AllergiesClass> allFoundAllergies = new ArrayList<>();
+    public TreeMap<String,AllergiesClass> bkTree(TreeMap<Integer, TreeSet<String>> hashSetAllStrings, HashMap<String, AllergiesClass> allergies) {
+        TreeMap<String,AllergiesClass> allFoundAllergies = new TreeMap<>();
         MutableBkTree<String> bkTree = new MutableBkTree<>(HammingDistance.hammingDistance);
         for (Integer stringTreeSet : hashSetAllStrings.keySet()) {
             if ( stringTreeSet <= 0) {
@@ -206,13 +204,18 @@ public class AlgorithmAllergies {
                 matches = searcher.search(allergiesClass.getNameOfIngredient(), 4);
             }
             for (BkTreeSearcher.Match<? extends String> match : matches) {
-                AllergiesClass all = new AllergiesClass(
-                        allergiesClass.getLanguage(),
-                        allergiesClass.getNameOfIngredient(),
-                        allergiesClass.getId(),
-                        allergiesClass.getMotherLanguage(),match.getDistance());
-                all.setNameOfWordFound(match.getMatch());
-                allFoundAllergies.add(all);
+                if(allFoundAllergies.containsKey(allergiesClass.getMotherAllergy())){
+                    allFoundAllergies.get(allergiesClass.getMotherAllergy()).increaseFoundAllergies();
+                }else{
+                    AllergiesClass all = new AllergiesClass(
+                            allergiesClass.getLanguage(),
+                            allergiesClass.getNameOfIngredient(),
+                            allergiesClass.getId(),
+                            allergiesClass.getMotherAllergy(),match.getDistance());
+                    all.setNameOfWordFound(match.getMatch());
+                    allFoundAllergies.put(allergiesClass.getMotherAllergy(),all);
+                }
+
 
                 //Log.d(TAG, "bkTree: "+ all.getNameOfIngredient() + " : " + all.getNameOfWordFound() +" : " +all.getDistance());
             }
@@ -222,23 +225,26 @@ public class AlgorithmAllergies {
 
     /**
      * check full string if substring is contained if allergy already found break.
-     *
-     * @param s                 to check
+     *  @param s                 to check
      * @param allergies         user have
      * @param allFoundAllergies that already found
      */
-    public void checkFullString(String s, HashMap<String, AllergiesClass> allergies, ArrayList<AllergiesClass> allFoundAllergies) {
+    public void checkFullString(String s, HashMap<String, AllergiesClass> allergies, TreeMap<String, AllergiesClass> allFoundAllergies) {
 
         for (AllergiesClass allergiesClass : allergies.values()) {
             if (s.contains(allergiesClass.getNameOfIngredient())) {
+                if(allFoundAllergies.containsKey(allergiesClass.getMotherAllergy())){
+                    allFoundAllergies.get(allergiesClass.getMotherAllergy()).increaseFoundAllergies();
+                }else{
+                    AllergiesClass all = new AllergiesClass(
+                            allergiesClass.getLanguage(),
+                            allergiesClass.getNameOfIngredient(),
+                            allergiesClass.getId(),
+                            allergiesClass.getMotherAllergy());
+                    all.setNameOfWordFound(s);
+                    allFoundAllergies.put(all.getMotherAllergy(),all);
+                }
 
-                AllergiesClass all = new AllergiesClass(
-                        allergiesClass.getLanguage(),
-                        allergiesClass.getNameOfIngredient(),
-                        allergiesClass.getId(),
-                        allergiesClass.getMotherLanguage());
-                all.setNameOfWordFound(s);
-                allFoundAllergies.add(all);
             }
         }
 

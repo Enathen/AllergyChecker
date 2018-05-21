@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -64,8 +63,9 @@ public class OnboardingPagerActivity extends AppCompatActivity implements
         }
 
         setContentView(R.layout.onboarder_activity_);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+       /* ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.hide();*/
         mViewPager= (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(new SlidePageAdapter(getSupportFragmentManager(), mPagerMgr));
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

@@ -3,7 +3,9 @@ package creativeendlessgrowingceg.allergychecker;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -92,6 +94,7 @@ public class CardClassLayout {
 
     public static class CardClassLayoutBuilder {
 
+        private static final String TAG = "";
         Context context;
         private ImageView imageViewHorizontal;
         private ImageView imageViewVertical;
@@ -103,6 +106,7 @@ public class CardClassLayout {
 
         public CardClassLayoutBuilder(Context context, String text, int drawable, int color, LinearLayout linearLayout) {
             this.context = context;
+            linearLayout.setVisibility(View.VISIBLE);
             setup(linearLayout, text, drawable, color);
 
         }
@@ -115,19 +119,32 @@ public class CardClassLayout {
 
         }
 
+
         private void setup(LinearLayout linearLayout, String text, int drawable, int color) {
+            text = TextHandler.cutFirstWord(TextHandler.capitalLetter(text));
+            int alpha = Math.round(Color.alpha(color) * 0.8f);
+            int r = Color.red(color)-10;
+            int g = Color.green(color)-10;
+            int b = Color.blue(color)-10;
+            int newColor = Color.argb(alpha, r, g, b);
+            Drawable drawable1 = context.getDrawable(R.drawable.corner_linear);
+            drawable1.setColorFilter(newColor,PorterDuff.Mode.SRC_IN);
+
             linearLayoutHorizontal = linearLayout.findViewById(R.id.linearLayoutCardHorizontal);
             linearLayoutVertical = linearLayout.findViewById(R.id.linearLayoutCardVertical);
+
+            linearLayoutHorizontal.setBackground(drawable1);
             imageViewHorizontal = linearLayout.findViewById(R.id.imageViewCardHorizontal);
             imageViewVertical = linearLayout.findViewById(R.id.imageViewCardVertical);
             textViewHorizontal = linearLayout.findViewById(R.id.textViewCardHorizontal);
             textViewVertical = linearLayout.findViewById(R.id.textViewCardVertical);
             textViewHorizontal.setText(text);
-            textViewHorizontal.setTextColor(color);
+            textViewHorizontal.setTextColor(Color.WHITE);
             textViewVertical.setText(text);
             imageViewHorizontal.setImageDrawable(context.getDrawable(drawable));
             imageViewVertical.setImageDrawable(context.getDrawable(drawable));
-            imageViewHorizontal.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+
+            imageViewHorizontal.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
             imageViewVertical.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
             parentLinearLayout = linearLayout;
         }

@@ -4,7 +4,6 @@
     android:id="@+id/linearLayoutCheckboxLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
     android:gravity="center"
     android:orientation="horizontal"
     android:visibility="gone">
@@ -12,7 +11,7 @@
     <ImageView
         android:id="@+id/imageViewCheckBoxLayout"
         android:layout_width="0dp"
-        android:layout_height="25dp"
+        android:layout_height="50dp"
         android:layout_marginLeft="16dp"
         android:layout_weight="1"
         android:visibility="invisible"
@@ -28,7 +27,7 @@
         android:text="TextView"
         android:textAlignment="textStart"
         android:textColor="@color/fontColorTextWhite"
-        android:textSize="16sp" />
+        android:textSize="20sp" />
 
     <CheckBox
         android:id="@+id/checkBoxCheckBoxLayout"
@@ -48,7 +47,7 @@
         android:text="TextView"
         android:textAlignment="textStart"
         android:textColor="@color/checkBoxColor"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:visibility="invisible" />
 
 </LinearLayout>

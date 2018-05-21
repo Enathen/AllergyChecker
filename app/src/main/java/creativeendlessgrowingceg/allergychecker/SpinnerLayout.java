@@ -1,6 +1,7 @@
 package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
@@ -64,7 +65,9 @@ public class SpinnerLayout {
             final ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
                     R.layout.spinner_item, keys);
             adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+
             spinner.setAdapter(adapter);
+            spinner.setSelection(PreferenceManager.getDefaultSharedPreferences(context).getInt(APISharedPreference.getSpinnerPosition(),0));
 
 
         }

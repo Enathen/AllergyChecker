@@ -37,32 +37,8 @@ public class AllergyList {
     private ArrayList<Integer> arrayListMollusk = new ArrayList<>();
     private ArrayList<Integer> arrayListCrustaceans = new ArrayList<>();
     private ArrayList<Integer> arrayListMeat = new ArrayList<>();
-    private ArrayList<Integer> arrayListVegetables= new ArrayList<>();
+    private ArrayList<Integer> arrayListVegetables = new ArrayList<>();
 
-
-    public int setArrayListMeat() {
-        arrayListMeat.add( R.string.pig);
-        arrayListMeat.add( R.string.duck);
-        arrayListMeat.add( R.string.meat);
-        arrayListMeat.add( R.string.goat);
-        arrayListMeat.add( R.string.poultry);
-        arrayListMeat.add( R.string.lamb);
-        arrayListMeat.add( R.string.sausage);
-        arrayListMeat.add( R.string.beef);
-        arrayListMeat.add( R.string.veal);
-        arrayListMeat.add( R.string.gelatin);
-        arrayListMeat.add( R.string.crustaceans);
-        arrayListMeat.add( R.string.mollusc);
-        arrayListMeat.add( R.string.fish);
-        arrayListMeat.add( R.string.dairy);
-        arrayListMeat.add( R.string.egg);
-        arrayListMeat.add( R.string.honey);
-        arrayListMeat.add( R.string.chicken);
-
-
-        sort(arrayListMeat);
-        return R.string.meat;
-    }
 
     public AllergyList(Context context) {
         this.context = context;
@@ -87,6 +63,26 @@ public class AllergyList {
         arrayList.add(R.string.fish);
         arrayList.add(R.string.gluten);
         return arrayList;
+    }
+
+    public int setArrayListMeat() {
+        arrayListMeat.add(R.string.pig);
+        arrayListMeat.add(R.string.duck);
+        arrayListMeat.add(R.string.meat);
+        arrayListMeat.add(R.string.goat);
+        arrayListMeat.add(R.string.poultry);
+        arrayListMeat.add(R.string.lamb);
+        arrayListMeat.add(R.string.sausage);
+        arrayListMeat.add(R.string.beef);
+        arrayListMeat.add(R.string.veal);
+        arrayListMeat.add(R.string.gelatin);
+        arrayListMeat.add(R.string.egg);
+        arrayListMeat.add(R.string.honey);
+        arrayListMeat.add(R.string.chicken);
+
+
+        sort(arrayListMeat);
+        return R.string.meat;
     }
 
     /**
@@ -118,60 +114,49 @@ public class AllergyList {
     /**
      * get all picture that may be used in navigation drawer
      *
-     * @param picture int to check
+     * @param key int to check
      * @return if it may be used
      */
-    public boolean checkAvailablePicture(int picture) {
-        if (picture == R.drawable.fish)
-            return true;
+    public static int checkAvailablePicture(int key) {
+        if (key == R.string.fish)
+            return  R.drawable.fish;
+        if (key == R.string.fruit)
+            return R.drawable.fruit;
+        if (key == R.string.dairy)
+            return R.drawable.milk;
+        if (key == R.string.nuts)
+            return R.drawable.nuts;
+        if (key == R.string.legumes)
+            return R.drawable.legumes;
+        if (key == R.string.tomato)
+            return R.drawable.tomato;
+        if (key == R.string.spice)
+            return R.drawable.spice;
+        if (key == R.string.citrus)
+            return R.drawable.citrus;
+        if (key == R.string.seeds)
+            return R.drawable.seeds;
+        if (key == R.string.gluten)
+            return R.drawable.wheatcircle;
+        if (key == R.string.peppers)
+            return R.drawable.pepper;
+        if (key == R.string.nightshade)
+            return R.drawable.aubergine;
+        if (key == R.string.octopus)
+            return R.drawable.octopus;
+        if (key == R.string.mollusc)
+            return R.drawable.shellfish;
+        if (key == R.string.crustaceans)
+            return R.drawable.crustaceans;
+        if (key == R.string.vegetables)
+            return R.drawable.tomato;
+        if (key == R.string.meat)
+            return R.drawable.meat;
 
-        if (picture == R.drawable.peach)
-            return true;
-        if (picture == R.drawable.milk)
-            return true;
-        if (picture == R.drawable.nuts)
-            return true;
-        if (picture == R.drawable.legumes)
-            return true;
-        if (picture == R.drawable.tomato)
-            return true;
-        if (picture == R.drawable.spice)
-            return true;
-        if (picture == R.drawable.orange)
-            return true;
-        if (picture == R.drawable.seeds)
-            return true;
-        if (picture == R.drawable.wheat)
-            return true;
-        if (picture == R.drawable.halal)
-            return true;
-        if (picture == R.drawable.vegetarian)
-            return true;
-        if (picture == R.drawable.vegan)
-            return true;
-        if (picture == R.drawable.lactovegitarian)
-            return true;
-        if (picture == R.drawable.ovoveg)
-            return true;
-        if (picture == R.drawable.pescoveg)
-            return true;
-        if (picture == R.drawable.polloveg)
-            return true;
-        if (picture == R.drawable.lactoovoveg)
-            return true;
-        if (picture == R.drawable.demiveg)
-            return true;
-        if (picture == R.drawable.pepper)
-            return true;
-        if (picture == R.drawable.aubergine)
-            return true;
-        if (picture == R.drawable.octopus)
-            return true;
-        return false;
+        return R.drawable.star;
 
 
     }
-
 
 
     /**
@@ -203,21 +188,20 @@ public class AllergyList {
     }
 
 
-
     private Integer setArrayListVegetables() {
-        arrayListVegetables.add( R.string.tomato);
-        arrayListVegetables.add( R.string.aspargus);
-        arrayListVegetables.add( R.string.bellPepper);
-        arrayListVegetables.add( R.string.cabbage);
-        arrayListVegetables.add( R.string.carrot);
-        arrayListVegetables.add( R.string.celery);
-        arrayListVegetables.add( R.string.garlic);
-        arrayListVegetables.add( R.string.lettuce);
-        arrayListVegetables.add( R.string.maize);
-        arrayListVegetables.add( R.string.potato);
-        arrayListVegetables.add( R.string.pumpkin);
-        arrayListVegetables.add( R.string.zucchini);
-        arrayListVegetables.add( R.string.onion);
+        arrayListVegetables.add(R.string.tomato);
+        arrayListVegetables.add(R.string.aspargus);
+        arrayListVegetables.add(R.string.bellPepper);
+        arrayListVegetables.add(R.string.cabbage);
+        arrayListVegetables.add(R.string.carrot);
+        arrayListVegetables.add(R.string.celery);
+        arrayListVegetables.add(R.string.garlic);
+        arrayListVegetables.add(R.string.lettuce);
+        arrayListVegetables.add(R.string.maize);
+        arrayListVegetables.add(R.string.potato);
+        arrayListVegetables.add(R.string.pumpkin);
+        arrayListVegetables.add(R.string.zucchini);
+        arrayListVegetables.add(R.string.onion);
 
 
         sort(arrayListVegetables);
@@ -225,70 +209,69 @@ public class AllergyList {
     }
 
 
-
     private Integer setArrayListCitrus() {
-        arrayListCitrus.add( R.string.lemon);
-        arrayListCitrus.add( R.string.lime);
-        arrayListCitrus.add( R.string.orange);
-        arrayListCitrus.add( R.string.grapefruit);
+        arrayListCitrus.add(R.string.lemon);
+        arrayListCitrus.add(R.string.lime);
+        arrayListCitrus.add(R.string.orange);
+        arrayListCitrus.add(R.string.grapefruit);
         sort(arrayListCitrus);
         return R.string.citrus;
     }
 
     private Integer setArrayListMuslim() {
-        arrayListMuslim.add( R.string.pig);
-        arrayListMuslim.add( R.string.gelatin);
+        arrayListMuslim.add(R.string.pig);
+        arrayListMuslim.add(R.string.gelatin);
         sort(arrayListMuslim);
         return R.string.halal;
     }
 
 
     private Integer setArrayListLegumes() {
-        arrayListLegumes.add( R.string.chickpea);
-        arrayListLegumes.add( R.string.lentil);
-        arrayListLegumes.add( R.string.lupin);
-        arrayListLegumes.add( R.string.peanut);
-        arrayListLegumes.add( R.string.pea);
-        arrayListLegumes.add( R.string.soy);
-        arrayListLegumes.add( R.string.soybean);
+        arrayListLegumes.add(R.string.chickpea);
+        arrayListLegumes.add(R.string.lentil);
+        arrayListLegumes.add(R.string.lupin);
+        arrayListLegumes.add(R.string.peanut);
+        arrayListLegumes.add(R.string.pea);
+        arrayListLegumes.add(R.string.soy);
+        arrayListLegumes.add(R.string.soybean);
         sort(arrayListLegumes);
         return R.string.legumes;
     }
 
     private Integer setArrayListSpice() {
-        arrayListSpice.add( R.string.anis);
-        arrayListSpice.add( R.string.coriander);
-        arrayListSpice.add( R.string.cumin);
-        arrayListSpice.add( R.string.fennel);
-        arrayListSpice.add( R.string.parsley);
-        arrayListSpice.add( R.string.ragweed);
-        arrayListSpice.add( R.string.echinacea);
-        arrayListSpice.add( R.string.artichoke);
-        arrayListSpice.add( R.string.dandelions);
-        arrayListSpice.add( R.string.hibiscus);
+        arrayListSpice.add(R.string.anis);
+        arrayListSpice.add(R.string.coriander);
+        arrayListSpice.add(R.string.cumin);
+        arrayListSpice.add(R.string.fennel);
+        arrayListSpice.add(R.string.parsley);
+        arrayListSpice.add(R.string.ragweed);
+        arrayListSpice.add(R.string.echinacea);
+        arrayListSpice.add(R.string.artichoke);
+        arrayListSpice.add(R.string.dandelions);
+        arrayListSpice.add(R.string.hibiscus);
         sort(arrayListSpice);
         return R.string.spice;
     }
 
     private Integer setArrayListDairy() {
-        arrayListDairy.add( R.string.milk);
-        arrayListDairy.add( R.string.butter);
-        arrayListDairy.add( R.string.casein);
-        arrayListDairy.add( R.string.yoghurt);
-        arrayListDairy.add( R.string.cream);
-        arrayListDairy.add( R.string.custard);
-        arrayListDairy.add( R.string.lactose);
+        arrayListDairy.add(R.string.milk);
+        arrayListDairy.add(R.string.butter);
+        arrayListDairy.add(R.string.casein);
+        arrayListDairy.add(R.string.yoghurt);
+        arrayListDairy.add(R.string.cream);
+        arrayListDairy.add(R.string.custard);
+        arrayListDairy.add(R.string.lactose);
         return R.string.dairy;
 
     }
 
     public Integer setArrayListSeeds() {
-        arrayListSeeds.add( R.string.sesame);
-        arrayListSeeds.add( R.string.buckwheat);
-        arrayListSeeds.add( R.string.mustardSeed);
-        arrayListSeeds.add( R.string.poppySeed);
-        arrayListSeeds.add( R.string.pumpkinSeed);
-        arrayListSeeds.add( R.string.sunflowerSeed);
+        arrayListSeeds.add(R.string.sesame);
+        arrayListSeeds.add(R.string.buckwheat);
+        arrayListSeeds.add(R.string.mustardSeed);
+        arrayListSeeds.add(R.string.poppySeed);
+        arrayListSeeds.add(R.string.pumpkinSeed);
+        arrayListSeeds.add(R.string.sunflowerSeed);
         sort(arrayListSeeds);
         return R.string.seeds;
     }
@@ -298,28 +281,28 @@ public class AllergyList {
     }
 
     public Integer setArrayListFish() {
-        arrayListFish.add( R.string.pike);
-        arrayListFish.add( R.string.tuna);
-        arrayListFish.add( R.string.salmon);
-        arrayListFish.add( R.string.caviar);
-        arrayListFish.add( R.string.anchovies);
-        arrayListFish.add( R.string.bass);
-        arrayListFish.add( R.string.catfish);
-        arrayListFish.add( R.string.cod);
-        arrayListFish.add( R.string.flounder);
-        arrayListFish.add( R.string.haddock);
-        arrayListFish.add( R.string.hake);
-        arrayListFish.add( R.string.halibut);
-        arrayListFish.add( R.string.herring);
-        arrayListFish.add( R.string.mahi);
-        arrayListFish.add( R.string.perch);
-        arrayListFish.add( R.string.pollock);
-        arrayListFish.add( R.string.swordfish);
-        arrayListFish.add( R.string.sole);
-        arrayListFish.add( R.string.snapper);
-        arrayListFish.add( R.string.surimi);
-        arrayListFish.add( R.string.tilapia);
-        arrayListFish.add( R.string.trout);
+        arrayListFish.add(R.string.pike);
+        arrayListFish.add(R.string.tuna);
+        arrayListFish.add(R.string.salmon);
+        arrayListFish.add(R.string.caviar);
+        arrayListFish.add(R.string.anchovies);
+        arrayListFish.add(R.string.bass);
+        arrayListFish.add(R.string.catfish);
+        arrayListFish.add(R.string.cod);
+        arrayListFish.add(R.string.flounder);
+        arrayListFish.add(R.string.haddock);
+        arrayListFish.add(R.string.hake);
+        arrayListFish.add(R.string.halibut);
+        arrayListFish.add(R.string.herring);
+        arrayListFish.add(R.string.mahi);
+        arrayListFish.add(R.string.perch);
+        arrayListFish.add(R.string.pollock);
+        arrayListFish.add(R.string.swordfish);
+        arrayListFish.add(R.string.sole);
+        arrayListFish.add(R.string.snapper);
+        arrayListFish.add(R.string.surimi);
+        arrayListFish.add(R.string.tilapia);
+        arrayListFish.add(R.string.trout);
 
         sort(arrayListFish);
         return R.string.fish;
@@ -330,47 +313,48 @@ public class AllergyList {
     }
 
     public Integer setArrayListCrustaceans() {
-        arrayListCrustaceans.add( R.string.barnacle);
-        arrayListCrustaceans.add( R.string.crab);
-        arrayListCrustaceans.add( R.string.crawfish);
-        arrayListCrustaceans.add( R.string.krill);
-        arrayListCrustaceans.add( R.string.lobster);
-        arrayListCrustaceans.add( R.string.shrimp);
-        arrayListCrustaceans.add( R.string.panulirus);
-        arrayListCrustaceans.add( R.string.scampi);
+        arrayListCrustaceans.add(R.string.barnacle);
+        arrayListCrustaceans.add(R.string.crab);
+        arrayListCrustaceans.add(R.string.crawfish);
+        arrayListCrustaceans.add(R.string.krill);
+        arrayListCrustaceans.add(R.string.lobster);
+        arrayListCrustaceans.add(R.string.shrimp);
+        arrayListCrustaceans.add(R.string.panulirus);
+        arrayListCrustaceans.add(R.string.scampi);
 
         sort(arrayListCrustaceans);
         return R.string.crustaceans;
     }
+
     public ArrayList<Integer> getArrayListMollusk() {
         return arrayListMollusk;
     }
 
     public Integer setArrayListMollusk() {
-        arrayListMollusk.add( R.string.ormer);
-        arrayListMollusk.add( R.string.cellena);
-        arrayListMollusk.add( R.string.trueLimpets);
-        arrayListMollusk.add( R.string.winkle);
-        arrayListMollusk.add( R.string.conchs);
-        arrayListMollusk.add( R.string.rockSnail);
-        arrayListMollusk.add( R.string.whelk);
-        arrayListMollusk.add( R.string.buccinidae);
-        arrayListMollusk.add( R.string.chiton);
-        arrayListMollusk.add( R.string.mactridae);
-        arrayListMollusk.add( R.string.pharidae);
-        arrayListMollusk.add( R.string.donacidae);
-        arrayListMollusk.add( R.string.abalone);
-        arrayListMollusk.add( R.string.clams);
-        arrayListMollusk.add( R.string.cockle);
-        arrayListMollusk.add( R.string.limpet);
-        arrayListMollusk.add( R.string.mussels);
-        arrayListMollusk.add( R.string.octopus);
-        arrayListMollusk.add( R.string.oysters);
-        arrayListMollusk.add( R.string.periwinkle);
-        arrayListMollusk.add( R.string.urchin);
-        arrayListMollusk.add( R.string.scallops);
-        arrayListMollusk.add( R.string.snails);
-        arrayListMollusk.add( R.string.whelk);
+        arrayListMollusk.add(R.string.ormer);
+        arrayListMollusk.add(R.string.cellena);
+        arrayListMollusk.add(R.string.trueLimpets);
+        arrayListMollusk.add(R.string.winkle);
+        arrayListMollusk.add(R.string.conchs);
+        arrayListMollusk.add(R.string.rockSnail);
+        arrayListMollusk.add(R.string.whelk);
+        arrayListMollusk.add(R.string.buccinidae);
+        arrayListMollusk.add(R.string.chiton);
+        arrayListMollusk.add(R.string.mactridae);
+        arrayListMollusk.add(R.string.pharidae);
+        arrayListMollusk.add(R.string.donacidae);
+        arrayListMollusk.add(R.string.abalone);
+        arrayListMollusk.add(R.string.clams);
+        arrayListMollusk.add(R.string.cockle);
+        arrayListMollusk.add(R.string.limpet);
+        arrayListMollusk.add(R.string.mussels);
+        arrayListMollusk.add(R.string.octopus);
+        arrayListMollusk.add(R.string.oysters);
+        arrayListMollusk.add(R.string.periwinkle);
+        arrayListMollusk.add(R.string.urchin);
+        arrayListMollusk.add(R.string.scallops);
+        arrayListMollusk.add(R.string.snails);
+        arrayListMollusk.add(R.string.whelk);
 
         sort(arrayListMollusk);
         return R.string.mollusc;
@@ -389,22 +373,22 @@ public class AllergyList {
     }
 
     public Integer setArrayListNuts() {
-        arrayListNuts.add( R.string.almond);
-        arrayListNuts.add( R.string.brazil);
-        arrayListNuts.add( R.string.cocoa);
-        arrayListNuts.add( R.string.hazelnut);
-        arrayListNuts.add( R.string.macadamia);
-        arrayListNuts.add( R.string.peanut);
-        arrayListNuts.add( R.string.pecans);
-        arrayListNuts.add( R.string.pili);
-        arrayListNuts.add( R.string.pine);
-        arrayListNuts.add( R.string.pistachios);
-        arrayListNuts.add( R.string.soy);
-        arrayListNuts.add( R.string.tiger);
-        arrayListNuts.add( R.string.walnuts);
-        arrayListNuts.add( R.string.cashew);
-        arrayListNuts.add( R.string.coconut);
-        arrayListNuts.add( R.string.lychee);
+        arrayListNuts.add(R.string.almond);
+        arrayListNuts.add(R.string.brazil);
+        arrayListNuts.add(R.string.cocoa);
+        arrayListNuts.add(R.string.hazelnut);
+        arrayListNuts.add(R.string.macadamia);
+        arrayListNuts.add(R.string.peanut);
+        arrayListNuts.add(R.string.pecans);
+        arrayListNuts.add(R.string.pili);
+        arrayListNuts.add(R.string.pine);
+        arrayListNuts.add(R.string.pistachios);
+        arrayListNuts.add(R.string.soy);
+        arrayListNuts.add(R.string.tiger);
+        arrayListNuts.add(R.string.walnuts);
+        arrayListNuts.add(R.string.cashew);
+        arrayListNuts.add(R.string.coconut);
+        arrayListNuts.add(R.string.lychee);
 
 
         sort(arrayListNuts);
@@ -413,21 +397,21 @@ public class AllergyList {
 
     public Integer setArrayListGluten() {
 
-        arrayListGluten.add( R.string.durum);
-        arrayListGluten.add( R.string.emmer);
-        arrayListGluten.add( R.string.rye);
-        arrayListGluten.add( R.string.barley);
-        arrayListGluten.add( R.string.triticale);
-        arrayListGluten.add( R.string.malt);
-        arrayListGluten.add( R.string.semolina);
-        arrayListGluten.add( R.string.spelt);
-        arrayListGluten.add( R.string.farina);
-        arrayListGluten.add( R.string.farro);
-        arrayListGluten.add( R.string.graham);
-        arrayListGluten.add( R.string.kamut);
-        arrayListGluten.add( R.string.einkorn);
-        arrayListGluten.add( R.string.wheat);
-        arrayListGluten.add( R.string.oat);
+        arrayListGluten.add(R.string.durum);
+        arrayListGluten.add(R.string.emmer);
+        arrayListGluten.add(R.string.rye);
+        arrayListGluten.add(R.string.barley);
+        arrayListGluten.add(R.string.triticale);
+        arrayListGluten.add(R.string.malt);
+        arrayListGluten.add(R.string.semolina);
+        arrayListGluten.add(R.string.spelt);
+        arrayListGluten.add(R.string.farina);
+        arrayListGluten.add(R.string.farro);
+        arrayListGluten.add(R.string.graham);
+        arrayListGluten.add(R.string.kamut);
+        arrayListGluten.add(R.string.einkorn);
+        arrayListGluten.add(R.string.wheat);
+        arrayListGluten.add(R.string.oat);
 
         sort(arrayListGluten);
         return R.string.gluten;
@@ -435,55 +419,57 @@ public class AllergyList {
 
     public Integer setArrayListFruit() {
 
-        arrayListFruit.add( R.string.apple);
-        arrayListFruit.add( R.string.avocado);
-        arrayListFruit.add( R.string.pear);
-        arrayListFruit.add( R.string.strawberry);
-        arrayListFruit.add( R.string.prune);
-        arrayListFruit.add( R.string.pomegranate);
-        arrayListFruit.add( R.string.pinapple);
-        arrayListFruit.add( R.string.persimmon);
-        arrayListFruit.add( R.string.peach);
-        arrayListFruit.add( R.string.orange);
-        arrayListFruit.add( R.string.melon);
-        arrayListFruit.add( R.string.mango);
-        arrayListFruit.add( R.string.lychee);
-        arrayListFruit.add( R.string.kiwi);
-        arrayListFruit.add( R.string.grape);
-        arrayListFruit.add( R.string.fig);
-        arrayListFruit.add( R.string.date);
-        arrayListFruit.add( R.string.coconut);
-        arrayListFruit.add( R.string.cherry);
-        arrayListFruit.add( R.string.banana);
-        arrayListFruit.add( R.string.apricot);
-        arrayListFruit.add( R.string.acerola);
-        arrayListFruit.add( R.string.grapefruit);
+        arrayListFruit.add(R.string.apple);
+        arrayListFruit.add(R.string.avocado);
+        arrayListFruit.add(R.string.pear);
+        arrayListFruit.add(R.string.strawberry);
+        arrayListFruit.add(R.string.prune);
+        arrayListFruit.add(R.string.pomegranate);
+        arrayListFruit.add(R.string.pinapple);
+        arrayListFruit.add(R.string.persimmon);
+        arrayListFruit.add(R.string.peach);
+        arrayListFruit.add(R.string.orange);
+        arrayListFruit.add(R.string.melon);
+        arrayListFruit.add(R.string.mango);
+        arrayListFruit.add(R.string.lychee);
+        arrayListFruit.add(R.string.kiwi);
+        arrayListFruit.add(R.string.grape);
+        arrayListFruit.add(R.string.fig);
+        arrayListFruit.add(R.string.date);
+        arrayListFruit.add(R.string.coconut);
+        arrayListFruit.add(R.string.cherry);
+        arrayListFruit.add(R.string.banana);
+        arrayListFruit.add(R.string.apricot);
+        arrayListFruit.add(R.string.acerola);
+        arrayListFruit.add(R.string.grapefruit);
 
         sort(arrayListFruit);
         return R.string.fruit;
     }
+
     public Integer setArrayListNightshade() {
 
-        arrayListNightshades.add( R.string.aubergine);
-        arrayListNightshades.add( R.string.solanum);
-        arrayListNightshades.add( R.string.physalis);
-        arrayListNightshades.add( R.string.pepino);
-        arrayListNightshades.add( R.string.naranjilla);
-        arrayListNightshades.add( R.string.chineseLantern);
-        arrayListNightshades.add( R.string.tamarillo);
-        arrayListNightshades.add( R.string.potato);
+        arrayListNightshades.add(R.string.aubergine);
+        arrayListNightshades.add(R.string.solanum);
+        arrayListNightshades.add(R.string.physalis);
+        arrayListNightshades.add(R.string.pepino);
+        arrayListNightshades.add(R.string.naranjilla);
+        arrayListNightshades.add(R.string.chineseLantern);
+        arrayListNightshades.add(R.string.tamarillo);
+        arrayListNightshades.add(R.string.potato);
 
         sort(arrayListNightshades);
         return R.string.nightshade;
     }
+
     public Integer setArrayListPeppers() {
 
-        arrayListPeppers.add( R.string.bellPepper);
-        arrayListPeppers.add( R.string.cayenne);
-        arrayListPeppers.add( R.string.jalapeño);
-        arrayListPeppers.add( R.string.birdsEyeChili);
-        arrayListPeppers.add( R.string.madameJeanette);
-        arrayListPeppers.add( R.string.newMexicochile);
+        arrayListPeppers.add(R.string.bellPepper);
+        arrayListPeppers.add(R.string.cayenne);
+        arrayListPeppers.add(R.string.jalapeño);
+        arrayListPeppers.add(R.string.birdsEyeChili);
+        arrayListPeppers.add(R.string.madameJeanette);
+        arrayListPeppers.add(R.string.newMexicochile);
 
         sort(arrayListPeppers);
         return R.string.peppers;

@@ -921,6 +921,16 @@
     <string name="scannedCount">Scanned count</string>
     <string name="flash">Flash</string>
     <string name="focus">Focus</string>
+    <string name="theme">Color Theme</string>
+    <string name="social">Social</string>
+    <string name="allergyInsta">instagram.com/Allergychecker/</string>
+    <string name="analyzer">Analyzer</string>
+    <string name="warning">Warning</string>
+    <string name="foundAllergies">Found Allergies</string>
+    <string name="foundEnumbers">Found E-Numbers</string>
+    <string name="textScanned">Text Scanned</string>
+    <string name="lastScannedText">Scanning the most recent</string>
+    <string name="noScanned">No text scanned</string>
 
 
 </resources>

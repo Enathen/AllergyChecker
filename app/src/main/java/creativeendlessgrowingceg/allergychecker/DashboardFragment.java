@@ -3,8 +3,10 @@ package creativeendlessgrowingceg.allergychecker;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +24,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import creativeendlessgrowingceg.allergychecker.camera.OcrCaptureActivity;
 import creativeendlessgrowingceg.allergychecker.design.activity.OnboardingPagerActivity;
+import creativeendlessgrowingceg.allergychecker.fragment.BottomNavigationName;
 import creativeendlessgrowingceg.allergychecker.fragment.HistoryFragment;
-import creativeendlessgrowingceg.allergychecker.fragment.StartPage;
 
 import static creativeendlessgrowingceg.allergychecker.APISharedPreference.getFoundCount;
-import static creativeendlessgrowingceg.allergychecker.APISharedPreference.getScannedCount;
+import static creativeendlessgrowingceg.allergychecker.APISharedPreference.getFoundENumbers;
+import static creativeendlessgrowingceg.allergychecker.APISharedPreference.getSpinnerPosition;
 import static creativeendlessgrowingceg.allergychecker.APISharedPreference.getWordCount;
+import static creativeendlessgrowingceg.allergychecker.CheckBoxLayout.*;
 
 
 /**
@@ -42,6 +46,7 @@ public class DashboardFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String TAG = "Dashboard";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -84,37 +89,20 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         FrameLayout inflate = (FrameLayout) inflater.inflate(R.layout.fragment_dashbord, container, false);
-        ((ScrollView)inflate.findViewById(R.id.scrollViewDashboardFrag)).setSmoothScrollingEnabled(true);
-
-        CardClassSetup linearCardClass = new CardClassSetup();
-        AtomicInteger atomicInteger = new AtomicInteger(0);
-        ColorGradientPicker colorGradientPicker = new ColorGradientPicker();
-
-
-        CardClassLayout history = new CardClassLayout.CardClassLayoutBuilder(getContext(), "History", R.drawable.history, colorGradientPicker.ColorGradientPickerPick(5, atomicInteger.addAndGet(1)),(LinearLayout) inflate.findViewById(R.id.linearCardHistory)).optionalLinearSizeHorizontalHeight(300).buildCardClassLayout();
-        CardClassLayout statistic = new CardClassLayout.CardClassLayoutBuilder(getContext(), "Statistic", R.drawable.star, colorGradientPicker.ColorGradientPickerPick(5, atomicInteger.addAndGet(1)),(LinearLayout) inflate.findViewById(R.id.linearCardStatistic)).optionalLinearSizeHorizontalHeight(300).buildCardClassLayout();
-        CardClassLayout language = new CardClassLayout.CardClassLayoutBuilder(getContext(), "Language", R.drawable.language, colorGradientPicker.ColorGradientPickerPick(5, atomicInteger.addAndGet(1)),(LinearLayout) inflate.findViewById(R.id.linearCardLanguage)).optionalLinearSizeHorizontalHeight(300).buildCardClassLayout();
-        CardClassLayout showAllergies = new CardClassLayout.CardClassLayoutBuilder(getContext(), "Allergies", R.drawable.wheatcircle, colorGradientPicker.ColorGradientPickerPick(5, atomicInteger.addAndGet(1)),(LinearLayout) inflate.findViewById(R.id.linearCardShowAllergies)).optionalLinearSizeHorizontalHeight(300).buildCardClassLayout();
-        CardClassLayout camera = new CardClassLayout.CardClassLayoutBuilder(getContext(), "Camera", R.drawable.ic_menu_camera, colorGradientPicker.ColorGradientPickerPick(5, atomicInteger.addAndGet(1)),(LinearLayout) inflate.findViewById(R.id.linearCardCamera)).optionalLinearSizeHorizontalHeight(300).buildCardClassLayout();
-        historySetup(history,linearCardClass);
-        statisticSetup(statistic,linearCardClass);
-        languageSetup(language,linearCardClass);
-        showAllergiesSetup(showAllergies,linearCardClass);
-        cameraSetup(camera,linearCardClass);
-
+        ((ScrollView) inflate.findViewById(R.id.scrollViewDashboardFrag)).setSmoothScrollingEnabled(true);
+        new SetupDashboardView(inflate).execute();
 
         return inflate;
 
     }
 
 
-
-
     private void showAllergiesSetup(final CardClassLayout showAllergies, final CardClassSetup linearCardClass) {
-        linearCardClass.CardDefaultTransition(showAllergies,CardClassSetup.explode());
-        final SpinnerLayout spinner = new SpinnerLayout.SpinnerLayoutBuilder(getContext(),setupLanguages()).buildSpinnerLayout();
+        linearCardClass.CardDefaultTransition(showAllergies, CardClassSetup.explode());
+        final SpinnerLayout spinner = new SpinnerLayout.SpinnerLayoutBuilder(getContext(), setupLanguages()).buildSpinnerLayout();
 
-        linearCardClass.addView(showAllergies,spinner.getView());
+        linearCardClass.addView(showAllergies, spinner.getView());
+
         spinner.getSpinner().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public ArrayList<LinearLayout> linearLayoutTreeSet;
 
@@ -122,29 +110,30 @@ public class DashboardFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String key = parent.getItemAtPosition(position).toString().trim();
                 Locale locale = spinner.getStringLocaleTreeMap().get(key);
-                if(linearLayoutTreeSet != null){
-                    if(!linearLayoutTreeSet.isEmpty()){
+                if (linearLayoutTreeSet != null) {
+                    if (!linearLayoutTreeSet.isEmpty()) {
                         for (LinearLayout linearLayout : linearLayoutTreeSet) {
-                            linearCardClass.removeView(showAllergies,linearLayout);
+                            linearCardClass.removeView(showAllergies, linearLayout);
                         }
                     }
                 }
-                linearLayoutTreeSet= new ArrayList<>();
+                linearLayoutTreeSet = new ArrayList<>();
                 TreeSet<String> stringTreeSet = new TreeSet<>();
-                //TODO load ALL allergies
-                /*for (Integer integer : new LoadUIAllergies().getAllergies(getContext())) {
-
-                    stringTreeSet.add(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(),integer,locale.getLanguage()));
-                }*/
+                for (Integer integer : CollectAllAllergies.getAllergies(getContext())) {
+                    stringTreeSet.add(TextHandler.cutFirstWord(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(), integer, locale.getLanguage()))));
+                }
                 for (String string : stringTreeSet) {
-                    LinearLayout view1 = new CheckBoxLayout.CheckBoxBuilder(getContext(), string).buildCheckBoxLayout().getView();
+                    LinearLayout view1 = new CheckBoxBuilder(getContext(), string).buildCheckBoxLayout().getView();
                     linearLayoutTreeSet.add(view1);
 
                     view1.setVisibility(View.VISIBLE);
-                    linearCardClass.addView(showAllergies,view1);
+                    linearCardClass.addView(showAllergies, view1);
 
                 }
+                PreferenceManager.getDefaultSharedPreferences(getContext()).edit().putInt(getSpinnerPosition(), position).apply();
+
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -164,20 +153,20 @@ public class DashboardFragment extends Fragment {
 
     private void cameraSetup(CardClassLayout camera, CardClassSetup linearCardClass) {
         //add button
-        linearCardClass.CardDefaultTransition(camera,CardClassSetup.explode());
-        final CheckBoxLayout flash = new CheckBoxLayout.CheckBoxBuilder(getContext(), getString(R.string.flash)).optionalCheckBox(APISharedPreference.getFlash()).buildCheckBoxLayout();
-        final CheckBoxLayout focus = new CheckBoxLayout.CheckBoxBuilder(getContext(),getString(R.string.focus)).optionalCheckBox(APISharedPreference.getFocus()).buildCheckBoxLayout();
+        linearCardClass.CardDefaultTransition(camera, CardClassSetup.explode());
+        final CheckBoxLayout flash = new CheckBoxBuilder(getContext(), getString(R.string.flash)).optionalCheckBox(APISharedPreference.getFlash()).buildCheckBoxLayout();
+        final CheckBoxLayout focus = new CheckBoxBuilder(getContext(), getString(R.string.focus)).optionalCheckBox(APISharedPreference.getFocus()).buildCheckBoxLayout();
 
-        final SliderLayout timeSleep = new SliderLayout.SliderLayoutBuilder(getContext(), getString(R.string.timeSleep),10).buildSliderLayout();
-        linearCardClass.addView(camera,new ButtonLayout.ButtonLayoutBuilder(getContext(), getString(R.string.camera), new View.OnClickListener() {
+        final SliderLayout timeSleep = new SliderLayout.SliderLayoutBuilder(getContext(), getString(R.string.timeSleep), 10).buildSliderLayout();
+        linearCardClass.addView(camera, new ButtonLayout.ButtonLayoutBuilder(getContext(), getString(R.string.camera), new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent intent = new Intent(getContext(), OcrCaptureActivity.class);
                 SharedPreferences sharedPreferences =
                         PreferenceManager.getDefaultSharedPreferences(getContext());
-                intent.putExtra(APISharedPreference.getFlash(), sharedPreferences.getBoolean(APISharedPreference.getFlash(),false));
-                intent.putExtra(APISharedPreference.getFocus(), sharedPreferences.getBoolean(APISharedPreference.getFocus(),true));
+                intent.putExtra(APISharedPreference.getFlash(), sharedPreferences.getBoolean(APISharedPreference.getFlash(), false));
+                intent.putExtra(APISharedPreference.getFocus(), sharedPreferences.getBoolean(APISharedPreference.getFocus(), true));
                 intent.putExtra(APISharedPreference.getTimeSleep(), sharedPreferences.getInt(APISharedPreference.getTimeSleep(), 5));
                 getContext().startActivity(intent);
 
@@ -199,31 +188,50 @@ public class DashboardFragment extends Fragment {
     }
 
     private void languageSetup(CardClassLayout language, CardClassSetup linearCardClass) {
-        linearCardClass.CardDefaultTransition(language,CardClassSetup.explode());
+        linearCardClass.CardDefaultTransition(language, CardClassSetup.explode());
         for (Locale locale : LanguagesAccepted.getLanguages(getContext())) {
-            linearCardClass.addView(language, new CheckBoxLayout.CheckBoxBuilder(getContext(),
+            linearCardClass.addView(language, new CheckBoxBuilder(getContext(),
                     getString(LanguagesAccepted.getCountryName(locale.getLanguage()))).optionalImage(LanguagesAccepted.getFlag(locale.getLanguage())).optionalCheckBox(locale.getLanguage()).buildCheckBoxLayout().getView());
         }
     }
 
     private void statisticSetup(CardClassLayout statistic, CardClassSetup linearCardClass) {
-        linearCardClass.CardDefaultTransition(statistic,CardClassSetup.explode());
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
-        linearCardClass.addView(statistic, new CheckBoxLayout.CheckBoxBuilder(getContext(), getString(R.string.wordCount)).optionalLastString(sp.getString(getWordCount(), "0")).buildCheckBoxLayout().getView());
-        linearCardClass.addView(statistic, new CheckBoxLayout.CheckBoxBuilder(getContext(), getString(R.string.foundAllergiesCount)).optionalLastString(sp.getString(getFoundCount(), "0")).buildCheckBoxLayout().getView());
-        linearCardClass.addView(statistic, new CheckBoxLayout.CheckBoxBuilder(getContext(), getString(R.string.scannedCount)).optionalLastString(sp.getString(getScannedCount(), "0")).buildCheckBoxLayout().getView());
+        linearCardClass.CardDefaultTransition(statistic, CardClassSetup.explode());
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
+        final CheckBoxLayout checkBoxLayout = new CheckBoxBuilder(getContext(), getString(R.string.wordCount)).optionalLastString(String.valueOf(sp.getInt(getWordCount(), 0))).buildCheckBoxLayout();
+        final CheckBoxLayout checkBoxLayout1 = new CheckBoxBuilder(getContext(), getString(R.string.foundAllergies)).optionalLastString(String.valueOf(sp.getInt(getFoundCount(), 0))).buildCheckBoxLayout();
+        final CheckBoxLayout checkBoxLayout2 = new CheckBoxBuilder(getContext(), getString(R.string.foundEnumbers)).optionalLastString(String.valueOf(sp.getInt(getFoundENumbers(), 0))).buildCheckBoxLayout();
+        linearCardClass.addView(statistic, checkBoxLayout.getView());
+        linearCardClass.addView(statistic, checkBoxLayout1.getView());
+        linearCardClass.addView(statistic, checkBoxLayout2.getView());
+        linearCardClass.addView(statistic, new ButtonLayout.ButtonLayoutBuilder(getContext(), getString(R.string.delete), new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor edit = sp.edit();
+                edit.putInt(APISharedPreference.getFoundCount(),0);
+                edit.putInt(APISharedPreference.getWordCount(),0);
+                edit.putInt(APISharedPreference.getFoundENumbers(),0);
+                checkBoxLayout.getLastStringTextView().setText(String.valueOf(0));
+                checkBoxLayout1.getLastStringTextView().setText(String.valueOf(0));
+                checkBoxLayout2.getLastStringTextView().setText(String.valueOf(0));
+
+                edit.apply();
+            }
+        }).buildButtonLayout().getView());
 
 
     }
+
     private void historySetup(CardClassLayout history, CardClassSetup linearCardClass) {
-        linearCardClass.CardDefaultTransition(history,CardClassSetup.explode());
+        linearCardClass.CardDefaultTransition(history, CardClassSetup.explode());
         ArrayList<String> arrayList = new DateAndHistory(getActivity()).getArrayFromHistory();
         Collections.sort(arrayList, new HistoryFragment.stringComparator());
         Collections.reverse(arrayList);
         for (String s : arrayList) {
-            linearCardClass.addView(history, new CheckBoxLayout.CheckBoxBuilder(getContext(), s.substring(0, 20)).buildListener(historyCheckbox(s.substring(20))).optionalMarginBottom().buildCheckBoxLayout().getView());
+            linearCardClass.addView(history, new CheckBoxBuilder(getContext(), s.substring(0, 20)).buildListener(historyCheckbox(s.substring(20))).buildCheckBoxLayout().getView());
 
         }
+
 
     }
 
@@ -232,8 +240,8 @@ public class DashboardFragment extends Fragment {
 
             @Override
             public void onClick(final View v) {
-                Intent intent = new Intent(getActivity(), StartPage.class);
-                intent.putExtra("HistoryFragment", substring);
+                Intent intent = new Intent(getActivity(), BottomNavigationName.class);
+                intent.putExtra(APISharedPreference.getHistory, substring);
                 startActivity(intent);
                 getActivity().finish();
 
@@ -247,5 +255,63 @@ public class DashboardFragment extends Fragment {
         super.onDetach();
     }
 
+    private class SetupDashboardView extends AsyncTask<Object, Object, Object> {
 
+        private FrameLayout parentFrameLayout;
+
+
+        public SetupDashboardView(FrameLayout parentFrameLayout) {
+
+            this.parentFrameLayout = parentFrameLayout;
+        }
+
+        @Override
+        protected Object doInBackground(Object... objects) {
+            final CardClassSetup linearCardClass = new CardClassSetup();
+            final AtomicInteger atomicInteger = new AtomicInteger(0);
+            final ColorGradientPicker colorGradientPicker = new ColorGradientPicker();
+
+
+
+
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    final CardClassLayout history = new CardClassLayout.CardClassLayoutBuilder(getContext(), "History", R.drawable.history, colorGradientPicker.ColorGradientPickerPick(6, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardHistory)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
+                    final CardClassLayout statistic = new CardClassLayout.CardClassLayoutBuilder(getContext(), "Statistic", R.drawable.stats, colorGradientPicker.ColorGradientPickerPick(6, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardStatistic)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
+                    final CardClassLayout language = new CardClassLayout.CardClassLayoutBuilder(getContext(), "Language", R.drawable.language, colorGradientPicker.ColorGradientPickerPick(6, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardLanguage)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
+                    final CardClassLayout showAllergies = new CardClassLayout.CardClassLayoutBuilder(getContext(), "Allergies", R.drawable.wheatcircle, colorGradientPicker.ColorGradientPickerPick(6, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardShowAllergies)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
+                    final CardClassLayout camera = new CardClassLayout.CardClassLayoutBuilder(getContext(), "Camera", R.drawable.ic_menu_camera, colorGradientPicker.ColorGradientPickerPick(6, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardCamera)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
+                    final CardClassLayout social = new CardClassLayout.CardClassLayoutBuilder(getContext(), "Social", R.drawable.star, colorGradientPicker.ColorGradientPickerPick(6, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsSocial)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
+
+                    historySetup(history, linearCardClass);
+                    statisticSetup(statistic, linearCardClass);
+                    languageSetup(language, linearCardClass);
+                    showAllergiesSetup(showAllergies, linearCardClass);
+                    cameraSetup(camera, linearCardClass);
+                    socialSetup(social, linearCardClass);
+
+                }
+
+            });
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+
+            parentFrameLayout.findViewById(R.id.progressBarDashboard).setVisibility(View.GONE);
+        }
+
+    }
+
+    private void socialSetup(CardClassLayout social, CardClassSetup linearCardClass) {
+
+        linearCardClass.CardDefaultTransition(social, CardClassSetup.explode());
+        linearCardClass.addView(social, new CheckBoxBuilder(getContext(), getString(R.string.allergyInsta)).optionalAddAutoLink().optionalImage(R.drawable.insta).buildCheckBoxLayout().getView());
+
+    }
 }
+

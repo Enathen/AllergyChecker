@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.preference.PreferenceManager;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -81,13 +82,17 @@ public class CheckBoxLayout {
         private TextView stringTextView;
         private CheckBox checkBox;
         private TextView lastStringTextView;
+        private String firstText;
         private LinearLayout view;
         Context context;
 
         public CheckBoxBuilder(Context context, String firstText) {
+            firstText = TextHandler.cutFirstWord(TextHandler.capitalLetter(firstText));
+            this.firstText = firstText;
             this.context = context;
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = (LinearLayout) inflater.inflate(R.layout.checkbox_layout, null);
+            lastStringTextView = view.findViewById(R.id.textViewCheckboxLayoutEnd);
             ((TextView)view.findViewById(R.id.textViewCheckboxLayoutStart)).setText(firstText);
             stringTextView = ((TextView)view.findViewById(R.id.textViewCheckboxLayoutStart));
 
@@ -102,12 +107,17 @@ public class CheckBoxLayout {
             return this;
         }
         public CheckBoxBuilder optionalCheckBox(String checkBoxString) {
-            return checkBoxSetuo(checkBoxString);
+            return checkBoxSetup(checkBoxString);
         }
         public CheckBoxBuilder optionalCheckBox(Integer integer) {
-            return checkBoxSetuo(String.valueOf(integer));
+            return checkBoxSetup(String.valueOf(integer));
         }
-        private CheckBoxBuilder checkBoxSetuo(String string){
+        public CheckBoxBuilder optionalAddAutoLink() {
+            stringTextView.setAutoLinkMask(Linkify.WEB_URLS);
+            stringTextView.setText(firstText);
+            return this;
+        }
+        private CheckBoxBuilder checkBoxSetup(String string){
             view.findViewById(R.id.checkBoxCheckBoxLayout).setVisibility(View.VISIBLE);
             checkBox = view.findViewById(R.id.checkBoxCheckBoxLayout);
             final SharedPreferences sharedPreferences =
@@ -133,10 +143,10 @@ public class CheckBoxLayout {
             };
         }
 
-        public CheckBoxBuilder optionalLastString(String lastStringTextView) {
-            ((TextView)view.findViewById(R.id.textViewCheckboxLayoutEnd)).setText(lastStringTextView);
-            this.lastStringTextView = view.findViewById(R.id.textViewCheckboxLayoutEnd);
-            this.lastStringTextView.setVisibility(View.VISIBLE);
+        public CheckBoxBuilder optionalLastString(String lastString) {
+            ((TextView)view.findViewById(R.id.textViewCheckboxLayoutEnd)).setText(lastString);
+
+            lastStringTextView.setVisibility(View.VISIBLE);
             return this;
         }
 
@@ -150,22 +160,13 @@ public class CheckBoxLayout {
         }
 
 
-        public CheckBoxBuilder optionalImage(int flag) {
+        public CheckBoxBuilder optionalImage(int drawable) {
             beginImageView = view.findViewById(R.id.imageViewCheckBoxLayout);
-            beginImageView.setImageDrawable(context.getDrawable(flag));
+            beginImageView.setImageDrawable(context.getDrawable(drawable));
             beginImageView.setVisibility(View.VISIBLE);
             return this;
         }
 
-        public CheckBoxBuilder optionalMarginBottom() {
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            );
-            params.setMargins(0, 8, 0, 8);
-            view.setLayoutParams(params);
-            return this;
-        }
 
 
     }

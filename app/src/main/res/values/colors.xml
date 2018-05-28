@@ -3,9 +3,19 @@
     <color name="colorPrimary">#594168</color>
     <color name="colorPrimaryLight">#3ccac8</color>
     <color name="colorAccent">#7ddcda</color>
-    <color name="fontColorTextWhite">#FFFFFF</color>
-    <color name="fontColor">#EEE9D1</color>
-    <color name="checkBoxColor">#7ddcda</color>
-    <color name="transparent">#775f53dd</color>
+    <color name="colorFont">#FFFFFF</color>
+    <color name="colorCheckBoxColor">#7ddcda</color>
+
+    <color name="colorPrimaryFire">#e06640</color>
+    <color name="colorPrimaryLightFire">#e2b343</color>
+    <color name="colorAccentFire">#594168</color>
+    <color name="colorCheckBoxColorFire">#e2c343</color>
+    <color name="colorFontFire">#FFFFFF</color>
+
+    <color name="colorPrimaryPlain">#FFFFFF</color>
+    <color name="colorPrimaryLightPlain">#EEE9D1</color>
+    <color name="colorAccentPlain">#3ccac8</color>
+    <color name="colorCheckBoxColorPlain">#3ccac8</color>
+    <color name="colorFontPlain">#000000</color>
 
 </resources>

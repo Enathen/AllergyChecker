@@ -40,7 +40,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textColor="@color/fontColorTextWhite"
+                android:textColor="@color/colorFont"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:fontFamily="@font/yatra"
@@ -83,7 +83,7 @@
                 android:layout_weight="1"
                 android:textAlignment="center"
                 android:fontFamily="@font/yatra"
-                android:textColor="@color/fontColorTextWhite"
+                android:textColor="@color/colorFont"
                 android:textSize="@dimen/sku_details_row_description_text_size" />
 
         </LinearLayout>

@@ -32,7 +32,7 @@
                 android:layout_toEndOf="@+id/imageViewHorStartPage"
                 android:layout_weight="0.72"
                 android:text="TextView"
-                android:textColor="@color/fontColorTextWhite"
+                android:textColor="@color/colorFont"
                 android:textSize="20sp" />
 
             <ImageView

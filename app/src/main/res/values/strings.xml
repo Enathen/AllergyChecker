@@ -931,6 +931,12 @@
     <string name="textScanned">Text Scanned</string>
     <string name="lastScannedText">Scanning the most recent</string>
     <string name="noScanned">No text scanned</string>
+    <string name="noAllergiesFound">No Allergies Found</string>
+    <string name="scan">Scan</string>
+    <string name="emptyString">Cannot be empty</string>
+    <string name="defaultTheme">Default Theme</string>
+    <string name="fireTheme">Fire Theme</string>
+    <string name="plainTheme">PlainTheme</string>
 
 
 </resources>

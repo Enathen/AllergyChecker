@@ -35,7 +35,7 @@
                 android:fontFamily="@font/yatra"
                 android:layout_weight="1"
                 android:text="Engelska"
-                android:textColor="@color/fontColorTextWhite"
+                android:textColor="@color/colorFont"
                 android:textSize="24sp" />
         </RelativeLayout>
 
@@ -48,7 +48,7 @@
         android:layout_marginLeft="10dp"
         android:fontFamily="@font/yatra"
         android:textAlignment="textStart"
-        android:textColor="@color/fontColorTextWhite"
+        android:textColor="@color/colorFont"
         android:textSize="24sp" />
 
 </LinearLayout>

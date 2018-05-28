@@ -3,22 +3,28 @@ package creativeendlessgrowingceg.allergychecker;
 import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static android.content.ContentValues.TAG;
 import static creativeendlessgrowingceg.allergychecker.AllergyList.checkAvailablePicture;
 
 
-public class MyAllergiesNew extends Fragment {
-
+public class MyAllergiesNew extends Fragment implements SearchView.OnQueryTextListener {
+    ListViewAdapter adapter;
+    ListView listView;
 
     public MyAllergiesNew() {
         // Required empty public constructor
@@ -42,7 +48,22 @@ public class MyAllergiesNew extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View parentFrame = inflater.inflate(R.layout.fragment_my_allergies, container, false);
-        new SetupAllergyView((LinearLayout) parentFrame.findViewById(R.id.linearLayoutMyAllergies),new AllergyList(getContext()).getMyAllergies(),ValidateAllergiesPreferences.setupAllergy()).execute();
+
+        new SetupAllergyView((LinearLayout) parentFrame.findViewById(R.id.linearLayoutMyAllergies), new AllergyList(getContext()).getMyAllergies(), ValidateAllergiesPreferences.setupAllergy()).execute();
+
+        SearchView searchView = (SearchView) parentFrame.findViewById(R.id.searchBarAllergies);
+        TreeMap<Integer, ArrayList<Integer>> keys = new AllergyList(getContext()).getMyAllergies();
+        ArrayList<Integer> keysString = new ArrayList<>();
+        for (ArrayList<Integer> key : keys.values()) {
+            keysString.addAll(key);
+
+        }
+        adapter = new ListViewAdapter(getContext(), keysString, ValidateAllergiesPreferences.setupAllergy());
+
+        listView = (ListView) parentFrame.findViewById(R.id.listViewTest);
+        listView.setAdapter(adapter);
+        adapter.filter("ABCDEFGHJI");
+        searchView.setOnQueryTextListener(this);
         return parentFrame;
     }
 
@@ -50,6 +71,43 @@ public class MyAllergiesNew extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        int filter;
+        if (s.equals("")) {
+            filter = adapter.filter("ABCDEFGHJI");
+        } else {
+            filter = adapter.filter(s);
+        }
+        setListViewHeightBasedOnChildren(listView, filter, listView.getSelectedView());
+        return true;
+    }
+
+    private void setListViewHeightBasedOnChildren(ListView listView, int amount, View view) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null)
+            return;
+        int totalHeight = 0;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            view = listAdapter.getView(i, view, listView);
+            if (i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, LinearLayout.LayoutParams.WRAP_CONTENT));
+
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (amount));
+        listView.setLayoutParams(params);
     }
 
     private class SetupAllergyView extends AsyncTask<Object, Object, Object> {
@@ -76,13 +134,13 @@ public class MyAllergiesNew extends Fragment {
                     @Override
                     public void run() {
                         final CardClassLayout cardClassLayout = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(integer), checkAvailablePicture(integer), colorGradientPicker.
-                                ColorGradientPickerPick(myAllergyPreference.size(), atomicInteger.addAndGet(1),getContext())).
-                                optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
+                                ColorGradientPickerPick(myAllergyPreference.size(), atomicInteger.addAndGet(1), getContext())).
+                                optionalLinearSizeHorizontalHeight(200).optionalBorder(getContext().getColor(R.color.colorCheckBoxColor)).buildCardClassLayout();
 
                         cardClassLayout.getLinearLayoutHorizontal().setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                new SetupAllergies(myAllergyPreference, hashMap, cardClassLayout, linearCardClass,integer).execute();
+                                new SetupAllergies(myAllergyPreference, hashMap, cardClassLayout, linearCardClass, integer).execute();
 
                             }
                         });
@@ -135,9 +193,10 @@ public class MyAllergiesNew extends Fragment {
                 @Override
                 public void run() {
                     for (int integers : myAllergies.get(integer)) {
+                        Log.d(TAG, "run: "+ hashMap.get(integers));
                         linearCardClass.addView(cardClassLayout, new CheckBoxLayout.CheckBoxBuilder(getContext(), getString(integers)).optionalCheckBox(hashMap.get(integers)).buildCheckBoxLayout().getView());
                     }
-                    linearCardClass.CardDefaultTransition(cardClassLayout, CardClassSetup.explode());
+                    linearCardClass.CardDefaultTransition(cardClassLayout, CardClassSetup.explode(), getContext());
                     cardClassLayout.getLinearLayoutHorizontal().performClick();
                 }
             });

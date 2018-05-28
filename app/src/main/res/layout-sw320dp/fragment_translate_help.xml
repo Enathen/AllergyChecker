@@ -18,7 +18,7 @@
 
             android:background="@color/colorAccent"
             android:text="@string/sendTips"
-            android:textColor="@color/fontColorTextWhite"
+            android:textColor="@color/colorFont"
 
             android:fontFamily="@font/yatra"
             android:textSize="32sp" />
@@ -46,7 +46,7 @@
                         android:fontFamily="@font/yatra"
                         android:layout_height="match_parent"
                         android:background="@color/colorPrimaryLight"
-                        android:backgroundTint="@color/fontColorTextWhite" />
+                        android:backgroundTint="@color/colorFont" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -56,7 +56,7 @@
                         android:fontFamily="@font/yatra"
                         android:text="@string/onlyFillChanges"
                         android:textAlignment="center"
-                        android:textColor="@color/fontColorTextWhite"
+                        android:textColor="@color/colorFont"
                         android:textSize="24sp" />
 
                     <TextView
@@ -65,7 +65,7 @@
                         android:fontFamily="@font/yatra"
                         android:layout_height="match_parent"
                         android:background="@color/colorPrimaryLight"
-                        android:backgroundTint="@color/fontColorTextWhite" />
+                        android:backgroundTint="@color/colorFont" />
                 </LinearLayout>
 
                 <ProgressBar

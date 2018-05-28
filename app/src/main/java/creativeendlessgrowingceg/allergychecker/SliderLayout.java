@@ -2,12 +2,15 @@ package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.getCheckBoxColor;
 
 /**
  * @author Jonathan Alexander Norberg
@@ -91,7 +94,19 @@ public class SliderLayout {
             seekBar.setMax(high);
             seekBar.setProgress(current);
 
+            setColor();
+
         }
+
+        private void setColor() {
+            int checkBoxColor = getCheckBoxColor(context);
+            seconds.setTextColor(checkBoxColor);
+            seekBar.setProgressTintList(ColorStateList.valueOf(checkBoxColor));
+            seekBar.setBackgroundTintList(ColorStateList.valueOf(checkBoxColor));
+            seekBar.setProgressBackgroundTintList(ColorStateList.valueOf(checkBoxColor));
+            seekBar.setThumbTintList(ColorStateList.valueOf(checkBoxColor));
+        }
+
         private SeekBar.OnSeekBarChangeListener listener(){
             return new SeekBar.OnSeekBarChangeListener() {
                 @Override

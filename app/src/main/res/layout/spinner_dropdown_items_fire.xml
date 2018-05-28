@@ -6,5 +6,5 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:textSize="24sp"
     android:fontFamily="@font/yatra"
-    android:background="@color/colorAccent"
-    android:textColor="@color/colorFont"/>
+    android:background="@color/colorAccentFire"
+    android:textColor="@color/colorFontFire"/>

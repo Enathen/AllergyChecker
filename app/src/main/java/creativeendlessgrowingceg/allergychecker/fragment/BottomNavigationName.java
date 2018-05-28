@@ -3,6 +3,7 @@ package creativeendlessgrowingceg.allergychecker.fragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -14,6 +15,10 @@ import creativeendlessgrowingceg.allergychecker.DateAndHistory;
 import creativeendlessgrowingceg.allergychecker.MyAllergiesNew;
 import creativeendlessgrowingceg.allergychecker.R;
 import creativeendlessgrowingceg.allergychecker.SettingsFragment;
+
+import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.getCurrentTheme;
+import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.setBottomColor;
+import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.setGradient;
 
 public class BottomNavigationName extends AppCompatActivity {
 
@@ -58,14 +63,16 @@ public class BottomNavigationName extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(getCurrentTheme(getBaseContext()));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_navigation_name);
 
-        mTextMessage = findViewById(R.id.message);
         BottomNavigationView navigation =  findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.navigation_dashboard);
         String str=getIntent().getStringExtra(APISharedPreference.getScannedText);
+        setGradient(getBaseContext(), (ConstraintLayout) findViewById(R.id.container));
+        setBottomColor(getBaseContext(),navigation);
         if(str!= null){
             DateAndHistory dateAndHistory = new DateAndHistory(getBaseContext(), str);
             if(!str.equals("")){

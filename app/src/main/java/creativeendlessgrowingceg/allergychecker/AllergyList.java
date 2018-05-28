@@ -75,6 +75,7 @@ public class AllergyList {
         arrayListMeat.add(R.string.sausage);
         arrayListMeat.add(R.string.beef);
         arrayListMeat.add(R.string.veal);
+        arrayListMeat.add(R.string.meat);
         arrayListMeat.add(R.string.gelatin);
         arrayListMeat.add(R.string.egg);
         arrayListMeat.add(R.string.honey);
@@ -202,6 +203,7 @@ public class AllergyList {
         arrayListVegetables.add(R.string.pumpkin);
         arrayListVegetables.add(R.string.zucchini);
         arrayListVegetables.add(R.string.onion);
+        arrayListVegetables.add(R.string.vegetables);
 
 
         sort(arrayListVegetables);
@@ -214,6 +216,7 @@ public class AllergyList {
         arrayListCitrus.add(R.string.lime);
         arrayListCitrus.add(R.string.orange);
         arrayListCitrus.add(R.string.grapefruit);
+        arrayListCitrus.add(R.string.citrus);
         sort(arrayListCitrus);
         return R.string.citrus;
     }
@@ -234,6 +237,7 @@ public class AllergyList {
         arrayListLegumes.add(R.string.pea);
         arrayListLegumes.add(R.string.soy);
         arrayListLegumes.add(R.string.soybean);
+        arrayListLegumes.add(R.string.legumes);
         sort(arrayListLegumes);
         return R.string.legumes;
     }
@@ -249,6 +253,7 @@ public class AllergyList {
         arrayListSpice.add(R.string.artichoke);
         arrayListSpice.add(R.string.dandelions);
         arrayListSpice.add(R.string.hibiscus);
+        arrayListSpice.add(R.string.spice);
         sort(arrayListSpice);
         return R.string.spice;
     }
@@ -272,6 +277,7 @@ public class AllergyList {
         arrayListSeeds.add(R.string.poppySeed);
         arrayListSeeds.add(R.string.pumpkinSeed);
         arrayListSeeds.add(R.string.sunflowerSeed);
+        arrayListSeeds.add(R.string.seeds);
         sort(arrayListSeeds);
         return R.string.seeds;
     }
@@ -303,6 +309,7 @@ public class AllergyList {
         arrayListFish.add(R.string.surimi);
         arrayListFish.add(R.string.tilapia);
         arrayListFish.add(R.string.trout);
+        arrayListFish.add(R.string.fish);
 
         sort(arrayListFish);
         return R.string.fish;
@@ -321,6 +328,7 @@ public class AllergyList {
         arrayListCrustaceans.add(R.string.shrimp);
         arrayListCrustaceans.add(R.string.panulirus);
         arrayListCrustaceans.add(R.string.scampi);
+        arrayListCrustaceans.add(R.string.crustaceans);
 
         sort(arrayListCrustaceans);
         return R.string.crustaceans;
@@ -355,6 +363,7 @@ public class AllergyList {
         arrayListMollusk.add(R.string.scallops);
         arrayListMollusk.add(R.string.snails);
         arrayListMollusk.add(R.string.whelk);
+        arrayListMollusk.add(R.string.mollusc);
 
         sort(arrayListMollusk);
         return R.string.mollusc;
@@ -389,6 +398,7 @@ public class AllergyList {
         arrayListNuts.add(R.string.cashew);
         arrayListNuts.add(R.string.coconut);
         arrayListNuts.add(R.string.lychee);
+        arrayListNuts.add(R.string.nuts);
 
 
         sort(arrayListNuts);
@@ -412,6 +422,7 @@ public class AllergyList {
         arrayListGluten.add(R.string.einkorn);
         arrayListGluten.add(R.string.wheat);
         arrayListGluten.add(R.string.oat);
+        arrayListGluten.add(R.string.gluten);
 
         sort(arrayListGluten);
         return R.string.gluten;
@@ -441,7 +452,7 @@ public class AllergyList {
         arrayListFruit.add(R.string.banana);
         arrayListFruit.add(R.string.apricot);
         arrayListFruit.add(R.string.acerola);
-        arrayListFruit.add(R.string.grapefruit);
+        arrayListFruit.add(R.string.fruit);
 
         sort(arrayListFruit);
         return R.string.fruit;
@@ -457,6 +468,7 @@ public class AllergyList {
         arrayListNightshades.add(R.string.chineseLantern);
         arrayListNightshades.add(R.string.tamarillo);
         arrayListNightshades.add(R.string.potato);
+        arrayListNightshades.add(R.string.nightshade);
 
         sort(arrayListNightshades);
         return R.string.nightshade;
@@ -470,6 +482,7 @@ public class AllergyList {
         arrayListPeppers.add(R.string.birdsEyeChili);
         arrayListPeppers.add(R.string.madameJeanette);
         arrayListPeppers.add(R.string.newMexicochile);
+        arrayListPeppers.add(R.string.peppers);
 
         sort(arrayListPeppers);
         return R.string.peppers;

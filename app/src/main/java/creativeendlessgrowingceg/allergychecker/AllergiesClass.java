@@ -2,6 +2,8 @@ package creativeendlessgrowingceg.allergychecker;
 
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
+
 /**
  *
  * Helper class for keeping all allergies
@@ -18,30 +20,36 @@ public class AllergiesClass implements Comparable<AllergiesClass> {
     private String nameOfWordFound;
     private int distance;
     private int foundAllergies;
+    private ArrayList<AllergiesClass> allergiesClasses = new ArrayList<>();
 
     public AllergiesClass(String language, String nameOfIngredient, int ID, String motherAllergy) {
 
         this.language = language;
         this.nameOfIngredient = nameOfIngredient;
-
         id = ID;
         this.motherAllergy = motherAllergy;
+        increaseFoundAllergies(this);
     }
     public AllergiesClass(String language, String nameOfIngredient, int ID, String motherAllergy, int distance) {
 
         this.language = language;
         this.nameOfIngredient = nameOfIngredient;
-
         id = ID;
         this.motherAllergy = motherAllergy;
         this.distance = distance;
+        increaseFoundAllergies(this);
     }
 
     public int getFoundAllergies() {
         return foundAllergies;
     }
-    public void increaseFoundAllergies(){
+    public void increaseFoundAllergies(AllergiesClass allergiesClass){
+        allergiesClasses.add(allergiesClass);
         foundAllergies++;
+    }
+
+    public ArrayList<AllergiesClass> getAllergiesClasses() {
+        return allergiesClasses;
     }
 
     public int getDistance() {

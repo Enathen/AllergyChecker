@@ -9,6 +9,8 @@ public class APISharedPreference {
     public static String getScannedText = "ScannedText";
     public static String getHistory = "History";
     public static String dateAndHistory = "DateAndHistory";
+    public static String theme = "Theme";
+    public static String interstitial = "Interstitial";
 
     public static String getFlash(){
         return "Flash";

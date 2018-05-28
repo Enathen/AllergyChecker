@@ -35,7 +35,7 @@
             android:fontFamily="@font/yatra"
             android:text="CRUSTECEANS"
             android:textAlignment="viewStart"
-            android:textColor="@color/fontColorTextWhite"
+            android:textColor="@color/colorFont"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -68,7 +68,7 @@
             android:fontFamily="@font/yatra"
             android:text="TextView"
             android:textAlignment="center"
-            android:textColor="@color/fontColorTextWhite"
+            android:textColor="@color/colorFont"
             android:textSize="24sp"
             android:visibility="gone" />
 

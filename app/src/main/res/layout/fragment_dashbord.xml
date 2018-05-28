@@ -29,7 +29,10 @@
                 android:id="@+id/linearCardHistory"
                 android:visibility="gone"
                 layout="@layout/linear_card" />
-
+            <include
+                android:id="@+id/linearCardCamera"
+                android:visibility="gone"
+                layout="@layout/linear_card" />
             <include
                 android:id="@+id/linearCardStatistic"
                 android:visibility="gone"
@@ -44,9 +47,8 @@
                 android:id="@+id/linearCardShowAllergies"
                 android:visibility="gone"
                 layout="@layout/linear_card" />
-
             <include
-                android:id="@+id/linearCardCamera"
+                android:id="@+id/linearCardSettingsTheme"
                 android:visibility="gone"
                 layout="@layout/linear_card" />
             <include

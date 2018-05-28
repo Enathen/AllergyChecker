@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 
+import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.*;
 import static java.lang.Math.abs;
 
 /**
@@ -16,12 +17,12 @@ public class ColorGradientPicker {
     @SuppressLint("ResourceType")
     public int ColorGradientPickerPick(int amount, int currentPos, Context context) {
         @SuppressLint("ResourceType")
-        String color = context.getResources().getString(R.color.colorPrimary);
+        String color = context.getResources().getString(getPrimaryColorNotColorInt(context));
         color = color.substring(3);
         int primaryR = Integer.valueOf(color.substring(0, 2), 16);
         int primaryG = Integer.valueOf(color.substring(2, 4), 16);
         int primaryB = Integer.valueOf(color.substring(4, 6), 16);
-        color = context.getResources().getString(R.color.colorPrimaryLight);
+        color = context.getResources().getString(getPrimaryLightColorNotColorInt(context));
         color = color.substring(3);
         int primaryLightR = Integer.valueOf(color.substring(0, 2), 16);
         int primaryLightG = Integer.valueOf(color.substring(2, 4), 16);

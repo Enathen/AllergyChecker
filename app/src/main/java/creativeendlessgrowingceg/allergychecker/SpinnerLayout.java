@@ -1,6 +1,7 @@
 package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
@@ -9,6 +10,9 @@ import android.widget.Spinner;
 
 import java.util.Locale;
 import java.util.TreeMap;
+
+import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.getCheckBoxColor;
+import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.getSpinnerDropDown;
 
 /**
  * @author Jonathan Alexander Norberg
@@ -61,11 +65,12 @@ public class SpinnerLayout {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = (LinearLayout) inflater.inflate(R.layout.spinner_layout, null);
             spinner = view.findViewById(R.id.spinnerSpinnerLayout);
+
             final String[] keys = stringLocaleTreeMap.keySet().toArray(new String[0]);
             final ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
-                    R.layout.spinner_item, keys);
-            adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-
+                    ConfigureTheme.getSpinnerLayout(context), keys);
+            adapter.setDropDownViewResource(getSpinnerDropDown(context));
+            spinner.setBackgroundTintList(ColorStateList.valueOf(getCheckBoxColor(context)));
             spinner.setAdapter(adapter);
             spinner.setSelection(PreferenceManager.getDefaultSharedPreferences(context).getInt(APISharedPreference.getSpinnerPosition(),0));
 

@@ -1,11 +1,11 @@
 package creativeendlessgrowingceg.allergychecker;
 
+import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.transitionseverywhere.Explode;
 import com.transitionseverywhere.Fade;
 import com.transitionseverywhere.Slide;
 import com.transitionseverywhere.TransitionManager;
@@ -20,11 +20,12 @@ import java.util.HashMap;
  */
 
 public class CardClassSetup {
+    public Ads ads;
     private HashMap<LinearLayout, ArrayList<View>> objectToRender = new HashMap<>();
 
     public static TransitionSet explode() {
         return new TransitionSet()
-                .addTransition(new Explode()).setDuration(250);
+                .addTransition(new Slide(Gravity.START)).setDuration(250);
     }
 
     public static TransitionSet fade() {
@@ -37,7 +38,7 @@ public class CardClassSetup {
                 .addTransition(new Slide(Gravity.END)).setDuration(1000);
     }
 
-    public void CardDefaultTransition(CardClassLayout cardClassLayout, final TransitionSet set) {
+    public void CardDefaultTransition(CardClassLayout cardClassLayout, final TransitionSet set, final Context context) {
 
         final LinearLayout linearLayoutVertical = cardClassLayout.getLinearLayoutVertical();
         final LinearLayout linearLayoutHorizontal = cardClassLayout.getLinearLayoutHorizontal();
@@ -45,6 +46,10 @@ public class CardClassSetup {
 
             @Override
             public void onClick(View v) {
+                if (ads == null) {
+                    ads = new Ads(context);
+                }
+                ads.showAds();
                 linearLayoutHorizontal.setVisibility(View.GONE);
                 linearLayoutHorizontal.findViewById(R.id.imageViewCardHorizontal).setVisibility(View.GONE);
                 linearLayoutHorizontal.findViewById(R.id.textViewCardHorizontal).setVisibility(View.GONE);
@@ -72,7 +77,7 @@ public class CardClassSetup {
             @Override
             public void onClick(View v) {
                 TransitionSet setFast = new TransitionSet()
-                        .addTransition(new Slide(Gravity.END)).setDuration(500);
+                        .addTransition(new Slide(Gravity.END)).setDuration(250);
                 linearLayoutVertical.findViewById(R.id.imageViewCardVertical).setVisibility(View.GONE);
                 linearLayoutVertical.findViewById(R.id.textViewCardVertical).setVisibility(View.GONE);
                 if (objectToRender.containsKey(linearLayoutVertical)) {

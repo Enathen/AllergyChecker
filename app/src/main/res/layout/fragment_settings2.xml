@@ -37,6 +37,7 @@
                 android:id="@+id/linearCardSettingsScannedText"
                 android:visibility="gone"
                 layout="@layout/linear_card" />
+
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

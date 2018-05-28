@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.getFontColor;
+
 /**
  * @author Jonathan Alexander Norberg
  * @version 2018-05-06
@@ -139,14 +141,16 @@ public class CardClassLayout {
             textViewHorizontal = linearLayout.findViewById(R.id.textViewCardHorizontal);
             textViewVertical = linearLayout.findViewById(R.id.textViewCardVertical);
             textViewHorizontal.setText(text);
-            textViewHorizontal.setTextColor(Color.WHITE);
+            textViewHorizontal.setTextColor(getFontColor(context));
             textViewVertical.setText(text);
+            textViewVertical.setTextColor(getFontColor(context));
             imageViewHorizontal.setImageDrawable(context.getDrawable(drawable));
             imageViewVertical.setImageDrawable(context.getDrawable(drawable));
 
-            imageViewHorizontal.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
-            imageViewVertical.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+            imageViewHorizontal.setColorFilter(getFontColor(context), PorterDuff.Mode.SRC_IN);
+            imageViewVertical.setColorFilter(getFontColor(context), PorterDuff.Mode.SRC_IN);
             parentLinearLayout = linearLayout;
+
         }
 
         public CardClassLayoutBuilder optionalLinearSizeVerticalHeight(int size) {
@@ -186,5 +190,8 @@ public class CardClassLayout {
             return new CardClassLayout(this);
         }
 
+        public CardClassLayoutBuilder optionalBorder(int color) {
+            return this;
+        }
     }
 }

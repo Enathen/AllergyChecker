@@ -84,7 +84,7 @@
                 android:fontFamily="@font/yatra"
                 android:visibility="gone"
                 fab:fab_colorNormal="@color/colorAccent"
-                fab:fab_colorPressed="@color/fontColorTextWhite"
+                fab:fab_colorPressed="@color/colorFont"
                 fab:fab_colorRipple="@color/colorPrimaryLight"
                 fab:fab_label="@string/write"
                 fab:fab_size="normal" />
@@ -96,7 +96,7 @@
                 android:src="@drawable/timesleep00"
                 android:visibility="gone"
                 fab:fab_colorNormal="@color/colorAccent"
-                fab:fab_colorPressed="@color/fontColorTextWhite"
+                fab:fab_colorPressed="@color/colorFont"
                 fab:fab_colorRipple="@color/colorPrimaryLight"
                 fab:fab_label="@string/timeSleep"
                 fab:fab_size="normal" />
@@ -108,7 +108,7 @@
                 android:src="@drawable/flashon"
                 android:visibility="gone"
                 fab:fab_colorNormal="@color/colorAccent"
-                fab:fab_colorPressed="@color/fontColorTextWhite"
+                fab:fab_colorPressed="@color/colorFont"
                 fab:fab_colorRipple="@color/colorPrimaryLight"
                 fab:fab_label="@string/useflash"
                 fab:fab_size="normal" />
@@ -120,7 +120,7 @@
                 android:src="@drawable/focuson"
                 android:visibility="gone"
                 fab:fab_colorNormal="@color/colorAccent"
-                fab:fab_colorPressed="@color/fontColorTextWhite"
+                fab:fab_colorPressed="@color/colorFont"
                 fab:fab_colorRipple="@color/colorPrimaryLight"
                 fab:fab_label="@string/useFocus"
                 fab:fab_size="normal" />

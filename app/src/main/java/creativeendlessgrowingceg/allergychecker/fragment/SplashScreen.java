@@ -8,9 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import com.google.android.gms.ads.MobileAds;
-
+import creativeendlessgrowingceg.allergychecker.Ads;
 import creativeendlessgrowingceg.allergychecker.R;
+
+import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.getCurrentTheme;
+import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.getGradient;
 
 
 public class SplashScreen extends AppCompatActivity {
@@ -47,13 +49,13 @@ public class SplashScreen extends AppCompatActivity {
      */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(getCurrentTheme(getBaseContext()));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
+        findViewById(R.id.splashScreenBackground).setBackground(getGradient(getBaseContext()));
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.rotate);
         findViewById(R.id.imageViewSplash).startAnimation(animation);
-        MobileAds.initialize(getBaseContext(), "ca-app-pub-3607354849437438~1697911164");
-
+        Ads.startAds(this);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {

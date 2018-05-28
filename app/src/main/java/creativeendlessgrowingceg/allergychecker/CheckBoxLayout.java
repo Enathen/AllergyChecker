@@ -2,6 +2,7 @@ package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.preference.PreferenceManager;
 import android.text.util.Linkify;
@@ -12,6 +13,9 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.getCheckBoxColor;
+import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.getFontColor;
 
 /**
  * @author Jonathan Alexander Norberg
@@ -93,13 +97,15 @@ public class CheckBoxLayout {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = (LinearLayout) inflater.inflate(R.layout.checkbox_layout, null);
             lastStringTextView = view.findViewById(R.id.textViewCheckboxLayoutEnd);
-            ((TextView)view.findViewById(R.id.textViewCheckboxLayoutStart)).setText(firstText);
-            stringTextView = ((TextView)view.findViewById(R.id.textViewCheckboxLayoutStart));
-
+            stringTextView = view.findViewById(R.id.textViewCheckboxLayoutStart);
+            checkBox = view.findViewById(R.id.checkBoxCheckBoxLayout);
+            beginImageView = view.findViewById(R.id.imageViewCheckBoxLayout);
+            stringTextView.setText(firstText);
+            stringTextView.setTextColor(getFontColor(context));
+            lastStringTextView.setTextColor(getCheckBoxColor(context));
         }
 
         public CheckBoxBuilder optionalImage(int drawable, int color) {
-            beginImageView = view.findViewById(R.id.imageViewCheckBoxLayout);
 
             beginImageView.setImageDrawable(context.getDrawable(drawable));
             beginImageView.setColorFilter(color, PorterDuff.Mode.SRC_IN);
@@ -107,6 +113,7 @@ public class CheckBoxLayout {
             return this;
         }
         public CheckBoxBuilder optionalCheckBox(String checkBoxString) {
+
             return checkBoxSetup(checkBoxString);
         }
         public CheckBoxBuilder optionalCheckBox(Integer integer) {
@@ -118,8 +125,8 @@ public class CheckBoxLayout {
             return this;
         }
         private CheckBoxBuilder checkBoxSetup(String string){
+            checkBox.setButtonTintList(ColorStateList.valueOf(getCheckBoxColor(context)));
             view.findViewById(R.id.checkBoxCheckBoxLayout).setVisibility(View.VISIBLE);
-            checkBox = view.findViewById(R.id.checkBoxCheckBoxLayout);
             final SharedPreferences sharedPreferences =
                     PreferenceManager.getDefaultSharedPreferences(context);
             view.setOnClickListener(new View.OnClickListener() {
@@ -144,7 +151,7 @@ public class CheckBoxLayout {
         }
 
         public CheckBoxBuilder optionalLastString(String lastString) {
-            ((TextView)view.findViewById(R.id.textViewCheckboxLayoutEnd)).setText(lastString);
+            lastStringTextView.setText(lastString);
 
             lastStringTextView.setVisibility(View.VISIBLE);
             return this;
@@ -168,6 +175,10 @@ public class CheckBoxLayout {
         }
 
 
-
+        public CheckBoxBuilder optionalOnlyFirstString() {
+            lastStringTextView.setVisibility(View.GONE);
+            checkBox.setVisibility(View.GONE);
+            return this;
+        }
     }
 }

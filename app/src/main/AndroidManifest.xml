@@ -69,6 +69,7 @@
         <activity
             android:name=".fragment.BottomNavigationName"
             android:label="@string/title_activity_bottom_navigation_name"></activity>
+
     </application>
 
 </manifest>

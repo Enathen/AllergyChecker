@@ -32,7 +32,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/fontColorTextWhite"
+                android:background="@color/colorFont"
                 android:text="TextView" />
 
             <RelativeLayout
@@ -74,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:fontFamily="@font/yatra"
-                android:background="@color/fontColorTextWhite"
+                android:background="@color/colorFont"
                 android:text="TextView" />
 
             <TextView
@@ -86,14 +86,14 @@
                 android:layout_marginTop="8dp"
                 android:text="TextView"
                 android:fontFamily="@font/yatra"
-                android:textColor="@color/fontColorTextWhite"
+                android:textColor="@color/colorFont"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/fontColorTextWhite"
+                android:background="@color/colorFont"
                 android:text="TextView" />
         </LinearLayout>
     </ScrollView>

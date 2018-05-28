@@ -20,7 +20,7 @@
         android:layout_marginStart="20dp"
         android:layout_weight="1"
         android:textAllCaps="false"
-        android:textColor="@color/fontColorTextWhite"
+        android:textColor="@color/colorFont"
         android:textSize="22sp"
         android:textStyle="bold" />
 

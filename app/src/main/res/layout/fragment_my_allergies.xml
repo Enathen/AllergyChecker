@@ -23,6 +23,22 @@
                 style="?android:attr/progressBarStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
+            <SearchView
+                android:iconifiedByDefault="false"
+                android:queryHint="Search Allergies"
+
+                android:id="@+id/searchBarAllergies"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+            </SearchView>
+
+            <ListView
+                android:id="@+id/listViewTest"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

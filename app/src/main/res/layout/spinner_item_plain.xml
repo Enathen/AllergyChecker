@@ -5,4 +5,4 @@
     android:layout_height="wrap_content"
     android:textSize="24sp"
     android:fontFamily="@font/yatra"
-    android:textColor="@color/colorFont"/>
+    android:textColor="@color/colorFontPlain"/>

@@ -33,7 +33,7 @@
                 android:background="@color/colorPrimaryLight"
                 android:text="@string/uncheckAll"
                 android:textAllCaps="false"
-                android:textColor="@color/fontColorTextWhite"
+                android:textColor="@color/colorFont"
                 android:textSize="32sp"
                 android:fontFamily="@font/yatra"
                 android:visibility="gone" />

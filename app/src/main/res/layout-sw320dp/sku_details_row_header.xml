@@ -30,7 +30,7 @@
         android:layout_marginEnd="@dimen/double_padding"
         android:layout_marginStart="@dimen/double_padding"
 
-        android:textColor="@color/fontColorTextWhite"
+        android:textColor="@color/colorFont"
         android:gravity="start|center_vertical"
         android:textSize="@dimen/sku_details_row_text_size"/>
 

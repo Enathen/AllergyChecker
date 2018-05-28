@@ -1,10 +1,13 @@
 package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
+import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.getCheckBoxColor;
 
 /**
  * @author Jonathan Alexander Norberg
@@ -49,6 +52,7 @@ public class ButtonLayout {
             view = (LinearLayout) inflater.inflate(R.layout.button_layout, null);
             button = view.findViewById(R.id.buttonLayout);
             button.setText(buttonText);
+            button.setBackgroundColor(getCheckBoxColor(context));
             button.setOnClickListener(onClickListener);
 
         }
@@ -58,6 +62,9 @@ public class ButtonLayout {
         }
 
 
-
+        public ButtonLayoutBuilder optionalGradient(Drawable specificGradient) {
+            button.setBackground(specificGradient);
+            return this;
+        }
     }
 }

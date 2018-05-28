@@ -204,15 +204,16 @@ public class AlgorithmAllergies {
                 matches = searcher.search(allergiesClass.getNameOfIngredient(), 4);
             }
             for (BkTreeSearcher.Match<? extends String> match : matches) {
+                AllergiesClass all = new AllergiesClass(
+                        allergiesClass.getLanguage(),
+                        allergiesClass.getNameOfIngredient(),
+                        allergiesClass.getId(),
+                        allergiesClass.getMotherAllergy(),match.getDistance());
+                all.setNameOfWordFound(match.getMatch());
                 if(allFoundAllergies.containsKey(allergiesClass.getMotherAllergy())){
-                    allFoundAllergies.get(allergiesClass.getMotherAllergy()).increaseFoundAllergies();
+                    allFoundAllergies.get(allergiesClass.getMotherAllergy()).increaseFoundAllergies(all);
                 }else{
-                    AllergiesClass all = new AllergiesClass(
-                            allergiesClass.getLanguage(),
-                            allergiesClass.getNameOfIngredient(),
-                            allergiesClass.getId(),
-                            allergiesClass.getMotherAllergy(),match.getDistance());
-                    all.setNameOfWordFound(match.getMatch());
+
                     allFoundAllergies.put(allergiesClass.getMotherAllergy(),all);
                 }
 
@@ -233,15 +234,16 @@ public class AlgorithmAllergies {
 
         for (AllergiesClass allergiesClass : allergies.values()) {
             if (s.contains(allergiesClass.getNameOfIngredient())) {
+                AllergiesClass all = new AllergiesClass(
+                        allergiesClass.getLanguage(),
+                        allergiesClass.getNameOfIngredient(),
+                        allergiesClass.getId(),
+                        allergiesClass.getMotherAllergy());
+                all.setNameOfWordFound(s);
                 if(allFoundAllergies.containsKey(allergiesClass.getMotherAllergy())){
-                    allFoundAllergies.get(allergiesClass.getMotherAllergy()).increaseFoundAllergies();
+                    allFoundAllergies.get(allergiesClass.getMotherAllergy()).increaseFoundAllergies(all);
                 }else{
-                    AllergiesClass all = new AllergiesClass(
-                            allergiesClass.getLanguage(),
-                            allergiesClass.getNameOfIngredient(),
-                            allergiesClass.getId(),
-                            allergiesClass.getMotherAllergy());
-                    all.setNameOfWordFound(s);
+
                     allFoundAllergies.put(all.getMotherAllergy(),all);
                 }
 

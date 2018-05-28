@@ -35,7 +35,7 @@
             android:fontFamily="@font/yatra"
             android:layout_weight="0.48"
             android:text="TextView"
-            android:textColor="@color/fontColorTextWhite"
+            android:textColor="@color/colorFont"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

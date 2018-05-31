@@ -180,5 +180,16 @@ public class CheckBoxLayout {
             checkBox.setVisibility(View.GONE);
             return this;
         }
+
+        public CheckBoxBuilder optionalRemoveCheckbox() {
+            checkBox.setVisibility(View.GONE);
+            return this;
+        }
+
+        public CheckBoxBuilder optionalBiggerLeftString() {
+            lastStringTextView.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 5f));
+            stringTextView.setLayoutParams(new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 3f));
+            return this;
+        }
     }
 }

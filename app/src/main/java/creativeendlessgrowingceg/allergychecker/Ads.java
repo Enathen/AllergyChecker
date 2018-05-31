@@ -18,7 +18,7 @@ import static android.content.ContentValues.TAG;
 public class Ads {
     public static String MOBILE_AD_STRING = "ca-app-pub-3607354849437438~1697911164";
     public static String INTERSTITIAL = "ca-app-pub-3607354849437438/2589028805";
-    //public static String INTERSTITIAL_TEST = "ca-app-pub-3940256099942544/1033173712";
+    public static String INTERSTITIAL_TEST = "ca-app-pub-3940256099942544/1033173712";
     private InterstitialAd mInterstitialAd;
     private Context context;
 

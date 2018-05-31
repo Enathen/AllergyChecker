@@ -7,11 +7,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -133,25 +135,27 @@ public class MyAllergiesNew extends Fragment implements SearchView.OnQueryTextLi
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        final CardClassLayout cardClassLayout = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(integer), checkAvailablePicture(integer), colorGradientPicker.
-                                ColorGradientPickerPick(myAllergyPreference.size(), atomicInteger.addAndGet(1), getContext())).
-                                optionalLinearSizeHorizontalHeight(200).optionalBorder(getContext().getColor(R.color.colorCheckBoxColor)).buildCardClassLayout();
+                        if (isAdded() && getActivity() != null) {
 
-                        cardClassLayout.getLinearLayoutHorizontal().setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                new SetupAllergies(myAllergyPreference, hashMap, cardClassLayout, linearCardClass, integer).execute();
+                            final CardClassLayout cardClassLayout = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(integer), checkAvailablePicture(integer), colorGradientPicker.
+                                    ColorGradientPickerPick(myAllergyPreference.size(), atomicInteger.addAndGet(1), getContext())).
+                                    optionalLinearSizeHorizontalHeight(200).optionalBorder(getContext().getColor(R.color.colorCheckBoxColor)).buildCardClassLayout();
 
-                            }
-                        });
-                        cardClassLayout.getLinearLayoutVertical().setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
+                            cardClassLayout.getLinearLayoutHorizontal().setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    new SetupAllergies(myAllergyPreference, hashMap, cardClassLayout, linearCardClass, integer).execute();
 
-                            }
-                        });
-                        parentLinearLayout.addView(cardClassLayout.getParentLinearLayout());
+                                }
+                            });
+                            cardClassLayout.getLinearLayoutVertical().setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
 
+                                }
+                            });
+                            parentLinearLayout.addView(cardClassLayout.getParentLinearLayout());
+                        }
                     }
                 });
 
@@ -192,10 +196,36 @@ public class MyAllergiesNew extends Fragment implements SearchView.OnQueryTextLi
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    final ArrayList<CheckBox> arrayList = new ArrayList<>();
                     for (int integers : myAllergies.get(integer)) {
-                        Log.d(TAG, "run: "+ hashMap.get(integers));
-                        linearCardClass.addView(cardClassLayout, new CheckBoxLayout.CheckBoxBuilder(getContext(), getString(integers)).optionalCheckBox(hashMap.get(integers)).buildCheckBoxLayout().getView());
+                        Log.d(TAG, "run: " + hashMap.get(integers));
+                        CheckBoxLayout checkBoxLayout = new CheckBoxLayout.CheckBoxBuilder(getContext(), getString(integers)).optionalCheckBox(hashMap.get(integers)).buildCheckBoxLayout();
+                        arrayList.add(checkBoxLayout.getCheckBox());
+                        linearCardClass.addView(cardClassLayout, checkBoxLayout.getView());
                     }
+                    linearCardClass.addView(cardClassLayout,new ButtonLayout.ButtonLayoutBuilder(getContext(), getString(R.string.checkAll), new View.OnClickListener() {
+                        public Boolean checkAll =true;
+
+                        @Override
+                        public void onClick(View view) {
+
+                            if(checkAll){
+                                for (CheckBox checkBox : arrayList) {
+                                    checkBox.setChecked(true);
+                                }
+                                ((TextView)view).setText(getString(R.string.uncheckAll));
+                                checkAll = !checkAll;
+                            }
+                            else{
+                                for (CheckBox checkBox : arrayList) {
+                                    checkBox.setChecked(false);
+                                }
+                                ((TextView)view).setText(getString(R.string.checkAll));
+                                checkAll = !checkAll;
+                            }
+                        }
+                    }).buildButtonLayout().getView());
+
                     linearCardClass.CardDefaultTransition(cardClassLayout, CardClassSetup.explode(), getContext());
                     cardClassLayout.getLinearLayoutHorizontal().performClick();
                 }

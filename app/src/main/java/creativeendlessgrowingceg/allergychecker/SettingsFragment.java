@@ -1,6 +1,7 @@
 package creativeendlessgrowingceg.allergychecker;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -30,6 +31,8 @@ import static android.content.ContentValues.TAG;
 import static creativeendlessgrowingceg.allergychecker.APISharedPreference.getFoundCount;
 import static creativeendlessgrowingceg.allergychecker.APISharedPreference.getFoundENumbers;
 import static creativeendlessgrowingceg.allergychecker.APISharedPreference.getWordCount;
+import static creativeendlessgrowingceg.allergychecker.APISharedPreference.timesScanned;
+import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.getFontColor;
 import static creativeendlessgrowingceg.allergychecker.LanguagesAccepted.getFlag;
 
 
@@ -40,6 +43,7 @@ public class SettingsFragment extends Fragment {
     private SharedPreferences defaultSharedPreferences;
     private SharedPreferences.Editor edit;
     private Boolean openToSaveStatistics = true;
+    private Context mContext;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -68,38 +72,53 @@ public class SettingsFragment extends Fragment {
 
         FrameLayout inflate = (FrameLayout) inflater.inflate(R.layout.fragment_settings2, container, false);
         Bundle arguments = getArguments();
+        if (getContext() != null) {
+            mContext = getContext();
+        }
         if (arguments != null) {
             string = arguments.getString(APISharedPreference.getScannedText);
 
-            defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+            defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
             edit = defaultSharedPreferences.edit();
-            if(string == null){
+            if (string == null) {
                 openToSaveStatistics = false;
                 string = arguments.getString(APISharedPreference.getHistory);
             }
-            if(openToSaveStatistics){
-                int i = defaultSharedPreferences.getInt(getWordCount(), 0) + string.split("\\s+").length;
-                edit.putInt(getWordCount(),i).apply();
+            if (openToSaveStatistics) {
+
+                int i = defaultSharedPreferences.getInt(timesScanned, 0) + 1;
+                edit.putInt(timesScanned, i);
+                edit.putInt(getWordCount(), defaultSharedPreferences.getInt(getWordCount(), 0) + string.split("\\s+").length);
+                edit.apply();
             }
-        }else{
+        } else {
             openToSaveStatistics = false;
-            string = new DateAndHistory(getContext()).getTop();
-            if(string!=null){
-                Toast.makeText(getContext(),R.string.lastScannedText,Toast.LENGTH_LONG).show();
+            string = new DateAndHistory(mContext).getTop();
+            if (string != null) {
+                Toast.makeText(mContext, R.string.lastScannedText, Toast.LENGTH_LONG).show();
                 string = string.substring(20);
-            }else{
-                Toast.makeText(getContext(),R.string.noScanned,Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(mContext, R.string.noScanned, Toast.LENGTH_LONG).show();
             }
 
         }
-        if(string != null){
+        if (string != null) {
+            Log.d(TAG, "swag: " + isAdded() + getActivity());
+            if (isAdded() && getActivity() != null) {
                 new AnalyzeText(inflate).execute(string);
-        }else{
+            }
+
+        } else {
             inflate.findViewById(R.id.progressBarSettings).setVisibility(View.GONE);
         }
         return inflate;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
 
     @Override
     public void onDetach() {
@@ -118,16 +137,16 @@ public class SettingsFragment extends Fragment {
         private HashMap<String, AllergiesClass> allAllergies;
         private TreeMap<Integer, TreeSet<String>> treeMapSplittedFullText;
 
+        public AnalyzeText(FrameLayout parentFrameLayout) {
+            this.parentFrameLayout = parentFrameLayout;
+        }
+
         public ArrayList<AllergyList.E_Numbers> getAllFoundENumbers() {
             return allFoundENumbers;
         }
 
         public TreeMap<String, AllergiesClass> getAllFoundAllergies() {
             return allFoundAllergies;
-        }
-
-        public AnalyzeText(FrameLayout parentFrameLayout) {
-            this.parentFrameLayout = parentFrameLayout;
         }
 
         @Override
@@ -142,7 +161,7 @@ public class SettingsFragment extends Fragment {
 
         private void setup(String[] fullTextArray) {
             algorithmAllergies = new AlgorithmAllergies();
-            ArrayList<Locale> languages = LanguagesAccepted.getActiveLanguages(getContext());
+            ArrayList<Locale> languages = LanguagesAccepted.getActiveLanguages(mContext);
             if (languages.isEmpty()) {
                 languageIsSelected = false;
             }
@@ -150,14 +169,16 @@ public class SettingsFragment extends Fragment {
             int counter = 0;
             int i = 0;
             allAllergies = new HashMap<>();
-            allergies = CollectAllAllergies.getAllergies(getContext());
+            allergies = CollectAllAllergies.getAllergies(mContext);
+
             for (int id : allergies) {
 
-                algorithmAllergies.translateAllAllergies(id, allAllergies, languages, SettingsFragment.this);
+                algorithmAllergies.translateAllAllergies(id, allAllergies, languages, mContext);
                 counter = publishProgressHelper(counter, i, allergies.size());
                 i++;
 
             }
+
             if (allAllergies.isEmpty()) {
                 allergiesSelected = false;
             }
@@ -176,12 +197,12 @@ public class SettingsFragment extends Fragment {
         protected ArrayList<AllergiesClass> doInBackground(String... strings) {
             String[] fullTextArray = strings[0].split("\\s+");
 
-                setup(fullTextArray);
+            setup(fullTextArray);
 
 
             int counter = fullTextArray.length / 3;
             int i = 0;
-            ArrayList<AllergyList.E_Numbers> eNumbersArrayList = new AllergyList(getContext()).getArrayListE_Numbers();
+            ArrayList<AllergyList.E_Numbers> eNumbersArrayList = new AllergyList(mContext).getArrayListE_Numbers();
 
             for (int j = 0; j < fullTextArray.length; j++) {
                 counter = publishProgressHelper(counter, i, fullTextArray.length);
@@ -213,14 +234,19 @@ public class SettingsFragment extends Fragment {
 
                 allStringsOrdered.addAll(stringTreeSet);
             }
-            if(openToSaveStatistics){
-                int j = defaultSharedPreferences.getInt(getFoundCount(), 0) + allFoundAllergies.size();
-                edit.putInt(getFoundCount(),j);
+            if (openToSaveStatistics) {
+                int j = 0;
+                for (AllergiesClass allergiesClass : allFoundAllergies.values()) {
+                    j += allergiesClass.getAllergiesClasses().size();
+                }
+                j += defaultSharedPreferences.getInt(getFoundCount(), 0);
+                edit.putInt(getFoundCount(), j);
                 j = defaultSharedPreferences.getInt(getFoundENumbers(), 0) + allFoundENumbers.size();
-                edit.putInt(getFoundENumbers(),j);
+                edit.putInt(getFoundENumbers(), j);
                 edit.apply();
             }
-            setupView();
+
+
             return null;
         }
 
@@ -228,37 +254,32 @@ public class SettingsFragment extends Fragment {
             final CardClassSetup linearCardClass = new CardClassSetup();
             final AtomicInteger atomicInteger = new AtomicInteger(0);
             final ColorGradientPicker colorGradientPicker = new ColorGradientPicker();
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    final CardClassLayout warning = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.warning), R.drawable.history, colorGradientPicker.ColorGradientPickerPick(4, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsWarnings)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
-                    setupWarning(warning, linearCardClass);
-                    final CardClassLayout foundAllergies = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.foundAllergies), R.drawable.wheatcircle, colorGradientPicker.ColorGradientPickerPick(4, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsFoundAllergies)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
-                    final CardClassLayout foundENumbers = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.foundEnumbers), R.drawable.crustaceans, colorGradientPicker.ColorGradientPickerPick(4, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsFoundENumbers)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
-                    final CardClassLayout textScanned = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.textScanned), R.drawable.focuson, colorGradientPicker.ColorGradientPickerPick(4, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsScannedText)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
-                    setupFoundAllergies(foundAllergies, linearCardClass);
-                    setupFoundENumbers(foundENumbers, linearCardClass);
-                    setupTextScanned(textScanned, linearCardClass);
-                }
-            });
+            final CardClassLayout warning = new CardClassLayout.CardClassLayoutBuilder(mContext, getString(R.string.warning), R.drawable.history, colorGradientPicker.ColorGradientPickerPick(4, atomicInteger.addAndGet(1), mContext), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsWarnings)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
+            setupWarning(warning, linearCardClass);
+            final CardClassLayout foundAllergies = new CardClassLayout.CardClassLayoutBuilder(mContext, getString(R.string.foundAllergies), R.drawable.wheatcircle, colorGradientPicker.ColorGradientPickerPick(4, atomicInteger.addAndGet(1), mContext), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsFoundAllergies)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
+            final CardClassLayout foundENumbers = new CardClassLayout.CardClassLayoutBuilder(mContext, getString(R.string.foundEnumbers), R.drawable.crustaceans, colorGradientPicker.ColorGradientPickerPick(4, atomicInteger.addAndGet(1), mContext), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsFoundENumbers)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
+            final CardClassLayout textScanned = new CardClassLayout.CardClassLayoutBuilder(mContext, getString(R.string.textScanned), R.drawable.focuson, colorGradientPicker.ColorGradientPickerPick(4, atomicInteger.addAndGet(1), mContext), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsScannedText)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
+            setupFoundAllergies(foundAllergies, linearCardClass);
+            setupFoundENumbers(foundENumbers, linearCardClass);
+            setupTextScanned(textScanned, linearCardClass);
 
         }
 
         private void setupWarning(CardClassLayout warning, CardClassSetup linearCardClass) {
-            linearCardClass.CardDefaultTransition(warning, CardClassSetup.explode(), getContext());
+            linearCardClass.CardDefaultTransition(warning, CardClassSetup.explode(), mContext);
             if (languageIsSelected && allergiesSelected) {
                 warning.getParentLinearLayout().setVisibility(View.GONE);
             }
             if (!languageIsSelected) {
-                linearCardClass.addView(warning, new CheckBoxLayout.CheckBoxBuilder(getContext(), getString(R.string.noLanguageSelected)).buildCheckBoxLayout().getView());
+                linearCardClass.addView(warning, new CheckBoxLayout.CheckBoxBuilder(mContext, getString(R.string.noLanguageSelected)).buildCheckBoxLayout().getView());
             }
             if (!allergiesSelected) {
-                linearCardClass.addView(warning, new CheckBoxLayout.CheckBoxBuilder(getContext(), getString(R.string.noAllergies)).buildCheckBoxLayout().getView());
+                linearCardClass.addView(warning, new CheckBoxLayout.CheckBoxBuilder(mContext, getString(R.string.noAllergies)).buildCheckBoxLayout().getView());
             }
         }
 
         private void setupFoundAllergies(final CardClassLayout foundAllergies, final CardClassSetup linearCardClass) {
-            linearCardClass.CardDefaultTransition(foundAllergies, CardClassSetup.explode(), getContext());
+            linearCardClass.CardDefaultTransition(foundAllergies, CardClassSetup.explode(), mContext);
             if (allFoundAllergies.isEmpty()) {
                 foundAllergies.getTextViewHorizontal().setText(getString(R.string.noAllergiesFound));
                 foundAllergies.getTextViewVertical().setText(getString(R.string.noAllergiesFound));
@@ -269,21 +290,20 @@ public class SettingsFragment extends Fragment {
                     for (AllergiesClass allFoundAllergie : allFoundAllergies.values()) {
                         ArrayList<AllergiesClass> allergiesClasses = allFoundAllergie.getAllergiesClasses();
 
-                        if(allergiesClasses.size()>0){
-                            CardClassLayout newFoundAllergies = new CardClassLayout.CardClassLayoutBuilder(getContext(), allFoundAllergie.getMotherAllergy().concat(" " + String.valueOf(allFoundAllergie.getFoundAllergies())), R.drawable.wheatcircle, Color.WHITE).optionalLinearSizeHorizontalHeight(100).buildCardClassLayout();
-                            linearCardClass.addView(foundAllergies,newFoundAllergies.getParentLinearLayout());
+                        if (allergiesClasses.size() > 0) {
+                            CardClassLayout newFoundAllergies = new CardClassLayout.CardClassLayoutBuilder(mContext, allFoundAllergie.getMotherAllergy().concat(" " + String.valueOf(allFoundAllergie.getFoundAllergies())), R.drawable.wheatcircle, Color.WHITE).optionalLinearSizeHorizontalHeight(100).buildCardClassLayout();
+                            linearCardClass.addView(foundAllergies, newFoundAllergies.getParentLinearLayout());
                             final CardClassSetup linearCardClass = new CardClassSetup();
-                            linearCardClass.CardDefaultTransition(newFoundAllergies, CardClassSetup.explode(), getContext());
+                            linearCardClass.CardDefaultTransition(newFoundAllergies, CardClassSetup.explode(), mContext);
                             for (AllergiesClass allergiesClass : allergiesClasses) {
-                                Log.d(TAG, "onClick: "+ allergiesClass.getLanguage());
-                                linearCardClass.addView(newFoundAllergies, new CheckBoxLayout.CheckBoxBuilder(getContext(), allergiesClass.getMotherAllergy()).optionalImage(getFlag(allergiesClass.getLanguage())).optionalLastString(allergiesClass.getNameOfWordFound()).buildCheckBoxLayout().getView());
+                                linearCardClass.addView(newFoundAllergies, new CheckBoxLayout.CheckBoxBuilder(mContext, allergiesClass.getMotherAllergy()).optionalBiggerLeftString().optionalImage(getFlag(allergiesClass.getLanguage())).optionalLastString(allergiesClass.getNameOfWordFound()).buildCheckBoxLayout().getView());
                             }
-                        }else{
+                        } else {
 
-                            linearCardClass.addView(foundAllergies, new CheckBoxLayout.CheckBoxBuilder(getContext(), allFoundAllergie.getMotherAllergy()).optionalLastString(String.valueOf(allFoundAllergie.getFoundAllergies()+1)).buildCheckBoxLayout().getView());
+                            linearCardClass.addView(foundAllergies, new CheckBoxLayout.CheckBoxBuilder(mContext, allFoundAllergie.getMotherAllergy()).optionalLastString(String.valueOf(allFoundAllergie.getFoundAllergies() + 1)).buildCheckBoxLayout().getView());
                         }
                     }
-                    linearCardClass.CardDefaultTransition(foundAllergies, CardClassSetup.explode(), getContext());
+                    linearCardClass.CardDefaultTransition(foundAllergies, CardClassSetup.explode(), mContext);
                     foundAllergies.getLinearLayoutHorizontal().performClick();
                 }
             });
@@ -291,7 +311,7 @@ public class SettingsFragment extends Fragment {
         }
 
         private void setupFoundENumbers(final CardClassLayout foundENumbers, final CardClassSetup linearCardClass) {
-            linearCardClass.CardDefaultTransition(foundENumbers, CardClassSetup.explode(), getContext());
+            linearCardClass.CardDefaultTransition(foundENumbers, CardClassSetup.explode(), mContext);
             if (allFoundENumbers.isEmpty()) {
                 foundENumbers.getParentLinearLayout().setVisibility(View.GONE);
             }
@@ -299,16 +319,16 @@ public class SettingsFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     for (AllergyList.E_Numbers allFoundENumber : allFoundENumbers) {
-                        linearCardClass.addView(foundENumbers, new CheckBoxLayout.CheckBoxBuilder(getContext(), allFoundENumber.getName()).buildCheckBoxLayout().getView());
+                        linearCardClass.addView(foundENumbers, new CheckBoxLayout.CheckBoxBuilder(mContext, allFoundENumber.getName()).optionalRemoveCheckbox().buildCheckBoxLayout().getView());
                     }
-                    linearCardClass.CardDefaultTransition(foundENumbers, CardClassSetup.explode(), getContext());
+                    linearCardClass.CardDefaultTransition(foundENumbers, CardClassSetup.explode(), mContext);
                     foundENumbers.getLinearLayoutHorizontal().performClick();
                 }
             });
         }
 
         private void setupTextScanned(final CardClassLayout textScanned, final CardClassSetup linearCardClass) {
-            linearCardClass.CardDefaultTransition(textScanned, CardClassSetup.explode(), getContext());
+            linearCardClass.CardDefaultTransition(textScanned, CardClassSetup.explode(), mContext);
             if (allStringsOrdered.isEmpty()) {
                 textScanned.getParentLinearLayout().setVisibility(View.GONE);
             }
@@ -316,21 +336,21 @@ public class SettingsFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     for (String s : allStringsOrdered) {
-                        if(s.equals("")){
+                        if (s.equals("")) {
                             continue;
                         }
-                        TextView textView = new TextView(getContext());
+                        TextView textView = new TextView(mContext);
                         textView.setText(s);
-                        textView.setTextColor(getContext().getColor(R.color.colorFont));
+                        textView.setTextColor(getFontColor(mContext));
                         textView.setVisibility(View.GONE);
                         textView.setTextSize(22);
-                        textView.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"yatra.ttf"));
+                        textView.setTypeface(Typeface.createFromAsset(mContext.getAssets(), "yatra.ttf"));
                         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                        layoutParams.leftMargin  = 110;
+                        layoutParams.leftMargin = 110;
                         textView.setLayoutParams(layoutParams);
-                        linearCardClass.addView(textScanned,textView);
+                        linearCardClass.addView(textScanned, textView);
                     }
-                    linearCardClass.CardDefaultTransition(textScanned, CardClassSetup.explode(), getContext());
+                    linearCardClass.CardDefaultTransition(textScanned, CardClassSetup.explode(), mContext);
                     textScanned.getLinearLayoutHorizontal().performClick();
                 }
             });
@@ -339,6 +359,9 @@ public class SettingsFragment extends Fragment {
         @Override
         protected void onPostExecute(Object object) {
             super.onPostExecute(object);
+            if (isAdded() && getActivity() != null) {
+                setupView();
+            }
             parentFrameLayout.findViewById(R.id.progressBarSettings).setVisibility(View.GONE);
         }
     }

@@ -150,10 +150,10 @@ public class AlgorithmAllergies {
         return length;
     }*/
 
-    public int translateAllAllergies(int id, HashMap<String, AllergiesClass> allergies, ArrayList<Locale> listOfLanguages, SettingsFragment context) {
+    public int translateAllAllergies(int id, HashMap<String, AllergiesClass> allergies, ArrayList<Locale> listOfLanguages, Context context) {
         int length = 0;
         for (Locale locale : listOfLanguages) {
-            String localeString = getStringByLocal(context.getContext(), id, locale.getLanguage());
+            String localeString = getStringByLocal(context, id, locale.getLanguage());
             List<String> list = TextHandler.split(localeString);
             for (int i = 0; i < list.size(); i++) {
                 allergies.put(list.get(i), new AllergiesClass(locale.getLanguage(),

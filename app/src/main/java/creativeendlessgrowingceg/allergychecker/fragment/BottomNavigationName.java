@@ -1,7 +1,10 @@
 package creativeendlessgrowingceg.allergychecker.fragment;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
@@ -20,7 +23,7 @@ import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.getCurrent
 import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.setBottomColor;
 import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.setGradient;
 
-public class BottomNavigationName extends AppCompatActivity {
+public class BottomNavigationName extends AppCompatActivity{
 
     private static final String TAG = "BottomNavigationName";
     private TextView mTextMessage;
@@ -37,7 +40,7 @@ public class BottomNavigationName extends AppCompatActivity {
                     MyAllergiesNew nextFrag= new MyAllergiesNew();
                     BottomNavigationName.this.getFragmentManager().beginTransaction()
                             .replace(R.id.container, nextFrag,"Home")
-                            .addToBackStack(null)
+                            .addToBackStack("test")
                             .commit();
                     return true;
                 case R.id.navigation_dashboard:
@@ -45,7 +48,7 @@ public class BottomNavigationName extends AppCompatActivity {
 
                     BottomNavigationName.this.getFragmentManager().beginTransaction()
                             .replace(R.id.container, nextFrag2,"Dashboard")
-                            .addToBackStack(null)
+                            .addToBackStack("test2")
                             .commit();
 
                     return true;
@@ -53,7 +56,7 @@ public class BottomNavigationName extends AppCompatActivity {
                     SettingsFragment nextFrag3 = new SettingsFragment();
                     BottomNavigationName.this.getFragmentManager().beginTransaction()
                             .replace(R.id.container, nextFrag3,"Settings")
-                            .addToBackStack(null)
+                            .addToBackStack("test3")
                             .commit();
                     return true;
             }
@@ -66,6 +69,18 @@ public class BottomNavigationName extends AppCompatActivity {
         setTheme(getCurrentTheme(getBaseContext()));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_navigation_name);
+        if(!PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getBoolean(APISharedPreference.experimental,false)){
+            AlertDialog.Builder adb = new AlertDialog.Builder(this);
+            adb.setTitle(R.string.experimentalTitle);
+            adb.setMessage(R.string.experimentalMessage);
+            adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit().putBoolean(APISharedPreference.experimental,true).apply();
+                }
+            });
+            adb.show();
+
+        }
 
         BottomNavigationView navigation =  findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -98,6 +113,12 @@ public class BottomNavigationName extends AppCompatActivity {
                 .replace(R.id.container, fragment,"Settings")
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
     }
 
 }

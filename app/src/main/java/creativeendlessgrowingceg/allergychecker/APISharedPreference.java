@@ -11,6 +11,8 @@ public class APISharedPreference {
     public static String dateAndHistory = "DateAndHistory";
     public static String theme = "Theme";
     public static String interstitial = "Interstitial";
+    public static String experimental = "Experimental";
+    public static String timesScanned = "TimesScanned";
 
     public static String getFlash(){
         return "Flash";

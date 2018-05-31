@@ -11,6 +11,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.getCheckBoxColor;
+import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.getFontColor;
 
 /**
  * @author Jonathan Alexander Norberg
@@ -86,6 +87,7 @@ public class SliderLayout {
             seekBar = view.findViewById(R.id.seekBarSlider);
             timeSleep = view.findViewById(R.id.textViewSliderLayoutStart);
             timeSleep.setText(sliderText);
+            timeSleep.setTextColor(getFontColor(context));
             seconds = view.findViewById(R.id.textViewSliderLayoutEnd);
             float converted = current/100;
             seconds.setText(String.valueOf(converted).concat("s"));

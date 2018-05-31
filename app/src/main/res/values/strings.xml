@@ -937,6 +937,12 @@
     <string name="defaultTheme">Default Theme</string>
     <string name="fireTheme">Fire Theme</string>
     <string name="plainTheme">PlainTheme</string>
+    <string name="experimentalMessage">This app is only experimental, and should be used with caution!</string>
+    <string name="experimentalTitle">Warning</string>
+    <string name="timesScanned">Times Scanned</string>
+    <string name="foundAllergiesDividedByTimesScanned">Allergies / Scan</string>
+    <string name="wordsScannedDividedByTimesScanned">Words / Scan</string>
+    <string name="wordsScannedDividedByFoundAllergies">Words / Allergy</string>
 
 
 </resources>

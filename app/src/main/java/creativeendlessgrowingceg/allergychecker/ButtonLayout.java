@@ -66,5 +66,10 @@ public class ButtonLayout {
             button.setBackground(specificGradient);
             return this;
         }
+
+        public ButtonLayoutBuilder optionalButtonTextColor(int fontColor) {
+            button.setTextColor(fontColor);
+            return this;
+        }
     }
 }

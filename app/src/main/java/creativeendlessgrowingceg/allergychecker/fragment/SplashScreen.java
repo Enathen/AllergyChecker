@@ -51,6 +51,7 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setTheme(getCurrentTheme(getBaseContext()));
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_splash_screen);
         findViewById(R.id.splashScreenBackground).setBackground(getGradient(getBaseContext()));
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.rotate);

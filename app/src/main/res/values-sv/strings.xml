@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Allergy Checker</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_pager_indicator">SKIP</string>
-    <string name="title_activity_takeoff">App Takes off here</string>
-    <string name="ok">OK</string>
 
-    <string name="permission_camera_rationale">Tillgång till kameran behövs annars fungerar inte appen</string>
-    <string name="no_camera_permission">Den här appen kan inte köras om den inte har tillgång till kameran. Kameran avslutas nu.</string>
     <string name="nuts">Nötter, Nöt</string>
     <string name="almond">Mandel, mandlar</string>
     <string name="brazil">Paranötter, Paranöt</string>
@@ -117,33 +108,6 @@
     <string name="fish">Fisk</string>
     <string name="milk">Mjölk</string>
     <string name="seeds">Frön</string>
-    <string name="deleteHistory">Radera historik</string>
-    <string name="scanPhotos">Ingen historik än</string>
-
-
-    <string name="language">Språk</string>
-    <string name="languageFrom">Översätt från</string>
-    <string name="languageGeneral">Generellt språk</string>
-    <string name="startPageHeader">Tryck nedanför för att scanna text</string>
-    <string name="definitelyContained">Innehåller definitivt</string>
-    <string name="history">Historik</string>
-    <string name="statistics">Statistik</string>
-    <string name="allergies">Allergier</string>
-    <string name="dontUse">Använd inte!</string>
-    <string name="scannedTextBelow">Skannad text nedanför:</string>
-    <string name="youCanUse">Kan användas!</string>
-    <string name="allergy">Allergi:</string>
-    <string name="contained">fanns</string>
-    <string name="times">gånger</string>
-    <string name="time">gång</string>
-    <string name="probablyContained">innehåller troligtvis</string>
-    <string name="fromWord">från ord:</string>
-    <string name="myAllergies">Mina Allergier</string>
-    <string name="share">Dela</string>
-    <string name="send">Skicka översättning</string>
-    <string name="mustBeInEnglish">Texten måste bli skriven på engelska eller svenska! Tack!</string>
-    <string name="sendTipsFrom">Vart vill du skicka tips från?</string>
-    <string name="welcomeMessageInvite">Håll dina allergier i schack, med Allergy Checker!</string>
 
 
     <string name="buckwheat">Bovete</string>
@@ -152,11 +116,6 @@
     <string name="sunflowerSeed">Solrosfrö</string>
     <string name="fruit">Frukt</string>
     <string name="vegetables">Grönsaker</string>
-    <string name="cannotUseCamera">Kan inte använda kameran utan din tillåtelse!</string>
-    <string name="varning">Varning!</string>
-    <string name="thisAppOnlySave">Om tillåtelse inte ges, kommer inte appen fungera som den ska. Det enda som sparas är texten. Om tillåtelse inte ges så kommer appen behöva ominstalleras! Ha en fantastisk dag!</string>
-    <string name="mightContainOther">Det här är endast en riktlinje! Och kanske innehåller andra allergier</string>
-    <string name="mightContainAllergies">Det här är endast en riktlinje! Och innehåller kanske allergier</string>
     <string name="vegetarian">Vegetarian</string>
     <string name="vegan">Vegan</string>
     <string name="citrus">Citrus</string>
@@ -191,21 +150,6 @@
     <string name="polloVegetarian">Pollovegetarian</string>
     <string name="pescoVegetarian">Pescovegetarian</string>
     <string name="chicken">Kyckling</string>
-    <string name="areYouSure">Är du säker att du vill ta bort allt?</string>
-    <string name="yes">Ja</string>
-    <string name="no">Nej</string>
-    <string name="flashon">Ficklampa på</string>
-    <string name="cancel">Avbryt</string>
-    <string name="inputIngredients">Skriv ingredienser</string>
-    <string name="rate">Betygsätt</string>
-    <string name="pressMe">Tryck mig\nFör att fortsätta!</string>
-    <string name="firstIntro">När du skannar text med kameran. Textrutor kommer att täcka texten.
-        Om du trycker på en textruta får appen analysera all text i textrutorna som kan visas på skärmen och textrutorna sparas från tidigare.
-        Ett bra exempel på hur textrutorna ska se är den ovanstående.</string>
-    <string name="secondIntro">Om du tycker den text du skannat är dålig, håll ner fingret för att ta bort all sparad skannad text.</string>
-    <string name="thirdIntro">Du bör inte trycka på textrutorna när de visas så här
-        eftersom det kommer bara att skanna en liten procentandel av hela texten.</string>
-    <string name="tutorial">Handledning</string>
     <string name="anis">Anis</string>
     <string name="coriander">Koriander</string>
     <string name="cumin">Kummin</string>
@@ -254,67 +198,19 @@
     <string name="pepsin">Pepsin</string>
 
     <string name="halal">Halal</string>
-    <string name="start">Startsida</string>
-    <string name="holdFor">Håll för mer information</string>
-    <string name="about">Om</string>
-    <string name="helpTranslate">Hjälp Att Översätta</string>
-    <string name="onlyFillChanges">Fyll bara i dem du ändrar, Lämna dem andra tomma! Tack Hjälpare!</string>
-    <string name="uncheckAll">avmarkera alla</string>
-    <string name="checkAll">markera alla</string>
-    <string name="delete">Ta bort</string>
     <string name="spice">Kryddor</string>
     <string name="butter">Smör</string>
     <string name="casein">Kasein</string>
     <string name="yoghurt">Yogurt, Yoghurt, Yoghourt</string>
     <string name="custard">Vaniljsås</string>
     <string name="cream">Grädde</string>
-    <string name="write">Skriv In Ingredienser</string>
-    <string name="useflash">Ficklampa På</string>
-    <string name="useNoFlash">Ficklampa Av</string>
-    <string name="SharingIsCaring">Sharing is caring</string>
-    <string name="myPreference">Mina Preferenser</string>
-    <string name="showAllergies">Visa Allergier</string>
-    <string name="allergyAgianst">Allergisk mot</string>
     <string name="lactose">Laktos</string>
 
-    <string name="english">Engelska</string>
-    <string name="swedish">Svenska</string>
-    <string name="spanish">Spanska</string>
-    <string name="norway">Norska</string>
-    <string name="denmark">Danska</string>
-    <string name="finnish">Finska</string>
-    <string name="german">Tyska</string>
     <string name="beef">Biff</string>
     <string name="meat">Kött</string>
     <string name="pumpkinSeed">Pumpafrön</string>
     <string name="veal">Kalv</string>
-    <string name="french">franska</string>
-    <string name="netherlands">holländska</string>
-    <string name="header_subscriptions">Abonnemang</string>
-    <string name="noAllergies">Inga allergier valda</string>
-    <string name="holdCamera">Håll kameran nere för mer tips.</string>
-    <string name="foundABug">Hittat ett fel? Skicka tips!</string>
-    <string name="greatApp">Tycker du denna app är hjälpsam? Betygsätt den!</string>
-    <string name="shareWithFriend">Tycker du denna app är hjälpsam? Dela den med en vän!</string>
-    <string name="wonderfulDay">Ha en underbar dag!</string>
-    <string name="holdHistory">I historiefliken tryck och håll ner datumet för att få fram mer information</string>
-    <string name="foundBadTranslation">Hittat en dålig översättning? Hjälp att översätta!</string>
-    <string name="advancedSearch">Gör ofiltrerad sökning</string>
-    <string name="regularSearch">Gör filtrerad sökning</string>
-    <string name="italian">Italienska</string>
-    <string name="portuguese">Portugisiska</string>
-    <string name="polish">Polska</string>
 
-    <string name="pleaseCheckAllergies">Kontrollera att dina allergier och preferenser är korrekta!</string>
-    <string name="slide3">Om du håller ner kameraknappen visas fyra nya alternativ.</string>
-    <string name="advancedSearchis">Filtrerad sökning tar bort delsträngar av ord: till exempel är jord delsträng av jordnötter</string>
-    <string name="unfilteredSearchIs">Ofilterad sökning lägger till delsträngar av ord: till exempel jord är en delsträng av jordgubbe</string>
-    <string name="eNumbers">E-Nummer</string>
-    <string name="downloadOfTextScannerNotComplete">Textigenkänningen har inte slutfört att laddas ned. Detta kan tyvärr ta några timmar på vissa telefoner. Se till att du är ansluten till internet och har 10 MB ledigt utrymme.</string>
-    <string name="sendTips">Skicka tips / buggar</string>
-    <string name="useFocus">Fokus På</string>
-    <string name="useNoFocus">Fokus Av</string>
-    <string name="timeSleep">Sova kamera</string>
     <string name="cashew">cashewnötter, cashewnöt</string>
 
     <string name="panulirus">Panulirus</string>
@@ -332,5 +228,4 @@
     <string name="crustaceans">Kräftdjur</string>
     <string name="oat">Havre</string>
     <string name="onion">Lök</string>
-    <string name="noLanguageSelected">Inga språk valda</string>
 </resources>

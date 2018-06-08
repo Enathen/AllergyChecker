@@ -2,6 +2,7 @@ package creativeendlessgrowingceg.allergychecker;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -166,26 +167,29 @@ public class AllergyList {
      * @return allergies
      */
     public TreeMap<Integer, ArrayList<Integer>> getMyAllergies() {
-        TreeMap<Integer, ArrayList<Integer>> arrayLists = new TreeMap<>();
-        arrayLists.put(setArrayListCitrus(), getArrayListCitrus());
-        arrayLists.put(setArrayListDairy(), getArrayListDairy());
-        arrayLists.put(setArrayListFish(), getArrayListFish());
-        arrayLists.put(setArrayListFruit(), getArrayListFruit());
-        arrayLists.put(setArrayListGluten(), getArrayListGluten());
-        arrayLists.put(setArrayListLegumes(), getArrayListLegumes());
-        arrayLists.put(setArrayListNuts(), getArrayListNuts());
-        arrayLists.put(setArrayListSeeds(), getArrayListSeeds());
-        arrayLists.put(setArrayListCrustaceans(), getArrayListCrustaceans());
-        arrayLists.put(setArrayListMollusk(), getArrayListMollusk());
-        arrayLists.put(setArrayListSpice(), getArrayListSpice());
-        arrayLists.put(setArrayListVegetables(), getArrayListVegetables());
-        arrayLists.put(setArrayListNightshade(), getArrayListNightshade());
-        arrayLists.put(setArrayListPeppers(), getArrayListPeppers());
-        arrayLists.put(setArrayListMeat(), getArrayListMeat());
-        for (ArrayList<Integer> pictureIngredients : arrayLists.values()) {
+        TreeMap<Integer, ArrayList<Integer>> treeMap = new TreeMap<>();
+        treeMap.put(setArrayListCitrus(), getArrayListCitrus());
+        treeMap.put(setArrayListDairy(), getArrayListDairy());
+        treeMap.put(setArrayListFish(), getArrayListFish());
+        treeMap.put(setArrayListFruit(), getArrayListFruit());
+        treeMap.put(setArrayListGluten(), getArrayListGluten());
+        treeMap.put(setArrayListLegumes(), getArrayListLegumes());
+        treeMap.put(setArrayListNuts(), getArrayListNuts());
+        treeMap.put(setArrayListSeeds(), getArrayListSeeds());
+        treeMap.put(setArrayListCrustaceans(), getArrayListCrustaceans());
+        treeMap.put(setArrayListMollusk(), getArrayListMollusk());
+        treeMap.put(setArrayListSpice(), getArrayListSpice());
+        treeMap.put(setArrayListVegetables(), getArrayListVegetables());
+        treeMap.put(setArrayListNightshade(), getArrayListNightshade());
+        treeMap.put(setArrayListPeppers(), getArrayListPeppers());
+        treeMap.put(setArrayListMeat(), getArrayListMeat());
+        for (ArrayList<Integer> pictureIngredients : treeMap.values()) {
             sort(pictureIngredients);
         }
-        return arrayLists;
+        for (Integer integer : treeMap.keySet()) {
+            Log.d(TAG, "getMyAllergies: "+ integer+ " : "+ context.getString(integer));
+        }
+        return treeMap;
     }
 
 

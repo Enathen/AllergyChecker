@@ -1,18 +1,7 @@
 <resources>
-    <string name="app_name">Allergy Checker</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_pager_indicator">SKIP</string>
-    <string name="title_activity_takeoff">App Takes off here</string>
-    <string name="ok">OK</string>
 
-
-    <string name="permission_camera_rationale">Toegang tot de camera is nodig voor detectie</string>
-    <string name="no_camera_permission">Deze applicatie kan niet worden uitgevoerd omdat deze niet de
-        camera toestemming. De applicatie zal nu afsluiten.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 
@@ -122,33 +111,8 @@
     <string name="fish">Vis</string>
     <string name="milk">Melk</string>
     <string name="seeds">Zaden</string>
-    <string name="deleteHistory">Geschiedenis verwijderen</string>
-    <string name="scanPhotos">Nog geen geschiedenis!</string>
 
 
-    <string name="language">Taal</string>
-    <string name="languageFrom">vertalen vanuit</string>
-    <string name="languageGeneral">Algemene taal</string>
-    <string name="startPageHeader">Tik hieronder om tekst te scannen</string>
-    <string name="definitelyContained">Absoluut bevat</string>
-    <string name="history">Geschiedenis</string>
-    <string name="statistics">Statistieken</string>
-    <string name="allergies">Allergieën</string>
-    <string name="dontUse">Niet gebruiken!</string>
-    <string name="scannedTextBelow">Gescande tekst hieronder:</string>
-    <string name="youCanUse">Kan worden gebruikt!</string>
-    <string name="allergy">Allergie:</string>
-    <string name="contained">Vervat</string>
-    <string name="times">keer</string>
-    <string name="probablyContained">Waarschijnlijk bevat</string>
-    <string name="fromWord">van woord:</string>
-    <string name="myAllergies">Mijn allergieën</string>
-    <string name="share">Delen</string>
-    <string name="send">Stuur een vertaling</string>
-    <string name="mustBeInEnglish">Tekst moet in het Engels of Zweeds zijn geschreven! Bedankt!</string>
-    <string name="sendTipsFrom">Waar wil je tips sturen?</string>
-    <string name="welcomeMessageInvite">Keep your allergies in Check, With Allergy Checker!</string>
-    <string name="time">Tijd</string>
     <string name="buckwheat">Boekweit</string>
     <string name="mustardSeed">Mosterdzaad</string>
     <string name="poppySeed">Maanzaad</string>
@@ -156,17 +120,7 @@
     <string name="sunflowerSeed">Zonnebloemzaad</string>
     <string name="fruit">Fruit</string>
     <string name="vegetables">Groenten</string>
-    <string name="cannotUseCamera">Kan de camera niet gebruiken zonder toestemming!</string>
-    <string name="varning">Waarschuwing!</string>
-    <string name="thisAppOnlySave">Als er geen toestemming
-        wordt gegeven, werkt deze app niet zoals bedoeld. Onthoud dat
-        het enige dat wordt opgeslagen de tekst is. Als u geen
-        toestemming geeft, moet de toepassing mogelijk opnieuw
-        worden geïnstalleerd om te werken! Fijne dag!</string>
 
-
-    <string name="mightContainOther">Dit is slechts een richtlijn! En kan andere allergenen bevatten</string>
-    <string name="mightContainAllergies">Dit is slechts een richtlijn! En kan allergenen bevatten</string>
 
     <string name="vegetarian">Vegetarian</string>
     <string name="vegan">Vegan</string>
@@ -204,21 +158,6 @@
     <string name="polloVegetarian">Pollo Vegetarian</string>
     <string name="pescoVegetarian">Pesco Vegetarian</string>
     <string name="chicken">Kip, Kuiken</string>
-    <string name="areYouSure">Weet u zeker dat u wilt verwijderen?</string>
-    <string name="yes">Ja</string>
-    <string name="no">Nee</string>
-    <string name="flashon">Flash On</string>
-    <string name="cancel">Annuleren</string>
-    <string name="inputIngredients">invoer ingrediënten</string>
-    <string name="rate">Beoordeel</string>
-    <string name="pressMe">druk op me\n om door te gaan!</string>
-    <string name="firstIntro">Bij het scannen van tekst met de camera. Tekstvakken zullen de tekst behandelen.
-         Als u op een tekstvak tikt, analyseert de app alle tekst in de tekstkaders die zichtbaar zijn op het scherm en tekstvakken die van tevoren zijn opgeslagen.
-         Een goed voorbeeld van hoe de tekstvakken eruit moeten zien, is die hierboven.</string>
-    <string name="secondIntro">Als u de tekst vindt die u slecht scant, houdt u uw vinger ingedrukt om alle gescande tekst te verwijderen.</string>
-    <string name="thirdIntro">Tik niet op de tekstvakken wanneer de tekstvakken op deze manier verschijnen
-        omdat het slechts een klein percentage van de volledige tekst zal scannen.</string>
-    <string name="tutorial">Zelfstudie</string>
     <string name="anis">Anis</string>
     <string name="coriander">Koriander</string>
     <string name="cumin">Komijn</string>
@@ -267,63 +206,15 @@
     <string name="pepsin">Pepsin</string>
 
     <string name="halal">Halal</string>
-    <string name="start">Startpagina</string>
-    <string name="holdFor">Hold voor meer informatie</string>
-    <string name="about">Over</string>
-    <string name="helpTranslate">Helpen vertalen</string>
-    <string name="onlyFillChanges">Vul alleen die in die je verandert, laat anderen leeg! Bedankt Helper!</string>
-    <string name="uncheckAll">Verwijder alles</string>
-    <string name="checkAll">Controleer alles</string>
-    <string name="delete">Verwijderen</string>
     <string name="spice">Specerijen</string>
     <string name="butter">Boter</string>
     <string name="casein">Caseïne</string>
     <string name="yoghurt">Yoghurt</string>
     <string name="custard">Vla</string>
     <string name="cream">Room</string>
-    <string name="write">Schrijven</string>
-    <string name="useflash">Flits Aan</string>
-    <string name="useNoFlash">Flits uit</string>
-    <string name="SharingIsCaring">Sharing is caring</string>
-    <string name="myPreference">Mijn voorkeuren</string>
-    <string name="showAllergies">Toon allergieën</string>
-    <string name="allergyAgianst">Allergisch tegen</string>
     <string name="lactose">Lactose</string>
     <string name="cashew">Cashewnoten, Cashewnoot</string>
-    <string name="english">Engels</string>
-    <string name="swedish">Zweeds</string>
-    <string name="spanish">Spaans</string>
-    <string name="norway">Noors</string>
-    <string name="denmark">Deens</string>
-    <string name="finnish">Fins</string>
-    <string name="german">Duitse</string>
-    <string name="netherlands">Nederlands</string>
-    <string name="french">Frans</string>
-    <string name="header_subscriptions">abonnementen</string>
-    <string name="noAllergies">Geen allergieën geselecteerd</string>
-    <string name="holdCamera">Houd de camera ingedrukt om meer opties te openen.</string>
-    <string name="foundABug">Een bug gevonden? Verzend tips!</string>
-    <string name="greatApp">Vond je deze app nuttig? Beoordeel het!</string>
-    <string name="shareWithFriend">Vond je deze app nuttig? Deel het met een vriend!</string>
-    <string name="wonderfulDay">Fijne dag!</string>
-    <string name="holdHistory">Houd de datum in de geschiedenis ingedrukt om meer informatie te bekijken</string>
-    <string name="foundBadTranslation">Slechte vertaling gevonden? Help het vertalen!</string>
-    <string name="advancedSearch">Niet-gefilterd zoeken</string>
-    <string name="regularSearch">Gefilterd zoeken</string>
-    <string name="italian">Italiaans</string>
-    <string name="portuguese">Portugese</string>
-    <string name="polish">Poolse</string>
-    <string name="pleaseCheckAllergies">Controleer of uw allergieën en voorkeur correct zijn!</string>
-    <string name="slide3">Als je de cameraknop ingedrukt houdt, krijg je vier nieuwe opties.</string>
-    <string name="advancedSearchis">gefilterd zoeken verwijdert substrings van woorden: bijvoorbeeld pin is substring van pinda</string>
-    <string name="unfilteredSearchIs">Ongefilterd zoeken voegt substrings van woorden toe: zo is bijvoorbeeld stro een substring van aardbei</string>
     <string name="shrimp">Garnalen</string>
-    <string name="eNumbers">E nummers</string>
-    <string name="downloadOfTextScannerNotComplete">De tekstherkenner is nog niet klaar met downloaden. Dit kan helaas enkele uren duren op sommige telefoons. Zorg ervoor dat u verbonden bent met internet en dat u 10 MB vrije ruimte heeft.</string>
-    <string name="sendTips">Stuur tips / bugs</string>
-    <string name="useFocus">Autofocus Aan</string>
-    <string name="useNoFocus">Autofocus Uit</string>
-    <string name="timeSleep">Slaapcamera</string>
 
     <string name="panulirus">Panulirus</string>
     <string name="mollusc">Weekdieren</string>
@@ -341,5 +232,4 @@
     <string name="crustaceans">Schaaldieren</string>
     <string name="oat">haver</string>
     <string name="onion">Ui</string>
-    <string name="noLanguageSelected">Geen talen geselecteerd</string>
 </resources>

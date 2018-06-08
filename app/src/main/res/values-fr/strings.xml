@@ -1,18 +1,7 @@
 <resources>
-    <string name="app_name">Allergy Checker</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_pager_indicator">SKIP</string>
-    <string name="title_activity_takeoff">App Takes off here</string>
-    <string name="ok">OK</string>
 
-
-    <string name="permission_camera_rationale">L\'accès à la caméra est nécessaire pour la détection</string>
-    <string name="no_camera_permission">Cette application ne peut pas s\'exécuter car elle n\'a pas le
-         autorisation de caméra. L\'application va maintenant quitter.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 
@@ -123,33 +112,8 @@
     <string name="fish">Poisson</string>
     <string name="milk">Lait</string>
     <string name="seeds">Graines</string>
-    <string name="deleteHistory">Effacer l\'historique</string>
-    <string name="scanPhotos">Pas encore d\'histoire!</string>
 
 
-    <string name="language">La langue</string>
-    <string name="languageFrom">Traduit depuis</string>
-    <string name="languageGeneral">Langue générale</string>
-    <string name="startPageHeader">Appuyez ci-dessous pour scanner le texte</string>
-    <string name="definitelyContained">Définitivement contenu</string>
-    <string name="history">Histoire</string>
-    <string name="statistics">Statistiques</string>
-    <string name="allergies">Allergies</string>
-    <string name="dontUse">Ne pas utiliser</string>
-    <string name="scannedTextBelow">Texte numérisé ci-dessous:</string>
-    <string name="youCanUse">Peut être utilisé!</string>
-    <string name="allergy">Allergie:</string>
-    <string name="contained">Contenu</string>
-    <string name="times">Fois</string>
-    <string name="probablyContained">Probablement contenu</string>
-    <string name="fromWord">du mot:</string>
-    <string name="myAllergies">Mes allergies</string>
-    <string name="share">Partager</string>
-    <string name="send">Envoyer des astuces</string>
-    <string name="mustBeInEnglish">Le texte doit être écrit en anglais ou en suédois! Merci!</string>
-    <string name="sendTipsFrom">D\'où voulez-vous envoyer des conseils?</string>
-    <string name="welcomeMessageInvite">Keep your allergies in Check, With Allergy Checker!</string>
-    <string name="time">Temps</string>
     <string name="buckwheat">Sarrasin</string>
     <string name="mustardSeed">Graine de moutarde</string>
     <string name="poppySeed">Graine de pavot</string>
@@ -157,16 +121,7 @@
     <string name="sunflowerSeed">graines de tournesol</string>
     <string name="fruit">Fruit</string>
     <string name="vegetables">Légume</string>
-    <string name="cannotUseCamera">Impossible d\'utiliser l\'appareil photo sans autorisation!</string>
-    <string name="varning">Attention!</string>
-    <string name="thisAppOnlySave">Si la permission n\'est pas donnée, cette application ne fonctionnera
-        pas comme prévu. Rappelez-vous que la seule chose qui vous sauvera est le texte. Si vous ne donnez
-        pas la permission, il se peut que l\'application doive être réinstallée pour fonctionner!
-        Passez une bonne journée!</string>
 
-
-    <string name="mightContainOther">Ceci est seulement une ligne directrice! Et pourrait contenir d\'autres allergènes</string>
-    <string name="mightContainAllergies">Ceci est seulement une ligne directrice! Et pourrait contenir des allergènes</string>
 
     <string name="vegetarian">Vegetarian</string>
     <string name="vegan">Vegan</string>
@@ -204,21 +159,6 @@
     <string name="polloVegetarian">Pollo Vegetarian</string>
     <string name="pescoVegetarian">Pesco Vegetarian</string>
     <string name="chicken">Poulet</string>
-    <string name="areYouSure">Êtes-vous sûr de vouloir supprimer?</string>
-    <string name="yes">Oui</string>
-    <string name="no">Non</string>
-    <string name="flashon">Flash activé</string>
-    <string name="cancel">Annuler</string>
-    <string name="inputIngredients">Ingrédients d\'entrée</string>
-    <string name="rate">Évaluer</string>
-    <string name="pressMe">Presse moi \npour continuer!</string>
-    <string name="firstIntro">Lors de la numérisation de texte avec l\'appareil photo. Les zones de texte couvriront le texte.
-         Si vous appuyez sur une zone de texte, l\'application analyse tout le texte dans les zones de texte affichables à l'écran et les zones de texte enregistrées précédemment.
-         Un bon exemple à quoi les boîtes de texte devraient ressembler est celui ci-dessus.</string>
-    <string name="secondIntro">Si le texte que vous numérisez est incorrect, maintenez votre doigt enfoncé pour supprimer tout le texte numérisé.</string>
-    <string name="thirdIntro">Vous ne devez pas appuyer sur les zones de texte lorsque les zones de texte apparaissent comme ceci
-        car il ne numérisera qu\'un petit pourcentage du texte intégral.</string>
-    <string name="tutorial">Tutoriel</string>
     <string name="anis">Anis</string>
     <string name="coriander">Coriandre</string>
     <string name="cumin">Cumin</string>
@@ -269,62 +209,13 @@
     <string name="pepsin">Pepsin</string>
 
     <string name="halal">Halal</string>
-    <string name="start">Page de démarrage</string>
-    <string name="holdFor">Hold pour plus d\'informations</string>
-    <string name="about">A propos de</string>
-    <string name="helpTranslate">Aide à la traduction</string>
-    <string name="onlyFillChanges">Remplissez seulement ceux que vous changez, laissez les autres vides! Merci Helper!</string>
-    <string name="uncheckAll">Décocher tout</string>
-    <string name="checkAll">Vérifie tout</string>
-    <string name="delete">Effacer</string>
     <string name="spice">Épices</string>
     <string name="butter">Beurre</string>
     <string name="casein">Caséine</string>
     <string name="yoghurt">Yaourt</string>
     <string name="custard">Crème</string>
     <string name="cream">Crème</string>
-    <string name="write">Écrire des ingrédients</string>
-    <string name="useflash">Flash Sur</string>
-    <string name="useNoFlash">Flash Désactivé</string>
-    <string name="SharingIsCaring">Sharing is caring</string>
-    <string name="myPreference">Mes préférences</string>
-    <string name="showAllergies">Afficher les allergies</string>
-    <string name="allergyAgianst">Allergique contre</string>
     <string name="lactose">Lactose</string>
-
-    <string name="english">Anglais</string>
-    <string name="swedish">Suédois</string>
-    <string name="spanish">Espanol</string>
-    <string name="norway">Norvégien</string>
-    <string name="denmark">Danois</string>
-    <string name="finnish">Finlandais</string>
-    <string name="french">français</string>
-    <string name="german">Allemand</string>
-    <string name="netherlands">Néerlandais</string>
-    <string name="header_subscriptions">Abonnements</string>
-    <string name="noAllergies">Aucune allergie sélectionnée</string>
-    <string name="holdCamera">Tenez l\'appareil photo enfoncé pour ouvrir plus d\'options.</string>
-    <string name="foundABug">Trouvé un bug? Envoyez des astuces!</string>
-    <string name="greatApp">Vous avez trouvé cette application utile? Notez le!</string>
-    <string name="shareWithFriend">Vous avez trouvé cette application utile? Partagez le avec un ami!</string>
-    <string name="wonderfulDay">Bonne journée!</string>
-    <string name="holdHistory">Dans l\'onglet Historique, appuyez sur la date pour afficher plus d\'informations</string>
-    <string name="foundBadTranslation">Mauvaise traduction trouvée? Aide le traduire!</string>
-    <string name="advancedSearch">Faire une recherche non filtrée</string>
-    <string name="regularSearch">Faire une recherche filtrée</string>
-    <string name="italian">Italien</string>
-    <string name="portuguese">Portugaise</string>
-    <string name="polish">Polonaise</string>
-    <string name="pleaseCheckAllergies">S\'il vous plaît vérifiez que vos allergies et préférences sont correctes!</string>
-    <string name="slide3">Maintenez enfoncé le bouton de l\'appareil photo pour afficher quatre nouvelles options.</string>
-    <string name="advancedSearchis">la recherche filtrée supprime les sous-chaînes de mots: par exemple, le caca est la sous-chaîne de la cacahuète</string>
-    <string name="unfilteredSearchIs">La recherche non filtrée ajoute des sous-chaînes de mots: par exemple, la frai est une sous-chaîne de fraise</string>
-    <string name="eNumbers">Numéros e</string>
-    <string name="downloadOfTextScannerNotComplete">Le logiciel de reconnaissance de texte n\'a pas encore été téléchargé. Ceci, malheureusement, pourrait prendre quelques heures sur certains téléphones. Assurez-vous que vous êtes connecté à Internet et disposez d\'un espace libre de 10 Mo.</string>
-    <string name="sendTips">Envoyer des astuces / bugs</string>
-    <string name="useNoFocus">Autofocus Désactivé</string>
-    <string name="useFocus">Autofocus Sur</string>
-    <string name="timeSleep">Caméra de sommeil</string>
 
 
     <string name="panulirus">Panulirus</string>
@@ -343,5 +234,4 @@
     <string name="crustaceans">Crustacés</string>
     <string name="oat">Avoine</string>
     <string name="onion">Oignon</string>
-    <string name="noLanguageSelected">Aucune langue sélectionnée</string>
 </resources>

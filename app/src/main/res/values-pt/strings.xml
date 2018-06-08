@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Allergy Checker</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_pager_indicator">SKIP</string>
-    <string name="title_activity_takeoff">App Takes off here</string>
-    <string name="ok">OK</string>
-
-    <string name="permission_camera_rationale">O acesso à câmera é necessário para detecção</string>
-    <string name="no_camera_permission">Este aplicativo não pode ser executado porque não possui permissão da câmera. O aplicativo agora vai sair.</string>
 
     <string name="nuts">Nozes, Noz</string>
     <string name="almond">Amêndoas</string>
@@ -118,33 +108,8 @@
     <string name="fish">Peixe</string>
     <string name="milk">Leite</string>
     <string name="seeds">Sementes</string>
-    <string name="deleteHistory">Apagar histórico</string>
-    <string name="scanPhotos">Ainda não há histórico!</string>
 
 
-    <string name="language">Língua</string>
-    <string name="languageFrom">Traduzir de</string>
-    <string name="languageGeneral">Idioma Geral</string>
-    <string name="startPageHeader">Toque abaixo para verificar o texto</string>
-    <string name="definitelyContained">Definitivamente contido</string>
-    <string name="history">História</string>
-    <string name="statistics">Estatisticas</string>
-    <string name="allergies">Alergias</string>
-    <string name="dontUse">Não use!</string>
-    <string name="scannedTextBelow">Texto escaneado abaixo:</string>
-    <string name="youCanUse">Pode ser usado!</string>
-    <string name="allergy">Alergia:</string>
-    <string name="contained">Contido</string>
-    <string name="times">vezes</string>
-    <string name="probablyContained">Provavelmente contido</string>
-    <string name="fromWord">Da palavra:</string>
-    <string name="myAllergies">Minhas alergias</string>
-    <string name="share">Compartilhar</string>
-    <string name="send">Enviar tradução</string>
-    <string name="mustBeInEnglish">O texto deve ser escrito em inglês ou sueco! Obrigado!</string>
-    <string name="sendTipsFrom">De onde você deseja enviar dicas?</string>
-    <string name="welcomeMessageInvite">Keep your allergies in Check, With Allergy Checker!</string>
-    <string name="time">vez</string>
     <string name="buckwheat">Trigo mourisco</string>
     <string name="mustardSeed">Semente de mostarda</string>
     <string name="poppySeed">Semente de papoila</string>
@@ -152,13 +117,7 @@
     <string name="sunflowerSeed">Semente de girassol</string>
     <string name="fruit">Fruta</string>
     <string name="vegetables">Legumes</string>
-    <string name="cannotUseCamera">Não é possível usar a câmera sem permissão!</string>
-    <string name="varning">Atenção!</string>
-    <string name="thisAppOnlySave">Se a permissão não for dada, este aplicativo não funcionará como pretendido. Lembre-se que a única coisa que está sendo salva é o texto. Se você não dá permissão, o aplicativo pode precisar ser reinstalado para funcionar! Tenha um dia fantástico!</string>
 
-
-    <string name="mightContainOther">Esta é apenas uma orientação! E pode conter outros alérgenos</string>
-    <string name="mightContainAllergies">Esta é apenas uma orientação! E pode conter alérgenos</string>
 
     <string name="vegetarian">Vegetariano</string>
     <string name="vegan">Vegano</string>
@@ -196,20 +155,6 @@
     <string name="polloVegetarian">Pollo Vegetarian</string>
     <string name="pescoVegetarian">Pesco Vegetariano</string>
     <string name="chicken">Frango</string>
-    <string name="areYouSure">Tem certeza de que deseja excluir?</string>
-    <string name="yes">Sim</string>
-    <string name="no">Não</string>
-    <string name="flashon">Flash ligado</string>
-    <string name="cancel">Cancelar</string>
-    <string name="inputIngredients">Inserir ingredientes</string>
-    <string name="rate">Taxa</string>
-    <string name="pressMe">Me pressione \ n para continuar!</string>
-    <string name="firstIntro">Ao digitalizar texto com a câmera. Caixas de texto irão cobrir o texto.
-         Tocar em uma caixa de texto fará com que o aplicativo analise todo o texto nas caixas de texto visíveis na tela e as caixas de texto que estão sendo salvas anteriormente.
-         Um bom exemplo de como as caixas de texto devem ficar é o acima.</string>
-    <string name="secondIntro">Se você encontrar o texto que digitalizou incorretamente, mantenha o dedo pressionado para remover todo o texto digitalizado.</string>
-    <string name="thirdIntro">Você não deve tocar as caixas de texto quando as caixas de texto aparecerem assim, uma vez que apenas digitalizará uma pequena porcentagem do texto completo.</string>
-    <string name="tutorial">Tutorial</string>
     <string name="anis">Anis</string>
     <string name="coriander">Coentro</string>
     <string name="cumin">Cominho</string>
@@ -257,67 +202,15 @@
     <string name="pepsin">Pepsina</string>
 
     <string name="halal">Halal</string>
-    <string name="start">Página inicial</string>
-    <string name="holdFor">Aguarde mais informações</string>
-    <string name="about">Sobre</string>
-    <string name="helpTranslate">Ajuda a traduzir</string>
-    <string name="onlyFillChanges">Apenas preencha os que você muda, deixe os outros vazios! Obrigado ajudante!</string>
 
-    <string name="uncheckAll">Desmarcar todos</string>
-    <string name="checkAll">Verificar tudo</string>
-    <string name="delete">Excluir</string>
     <string name="spice">Especiarias</string>
     <string name="butter">manteiga</string>
     <string name="casein">Caseína</string>
     <string name="yoghurt">Iogurte</string>
     <string name="custard">Quindim</string>
     <string name="cream">Creme</string>
-    <string name="write">Escreva</string>
-    <string name="useflash">Flash Ligado</string>
-    <string name="useNoFlash">Flash Desligado</string>
-    <string name="SharingIsCaring">Compartilhar é se importar</string>
-    <string name="myPreference">Minhas preferências</string>
-    <string name="showAllergies">Mostrar alergias</string>
-    <string name="allergyAgianst">al·lèrgic en contra</string>
     <string name="lactose">Lactose</string>
 
-    <string name="english">Inglês</string>
-    <string name="swedish">Sueco</string>
-    <string name="spanish">Espanhol</string>
-    <string name="norway">Norueguês</string>
-    <string name="denmark">Dinamarquês</string>
-    <string name="finnish">Finlandês</string>
-    <string name="german">Alemão</string>
-    <string name="french">Francês</string>
-    <string name="netherlands">Holandês</string>
-    <string name="italian">Italiano</string>
-
-
-    <string name="header_subscriptions">Assinaturas</string>
-
-
-    <string name="noAllergies">Nenhuma alergia selecionada</string>
-    <string name="holdCamera">Mantenha a câmera pressionada para abrir mais opções.</string>
-    <string name="foundABug">Encontrou um bug? Envie dicas!</string>
-    <string name="greatApp">Encontrou este aplicativo útil? Avalie!</string>
-    <string name="shareWithFriend">Encontrou este aplicativo útil? Compartilhe isso com um amigo!</string>
-    <string name="wonderfulDay">Tenha um dia maravilhoso!</string>
-    <string name="holdHistory">Na guia Histórico mantenha pressionada a data para ver mais informações</string>
-    <string name="foundBadTranslation">Encontrou má tradução? Ajude a traduzi-lo!</string>
-    <string name="advancedSearch">Fazer pesquisa filtrada</string>
-    <string name="regularSearch">Pesquisa não filtrada</string>
-    <string name="portuguese">Portugues</string>
-    <string name="polish">Polonesa</string>
-    <string name="pleaseCheckAllergies">Verifique se suas alergias e preferências estão corretas!</string>
-    <string name="slide3">Mantendo pressionado o botão da câmera traz quatro novas opções.</string>
-    <string name="unfilteredSearchIs">Pesquisa não filtrada adiciona substrings de palavras: por exemplo, a mora é substring de morango</string>
-    <string name="advancedSearchis">pesquisa filtrada remove substrings de palavras: por exemplo, amend é substring de amendoim</string>
-    <string name="eNumbers">Número E</string>
-    <string name="downloadOfTextScannerNotComplete">O reconhecedor de texto não foi concluído o download. Isso, infelizmente, pode demorar algumas horas em alguns telefones. Certifique-se de que está conectado à Internet e tem espaço livre de 10mb.</string>
-    <string name="sendTips">Envie dicas / insetos</string>
-    <string name="useFocus">Autofocus Fam</string>
-    <string name="useNoFocus">Autofocus Fora</string>
-    <string name="timeSleep">Câmera de sono</string>
 
     <string name="panulirus">Panulirus</string>
     <string name="mollusc">Mollusco</string>
@@ -335,5 +228,4 @@
     <string name="crustaceans">Crustáceos</string>
     <string name="oat">Aveia</string>
     <string name="onion">Cebola</string>
-    <string name="noLanguageSelected">Nenhum idioma selecionado</string>
 </resources>

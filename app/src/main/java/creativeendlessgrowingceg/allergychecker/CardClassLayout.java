@@ -110,6 +110,7 @@ public class CardClassLayout {
             this.context = context;
             linearLayout.setVisibility(View.VISIBLE);
             setup(linearLayout, text, drawable, color);
+            setup(linearLayout, text, drawable, color);
 
         }
 
@@ -163,11 +164,16 @@ public class CardClassLayout {
 
         public CardClassLayoutBuilder optionalLinearSizeHorizontalHeight(int size) {
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) linearLayoutHorizontal.getLayoutParams();
-            params.height = size;
+            params.height =convertDpTopx(size);
             linearLayoutHorizontal.setLayoutParams(params);
 
             return this;
         }
+        public int convertDpTopx(float dp){
+            final float scale = context.getResources().getDisplayMetrics().density;
+            return (int) (dp * scale + 0.5f);
+        }
+
 
         public CardClassLayoutBuilder optionalLinearSizeVerticalWidth(int size) {
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) linearLayoutVertical.getLayoutParams();

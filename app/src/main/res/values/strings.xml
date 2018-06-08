@@ -1,15 +1,15 @@
 <resources>
     <!--Untranslatable-->
-    <string name="app_name">Allergy Checker</string>
+    <string name="app_name" translatable="false">Allergy Checker</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_pager_indicator">SKIP</string>
-    <string name="title_activity_takeoff">App Takes off here</string>
-    <string name="ok">OK</string>
-    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
-    <string name="no_camera_permission">This application cannot run because it does not have the
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="hello_pager_indicator" translatable="false">SKIP</string>
+    <string name="title_activity_takeoff" translatable="false">App Takes off here</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="permission_camera_rationale" translatable="false">Access to the camera is needed for detection</string>
+    <string name="no_camera_permission" translatable="false">This application cannot run because it does not have the
         camera permission.  The application will now exit.</string>
     <string name="low_storage_error" translatable="false">Ocr dependencies cannot be downloaded due to low device storage</string>
     <string name="alert_already_purchased" translatable="false">Premium is already purchased</string>
@@ -22,7 +22,7 @@
     <string name="button_buy" translatable="false">Buy</string>
     <string name="button_own" translatable="false">Own</string>
     <string name="button_change" translatable="false">Change</string>
-    <string name="header_subscriptions">Subscriptions</string>
+    <string name="header_subscriptions" translatable="false">Subscriptions</string>
     <string name="content_description_app_loading_image" translatable="false">App loading image</string>
 
 
@@ -277,18 +277,18 @@
 
 
     <!--Languages-->
-    <string name="english">English</string>
-    <string name="swedish">Swedish</string>
-    <string name="spanish">Spanish</string>
-    <string name="norway">Norwegian</string>
-    <string name="denmark">Danish</string>
-    <string name="finnish">Finnish</string>
-    <string name="german">German</string>
-    <string name="french">French</string>
-    <string name="netherlands">Dutch</string>
-    <string name="italian">Italian</string>
-    <string name="portuguese">Portuguese</string>
-    <string name="polish">Polish</string>
+    <string name="english" translatable="false">English</string>
+    <string name="swedish" translatable="false">Swedish</string>
+    <string name="spanish" translatable="false">Spanish</string>
+    <string name="norway" translatable="false">Norwegian</string>
+    <string name="denmark" translatable="false">Danish</string>
+    <string name="finnish" translatable="false">Finnish</string>
+    <string name="german" translatable="false">German</string>
+    <string name="french" translatable="false">French</string>
+    <string name="netherlands" translatable="false">Dutch</string>
+    <string name="italian" translatable="false">Italian</string>
+    <string name="portuguese" translatable="false">Portuguese</string>
+    <string name="polish" translatable="false">Polish</string>
 
     <!--Static Languages-->
     <string name="staticEnglish" translatable="false">English</string>
@@ -304,25 +304,25 @@
 
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="noAllergies">No allergies selected</string>
-    <string name="holdCamera">Hold camera down to open more options.</string>
-    <string name="foundABug">Found a bug? Send tips!</string>
-    <string name="greatApp">Found this app helpful? Rate it!</string>
-    <string name="shareWithFriend">Found this app helpful? Share it with a friend!</string>
-    <string name="wonderfulDay">Have a wonderful day!</string>
-    <string name="holdHistory">In History tab hold down date to view more information</string>
-    <string name="foundBadTranslation">Found bad translation? Help translate it!</string>
-    <string name="advancedSearch">Do unfiltered search</string>
-    <string name="regularSearch">Do filtered search</string>
-    <string name="pleaseCheckAllergies">Please check that your allergies and preference are correct!</string>
-    <string name="slide3">Holding down the camera button brings up four new options.</string>
-    <string name="advancedSearchis">filtered search removes substrings of words: for instance, pea is a substring of peanut</string>
-    <string name="unfilteredSearchIs">Unfiltered search adds substrings of words: for instance, straw is a substring of strawberry</string>
-    <string name="start">Start Page</string>
-    <string name="holdFor">Hold for More Info</string>
-    <string name="about">About</string>
-    <string name="helpTranslate">Help Translating</string>
-    <string name="onlyFillChanges">Only fill those you change, leave others empty! Thanks Helper!</string>
+    <string name="noAllergies" translatable="false">No allergies selected</string>
+    <string name="holdCamera" translatable="false">Hold camera down to open more options.</string>
+    <string name="foundABug" translatable="false">Found a bug? Send tips!</string>
+    <string name="greatApp" translatable="false">Found this app helpful? Rate it!</string>
+    <string name="shareWithFriend" translatable="false">Found this app helpful? Share it with a friend!</string>
+    <string name="wonderfulDay" translatable="false">Have a wonderful day!</string>
+    <string name="holdHistory" translatable="false">In History tab hold down date to view more information</string>
+    <string name="foundBadTranslation" translatable="false">Found bad translation? Help translate it!</string>
+    <string name="advancedSearch" translatable="false">Do unfiltered search</string>
+    <string name="regularSearch" translatable="false">Do filtered search</string>
+    <string name="pleaseCheckAllergies" translatable="false">Please check that your allergies and preference are correct!</string>
+    <string name="slide3" translatable="false">Holding down the camera button brings up four new options.</string>
+    <string name="advancedSearchis" translatable="false">filtered search removes substrings of words: for instance, pea is a substring of peanut</string>
+    <string name="unfilteredSearchIs" translatable="false">Unfiltered search adds substrings of words: for instance, straw is a substring of strawberry</string>
+    <string name="start" translatable="false">Start Page</string>
+    <string name="holdFor" translatable="false">Hold for More Info</string>
+    <string name="about" translatable="false">About</string>
+    <string name="helpTranslate" translatable="false">Help Translating</string>
+    <string name="onlyFillChanges" translatable="false">Only fill those you change, leave others empty! Thanks Helper!</string>
     <string name="specialThanksTo" translatable="false">Special thanks to all Alpha Testers</string>
     <string name="thisappUses" translatable="false">This app uses:</string>
     <string name="FAB" translatable="false">FloatingActionButton by Clans</string>
@@ -333,70 +333,70 @@
     <string name="googleAdMob" translatable="false">Google, Inc. Google AdMob</string>
     <string name="translatedFrom" translatable="false">Translated From</string>
     <string name="nameIfyouWantToBeInHelperList" translatable="false">Name if you want to be in helper translate list</string>
-    <string name="uncheckAll">Uncheck all</string>
-    <string name="checkAll">Check all</string>
-    <string name="delete">Delete</string>
-    <string name="downloadOfTextScannerNotComplete">The text recognizer has not been finished downloading. This, unfortunately, might take a couple of hours on some phones. Make sure you are connected to the internet and have 10mb free space.</string>
-    <string name="sendTips">Send tips / bugs</string>
-    <string name="useFocus">Autofocus On</string>
-    <string name="useNoFocus">Autofocus Off</string>
-    <string name="timeSleep">Sleep camera</string>
-    <string name="write">Write Ingredients</string>
-    <string name="useflash">Flash On</string>
-    <string name="useNoFlash">Flash Off</string>
-    <string name="SharingIsCaring">Sharing is caring</string>
-    <string name="myPreference">My preferences</string>
-    <string name="showAllergies">Show Allergies</string>
-    <string name="allergyAgianst">Allergic Against</string>
-    <string name="cannotUseCamera">Cannot use camera without permission!</string>
-    <string name="varning">Warning!</string>
-    <string name="thisAppOnlySave">If permission is not given, this app will not work as intended. Remember the only thing getting saved is the text. If you don\'t give permission the application might need to be reinstalled to work! Have a fantastic day!</string>
-    <string name="mightContainOther">This is only a guideline! And might contain other allergens</string>
-    <string name="mightContainAllergies">This is only a guideline! And might contain allergens</string>
-    <string name="areYouSure">Are you sure you want to delete?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="flashon">Flash On</string>
-    <string name="cancel">Cancel</string>
-    <string name="inputIngredients">Input ingredients</string>
-    <string name="rate">Rate</string>
-    <string name="pressMe">Press me \nto continue!</string>
-    <string name="firstIntro">When scanning text with the camera. Text boxes will cover the text.
+    <string name="uncheckAll" translatable="false">Uncheck all</string>
+    <string name="checkAll" translatable="false">Check all</string>
+    <string name="delete" translatable="false">Delete</string>
+    <string name="downloadOfTextScannerNotComplete" translatable="false">The text recognizer has not been finished downloading. This, unfortunately, might take a couple of hours on some phones. Make sure you are connected to the internet and have 10mb free space.</string>
+    <string name="sendTips" translatable="false">Send tips / bugs</string>
+    <string name="useFocus" translatable="false">Autofocus On</string>
+    <string name="useNoFocus" translatable="false">Autofocus Off</string>
+    <string name="timeSleep" translatable="false">Sleep camera</string>
+    <string name="write" translatable="false">Write Ingredients</string>
+    <string name="useflash" translatable="false">Flash On</string>
+    <string name="useNoFlash" translatable="false">Flash Off</string>
+    <string name="SharingIsCaring" translatable="false">Sharing is caring</string>
+    <string name="myPreference" translatable="false">My preferences</string>
+    <string name="showAllergies" translatable="false">Show Allergies</string>
+    <string name="allergyAgianst" translatable="false">Allergic Against</string>
+    <string name="cannotUseCamera" translatable="false">Cannot use camera without permission!</string>
+    <string name="varning" translatable="false">Warning!</string>
+    <string name="thisAppOnlySave" translatable="false">If permission is not given, this app will not work as intended. Remember the only thing getting saved is the text. If you don\'t give permission the application might need to be reinstalled to work! Have a fantastic day!</string>
+    <string name="mightContainOther" translatable="false">This is only a guideline! And might contain other allergens</string>
+    <string name="mightContainAllergies" translatable="false">This is only a guideline! And might contain allergens</string>
+    <string name="areYouSure" translatable="false">Are you sure you want to delete?</string>
+    <string name="yes" translatable="false">Yes</string>
+    <string name="no" translatable="false">No</string>
+    <string name="flashon" translatable="false">Flash On</string>
+    <string name="cancel" translatable="false">Cancel</string>
+    <string name="inputIngredients" translatable="false">Input ingredients</string>
+    <string name="rate" translatable="false">Rate</string>
+    <string name="pressMe" translatable="false">Press me \nto continue!</string>
+    <string name="firstIntro" translatable="false">When scanning text with the camera. Text boxes will cover the text.
         Tapping a text box will make the app analyze all text in the text boxes viewable on the screen and text boxes being saved from before.
         A good example how the text boxes should look is the one above.</string>
-    <string name="secondIntro">If you find the text you scanned is bad, hold down your finger to remove all scanned text.</string>
-    <string name="thirdIntro">You should not tap the text boxes when the text boxes appear like this
+    <string name="secondIntro" translatable="false">If you find the text you scanned is bad, hold down your finger to remove all scanned text.</string>
+    <string name="thirdIntro" translatable="false">You should not tap the text boxes when the text boxes appear like this
         since it will only scan a small percentage of the full text.</string>
-    <string name="tutorial">Tutorial</string>
-    <string name="deleteHistory">Delete History</string>
-    <string name="scanPhotos">No history yet!</string>
-    <string name="language">Language</string>
-    <string name="languageFrom">Translate From</string>
-    <string name="languageGeneral">General Language</string>
-    <string name="startPageHeader">Tap below to scan text</string>
-    <string name="definitelyContained">Definitely contained</string>
-    <string name="history">History</string>
-    <string name="statistics">Statistics</string>
-    <string name="allergies">Allergies</string>
-    <string name="dontUse">Don\'t Use!</string>
-    <string name="scannedTextBelow">Scanned text below:</string>
-    <string name="youCanUse">Can be used!</string>
-    <string name="allergy">Allergy:</string>
-    <string name="contained">Contained</string>
-    <string name="times">times</string>
-    <string name="probablyContained">Probably contained</string>
-    <string name="fromWord">from word:</string>
-    <string name="myAllergies">My allergies</string>
-    <string name="share">Share</string>
-    <string name="send">Send Translation</string>
-    <string name="mustBeInEnglish">Text must be written in English or Swedish! Thanks!</string>
-    <string name="sendTipsFrom">Where you want to send tips from?</string>
-    <string name="welcomeMessageInvite">Keep your allergies in Check, With Allergy Checker!</string>
-    <string name="time">time</string>
+    <string name="tutorial" translatable="false">Tutorial</string>
+    <string name="deleteHistory" translatable="false">Delete History</string>
+    <string name="scanPhotos" translatable="false">No history yet!</string>
+    <string name="language" translatable="false">Language</string>
+    <string name="languageFrom" translatable="false">Translate From</string>
+    <string name="languageGeneral" translatable="false">General Language</string>
+    <string name="startPageHeader" translatable="false">Tap below to scan text</string>
+    <string name="definitelyContained" translatable="false">Definitely contained</string>
+    <string name="history" translatable="false">History</string>
+    <string name="statistics" translatable="false">Statistics</string>
+    <string name="allergies" translatable="false">Allergies</string>
+    <string name="dontUse" translatable="false">Don\'t Use!</string>
+    <string name="scannedTextBelow" translatable="false">Scanned text below:</string>
+    <string name="youCanUse" translatable="false">Can be used!</string>
+    <string name="allergy" translatable="false">Allergy:</string>
+    <string name="contained" translatable="false">Contained</string>
+    <string name="times" translatable="false">times</string>
+    <string name="probablyContained" translatable="false">Probably contained</string>
+    <string name="fromWord" translatable="false">from word:</string>
+    <string name="myAllergies" translatable="false">My allergies</string>
+    <string name="share" translatable="false">Share</string>
+    <string name="send" translatable="false">Send Translation</string>
+    <string name="mustBeInEnglish" translatable="false">Text must be written in English or Swedish! Thanks!</string>
+    <string name="sendTipsFrom" translatable="false">Where you want to send tips from?</string>
+    <string name="welcomeMessageInvite" translatable="false">Keep your allergies in Check, With Allergy Checker!</string>
+    <string name="time" translatable="false">time</string>
 
 
     <!--Enumbers-->
-    <string name="eNumbers">E numbers</string>
+    <string name="eNumbers" translatable="false">E numbers</string>
     <string name="staticPortuguese" translatable="false">Português</string>
     <string name="staticPolish" translatable="false">Polskie</string>
     <string name="E100" translatable="false">Curcumin is a bright yellow chemical produced by some plants. It is the principal curcuminoid of turmeric (Curcuma longa), a member of the ginger family, Zingiberaceae. It is sold as an herbal supplement, cosmetics ingredient, food flavoring, and food coloring.</string>
@@ -905,44 +905,44 @@
     <string name="E1520" translatable="false">It is produced on a large scale and is primarily used in the production of polymers, but also sees use in food processing, and as a process fluid in low temperature heat exchange applications. In the European Union, it has the E-number E1520 for food applications.</string>
     <string name="E1521" translatable="false">PEG is generally considered biologically inert and safe. However, studies of clinical safety are generally based on adults, not children. The FDA has been asked to investigate the possible effects of PEG in laxatives for children. Also, a minority of people are allergic to it. Allergy to PEG is usually discovered after a person has been diagnosed with an allergy to an increasing number of seemingly unrelated products, including processed foods, cosmetics, drugs, and other substances that contain PEG or were manufactured with PEG.</string>
     <string name="E1525" translatable="false">Hydroxyethyl cellulose is a gelling and thickening agent derived from cellulose. It is widely used in cosmetics, cleaning solutions, and other household products. Hydroxyethyl cellulose and methyl cellulose are frequently used with hydrophobic drugs in capsule formulations, to improve the drugs\' dissolution in the gastrointestinal fluids. This process is known as hydrophilization.</string>
-    <string name="noLanguageSelected">No languages selected</string>
-    <string name="instagram" translatable="false">Allergy Checker</string>
-    <string name="title_activity_bottom_nav_drawer">BottomNavDrawer</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="camera">Camera</string>
-    <string name="title_activity_bottom_navigation_name">BottomNavigationName</string>
+    <string name="noLanguageSelected" translatable="false">No languages selected</string>
+    <string name="camera" translatable="false">Camera</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="wordCount" translatable="false">Words scanned</string>
+    <string name="foundAllergiesCount" translatable="false">Found allergies count</string>
+    <string name="scannedCount" translatable="false">Scanned count</string>
+    <string name="flash" translatable="false">Flash</string>
+    <string name="focus" translatable="false">Focus</string>
+    <string name="theme" translatable="false">Color Theme</string>
+    <string name="social" translatable="false">Social</string>
+    <string name="analyzer" translatable="false">Analyzer</string>
+    <string name="warning" translatable="false">Warning</string>
+    <string name="foundAllergies" translatable="false">Found Allergies</string>
+    <string name="foundEnumbers" translatable="false">Found E-Numbers</string>
+    <string name="textScanned" translatable="false">Text Scanned</string>
+    <string name="lastScannedText" translatable="false">Scanning the most recent</string>
+    <string name="noScanned" translatable="false">No text scanned</string>
+    <string name="noAllergiesFound" translatable="false">No Allergies Found</string>
+    <string name="scan" translatable="false">Scan</string>
+    <string name="emptyString" translatable="false">Cannot be empty</string>
+    <string name="timesScanned" translatable="false">Times Scanned</string>
+    <string name="foundAllergiesDividedByTimesScanned" translatable="false">Allergies / Scan</string>
+    <string name="wordsScannedDividedByTimesScanned" translatable="false">Words / Scan</string>
+    <string name="wordsScannedDividedByFoundAllergies" translatable="false">Words / Allergy</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="wordCount">Words scanned</string>
-    <string name="foundAllergiesCount">Found allergies count</string>
-    <string name="scannedCount">Scanned count</string>
-    <string name="flash">Flash</string>
-    <string name="focus">Focus</string>
-    <string name="theme">Color Theme</string>
-    <string name="social">Social</string>
-    <string name="allergyInsta">instagram.com/Allergychecker/</string>
-    <string name="analyzer">Analyzer</string>
-    <string name="warning">Warning</string>
-    <string name="foundAllergies">Found Allergies</string>
-    <string name="foundEnumbers">Found E-Numbers</string>
-    <string name="textScanned">Text Scanned</string>
-    <string name="lastScannedText">Scanning the most recent</string>
-    <string name="noScanned">No text scanned</string>
-    <string name="noAllergiesFound">No Allergies Found</string>
-    <string name="scan">Scan</string>
-    <string name="emptyString">Cannot be empty</string>
-    <string name="defaultTheme">Default Theme</string>
-    <string name="fireTheme">Fire Theme</string>
-    <string name="plainTheme">PlainTheme</string>
-    <string name="experimentalMessage">This app is only experimental, and should be used with caution!</string>
-    <string name="experimentalTitle">Warning</string>
-    <string name="timesScanned">Times Scanned</string>
-    <string name="foundAllergiesDividedByTimesScanned">Allergies / Scan</string>
-    <string name="wordsScannedDividedByTimesScanned">Words / Scan</string>
-    <string name="wordsScannedDividedByFoundAllergies">Words / Allergy</string>
+    <string name="defaultTheme" translatable="false">Default Theme</string>
+    <string name="fireTheme" translatable="false">Fire Theme</string>
+    <string name="instagram" translatable="false">Allergy Checker</string>
+    <string name="title_home" translatable="false">Home</string>
+    <string name="title_dashboard" translatable="false">Dashboard</string>
+    <string name="title_notifications" translatable="false">Notifications</string>
+    <string name="plainTheme" translatable="false">PlainTheme</string>
+    <string name="title_activity_bottom_nav_drawer" translatable="false">BottomNavDrawer</string>
+    <string name="experimentalMessage" translatable="false">This app is only experimental, and should be used with caution!</string>
+    <string name="experimentalTitle" translatable="false">Warning</string>
+    <string name="crengrInsta" translatable="false">instagram.com/creativeendlessgrowing/</string>
+    <string name="allergyInsta" translatable="false">instagram.com/Allergychecker/</string>
+    <string name="title_activity_bottom_navigation_name" translatable="false">BottomNavigationName</string>
 
 
 </resources>

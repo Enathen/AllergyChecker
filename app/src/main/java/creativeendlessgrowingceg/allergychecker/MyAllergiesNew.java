@@ -139,7 +139,7 @@ public class MyAllergiesNew extends Fragment implements SearchView.OnQueryTextLi
 
                             final CardClassLayout cardClassLayout = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(integer), checkAvailablePicture(integer), colorGradientPicker.
                                     ColorGradientPickerPick(myAllergyPreference.size(), atomicInteger.addAndGet(1), getContext())).
-                                    optionalLinearSizeHorizontalHeight(200).optionalBorder(getContext().getColor(R.color.colorCheckBoxColor)).buildCardClassLayout();
+                                    optionalLinearSizeHorizontalHeight(75).optionalBorder(getContext().getColor(R.color.colorCheckBoxColor)).buildCardClassLayout();
 
                             cardClassLayout.getLinearLayoutHorizontal().setOnClickListener(new View.OnClickListener() {
                                 @Override

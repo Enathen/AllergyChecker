@@ -37,7 +37,6 @@ public class Ads {
 
         int anInt = PreferenceManager.getDefaultSharedPreferences(context).getInt(APISharedPreference.interstitial, 0);
         if (anInt > 6) {
-            Log.d(TAG, "showAds: " + anInt);
             loadAds(mInterstitialAd);
             if (mInterstitialAd.isLoaded()) {
                 mInterstitialAd.show();
@@ -45,9 +44,7 @@ public class Ads {
                 PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(APISharedPreference.interstitial, 0).apply();
             }
         } else {
-            Log.d(TAG, "showAds1: " + anInt);
             anInt++;
-            Log.d(TAG, "showAds2: " + anInt);
             PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(APISharedPreference.interstitial, anInt).apply();
         }
     }

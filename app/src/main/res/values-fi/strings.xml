@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Allergy Checker</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_pager_indicator">SKIP</string>
-    <string name="title_activity_takeoff">App Takes off here</string>
-    <string name="ok">OK</string>
 
-    <string name="permission_camera_rationale">Pääsy kameraan tarvitaan tunnistamiseen!</string>
-    <string name="no_camera_permission">Tätä sovellusta ei voi käyttää, koska sillä ei ole
-        kameran lupa. Sovellus poistuu nyt.</string>
     <string name="nuts">Pähkinät, Pähkinä</string>
     <string name="almond">Manteli</string>
     <string name="brazil">Brasilialaiset pähkinät</string>
@@ -118,33 +108,6 @@
     <string name="fish">Kalastaa</string>
     <string name="milk">Maito</string>
     <string name="seeds">Siemenet</string>
-    <string name="deleteHistory">Poista Historien</string>
-    <string name="scanPhotos">Ei vielä historiaa</string>
-
-
-    <string name="language">Kieli</string>
-    <string name="languageFrom">Kääntää</string>
-    <string name="languageGeneral">Yleinen kieli</string>
-    <string name="startPageHeader">Selaa tekstiä painamalla alla</string>
-    <string name="definitelyContained">Ehdottomasti sisältyy</string>
-    <string name="history">Historia</string>
-    <string name="statistics">Tilasto</string>
-    <string name="allergies">Allergiat</string>
-    <string name="dontUse">Älä käytä!</string>
-    <string name="scannedTextBelow">Alla oleva skannattu teksti:</string>
-    <string name="youCanUse">Voidaan käyttää!</string>
-    <string name="allergy">Allergia:</string>
-    <string name="contained">Sisälsi</string>
-    <string name="times">Ajat</string>
-    <string name="probablyContained">luultavasti Sisältyy</string>
-    <string name="fromWord">Sanasta:</string>
-    <string name="myAllergies">Minun allergiat</string>
-    <string name="share">Jaa</string>
-    <string name="send">Lähetä käännös</string>
-    <string name="mustBeInEnglish">Teksti on kirjoitettava englanniksi tai ruotsiksi! Kiitos!</string>
-    <string name="sendTipsFrom">Mistä haluat lähettää vinkkejä?</string>
-    <string name="welcomeMessageInvite">Keep your allergies in Check, With Allergy Checker!</string>
-    <string name="time">kertaa</string>
 
 
     <string name="buckwheat">Tattari</string>
@@ -153,13 +116,6 @@
     <string name="sunflowerSeed">Auringonkukka</string>
     <string name="fruit">Hedelmä</string>
     <string name="vegetables">Vihannekset</string>
-    <string name="cannotUseCamera">Kan inte använda kameran utan din tillåtelse!</string>
-    <string name="varning">Varovaisuus!</string>
-    <string name="thisAppOnlySave">Jos käyttöoikeutta ei myönnetä, sovellus ei toimi oikein.
-        Ainoa tallennettava teksti on teksti. Jos käyttöoikeutta ei myönnetä, sovellus on asennettava uudelleen.
-        Ole hyvä päivä!</string>
-    <string name="mightContainOther">Tämä on vain ohje! Ja saattaa sisältää muita allergioita</string>
-    <string name="mightContainAllergies">Tämä on vain ohje! Ja saattaa sisältää allergioita</string>
     <string name="vegetarian">Vegetarian</string>
     <string name="vegan">Vegan</string>
     <string name="citrus">Sitrushedelmien</string>
@@ -194,21 +150,6 @@
     <string name="polloVegetarian">Pollovegetarian</string>
     <string name="pescoVegetarian">Pescovegetarian</string>
     <string name="chicken">Kana</string>
-    <string name="areYouSure">Haluatko varmasti poistaa kaiken?</string>
-    <string name="yes">Kyllä</string>
-    <string name="no">Ei</string>
-    <string name="flashon">Taskulamppu on päällä</string>
-    <string name="cancel">Peruuttaa</string>
-    <string name="inputIngredients">Kirjoita ainesosia</string>
-    <string name="rate">nopeus</string>
-    <string name="pressMe">Kosketa minua \nJatka!</string>
-    <string name="firstIntro">Kun skannaat tekstiä kameran kanssa. Teksti-ruutu kattaa tekstin.
-         Teksti-ruutuun napauttamalla sovellus analysoi kaikki teksti ruudulla näkyvissä olevissa tekstiruutuissa ja tekstiruutuista, jotka on tallennettu aikaisemmin.
-         Hyvä esimerkki siitä, miten tekstilaatikot näyttävät, on edellä esitetty.</string>
-    <string name="secondIntro">Jos huomaat väärän tekstin, pidä alhaalla sormea poistaaksesi kaikki skannatut tekstit.</string>
-    <string name="thirdIntro"> Älä napauta tekstilaatikoita, kun tekstilaatikkot näyttävät näin
-        koska se vain skannaa pienen prosenttiosuuden koko tekstistä.</string>
-    <string name="tutorial">Oppitunti</string>
     <string name="anis">Anis</string>
     <string name="coriander">Korianteri</string>
     <string name="cumin">Kuminaa</string>
@@ -257,65 +198,17 @@
     <string name="pepsin">Pepsin</string>
 
     <string name="halal">Halal</string>
-    <string name="start">Aloita sivu</string>
-    <string name="holdFor">Pidä lisätietoja</string>
-    <string name="about">Noin</string>
-    <string name="helpTranslate">Auttaa Käännä</string>
-    <string name="onlyFillChanges">Vain täytä muutokset, jätä ne tyhjiin! Kiitos Apua!</string>
-    <string name="uncheckAll">Poista kaikki valinta</string>
-    <string name="checkAll">Valitse kaikki</string>
-    <string name="delete">Poistaa</string>
     <string name="spice">Mausteet</string>
     <string name="butter">Voi</string>
     <string name="casein">Kaseiini</string>
     <string name="yoghurt">Jogurtti</string>
     <string name="custard">Vaniljakastike</string>
     <string name="cream">Kerma</string>
-    <string name="write">Kirjoita ainesosia</string>
-    <string name="useflash">Taskulamppu On Päällä</string>
-    <string name="useNoFlash">Taskulampun Pois Päältä</string>
-    <string name="SharingIsCaring">Sharing is caring</string>
-    <string name="myPreference">Omat asetukset</string>
-    <string name="showAllergies">Näytä allergiat</string>
-    <string name="allergyAgianst">Allerginen</string>
     <string name="lactose">Laktoosi</string>
-    <string name="english">Englanti</string>
-    <string name="swedish">Ruotsin kieli</string>
-    <string name="spanish">Espanja</string>
-    <string name="norway">Norja</string>
-    <string name="denmark">Tanska</string>
-    <string name="finnish">Finnish</string>
-    <string name="german">Saksa</string>
     <string name="meat">Liha</string>
     <string name="pumpkinSeed">Kurpitsansiemeniä</string>
     <string name="veal">Vasikanliha</string>
     <string name="beef">naudanliha</string>
-    <string name="french">Ranskan kieli</string>
-    <string name="netherlands">Hollannin kieli</string>
-    <string name="header_subscriptions">Tilaukset</string>
-    <string name="noAllergies">Ei allergioita valittu</string>
-    <string name="holdCamera">Pidä kamera alhaalla, jos haluat avata muita vaihtoehtoja.</string>
-    <string name="foundABug">Löysitkö virheen? Lähetä vinkkejä!</string>
-    <string name="greatApp">Onko tämä sovellus hyödyllinen? Arvioi se!</string>
-    <string name="shareWithFriend">Onko tämä sovellus hyödyllinen? Jaa se kaverillesi!</string>
-    <string name="wonderfulDay">Ole ihana päivä!</string>
-    <string name="holdHistory">Historiassa-välilehdessä pidä päiväys nähdäksesi lisätietoja</string>
-    <string name="foundBadTranslation">Löytyi huono käännös? Auta kääntää se!</string>
-    <string name="advancedSearch">Tee suodattamaton haku</string>
-    <string name="regularSearch">Suodatettu haku</string>
-    <string name="italian">Italialainen</string>
-    <string name="portuguese">Portugalin</string>
-    <string name="polish">Puolan</string>
-    <string name="pleaseCheckAllergies">"Tarkista, että allergiat ja mieltymykset ovat oikein! "</string>
-    <string name="slide3">Kamerapainikkeen pitäminen alhaalla tuo neljä uutta vaihtoehtoa.</string>
-    <string name="advancedSearchis">suodatettu haku poistaa tekstin substraatit: esimerkiksi maap on maapähkinän merkkijono</string>
-    <string name="unfilteredSearchIs">Suodattamaton haku lisää sanojen substraattit: esimerkiksi mansi on mansikan substringi</string>
-    <string name="eNumbers">E-koodi</string>
-    <string name="downloadOfTextScannerNotComplete">Tekstin tunnistinta ei ole saatu latautumaan loppuun. Tämä valitettavasti saattaa kestää pari tuntia joillakin puhelimilla. Varmista, että olet yhteydessä internetiin ja että sinulla on 10mb vapaata tilaa.</string>
-    <string name="sendTips">Lähetä vinkkejä / vikoja</string>
-    <string name="useFocus">Automaattinen tarkennus</string>
-    <string name="useNoFocus">Automaattinen tarkennus pois päältä</string>
-    <string name="timeSleep">Nukkumikamera</string>
 
     <string name="panulirus">Panulirus</string>
     <string name="mollusc">Nilviäiset</string>
@@ -333,5 +226,4 @@
     <string name="crustaceans">Äyriäiset</string>
     <string name="oat">Kaura</string>
     <string name="onion">Sipuli</string>
-    <string name="noLanguageSelected">Ei valittuja kieliä</string>
 </resources>

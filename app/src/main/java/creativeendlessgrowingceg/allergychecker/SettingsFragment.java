@@ -3,7 +3,6 @@ package creativeendlessgrowingceg.allergychecker;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -33,6 +32,7 @@ import static creativeendlessgrowingceg.allergychecker.APISharedPreference.getFo
 import static creativeendlessgrowingceg.allergychecker.APISharedPreference.getWordCount;
 import static creativeendlessgrowingceg.allergychecker.APISharedPreference.timesScanned;
 import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.getFontColor;
+import static creativeendlessgrowingceg.allergychecker.ConfigureTheme.getPrimaryColor;
 import static creativeendlessgrowingceg.allergychecker.LanguagesAccepted.getFlag;
 
 
@@ -254,11 +254,11 @@ public class SettingsFragment extends Fragment {
             final CardClassSetup linearCardClass = new CardClassSetup();
             final AtomicInteger atomicInteger = new AtomicInteger(0);
             final ColorGradientPicker colorGradientPicker = new ColorGradientPicker();
-            final CardClassLayout warning = new CardClassLayout.CardClassLayoutBuilder(mContext, getString(R.string.warning), R.drawable.history, colorGradientPicker.ColorGradientPickerPick(4, atomicInteger.addAndGet(1), mContext), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsWarnings)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
+            final CardClassLayout warning = new CardClassLayout.CardClassLayoutBuilder(mContext, getString(R.string.warning), R.drawable.warning, colorGradientPicker.ColorGradientPickerPick(4, atomicInteger.addAndGet(1), mContext), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsWarnings)).optionalLinearSizeHorizontalHeight(75).buildCardClassLayout();
             setupWarning(warning, linearCardClass);
-            final CardClassLayout foundAllergies = new CardClassLayout.CardClassLayoutBuilder(mContext, getString(R.string.foundAllergies), R.drawable.wheatcircle, colorGradientPicker.ColorGradientPickerPick(4, atomicInteger.addAndGet(1), mContext), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsFoundAllergies)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
-            final CardClassLayout foundENumbers = new CardClassLayout.CardClassLayoutBuilder(mContext, getString(R.string.foundEnumbers), R.drawable.crustaceans, colorGradientPicker.ColorGradientPickerPick(4, atomicInteger.addAndGet(1), mContext), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsFoundENumbers)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
-            final CardClassLayout textScanned = new CardClassLayout.CardClassLayoutBuilder(mContext, getString(R.string.textScanned), R.drawable.focuson, colorGradientPicker.ColorGradientPickerPick(4, atomicInteger.addAndGet(1), mContext), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsScannedText)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
+            final CardClassLayout foundAllergies = new CardClassLayout.CardClassLayoutBuilder(mContext, getString(R.string.foundAllergies), R.drawable.wheatcircle, colorGradientPicker.ColorGradientPickerPick(4, atomicInteger.addAndGet(1), mContext), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsFoundAllergies)).optionalLinearSizeHorizontalHeight(75).buildCardClassLayout();
+            final CardClassLayout foundENumbers = new CardClassLayout.CardClassLayoutBuilder(mContext, getString(R.string.foundEnumbers), R.drawable.enumber, colorGradientPicker.ColorGradientPickerPick(4, atomicInteger.addAndGet(1), mContext), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsFoundENumbers)).optionalLinearSizeHorizontalHeight(75).buildCardClassLayout();
+            final CardClassLayout textScanned = new CardClassLayout.CardClassLayoutBuilder(mContext, getString(R.string.textScanned), R.drawable.focuson, colorGradientPicker.ColorGradientPickerPick(4, atomicInteger.addAndGet(1), mContext), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsScannedText)).optionalLinearSizeHorizontalHeight(75).buildCardClassLayout();
             setupFoundAllergies(foundAllergies, linearCardClass);
             setupFoundENumbers(foundENumbers, linearCardClass);
             setupTextScanned(textScanned, linearCardClass);
@@ -291,7 +291,7 @@ public class SettingsFragment extends Fragment {
                         ArrayList<AllergiesClass> allergiesClasses = allFoundAllergie.getAllergiesClasses();
 
                         if (allergiesClasses.size() > 0) {
-                            CardClassLayout newFoundAllergies = new CardClassLayout.CardClassLayoutBuilder(mContext, allFoundAllergie.getMotherAllergy().concat(" " + String.valueOf(allFoundAllergie.getFoundAllergies())), R.drawable.wheatcircle, Color.WHITE).optionalLinearSizeHorizontalHeight(100).buildCardClassLayout();
+                            CardClassLayout newFoundAllergies = new CardClassLayout.CardClassLayoutBuilder(mContext, allFoundAllergie.getMotherAllergy().concat(" " + String.valueOf(allFoundAllergie.getFoundAllergies())), R.drawable.wheatcircle, getPrimaryColor(getContext())).optionalLinearSizeHorizontalHeight(56).buildCardClassLayout();
                             linearCardClass.addView(foundAllergies, newFoundAllergies.getParentLinearLayout());
                             final CardClassSetup linearCardClass = new CardClassSetup();
                             linearCardClass.CardDefaultTransition(newFoundAllergies, CardClassSetup.explode(), mContext);
@@ -315,11 +315,18 @@ public class SettingsFragment extends Fragment {
             if (allFoundENumbers.isEmpty()) {
                 foundENumbers.getParentLinearLayout().setVisibility(View.GONE);
             }
+
             foundENumbers.getLinearLayoutHorizontal().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     for (AllergyList.E_Numbers allFoundENumber : allFoundENumbers) {
-                        linearCardClass.addView(foundENumbers, new CheckBoxLayout.CheckBoxBuilder(mContext, allFoundENumber.getName()).optionalRemoveCheckbox().buildCheckBoxLayout().getView());
+                        CardClassLayout newFoundAllergies = new CardClassLayout.CardClassLayoutBuilder(mContext, allFoundENumber.getId().concat(" " + allFoundENumber.getName()), R.drawable.enumber, getPrimaryColor(getContext())).optionalLinearSizeHorizontalHeight(56).buildCardClassLayout();
+                        linearCardClass.addView(foundENumbers, newFoundAllergies.getParentLinearLayout());
+                        final CardClassSetup linearCardClass = new CardClassSetup();
+                        linearCardClass.CardDefaultTransition(newFoundAllergies, CardClassSetup.explode(), mContext);
+                        linearCardClass.addView(newFoundAllergies, new CheckBoxLayout.CheckBoxBuilder(mContext, allFoundENumber.getInformation()).optionalOnlyFirstString().optionalRemoveImage().buildCheckBoxLayout().getView());
+                        linearCardClass.addView(newFoundAllergies, new CheckBoxLayout.CheckBoxBuilder(mContext, allFoundENumber.getUrl()).optionalOnlyFirstString().optionalRemoveImage().optionalAddAutoLink().buildCheckBoxLayout().getView());
+
                     }
                     linearCardClass.CardDefaultTransition(foundENumbers, CardClassSetup.explode(), mContext);
                     foundENumbers.getLinearLayoutHorizontal().performClick();

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -18,6 +20,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
@@ -133,12 +136,20 @@ public class DashboardFragment extends Fragment {
                     stringTreeSet.add(TextHandler.cutFirstWord(TextHandler.capitalLetter(LanguagesAccepted.getStringByLocalNoTakeAwaySpace(getActivity(), integer, locale.getLanguage()))));
                 }
                 for (String string : stringTreeSet) {
-                    LinearLayout view1 = new CheckBoxBuilder(getContext(), string).buildCheckBoxLayout().getView();
+                    /*LinearLayout view1 = new CheckBoxBuilder(getContext(), string).buildCheckBoxLayout().getView();
                     linearLayoutTreeSet.add(view1);
 
                     view1.setVisibility(View.VISIBLE);
-                    linearCardClass.addView(showAllergies, view1);
-
+                    linearCardClass.addView(showAllergies, view1);*/
+                    TextView textView = new TextView(getContext());
+                    textView.setText(string);
+                    textView.setTextColor(getFontColor(getContext()));
+                    textView.setTextSize(22);
+                    textView.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "yatra.ttf"));
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    layoutParams.leftMargin = 110;
+                    textView.setLayoutParams(layoutParams);
+                    linearCardClass.addView(showAllergies, textView);
                 }
                 PreferenceManager.getDefaultSharedPreferences(getContext()).edit().putInt(getSpinnerPosition(), position).apply();
 
@@ -347,7 +358,7 @@ public class DashboardFragment extends Fragment {
         linearCardClass.CardDefaultTransition(theme, CardClassSetup.explode(), getContext());
         linearCardClass.addView(theme, new ButtonLayout.ButtonLayoutBuilder(getContext(), getString(R.string.defaultTheme), themeClick(ConfigureTheme.defaultTheme)).optionalGradient(getSpecificGradient(getContext(), ConfigureTheme.defaultTheme)).buildButtonLayout().getView());
         linearCardClass.addView(theme, new ButtonLayout.ButtonLayoutBuilder(getContext(), getString(R.string.fireTheme), themeClick(ConfigureTheme.fireTheme)).optionalGradient(getSpecificGradient(getContext(), ConfigureTheme.fireTheme)).buildButtonLayout().getView());
-        linearCardClass.addView(theme, new ButtonLayout.ButtonLayoutBuilder(getContext(), getString(R.string.plainTheme), themeClick(ConfigureTheme.plainTheme)).optionalGradient(getSpecificGradient(getContext(), ConfigureTheme.plainTheme)).optionalButtonTextColor(getFontColor(getContext())).buildButtonLayout().getView());
+        linearCardClass.addView(theme, new ButtonLayout.ButtonLayoutBuilder(getContext(), getString(R.string.plainTheme), themeClick(ConfigureTheme.plainTheme)).optionalGradient(getSpecificGradient(getContext(), ConfigureTheme.plainTheme)).optionalButtonTextColor(Color.BLACK).buildButtonLayout().getView());
 
     }
 
@@ -368,6 +379,7 @@ public class DashboardFragment extends Fragment {
 
         linearCardClass.CardDefaultTransition(social, CardClassSetup.explode(), getContext());
         linearCardClass.addView(social, new CheckBoxBuilder(getContext(), getString(R.string.allergyInsta)).optionalOnlyFirstString().optionalAddAutoLink().optionalImage(R.drawable.insta).buildCheckBoxLayout().getView());
+        linearCardClass.addView(social, new CheckBoxBuilder(getContext(), getString(R.string.crengrInsta)).optionalOnlyFirstString().optionalAddAutoLink().optionalImage(R.drawable.insta).buildCheckBoxLayout().getView());
 
     }
 
@@ -387,30 +399,31 @@ public class DashboardFragment extends Fragment {
             final AtomicInteger atomicInteger = new AtomicInteger(0);
             final ColorGradientPicker colorGradientPicker = new ColorGradientPicker();
 
+            if (isAdded() && getActivity() != null) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (isAdded() && getActivity() != null) {
+                            final CardClassLayout history = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.history), R.drawable.history, colorGradientPicker.ColorGradientPickerPick(7, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardHistory)).optionalLinearSizeHorizontalHeight(75).buildCardClassLayout();
+                            final CardClassLayout camera = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.scan), R.drawable.ic_menu_camera, colorGradientPicker.ColorGradientPickerPick(7, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardCamera)).optionalLinearSizeHorizontalHeight(75).buildCardClassLayout();
+                            final CardClassLayout statistic = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.statistics), R.drawable.stats, colorGradientPicker.ColorGradientPickerPick(7, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardStatistic)).optionalLinearSizeHorizontalHeight(75).buildCardClassLayout();
+                            final CardClassLayout language = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.language), R.drawable.language, colorGradientPicker.ColorGradientPickerPick(7, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardLanguage)).optionalLinearSizeHorizontalHeight(75).buildCardClassLayout();
+                            final CardClassLayout showAllergies = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.showAllergies), R.drawable.wheatcircle, colorGradientPicker.ColorGradientPickerPick(7, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardShowAllergies)).optionalLinearSizeHorizontalHeight(75).buildCardClassLayout();
+                            final CardClassLayout theme = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.theme), R.drawable.star, colorGradientPicker.ColorGradientPickerPick(7, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsTheme)).optionalLinearSizeHorizontalHeight(75).buildCardClassLayout();
+                            final CardClassLayout social = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.social), R.drawable.group, colorGradientPicker.ColorGradientPickerPick(7, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsSocial)).optionalLinearSizeHorizontalHeight(75).buildCardClassLayout();
 
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (isAdded() && getActivity() != null) {
-                        final CardClassLayout history = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.history), R.drawable.history, colorGradientPicker.ColorGradientPickerPick(7, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardHistory)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
-                        final CardClassLayout camera = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.scan), R.drawable.ic_menu_camera, colorGradientPicker.ColorGradientPickerPick(7, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardCamera)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
-                        final CardClassLayout statistic = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.statistics), R.drawable.stats, colorGradientPicker.ColorGradientPickerPick(7, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardStatistic)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
-                        final CardClassLayout language = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.language), R.drawable.language, colorGradientPicker.ColorGradientPickerPick(7, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardLanguage)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
-                        final CardClassLayout showAllergies = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.showAllergies), R.drawable.wheatcircle, colorGradientPicker.ColorGradientPickerPick(7, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardShowAllergies)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
-                        final CardClassLayout theme = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.theme), R.drawable.star, colorGradientPicker.ColorGradientPickerPick(7, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsTheme)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
-                        final CardClassLayout social = new CardClassLayout.CardClassLayoutBuilder(getContext(), getString(R.string.social), R.drawable.group, colorGradientPicker.ColorGradientPickerPick(7, atomicInteger.addAndGet(1), getContext()), (LinearLayout) parentFrameLayout.findViewById(R.id.linearCardSettingsSocial)).optionalLinearSizeHorizontalHeight(200).buildCardClassLayout();
-
-                        historySetup(history, linearCardClass);
-                        statisticSetup(statistic, linearCardClass);
-                        languageSetup(language, linearCardClass);
-                        showAllergiesSetup(showAllergies, linearCardClass);
-                        cameraSetup(camera, linearCardClass);
-                        themeSetup(theme, linearCardClass);
-                        socialSetup(social, linearCardClass);
+                            historySetup(history, linearCardClass);
+                            statisticSetup(statistic, linearCardClass);
+                            languageSetup(language, linearCardClass);
+                            showAllergiesSetup(showAllergies, linearCardClass);
+                            cameraSetup(camera, linearCardClass);
+                            themeSetup(theme, linearCardClass);
+                            socialSetup(social, linearCardClass);
+                        }
                     }
-                }
 
-            });
+                });
+            }
 
 
             return null;
